@@ -1,0 +1,868 @@
+diff --git a/tests/helpers/gained-attribution-assertions.mjs b/tests/helpers/gained-attribution-assertions.mjs
+new file mode 100644
+index 00000000..5777851f
+--- /dev/null
++++ b/tests/helpers/gained-attribution-assertions.mjs
+@@ -0,0 +1,31 @@
++import assert from 'node:assert/strict';
++
++/** Inspect rendered text only; retained provenance datasets are not visibility. */
++export async function assertNoVisibleLegacyAttribution(locator){
++  const result=await locator.evaluateAll(roots=>{
++    let count=0;const first=[];
++    const visible=node=>{
++      for(let current=node.parentElement;current;current=current.parentElement){
++        const style=getComputedStyle(current);
++        if(current.hidden||style.display==='none'||['hidden','collapse'].includes(style.visibility)||
++          Number(style.opacity)===0||style.contentVisibility==='hidden')return false;
++        if(current.tagName==='DETAILS'&&!current.open){
++          const summary=current.querySelector(':scope > summary');
++          if(!summary?.contains(node))return false;
++        }
++      }
++      const range=document.createRange();range.selectNodeContents(node);
++      return [...range.getClientRects()].some(rect=>rect.width>0&&rect.height>0);
++    };
++    for(const root of roots){
++      const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
++      for(let node=walker.nextNode();node;node=walker.nextNode()){
++        const text=node.textContent.trim();
++        if(!/^(?:[·—-]\s*)?(?:Source:|Applies to:)/.test(text)||!visible(node))continue;
++        count++;if(first.length<20)first.push({text:text.slice(0,240),tag:node.parentElement.tagName});
++      }
++    }
++    return {count,first};
++  });
++  assert.equal(result.count,0,'Visible legacy Source/Applies attribution: '+JSON.stringify(result));
++}
+diff --git a/v2/attached-rule-text-browser-qa.mjs b/v2/attached-rule-text-browser-qa.mjs
+index 2e08d322..69a9690a 100644
+--- a/v2/attached-rule-text-browser-qa.mjs
++++ b/v2/attached-rule-text-browser-qa.mjs
+@@ -9,6 +9,7 @@ import os from 'node:os';
+ import path from 'node:path';
+ import {fileURLToPath} from 'node:url';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ import {readAcceptedSourceCorpus} from '../tests/helpers/accepted-source-corpus.mjs';
+ import {readBookPassport} from '../books/shared/tools/book-passport.mjs';
+@@ -156,7 +157,10 @@ async function inspect(page,c,device,mode,id,stage,wanted){
+   const rows=await card.locator('article[data-attached-rule-id]').evaluateAll(nodes=>nodes.map(node=>({
+     ruleId:node.dataset.attachedRuleId,sourceInstanceId:node.dataset.sourceInstanceId,
+     title:node.querySelector('h5')?.textContent||'',text:node.querySelector('[data-attached-rule-text]')?.textContent||'',
+-    visible:!!node.getClientRects().length,content:node.innerText})));
++    visible:!!node.getClientRects().length,content:node.innerText,
++    gained:(()=>{const group=node.closest('[data-gained-source-kind]'),headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));
++      return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.innerText||'',headingCount:headings.length,
++        headingVisible:!!headings[0]?.getClientRects().length,sameCard:group?.closest('.unit-card')===node.closest('.unit-card')};})()})));
+   const found=rows.filter(row=>norm(row.title)===norm(c.rule));
+   assert.equal(found.length,wanted?1:0,`${c.rule}: ${stage} ${mode} on ${id}`);
+   if(wanted){
+@@ -169,7 +173,10 @@ async function inspect(page,c,device,mode,id,stage,wanted){
+     assert.equal(row.text,expectedBody,'Original source body is byte-for-byte identical after removing only its repeated heading');
+     assert.ok(!row.text.startsWith(prefix),'Rule heading is not repeated in the body');
+     if(c.quote)assert.ok(norm(row.text).includes(norm(body)),'Full independent accepted source text, including conditions');
+-    assert.ok(norm(row.content).toLowerCase().includes(norm(c.owner).toLowerCase()),'Visible source owner');
++    assert.ok(norm(row.gained.heading).toLowerCase().includes(norm(c.owner).toLowerCase()),'Visible source owner');
++    assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(row.gained.kind),'Attached source has its exact typed gained group');
++    assert.equal(row.gained.source,c.ownerInstance,'The source group retains the exact physical owner');
++    assert.equal(row.gained.headingCount,1);assert.ok(row.gained.headingVisible&&row.gained.sameCard,'The exact owner heading is visible on this physical recipient card');
+     assert.doesNotMatch(row.content,/Conditional rule|Not automatically|source-clause-|recipient\//i,'No technical labels on O-1 text');
+     const rowNode=card.locator('article[data-attached-rule-id]').filter({has:page.locator('h5',{hasText:c.rule})}).first();
+     await rowNode.scrollIntoViewIfNeeded();assert.ok(await rowNode.isVisible());
+@@ -180,6 +187,7 @@ async function inspect(page,c,device,mode,id,stage,wanted){
+   }
+   for(const title of c.negative)assert.ok(!rows.some(row=>norm(row.title)===norm(title)),title+' must not transfer');
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'No horizontal overflow');
++  await assertNoVisibleLegacyAttribution(card);
+   results.push({book:c.book,rule:c.rule,source:c.owner,target:id===c.target?(c.reverse?c.leader:c.bodyguard):'Independent duplicate',
+     device,mode,stage,wanted,status:'PASS',observed:found});
+ }
+diff --git a/v2/card-display-2-browser-qa.mjs b/v2/card-display-2-browser-qa.mjs
+index 3ba97988..f33f921b 100644
+--- a/v2/card-display-2-browser-qa.mjs
++++ b/v2/card-display-2-browser-qa.mjs
+@@ -8,6 +8,7 @@ import os from 'node:os';
+ import path from 'node:path';
+ import {fileURLToPath,pathToFileURL} from 'node:url';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ import {displayDuplicateCensus} from './card-display-2-qa.mjs';
+ import {sourceSnapshot,registerBookSources} from '../books/shared/source-refs-v2/source-refs.mjs';
+@@ -61,24 +62,80 @@ async function view(page,id,mode){
+   await page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').waitFor();
+ }
+ function count(text,quote){return text.split(quote).length-1;}
++async function gainedPolicySources(page){
++  const result={},physicalCards=page.locator('main .unit-card[data-roster-instance-id]');
++  for(let cardIndex=0;cardIndex<await physicalCards.count();cardIndex++){
++    const physical=physicalCards.nth(cardIndex),details=physical.locator('details[data-gained-source-kind="DETACHMENT"]');
++    for(const group of await details.all())if(!await group.evaluate(node=>node.open))await group.locator(':scope > summary').click();
++    const policies=physical.locator('.ds-conditional-policy:not([data-conditional-policy="DETACHMENT_TEXT"])');
++    for(let policyIndex=0;policyIndex<await policies.count();policyIndex++){
++      const policy=policies.nth(policyIndex),context=await policy.evaluate(row=>{
++        const refs=JSON.parse(row.dataset.policyAttributionRefs||'[]'),captions=refs.map(id=>document.getElementById(id)).filter(caption=>caption?.dataset.sourceCaption!==undefined);
++        return {self:row.dataset.sourceInstanceId===row.closest('.unit-card')?.dataset.rosterInstanceId,tooltipId:captions[0]?.closest('.ds-gained-tooltip')?.id||null};
++      });
++      let opened=false;
++      if(context.tooltipId){
++        const chip=physical.locator('.ds-gained-chip[aria-controls="'+context.tooltipId+'"]');
++        assert.equal(await chip.count(),1,'One keyboard-accessible chip owns this exact source tooltip');
++        await page.keyboard.press('Tab');await chip.focus();await page.waitForFunction(id=>Boolean(document.getElementById(id)?.getClientRects().length),context.tooltipId);
++        assert.equal(await chip.getAttribute('aria-expanded'),'true');assert.equal(await chip.getAttribute('aria-describedby'),context.tooltipId);opened=true;
++      }else assert.ok(context.self,'A foreign policy source cannot lose its accessible tooltip');
++      result[cardIndex+':'+policyIndex]=await policy.evaluate((row,{self,opened})=>{
++        const physical=row.closest('.unit-card'),identity=JSON.parse(row.dataset.policySource),refs=JSON.parse(row.dataset.policyAttributionRefs||'[]');
++        const validRefs=Array.isArray(refs)&&refs.length>0&&new Set(refs).size===refs.length&&refs.every(id=>typeof id==='string'&&id.length);
++        const captions=validRefs?refs.map(id=>document.getElementById(id)).filter(caption=>caption?.tagName==='P'&&caption.dataset.sourceCaption!==undefined):[];
++        const caption=captions.length===1?captions[0]:null,owner=caption?.closest('.ds-conditional-policy'),ownerSource=owner?.dataset.policySource?JSON.parse(owner.dataset.policySource):null;
++        const visible=element=>{if(!element?.getClientRects().length)return false;for(let current=element;current;current=current.parentElement){const style=getComputedStyle(current);if(style.display==='none'||['hidden','collapse'].includes(style.visibility)||Number(style.opacity)===0)return false;}return true;};
++        const links=[...(caption?.querySelectorAll('a[data-target-id]')||[])].map(link=>link.dataset.targetId);
++        const evidence={refs,captionId:caption?.id||null,
++          uniqueId:Boolean(caption)&&[...document.querySelectorAll('[id]')].filter(element=>element.id===caption.id).length===1,
++          visible:visible(caption),sameCard:Boolean(caption)&&caption.closest('.unit-card')===physical&&physical.dataset.rosterInstanceId===row.closest('.unit-card').dataset.rosterInstanceId,
++          visibleAttributionText:(validRefs?refs:[]).map(id=>document.getElementById(id)).filter(visible).map(node=>node.innerText).join('\n'),
++          sameRule:ownerSource?.ruleId===identity.ruleId&&caption?.dataset.sourceRuleId===identity.ruleId&&links.length===1&&links[0]===identity.ruleId,
++          sameProvenance:Boolean(ownerSource?.provenance)&&Boolean(identity.provenance)&&JSON.stringify(ownerSource.provenance)===JSON.stringify(identity.provenance)&&caption?.dataset.policySource&&JSON.stringify(JSON.parse(caption.dataset.policySource).provenance)===JSON.stringify(identity.provenance),
++          sameSourceInstance:typeof owner?.dataset.sourceInstanceId==='string'&&owner.dataset.sourceInstanceId===row.dataset.sourceInstanceId&&caption?.dataset.sourceInstanceId===row.dataset.sourceInstanceId,
++          sameModelScope:typeof owner?.dataset.sourceModelScopeId==='string'&&owner.dataset.sourceModelScopeId===row.dataset.sourceModelScopeId&&caption?.dataset.sourceModelScopeId===row.dataset.sourceModelScopeId,
++          accessibleRefs:validRefs&&JSON.stringify((row.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean))===JSON.stringify(refs),self,opened};
++        let issue=null;
++        if(!validRefs)issue='Linked Source references are missing or invalid';
++        else if(!caption)issue='Linked Source caption is missing';
++        else if(!evidence.uniqueId)issue='Linked Source caption ID is not unique';
++        else if(!self&&(!opened||!evidence.visible))issue='Linked Source caption is not visible after opening its tooltip';
++        else if(self&&!opened&&evidence.visible)issue='Same-unit Source proof is unexpectedly visible';
++        else if(/Source:|Applies to:/.test(evidence.visibleAttributionText))issue='Legacy Source/Applies labels are unexpectedly visible';
++        else if(!evidence.sameCard)issue='Linked Source caption belongs to another physical card';
++        else if(!evidence.sameRule)issue='Linked Source caption belongs to another rule';
++        else if(!evidence.sameProvenance)issue='Linked Source caption has different provenance';
++        else if(!evidence.sameSourceInstance)issue='Linked Source caption has a different physical source';
++        else if(!evidence.sameModelScope)issue='Linked Source caption has a different model scope';
++        else if(!evidence.accessibleRefs)issue='Linked Source accessible references do not match';
++        return {source:issue===null,sourceIssue:issue,sharedSource:evidence};
++      },{self:context.self,opened});
++    }
++  }
++  return result;
++}
+ async function inspect(page,c,mode,device,id){
+   await view(page,id,mode);await page.evaluate(()=>document.fonts.ready);
+   const projection=await page.evaluate(()=>window.ArmyBookAppV2.roster.projection);
+   const payload=read(`books/${c.book}/v2/generated/app-presentation.json`),cards=new Map(payload.cards.map(card=>[card.id,card]));registerBookSources(payload);
+-  const observed=await page.locator('main .unit-card[data-roster-instance-id]').evaluateAll(nodes=>nodes.map(node=>({
++  const gainedSources=baseline?{}:await gainedPolicySources(page);
++  if(!baseline)await assertNoVisibleLegacyAttribution(page.locator('main .unit-card[data-roster-instance-id]'));
++  const observed=await page.locator('main .unit-card[data-roster-instance-id]').evaluateAll((nodes,{baseline,gainedSources})=>nodes.map((node,cardIndex)=>({
+     id:node.dataset.rosterInstanceId,title:node.querySelector('h3')?.textContent,text:node.innerText,
+-    keywords:[...node.querySelectorAll('[data-datasheet-section="keywords"] [data-fact-id]')].map(field=>({id:field.dataset.factId,text:field.textContent})),
+-    keywordText:node.querySelector('[data-datasheet-section="keywords"]')?.innerText,
++    keywords:[...node.querySelectorAll('[data-datasheet-section="keywords"] [data-fact-id], [data-gained-overview] .ds-effective-keyword [data-fact-id]')].map(field=>({id:field.dataset.factId,text:field.textContent})),
++    keywordText:[node.querySelector('[data-datasheet-section="keywords"]')?.innerText,
++      ...[...node.querySelectorAll('[data-gained-overview] .ds-effective-keyword .ds-gained-chip')].map(chip=>chip.innerText)].filter(Boolean).join(' '),
+     paragraphs:[...node.querySelectorAll('p[data-fact-id]')].map(p=>({id:p.dataset.factId,text:p.textContent,visible:!!p.getClientRects().length})),
+     ruleParagraphs:[...node.querySelectorAll('p')].filter(p=>p.getClientRects().length&&p.textContent.length>=60&&
+       !p.textContent.startsWith('Source:')&&!p.textContent.startsWith('Applies to:')).map(p=>p.textContent),
+     sections:[...node.querySelectorAll('section.unit-part')].map(section=>({id:section.dataset.cardId,title:section.querySelector('h4')?.textContent,text:section.innerText})),
+     links:[...node.querySelectorAll('a[data-target-id]')].map(a=>a.dataset.targetId),
+     attached:[...node.querySelectorAll('[data-attached-rule-id]')].map(row=>({id:row.dataset.attachedRuleId,source:row.dataset.sourceInstanceId,
+-      title:row.querySelector('h5')?.textContent,text:row.querySelector('[data-attached-rule-text]')?.textContent,content:row.innerText})),
++      title:row.querySelector('h5')?.textContent,text:row.querySelector('[data-attached-rule-text]')?.textContent,content:row.innerText,gained:(()=>{const group=row.closest('[data-gained-source-kind]'),headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.textContent||'',headingCount:headings.length,sameCard:group?.closest('.unit-card')===node};})()})),
+     f1:[...node.querySelectorAll('[data-detachment-rule-id]')].map(row=>({id:row.dataset.detachmentRuleId,text:row.querySelector('.ds-detachment-fields')?.textContent,
+-      visible:!!row.querySelector('.ds-detachment-fields')?.getClientRects().length,source:row.innerText.includes('Source:')})),
+-    policies:[...node.querySelectorAll('.ds-conditional-policy:not([data-conditional-policy="DETACHMENT_TEXT"])')].map(row=>{
++      visible:!!row.querySelector('.ds-detachment-fields')?.getClientRects().length,source:baseline?row.innerText.includes('Source:'):(()=>{const group=row.closest('details[data-gained-source-kind="DETACHMENT"]');return Boolean(group)&&group.closest('.unit-card')===node&&/^From detachment:\s*\S/.test(group.querySelector(':scope > summary')?.textContent||'');})()})),
++    policies:[...node.querySelectorAll('.ds-conditional-policy:not([data-conditional-policy="DETACHMENT_TEXT"])')].map((row,policyIndex)=>{
+       const identity=JSON.parse(row.dataset.policySource),localSource=row.innerText.includes('Source:');
+       let sourceIssue=null,sharedSource=null;
+       if(!localSource){
+@@ -124,10 +181,10 @@ async function inspect(page,c,mode,device,id){
+         modelScope:text?.dataset.sourceModelScopeId??text?.closest('[data-composition-id]')?.dataset.compositionId??'',
+         provenance:text?.dataset.sourceProvenance?JSON.parse(text.dataset.sourceProvenance):null,
+         accessible:row.getAttribute('aria-details')===ref}:null;
+-      return {text:row.innerText,identity,canonicalText:text?.textContent,sharedText,
+-        source:localSource||sourceIssue===null,sourceIssue,sharedSource};
++      const attribution=baseline?{source:localSource||sourceIssue===null,sourceIssue,sharedSource}:gainedSources[cardIndex+':'+policyIndex];
++      return {text:row.innerText,identity,canonicalText:text?.textContent,sharedText,...attribution};
+     })
+-  })));
++  })),{baseline,gainedSources});
+   fs.writeFileSync(path.join(out,device+'-'+c.id+'-'+mode+'-'+id+'.json'),JSON.stringify(observed,null,2));
+   for(const card of observed){
+     const unit=projection.units.find(unit=>unit.instanceId===card.id);assert.ok(unit);
+@@ -191,7 +248,9 @@ async function inspect(page,c,mode,device,id){
+     for(const row of card.attached){
+       const source=cards.get(row.id),fields=source.fields.filter(field=>typeof field.value==='string'&&
+         (field.value===row.text||field.value===row.title+':'+row.text));
+-      assert.equal(fields.length,1,'O-1 canonical text unchanged');assert.match(row.content,/Source:/);
++      assert.equal(fields.length,1,'O-1 canonical text unchanged');
++      if(baseline)assert.match(row.content,/Source:/);
++      else{assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(row.gained.kind));assert.equal(row.gained.source,row.source,'Exact attached source instance remains in the group');assert.ok(row.gained.sameCard);assert.equal(row.gained.headingCount,1);assert.match(row.gained.heading,/^From (?:leader|attached unit|enhancement):\s*\S/,'Attached provenance is identified once by its source-group heading');}
+       assert.ok(!row.text.startsWith(row.title+':'));
+     }
+     if(c.id==='dg-physical'&&card.id==='parsed-unit-2')assert.ok(card.attached.some(row=>row.title==='Vector of Disease'),'O-1 owner-to-bodyguard retained');
+diff --git a/v2/card-display-browser-qa.mjs b/v2/card-display-browser-qa.mjs
+index ef72759d..03e2ed00 100644
+--- a/v2/card-display-browser-qa.mjs
++++ b/v2/card-display-browser-qa.mjs
+@@ -8,6 +8,7 @@ import os from 'node:os';
+ import path from 'node:path';
+ import {fileURLToPath} from 'node:url';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ import {chargeFixtures} from './charge-qa-fixtures.mjs';
+@@ -99,6 +100,13 @@ async function inspect(page,c,mode,device){
+     const root=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]');
+     const effective=await page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id),id);
+     const sources=effective.applied.filter(source=>source.operation==='MODIFY_RULE_METRIC'&&c.effects.includes(source.field));
++    for(const source of sources)for(const field of sourceFields(c,source)){
++      const fields=root.locator('[data-fact-id="'+field.id+'"]');
++      for(const node of await fields.all()){
++        const group=node.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
++        if(await group.count()&&!await group.evaluate(element=>element.open))await group.locator(':scope > summary').click();
++      }
++    }
+     const observed=await root.evaluate(node=>({
+       fields:[...node.querySelectorAll('[data-fact-id]')].filter(field=>!field.closest('a,dialog,[hidden],details:not([open])')).map(field=>({id:field.dataset.factId,text:field.textContent,visible:!!field.getClientRects().length})),
+       attached:[...node.querySelectorAll('[data-attached-rule-id]')].map(rule=>({id:rule.dataset.attachedRuleId,source:rule.dataset.sourceInstanceId,
+@@ -142,6 +150,7 @@ async function inspect(page,c,mode,device){
+     if(expectedUnitExceptions.length)assert.ok(observed.metrics.length,'Missing source text retains metric');
+     const expectedProfileExceptions=sources.some(source=>retained.has(source.ruleId));
+     assert.equal(observed.profileMetrics.length>0,expectedProfileExceptions&&effective.profiles.some(profile=>Object.keys(profile.metrics).length>0),'Range annotations yield only to complete source text');
++    await assertNoVisibleLegacyAttribution(root);
+     results.push({book:c.bookId,ruleId:c.ruleId,device,mode,instance:id,sources:sources.map(source=>source.ruleId),retained:observed.metrics,profileMetrics:observed.profileMetrics,status:'PASS'});
+   }
+   assert.equal(await page.evaluate(()=>JSON.stringify(window.ArmyBookAppV2.roster.projection)),before,'Display cannot alter effects or conditions');
+diff --git a/v2/card-polish-2-browser-qa.mjs b/v2/card-polish-2-browser-qa.mjs
+index 0718912b..075f3ace 100644
+--- a/v2/card-polish-2-browser-qa.mjs
++++ b/v2/card-polish-2-browser-qa.mjs
+@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
+ import {fileURLToPath} from 'node:url';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
+ import {files,cases,createExecutableDetachmentSnapshot} from '../tests/helpers/executable-detachment-cases.mjs';
+@@ -52,22 +53,37 @@ async function card(id){
+  const node=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').first();await node.waitFor();return node;
+ }
+ async function shot(name,node){await node.scrollIntoViewIfNeeded();const file=path.join(out,name+'.png');await page.screenshot({path:file});return file;}
++async function openExactGainedGroup(node){
++ for(const match of await node.all()){
++  const group=match.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
++  if(await group.count()&&!await group.evaluate(element=>element.open))await group.locator(':scope > summary').click();
++ }
++}
+ async function runDeathBlow(width){
+  await open(deathBlow.book);await submit(deathBlow.text);const node=await card(deathBlow.instance);
+  const rule=read('books/space-marines/v2/generated/roster-runtime.json').entities.find(row=>row.id===deathBlow.ruleId);
+  const view=await page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id),deathBlow.instance);
+  assert.equal(view.unitMetrics.chargeRoll.modifier,1,'Existing charge-roll effect remains +1');
+  if(mutation==='remove-rule-text')await node.locator('[data-executable-detachment-rule-id]').evaluateAll(nodes=>nodes.forEach(node=>node.remove()));
++ if(!observe)await openExactGainedGroup(node.locator('[data-executable-detachment-rule-id="'+rule.id+'"]'));
+  const source=node.locator('[data-executable-detachment-rule-id="'+rule.id+'"]'),occurrences=count(await node.innerText(),rule.data.text);
+  if(!observe){
+   assert.equal(occurrences,1,'One complete Death Blow source text on the physical card');
+   assert.equal(await source.count(),1);assert.ok(await source.isVisible());
+   const metric=node.locator('[data-unit-metric="chargeRoll"]');assert.equal(await metric.count(),1,'The separate charge modifier is retained');
++  const sourceId=await source.getAttribute('id');
++  const tips=metric.locator('[data-policy-text-ref="'+sourceId+'"]').locator('xpath=ancestor::*[contains(concat(" ",normalize-space(@class)," ")," ds-gained-tooltip ")][1]');
++  for(const tip of await tips.all()){
++   const tooltipId=await tip.getAttribute('id'),chip=metric.locator('.ds-gained-chip[aria-controls="'+tooltipId+'"]');
++   assert.equal(await chip.count(),1,'One chip opens this exact metric source tooltip');
++   await page.keyboard.press('Tab');await chip.focus();await tip.waitFor({state:'visible'});
++  }
+   assert.ok((await metric.innerText()).includes('+1'));assert.ok((await metric.innerText()).includes('Death Blow'));
+   const id=await source.getAttribute('id'),ref=metric.locator('[data-policy-text-ref="'+id+'"]');assert.equal(await ref.count(),1,'Effect links to full source');
+   assert.equal(await page.locator('[id="'+id+'"]').count(),1,'Source ID is unique in the document');
+   assert.equal(await ref.evaluate(link=>link.closest('.unit-card')===document.getElementById(link.dataset.policyTextRef).closest('.unit-card')),true);
+   const provenance=JSON.parse(await source.getAttribute('data-executable-source-provenance'));assert.ok(provenance.sourceId);
++  await assertNoVisibleLegacyAttribution(node);
+  }
+  return {case:'death-blow',width,fullTextOccurrences:occurrences,effects:view.applied.filter(row=>row.ruleId===rule.id),screenshots:[await shot('death-blow-'+width,occurrences?source:node)]};
+ }
+@@ -75,7 +91,9 @@ async function runLion(width){
+  await open(lion.bookId);await submit(lion.text);const node=await card('parsed-unit-2');
+  const view=await page.evaluate(()=>window.ArmyBookAppV2.roster.effective('parsed-unit-2'));
+  const rows=view.conditional.filter(row=>row.activationContext);assert.equal(rows.length,3,'Three separate conditional effects remain');
+- const choice=rows[0].activationContext,occurrences=count(await node.innerText(),choice.text);
++ const choice=rows[0].activationContext;
++ if(!observe)await openExactGainedGroup(node.locator('[data-battle-choice-text="'+choice.canonicalId+'"]'));
++ const occurrences=count(await node.innerText(),choice.text);
+  if(mutation==='remove-choice-text')await node.locator('[data-battle-choice-text]').evaluateAll(nodes=>nodes.forEach(node=>node.remove()));
+  if(!observe){
+   const source=node.locator('[data-battle-choice-text="'+choice.canonicalId+'"]');
+@@ -94,10 +112,12 @@ async function runLion(width){
+    const target=await link.getAttribute('data-policy-text-ref');
+    const text=node.locator('[id="'+target+'"]');
+    assert.equal(await text.count(),1,'Every independent rule/choice link resolves on its own physical card');
++   await openExactGainedGroup(text);
+    assert.ok(await text.isVisible(),'Every linked rule/choice source is visible');
+    assert.equal(await page.locator('[id="'+target+'"]').count(),1,'Every linked source has a unique document ID');
+    assert.equal(await link.getAttribute('href'),'#'+target);
+   }
++  await assertNoVisibleLegacyAttribution(node);
+  }
+  return {case:'lion',width,fullTextOccurrences:occurrences,separateEffects:rows.length,screenshots:[await shot('lion-choice-'+width,node.locator('[data-battle-choice-text]').first().or(node).first())]};
+ }
+@@ -167,6 +187,7 @@ async function runInventory(book){
+   const node=await card('physical/right'),before=await page.evaluate(()=>window.ArmyBookAppV2.roster.projection);
+   const source=node.locator('[data-executable-detachment-rule-id="'+ruleId+'"]');
+   assert.equal(await source.count(),1,book+'/'+title+': one full physical source, including mixed F1/executable rules');
++  await openExactGainedGroup(source);
+   assert.ok(await source.isVisible());
+   const canonical=publication.cards.find(row=>row.id===ruleId);
+   const fields=canonical.fields.filter(field=>typeof field.value==='string'&&
+@@ -185,6 +206,7 @@ async function runInventory(book){
+     book+'/'+title+': full canonical paragraph shown once, not repeated by a mixed battle-only clause');
+   const id=await source.getAttribute('id');assert.equal(await page.locator('[id="'+id+'"]').count(),1);
+   assert.deepEqual(await page.evaluate(()=>window.ArmyBookAppV2.roster.projection),before,'Rendering does not mutate gameplay');
++  await assertNoVisibleLegacyAttribution(node);
+   results.push({case:'inventory',book,ruleId,title,width:1440,status:'PASS',canonicalFields:fields.map(field=>field.id)});
+  }
+ }
+diff --git a/v2/card-recipient-browser-qa.mjs b/v2/card-recipient-browser-qa.mjs
+index 80132cc7..79a50e12 100644
+--- a/v2/card-recipient-browser-qa.mjs
++++ b/v2/card-recipient-browser-qa.mjs
+@@ -11,6 +11,7 @@ import os from 'node:os';
+ import path from 'node:path';
+ import {fileURLToPath} from 'node:url';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ 
+ const sourceRepo=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
+@@ -115,7 +116,30 @@ async function guide(page,instance){
+ }
+ const card=(page,instance)=>page.locator('main .unit-card[data-roster-instance-id="'+instance+'"]');
+ async function current(page){return page.evaluate(()=>({snapshot:window.ArmyBookAppV2.roster.snapshot(),projection:window.ArmyBookAppV2.roster.projection}));}
+-async function rows(page,instance,ruleId){return card(page,instance).locator('.ds-conditional-policy[data-conditional-policy="DETACHMENT_TEXT"]').evaluateAll((nodes,{ruleId,instance})=>nodes.flatMap(node=>{
++async function rows(page,instance,ruleId){
++  const physical=card(page,instance),ruleGroup=physical.locator('[data-detachment-rule-id="'+ruleId+'"]');
++  if(await ruleGroup.count()){
++    const gained=ruleGroup.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
++    assert.equal(await gained.count(),1,'Each detachment rule belongs to one exact gained-source group');
++    if(!await gained.evaluate(node=>node.open))await gained.locator(':scope > summary').click();
++    assert.equal(await gained.evaluate(node=>node.open),true,'The exact source group is expanded before checking full fields');
++  }
++  const all=physical.locator('.ds-conditional-policy[data-conditional-policy="DETACHMENT_TEXT"]');
++  const indexes=await all.evaluateAll((nodes,ruleId)=>nodes.flatMap((node,index)=>JSON.parse(node.dataset.policySource||'{}').ruleId===ruleId?[index]:[]),ruleId),collected=[];
++  for(const index of indexes){
++    const row=all.nth(index),tooltipId=await row.evaluate(node=>{
++      const refs=node.dataset.policyAttributionRefs===undefined?null:JSON.parse(node.dataset.policyAttributionRefs);
++      const caption=refs?document.getElementById(refs[0]):node.querySelector('p[data-source-caption]');
++      return caption?.closest('.ds-gained-tooltip')?.id||null;
++    });
++    assert.ok(tooltipId,'The exact source caption is associated with a gained tooltip');
++    const chip=physical.locator('.ds-gained-chip[aria-controls="'+tooltipId+'"]');
++    assert.equal(await chip.count(),1,'Exactly one chip controls this source tooltip');
++    await page.keyboard.press('Tab');await chip.focus();
++    await page.waitForFunction(id=>document.getElementById(id)?.getClientRects().length>0,tooltipId);
++    assert.equal(await chip.getAttribute('aria-expanded'),'true','Keyboard focus opens the accessible source tooltip');
++    assert.equal(await chip.getAttribute('aria-describedby'),tooltipId,'The chip explicitly describes the same exact tooltip');
++    const observed=await row.evaluate((node,{ruleId,instance})=>{
+   const source=JSON.parse(node.dataset.policySource||'{}');if(source.ruleId!==ruleId)return [];
+   const text=node.querySelector('[data-detachment-clause-text]')||document.getElementById(node.dataset.detachmentClauseTextRef);
+   const fieldRefs=JSON.parse(node.dataset.detachmentClauseFieldRefs||'[]');
+@@ -137,8 +161,8 @@ async function rows(page,instance,ruleId){return card(page,instance).locator('.d
+     attributionRefs.every(id=>typeof id==='string'&&id.length);
+   const ownParagraphs=[...node.querySelectorAll('p')];
+   const captions=attributionRefs===null?[
+-    ...ownParagraphs.filter(p=>p.innerText.startsWith('Source:')),
+-    ...ownParagraphs.filter(p=>p.innerText.startsWith('Applies to:'))
++    ...ownParagraphs.filter(p=>p.dataset.sourceCaption!==undefined),
++    ...ownParagraphs.filter(p=>p.dataset.recipientCaption!==undefined)
+   ]:refsValid?attributionRefs.map(id=>document.getElementById(id)):[];
+   const visible=element=>{
+     if(!element?.getClientRects().length)return false;
+@@ -151,23 +175,27 @@ async function rows(page,instance,ruleId){return card(page,instance).locator('.d
+     const owner=caption?.closest('.ds-conditional-policy'),physical=caption?.closest('.unit-card');
+     return {id:caption?.id||null,identity:caption?paragraphs.indexOf(caption):null,
+       exists:Boolean(caption),visible:visible(caption),paragraph:caption?.tagName==='P',
+-      prefix:caption?.innerText.startsWith(index===0?'Source:':'Applies to:')||false,
++      prefix:(index===0?caption?.dataset.sourceCaption:caption?.dataset.recipientCaption)?.startsWith(index===0?'Source:':'Applies to:')||false,
++      recipientHidden:index===1&&(caption?.hidden===true||caption?.getAttribute('aria-hidden')==='true'),
++      currentText:caption?.innerText||'',metadataCaption:index===0?caption?.dataset.sourceCaption:caption?.dataset.recipientCaption,
++      actualRuleId:caption?.dataset.sourceRuleId,captionSource:caption?.dataset.policySource?JSON.parse(caption.dataset.policySource):null,
++      recipientProof:index===1,actualRecipients:index===1?JSON.parse(caption?.dataset.recipientInstanceIds||'null'):null,actualModels:index===1?JSON.parse(caption?.dataset.recipientModelScopeIds||'null'):null,
+       uniqueId:attributionRefs===null||[...document.querySelectorAll('[id]')].filter(element=>element.id===attributionRefs[index]).length===1,
+       sameCard:physical===node.closest('.unit-card')&&physical?.dataset.rosterInstanceId===instance,
+       sameRuleGroup:Boolean(group)&&caption?.closest('[data-detachment-rule-id]')===group&&group.dataset.detachmentRuleId===ruleId,
+       ownerKind:owner?.dataset.conditionalPolicy,ownerSource:owner?.dataset.policySource?JSON.parse(owner.dataset.policySource):null,
+       ownerSubject:owner?.dataset.recipientSubject,ownerModels:owner?.dataset.recipientModelScopeIds?JSON.parse(owner.dataset.recipientModelScopeIds):null};
+   });
+-  // Count actual visible paragraphs, including any unreferenced duplicate.
+-  // Separate provenance or physical model recipients are separate captions.
++  // Count actual source/recipient proof nodes, including any unreferenced duplicate.
++  // Visibility is checked while opening the chip; separate physical scopes never merge.
+   const equivalentOwner=paragraph=>{
+     const owner=paragraph.closest('.ds-conditional-policy');if(owner?.dataset.conditionalPolicy!=='DETACHMENT_TEXT')return false;
+     const policy=JSON.parse(owner.dataset.policySource);
+     return policy.ruleId===source.ruleId&&JSON.stringify(policy.provenance)===JSON.stringify(source.provenance)&&
+       owner.dataset.recipientSubject===node.dataset.recipientSubject&&owner.dataset.recipientModelScopeIds===node.dataset.recipientModelScopeIds;
+   };
+-  const captionCopies=['Source:','Applies to:'].map(prefix=>[...(group?.querySelectorAll('p')||[])]
+-    .filter(paragraph=>visible(paragraph)&&paragraph.innerText.startsWith(prefix)&&equivalentOwner(paragraph)).length);
++  const captionCopies=['sourceCaption','recipientCaption'].map(key=>[...(group?.querySelectorAll('p')||[])]
++    .filter(paragraph=>paragraph.dataset[key]!==undefined&&equivalentOwner(paragraph)).length);
+   return [{source,subject:node.dataset.recipientSubject,instances:JSON.parse(node.dataset.recipientInstanceIds),models:JSON.parse(node.dataset.recipientModelScopeIds),
+     classification:node.dataset.rosterClassification,execution:node.dataset.execution,status:node.dataset.selectionStatus,
+     text:fieldRefs.length?fieldEvidence.map(field=>field.text).join('\n'):text?.textContent,fieldRefs,fields:fieldEvidence,
+@@ -175,9 +203,13 @@ async function rows(page,instance,ruleId){return card(page,instance).locator('.d
+     conditions:node.dataset.detachmentClauseConditions?JSON.parse(node.dataset.detachmentClauseConditions):null,
+     attributionRefs,refsValid,attribution,captionCopies,aria:(node.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean),
+     body:[node.innerText,...captions.map(caption=>caption?.innerText||'')].join('\n'),
+-    applies:captions.filter(p=>p?.innerText.startsWith('Applies to:')).map(p=>p.innerText),
++    applies:captions.filter(p=>p?.dataset.recipientCaption!==undefined).map(p=>p.dataset.recipientCaption),
+     links:[...(captions[0]?.querySelectorAll('a[data-target-id]')||[])].map(a=>a.dataset.targetId)}];
+-}),{ruleId,instance});}
++},{ruleId,instance});
++    collected.push(...observed);
++  }
++  return collected;
++}
+ async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,subject,recipients,status}={}){
+   const shown=await rows(page,instance,ruleId),data=await current(page),physical=data.projection.units.find(unit=>unit.instanceId===instance);
+   const sourceBook=runtimeSourceBook(data.snapshot.bookId);
+@@ -194,29 +226,36 @@ async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,
+     assert.deepEqual(row.models,proof.recipientModelScopeIds);assert.equal(row.classification,'BATTLE_ONLY');assert.equal(row.execution,'CONDITIONAL_TEXT_ONLY');
+     assert.equal(row.status,proof.detachmentText.kind);if(status)assert.equal(row.status,status);if(subject)assert.equal(row.subject,subject);
+     if(recipients)assert.deepEqual(row.instances.toSorted(),[...recipients].toSorted());
+-    assert.equal(row.attribution.length,2,'Each clause has one associated Source and Applies-to paragraph');
++    assert.equal(row.attribution.length,2,'Each clause retains one exact source proof and one exact physical-recipient proof');
+     if(row.attributionRefs!==null)assert.equal(row.refsValid,true,'Shared caption references are two distinct explicit IDs');
+     assert.deepEqual(row.aria,[...(row.attributionRefs||[]),...row.fieldRefs],'Accessible references retain both attribution and exact clause fields');
+     for(const caption of row.attribution){
+-      assert.ok(caption.exists&&caption.visible&&caption.paragraph&&caption.prefix&&caption.uniqueId,'Associated caption resolves uniquely to visible source/recipient content');
++      assert.ok(caption.exists&&caption.paragraph&&caption.prefix&&caption.uniqueId,'Associated source/recipient proof resolves uniquely');
++      assert.ok(caption.visible||caption.recipientHidden,'An opened tooltip exposes its source; whole-component recipient labels may only be explicitly hidden');
++      if(caption.recipientHidden)assert.equal(caption.visible,false,'A retained hidden recipient proof is not visible to the player');
++      assert.doesNotMatch(caption.visible?caption.currentText:'',/Source:|Applies to:/,'The opened attribution uses compact wording; legacy labels remain metadata only');
+       assert.ok(caption.sameCard&&caption.sameRuleGroup,'A caption belongs to this physical card and this exact source rule group');
+       assert.equal(caption.ownerKind,'DETACHMENT_TEXT');assert.equal(caption.ownerSource.ruleId,ruleId);
++      assert.equal(caption.actualRuleId,ruleId,'The actual referenced proof belongs to the canonical rule');
++      if(caption.recipientProof){assert.deepEqual(caption.actualRecipients,row.instances,'The caption itself retains exact recipient UNIT identities');assert.deepEqual(caption.actualModels,row.models,'The caption itself retains exact recipient MODEL scopes');}
++      assert.equal(caption.captionSource?.ruleId,ruleId);assert.deepEqual(caption.captionSource?.provenance,row.source.provenance);
+       assert.deepEqual(caption.ownerSource.provenance,row.source.provenance,'Shared attribution cannot cross source provenance');
+       assert.equal(caption.ownerSubject,row.subject);assert.deepEqual(caption.ownerModels,row.models,'Shared attribution cannot cross physical model recipients');
+     }
+-    assert.deepEqual(row.links,[ruleId],'Each clause resolves exactly its canonical source link');assert.doesNotMatch(row.body,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
+-    assert.deepEqual(row.captionCopies,[1,1],'One visible Source and Applies-to pair per equivalent source/physical recipient, including unreferenced paragraphs');
++    assert.deepEqual(row.links,[ruleId],'Each clause retains exactly its canonical source identity');assert.doesNotMatch(row.body,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
++    assert.deepEqual(row.captionCopies,[1,1],'One exact source/physical-recipient proof pair, including any unreferenced duplicate');
+     if(row.status==='ELIGIBLE_FOR_SELECTION')assert.doesNotMatch(row.body,/Effect applied|Selection recorded|Selected —/);
+-    assert.equal(row.applies.length,1,'Each clause resolves one visible recipient/status annotation');
++    assert.equal(row.applies.length,1,'Each clause retains its one full physical-recipient proof even when the redundant label is hidden');
+     if(localLabel)assert.ok(row.applies[0].toLowerCase().includes(localLabel.toLowerCase()),'Recipient caption names this component');
+     assert.ok(!physical.applied.some(effect=>effect.ruleId===ruleId&&effect.clauseId===row.source.clauseId),'This text-only clause is never executed; independent roster clauses of the same rule retain existing effects');
+   }
++  await assertNoVisibleLegacyAttribution(card(page,instance));
+   // Equivalent canonical clauses must share the actual visible paragraphs,
+   // not two independently rendered copies with equal words (the old layout).
+   const equivalent=new Map();
+   for(const row of shown){const key=JSON.stringify([row.source.ruleId,row.source.provenance,row.subject,row.models,row.applies]);
+     const identities=JSON.stringify(row.attribution.map(caption=>caption.identity));
+-    if(equivalent.has(key))assert.equal(identities,equivalent.get(key),'Equivalent clauses display one shared Source/Applies-to caption pair');
++    if(equivalent.has(key))assert.equal(identities,equivalent.get(key),'Equivalent clauses retain one shared source/physical-recipient proof pair');
+     else equivalent.set(key,identities);
+   }
+   return shown;
+@@ -225,23 +264,38 @@ async function screen(page,name){const file=path.join(out,name+'.png');await pag
+ async function weaponNote(page,instance,weapon,expected,expectedRows=1){
+   const visible=card(page,instance),weapons=visible.locator('.weapon-row').filter({has:page.locator('.weapon-button').filter({hasText:weapon})});
+   assert.equal(await weapons.count(),expectedRows,'Each canonical displayed weapon profile is grouped once');
+-  const notes=await weapons.locator('.ds-weapon-grant-sources').evaluateAll(nodes=>nodes.map(node=>({text:node.innerText,sources:JSON.parse(node.dataset.weaponGrantSources)})));
++  const notes=await weapons.locator('[data-weapon-grant-sources]').evaluateAll(nodes=>nodes.map(node=>{const control=[...node.closest('.unit-card').querySelectorAll('.ds-gained-chip[aria-controls]')].find(chip=>chip.getAttribute('aria-controls')===node.id);return {text:node.textContent,sources:JSON.parse(node.dataset.weaponGrantSources),carriers:JSON.parse(node.dataset.physicalCarriers||'null'),tooltip:node.matches('.ds-gained-tooltip[role="tooltip"]'),chip:control?.textContent||'',accessible:!!control&&control.getAttribute('aria-describedby')===node.id};}));
+   const vector=notes.filter(note=>note.sources.some(source=>source.canonicalRuleId==='datasheet-lord-of-contagion:section:1'));
+   assert.equal(vector.length,expectedRows*2,'The two actual Vector effects stay separate for every weapon profile');
+-  for(const note of vector)assert.ok(note.text.includes('Applies to: '+expected),'Explicit physical carrier counts: '+note.text);
++  for(const note of vector){
++    assert.ok(note.tooltip&&note.accessible&&note.chip.startsWith('+'),'Each independent Vector effect is an accessible gained chip with its exact tooltip');
++    assert.ok(Array.isArray(note.carriers)&&note.carriers.length,'Each Vector effect retains its independent physical-carrier proof');
++    const caption=note.carriers.map(group=>group.label+' · '+group.quantity+' '+(group.quantity===1?'model':'models')).join('; ');
++    assert.equal(caption,expected,'The exact previously expected physical labels/counts remain in carrier evidence');
++    assert.ok(note.carriers.every(group=>group.instanceId===instance),'Carrier evidence stays on this physical UNIT');
++    assert.doesNotMatch(note.text,/Source:|Applies to:/,'The tooltip no longer repeats service-style source/recipient prefixes');
++  }
++  assert.equal(new Set(vector.map(note=>note.chip)).size,2,'The two actual Vector effects retain separate gained chips');
+   return {weapon,text:(await weapons.allInnerTexts()).join('\n'),vector};
+ }
+ async function ownWeaponCarriers(page,instance,profiles,{rules,label,profileId,contributionCounts={}}){
+   const evidence=[];
++  const kinds=await page.evaluate(ids=>Object.fromEntries(ids.map(id=>{
++    const matches=window.ArmyBookAppV2.roster.catalog.filter(record=>record.id===id);
++    if(matches.length!==1)throw Error('Expected one canonical source kind: '+id);
++    return [id,matches[0].kind];
++  })),rules);
+   for(const id of profiles){
+     const weapon=card(page,instance).locator('.weapon-row[data-card-id="'+id+'"]');assert.equal(await weapon.count(),1,'Exact selected weapon-profile identity');
+-    const notes=await weapon.locator('.ds-weapon-grant-sources').evaluateAll(nodes=>nodes.map(node=>({text:node.innerText,
+-      sources:JSON.parse(node.dataset.weaponGrantSources),carriers:JSON.parse(node.dataset.physicalCarriers||'null')})));
++    const notes=await weapon.locator('[data-weapon-grant-sources]').evaluateAll(nodes=>nodes.map(node=>{const control=[...node.closest('.unit-card').querySelectorAll('.ds-gained-chip[aria-controls]')].find(chip=>chip.getAttribute('aria-controls')===node.id);return {text:node.textContent,hidden:node.hidden,
++      sources:JSON.parse(node.dataset.weaponGrantSources),carriers:JSON.parse(node.dataset.physicalCarriers||'null'),tooltip:node.matches('.ds-gained-tooltip[role="tooltip"]'),chip:control?.textContent||'',accessible:!!control&&control.getAttribute('aria-describedby')===node.id};}));
+     for(const ruleId of rules){
+       const contributions=notes.filter(note=>note.sources.some(source=>source.canonicalRuleId===ruleId&&source.targetWeaponProfileId===id));
+       assert.equal(contributions.length,contributionCounts[ruleId]||1,'All distinct actual source contributions are shown on exact physical weapon profile '+id+'/'+ruleId);
+       for(const note of contributions){
+-        assert.ok(note.text.includes('Applies to: '+label+' · 1 model'),'Visible caption names exactly the one physical model, not its weapon');
++        const self=note.sources.every(source=>source.sourceInstanceId===instance&&kinds[source.canonicalRuleId]!=='ENHANCEMENT');
++        if(self){assert.equal(note.text,'','A same-unit source has no redundant visible source/recipient caption');assert.equal(note.hidden,true,'Self-source evidence remains nonvisual');}
++        else assert.ok(note.tooltip&&note.accessible&&note.chip.startsWith('+'),'A foreign source is reachable through its accessible gained chip');
+         assert.ok(Array.isArray(note.carriers)&&note.carriers.length,'The renderer exposes the actual physical-carrier evidence');
+         for(const group of note.carriers){
+           assert.equal(group.instanceId,instance);assert.equal(group.profileId,profileId);
+diff --git a/v2/card-texts-browser-qa.mjs b/v2/card-texts-browser-qa.mjs
+index 605770b0..126a8938 100644
+--- a/v2/card-texts-browser-qa.mjs
++++ b/v2/card-texts-browser-qa.mjs
+@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
+ import {fileURLToPath} from 'node:url';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ 
+ const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
+@@ -77,7 +78,14 @@ async function attached(width,c){
+  if(!observe){
+   assert.equal(present,1,'Full source text must appear on the exact attached recipient: '+c.id);
+   assert.ok(await block.isVisible(),'Attached source text is visible');
+-  assert.ok(await block.locator('[data-source-attribution],.v2-source-caption,.ds-source-caption,.ds-source').count()||/Source:/.test(await block.innerText()),'Attached rule has a source caption');
++  const gained=await block.evaluate(node=>{const group=node.closest('[data-gained-source-kind]'),card=node.closest('.unit-card');
++    const headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));
++    return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.textContent||'',
++      headingCount:headings.length,sameCard:group?.closest('.unit-card')===card,recipient:card?.dataset.rosterInstanceId};});
++  assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(gained.kind),'Attached text has one typed gained-source group');
++  assert.equal(gained.headingCount,1,'Source name is a single group heading, not a repeated per-rule caption');
++  assert.ok(gained.sameCard,'Source group belongs to the same physical card');
++  assert.match(gained.heading,/^From (?:leader|attached unit|enhancement):\s*\S/,'Source is identified by the human group heading');
+   const view=await effective(target),row=view.attachedRuleTexts.find(row=>row.ruleId===c.ruleId);
+   assert.ok(row,'Public effective view must carry the source-backed text');
+   const body=await block.locator('[data-attached-rule-text]').textContent();
+@@ -86,7 +94,10 @@ async function attached(width,c){
+   assert.equal(restored,row.text,'Full rule text is retained, with its source heading shown separately');
+   assert.equal(row.recipientInstanceId,target,'Exact physical recipient');
+   assert.ok(row.sourceInstanceId===leader||row.sourceInstanceId===bodyguard,'Source is the attached component');
++  assert.equal(gained.source,row.sourceInstanceId,'Gained group names the exact physical source');
++  assert.equal(gained.recipient,target,'Gained group stays on the exact physical recipient');
+  }
++ if(!observe)await assertNoVisibleLegacyAttribution(node);
+  shots.push(await screenshot(c.id+'-attached-'+width,present?block:node));
+  if(c.id!=='p43-lion-candidate'){
+   const isolated=await effective('parsed-unit-3');
+@@ -95,6 +106,7 @@ async function attached(width,c){
+  await detach();node=await card(target);assert.equal(await node.locator(selector).count(),0,'Detach removes dependent text');
+  const after=await page.evaluate(()=>window.ArmyBookAppV2.roster.projection);
+  assert.deepEqual(after,before,'Attach then detach must restore the whole gameplay projection');
++ if(!observe)await assertNoVisibleLegacyAttribution(node);
+  results.push({case:c.id,width,status:observe?'OBSERVED':'PASS',attachedTextCount:present,screenshots:shots});
+ }
+ async function lion(width){
+@@ -119,6 +131,7 @@ async function lion(width){
+    assert.deepEqual(await node.locator('[id="'+id+'"] ul.ds-source-text-list > li').allTextContents(),policy.policy.contextQuote.split('\n').filter(line=>/^\s*[-•] /.test(line)),'Conditional bullets remain individual list items in source order');
+   }
+  }
++ if(!observe)await assertNoVisibleLegacyAttribution(node);
+  results.push({case:'lion',width,status:observe?'OBSERVED':'PASS',effects:rows.length,fullTextOccurrences:quoteCount,refs,screenshots:[await screenshot('lion-'+width,node)]});
+ }
+ async function titus(width){
+@@ -126,6 +139,7 @@ async function titus(width){
+  const section=node.locator('section.unit-part[data-datasheet-section="wargear"]');assert.equal(await section.count(),1,'One WARGEAR OPTIONS section');
+  const count=occurrences(normalized(await section.innerText()),'WARGEAR OPTIONS');
+  if(!observe)assert.equal(count,1,'Derived Titus Bodyguard: WARGEAR OPTIONS heading once');
++ if(!observe)await assertNoVisibleLegacyAttribution(node);
+  results.push({case:'titus',width,status:observe?'OBSERVED':'PASS',headingOccurrences:count,screenshots:[await screenshot('titus-wargear-'+width,section)]});
+ }
+ async function headers(width,book){
+diff --git a/v2/cards-cosmetics-browser-qa.mjs b/v2/cards-cosmetics-browser-qa.mjs
+index 9757afa4..1d729dd5 100644
+--- a/v2/cards-cosmetics-browser-qa.mjs
++++ b/v2/cards-cosmetics-browser-qa.mjs
+@@ -4,6 +4,7 @@ import fs from 'node:fs';import path from 'node:path';import http from 'node:htt
+ import assert from 'node:assert/strict';import {fileURLToPath} from 'node:url';import {createHash} from 'node:crypto';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ const own=fileURLToPath(new URL('../',import.meta.url)),arg=name=>process.argv.find(a=>a.startsWith(name+'='))?.slice(name.length+1);
+ const root=path.resolve(arg('--root')||own),negative=process.argv.includes('--negative-control');
+@@ -31,10 +32,21 @@ async function imported(page,text){await roster(page);await page.getByRole('text
+  assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./,'Fixture must import through ordinary controls');}
+ async function effective(page,id){await roster(page);await page.locator(`[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
+  const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`);await card.waitFor();await page.evaluate(()=>document.fonts.ready);
+- await page.waitForFunction(()=>Boolean(document.querySelector('main .unit-card.ds-layout')));return card;}
++ await page.waitForFunction(()=>Boolean(document.querySelector('main .unit-card.ds-layout')));if(!negative)await assertNoVisibleLegacyAttribution(card);return card;}
+ async function shot(page,node,id){
+  await (id.startsWith('p1-')?node.locator('h2').first():node).scrollIntoViewIfNeeded();await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+  const file=path.join(out,id+'.png');await page.screenshot({path:file,fullPage:false});screenshots.push({id,file});}
++async function gainedTooltip(page,card,proof){
++ const id=await proof.getAttribute('id');assert(id,'A foreign source tooltip has a stable identity');
++ const chip=card.locator('.ds-gained-chip[aria-controls="'+id+'"]');assert.equal(await chip.count(),1,'One chip controls the exact source tooltip');
++ assert.match(await chip.innerText(),/^\+ /,'Gained information is not encoded by colour alone');
++ assert.equal(await chip.getAttribute('aria-describedby'),id);await page.keyboard.press('Tab');await chip.focus();
++ await page.waitForFunction(id=>Boolean(document.getElementById(id)?.getClientRects().length),id);
++ assert.equal(await chip.getAttribute('aria-expanded'),'true');assert.equal(await proof.getAttribute('role'),'tooltip');assert(await proof.isVisible());
++ assert.equal(await proof.evaluate((node,instance)=>node.closest('.unit-card')?.dataset.rosterInstanceId===instance,await card.getAttribute('data-roster-instance-id')),true,'Tooltip belongs to the exact physical card');
++ if(!negative)await assertNoVisibleLegacyAttribution(card);
++ return proof;
++}
+ async function check(item,book,width,fn){try{await fn();rows.push({item,book,width,status:'PASS'});}catch(e){rows.push({item,book,width,status:'FAIL',error:e.message});if(!negative)throw e;}}
+ async function game(page,book,width){const value=await page.evaluate(()=>{const r=window.ArmyBookAppV2.roster;return {state:r.snapshot(),projection:r.projection,points:r.points,effective:r.state.units.map(u=>r.effective(u.instanceId))};});
+  observations.push({book,width,sha256:createHash('sha256').update(JSON.stringify(value)).digest('hex'),value});}
+@@ -81,19 +93,37 @@ try{
+       await check(4,book,w,async()=>{const lines=await card.locator('[data-label="Range"] [data-fact-id]').evaluateAll(nodes=>nodes.filter(n=>n.textContent==='Melee').map(n=>{const range=document.createRange();range.selectNodeContents(n);return range.getClientRects().length;}));assert(lines.length,'A melee range must be present');for(const count of lines)assert.equal(count,1,'Melee must occupy one line independently of table clipping');});
+      }
+      await page.setViewportSize({width,height:1000});card=await effective(page,'parsed-unit-7');const keywords=card.locator('[data-datasheet-section="keywords"]');await shot(page,keywords,`p2-dg-${width}`);
+-     await check(2,book,width,async()=>{const lines=await keywords.locator(':scope > p').allTextContents();assert(lines[0].includes('CONTAGION ENGINE'));assert(lines[0].includes('FLY'));assert(!lines[0].includes('Source:'));const note=keywords.locator('.ds-keyword-source').filter({hasText:'Warped and Rusted Animus'});assert(await note.count());assert((await note.innerText()).includes('Applies to: Foetid Bloat-drone'));});
++     await check(2,book,width,async()=>{const lines=await keywords.locator(':scope > p').allTextContents();
++      const physicalKeywords=lines[0]+' '+(await card.locator('[data-gained-overview] .ds-effective-keyword .ds-gained-chip').allTextContents()).join(' ');
++      assert(physicalKeywords.includes('CONTAGION ENGINE'));assert(physicalKeywords.includes('FLY'));assert(!physicalKeywords.includes('Source:'));
++      const keyword=card.locator('[data-gained-overview] .ds-effective-keyword[data-keyword-sources]').filter({hasText:'CONTAGION ENGINE'});assert.equal(await keyword.count(),1);
++      const sources=await keyword.evaluate(node=>JSON.parse(node.dataset.keywordSources));assert(sources.length);
++      assert(sources.every(source=>source.canonicalRuleId==='detachment-contagion-engines:rule'&&source.sourceInstanceId===null&&source.targetInstanceId==='parsed-unit-7'&&source.subject==='UNIT'&&source.unitScope==='FORMED'),'Warped and Rusted Animus retains its exact detachment source and physical recipient');
++      const chip=keyword.locator('.ds-gained-chip');assert.equal(await chip.count(),1);assert.equal(await chip.innerText(),'+ CONTAGION ENGINE');
++      assert.equal(await chip.evaluate(node=>node.tagName),'BUTTON','A detachment grant has an accessible source');
++      const note=keyword.locator('.ds-keyword-source-proof');assert.equal(await note.count(),1);await gainedTooltip(page,card,note);assert((await note.innerText()).includes('Warped and Rusted Animus'));
++      const recipient=card.locator('.ds-keyword-source').filter({hasText:'Warped and Rusted Animus'});assert.equal(await recipient.count(),1);assert((await recipient.textContent()).includes('Applies to: Foetid Bloat-drone'));assert.equal(await recipient.evaluate(node=>node.hidden),true,'The exact whole-unit recipient proof remains without a redundant visible paragraph');assert.equal(await recipient.isVisible(),false,'The retained Source/Applies proof is actually absent from the visible card');});
+     }
+     if(book==='tau-empire'){
+-     const card=await effective(page,'parsed-unit-1'),policies=card.locator('[data-datasheet-section="conditional-policies"]');await shot(page,policies,`p3-tau-${width}`);
+-     await check(3,book,width,async()=>{const source=policies.locator('p').filter({hasText:/^Source: Killing Blow/});assert.equal(await source.count(),1,'One source caption per rule/recipient');const applies=policies.locator('p').filter({hasText:/^Applies to: AX-1-0 Tiger Shark/});assert.equal(await applies.count(),1,'One recipient caption per rule');});
++     const card=await effective(page,'parsed-unit-1');
++     await check(3,book,width,async()=>{
++      const captions=await card.locator('p[data-source-caption]').evaluateAll(nodes=>nodes.filter(node=>node.dataset.sourceCaption.startsWith('Source: Killing Blow')).map(node=>({id:node.id,ruleId:node.dataset.sourceRuleId,tooltip:node.closest('.ds-gained-tooltip')?.id})));
++      assert.equal(captions.length,1,'One canonical source proof per rule/recipient');
++      const source=card.locator('[id="'+captions[0].id+'"]'),details=source.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');assert.equal(await details.count(),1);assert.equal(await details.evaluate(node=>node.open),false,'Detachment text starts collapsed');
++      await details.locator(':scope > summary').click();const note=card.locator('[id="'+captions[0].tooltip+'"]');await gainedTooltip(page,card,note);
++      assert((await note.innerText()).includes('Killing Blow'),'The same human rule name is shown on request');
++      const recipient=note.locator('p[data-recipient-caption]');assert.equal(await recipient.count(),1,'One physical-recipient proof per rule');assert((await recipient.getAttribute('data-recipient-caption')).startsWith('Applies to: AX-1-0 Tiger Shark'),'The original exact recipient identity remains in metadata');
++      assert.doesNotMatch(await note.innerText(),/Source:|Applies to:/,'Tooltip uses the compact player-facing wording');
++      assert.equal(await source.getAttribute('data-source-rule-id'),captions[0].ruleId);await shot(page,details,`p3-tau-${width}`);
++     });
+      await shot(page,card.locator('.ds-main-grid'),`p5-tau-${width}`);
+      await check(5,book,width,async()=>{const ability=card.locator('.ability').filter({hasText:'Titan Hunter'}).first();assert(await ability.count());assert(await ability.evaluate(n=>Boolean(n.closest('.ds-support'))));});
+     }
+     if(['space-marines','blood-angels','dark-angels'].includes(book)){
+-     const card=await effective(page,'parsed-unit-1'),enhancement=card.locator('[data-datasheet-section="enhancements"]');await shot(page,enhancement,`p7-${book}-${width}`);
++     const card=await effective(page,'parsed-unit-1'),enhancement=card.locator('[data-gained-source-kind="ENHANCEMENT"][data-source-rule-id="enhancement-sm-07e95c69297b4d6f"]');await shot(page,enhancement,`p7-${book}-${width}`);
+      await check(7,book,width,async()=>{const text=await enhancement.innerText();assert(!text.includes('- Relentless Advance'));const restriction=enhancement.locator('.ds-enhancement-restriction');assert.equal(await restriction.innerText(),'GRAVIS model only.');assert(text.includes('This unit has Scouts 5".'));});
+      const bodyguard=await effective(page,'parsed-unit-2'),attached=bodyguard.locator('[data-attached-rule-id="enhancement-sm-07e95c69297b4d6f"]');await shot(page,attached,`p7-attached-${book}-${width}`);
+-     await check(7,book,width,async()=>{const text=await attached.innerText();assert(!text.includes('- Relentless Advance'));assert.equal(await attached.locator('.ds-enhancement-restriction').innerText(),'GRAVIS model only.');assert(text.includes('This unit has Scouts 5".'));assert(text.includes('Source: Captain In Gravis Armour'));});
++     await check(7,book,width,async()=>{const text=await attached.innerText();assert(!text.includes('- Relentless Advance'));assert.equal(await attached.locator('.ds-enhancement-restriction').innerText(),'GRAVIS model only.');assert(text.includes('This unit has Scouts 5".'));const group=attached.locator('xpath=ancestor::*[@data-gained-source-kind="ENHANCEMENT"][1]');assert.equal(await group.count(),1);assert.equal(await group.getAttribute('data-source-rule-id'),'enhancement-sm-07e95c69297b4d6f');assert.equal(await group.getAttribute('data-source-instance-id'),'parsed-unit-1');assert.equal(await group.locator(':scope > .ds-gained-source-heading').innerText(),'From enhancement: Relentless Advance (Captain In Gravis Armour)');});
+     }
+     if(book==='emperors-children'){
+      const card=await effective(page,'parsed-unit-1');await shot(page,card.locator('.ds-profile-strip'),`p8-ec-${width}`);
+diff --git a/v2/detachment-card-text-browser-qa.mjs b/v2/detachment-card-text-browser-qa.mjs
+index 5edcf78e..fe1037d1 100644
+--- a/v2/detachment-card-text-browser-qa.mjs
++++ b/v2/detachment-card-text-browser-qa.mjs
+@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
+ import {fileURLToPath} from 'node:url';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ import {createDetachmentBrowserFixture} from '../tests/helpers/detachment-card-text-browser-fixtures.mjs';
+ const root=fileURLToPath(new URL('../',import.meta.url)),out=createQaEvidenceDir('wh-detachment-card-text-browser-');
+@@ -40,6 +41,13 @@ async function inspect(page,spec,unit,id,mode,device,stage){
+   assert.equal(await groups.count(),unit.expectText?1:0,`${spec.id}/${device}/${mode}/${stage}/${unit.unitId}`);
+   let content=null;
+   if(unit.expectText){
++    const gained=groups.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
++    assert.equal(await gained.count(),1,'Rule belongs to one exact detachment source group');
++    assert.equal(await gained.evaluate(node=>node.open),false,'Detachment source group starts collapsed');
++    const summary=gained.locator(':scope > summary');assert.equal(await summary.count(),1);
++    assert.match(await summary.innerText(),/^From detachment:\s*\S/,'The detachment has one human source heading');
++    await summary.click();assert.equal(await gained.evaluate(node=>node.open),true,'Opening its summary exposes the full canonical rule');
++    assert.equal(await gained.evaluate(node=>node.closest('.unit-card')?.dataset.rosterInstanceId),id,'Source text stays on the same physical card');
+     content=await groups.innerText();assert(norm(content).includes(norm(spec.quote)),'Exact English source clause missing');
+     const rows=await groups.locator('[data-conditional-policy="DETACHMENT_TEXT"]').evaluateAll(nodes=>nodes.map(node=>({
+       source:JSON.parse(node.dataset.policySource),subject:node.dataset.recipientSubject,kind:node.dataset.selectionStatus,
+@@ -47,11 +55,13 @@ async function inspect(page,spec,unit,id,mode,device,stage){
+     })));
+     const row=rows.find(row=>row.source.clauseId===spec.clauseId);assert(row,'Expected source clause identity missing');
+     assert.equal(row.source.ruleId,spec.ruleId);assert.equal(row.subject,spec.subject);assert.equal(row.kind,spec.textKind);
+-    assert(row.content.includes('Source:'));assert(row.refs.length,'Source text is not linked to its visible field');
++    assert(row.refs.length,'Source text is not linked to its visible field');
++    assert.equal(await groups.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]').count(),1,'Every original clause retains its exact detachment source group');
+     for(const ref of row.refs)assert(await page.locator('[id="'+ref+'"]').isVisible(),'Referenced source field must be visible');
+     assert.doesNotMatch(content,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
+   }
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
++  await assertNoVisibleLegacyAttribution(card);
+   results.push({case:spec.id,device,mode,stage,unitId:unit.unitId,expected:unit.expectText,status:'PASS',content});
+ }
+ let browser,completed=false;
+diff --git a/v2/detachment-recipient-browser-qa.mjs b/v2/detachment-recipient-browser-qa.mjs
+index 6b10c573..c45a2584 100644
+--- a/v2/detachment-recipient-browser-qa.mjs
++++ b/v2/detachment-recipient-browser-qa.mjs
+@@ -1,4 +1,5 @@
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ /** F1: source-backed text-only Detachment recipients in the real main app.
+  * Constructed New Recruit input and normal import/attachment/Guide controls.
+  * Browser evaluation reads evidence only; it never patches state or the DOM. */
+@@ -87,7 +88,18 @@ async function attach(page,leader,bodyguard){
+   await page.locator('[data-attached-leader-instance-id="'+leader+'"]').waitFor();
+ }
+ const attachDominus=page=>attach(page,'parsed-unit-1','parsed-unit-4');
+-async function rows(page,ruleId,clauseId){const found=await page.locator('main .ds-conditional-policy').evaluateAll((nodes,{ruleId,clauseId})=>nodes.flatMap(node=>{
++async function openExactGainedGroup(node){
++  const group=node.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
++  if(await group.count()&&!await group.evaluate(element=>element.open))await group.locator(':scope > summary').click();
++}
++async function rows(page,ruleId,clauseId){
++  const policies=page.locator('main .ds-conditional-policy'),indexes=await policies.evaluateAll((nodes,{ruleId,clauseId})=>nodes.flatMap((node,index)=>{const source=JSON.parse(node.dataset.policySource||'{}');return source.ruleId===ruleId&&source.clauseId===clauseId?[index]:[];}),{ruleId,clauseId});
++  for(const index of indexes){
++    const exact=policies.nth(index);await openExactGainedGroup(exact);
++    const physical=exact.locator('xpath=ancestor::*[contains(concat(" ",normalize-space(@class)," ")," unit-card ")][1]');
++    await assertNoVisibleLegacyAttribution(physical);
++  }
++  const found=await policies.evaluateAll((nodes,{ruleId,clauseId})=>nodes.flatMap(node=>{
+   const source=JSON.parse(node.dataset.policySource||'{}');if(source.ruleId!==ruleId||source.clauseId!==clauseId)return [];
+   const shared=node.dataset.detachmentClauseTextRef?document.getElementById(node.dataset.detachmentClauseTextRef):null;
+   const clauseText=node.querySelector('[data-detachment-clause-text]')||shared;
+@@ -102,7 +114,16 @@ async function rows(page,ruleId,clauseId){const found=await page.locator('main .
+     execution:node.dataset.execution,classification:node.dataset.rosterClassification,subject:node.dataset.recipientSubject,
+     instances:JSON.parse(node.dataset.recipientInstanceIds||'[]'),models:JSON.parse(node.dataset.recipientModelScopeIds||'[]'),
+     selectionStatus:node.dataset.selectionStatus,text:node.innerText+' '+(canonicalText||'')+' '+(node.closest('[data-detachment-rule-id]')?.querySelector('h5')?.textContent||''),clauseText:canonicalText,
+-    applies:[...node.querySelectorAll('p')].map(p=>p.innerText).filter(text=>text.startsWith('Applies to:')),
++    applies:[...node.querySelectorAll('p[data-recipient-caption]')].map(p=>{
++      if(p.closest('.unit-card')!==node.closest('.unit-card')||p.dataset.sourceRuleId!==ruleId||
++        p.dataset.recipientInstanceIds!==node.dataset.recipientInstanceIds||
++        JSON.stringify(JSON.parse(p.dataset.recipientModelScopeIds||'[]'))!==JSON.stringify(JSON.parse(node.dataset.recipientModelScopeIds||'[]')))
++        throw new Error('Recipient caption belongs to a different physical rule scope: '+JSON.stringify({
++          expected:{ruleId,instances:node.dataset.recipientInstanceIds,models:node.dataset.recipientModelScopeIds},
++          actual:{ruleId:p.dataset.sourceRuleId,instances:p.dataset.recipientInstanceIds,models:p.dataset.recipientModelScopeIds,
++            sameCard:p.closest('.unit-card')===node.closest('.unit-card')}}));
++      return p.dataset.recipientCaption;
++    }).filter(text=>text.startsWith('Applies to:')),
+     options:[...node.querySelectorAll('[data-detachment-options] [data-option-table-id]')].map(option=>({tableId:option.dataset.optionTableId,rowIndex:Number(option.dataset.optionRowIndex),clauseId:option.dataset.optionClauseId,text:option.textContent})),
+     sourceLinks:[...node.querySelectorAll('a[data-target-id]')].map(a=>a.dataset.targetId),visible:Boolean(node.getClientRects().length)}];
+ }),{ruleId,clauseId});
+@@ -124,6 +145,13 @@ async function sourceLink(page,ruleId,clauseId,quote){
+   const index=await all.evaluateAll((nodes,{ruleId,clauseId})=>nodes.findIndex(node=>{
+     const source=JSON.parse(node.dataset.policySource||'{}');return source.ruleId===ruleId&&source.clauseId===clauseId;
+   }),{ruleId,clauseId});assert.ok(index>=0);
++  const exact=all.nth(index);await openExactGainedGroup(exact);
++  const sourceAnchor=exact.locator('a[data-target-id="'+ruleId+'"]'),tooltipId=await sourceAnchor.evaluate(anchor=>anchor.closest('.ds-gained-tooltip')?.id||null);
++  if(tooltipId){
++    const physical=exact.locator('xpath=ancestor::*[contains(concat(" ",normalize-space(@class)," ")," unit-card ")][1]');
++    const chip=physical.locator('.ds-gained-chip[aria-controls="'+tooltipId+'"]');
++    await page.keyboard.press('Tab');await chip.focus();await page.waitForFunction(id=>Boolean(document.getElementById(id)?.getClientRects().length),tooltipId);
++  }
+   await all.nth(index).locator('a[data-target-id="'+ruleId+'"]').click();
+   await page.locator('dialog[open]').waitFor();
+   assert.ok(norm(await page.locator('dialog[open]').innerText()).includes(norm(quote)),'Source dialog contains accepted rule text');
+@@ -148,6 +176,7 @@ async function assertModelText(page,instance,profile,label,stage,{absent=false}=
+     assert.equal(model.profile.INSV,'4+','Existing invulnerable save remains 4+');
+     assert.deepEqual(model.abilities.filter(a=>a.name==='Feel No Pain').map(a=>a.value),[5],'Existing FNP remains 5+');
+     const visible=page.locator('main .unit-card[data-roster-instance-id="'+instance+'"]');
++    await assertNoVisibleLegacyAttribution(visible);
+     const values=await visible.locator('[data-card-id="'+profile+'"] [data-fact-id]').evaluateAll(nodes=>nodes
+       .filter(node=>node.dataset.factId.endsWith('::/INSV')).map(node=>JSON.parse(node.dataset.factValue)));
+     assert.ok(values.length&&values.every(value=>value==='4+'),'Visible MODEL invulnerable save stays 4+');
+diff --git a/v2/dg-am-recipient-enrollment-browser-qa.mjs b/v2/dg-am-recipient-enrollment-browser-qa.mjs
+index c641fe78..6ff74b59 100644
+--- a/v2/dg-am-recipient-enrollment-browser-qa.mjs
++++ b/v2/dg-am-recipient-enrollment-browser-qa.mjs
+@@ -8,6 +8,7 @@ import http from 'node:http';
+ import path from 'node:path';
+ import {fileURLToPath} from 'node:url';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ 
+ const option=name=>process.argv.find(arg=>arg.startsWith(name+'='))?.slice(name.length+1);
+@@ -102,6 +103,9 @@ async function inspect(page,c,device,mode,id,stage,wanted){
+     ruleId:node.dataset.attachedRuleId,sourceInstanceId:node.dataset.sourceInstanceId,sourcePath:JSON.parse(node.dataset.sourceFieldPath),
+     title:node.querySelector('h5')?.textContent||'',text:node.querySelector('[data-attached-rule-text]')?.textContent||'',
+     visible:!!node.getClientRects().length,content:node.innerText,
++    gained:(()=>{const group=node.closest('[data-gained-source-kind]'),headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));
++      return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.innerText||'',headingCount:headings.length,
++        headingVisible:!!headings[0]?.getClientRects().length,sameCard:group?.closest('.unit-card')===node.closest('.unit-card')};})(),
+     restrictions:[...node.querySelectorAll('[data-attached-rule-text] [data-enhancement-restriction]')].map(part=>part.textContent),
+     bodies:[...node.querySelectorAll('[data-attached-rule-text] [data-enhancement-body]')].map(part=>part.textContent),
+     displayText:node.querySelector('[data-attached-rule-text]')?.innerText||''})));
+@@ -119,7 +123,10 @@ async function inspect(page,c,device,mode,id,stage,wanted){
+     else assert.equal(row.text,expectedBody,'Original source body is byte-for-byte identical after removing only its repeated heading');
+     assert.ok(!row.text.startsWith(prefix),'Rule heading is not repeated in the body');
+     if(c.quote)assert.ok(norm(enhancement?row.displayText:row.text).includes(norm(enhancementExpectation(c,c.quote)?.text??body)),'Full independent accepted source text, including conditions');
+-    assert.ok(norm(row.content).toLowerCase().includes(norm(c.owner).toLowerCase()),'Visible source owner');
++    assert.ok(norm(row.gained.heading).toLowerCase().includes(norm(c.owner).toLowerCase()),'Visible source owner');
++    assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(row.gained.kind),'Attached source has its exact typed gained group');
++    assert.equal(row.gained.source,c.ownerInstance,'The source group retains the exact physical owner');
++    assert.equal(row.gained.headingCount,1);assert.ok(row.gained.headingVisible&&row.gained.sameCard,'The exact owner heading is visible on this physical recipient card');
+     assert.doesNotMatch(row.content,/Conditional rule|Not automatically|source-clause-|recipient\//i,'No technical labels on O-1 text');
+     const rowNode=card.locator('article[data-attached-rule-id]').filter({has:page.locator('h5',{hasText:c.rule})}).first();
+     await rowNode.scrollIntoViewIfNeeded();assert.ok(await rowNode.isVisible());
+@@ -130,6 +137,7 @@ async function inspect(page,c,device,mode,id,stage,wanted){
+   }
+   for(const title of c.negative)assert.ok(!rows.some(row=>norm(row.title)===norm(title)),title+' must not transfer');
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'No horizontal overflow');
++  await assertNoVisibleLegacyAttribution(card);
+   results.push({caseId:c.id,book:c.book,rule:c.rule,source:c.owner,target:id===c.target?(c.reverse?c.leader:c.bodyguard):'Independent duplicate',
+     device,mode,stage,wanted,status:'PASS',observed:found});
+ }
+diff --git a/v2/reviewed-text-coverage-browser-qa.mjs b/v2/reviewed-text-coverage-browser-qa.mjs
+index 31b46bb0..71279b78 100644
+--- a/v2/reviewed-text-coverage-browser-qa.mjs
++++ b/v2/reviewed-text-coverage-browser-qa.mjs
+@@ -2,6 +2,7 @@
+ import fs from 'node:fs';import path from 'node:path';import http from 'node:http';import assert from 'node:assert/strict';import {fileURLToPath} from 'node:url';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
+ const root=fileURLToPath(new URL('../',import.meta.url)),out=createQaEvidenceDir('wh-text-coverage-browser-');
+@@ -41,10 +42,11 @@ async function inspect(page,c,device,id,mode,stage,wanted){
+  if(mode==='Effective')await page.locator(`[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
+  else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator(`main a[data-target-id="roster-unit/${id}"]`).click();}
+  const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`);await card.waitFor();
+- const rows=await card.locator('article[data-attached-rule-id]').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.attachedRuleId,source:n.dataset.sourceInstanceId,title:n.querySelector('h5')?.textContent,text:n.querySelector('[data-attached-rule-text]')?.textContent,content:n.innerText})));
++ const rows=await card.locator('article[data-attached-rule-id]').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.attachedRuleId,source:n.dataset.sourceInstanceId,title:n.querySelector('h5')?.textContent,text:n.querySelector('[data-attached-rule-text]')?.textContent,content:n.innerText,gained:(()=>{const group=n.closest('[data-gained-source-kind]'),heading=[...(group?.children||[])].find(child=>child.matches('h4,h5,h6,summary'));return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:heading?.textContent||'',sameCard:group?.closest('.unit-card')===n.closest('.unit-card')};})()})));
+  const found=rows.filter(row=>row.id===c.ruleId&&row.title===c.title);assert.equal(found.length,wanted?1:0,`${c.id}/${device}/${mode}/${stage}`);
+- if(wanted){assert.equal(found[0].text,c.body,'Original English text changes only by removing its duplicate heading');assert.equal(found[0].source,'parsed-unit-1');assert(found[0].content.includes('Source:'));assert(found[0].content.includes(c.owner));assert.doesNotMatch(found[0].content,/Not automatically|Conditional rule|source-clause-/i);}
++ if(wanted){assert.equal(found[0].text,c.body,'Original English text changes only by removing its duplicate heading');assert.equal(found[0].source,'parsed-unit-1');assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(found[0].gained.kind));assert.equal(found[0].gained.source,'parsed-unit-1');assert.ok(found[0].gained.sameCard,'Source group belongs to the physical recipient');assert.match(found[0].gained.heading,/^From (?:leader|attached unit|enhancement):\s*\S/);assert(found[0].gained.heading.includes(c.owner),'Exact physical owner remains named in its source-group heading');assert.doesNotMatch(found[0].content,/Not automatically|Conditional rule|source-clause-/i);}
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
++ await assertNoVisibleLegacyAttribution(card);
+  results.push({id:c.id,book:c.book,device,mode,stage,target:id,expected:wanted,status:'PASS',observed:found});
+ }
+ let browser,completed=false;
+diff --git a/v2/wardens-source-binding-browser-qa.mjs b/v2/wardens-source-binding-browser-qa.mjs
+index c1d154cd..13fcadef 100644
+--- a/v2/wardens-source-binding-browser-qa.mjs
++++ b/v2/wardens-source-binding-browser-qa.mjs
+@@ -2,6 +2,7 @@
+ import fs from 'node:fs';import path from 'node:path';import http from 'node:http';import assert from 'node:assert/strict';import {fileURLToPath} from 'node:url';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
+ const root=fileURLToPath(new URL('../',import.meta.url)),out=createQaEvidenceDir('wh-wardens-source-browser-');
+@@ -28,8 +29,14 @@ async function inspect(page,id,mode,wanted,stage,device){
+   else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();}
+   const card=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]');await card.waitFor();
+   const block=card.locator('article[data-attached-rule-id="'+BANNER+'"]');assert.equal(await block.count(),wanted?1:0,device+'/'+mode+'/'+stage+'/'+id);
+-  if(wanted){assert.equal(await block.locator('[data-attached-rule-text]').innerText(),body);assert((await block.innerText()).includes('Source: Wardens of Ultramar'));assert.equal(await block.getAttribute('data-source-instance-id'),'parsed-unit-1');}
++  if(wanted){assert.equal(await block.locator('[data-attached-rule-text]').innerText(),body);assert.equal(await block.getAttribute('data-source-instance-id'),'parsed-unit-1');
++    const gained=await block.evaluate(node=>{const group=node.closest('[data-gained-source-kind]'),headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.textContent||'',headingCount:headings.length,sameCard:group?.closest('.unit-card')===node.closest('.unit-card')};});
++    assert.equal(gained.kind,'ATTACHED_UNIT','The proven SUPPORT component remains an attached-unit source');
++    assert.equal(gained.source,'parsed-unit-1');assert.ok(gained.sameCard);assert.equal(gained.headingCount,1);
++    assert.match(gained.heading,/^From attached unit:\s*Wardens of Ultramar$/,'The exact Wardens owner is named once in the group heading');}
++
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
++  await assertNoVisibleLegacyAttribution(card);
+   results.push({device,mode,stage,instanceId:id,expected:wanted,status:'PASS'});
+ }
+ let browser,completed=false;

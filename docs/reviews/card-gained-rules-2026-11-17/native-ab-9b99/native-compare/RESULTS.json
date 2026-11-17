@@ -1,0 +1,82 @@
+{
+  "schema": "core-refresh-exact-capture-comparison/v1",
+  "status": "PASS",
+  "scope": "All decoded capture fields compared without source/text/metadata filtering; exact leaf differences retained.",
+  "beforeSha": "9a48765744f32f467f6e53c1f85e94921cbdd54b",
+  "afterSha": "9b99ade9975346afc3644ade7f69d01ed71cce31",
+  "beforeDir": "E:\\Warhammer\\qa-evidence\\card-gained-rules-v1-2026-11-16\\native-ab-final\\native-base",
+  "afterDir": "E:\\Warhammer\\qa-evidence\\card-gained-rules-v1-2026-11-16\\native-ab-9b99\\native-head",
+  "counts": {
+    "cases": 199,
+    "ready": 177,
+    "needsBindings": 22,
+    "other": 0,
+    "frames": 507
+  },
+  "books": [
+    {
+      "bookId": "adeptus-mechanicus",
+      "byteIdentical": true,
+      "semanticDifferences": 0,
+      "beforeSha256": "8fc5e2549023ea68f095a0b9a83f4f1fb1060d31b2786add8288a8c12575bfe8",
+      "afterSha256": "8fc5e2549023ea68f095a0b9a83f4f1fb1060d31b2786add8288a8c12575bfe8"
+    },
+    {
+      "bookId": "blood-angels",
+      "byteIdentical": true,
+      "semanticDifferences": 0,
+      "beforeSha256": "70e7c737e31a86ef13350942c218e7774c7825485552ffdfe38441512fa44bc9",
+      "afterSha256": "70e7c737e31a86ef13350942c218e7774c7825485552ffdfe38441512fa44bc9"
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "byteIdentical": true,
+      "semanticDifferences": 0,
+      "beforeSha256": "fb3e9601b23ecb7b74a8730037211ce724e1f8819eac9fecf1be9bfbe5a5e625",
+      "afterSha256": "fb3e9601b23ecb7b74a8730037211ce724e1f8819eac9fecf1be9bfbe5a5e625"
+    },
+    {
+      "bookId": "dark-angels",
+      "byteIdentical": true,
+      "semanticDifferences": 0,
+      "beforeSha256": "b9a7849c8ed02bd0b34a5c165d3a0583699e836cd0aea0b0b4df34ec7675dd22",
+      "afterSha256": "b9a7849c8ed02bd0b34a5c165d3a0583699e836cd0aea0b0b4df34ec7675dd22"
+    },
+    {
+      "bookId": "death-guard",
+      "byteIdentical": true,
+      "semanticDifferences": 0,
+      "beforeSha256": "4d1b3d231298560ff5dba4bae9c1e6f4ca5d5dec496c634e0e377f5c81995a9c",
+      "afterSha256": "4d1b3d231298560ff5dba4bae9c1e6f4ca5d5dec496c634e0e377f5c81995a9c"
+    },
+    {
+      "bookId": "emperors-children",
+      "byteIdentical": true,
+      "semanticDifferences": 0,
+      "beforeSha256": "f9deadbc79792d6b94bd3dc3d3eaa2a69f8a8c036352df544db199501d4e3c0a",
+      "afterSha256": "f9deadbc79792d6b94bd3dc3d3eaa2a69f8a8c036352df544db199501d4e3c0a"
+    },
+    {
+      "bookId": "space-marines",
+      "byteIdentical": true,
+      "semanticDifferences": 0,
+      "beforeSha256": "9efad112bc2740ed762900f898a2f22ec3195f1d426308fab9d76aed81514ff7",
+      "afterSha256": "9efad112bc2740ed762900f898a2f22ec3195f1d426308fab9d76aed81514ff7"
+    },
+    {
+      "bookId": "tau-empire",
+      "byteIdentical": true,
+      "semanticDifferences": 0,
+      "beforeSha256": "33b0d4d457ff7e152b97e56d3f563bb0096d9f7e93d778eb28b9bd5bf3de07ee",
+      "afterSha256": "33b0d4d457ff7e152b97e56d3f563bb0096d9f7e93d778eb28b9bd5bf3de07ee"
+    },
+    {
+      "bookId": "tyranids",
+      "byteIdentical": true,
+      "semanticDifferences": 0,
+      "beforeSha256": "5748fcf97b1a5ac6bbc60ab7674af4868ee474486c672eea5475ec102123a415",
+      "afterSha256": "5748fcf97b1a5ac6bbc60ab7674af4868ee474486c672eea5475ec102123a415"
+    }
+  ],
+  "differences": []
+}

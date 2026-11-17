@@ -1,0 +1,115 @@
+{
+  "schema": "core-refresh-generated-gameplay-capture/v1",
+  "root": "E:\\Warhammer\\worktrees\\card-gained-rules-v1",
+  "sha": "9b99ade9975346afc3644ade7f69d01ed71cce31",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "E:\\Warhammer\\qa-evidence\\card-polish-2-v1-2026-11-14\\RECIPES\\capture-generated-gameplay.mjs",
+    "--root=E:/Warhammer/worktrees/card-gained-rules-v1",
+    "--out=E:\\Warhammer\\qa-evidence\\card-gained-rules-v1-2026-11-16\\native-ab-9b99\\generated-gameplay-head"
+  ],
+  "startedUtc": "2026-11-17T01:51:23.212Z",
+  "status": "PASS",
+  "books": [
+    {
+      "bookId": "adeptus-mechanicus",
+      "file": "adeptus-mechanicus.json",
+      "source": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "bytes": 2790556,
+      "sha256": "60c6d8bdcb8cb0010bfbb46974e862e8cef0d96dcd7f286ae0a4b7d0526baa6d",
+      "entities": 616,
+      "contracts": 205,
+      "clauses": 289,
+      "effects": 54
+    },
+    {
+      "bookId": "blood-angels",
+      "file": "blood-angels.json",
+      "source": "books/blood-angels/v2/generated/roster-runtime.json",
+      "bytes": 3609324,
+      "sha256": "8bc562b5571728e497261262cd426618c97565ef20f25b0af6b6229c802d7f3a",
+      "entities": 1620,
+      "contracts": 340,
+      "clauses": 754,
+      "effects": 56
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "file": "chaos-space-marines.json",
+      "source": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "bytes": 5367021,
+      "sha256": "9a405f22747b596bc378682bfa3d80dd5a8497fa6e98baf681ba12d40e2d6233",
+      "entities": 1837,
+      "contracts": 315,
+      "clauses": 410,
+      "effects": 79
+    },
+    {
+      "bookId": "dark-angels",
+      "file": "dark-angels.json",
+      "source": "books/dark-angels/v2/generated/roster-runtime.json",
+      "bytes": 3711793,
+      "sha256": "3719c6848f602aa7a5a124014934c7e10d64f9a411d8d9e5a8366938e7b85da4",
+      "entities": 1639,
+      "contracts": 326,
+      "clauses": 769,
+      "effects": 68
+    },
+    {
+      "bookId": "death-guard",
+      "file": "death-guard.json",
+      "source": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "bytes": 1462128,
+      "sha256": "fc8ccc7523269839ed08e9b9e4784ecd2e1c7c90984fea55f1215a9c8e9979eb",
+      "entities": 538,
+      "contracts": 239,
+      "clauses": 306,
+      "effects": 29
+    },
+    {
+      "bookId": "emperors-children",
+      "file": "emperors-children.json",
+      "source": "books/emperors-children/v2/generated/roster-attachments.json",
+      "bytes": 2649445,
+      "sha256": "45758d89b7ab590fd8fe0e423aacd0beb1512b3bc90e038f0a64910b6b5469be",
+      "entities": 526,
+      "contracts": 161,
+      "clauses": 149,
+      "effects": 72
+    },
+    {
+      "bookId": "space-marines",
+      "file": "space-marines.json",
+      "source": "books/space-marines/v2/generated/roster-runtime.json",
+      "bytes": 4079356,
+      "sha256": "6a355b989e89d851a23d051f9feb38438e5c8e5aa6aa5d79afbd2148a97c9828",
+      "entities": 1714,
+      "contracts": 390,
+      "clauses": 963,
+      "effects": 79
+    },
+    {
+      "bookId": "tau-empire",
+      "file": "tau-empire.json",
+      "source": "books/tau-empire/v2/generated/roster-import.json",
+      "bytes": 2471041,
+      "sha256": "0b2d90bc06c9434191649f0a3c8c4ee915cc477325e411a8a03c1346852a5231",
+      "entities": 753,
+      "contracts": 153,
+      "clauses": 312,
+      "effects": 60
+    },
+    {
+      "bookId": "tyranids",
+      "file": "tyranids.json",
+      "source": "books/tyranids/v2/generated/roster-runtime.json",
+      "bytes": 2201130,
+      "sha256": "16c0721e320f1e857bd389745810f8b4bc913c7af9cb686d3939c4f3a7266005",
+      "entities": 732,
+      "contracts": 227,
+      "clauses": 209,
+      "effects": 25
+    }
+  ],
+  "finishedUtc": "2026-11-17T01:51:24.209Z"
+}

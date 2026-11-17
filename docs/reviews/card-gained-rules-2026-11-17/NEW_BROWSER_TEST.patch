@@ -1,0 +1,349 @@
+diff --git a/v2/card-gained-rules-browser-qa.mjs b/v2/card-gained-rules-browser-qa.mjs
+new file mode 100644
+index 00000000..301f5513
+--- /dev/null
++++ b/v2/card-gained-rules-browser-qa.mjs
+@@ -0,0 +1,343 @@
++/** Player requirements for roster-only gained-rule presentation.
++ * All inputs are committed fixtures; DOM evaluation only observes runtime facts.
++ * --observe-only records all assertions without making a baseline green by omission.
++ * --negative-control requires baseline failures for a/b/c/d; the existing technical
++ * text guard is allowed to pass on the baseline and is reported honestly.
++ */
++import fs from 'node:fs';
++import path from 'node:path';
++import http from 'node:http';
++import assert from 'node:assert/strict';
++import {fileURLToPath} from 'node:url';
++import {createHash} from 'node:crypto';
++import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
++import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
++import {readCurrentMfmRelease} from '../mfm/content/current-mfm-release.mjs';
++import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
++const own=fileURLToPath(new URL('../',import.meta.url));
++const started=performance.now();
++const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
++const root=path.resolve(arg('--root')||process.env.CARD_GAINED_ROOT||own);
++const out=path.resolve(arg('--out')||createQaEvidenceDir('wh-card-gained-rules-'));
++const observe=process.argv.includes('--observe-only'),negative=process.argv.includes('--negative-control');
++const mutation=arg('--mutation'),widths=(arg('--widths')||'390,1440').split(',').map(Number);
++assert(widths.length&&widths.every(width=>Number.isInteger(width)&&width>0),'Explicit positive viewport widths');
++fs.mkdirSync(out,{recursive:true});
++const read=name=>JSON.parse(fs.readFileSync(new URL('./fixtures/'+name,import.meta.url),'utf8'));
++const sweep=read('sweep-polish-v1.json'),scope=read('unit-recipient-scope-browser.json');
++const tau=read('csm-tau-recipient-gaps-v1-browser.json').find(book=>book.bookId==='tau-empire').browserCases.find(row=>row.id==='csm-tau-gaps-v1:tau:18');
++const tyr=scope.find(book=>book.bookId==='tyranids').browserCases.find(row=>row.id==='unit-no-scope:vicious-insight');
++const formation=read('fabius-safe-import-browser.json').cases.find(row=>row.id==='ec-initial-formation');
++const selected={ 'adeptus-mechanicus':'input-0045','chaos-space-marines':'input-0120','emperors-children':'input-0421',
++ 'space-marines':'additional-0012','blood-angels':'additional-0010','dark-angels':'additional-0011'};
++const owner=fs.readFileSync(new URL('./fixtures/new-recruit-v37.25-owner-death-guard.txt',import.meta.url),'utf8');
++// Independent oracle: exact fixture identity -> CURRENT raw MFM owner/title.
++// It never reads the price fields produced by app-presentation or the renderer.
++const smPriceBindings={'unit-sm-bc9aa3cbedb2415c':['space-marines','CAPTAIN IN GRAVIS ARMOUR','GRAVIS LINEBREAKER FORCE','Relentless Advance'],'unit-sm-984b95cebb2f47d9':['space-marines','HEAVY INTERCESSOR SQUAD'],'unit-sm-9e163be8d4bb42c1':['space-marines','TERMINATOR SQUAD'],'unit-sm-c60b9f00ff7a42b0':['space-marines','LIBRARIAN']};
++const priceBindings={
++ 'death-guard':{'unit-biologus-putrifier':['death-guard','BIOLOGUS PUTRIFIER'],'unit-deathshroud-terminators':['death-guard','DEATHSHROUD TERMINATORS'],'unit-lord-of-contagion':['death-guard','LORD OF CONTAGION'],'unit-plague-marines':['death-guard','PLAGUE MARINES'],'unit-blightlord-terminators':['death-guard','BLIGHTLORD TERMINATORS']},
++ 'adeptus-mechanicus':{'unit-cybernetica-datasmith':['adeptus-mechanicus','CYBERNETICA DATASMITH','HALOSCREED BATTLE CLADE','Transoracular Dyad Wafers'],'unit-kastelan-robots':['adeptus-mechanicus','KASTELAN ROBOTS']},
++ 'chaos-space-marines':{'unit-dark-apostle':['chaos-space-marines','DARK APOSTLE','CHAOS CULT','Warped Foresight'],'unit-accursed-cultists':['chaos-space-marines','ACCURSED CULTISTS']},
++ 'emperors-children':{'unit-lord-kakophonist':['emperors-children','LORD KAKOPHONIST','ELEGANT BRUTES','Cacophonic Accompaniment'],'unit-noise-marines':['emperors-children','NOISE MARINES'],'unit-lord-exultant':['emperors-children','LORD EXULTANT','COURT OF THE PHOENICIAN','Exalted Patron'],'unit-infractors':['emperors-children','INFRACTORS']},
++ 'space-marines':smPriceBindings,'blood-angels':smPriceBindings,'dark-angels':smPriceBindings,
++ 'tau-empire':{'unit-cadre-fireblade':['tau-empire','CADRE FIREBLADE','KAUYON','Exemplar of the Kauyon'],'unit-strike-team':['tau-empire','STRIKE TEAM']},
++ tyranids:{'unit-broodlord':['tyranids','BROODLORD'],'unit-genestealers':['tyranids','GENESTEALERS'],'unit-trygon':['tyranids','TRYGON','SUBTERRANEAN ASSAULT','Trygon Prime']}
++};
++const currentRelease=readCurrentMfmRelease({repoRoot:own});
++const currentCaptures=new Map(currentRelease.factions.map(source=>{const capture=JSON.parse(fs.readFileSync(path.join(own,source.capturePath),'utf8'));assert(capture.version===currentRelease.version&&capture.factionId===source.bookId&&capture.currentness==='CURRENT','Exact current MFM raw capture '+source.bookId);return [source.bookId,capture];}));
++const exactlyOne=(rows,label)=>{assert.equal(rows.length,1,'Exactly one current MFM '+label);return rows[0];};
++function expectedPriceFor(book,id,models,ordinal){
++ const binding=priceBindings[book]?.[id];assert(binding,'Explicit MFM fixture identity: '+book+' / '+id);
++ const [owner,title,detachment,enhancement]=binding,source=currentCaptures.get(owner);assert(source,'Current raw MFM owner '+owner);
++ const unit=exactlyOne(source.units.filter(unit=>unit.title===title),owner+' unit '+title);
++ assert(unit.pointSchedules.every(schedule=>['minCopies','maxCopies'].every(key=>schedule[key]===undefined||Number.isSafeInteger(schedule[key]))&&schedule.entries.every(entry=>Number.isSafeInteger(entry.minModels)&&(entry.maxModels===undefined||Number.isSafeInteger(entry.maxModels)))),'Typed current MFM model/copy bounds: '+title);
++ const matches=unit.pointSchedules.filter(schedule=>ordinal>=(schedule.minCopies??1)&&ordinal<=(schedule.maxCopies??Infinity)).flatMap(schedule=>schedule.entries.filter(entry=>models>=entry.minModels&&models<=(entry.maxModels??entry.minModels)));
++ const value=exactlyOne(matches,title+' model/copy tier').value;assert(Number.isSafeInteger(value),'Typed current MFM unit cost');
++ if(!enhancement)return [value];
++ const selected=exactlyOne(source.detachments.filter(row=>row.title===detachment),owner+' detachment '+detachment);
++ const upgrade=exactlyOne(selected.enhancements.filter(row=>row.title===enhancement),detachment+' enhancement '+enhancement);assert(Number.isSafeInteger(upgrade.value),'Typed current MFM enhancement cost');
++ return [value,upgrade.value,upgrade.title];
++}
++const csmCopySource=sweep.cases.find(row=>row.id==='input-0120');
++const csmCopyBlock=csmCopySource.text.match(/8x Accursed Cultists \(90 pts\)[\s\S]*?(?=\n\n|\nCreated with)/)?.[0];
++// DERIVED plain unit line: no loadout is invented; this case observes price only.
++const dgCopyBlock='5x Blightlord Terminators (185 pts)';
++assert(csmCopyBlock&&dgCopyBlock,'Exact committed physical-unit blocks for DERIVED copy-tier scenarios');
++const cases=[{id:'owner-dg-v37.25-derived-attachments',book:'death-guard',text:owner,source:'v2/fixtures/new-recruit-v37.25-owner-death-guard.txt',owner:true},
++ ...Object.entries(selected).map(([book,id])=>{const row=sweep.cases.find(row=>row.id===id);assert(row&&row.bookId===book);return {id,book,text:row.text,attachment:row.attachment,source:'v2/fixtures/sweep-polish-v1.json#'+id};}),
++ {id:tau.id,book:'tau-empire',text:tau.text,attachment:{leader:'parsed-unit-1',target:'parsed-unit-2'},source:'v2/fixtures/csm-tau-recipient-gaps-v1-browser.json#'+tau.id},
++ {id:tyr.id,book:'tyranids',text:tyr.text,attachment:{leader:'parsed-unit-1',target:'parsed-unit-2'},source:'v2/fixtures/unit-recipient-scope-browser.json#'+tyr.id},
++ ...[sweep.cases.find(row=>row.id==='input-0357')].map(row=>({id:row.id,book:row.bookId,text:row.text,standaloneIds:['parsed-unit-1'],source:'v2/fixtures/sweep-polish-v1.json#'+row.id})),
++ {id:'existing-sm-death-blow-unit-metric',book:'space-marines',text:'+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Terminator Storm Force\n5x Terminator Squad (170 pts)\n• 5x Terminator: 5 with Storm bolter, Power fist',standaloneIds:['parsed-unit-1'],requiredMetric:'chargeRoll',source:'v2/card-polish-2-browser-qa.mjs:31–32 (unchanged existing scenario)'},
++ {id:'native-sm-librarian-aggregate-source-links',book:'space-marines',text:'+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Librarian (0 pts): Bolt pistol, Force weapon, Smite',standaloneIds:['parsed-unit-1'],nativeLinks:['ability-sm-76dc910fa6014c38','ability-sm-9c118e29005d43fd'],source:'DERIVED standalone subset of v2/card-display-2-browser-qa.mjs:23,33–36'},
++ {id:'existing-ec-lord-of-host-core-links',book:formation.bookId,text:formation.text,attachment:{leader:'parsed-unit-1',target:'parsed-unit-2'},formation:true,source:'v2/fixtures/fabius-safe-import-browser.json#ec-initial-formation'},
++ {id:'derived-csm-three-identical-copy-tiers',book:'chaos-space-marines',text:csmCopySource.text.replace('Created with newrecruit.eu',csmCopyBlock+'\n\nCreated with newrecruit.eu'),source:'v2/fixtures/sweep-polish-v1.json#input-0120',copyTier:{unitId:'unit-accursed-cultists'}},
++ {id:'derived-dg-three-identical-copy-tiers',book:'death-guard',text:'DERIVED three identical units (585 Points)\n\nDeath Guard\nVirulent Vectorium (3 Detachment Points)\n\n'+[dgCopyBlock,dgCopyBlock,dgCopyBlock].join('\n')+'\n\nCreated with newrecruit.eu v37.25',source:'DERIVED New Recruit grammar; historical v1.6 Blightlord Terminators unit line',copyTier:{unitId:'unit-blightlord-terminators'}}];
++if(arg('--book'))assert(cases.some(row=>row.book===arg('--book')),'Known book selection');
++const chosen=cases.filter(row=>!arg('--book')||row.book===arg('--book'));
++const allowed=new Set(JSON.parse(fs.readFileSync(path.join(own,'tools/pages-runtime-manifest.json'),'utf8')).files.map(row=>'/'+row.path));
++const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg'};
++const errors=[],missing=[],results=[],screenshots=[],tooltipScreenshots=[],observations=[],inventory=[],fullBookObservations=[];
++const captureStyle='.v2-primary-header, [data-v2-primary-nav], #appHeader, body > footer, [data-v2-shell] > footer, .v2-skip { visibility: hidden !important; } .local-nav { position: static !important; }';
++const server=http.createServer((request,response)=>{
++ const address=decodeURIComponent(new URL(request.url,'http://local').pathname),file=path.resolve(root,'.'+address);
++ if(address==='/favicon.ico'){response.writeHead(204).end();return;}
++ if(!file.startsWith(root+path.sep)||(!allowed.has(address)&&!isApplicationTestDependency(address))||!fs.existsSync(file)){
++  missing.push(address);response.writeHead(404).end();return;
++ }
++ response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));
++});
++await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
++const origin='http://127.0.0.1:'+server.address().port;
++const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
++const norm=value=>String(value).replace(/\s+/g,' ').trim();
++async function check(requirement,meta,run){try{const proof=await run();results.push({...meta,requirement,status:'PASS',proof});}catch(error){results.push({...meta,requirement,status:'FAIL',message:error.message,stack:error.stack});if(!observe&&!negative)throw error;}}
++function inspectCard(card){
++ const visible=node=>{
++  if(!node||node.closest('script,style,template,input,textarea,[aria-hidden="true"],.v2-sr-only,.sr-only'))return false;
++  for(let current=node;current&&current!==card.parentElement;current=current.parentElement){
++   if(current.hidden)return false;
++   if(current.tagName==='DETAILS'&&!current.open&&!current.querySelector(':scope > summary')?.contains(node))return false;
++   const css=getComputedStyle(current);if(css.display==='none'||css.visibility==='hidden'||css.opacity==='0')return false;
++  }
++  return !!node.getClientRects().length;
++ };
++ const ownId=card.dataset.rosterInstanceId;
++ const selfCaptions=[...card.querySelectorAll('.ds-ability-sources,.ds-stat-modifier-sources,.ds-critical-hit-threshold')].filter(visible).filter(node=>{
++  if(!/Source:|Applies to:/.test(node.innerText))return false;
++  return [...node.querySelectorAll('*')].some(child=>Object.entries(child.dataset).some(([key,value])=>/SourceInstanceId$/.test(key)&&value===ownId));
++ }).map(node=>node.innerText);
++ const duplicated=[];
++ for(const weapon of card.querySelectorAll('.weapon-row:not(.weapon-head),.popup-weapon-profile')){
++  const seen=new Map();
++  for(const note of weapon.querySelectorAll('[data-weapon-grant-sources]')){
++   if(!visible(note)||!note.innerText.includes('Source:'))continue;
++   for(const source of JSON.parse(note.dataset.weaponGrantSources)){
++    const key=JSON.stringify([source.canonicalRuleId||source.ruleId,source.sourceInstanceId,source.sourceCompositionId??null,source.sourceModelInstanceId??null,source.sourceFields??null]);
++    const notes=seen.get(key)||new Set();notes.add(note);seen.set(key,notes);
++   }
++  }
++  for(const [key,notes]of seen)if(notes.size>1)duplicated.push({weaponId:weapon.dataset.cardId,key,captionCount:notes.size});
++ }
++ const gained=card.querySelector('[data-datasheet-section="gained-rules"]');
++ const sections=[...card.querySelectorAll('[data-datasheet-section]')].filter(node=>node.closest('.unit-card')===card).map(node=>node.dataset.datasheetSection);
++ const groups=gained?[...gained.querySelectorAll('[data-gained-source-kind]')].map(node=>({kind:node.dataset.gainedSourceKind,tag:node.tagName,open:node.open??null,text:node.textContent.trim(),sourceLines:node.textContent.match(/Source:|Applies to:/g)||[]})):[];
++ const cost=card.querySelector('.unit-header .ds-cost,.ds-cost');
++ const bad=/\b(?:undefined|null|NaN|UNVERIFIED|NOT_IMPLEMENTED|SOURCE_CONFLICT|EXECUTABLE_MISSING|REVIEW_REQUIRED|TEXT_ONLY|CONDITIONAL_POLICY|NO_MATCH|NOT_PROVEN|REFERENCE_ONLY|BATTLE_ONLY|NEEDS_BINDINGS|ROSTER_EXECUTABLE|UNRESOLVED|UNKNOWN|SOURCE_DECLARATION|NOT_EXECUTABLE)\b|\[object Object\]|\bparsed-unit-\d+\b|\b(?:unit|detachment|datasheet|refs|bindings)-[a-z0-9][a-z0-9_-]{7,}(?::[a-z0-9_:/.-]+)?/g;
++ const leaks=[];const walker=document.createTreeWalker(card,NodeFilter.SHOW_TEXT);let node;
++ while((node=walker.nextNode()))if(visible(node.parentElement)){for(const match of node.textContent.matchAll(bad))leaks.push({token:match[0],text:node.textContent.trim()});}
++ const weaponSummaries=[...card.querySelectorAll('[data-gained-weapon-summary]')].map(node=>node.textContent);
++ for(const summary of card.querySelectorAll('[data-gained-weapon-summary][data-gained-source-identity]')){
++  const source=JSON.parse(summary.dataset.gainedSourceIdentity);
++  if(source.sourceInstanceId===ownId&&/\s—\s/.test(summary.textContent))selfCaptions.push(summary.textContent);
++ }
++ const gains=[...card.querySelectorAll('.ds-gained-chip')].map(node=>({text:node.innerText,tag:node.tagName,color:getComputedStyle(node).color,describedBy:node.getAttribute('aria-describedby'),controls:node.getAttribute('aria-controls')}));
++ return {selfCaptions,duplicated,sections,groups,weaponSummaries,gainedCount:gained?1:0,localNav:card.querySelector('.local-nav')?.innerText||'',cost:cost?.innerText||'',priceCells:cost?.querySelectorAll('.ds-cost-cell').length||0,instancePriceRows:cost?.querySelectorAll('.ds-instance-price').length||0,leaks,gains};
++}
++async function settled(page){await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));}
++async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
++async function open(page,row){
++ await page.goto(origin+'/v2/app.html');await page.locator(`[data-v2-book="${row.book}"]`).click();
++ await page.waitForFunction(book=>window.ArmyBookAppV2?.payload.book.id===book&&Boolean(window.ArmyBookAppV2?.roster),row.book);
++ await page.evaluate(async()=>await window.ArmyBookAppV2.rosterPanel?.ready);
++ if(row.owner){
++  const library=page.locator('main .unit-card[data-card-id="unit-plague-marines"]:not([data-roster-instance-id])').first();
++  await library.waitFor();
++  for(const width of widths){
++   await page.setViewportSize({width,height:1000});
++   const proof=await library.evaluate(node=>({text:node.innerText,cost:node.querySelector('.ds-cost')?.innerText||'',priceCells:node.querySelectorAll('.ds-cost-cell').length}));
++   assert.equal(proof.priceCells,3,'Full Army Book retains all 5/7/10-model prices');
++   const file='full-book-death-guard-plague-marines-'+width+'.png';
++   await library.screenshot({path:path.join(out,file),animations:'disabled',style:captureStyle});
++   screenshots.push({book:row.book,input:row.id,width,instanceId:'full-book',canonicalUnitId:'unit-plague-marines',file,title:'Full Army Book · Plague Marines'});
++   fullBookObservations.push({book:row.book,width,sha256:hash(proof),proof});
++  }
++  await page.setViewportSize({width:1440,height:1000});
++ }
++ await roster(page);
++ await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(row.text);
++ await page.locator('[data-roster-action="review-import"]').click();await settled(page);
++ const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settled(page);}
++ assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./,'Existing fixture imports: '+row.id);
++ const units=await page.evaluate(()=>window.ArmyBookAppV2.roster.state.units);
++ if(row.standaloneIds){assert(row.standaloneIds.every(id=>units.some(unit=>unit.instanceId===id)),'Exact enhanced standalone instance exists');return {units,attachment:null,ids:row.standaloneIds};}
++ if(row.copyTier){
++  const copies=units.filter(unit=>unit.canonicalUnitId===row.copyTier.unitId);
++  assert.equal(copies.length,3,'DERIVED scenario retains three separate physical units in UI roster order');
++  return {units,attachment:null,ids:copies.map(unit=>unit.instanceId)};
++ }
++ const attachment=row.owner?{leader:units.find(unit=>unit.canonicalUnitId==='unit-lord-of-contagion')?.instanceId,target:units.find(unit=>unit.canonicalUnitId==='unit-deathshroud-terminators')?.instanceId}:row.attachment;
++ assert(attachment?.leader&&attachment.target,'Explicit existing attachment case');
++ if(row.formation){const before=await page.evaluate(id=>({state:window.ArmyBookAppV2.roster.snapshot(),view:window.ArmyBookAppV2.roster.effective(id)}),attachment.leader);assert.equal(before.state.initialAttachments,undefined);assert.equal(before.state.initialAttachmentStep,undefined);assert(!before.view.profiles.flatMap(profile=>profile.abilities||[]).some(ability=>['core-scouts','core-infiltrators'].includes(ability.canonicalId)),'Unattached Lord Exultant has no formation grants');}
++ await page.locator(`[data-attachment-candidate-for="${attachment.target}"]`).selectOption(attachment.leader);
++ await page.locator(`[data-attachment-target-instance-id="${attachment.target}"] [data-roster-action="attach"]`).click();await settled(page);
++ await page.locator(`[data-attached-leader-instance-id="${attachment.leader}"]`).waitFor();
++ if(row.formation){const after=await page.evaluate(({leader,target})=>{const r=window.ArmyBookAppV2.roster;return {state:r.snapshot(),leader:r.effective(leader),bodyguard:r.effective(target)};},attachment);assert.equal(after.state.initialAttachments,undefined);assert.equal(after.state.initialAttachmentStep,undefined);const granted=after.leader.profiles.flatMap(profile=>profile.abilities||[]);assert(granted.some(ability=>ability.canonicalId==='core-infiltrators'));assert(granted.some(ability=>ability.canonicalId==='core-scouts'&&ability.parameters.distance===6));assert(!after.bodyguard.profiles.flatMap(profile=>profile.abilities||[]).some(ability=>['core-scouts','core-infiltrators'].includes(ability.canonicalId)),'Formation abilities remain on the source MODEL only');}
++ // Derived UI setup: the source export contains no attachment declarations.
++ // Foul Infusion is a leading rule; never require CRIT5 on standalone Putrifier.
++ if(row.owner){
++  const putrifier=units.find(unit=>unit.canonicalUnitId==='unit-biologus-putrifier');
++  const marines=units.find(unit=>unit.canonicalUnitId==='unit-plague-marines'&&unit.startingStrength===10);
++  assert(putrifier&&marines,'Exact owner bearer and ten-model Bodyguard exist');
++  const standalone=await page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id).weapons.some(weapon=>weapon.fields.some(field=>field.label==='criticalHitThreshold')),putrifier.instanceId);
++  assert.equal(standalone,false,'Standalone Putrifier does not gain a leading-only Critical Hit threshold');
++  await page.locator(`[data-attachment-candidate-for="${marines.instanceId}"]`).selectOption(putrifier.instanceId);
++  await page.locator(`[data-attachment-target-instance-id="${marines.instanceId}"] [data-roster-action="attach"]`).click();await settled(page);
++  await page.locator(`[data-attached-leader-instance-id="${putrifier.instanceId}"]`).waitFor();
++ }
++ const ids=row.owner?['unit-biologus-putrifier','unit-deathshroud-terminators','unit-lord-of-contagion','unit-plague-marines'].map(id=>{
++  const found=units.filter(unit=>unit.canonicalUnitId===id);const unit=id==='unit-plague-marines'?found.find(unit=>unit.startingStrength===10):found[0];assert(unit,'Required owner physical unit: '+id);return unit.instanceId;
++ }):[attachment.leader,attachment.target];
++ return {units,attachment,ids};
++}
++async function effective(page,id){await roster(page);await page.locator(`.v2-roster-instance[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`).first();await card.waitFor();return card;}
++async function captureState(page,row,width,phase){
++ const value=await page.evaluate(()=>{const r=window.ArmyBookAppV2.roster;return {state:r.snapshot(),projection:r.projection,points:r.points,effective:r.state.units.map(unit=>r.effective(unit.instanceId))};});
++ const sha256=hash(value);observations.push({book:row.book,input:row.id,width,phase,sha256,value});return sha256;
++}
++async function openCanonicalReference(page,link,target,body=null){
++ assert.equal(await link.count(),1,'One exact original canonical navigation anchor');await link.click();
++ const dialog=page.locator('dialog.v2-detail-dialog[open]');await dialog.waitFor();assert.equal(await dialog.getAttribute('data-canonical-id'),target,'Actual popup navigates to the exact canonical definition');
++ const text=await dialog.innerText();assert(text.trim(),'Canonical definition popup is not empty');if(body)assert(norm(text).includes(norm(body)),'Native popup retains the complete canonical ability body');
++ await dialog.getByRole('button',{name:'Close rule reference',exact:true}).click();await dialog.waitFor({state:'hidden'});return {target,textSha256:hash(text)};
++}
++let browser,complete=false;
++try{
++ browser=await launchChromium();
++ for(const row of chosen){
++  console.log('RUN gained rules '+row.book);
++  const context=await browser.newContext({viewport:{width:1440,height:1000},serviceWorkers:'block'});context.setDefaultTimeout(25000);
++  const page=await context.newPage();page.on('pageerror',error=>errors.push({book:row.book,message:error.message}));
++  try{
++   const setup=await open(page,row);const gameplayBefore=await captureState(page,row,1440,'after-attachment');
++   for(const width of widths){
++    await page.setViewportSize({width,height:1000});
++    for(const id of setup.ids){
++     const card=await effective(page,id),unit=setup.units.find(unit=>unit.instanceId===id),meta={book:row.book,input:row.id,width,instanceId:id,canonicalUnitId:unit.canonicalUnitId};
++     if(mutation==='technical-id')await card.evaluate(node=>{const caption=document.createElement('small');caption.className='ds-ability-sources';caption.textContent='From datasheet-synthetic-internal-id-00001';node.querySelector('.unit-header').append(caption);});
++     if(mutation==='remove-gained')await card.locator('[data-datasheet-section="gained-rules"]').evaluateAll(nodes=>nodes.forEach(node=>node.remove()));
++     if(mutation==='duplicate-price')await card.locator('.ds-cost').evaluate(node=>node.append(node.firstElementChild.cloneNode(true)));
++     const facts=await card.evaluate(node=>({title:node.querySelector('h2,h3')?.textContent||'',html:node.outerHTML}));
++     const inspected=await card.evaluate(inspectCard);
++     inventory.push({...meta,...inspected});
++     await check('a-self-caption-absent',meta,async()=>{assert.deepEqual(inspected.selfCaptions,[],'Self-sourced Source/Applies captions must be absent');await assertNoVisibleLegacyAttribution(card);return inspected.selfCaptions;});
++     await check('b-one-source-caption',meta,()=>{assert.deepEqual(inspected.duplicated,[],'A physical rule source is not repeated after each granted weapon ability');return inspected.duplicated;});
++     await check('c-gained-final-ordered-groups',meta,async()=>{
++      const effectiveProof=observations[observations.length-1].value.effective.find(unit=>unit.instanceId===id);
++      const needsGained=(effectiveProof.attachedRuleTexts||[]).length>0||inspected.groups.length>0||Boolean(row.requiredMetric);
++      if(needsGained){assert.equal(inspected.gainedCount,1,'Gained rules exists for existing gained facts/text');assert.equal(inspected.sections.at(-1),'gained-rules','Gained rules is the final card section');assert.match(inspected.localNav,/Gained rules/,'Gained rules has a local navigation item');}
++      const rank={LEADER:0,ATTACHED_UNIT:0,ENHANCEMENT:1,DETACHMENT:2};let prior=-1;
++      for(const gain of inspected.gains)assert.equal(gain.color,'rgb(199, 174, 117)','All books use one exact gained-rule accent');
++      for(const group of inspected.groups){assert(Object.hasOwn(rank,group.kind),'Known source kind');assert(rank[group.kind]>=prior,'Leader/attached, enhancement, detachment order');prior=rank[group.kind];assert(group.text.length,'No empty source group');assert.deepEqual(group.sourceLines,[],'Gained rows do not repeat Source/Applies captions');if(group.kind==='DETACHMENT'){assert.equal(group.tag,'DETAILS');assert.equal(group.open,false,'Detachment source groups are collapsed by default');}}
++      let navigation=null;
++      if(needsGained){
++       const section=card.locator('[data-datasheet-section="gained-rules"]'),target=await section.getAttribute('id');assert(target,'The Gained rules section has an exact navigation target');
++       const tab=card.locator('.local-nav .local-tab').filter({hasText:/^Gained rules$/});assert.equal(await tab.count(),1,'One exact Gained rules local navigation button');assert.equal(await tab.getAttribute('data-datasheet-target'),target,'The local navigation target is this physical card section');
++       if(width<=900){
++        assert(await tab.isVisible(),'Mobile Gained rules navigation is player-visible');
++        await tab.click();await page.waitForFunction(({instanceId,target})=>{const section=[...document.querySelectorAll('main .unit-card[data-roster-instance-id]')].find(node=>node.dataset.rosterInstanceId===instanceId)?.querySelector('[id="'+target+'"]'),heading=section?.querySelector('h4');if(!heading)return false;const box=heading.getBoundingClientRect();return box.height>0&&box.top>=0&&box.bottom<=innerHeight;},{instanceId:id,target});
++        navigation={mode:'visible-mobile-clicked',target};
++       }else{
++        assert.equal(await card.locator('.local-nav').evaluate(node=>getComputedStyle(node).display),'none','Preserve the existing hidden desktop local-navigation policy');
++        navigation={mode:'existing-hidden-desktop-policy',target};
++       }
++      }
++      return {sections:inspected.sections,groups:inspected.groups.map(({kind,tag,open})=>({kind,tag,open})),navigation};
++     });
++     await check('d-one-instance-price',meta,()=>{
++      assert(inspected.cost,'Actual instance price must be rendered');assert.equal(inspected.instancePriceRows,1,'Exactly one actual instance price row');assert(inspected.priceCells<=1,'Roster price must not repeat the full unit-size schedule');
++      const ordinal=setup.units.filter(copy=>copy.canonicalUnitId===unit.canonicalUnitId).findIndex(copy=>copy.instanceId===id)+1;
++      const price=expectedPriceFor(row.book,unit.canonicalUnitId,unit.startingStrength,ordinal);
++      assert(price,'Explicit independent expected price for every inspected physical card');
++      const expected=`${unit.startingStrength} ${unit.startingStrength===1?'model':'models'} · ${price[0]} pts`+(price.length>1?` + ${price[1]} pts · ${price[2]}`:'');
++      assert.equal(norm(inspected.cost),expected,'Exact physical-instance MFM price and enhancement surcharge');
++      if(row.owner&&unit.canonicalUnitId==='unit-plague-marines')assert.doesNotMatch(norm(inspected.cost),/\b[57] models\b/,'Other size tiers are not shown');
++      return inspected.cost;
++     });
++     await check('e-visible-technical-text',meta,()=>{assert.deepEqual(inspected.leaks,[],'Visible text contains no technical labels or internal IDs');return {leaks:inspected.leaks};});
++     await check('canonical-ability-references',meta,async()=>{
++      const references=await card.evaluate(root=>{const cards=new Map(window.ArmyBookAppV2.payload.cards.map(card=>[card.id,card]));const owner=id=>{let card=cards.get(id),seen=new Set();while(card&&!seen.has(card.id)){if(['DATASHEET','DETACHMENT'].includes(card.kind))return card;seen.add(card.id);card=cards.get(card.parentId);}return null;};return [...root.querySelectorAll('.ds-effective-ability[data-canonical-ability-id]')].map(node=>{
++       const id=node.dataset.canonicalAbilityId,sources=JSON.parse(node.dataset.abilitySources||'[]'),links=[...root.querySelectorAll('a[data-target-id]')].filter(link=>link.dataset.targetId===id&&link.closest('.unit-card')===root&&!link.closest('.ds-ability-sources'));
++       const source=sources[0],own=source&&source.sourceInstanceId===root.dataset.rosterInstanceId&&cards.get(source.canonicalRuleId||source.ruleId)?.kind!=='ENHANCEMENT'&&owner(source.canonicalRuleId||source.ruleId)?.kind!=='DETACHMENT';
++       return {id,referenceCount:links.length,nestedButtonLinks:links.filter(link=>link.closest('button')).length,ownChipColors:links.filter(link=>link.closest('span.ds-gained-chip')).map(link=>getComputedStyle(link).color),singleSource:sources.length===1,sourceTargets:[...node.querySelectorAll('.ds-ability-sources a[data-target-id]')].map(link=>link.dataset.targetId),expectedSourceTarget:own&&root.classList.contains('ds-roster-card')?null:source?.canonicalRuleId||source?.ruleId};
++      });});
++      for(const reference of references){assert(reference.referenceCount>0,'Original canonical ability target remains on the same physical card: '+reference.id);assert.equal(reference.nestedButtonLinks,0,'Canonical anchors are not nested in buttons');for(const color of reference.ownChipColors)assert.equal(color,'rgb(199, 174, 117)','An own-chip canonical anchor inherits the gained accent');if(reference.singleSource)assert.deepEqual(reference.sourceTargets,reference.expectedSourceTarget?[reference.expectedSourceTarget]:[],'Core-definition retention leaves the exact single-source proof anchor cardinality unchanged');}
++      return references;
++     });
++     if(row.nativeLinks)await check('native-librarian-source-navigation',meta,async()=>{
++      const opened=[];for(const target of row.nativeLinks){const link=card.locator(`.ds-section-sources a[data-represented-ability-id="${target}"]`);assert.equal(await link.getAttribute('data-target-id'),target,'Native aggregate retains the exact represented ability target');const body=await page.evaluate(target=>{const card=window.ArmyBookAppV2.payload.cards.find(card=>card.id===target),text=card.fields.find(field=>field.source?.path==='/text').value;return text.startsWith(card.title+':')?text.slice(card.title.length+1).trimStart():text;},target);opened.push(await openCanonicalReference(page,link,target,body));}return opened;
++     });
++     if(row.formation&&id===setup.attachment.leader)await check('lord-of-host-core-navigation',meta,async()=>{
++      const modern=await card.evaluate(node=>node.classList.contains('ds-roster-card'));
++      for(const [target,parameters]of [['core-infiltrators',{}],['core-scouts',{distance:6}]]){
++       const ability=card.locator(`.ds-effective-ability[data-canonical-ability-id="${target}"]`);assert.equal(await ability.count(),1,'Exactly one retained MODEL ability');const proof=await ability.evaluate(node=>({parameters:JSON.parse(node.dataset.abilityParameters),subject:node.dataset.recipientSubject,scopes:JSON.parse(node.dataset.recipientScopes).map(scope=>JSON.parse(scope)),sources:JSON.parse(node.dataset.abilitySources),chipTag:node.querySelector('.ds-gained-chip')?.tagName}));
++       assert.deepEqual(proof.parameters,parameters);assert.equal(proof.subject,'MODEL');if(modern)assert.equal(proof.chipTag,'SPAN','Own formation grant uses a non-button chip');else assert.equal(proof.chipTag,undefined,'Historical native link has no new gained-chip wrapper');assert.equal(proof.sources.length,1);const source=proof.sources[0];assert.equal(source.canonicalRuleId||source.ruleId,'datasheet-lord-exultant:section:4');assert.equal(source.sourceInstanceId,id);assert.equal(source.targetInstanceId,id);assert.equal(source.targetProfileId,'datasheet-lord-exultant:profile:1');assert.deepEqual(source.sourceFields,[['blocks',0,'text']]);assert.deepEqual(proof.scopes,[[id,source.targetProfileId,source.targetCompositionId??null]],'Exact MODEL recipient scope remains unchanged');
++       const runtime=await page.evaluate(({id,effectId})=>window.ArmyBookAppV2.roster.effective(id).applied.filter(source=>source.effectId===effectId),{id,effectId:source.effectId});assert.equal(runtime.length,1,'Exact existing executed formation contribution');for(const key of ['ruleId','effectId','sourceInstanceId','targetInstanceId','targetProfileId','targetCompositionId','targetModelInstanceId','sourceFields'])assert.deepEqual(source[key]??null,runtime[0][key]??null,'Rendered MODEL provenance matches the existing runtime: '+key);
++      }
++      return openCanonicalReference(page,card.locator('.ds-effective-ability[data-canonical-ability-id="core-scouts"] a[data-target-id="core-scouts"]'),'core-scouts');
++     });
++     await check('existing-unit-metrics-at-top',meta,async()=>{
++      const expected=await page.evaluate(instanceId=>{const effective=window.ArmyBookAppV2.roster.effective(instanceId);return Object.entries(effective.unitMetrics||{}).flatMap(([key,value])=>{
++       const sources=(effective.unitMetricSources||[]).filter(source=>source.field===key);
++       if(key==='detectionRange'&&!sources.some(source=>['PHYSICAL','FORMED'].includes(source.unitScope)))return [];
++       const unitScope=sources.every(source=>source.unitScope==='FORMED'||source.unitScope===undefined)?'FORMED':'PHYSICAL';
++       return [{key,value,sources,unitScope,recipientInstanceIds:unitScope==='FORMED'&&effective.formedUnit?[...effective.formedUnit.memberInstanceIds]:[instanceId],formedUnitId:effective.formedUnit?.formedUnitId||null}];
++      });},id);
++      if(row.requiredMetric)assert(expected.some(metric=>metric.key===row.requiredMetric),'Explicit existing scenario makes UNIT metric coverage nonvacuous');
++      for(const metric of expected){
++       const node=card.locator(`[data-gained-unit-metric="${metric.key}"], [data-unit-metric="${metric.key}"]`);assert.equal(await node.count(),1,'Exactly one computed UNIT summary per key');
++       const shown=await node.evaluate(node=>{const box=node.getBoundingClientRect(),statlines=[...node.closest('.unit-card').querySelectorAll('.statline')].map(value=>value.getBoundingClientRect()).filter(value=>value.width&&value.height);return {modifier:Number(node.dataset.metricModifier),sources:JSON.parse(node.dataset.metricSources),unitScope:node.dataset.unitScope,recipientInstanceIds:JSON.parse(node.dataset.recipientInstanceIds),formedUnitId:node.dataset.formedUnitId||null,beforeProfile:statlines.length>0&&box.bottom<=Math.min(...statlines.map(value=>value.top))+1,text:node.textContent};});
++       assert.equal(shown.modifier,metric.value.modifier,'Exact existing UNIT modifier');assert.deepEqual(shown.sources,metric.sources,'Exact existing UNIT source proofs');assert.equal(shown.unitScope,metric.unitScope);assert.deepEqual([...shown.recipientInstanceIds].sort(),[...metric.recipientInstanceIds].sort());assert.equal(shown.formedUnitId,metric.formedUnitId);assert(shown.beforeProfile,'Computed UNIT summary is above profile');assert.match(shown.text,/\+/,'Computed summary has a gained marker');
++      }
++      return expected;
++     });
++     if(row.owner&&unit.canonicalUnitId==='unit-deathshroud-terminators')await check('gained-vector-chips-and-tooltip',meta,async()=>{
++      const lance=card.locator('.weapon-row:not(.weapon-head) .ds-gained-chip').filter({hasText:/^\+\s*LANCE$/i});const sustained=card.locator('.weapon-row:not(.weapon-head) .ds-gained-chip').filter({hasText:/^\+\s*SUSTAINED HITS\s*1$/i});
++      assert.equal(await lance.count(),2,'Both Manreaper modes retain LANCE chips');assert.equal(await sustained.count(),2,'Both independent SUSTAINED HITS effects remain');
++      const summaries=card.locator('[data-gained-weapon-summary]');assert((await summaries.allTextContents()).some(text=>/All melee weapons:/.test(text)&&/Vector of Disease/.test(text)),'Existing complete melee coverage has one rule summary');
++      const chip=lance.first();assert.equal(await chip.evaluate(node=>node.tagName),'BUTTON','Gain opens by keyboard and touch');const target=await chip.getAttribute('aria-controls')||await chip.getAttribute('aria-describedby');assert(target,'Gain has an ARIA tooltip target');
++      const tooltip=card.locator('[id="'+target+'"]');assert.equal(await tooltip.count(),1,'Tooltip is on the same physical card');assert.equal(await page.locator('[id="'+target+'"]').count(),1,'Tooltip ID is unique');assert.match(await tooltip.textContent(),/Vector of Disease/);assert.match(await tooltip.textContent(),/Lord of Contagion/);
++      const inViewport=async()=>{const box=await tooltip.boundingBox(),cardBox=await card.boundingBox();assert(box&&cardBox,'Open tooltip and physical card have rendered boxes');assert(box.x>=0&&box.x+box.width<=width,'The complete source tooltip fits the viewport');assert(box.x>=cardBox.x&&box.x+box.width<=cardBox.x+cardBox.width,'The complete source tooltip fits the physical card without overflow clipping');return box;};
++      const close=async()=>{await page.keyboard.press('Escape');await tooltip.waitFor({state:'hidden'});assert.equal(await chip.getAttribute('aria-expanded'),'false','Escape closes the source tooltip and resets ARIA');};
++      await chip.focus();if(!await tooltip.isVisible())await page.keyboard.press('Enter');await tooltip.waitFor({state:'visible'});await inViewport();await close();await chip.click();await tooltip.waitFor({state:'visible'});await inViewport();
++      if(width===390){const file='death-guard-vector-source-tooltip-open-390.png';await page.screenshot({path:path.join(out,file),animations:'disabled',style:captureStyle});tooltipScreenshots.push({...meta,file,tooltipId:target});}
++      await close();
++      await page.mouse.move(0,0);await chip.evaluate(node=>node.blur());
++      return {lance:await lance.count(),sustained:await sustained.count(),tooltipId:target};
++     });
++     if(row.owner&&unit.canonicalUnitId==='unit-biologus-putrifier')await check('critical-hits-chip',meta,async()=>{const chips=card.locator('.weapon-tags .ds-gained-chip').filter({hasText:/^\+\s*CRIT 5\+$/i});assert(await chips.count(),'Existing Foul Infusion critical threshold is in weapon tags');assert.equal(await card.locator('small.ds-critical-hit-threshold').evaluateAll(nodes=>nodes.filter(node=>node.getClientRects().length&&!node.hidden).length),0,'No visible separate critical-hit prose rows; hidden source proof is retained');return {chips:await chips.count()};});
++     if(row.owner&&unit.canonicalUnitId==='unit-lord-of-contagion')await check('existing-computed-fnp-at-top',meta,async()=>{
++      const overview=card.locator('[data-gained-overview]');assert.equal(await overview.count(),1,'Existing computed abilities have a top overview');
++      assert.match(norm(await overview.innerText()),/\+\s*FEEL NO PAIN\s*4\+/i,'Already computed Silent Bodyguard FNP 4+ remains a gained chip');
++      assert(await overview.evaluate(node=>{const box=node.getBoundingClientRect(),statlines=[...node.parentElement.querySelectorAll('.statline')].map(value=>value.getBoundingClientRect()).filter(value=>value.width&&value.height);return statlines.length>0&&box.bottom<=Math.min(...statlines.map(value=>value.top))+1;}),'Computed overview is visually above the stat profiles');
++      return {text:await overview.innerText()};
++     });
++     const name=`${row.book}-${row.id.replace(/[^a-z0-9-]/gi,'_')}-${id}-${width}.png`;await card.scrollIntoViewIfNeeded();await card.screenshot({path:path.join(out,name),animations:'disabled',style:captureStyle});screenshots.push({...meta,file:name,title:facts.title});
++    }
++   }
++   if(row.copyTier)await check('d-copy-tier-order-and-sum',{book:row.book,input:row.id},()=>{
++    const atWidth=inventory.filter(item=>item.input===row.id&&item.width===widths[0]);
++    assert.deepEqual(atWidth.map(item=>item.instanceId),setup.ids,'Cards inspected in the exact UI roster order');
++    const prices=atWidth.map(item=>Number(item.cost.match(/·\s*(\d+) pts/)?.[1]));
++    const expected=setup.ids.map((id,index)=>expectedPriceFor(row.book,row.copyTier.unitId,setup.units.find(unit=>unit.instanceId===id).startingStrength,index+1)[0]);
++    assert.deepEqual(prices,expected,'Per-physical-unit current raw MFM copy tiers, including third copy');
++    const sum=expected.reduce((sum,value)=>sum+value,0);assert.equal(prices.reduce((sum,value)=>sum+value,0),sum,'Independent current raw MFM sum of the three displayed prices');
++    return {prices,sum};
++   });
++   const gameplayAfter=await captureState(page,row,widths.at(-1),'after-card-rendering');assert.equal(gameplayAfter,gameplayBefore,'Viewing gained rules changes no runtime state/projection/effective values/points');
++  }finally{await context.close();}
++ }
++ assert.deepEqual(errors,[],'No page errors');assert.deepEqual(missing,[],'No missing runtime requests');
++ const failed=results.filter(row=>row.status==='FAIL');
++ if(negative)for(const requirement of ['a-self-caption-absent','b-one-source-caption','c-gained-final-ordered-groups','d-one-instance-price'])assert(failed.some(row=>row.requirement===requirement),'Baseline must reject '+requirement);
++ else if(!observe)assert.deepEqual(failed,[],'New gained-card requirements');
++ complete=true;
++}finally{
++ fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:complete?'PASS':'FAIL',mode:negative?'BASELINE_NEGATIVE':observe?'OBSERVE':'FEATURE',root,currentMfmVersion:currentRelease.version,durationMs:Math.round(performance.now()-started),results,errors,missing,screenshots,tooltipScreenshots,screenshotFraming:{style:captureStyle,note:'External fixed application chrome and its skip link are hidden during capture; the in-card local navigation is made static. No in-card content is hidden or changed. The same camera style is used before and after.'},fixtureSources:chosen.map(({id,book,source,text,copyTier})=>({id,book,source,textSha256:createHash('sha256').update(text).digest('hex'),derivedCopyTier:copyTier||null,derivedAttachments:id.includes('derived-attachments')?['Lord of Contagion to Deathshroud Terminators','Biologus Putrifier to ten Plague Marines (required existing leading condition)']:null}))},null,2)+'\n');
++ fs.writeFileSync(path.join(out,'GAMEPLAY_OBSERVATIONS.json'),JSON.stringify(observations,null,2)+'\n');
++ fs.writeFileSync(path.join(out,'SOURCE_INVENTORY.json'),JSON.stringify(inventory,null,2)+'\n');
++ fs.writeFileSync(path.join(out,'FULL_BOOK_OBSERVATIONS.json'),JSON.stringify(fullBookObservations,null,2)+'\n');
++ if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
++}
++console.log(JSON.stringify({status:'PASS',results:results.length,failures:results.filter(row=>row.status==='FAIL').length,evidence:out}));

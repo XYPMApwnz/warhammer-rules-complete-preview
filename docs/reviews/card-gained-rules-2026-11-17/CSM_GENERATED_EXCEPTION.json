@@ -1,0 +1,409 @@
+{
+  "status": "PASS",
+  "base": "9a48765744f32f467f6e53c1f85e94921cbdd54b",
+  "file": "books/chaos-space-marines/v2/generated/app-presentation.json",
+  "rows": 56,
+  "addedFields": 112,
+  "oldBytes": 19597950,
+  "newBytes": 19600722,
+  "oldSHA256": "4ad2ffa685c6363f882e2175ac1ed3a804e8334e86f1d816c05ffacf34278660",
+  "newSHA256": "1b07f29014b3f1c69dd09dc6d8aab82541a1cc05a651af738f815bfe6a1b2608",
+  "allOtherPublicationValuesUnchanged": true,
+  "rawAddedLines": 112,
+  "rawRemovedLines": 0,
+  "otherGeneratedFilesChanged": 0,
+  "changes": [
+    {
+      "id": "datasheet-accursed-cultists:mfm:points:0:0",
+      "unit": "unit-accursed-cultists",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-accursed-cultists:mfm:points:0:1",
+      "unit": "unit-accursed-cultists",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-accursed-cultists:mfm:points:1:0",
+      "unit": "unit-accursed-cultists",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-accursed-cultists:mfm:points:1:1",
+      "unit": "unit-accursed-cultists",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-chaos-land-raider:mfm:points:0:0",
+      "unit": "unit-chaos-land-raider",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-chaos-land-raider:mfm:points:1:0",
+      "unit": "unit-chaos-land-raider",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-chaos-predator-annihilator:mfm:points:0:0",
+      "unit": "unit-chaos-predator-annihilator",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-chaos-predator-annihilator:mfm:points:1:0",
+      "unit": "unit-chaos-predator-annihilator",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-chaos-predator-destructor:mfm:points:0:0",
+      "unit": "unit-chaos-predator-destructor",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-chaos-predator-destructor:mfm:points:1:0",
+      "unit": "unit-chaos-predator-destructor",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-chaos-rhino:mfm:points:0:0",
+      "unit": "unit-chaos-rhino",
+      "label": "Units 1–3",
+      "minCopies": 1,
+      "maxCopies": 3
+    },
+    {
+      "id": "datasheet-chaos-rhino:mfm:points:1:0",
+      "unit": "unit-chaos-rhino",
+      "label": "Units 4+",
+      "minCopies": 4,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-chaos-terminator-squad:mfm:points:0:0",
+      "unit": "unit-chaos-terminator-squad",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-chaos-terminator-squad:mfm:points:0:1",
+      "unit": "unit-chaos-terminator-squad",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-chaos-terminator-squad:mfm:points:1:0",
+      "unit": "unit-chaos-terminator-squad",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-chaos-terminator-squad:mfm:points:1:1",
+      "unit": "unit-chaos-terminator-squad",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-chaos-vindicator:mfm:points:0:0",
+      "unit": "unit-chaos-vindicator",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-chaos-vindicator:mfm:points:1:0",
+      "unit": "unit-chaos-vindicator",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-chosen:mfm:points:0:0",
+      "unit": "unit-chosen",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-chosen:mfm:points:0:1",
+      "unit": "unit-chosen",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-chosen:mfm:points:1:0",
+      "unit": "unit-chosen",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-chosen:mfm:points:1:1",
+      "unit": "unit-chosen",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-cultist-firebrand:mfm:points:0:0",
+      "unit": "unit-cultist-firebrand",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-cultist-firebrand:mfm:points:1:0",
+      "unit": "unit-cultist-firebrand",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-dark-commune:mfm:points:0:0",
+      "unit": "unit-dark-commune",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-dark-commune:mfm:points:1:0",
+      "unit": "unit-dark-commune",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-defiler:mfm:points:0:0",
+      "unit": "unit-defiler",
+      "label": "Unit 1",
+      "minCopies": 1,
+      "maxCopies": 1
+    },
+    {
+      "id": "datasheet-defiler:mfm:points:1:0",
+      "unit": "unit-defiler",
+      "label": "Units 2+",
+      "minCopies": 2,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-forgefiend:mfm:points:0:0",
+      "unit": "unit-forgefiend",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-forgefiend:mfm:points:1:0",
+      "unit": "unit-forgefiend",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-havocs:mfm:points:0:0",
+      "unit": "unit-havocs",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-havocs:mfm:points:1:0",
+      "unit": "unit-havocs",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-khorne-lord-of-skulls:mfm:points:0:0",
+      "unit": "unit-khorne-lord-of-skulls",
+      "label": "Unit 1",
+      "minCopies": 1,
+      "maxCopies": 1
+    },
+    {
+      "id": "datasheet-khorne-lord-of-skulls:mfm:points:1:0",
+      "unit": "unit-khorne-lord-of-skulls",
+      "label": "Units 2+",
+      "minCopies": 2,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-mutilators:mfm:points:0:0",
+      "unit": "unit-mutilators",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-mutilators:mfm:points:1:0",
+      "unit": "unit-mutilators",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-obliterators:mfm:points:0:0",
+      "unit": "unit-obliterators",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-obliterators:mfm:points:1:0",
+      "unit": "unit-obliterators",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-possessed:mfm:points:0:0",
+      "unit": "unit-possessed",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-possessed:mfm:points:0:1",
+      "unit": "unit-possessed",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-possessed:mfm:points:1:0",
+      "unit": "unit-possessed",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-possessed:mfm:points:1:1",
+      "unit": "unit-possessed",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-raptors:mfm:points:0:0",
+      "unit": "unit-raptors",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-raptors:mfm:points:0:1",
+      "unit": "unit-raptors",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-raptors:mfm:points:1:0",
+      "unit": "unit-raptors",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-raptors:mfm:points:1:1",
+      "unit": "unit-raptors",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-red-corsairs-raiders:mfm:points:0:0",
+      "unit": "unit-red-corsairs-raiders",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-red-corsairs-raiders:mfm:points:0:1",
+      "unit": "unit-red-corsairs-raiders",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-red-corsairs-raiders:mfm:points:1:0",
+      "unit": "unit-red-corsairs-raiders",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-red-corsairs-raiders:mfm:points:1:1",
+      "unit": "unit-red-corsairs-raiders",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-venomcrawler:mfm:points:0:0",
+      "unit": "unit-venomcrawler",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-venomcrawler:mfm:points:1:0",
+      "unit": "unit-venomcrawler",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-warp-talons:mfm:points:0:0",
+      "unit": "unit-warp-talons",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-warp-talons:mfm:points:0:1",
+      "unit": "unit-warp-talons",
+      "label": "Units 1–2",
+      "minCopies": 1,
+      "maxCopies": 2
+    },
+    {
+      "id": "datasheet-warp-talons:mfm:points:1:0",
+      "unit": "unit-warp-talons",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    },
+    {
+      "id": "datasheet-warp-talons:mfm:points:1:1",
+      "unit": "unit-warp-talons",
+      "label": "Units 3+",
+      "minCopies": 3,
+      "maxCopies": null
+    }
+  ]
+}

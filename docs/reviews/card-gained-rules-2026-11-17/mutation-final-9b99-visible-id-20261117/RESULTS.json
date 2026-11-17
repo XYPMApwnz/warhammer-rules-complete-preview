@@ -1,0 +1,121 @@
+{
+  "status": "FAIL",
+  "mode": "FEATURE",
+  "root": "E:\\Warhammer\\worktrees\\card-gained-rules-v1",
+  "currentMfmVersion": "v1.6",
+  "durationMs": 3044,
+  "results": [
+    {
+      "book": "death-guard",
+      "input": "owner-dg-v37.25-derived-attachments",
+      "width": 390,
+      "instanceId": "parsed-unit-1",
+      "canonicalUnitId": "unit-biologus-putrifier",
+      "requirement": "a-self-caption-absent",
+      "status": "PASS",
+      "proof": []
+    },
+    {
+      "book": "death-guard",
+      "input": "owner-dg-v37.25-derived-attachments",
+      "width": 390,
+      "instanceId": "parsed-unit-1",
+      "canonicalUnitId": "unit-biologus-putrifier",
+      "requirement": "b-one-source-caption",
+      "status": "PASS",
+      "proof": []
+    },
+    {
+      "book": "death-guard",
+      "input": "owner-dg-v37.25-derived-attachments",
+      "width": 390,
+      "instanceId": "parsed-unit-1",
+      "canonicalUnitId": "unit-biologus-putrifier",
+      "requirement": "c-gained-final-ordered-groups",
+      "status": "PASS",
+      "proof": {
+        "sections": [
+          "profile",
+          "abilities",
+          "composition",
+          "leader",
+          "keywords",
+          "gained-rules"
+        ],
+        "groups": [
+          {
+            "kind": "ATTACHED_UNIT",
+            "tag": "DIV",
+            "open": null
+          }
+        ],
+        "navigation": {
+          "mode": "visible-mobile-clicked",
+          "target": "ds-gained-_5B_22unit-biologus-putrifier_22_2C_22parsed-unit-1_22_5D"
+        }
+      }
+    },
+    {
+      "book": "death-guard",
+      "input": "owner-dg-v37.25-derived-attachments",
+      "width": 390,
+      "instanceId": "parsed-unit-1",
+      "canonicalUnitId": "unit-biologus-putrifier",
+      "requirement": "d-one-instance-price",
+      "status": "PASS",
+      "proof": "1 model · 60 pts"
+    },
+    {
+      "book": "death-guard",
+      "input": "owner-dg-v37.25-derived-attachments",
+      "width": 390,
+      "instanceId": "parsed-unit-1",
+      "canonicalUnitId": "unit-biologus-putrifier",
+      "requirement": "e-visible-technical-text",
+      "status": "FAIL",
+      "message": "Visible text contains no technical labels or internal IDs\n+ actual - expected\n\n+ [\n+   {\n+     text: 'From datasheet-synthetic-internal-id-00001',\n+     token: 'datasheet-synthetic-internal-id-00001'\n+   }\n+ ]\n- []\n",
+      "stack": "AssertionError [ERR_ASSERTION]: Visible text contains no technical labels or internal IDs\n+ actual - expected\n\n+ [\n+   {\n+     text: 'From datasheet-synthetic-internal-id-00001',\n+     token: 'datasheet-synthetic-internal-id-00001'\n+   }\n+ ]\n- []\n\n    at file:///E:/Warhammer/worktrees/card-gained-rules-v1/v2/card-gained-rules-browser-qa.mjs:258:62\n    at check (file:///E:/Warhammer/worktrees/card-gained-rules-v1/v2/card-gained-rules-browser-qa.mjs:95:66)\n    at file:///E:/Warhammer/worktrees/card-gained-rules-v1/v2/card-gained-rules-browser-qa.mjs:258:12"
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "screenshots": [
+    {
+      "book": "death-guard",
+      "input": "owner-dg-v37.25-derived-attachments",
+      "width": 390,
+      "instanceId": "full-book",
+      "canonicalUnitId": "unit-plague-marines",
+      "file": "full-book-death-guard-plague-marines-390.png",
+      "title": "Full Army Book · Plague Marines"
+    }
+  ],
+  "tooltipScreenshots": [],
+  "screenshotFraming": {
+    "style": ".v2-primary-header, [data-v2-primary-nav], #appHeader, body > footer, [data-v2-shell] > footer, .v2-skip { visibility: hidden !important; } .local-nav { position: static !important; }",
+    "note": "External fixed application chrome and its skip link are hidden during capture; the in-card local navigation is made static. No in-card content is hidden or changed. The same camera style is used before and after."
+  },
+  "fixtureSources": [
+    {
+      "id": "owner-dg-v37.25-derived-attachments",
+      "book": "death-guard",
+      "source": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+      "textSha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+      "derivedCopyTier": null,
+      "derivedAttachments": [
+        "Lord of Contagion to Deathshroud Terminators",
+        "Biologus Putrifier to ten Plague Marines (required existing leading condition)"
+      ]
+    },
+    {
+      "id": "derived-dg-three-identical-copy-tiers",
+      "book": "death-guard",
+      "source": "DERIVED New Recruit grammar; historical v1.6 Blightlord Terminators unit line",
+      "textSha256": "1d1f1f42e6261d5630a1f52cdd8f2d5fa848259fcb92a1c35d5cf3f09021ed4f",
+      "derivedCopyTier": {
+        "unitId": "unit-blightlord-terminators"
+      },
+      "derivedAttachments": null
+    }
+  ]
+}

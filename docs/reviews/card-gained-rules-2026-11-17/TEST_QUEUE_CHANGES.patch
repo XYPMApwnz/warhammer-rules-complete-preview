@@ -1,0 +1,40 @@
+diff --git a/docs/codex/QA_MATRIX.md b/docs/codex/QA_MATRIX.md
+index be1b2983..395bd4c4 100644
+--- a/docs/codex/QA_MATRIX.md
++++ b/docs/codex/QA_MATRIX.md
+@@ -28,6 +28,11 @@ ownership, shared rule prose and visible technical-label leaks. Its browser guar
+ covers all nine full libraries, the 20 common glossary searches and representative
+ imported model scopes at 390/1440 (about one minute). It runs in pre-FF against
+ the packaged runtime; its pure display controls also run in quick.
++`npm run test:card-gained-rules` checks physical roster-card prices, separate
++weapon-effect proofs, accessible source chips, ordered gained-rule groups and
++visible technical-label leaks across all nine books at 390/1440. It also checks
++three-copy MFM tiers in CSM and DG and preserves the Full Army Book price grid.
++The same browser check runs sequentially in pre-FF.
+ 
+ Python-based tests resolve their interpreter through `tests/helpers/qa-python.cjs`:
+ an explicit CLI override, then `QA_PYTHON` (or a preserved caller-specific legacy
+diff --git a/package.json b/package.json
+index 2d86585c..128320a1 100644
+--- a/package.json
++++ b/package.json
+@@ -27,6 +27,7 @@
+     "test:pwa-bootstrap": "node tests/browser/pwa-bootstrap-update.mjs",
+     "test:startup-precache": "node tests/startup-precache-qa.mjs",
+     "test:sweep-polish": "node v2/sweep-polish-qa.mjs && node v2/sweep-polish-browser-qa.mjs",
++    "test:card-gained-rules": "node v2/card-gained-rules-browser-qa.mjs",
+     "test:cold-offline": "node tests/browser/cold-offline.mjs",
+     "test:browser": "node tests/helpers/run-qa-suite.mjs v2/shell-browser-qa.mjs v2/core-reader-browser-qa.mjs npm:test:pwa npm:test:pwa-update npm:test:cold-offline v2/detachment-recipient-browser-qa.mjs v2/detachment-synthetic-table-browser-qa.mjs v2/card-recipient-browser-qa.mjs v2/attached-rule-text-browser-qa.mjs v2/card-display-browser-qa.mjs v2/card-display-2-browser-qa.mjs v2/source-equipment-browser-qa.mjs v2/new-recruit-export-browser-qa.mjs v2/new-recruit-plain-header-browser-qa.mjs v2/new-recruit-model-names-browser-qa.mjs v2/reviewed-text-coverage-browser-qa.mjs && node v2/related-panel-browser-qa.mjs && node v2/detachment-card-text-browser-qa.mjs && node v2/wardens-source-binding-browser-qa.mjs && node v2/cards-cosmetics-browser-qa.mjs && node v2/epic-hero-enhancements-browser-qa.mjs && node v2/fabius-safe-import-browser-qa.mjs && node v2/card-texts-browser-qa.mjs && node v2/card-polish-2-browser-qa.mjs",
+     "test:release": "npm run test:full",
+diff --git a/tools/qa-queue.mjs b/tools/qa-queue.mjs
+index 65d019ea..2909fa15 100644
+--- a/tools/qa-queue.mjs
++++ b/tools/qa-queue.mjs
+@@ -86,6 +86,7 @@ if(mode==='pre-ff'){
+  node('tools/pages-runtime-package.mjs',['--source',root,'--out',path.join(work,'runtime')]);
+  expand(pkg.scripts['test:browser']);
+  node('v2/sweep-polish-browser-qa.mjs');
++ node('v2/card-gained-rules-browser-qa.mjs');
+  // Each fixture is admitted once by the existing recipient browser runner.
+  node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json']);
+  node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json']);

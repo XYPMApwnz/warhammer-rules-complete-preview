@@ -1,0 +1,22 @@
+ books/chaos-space-marines/v2/app-build.mjs         |   1 +
+ .../v2/generated/app-presentation.json             | 112 +++++++
+ books/shared/army-book-app-v2/datasheet-v1.css     |  39 +++
+ books/shared/army-book-app-v2/datasheet-v1.mjs     | 365 ++++++++++++++++++++-
+ docs/codex/QA_MATRIX.md                            |   5 +
+ package.json                                       |   1 +
+ tests/helpers/gained-attribution-assertions.mjs    |  31 ++
+ tools/qa-queue.mjs                                 |   1 +
+ v2/attached-rule-text-browser-qa.mjs               |  12 +-
+ v2/card-display-2-browser-qa.mjs                   |  79 ++++-
+ v2/card-display-browser-qa.mjs                     |   9 +
+ v2/card-gained-rules-browser-qa.mjs                | 343 +++++++++++++++++++
+ v2/card-polish-2-browser-qa.mjs                    |  24 +-
+ v2/card-recipient-browser-qa.mjs                   |  96 ++++--
+ v2/card-texts-browser-qa.mjs                       |  16 +-
+ v2/cards-cosmetics-browser-qa.mjs                  |  42 ++-
+ v2/detachment-card-text-browser-qa.mjs             |  12 +-
+ v2/detachment-recipient-browser-qa.mjs             |  33 +-
+ v2/dg-am-recipient-enrollment-browser-qa.mjs       |  10 +-
+ v2/reviewed-text-coverage-browser-qa.mjs           |   6 +-
+ v2/wardens-source-binding-browser-qa.mjs           |   9 +-
+ 21 files changed, 1195 insertions(+), 51 deletions(-)
