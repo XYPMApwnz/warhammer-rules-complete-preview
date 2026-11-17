@@ -8236,13 +8236,33 @@
     {
       "path": "books/shared/army-book-app-v2/roster-labels.mjs",
       "reasons": [
-        { "kind": "native-v2-reviewed-runtime" },
-        { "kind": "module-import", "from": "books/shared/army-book-app-v2/runtime.mjs" },
-        { "kind": "module-import", "from": "books/shared/army-book-app-v2/navigation-v1.mjs" },
-        { "kind": "module-import", "from": "books/shared/army-book-app-v2/personal.mjs" },
-        { "kind": "module-import", "from": "books/shared/army-book-app-v2/datasheet-v1.mjs" },
-        { "kind": "module-import", "from": "books/shared/army-book-app-v2/roster.mjs" },
-        { "kind": "module-import", "from": "books/shared/army-book-app-v2/cosmetics.mjs" }
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/runtime.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/navigation-v1.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/personal.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/datasheet-v1.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/roster.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/cosmetics.mjs"
+        }
       ]
     },
     {
