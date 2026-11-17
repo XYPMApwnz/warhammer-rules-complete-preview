@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "runSha": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+  "finalFeatureSha": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+  "command": [
+    "git",
+    "diff",
+    "--stat",
+    "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+    "c477d20aaa16f850b56f18aa878d6b5fb8b4057f"
+  ],
+  "stdout": "",
+  "changedFiles": [],
+  "allowedFile": "v2/detachment-recipient-browser-qa.mjs",
+  "comment": "Empty diff: final feature SHA equals the fully tested SHA. No artificial F1 edit."
+}

@@ -1,0 +1,30 @@
+diff --git a/v2/card-gained-rules-browser-qa.mjs b/v2/card-gained-rules-browser-qa.mjs
+index 301f5513..0e00fe4d 100644
+--- a/v2/card-gained-rules-browser-qa.mjs
++++ b/v2/card-gained-rules-browser-qa.mjs
+@@ -15,6 +15,7 @@ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ import {readCurrentMfmRelease} from '../mfm/content/current-mfm-release.mjs';
+ import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
++import {dialogTextWithRuleCaption,openInlineRuleReference} from '../tests/helpers/player-dialog-assertions.mjs';
+ const own=fileURLToPath(new URL('../',import.meta.url));
+ const started=performance.now();
+ const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
+@@ -199,7 +200,7 @@ async function captureState(page,row,width,phase){
+ async function openCanonicalReference(page,link,target,body=null){
+  assert.equal(await link.count(),1,'One exact original canonical navigation anchor');await link.click();
+  const dialog=page.locator('dialog.v2-detail-dialog[open]');await dialog.waitFor();assert.equal(await dialog.getAttribute('data-canonical-id'),target,'Actual popup navigates to the exact canonical definition');
+- const text=await dialog.innerText();assert(text.trim(),'Canonical definition popup is not empty');if(body)assert(norm(text).includes(norm(body)),'Native popup retains the complete canonical ability body');
++ const text=await dialogTextWithRuleCaption(dialog);assert(text.trim(),'Canonical definition popup is not empty');if(body)assert(norm(text).includes(norm(body)),'Native popup retains the complete canonical ability body');
+  await dialog.getByRole('button',{name:'Close rule reference',exact:true}).click();await dialog.waitFor({state:'hidden'});return {target,textSha256:hash(text)};
+ }
+ let browser,complete=false;
+@@ -266,7 +267,7 @@ try{
+       return references;
+      });
+      if(row.nativeLinks)await check('native-librarian-source-navigation',meta,async()=>{
+-      const opened=[];for(const target of row.nativeLinks){const link=card.locator(`.ds-section-sources a[data-represented-ability-id="${target}"]`);assert.equal(await link.getAttribute('data-target-id'),target,'Native aggregate retains the exact represented ability target');const body=await page.evaluate(target=>{const card=window.ArmyBookAppV2.payload.cards.find(card=>card.id===target),text=card.fields.find(field=>field.source?.path==='/text').value;return text.startsWith(card.title+':')?text.slice(card.title.length+1).trimStart():text;},target);opened.push(await openCanonicalReference(page,link,target,body));}return opened;
++      const opened=[];for(const target of row.nativeLinks){const metadata=card.locator(`.ds-section-sources a[data-represented-ability-id="${target}"]`);assert.equal(await metadata.getAttribute('data-target-id'),target,'Native aggregate retains the exact represented ability target');const body=await page.evaluate(target=>{const card=window.ArmyBookAppV2.payload.cards.find(card=>card.id===target),text=card.fields.find(field=>field.source?.path==='/text').value;return text.startsWith(card.title+':')?text.slice(card.title.length+1).trimStart():text;},target);const link=await openInlineRuleReference(page,metadata,target);opened.push(await openCanonicalReference(page,link,target,body));await page.evaluate(id=>ArmyBookAppV2.openInstance(id),id);}return opened;
+      });
+      if(row.formation&&id===setup.attachment.leader)await check('lord-of-host-core-navigation',meta,async()=>{
+       const modern=await card.evaluate(node=>node.classList.contains('ds-roster-card'));

@@ -1,0 +1,18 @@
+diff --git a/v2/presentation-metadata-browser-qa.mjs b/v2/presentation-metadata-browser-qa.mjs
+index 12333bfa..b47feb2a 100644
+--- a/v2/presentation-metadata-browser-qa.mjs
++++ b/v2/presentation-metadata-browser-qa.mjs
+@@ -1,3 +1,4 @@
++import {assertDialogActionLabel} from '../tests/helpers/player-dialog-assertions.mjs';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
+ /** Player surfaces must not expose dataset metadata; facts/provenance stay intact. */
+@@ -110,7 +111,7 @@ try {
+     await top(page,'GLOSSARY');await clean(page,'Mega Glossary');
+     await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill('Deep Strike');
+     await page.locator('.v2-glossary-result[data-target-id="core::core-deep-strike"]').click();await page.locator('dialog[open]').waitFor();await clean(page,'Glossary popup');
+-    await page.locator('dialog[open]').getByRole('link',{name:'Open full entry',exact:true}).click();await clean(page,'Glossary article');
++    await assertDialogActionLabel(page);await page.locator('dialog[open]').getByRole('link',{name:'Open in Glossary',exact:true}).click();await clean(page,'Glossary article');
+     await context.close();
+     poison=true;
+     const synthetic=await browser.newContext({viewport:{width,height:width===390?844:900},serviceWorkers:'block'}),probe=await synthetic.newPage();

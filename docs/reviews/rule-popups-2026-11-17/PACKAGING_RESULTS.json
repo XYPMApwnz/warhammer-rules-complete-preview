@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "checks": 14,
+  "results": [
+    {
+      "name": "published-output-verbatim-and-fresh",
+      "status": "PASS"
+    },
+    {
+      "name": "independent-deterministic-build",
+      "status": "PASS"
+    },
+    {
+      "name": "allowlist-checkout-CRLF-LF-identical-package",
+      "status": "PASS"
+    },
+    {
+      "name": "refuse-source-overwrite",
+      "status": "PASS"
+    },
+    {
+      "name": "refuse-nonempty-output",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-duplicate-allowlist-entry",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-path-traversal",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-development-qa-publication",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-unreviewed-raw-capture-publication",
+      "status": "PASS"
+    },
+    {
+      "name": "preserve-existing-public-source-download",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-missing-browser-module-before-copy",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-runtime-content-corruption",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-unlisted-published-file",
+      "status": "PASS"
+    },
+    {
+      "name": "restored-negative-fixture-still-fresh",
+      "status": "PASS"
+    }
+  ],
+  "contentSha256": "6d6a1d9f7320d2831299671102bc6f39f8ac5706ec0af20a903649bf7c9e4254",
+  "publishedBytes": 282906095,
+  "cacheRevision": "1c58bc9daaf0c2f5",
+  "scope": "Runtime-only output boundary; browser QA is separate"
+}

@@ -1,0 +1,232 @@
+{
+  "schema": "rule-popup-render-timing/v1",
+  "started": "2026-11-17T15:35:41.627Z",
+  "policy": {
+    "freshContext": true,
+    "width": 390,
+    "height": 844,
+    "serviceWorkers": "block",
+    "network": "unthrottled local static HTTP",
+    "cpu": "unthrottled",
+    "repetitions": 3,
+    "order": "base/head; head/base; base/head",
+    "parallelHeavyRuns": false,
+    "materialRegression": "median increase over both 300 ms and 20%; fixed before measurement"
+  },
+  "sha": {
+    "base": "9b99ade9975346afc3644ade7f69d01ed71cce31",
+    "head": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f"
+  },
+  "rows": [
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "base",
+      "homeMs": 232.2713,
+      "elapsedMs": 919.5931,
+      "proseLinks": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "head",
+      "homeMs": 208.69349999999986,
+      "elapsedMs": 916.1079,
+      "proseLinks": 464
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "head",
+      "homeMs": 224.89770000000044,
+      "elapsedMs": 873.8557000000005,
+      "proseLinks": 464
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "base",
+      "homeMs": 303.8658000000005,
+      "elapsedMs": 874.6890000000003,
+      "proseLinks": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "base",
+      "homeMs": 332.7554,
+      "elapsedMs": 864.0224999999991,
+      "proseLinks": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "head",
+      "homeMs": 247.5011000000004,
+      "elapsedMs": 947.0383000000002,
+      "proseLinks": 464
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "base",
+      "homeMs": 284.89520000000084,
+      "elapsedMs": 2567.9071999999996,
+      "proseLinks": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "head",
+      "homeMs": 306.9527999999991,
+      "elapsedMs": 2708.6916999999994,
+      "proseLinks": 689
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "head",
+      "homeMs": 257.63510000000133,
+      "elapsedMs": 3123.8617000000013,
+      "proseLinks": 689
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "base",
+      "homeMs": 300.70860000000175,
+      "elapsedMs": 2635.754799999999,
+      "proseLinks": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "base",
+      "homeMs": 287.13890000000174,
+      "elapsedMs": 2533.7518999999993,
+      "proseLinks": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "head",
+      "homeMs": 249.0668000000005,
+      "elapsedMs": 2582.9636000000028,
+      "proseLinks": 689
+    },
+    {
+      "lane": "glossary",
+      "repeat": 1,
+      "version": "base",
+      "homeMs": 325.09679999999935,
+      "elapsedMs": 603.8027000000002,
+      "proseLinks": 0
+    },
+    {
+      "lane": "glossary",
+      "repeat": 1,
+      "version": "head",
+      "homeMs": 273.877800000002,
+      "elapsedMs": 637.7544000000016,
+      "proseLinks": 0
+    },
+    {
+      "lane": "glossary",
+      "repeat": 2,
+      "version": "head",
+      "homeMs": 262.65430000000197,
+      "elapsedMs": 679.3361000000004,
+      "proseLinks": 0
+    },
+    {
+      "lane": "glossary",
+      "repeat": 2,
+      "version": "base",
+      "homeMs": 269.6190999999999,
+      "elapsedMs": 603.0915999999997,
+      "proseLinks": 0
+    },
+    {
+      "lane": "glossary",
+      "repeat": 3,
+      "version": "base",
+      "homeMs": 366.0144,
+      "elapsedMs": 597.7877000000008,
+      "proseLinks": 0
+    },
+    {
+      "lane": "glossary",
+      "repeat": 3,
+      "version": "head",
+      "homeMs": 231.2461000000003,
+      "elapsedMs": 631.093499999999,
+      "proseLinks": 0
+    }
+  ],
+  "comparisons": [
+    {
+      "lane": "death-guard",
+      "baseMs": 874.6890000000003,
+      "headMs": 916.1079,
+      "deltaMs": 41.41889999999967,
+      "ratio": 1.0473527162225655,
+      "baseSamples": [
+        919.5931,
+        874.6890000000003,
+        864.0224999999991
+      ],
+      "headSamples": [
+        916.1079,
+        873.8557000000005,
+        947.0383000000002
+      ],
+      "materialRegression": false
+    },
+    {
+      "lane": "space-marines",
+      "baseMs": 2567.9071999999996,
+      "headMs": 2708.6916999999994,
+      "deltaMs": 140.78449999999975,
+      "ratio": 1.0548246058113002,
+      "baseSamples": [
+        2567.9071999999996,
+        2635.754799999999,
+        2533.7518999999993
+      ],
+      "headSamples": [
+        2708.6916999999994,
+        3123.8617000000013,
+        2582.9636000000028
+      ],
+      "materialRegression": false
+    },
+    {
+      "lane": "glossary",
+      "baseMs": 603.0915999999997,
+      "headMs": 637.7544000000016,
+      "deltaMs": 34.66280000000188,
+      "ratio": 1.0574751828743791,
+      "baseSamples": [
+        603.8027000000002,
+        603.0915999999997,
+        597.7877000000008
+      ],
+      "headSamples": [
+        637.7544000000016,
+        679.3361000000004,
+        631.093499999999
+      ],
+      "materialRegression": false
+    }
+  ],
+  "home": {
+    "baseMs": 300.70860000000175,
+    "headMs": 249.0668000000005,
+    "deltaMs": -51.64180000000124,
+    "ratio": 0.8282663016621375,
+    "materialRegression": false
+  },
+  "errors": [],
+  "status": "PASS",
+  "finished": "2026-11-17T15:36:14.585Z"
+}

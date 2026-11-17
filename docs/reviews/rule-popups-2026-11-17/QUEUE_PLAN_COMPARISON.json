@@ -1,0 +1,2251 @@
+{
+  "status": "PASS",
+  "baseJobs": 173,
+  "featureJobs": 177,
+  "unchangedJobsAndRelativeOrder": true,
+  "added": [
+    "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+    "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+    "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+    "v2/rule-popups-browser-qa.mjs"
+  ],
+  "assertions": "No existing queue leaf removed or reordered. Six UI-only test diffs are attached separately; all numeric/identity/scope/recipient/canonical-value checks retained.",
+  "before": [
+    {
+      "id": "git diff --check",
+      "args": [
+        "diff",
+        "--check"
+      ]
+    },
+    {
+      "id": "tests/qa-temp-qa.mjs",
+      "args": [
+        "tests/qa-temp-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-passport-qa.mjs",
+      "args": [
+        "tests/book-passport-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/keyword-access-qa.mjs",
+      "args": [
+        "tests/keyword-access-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "args": [
+        "v2/executable-detachment-source-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/sweep-polish-qa.mjs",
+      "args": [
+        "v2/sweep-polish-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-updates-qa.mjs",
+      "args": [
+        "tests/official-updates-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-update-books-qa.mjs",
+      "args": [
+        "tests/official-update-books-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-update-report-qa.mjs",
+      "args": [
+        "tests/official-update-report-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-update-integration-qa.mjs",
+      "args": [
+        "tests/official-update-integration-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-effect-review-qa.mjs",
+      "args": [
+        "tests/official-effect-review-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/current-gw-contract-qa.mjs",
+      "args": [
+        "tests/current-gw-contract-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-candidate-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-isolation-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=adeptus-mechanicus",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/roster-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=blood-angels"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=blood-angels"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=blood-angels"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=blood-angels",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=blood-angels"
+      ]
+    },
+    {
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=chaos-space-marines"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=chaos-space-marines"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=chaos-space-marines"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=chaos-space-marines",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=dark-angels"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=dark-angels"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=dark-angels"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=dark-angels",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=dark-angels"
+      ]
+    },
+    {
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "args": [
+        "books/death-guard/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "args": [
+        "books/death-guard/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=death-guard"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=death-guard"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=death-guard",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=death-guard"
+      ]
+    },
+    {
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=emperors-children",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/space-marines/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-static-model-bindings-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=space-marines"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=space-marines"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=space-marines"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=space-marines",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=space-marines"
+      ]
+    },
+    {
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/physical-choice-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tau-empire"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tau-empire"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tau-empire"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tau-empire",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tau-empire"
+      ]
+    },
+    {
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "args": [
+        "books/tyranids/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tyranids/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tyranids",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "args": [
+        "books/shared/rule-contract-v2/recipients-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/physical-selection-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/condition-execution-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/numeric-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/keyword-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/ability-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/weapon-contribution-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/advance-roll-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/source-effect-regression-qa.mjs",
+      "args": [
+        "v2/source-effect-regression-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "args": [
+        "v2/detachment-source-binding-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/reimport-attachments-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/service-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-service-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-selections-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-service-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-conditions-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "args": [
+        "tests/roster-execution-atomic-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-recipient-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-recipient-qa.mjs",
+      "args": [
+        "v2/card-recipient-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/attached-rule-text-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-display-2-qa.mjs",
+      "args": [
+        "v2/card-display-2-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/singleton-model-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/plain-header-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/initial-attachment-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/faction-safe-import-qa.mjs",
+      "args": [
+        "v2/faction-safe-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/card-text-formatting-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/library-currentness-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/text-roster-facts-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/source-completeness-check.mjs",
+      "args": [
+        "v2/source-completeness-check.mjs"
+      ]
+    },
+    {
+      "id": "tests/integration-qa.mjs",
+      "args": [
+        "tests/integration-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/cosmetics-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/codex-workflow-qa.mjs",
+      "args": [
+        "tests/codex-workflow-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-book-clone-qa.mjs",
+      "args": [
+        "tests/source-book-clone-qa.mjs",
+        "--root=<ROOT>"
+      ]
+    },
+    {
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "args": [
+        "books/shared/source-refs-v2/source-catalog-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "args": [
+        "v2/unit-recipient-scope-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-declarations-qa.mjs",
+      "args": [
+        "tests/book-update-declarations-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-report-qa.mjs",
+      "args": [
+        "tests/book-update-report-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "args": [
+        "tests/book-update-snapshots-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-metadata-qa.mjs",
+      "args": [
+        "tests/book-update-metadata-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-command-qa.mjs",
+      "args": [
+        "tests/book-update-command-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/mfm-release-history-qa.mjs",
+      "args": [
+        "tests/mfm-release-history-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/mfm-update-qa.mjs",
+      "args": [
+        "tests/mfm-update-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "args": [
+        "tests/source-catalog-registry-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "args": [
+        "tests/source-catalog-additions-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "args": [
+        "books/core-rules/tests/factual-ownership-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-waha-certification-qa.mjs"
+      ]
+    },
+    {
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "args": [
+        "glossary/v2/tests/core-projection-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "args": [
+        "books/core-rules/tests/term-bindings-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "args": [
+        "books/core-rules/tests/reader-see-also-regression-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-faq-anchor-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/generated-rebuild-qa.mjs",
+      "args": [
+        "tests/generated-rebuild-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "args": [
+        "tests/csm-model-alias-bootstrap-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "args": [
+        "tests/source-review-execution-book-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "args": [
+        "books/shared/tools/check-generated-rebuild.mjs"
+      ]
+    },
+    {
+      "id": "tools/pages-runtime-package.mjs",
+      "args": [
+        "tools/pages-runtime-package.mjs",
+        "--source",
+        "<ROOT>",
+        "--out",
+        "E:\\Warhammer\\qa-tmp\\rule-popups\\qa-plan-work\\runtime"
+      ]
+    },
+    {
+      "id": "v2/shell-browser-qa.mjs",
+      "args": [
+        "v2/shell-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/core-reader-browser-qa.mjs",
+      "args": [
+        "v2/core-reader-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "args": [
+        "tests/minimal-pwa-cache-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/pwa-transition-qa.mjs",
+      "args": [
+        "v2/pwa-transition-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "args": [
+        "tests/browser/pwa-update-flow.mjs"
+      ]
+    },
+    {
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "args": [
+        "tests/browser/pwa-bootstrap-update.mjs"
+      ]
+    },
+    {
+      "id": "tests/startup-precache-qa.mjs",
+      "args": [
+        "tests/startup-precache-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/browser/cold-offline.mjs",
+      "args": [
+        "tests/browser/cold-offline.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "args": [
+        "v2/detachment-synthetic-table-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "args": [
+        "v2/card-recipient-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-display-browser-qa.mjs",
+      "args": [
+        "v2/card-display-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "args": [
+        "v2/card-display-2-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "args": [
+        "v2/source-equipment-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/related-panel-browser-qa.mjs",
+      "args": [
+        "v2/related-panel-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "args": [
+        "v2/cards-cosmetics-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "args": [
+        "v2/fabius-safe-import-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-texts-browser-qa.mjs",
+      "args": [
+        "v2/card-texts-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "args": [
+        "v2/card-polish-2-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "args": [
+        "v2/sweep-polish-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "args": [
+        "v2/card-gained-rules-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json"
+      ]
+    },
+    {
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-switch-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "args": [
+        "tools/pages-runtime-package-qa.mjs",
+        "--source",
+        "<ROOT>",
+        "--published",
+        "E:\\Warhammer\\qa-tmp\\rule-popups\\qa-plan-work\\runtime",
+        "--work",
+        "E:\\Warhammer\\qa-tmp\\rule-popups\\qa-plan-work\\packaging"
+      ]
+    },
+    {
+      "id": "tests/source-enrollment-qa.mjs",
+      "args": [
+        "tests/source-enrollment-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/tools/source-freshness.mjs",
+      "args": [
+        "books/shared/tools/source-freshness.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "args": [
+        "tests/source-ingestion-contract-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/keyword-attribution-qa.mjs"
+      ]
+    }
+  ],
+  "after": [
+    {
+      "id": "git diff --check",
+      "args": [
+        "diff",
+        "--check"
+      ]
+    },
+    {
+      "id": "tests/qa-temp-qa.mjs",
+      "args": [
+        "tests/qa-temp-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-passport-qa.mjs",
+      "args": [
+        "tests/book-passport-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/keyword-access-qa.mjs",
+      "args": [
+        "tests/keyword-access-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "args": [
+        "v2/executable-detachment-source-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/sweep-polish-qa.mjs",
+      "args": [
+        "v2/sweep-polish-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-links-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/equipment-reference-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-updates-qa.mjs",
+      "args": [
+        "tests/official-updates-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-update-books-qa.mjs",
+      "args": [
+        "tests/official-update-books-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-update-report-qa.mjs",
+      "args": [
+        "tests/official-update-report-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-update-integration-qa.mjs",
+      "args": [
+        "tests/official-update-integration-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/official-effect-review-qa.mjs",
+      "args": [
+        "tests/official-effect-review-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/current-gw-contract-qa.mjs",
+      "args": [
+        "tests/current-gw-contract-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-candidate-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-isolation-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=adeptus-mechanicus",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/roster-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=blood-angels"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=blood-angels"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=blood-angels"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=blood-angels",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=blood-angels"
+      ]
+    },
+    {
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=chaos-space-marines"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=chaos-space-marines"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=chaos-space-marines"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=chaos-space-marines",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=dark-angels"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=dark-angels"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=dark-angels"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=dark-angels",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=dark-angels"
+      ]
+    },
+    {
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "args": [
+        "books/death-guard/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "args": [
+        "books/death-guard/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=death-guard"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=death-guard"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=death-guard",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=death-guard"
+      ]
+    },
+    {
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=emperors-children",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=emperors-children"
+      ]
+    },
+    {
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/space-marines/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-static-model-bindings-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=space-marines"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=space-marines"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=space-marines"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=space-marines",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=space-marines"
+      ]
+    },
+    {
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/physical-choice-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tau-empire"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tau-empire"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tau-empire"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tau-empire",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tau-empire"
+      ]
+    },
+    {
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "args": [
+        "books/tyranids/v2/app-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tyranids/v2/roster-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tyranids",
+        "--phase=all"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tyranids"
+      ]
+    },
+    {
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "args": [
+        "books/shared/rule-contract-v2/recipients-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/physical-selection-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/condition-execution-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/numeric-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/keyword-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/ability-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/weapon-contribution-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/advance-roll-effects-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/source-effect-regression-qa.mjs",
+      "args": [
+        "v2/source-effect-regression-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "args": [
+        "v2/detachment-source-binding-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/reimport-attachments-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/service-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-service-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-selections-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-service-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-conditions-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "args": [
+        "tests/roster-execution-atomic-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-recipient-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-recipient-qa.mjs",
+      "args": [
+        "v2/card-recipient-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/attached-rule-text-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-display-2-qa.mjs",
+      "args": [
+        "v2/card-display-2-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/singleton-model-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/plain-header-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/initial-attachment-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/faction-safe-import-qa.mjs",
+      "args": [
+        "v2/faction-safe-import-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/card-text-formatting-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/library-currentness-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/text-roster-facts-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/source-completeness-check.mjs",
+      "args": [
+        "v2/source-completeness-check.mjs"
+      ]
+    },
+    {
+      "id": "tests/integration-qa.mjs",
+      "args": [
+        "tests/integration-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/cosmetics-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/codex-workflow-qa.mjs",
+      "args": [
+        "tests/codex-workflow-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-book-clone-qa.mjs",
+      "args": [
+        "tests/source-book-clone-qa.mjs",
+        "--root=<ROOT>"
+      ]
+    },
+    {
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "args": [
+        "books/shared/source-refs-v2/source-catalog-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "args": [
+        "v2/unit-recipient-scope-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-declarations-qa.mjs",
+      "args": [
+        "tests/book-update-declarations-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-report-qa.mjs",
+      "args": [
+        "tests/book-update-report-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "args": [
+        "tests/book-update-snapshots-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-metadata-qa.mjs",
+      "args": [
+        "tests/book-update-metadata-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/book-update-command-qa.mjs",
+      "args": [
+        "tests/book-update-command-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/mfm-release-history-qa.mjs",
+      "args": [
+        "tests/mfm-release-history-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/mfm-update-qa.mjs",
+      "args": [
+        "tests/mfm-update-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "args": [
+        "tests/source-catalog-registry-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "args": [
+        "tests/source-catalog-additions-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "args": [
+        "books/core-rules/tests/factual-ownership-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-waha-certification-qa.mjs"
+      ]
+    },
+    {
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "args": [
+        "glossary/v2/tests/core-projection-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "args": [
+        "books/core-rules/tests/term-bindings-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "args": [
+        "books/core-rules/tests/reader-see-also-regression-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-faq-anchor-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/generated-rebuild-qa.mjs",
+      "args": [
+        "tests/generated-rebuild-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "args": [
+        "tests/csm-model-alias-bootstrap-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "args": [
+        "tests/source-review-execution-book-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "args": [
+        "books/shared/tools/check-generated-rebuild.mjs"
+      ]
+    },
+    {
+      "id": "tools/pages-runtime-package.mjs",
+      "args": [
+        "tools/pages-runtime-package.mjs",
+        "--source",
+        "<ROOT>",
+        "--out",
+        "E:\\Warhammer\\qa-tmp\\rule-popups\\qa-plan-work\\runtime"
+      ]
+    },
+    {
+      "id": "v2/shell-browser-qa.mjs",
+      "args": [
+        "v2/shell-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/core-reader-browser-qa.mjs",
+      "args": [
+        "v2/core-reader-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "args": [
+        "tests/minimal-pwa-cache-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/pwa-transition-qa.mjs",
+      "args": [
+        "v2/pwa-transition-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "args": [
+        "tests/browser/pwa-update-flow.mjs"
+      ]
+    },
+    {
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "args": [
+        "tests/browser/pwa-bootstrap-update.mjs"
+      ]
+    },
+    {
+      "id": "tests/startup-precache-qa.mjs",
+      "args": [
+        "tests/startup-precache-qa.mjs"
+      ]
+    },
+    {
+      "id": "tests/browser/cold-offline.mjs",
+      "args": [
+        "tests/browser/cold-offline.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "args": [
+        "v2/detachment-synthetic-table-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "args": [
+        "v2/card-recipient-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-display-browser-qa.mjs",
+      "args": [
+        "v2/card-display-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "args": [
+        "v2/card-display-2-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "args": [
+        "v2/source-equipment-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/related-panel-browser-qa.mjs",
+      "args": [
+        "v2/related-panel-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "args": [
+        "v2/cards-cosmetics-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "args": [
+        "v2/fabius-safe-import-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-texts-browser-qa.mjs",
+      "args": [
+        "v2/card-texts-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "args": [
+        "v2/card-polish-2-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "args": [
+        "v2/sweep-polish-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "args": [
+        "v2/card-gained-rules-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/rule-popups-browser-qa.mjs",
+      "args": [
+        "v2/rule-popups-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json"
+      ]
+    },
+    {
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json"
+      ]
+    },
+    {
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-switch-browser-qa.mjs"
+      ]
+    },
+    {
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "args": [
+        "tools/pages-runtime-package-qa.mjs",
+        "--source",
+        "<ROOT>",
+        "--published",
+        "E:\\Warhammer\\qa-tmp\\rule-popups\\qa-plan-work\\runtime",
+        "--work",
+        "E:\\Warhammer\\qa-tmp\\rule-popups\\qa-plan-work\\packaging"
+      ]
+    },
+    {
+      "id": "tests/source-enrollment-qa.mjs",
+      "args": [
+        "tests/source-enrollment-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/tools/source-freshness.mjs",
+      "args": [
+        "books/shared/tools/source-freshness.mjs"
+      ]
+    },
+    {
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "args": [
+        "tests/source-ingestion-contract-qa.mjs"
+      ]
+    },
+    {
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/keyword-attribution-qa.mjs"
+      ]
+    }
+  ]
+}

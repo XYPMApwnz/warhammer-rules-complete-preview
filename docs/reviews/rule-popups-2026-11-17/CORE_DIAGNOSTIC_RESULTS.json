@@ -1,0 +1,66 @@
+{
+  "scope": "Unmodified repository test; diagnostic Playwright preload adds tracing and close-time state only. No assertion, route, wait, timeout or code changed.",
+  "testSha256": "cd0b92cfdfd6dd3a421781910a1e77f34ed48bd83b791ceadfdede6c42f58a00",
+  "runs": [
+    {
+      "repeat": 1,
+      "lane": "base",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 201203,
+      "sha": "9b99ade9975346afc3644ade7f69d01ed71cce31",
+      "log": "E:\\Warhammer\\qa-evidence\\rule-popups-v1-2026-11-17\\core-reader-diagnostic-traced\\1-base\\test.log",
+      "instrumentation": "trace + close-time state"
+    },
+    {
+      "repeat": 1,
+      "lane": "head",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 188742,
+      "sha": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+      "log": "E:\\Warhammer\\qa-evidence\\rule-popups-v1-2026-11-17\\core-reader-diagnostic-traced\\1-head\\test.log",
+      "instrumentation": "trace + close-time state"
+    },
+    {
+      "repeat": 2,
+      "lane": "base",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 189167,
+      "sha": "9b99ade9975346afc3644ade7f69d01ed71cce31",
+      "log": "E:\\Warhammer\\qa-evidence\\rule-popups-v1-2026-11-17\\core-reader-diagnostic-traced\\2-base\\test.log",
+      "instrumentation": "trace + close-time state"
+    },
+    {
+      "repeat": 2,
+      "lane": "head",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 188502,
+      "sha": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+      "log": "E:\\Warhammer\\qa-evidence\\rule-popups-v1-2026-11-17\\core-reader-diagnostic-traced\\2-head\\test.log",
+      "instrumentation": "trace + close-time state"
+    },
+    {
+      "repeat": 3,
+      "lane": "base",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 99613,
+      "sha": "9b99ade9975346afc3644ade7f69d01ed71cce31",
+      "log": "E:\\Warhammer\\qa-evidence\\rule-popups-v1-2026-11-17\\core-reader-diagnostic-traced\\3-base\\test.log",
+      "instrumentation": "close-time state only"
+    },
+    {
+      "repeat": 3,
+      "lane": "head",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 99572,
+      "sha": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+      "log": "E:\\Warhammer\\qa-evidence\\rule-popups-v1-2026-11-17\\core-reader-diagnostic-traced\\3-head\\test.log",
+      "instrumentation": "close-time state only"
+    }
+  ]
+}

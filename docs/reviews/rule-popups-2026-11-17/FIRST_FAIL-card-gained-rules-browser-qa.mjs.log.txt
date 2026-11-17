@@ -1,0 +1,34 @@
+RUN gained rules death-guard
+RUN gained rules adeptus-mechanicus
+RUN gained rules chaos-space-marines
+RUN gained rules emperors-children
+RUN gained rules space-marines
+RUN gained rules blood-angels
+RUN gained rules dark-angels
+RUN gained rules tau-empire
+RUN gained rules tyranids
+RUN gained rules tyranids
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Self-sourced Source/Applies captions must be absent
++ actual - expected
+
++ [
++   'All melee weapons: + WS 3+ − 1, +1 S — Trygon Prime'
++ ]
+- []
+
+    at file:///E:/Warhammer/worktrees/rule-popups-v1/v2/card-gained-rules-browser-qa.mjs:225:64
+    at check (file:///E:/Warhammer/worktrees/rule-popups-v1/v2/card-gained-rules-browser-qa.mjs:96:66)
+    at file:///E:/Warhammer/worktrees/rule-popups-v1/v2/card-gained-rules-browser-qa.mjs:225:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [ 'All melee weapons: + WS 3+ − 1, +1 S — Trygon Prime' ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

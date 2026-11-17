@@ -1,0 +1,197 @@
+diff --git a/tests/helpers/player-dialog-assertions.mjs b/tests/helpers/player-dialog-assertions.mjs
+new file mode 100644
+index 00000000..e0bd4919
+--- /dev/null
++++ b/tests/helpers/player-dialog-assertions.mjs
+@@ -0,0 +1,51 @@
++import assert from 'node:assert/strict';
++
++/** Independent player-facing guard; retained identity datasets are not leaks. */
++export function inspectPlayerDialog(){
++  const dialog=document.querySelector('dialog[open]');if(!dialog)return {dialogs:0,leaks:[]};
++  const visible=node=>{for(let current=node;current;current=current.parentElement){const style=getComputedStyle(current);if(current.hidden||style.display==='none'||style.visibility==='hidden'||style.opacity==='0')return false;}return !!node.getClientRects().length;};
++  const leaks=[],walker=document.createTreeWalker(dialog,NodeFilter.SHOW_TEXT);
++  for(let node=walker.nextNode();node;node=walker.nextNode()){
++    if(!visible(node.parentElement)||node.parentElement.closest('script,style,code[hidden]'))continue;
++    const text=node.textContent.trim();
++    if(text==='Rule'||text.includes('wargear Ability')||/\b(?:unit|datasheet|detachment|ability|army-rule|core|refs|bindings)-[a-z0-9][a-z0-9_-]{7,}|(?:^|\s)\/(?:text|title|blocks|fields|semanticContent|qualifications|wargearAbility)(?:\b|\/)/.test(text))leaks.push({reason:'technical-text',text});
++  }
++  for(const node of dialog.querySelectorAll('a,button,[role="button"]'))if(visible(node)){
++    const name=node.getAttribute('aria-label')||node.textContent.trim()||node.querySelector('img[alt]')?.alt;
++    if(!name||node.textContent.trim()==='↗')leaks.push({reason:'unnamed-or-arrow-only-action',tag:node.tagName,text:node.textContent});
++  }
++  return {dialogs:1,leaks};
++}
++
++export async function assertPlayerDialog(page){
++  const result=await page.evaluate(inspectPlayerDialog);
++  assert.equal(result.leaks.length,0,'Player dialog contains technical text or unnamed controls: '+JSON.stringify(result.leaks));
++  return result;
++}
++
++export async function assertDialogActionLabel(page){
++  const dialog=page.locator('dialog[open]');
++  assert.equal(await dialog.getByRole('link',{name:'Open full entry',exact:true}).count(),0,'The removed generic action label is absent');
++  assert.equal(await dialog.getByRole('link',{name:'Open in Glossary',exact:true}).count(),1,'One explicitly named Glossary action');
++}
++
++/** The same title and body have separate elements in a focused rule dialog. */
++export async function dialogTextWithRuleCaption(dialog){
++  const text=await dialog.innerText(),focused=dialog.locator('.ds-rule-popup');
++  if(!await focused.count())return text;
++  const title=await focused.locator('.reference-title').innerText(),body=await focused.locator('.reference-definition').innerText();
++  return text+'\n'+title+': '+body;
++}
++
++/** Full inline source text replaces its redundant title button. Exact canonical
++ * navigation remains available in the abbreviated Glossary result. */
++export async function openInlineRuleReference(page,metadata,target){
++  assert.equal(await metadata.count(),1,'One exact retained canonical source identity');
++  assert.equal(await metadata.getAttribute('data-target-id'),target);
++  assert.equal(await metadata.isVisible(),false,'Redundant full-text title button is not visible');
++  const title=await page.evaluate(id=>ArmyBookAppV2.payload.cards.find(card=>card.id===id).title,target);
++  await page.evaluate(query=>ArmyBookAppV2.openGlossary(query),title);
++  const result=page.locator(`.v2-glossary-result[data-target-id="${target}"]`);
++  assert.equal(await result.count(),1,'Same exact canonical rule is available as an abbreviated Glossary entry');
++  return result;
++}
+diff --git a/v2/card-display-2-browser-qa.mjs b/v2/card-display-2-browser-qa.mjs
+index f33f921b..3208731d 100644
+--- a/v2/card-display-2-browser-qa.mjs
++++ b/v2/card-display-2-browser-qa.mjs
+@@ -290,7 +290,9 @@ try{
+         }
+         if(!baseline&&c.id==='sm-physical'){
+           await view(page,'parsed-unit-3','Guide');
+-          const link=page.locator('main .unit-card[data-roster-instance-id="parsed-unit-3"] a[data-represented-ability-id]').first();
++          const metadata=page.locator('main .unit-card[data-roster-instance-id="parsed-unit-3"] a[data-represented-ability-id]').first();
++          const target=await metadata.getAttribute('data-represented-ability-id');
++          const link=await openInlineRuleReference(page,metadata,target);
+           await link.click();await page.locator('dialog[open]').waitFor();
+           assert.match(await page.locator('dialog[open]').innerText(),/Veil of Time|Force Dome/,'Canonical psychic source link opens the real source presenter');
+           await page.keyboard.press('Escape');
+@@ -305,3 +307,4 @@ try{
+   fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:complete&&!process.exitCode?'PASS':'NEW_FAIL',baseline,results,errors,missing,census,screenshots},null,2));
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++import {openInlineRuleReference} from '../tests/helpers/player-dialog-assertions.mjs';
+diff --git a/v2/card-gained-rules-browser-qa.mjs b/v2/card-gained-rules-browser-qa.mjs
+index 301f5513..0e00fe4d 100644
+--- a/v2/card-gained-rules-browser-qa.mjs
++++ b/v2/card-gained-rules-browser-qa.mjs
+@@ -15,6 +15,7 @@ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ import {readCurrentMfmRelease} from '../mfm/content/current-mfm-release.mjs';
+ import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
++import {dialogTextWithRuleCaption,openInlineRuleReference} from '../tests/helpers/player-dialog-assertions.mjs';
+ const own=fileURLToPath(new URL('../',import.meta.url));
+ const started=performance.now();
+ const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
+@@ -199,7 +200,7 @@ async function captureState(page,row,width,phase){
+ async function openCanonicalReference(page,link,target,body=null){
+  assert.equal(await link.count(),1,'One exact original canonical navigation anchor');await link.click();
+  const dialog=page.locator('dialog.v2-detail-dialog[open]');await dialog.waitFor();assert.equal(await dialog.getAttribute('data-canonical-id'),target,'Actual popup navigates to the exact canonical definition');
+- const text=await dialog.innerText();assert(text.trim(),'Canonical definition popup is not empty');if(body)assert(norm(text).includes(norm(body)),'Native popup retains the complete canonical ability body');
++ const text=await dialogTextWithRuleCaption(dialog);assert(text.trim(),'Canonical definition popup is not empty');if(body)assert(norm(text).includes(norm(body)),'Native popup retains the complete canonical ability body');
+  await dialog.getByRole('button',{name:'Close rule reference',exact:true}).click();await dialog.waitFor({state:'hidden'});return {target,textSha256:hash(text)};
+ }
+ let browser,complete=false;
+@@ -266,7 +267,7 @@ try{
+       return references;
+      });
+      if(row.nativeLinks)await check('native-librarian-source-navigation',meta,async()=>{
+-      const opened=[];for(const target of row.nativeLinks){const link=card.locator(`.ds-section-sources a[data-represented-ability-id="${target}"]`);assert.equal(await link.getAttribute('data-target-id'),target,'Native aggregate retains the exact represented ability target');const body=await page.evaluate(target=>{const card=window.ArmyBookAppV2.payload.cards.find(card=>card.id===target),text=card.fields.find(field=>field.source?.path==='/text').value;return text.startsWith(card.title+':')?text.slice(card.title.length+1).trimStart():text;},target);opened.push(await openCanonicalReference(page,link,target,body));}return opened;
++      const opened=[];for(const target of row.nativeLinks){const metadata=card.locator(`.ds-section-sources a[data-represented-ability-id="${target}"]`);assert.equal(await metadata.getAttribute('data-target-id'),target,'Native aggregate retains the exact represented ability target');const body=await page.evaluate(target=>{const card=window.ArmyBookAppV2.payload.cards.find(card=>card.id===target),text=card.fields.find(field=>field.source?.path==='/text').value;return text.startsWith(card.title+':')?text.slice(card.title.length+1).trimStart():text;},target);const link=await openInlineRuleReference(page,metadata,target);opened.push(await openCanonicalReference(page,link,target,body));await page.evaluate(id=>ArmyBookAppV2.openInstance(id),id);}return opened;
+      });
+      if(row.formation&&id===setup.attachment.leader)await check('lord-of-host-core-navigation',meta,async()=>{
+       const modern=await card.evaluate(node=>node.classList.contains('ds-roster-card'));
+diff --git a/v2/glossary-browser-qa.mjs b/v2/glossary-browser-qa.mjs
+index ee00fa7c..775df426 100644
+--- a/v2/glossary-browser-qa.mjs
++++ b/v2/glossary-browser-qa.mjs
+@@ -1,3 +1,4 @@
++import {assertDialogActionLabel} from '../tests/helpers/player-dialog-assertions.mjs';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
+ import {armyBooks} from './army-books.mjs';
+@@ -181,7 +182,7 @@ try {
+       const direct=await link.getAttribute('href');assert.deepEqual(decodeRoute(direct),decodeRoute(encodeRoute(entry,{destination:'GLOSSARY',...target.identity})));
+       await link.click();const popup=await article(page,target.id,true);await popupGeometry(page);
+       assert.deepEqual(await popup.locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,`${sample.label}: popup must contain its exact source field and applicable governing condition`);
+-      await popup.getByRole('link',{name:'Open full entry',exact:true}).click();const full=await article(page,target.id);
++      await assertDialogActionLabel(page);await popup.getByRole('link',{name:'Open in Glossary',exact:true}).click();const full=await article(page,target.id);
+       assert.deepEqual(await full.locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,`${sample.label}: article source-field and condition parity`);
+       if(sample.path)assert.equal(decodeRoute(page.url()).fieldPath,sample.path,'Qualified source field lost from route');
+       await page.reload();await ready(page);assert.deepEqual(await (await article(page,target.id)).locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,'Reload lost source field or governing condition');
+@@ -203,13 +204,13 @@ try {
+     await link.click();await article(page,deep,true);await popupGeometry(page);await screenshot(page,device+'-popup');
+     const expectedDefinition=contract.resolve(deep).sections.flatMap(section=>section.fields.map(field=>field.value)).join('\n');
+     assert.ok((await page.locator('dialog[open]').innerText()).includes(expectedDefinition),'Popup definition differs from enrolled canonical content');
+-    assert.ok((await page.locator('dialog[open]').innerText()).includes('Open full entry'));
++    assert.ok((await page.locator('dialog[open]').innerText()).includes('Open in Glossary'));
+     await page.keyboard.press('Escape');assert.equal(await page.locator('dialog[open]').count(),0);
+     assert.equal(await link.evaluate(node=>node===document.activeElement),true,'Escape failed focus restoration');
+     await link.click();await article(page,deep,true);await page.getByRole('button',{name:'Close rule reference',exact:true}).click();
+     assert.equal(await link.evaluate(node=>node===document.activeElement),true,'Close failed focus restoration');
+     await link.click();await article(page,deep,true);await page.mouse.click(2,2);assert.equal(await page.locator('dialog[open]').count(),0,'Outside click failed');
+-    await link.click();await article(page,deep,true);await page.getByRole('link',{name:'Open full entry',exact:true}).click();await article(page,deep);await global(page);
++    await link.click();await article(page,deep,true);await assertDialogActionLabel(page);await page.getByRole('link',{name:'Open in Glossary',exact:true}).click();await article(page,deep);await global(page);
+     assert.deepEqual(decodeRoute(page.url()),decodeRoute(href),'Popup permalink changed canonical identity');await screenshot(page,device+'-article');
+     await page.reload();await ready(page);await article(page,deep);
+     await page.goBack();await ready(page);await page.getByRole('searchbox',{name:'Search glossary',exact:true}).waitFor();
+diff --git a/v2/glossary-core-navigation-browser-qa.mjs b/v2/glossary-core-navigation-browser-qa.mjs
+index 6de799a6..1f10fe89 100644
+--- a/v2/glossary-core-navigation-browser-qa.mjs
++++ b/v2/glossary-core-navigation-browser-qa.mjs
+@@ -1,3 +1,4 @@
++import {assertDialogActionLabel} from '../tests/helpers/player-dialog-assertions.mjs';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ /** Core-aware reference navigation stays optional: metadata failure cannot disable Glossary. */
+ import assert from 'node:assert/strict';
+@@ -165,7 +166,7 @@ try{
+     const diagnostic=await page.locator('[data-core-navigation-status]').evaluate(node=>({status:node.dataset.coreNavigationStatus,reason:node.dataset.coreNavigationError||null}));
+     if(diagnostic.status==='UNAVAILABLE')assert(diagnostic.reason?.length,'failure reason remains observable');
+     const view=await popup(page,'Deep Strike','core-deep-strike');assert.equal(await view.getByRole('link',{name:'Open in Core Rules'}).count(),Number(fault==='success'));
+-    await view.getByRole('link',{name:'Open full entry',exact:true}).click();await article(page,'core::core-deep-strike').waitFor();
++    await assertDialogActionLabel(page);await view.getByRole('link',{name:'Open in Glossary',exact:true}).click();await article(page,'core::core-deep-strike').waitFor();
+     assert.equal(await article(page,'core::core-deep-strike').getByRole('link',{name:'Open in Core Rules'}).count(),Number(fault==='success'));
+     assert.equal(await page.getByText('Glossary unavailable',{exact:true}).count(),0);
+     await page.getByRole('button',{name:'Glossary',exact:true}).click();await page.getByRole('searchbox',{name:'Search glossary',exact:true}).waitFor();
+diff --git a/v2/presentation-metadata-browser-qa.mjs b/v2/presentation-metadata-browser-qa.mjs
+index 12333bfa..b47feb2a 100644
+--- a/v2/presentation-metadata-browser-qa.mjs
++++ b/v2/presentation-metadata-browser-qa.mjs
+@@ -1,3 +1,4 @@
++import {assertDialogActionLabel} from '../tests/helpers/player-dialog-assertions.mjs';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
+ /** Player surfaces must not expose dataset metadata; facts/provenance stay intact. */
+@@ -110,7 +111,7 @@ try {
+     await top(page,'GLOSSARY');await clean(page,'Mega Glossary');
+     await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill('Deep Strike');
+     await page.locator('.v2-glossary-result[data-target-id="core::core-deep-strike"]').click();await page.locator('dialog[open]').waitFor();await clean(page,'Glossary popup');
+-    await page.locator('dialog[open]').getByRole('link',{name:'Open full entry',exact:true}).click();await clean(page,'Glossary article');
++    await assertDialogActionLabel(page);await page.locator('dialog[open]').getByRole('link',{name:'Open in Glossary',exact:true}).click();await clean(page,'Glossary article');
+     await context.close();
+     poison=true;
+     const synthetic=await browser.newContext({viewport:{width,height:width===390?844:900},serviceWorkers:'block'}),probe=await synthetic.newPage();
+diff --git a/v2/sweep-polish-browser-qa.mjs b/v2/sweep-polish-browser-qa.mjs
+index a0669721..fe25be00 100644
+--- a/v2/sweep-polish-browser-qa.mjs
++++ b/v2/sweep-polish-browser-qa.mjs
+@@ -13,6 +13,7 @@ import {createHash} from 'node:crypto';
+ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+ import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
++import {assertPlayerDialog} from '../tests/helpers/player-dialog-assertions.mjs';
+ 
+ const own=fileURLToPath(new URL('../',import.meta.url));
+ const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
+@@ -74,6 +75,7 @@ let browser,page,complete=false,current=null;
+ const started=Date.now();
+ async function scan(meta){
+   current=meta;
++  await assertPlayerDialog(page);
+   const result=await page.evaluate(inspectVisiblePlayerText);rows.push({...meta,...result});
+   assert(result.scannedTextNodes>0,'Nonempty rendered screen: '+JSON.stringify(meta));
+   assert.equal(result.leaks.length,0,'Visible technical text: '+JSON.stringify({...meta,leaks:result.leaks}));

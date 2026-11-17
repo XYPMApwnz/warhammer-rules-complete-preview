@@ -1,0 +1,1340 @@
+{
+  "status": "COMPLETE",
+  "acceptedSha": "9b99ade9975346afc3644ade7f69d01ed71cce31",
+  "captures": "E:/Warhammer/qa-evidence/card-gained-rules-v1-2026-11-16/native-ab-9b99/native-head",
+  "root": "E:/Warhammer/worktrees/rule-popups-v1",
+  "method": "Sequential NDJSON frame.snapshot scan; positive physicalQuantity; canonicalEquipmentIds only; deduplicate canonical UNIT and exact selected identity/paths/source references. Lookup reproduces current composition presenter, including explicit native equipment contracts loaded from the same already published source URLs. No names establish relations.",
+  "scope": "Finite observed equipment selections in 199 accepted inputs / 507 states. This does not inventory every possible automatic importer selection or claim that other books have no equipment. Only observed unresolved items would be listed as unresolved.",
+  "history": "INITIAL_SELECTED_EQUIPMENT_INVENTORY.json/.md and RECIPES/INITIAL_inventory-selected-equipment.mjs preserve the initial narrower presentation-only lookup. That report found CSM Dark Commune unlinked and had not inspected native canonicalEquipmentRequirement/equipmentRequirement; the revised exact native lookup resolves it and the separately inspected Tidewall item.",
+  "fixtureCount": 199,
+  "frameCount": 507,
+  "selectedOccurrences": 122,
+  "summary": [
+    {
+      "book": "death-guard",
+      "fixtures": 11,
+      "frames": 32,
+      "selectedEquipmentObservations": 56,
+      "distinctUnitSelections": 6,
+      "linkedSelections": 6,
+      "unlinkedSelections": 0,
+      "ambiguousSelections": 0
+    },
+    {
+      "book": "space-marines",
+      "fixtures": 5,
+      "frames": 24,
+      "selectedEquipmentObservations": 0,
+      "distinctUnitSelections": 0,
+      "linkedSelections": 0,
+      "unlinkedSelections": 0,
+      "ambiguousSelections": 0
+    },
+    {
+      "book": "blood-angels",
+      "fixtures": 4,
+      "frames": 14,
+      "selectedEquipmentObservations": 0,
+      "distinctUnitSelections": 0,
+      "linkedSelections": 0,
+      "unlinkedSelections": 0,
+      "ambiguousSelections": 0
+    },
+    {
+      "book": "dark-angels",
+      "fixtures": 5,
+      "frames": 16,
+      "selectedEquipmentObservations": 0,
+      "distinctUnitSelections": 0,
+      "linkedSelections": 0,
+      "unlinkedSelections": 0,
+      "ambiguousSelections": 0
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "fixtures": 21,
+      "frames": 42,
+      "selectedEquipmentObservations": 12,
+      "distinctUnitSelections": 3,
+      "linkedSelections": 3,
+      "unlinkedSelections": 0,
+      "ambiguousSelections": 0
+    },
+    {
+      "book": "chaos-space-marines",
+      "fixtures": 67,
+      "frames": 164,
+      "selectedEquipmentObservations": 8,
+      "distinctUnitSelections": 1,
+      "linkedSelections": 1,
+      "unlinkedSelections": 0,
+      "ambiguousSelections": 0
+    },
+    {
+      "book": "tau-empire",
+      "fixtures": 54,
+      "frames": 122,
+      "selectedEquipmentObservations": 12,
+      "distinctUnitSelections": 3,
+      "linkedSelections": 3,
+      "unlinkedSelections": 0,
+      "ambiguousSelections": 0
+    },
+    {
+      "book": "tyranids",
+      "fixtures": 18,
+      "frames": 59,
+      "selectedEquipmentObservations": 0,
+      "distinctUnitSelections": 0,
+      "linkedSelections": 0,
+      "unlinkedSelections": 0,
+      "ambiguousSelections": 0
+    },
+    {
+      "book": "emperors-children",
+      "fixtures": 14,
+      "frames": 34,
+      "selectedEquipmentObservations": 34,
+      "distinctUnitSelections": 5,
+      "linkedSelections": 5,
+      "unlinkedSelections": 0,
+      "ambiguousSelections": 0
+    }
+  ],
+  "rows": [
+    {
+      "book": "death-guard",
+      "unitId": "unit-plague-marines",
+      "unitTitle": "Plague Marines",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-plague-marines:wargear:8"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-plague-marines:wargear:8": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-plague-marines:section:1",
+            "path": "/blocks/1/text"
+          },
+          {
+            "entityId": "datasheet-plague-marines:wargear:8",
+            "path": "/text",
+            "bookId": "death-guard",
+            "caption": {
+              "start": 65,
+              "end": 80
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-plague-marines:wargear:8",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "icon of despair",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-plague-marines:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Icon of Despair (Aura)",
+              "fieldPath": "/blocks/1/text",
+              "factId": "datasheet-plague-marines:section:1::/blocks/1/text"
+            }
+          ]
+        }
+      ],
+      "observations": 8,
+      "fixtures": [
+        "F1-F2/omega"
+      ],
+      "stages": [
+        "attach",
+        "detach",
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "death-guard",
+      "unitId": "unit-deathshroud-terminators",
+      "unitTitle": "Deathshroud Terminators",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-deathshroud-terminators:wargear:2"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-deathshroud-terminators:wargear:2": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-deathshroud-terminators:section:1",
+            "path": "/blocks/2/text"
+          },
+          {
+            "entityId": "datasheet-deathshroud-terminators:wargear:2",
+            "path": "/text",
+            "bookId": "death-guard",
+            "caption": {
+              "start": 48,
+              "end": 63
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-deathshroud-terminators:wargear:2",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "icon of despair",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-deathshroud-terminators:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Icon of Despair (Aura)",
+              "fieldPath": "/blocks/2/text",
+              "factId": "datasheet-deathshroud-terminators:section:1::/blocks/2/text"
+            }
+          ]
+        }
+      ],
+      "observations": 4,
+      "fixtures": [
+        "F1-F2/omega"
+      ],
+      "stages": [
+        "attach",
+        "detach",
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "death-guard",
+      "unitId": "unit-plaguebearers",
+      "unitTitle": "Plaguebearers",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-plaguebearers:wargear:1"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-plaguebearers:wargear:1": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-plaguebearers:section:1",
+            "path": "/blocks/2/text"
+          },
+          {
+            "entityId": "datasheet-plaguebearers:wargear:1",
+            "path": "/text",
+            "bookId": "death-guard",
+            "caption": {
+              "start": 80,
+              "end": 99
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-plaguebearers:wargear:1",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "instrument of Chaos",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-plaguebearers:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Instrument of Chaos",
+              "fieldPath": "/blocks/2/text",
+              "factId": "datasheet-plaguebearers:section:1::/blocks/2/text"
+            }
+          ]
+        }
+      ],
+      "observations": 6,
+      "fixtures": [
+        "F1-F2/omega",
+        "charge/dg-bearers"
+      ],
+      "stages": [
+        "attach",
+        "detach",
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "death-guard",
+      "unitId": "unit-plaguebearers",
+      "unitTitle": "Plaguebearers",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-plaguebearers:wargear:2"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-plaguebearers:wargear:2": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-plaguebearers:section:1",
+            "path": "/blocks/1/text"
+          },
+          {
+            "entityId": "datasheet-plaguebearers:wargear:2",
+            "path": "/text",
+            "bookId": "death-guard",
+            "caption": {
+              "start": 87,
+              "end": 100
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-plaguebearers:wargear:2",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "daemonic icon",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-plaguebearers:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Daemonic Icon",
+              "fieldPath": "/blocks/1/text",
+              "factId": "datasheet-plaguebearers:section:1::/blocks/1/text"
+            }
+          ]
+        }
+      ],
+      "observations": 16,
+      "fixtures": [
+        "F1-F2/omega",
+        "charge/dg-bearers",
+        "charge/dg-bearers/disabled"
+      ],
+      "stages": [
+        "attach",
+        "detach",
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "death-guard",
+      "unitId": "unit-plague-drones",
+      "unitTitle": "Plague Drones",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-plague-drones:wargear:1"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-plague-drones:wargear:1": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-plague-drones:section:1",
+            "path": "/blocks/2/text"
+          },
+          {
+            "entityId": "datasheet-plague-drones:wargear:1",
+            "path": "/text",
+            "bookId": "death-guard",
+            "caption": {
+              "start": 80,
+              "end": 99
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-plague-drones:wargear:1",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "instrument of Chaos",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-plague-drones:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Instrument of Chaos",
+              "fieldPath": "/blocks/2/text",
+              "factId": "datasheet-plague-drones:section:1::/blocks/2/text"
+            }
+          ]
+        }
+      ],
+      "observations": 10,
+      "fixtures": [
+        "F1-F2/omega",
+        "charge/dg-drones"
+      ],
+      "stages": [
+        "attach",
+        "detach",
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "death-guard",
+      "unitId": "unit-plague-drones",
+      "unitTitle": "Plague Drones",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-plague-drones:wargear:2"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-plague-drones:wargear:2": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-plague-drones:section:1",
+            "path": "/blocks/1/text"
+          },
+          {
+            "entityId": "datasheet-plague-drones:wargear:2",
+            "path": "/text",
+            "bookId": "death-guard",
+            "caption": {
+              "start": 87,
+              "end": 100
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-plague-drones:wargear:2",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "daemonic icon",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-plague-drones:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Daemonic Icon",
+              "fieldPath": "/blocks/1/text",
+              "factId": "datasheet-plague-drones:section:1::/blocks/1/text"
+            }
+          ]
+        }
+      ],
+      "observations": 12,
+      "fixtures": [
+        "F1-F2/omega",
+        "charge/dg-drones",
+        "charge/dg-drones/disabled"
+      ],
+      "stages": [
+        "attach",
+        "detach",
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "unitId": "unit-onager-dunecrawler",
+      "unitTitle": "Onager Dunecrawler",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-onager-dunecrawler:wargear:3"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-onager-dunecrawler:wargear:3": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-onager-dunecrawler:section:1",
+            "path": "/blocks/2/text"
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-onager-dunecrawler:wargear:3",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": null,
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-onager-dunecrawler:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Broad spectrum data-tether",
+              "fieldPath": "/blocks/2/text",
+              "factId": "datasheet-onager-dunecrawler:section:1::/blocks/2/text"
+            }
+          ]
+        }
+      ],
+      "observations": 2,
+      "fixtures": [
+        "native-json/additional-weapon-and-optional-wargear"
+      ],
+      "stages": [
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "unitId": "unit-skitarii-rangers",
+      "unitTitle": "Skitarii Rangers",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-skitarii-rangers:section:1"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-skitarii-rangers:section:1": [
+            "/blocks/2/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-skitarii-rangers:section:1",
+            "path": "/blocks/2/text"
+          },
+          {
+            "entityId": "datasheet-skitarii-rangers:wargear:6",
+            "path": "/text",
+            "bookId": "adeptus-mechanicus",
+            "caption": {
+              "start": 122,
+              "end": 130
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-skitarii-rangers:section:1",
+          "equipmentKind": "DATASHEET_SECTION",
+          "equipmentTitle": "ABILITIES",
+          "sourceCaption": "omnispex",
+          "selectedFieldPaths": [
+            "/blocks/2/text"
+          ],
+          "resolution": "selected-ability",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-skitarii-rangers:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Omnispex",
+              "fieldPath": "/blocks/2/text",
+              "factId": "datasheet-skitarii-rangers:section:1::/blocks/2/text"
+            }
+          ]
+        }
+      ],
+      "observations": 6,
+      "fixtures": [
+        "native-json/detailed-ranger-alpha-and-plasma-selection",
+        "native-json/multi-detachments-enhancement-owner-warlord"
+      ],
+      "stages": [
+        "attach",
+        "detach",
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "unitId": "unit-skitarii-rangers",
+      "unitTitle": "Skitarii Rangers",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-skitarii-rangers:section:1"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-skitarii-rangers:section:1": [
+            "/blocks/1/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-skitarii-rangers:section:1",
+            "path": "/blocks/1/text"
+          },
+          {
+            "entityId": "datasheet-skitarii-rangers:wargear:6",
+            "path": "/text",
+            "bookId": "adeptus-mechanicus",
+            "caption": {
+              "start": 96,
+              "end": 116
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-skitarii-rangers:section:1",
+          "equipmentKind": "DATASHEET_SECTION",
+          "equipmentTitle": "ABILITIES",
+          "sourceCaption": "enhanced data-tether",
+          "selectedFieldPaths": [
+            "/blocks/1/text"
+          ],
+          "resolution": "selected-ability",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-skitarii-rangers:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Enhanced data-tether",
+              "fieldPath": "/blocks/1/text",
+              "factId": "datasheet-skitarii-rangers:section:1::/blocks/1/text"
+            }
+          ]
+        }
+      ],
+      "observations": 4,
+      "fixtures": [
+        "native-json/multi-detachments-enhancement-owner-warlord"
+      ],
+      "stages": [
+        "attach",
+        "detach",
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "chaos-space-marines",
+      "unitId": "unit-dark-commune",
+      "unitTitle": "Dark Commune",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-dark-commune:section:2"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-dark-commune:section:2": [
+            "/equipmentAndRules/0/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-dark-commune:section:2",
+            "path": "/equipmentAndRules/0/text",
+            "bookId": "chaos-space-marines",
+            "caption": {
+              "start": 193,
+              "end": 203
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-dark-commune:section:2",
+          "equipmentKind": "DATASHEET_SECTION",
+          "equipmentTitle": "Dark Commune composition",
+          "sourceCaption": "Chaos icon",
+          "selectedFieldPaths": [
+            "/equipmentAndRules/0/text"
+          ],
+          "resolution": "explicit-native-contract",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-dark-commune:section:1:block:2:text",
+              "ruleKind": "SUPPLEMENTAL_DATASHEET_RULE",
+              "title": "Chaos Icon",
+              "fieldPath": "/text",
+              "factId": "datasheet-dark-commune:section:1:block:2:text::/text"
+            }
+          ]
+        }
+      ],
+      "observations": 8,
+      "fixtures": [
+        "datasheet-dark-commune:section:1:block:0:text::model-invulnerable"
+      ],
+      "stages": [
+        "attach-explicit/1",
+        "detach-existing",
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "tau-empire",
+      "unitId": "unit-crisis-fireknife-battlesuits",
+      "unitTitle": "Crisis Fireknife Battlesuits",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-crisis-fireknife-battlesuits:wargear:3"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-crisis-fireknife-battlesuits:wargear:3": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": "drone-shield-drone",
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-crisis-fireknife-battlesuits:wargear:3",
+            "path": "/text",
+            "bookId": "tau-empire",
+            "caption": {
+              "start": 132,
+              "end": 144
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-crisis-fireknife-battlesuits:wargear:3",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "shield drone",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceEquipmentIdentity",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "drone-shield-drone",
+              "ruleKind": "EQUIPMENT_RULE",
+              "title": "SHIELD DRONE",
+              "fieldPath": "/text",
+              "factId": "drone-shield-drone::/text"
+            }
+          ]
+        }
+      ],
+      "observations": 2,
+      "fixtures": [
+        "source-equipment/marker"
+      ],
+      "stages": [
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "tau-empire",
+      "unitId": "unit-crisis-fireknife-battlesuits",
+      "unitTitle": "Crisis Fireknife Battlesuits",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-crisis-fireknife-battlesuits:wargear:3"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-crisis-fireknife-battlesuits:wargear:3": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": "drone-marker-drone",
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-crisis-fireknife-battlesuits:wargear:3",
+            "path": "/text",
+            "bookId": "tau-empire",
+            "caption": {
+              "start": 115,
+              "end": 127
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-crisis-fireknife-battlesuits:wargear:3",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "marker drone",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceEquipmentIdentity",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "drone-marker-drone",
+              "ruleKind": "EQUIPMENT_RULE",
+              "title": "MARKER DRONE",
+              "fieldPath": "/text",
+              "factId": "drone-marker-drone::/text"
+            }
+          ]
+        }
+      ],
+      "observations": 2,
+      "fixtures": [
+        "source-equipment/marker"
+      ],
+      "stages": [
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "tau-empire",
+      "unitId": "unit-broadside-battlesuits",
+      "unitTitle": "Broadside Battlesuits",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-broadside-battlesuits:wargear:3"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-broadside-battlesuits:wargear:3": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": "drone-shield-drone",
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-broadside-battlesuits:wargear:3",
+            "path": "/text",
+            "bookId": "tau-empire",
+            "caption": {
+              "start": 153,
+              "end": 165
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-broadside-battlesuits:wargear:3",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "shield drone",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceEquipmentIdentity",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "drone-shield-drone",
+              "ruleKind": "EQUIPMENT_RULE",
+              "title": "SHIELD DRONE",
+              "fieldPath": "/text",
+              "factId": "drone-shield-drone::/text"
+            }
+          ]
+        }
+      ],
+      "observations": 8,
+      "fixtures": [
+        "shield/homogeneous",
+        "shield/split-row-inherited-loadout",
+        "shield/split-row-inherited-loadout/I4-timing-repeat-1",
+        "shield/split-row-inherited-loadout/I4-timing-repeat-2"
+      ],
+      "stages": [
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "emperors-children",
+      "unitId": "unit-daemonettes",
+      "unitTitle": "Daemonettes",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-daemonettes:wargear:1"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-daemonettes:wargear:1": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-daemonettes:section:1",
+            "path": "/blocks/2/text"
+          },
+          {
+            "entityId": "datasheet-daemonettes:wargear:1",
+            "path": "/text",
+            "bookId": "emperors-children",
+            "caption": {
+              "start": 78,
+              "end": 97
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-daemonettes:wargear:1",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "instrument of Chaos",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-daemonettes:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Instrument of Chaos",
+              "fieldPath": "/blocks/2/text",
+              "factId": "datasheet-daemonettes:section:1::/blocks/2/text"
+            }
+          ]
+        }
+      ],
+      "observations": 6,
+      "fixtures": [
+        "charge/ec-daemonettes",
+        "native-json/aggregate-equipment-unresolved",
+        "native-json/legions-physical-equipment"
+      ],
+      "stages": [
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "emperors-children",
+      "unitId": "unit-daemonettes",
+      "unitTitle": "Daemonettes",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-daemonettes:wargear:2"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-daemonettes:wargear:2": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-daemonettes:section:1",
+            "path": "/blocks/1/text"
+          },
+          {
+            "entityId": "datasheet-daemonettes:wargear:2",
+            "path": "/text",
+            "bookId": "emperors-children",
+            "caption": {
+              "start": 85,
+              "end": 98
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-daemonettes:wargear:2",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "daemonic icon",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-daemonettes:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Daemonic Icon",
+              "fieldPath": "/blocks/1/text",
+              "factId": "datasheet-daemonettes:section:1::/blocks/1/text"
+            }
+          ]
+        }
+      ],
+      "observations": 12,
+      "fixtures": [
+        "charge/ec-daemonettes",
+        "charge/ec-daemonettes/disabled",
+        "native-json/aggregate-equipment-unresolved",
+        "native-json/legions-physical-equipment"
+      ],
+      "stages": [
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "emperors-children",
+      "unitId": "unit-seekers",
+      "unitTitle": "Seekers",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-seekers:wargear:1"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-seekers:wargear:1": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-seekers:section:1",
+            "path": "/blocks/2/text"
+          },
+          {
+            "entityId": "datasheet-seekers:wargear:1",
+            "path": "/text",
+            "bookId": "emperors-children",
+            "caption": {
+              "start": 74,
+              "end": 93
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-seekers:wargear:1",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "instrument of Chaos",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-seekers:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Instrument of Chaos",
+              "fieldPath": "/blocks/2/text",
+              "factId": "datasheet-seekers:section:1::/blocks/2/text"
+            }
+          ]
+        }
+      ],
+      "observations": 4,
+      "fixtures": [
+        "charge/ec-seekers",
+        "native-json/legions-physical-equipment"
+      ],
+      "stages": [
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "emperors-children",
+      "unitId": "unit-seekers",
+      "unitTitle": "Seekers",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-seekers:wargear:2"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-seekers:wargear:2": [
+            "/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-seekers:section:1",
+            "path": "/blocks/1/text"
+          },
+          {
+            "entityId": "datasheet-seekers:wargear:2",
+            "path": "/text",
+            "bookId": "emperors-children",
+            "caption": {
+              "start": 81,
+              "end": 94
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-seekers:wargear:2",
+          "equipmentKind": "WARGEAR_OPTION",
+          "equipmentTitle": "WARGEAR OPTION",
+          "sourceCaption": "daemonic icon",
+          "selectedFieldPaths": [
+            "/text"
+          ],
+          "resolution": "sourceReferences-wargear-marker",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-seekers:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Daemonic Icon",
+              "fieldPath": "/blocks/1/text",
+              "factId": "datasheet-seekers:section:1::/blocks/1/text"
+            }
+          ]
+        }
+      ],
+      "observations": 10,
+      "fixtures": [
+        "charge/ec-seekers",
+        "charge/ec-seekers/disabled",
+        "native-json/legions-physical-equipment"
+      ],
+      "stages": [
+        "import",
+        "reload"
+      ]
+    },
+    {
+      "book": "emperors-children",
+      "unitId": "unit-keeper-of-secrets",
+      "unitTitle": "Keeper of Secrets",
+      "selectionIdentity": {
+        "canonicalEquipmentIds": [
+          "datasheet-keeper-of-secrets:section:1"
+        ],
+        "canonicalFieldPaths": {
+          "datasheet-keeper-of-secrets:section:1": [
+            "/blocks/2/text"
+          ]
+        },
+        "sourceEquipmentIdentity": null,
+        "sourceReferences": [
+          {
+            "entityId": "datasheet-keeper-of-secrets:section:1",
+            "path": "/blocks/2/text"
+          },
+          {
+            "entityId": "datasheet-keeper-of-secrets:wargear:1",
+            "path": "/text",
+            "bookId": "emperors-children",
+            "caption": {
+              "start": 85,
+              "end": 98
+            }
+          }
+        ]
+      },
+      "hasSelectedWeaponProfiles": false,
+      "effects": [
+        {
+          "equipmentId": "datasheet-keeper-of-secrets:section:1",
+          "equipmentKind": "DATASHEET_SECTION",
+          "equipmentTitle": "ABILITIES",
+          "sourceCaption": "shining aegis",
+          "selectedFieldPaths": [
+            "/blocks/2/text"
+          ],
+          "resolution": "selected-ability",
+          "status": "LINKED",
+          "candidates": [
+            {
+              "ruleId": "datasheet-keeper-of-secrets:section:1",
+              "ruleKind": "DATASHEET_SECTION",
+              "title": "Shining Aegis",
+              "fieldPath": "/blocks/2/text",
+              "factId": "datasheet-keeper-of-secrets:section:1::/blocks/2/text"
+            }
+          ]
+        }
+      ],
+      "observations": 2,
+      "fixtures": [
+        "native-json/legions-physical-equipment"
+      ],
+      "stages": [
+        "import",
+        "reload"
+      ]
+    }
+  ],
+  "nativeInputs": [
+    {
+      "book": "death-guard",
+      "pathsRead": [
+        "glossary/generated/cache-revision.js",
+        "books/death-guard/v2/generated/rule-contract-effective.json"
+      ],
+      "retainedSourceRules": 12,
+      "newNetworkURLs": 0
+    },
+    {
+      "book": "space-marines",
+      "pathsRead": [
+        "glossary/generated/cache-revision.js",
+        "books/space-marines/v2/generated/roster-import.json"
+      ],
+      "retainedSourceRules": 33,
+      "newNetworkURLs": 0
+    },
+    {
+      "book": "blood-angels",
+      "pathsRead": [
+        "glossary/generated/cache-revision.js",
+        "books/blood-angels/v2/generated/roster-import.json"
+      ],
+      "retainedSourceRules": 28,
+      "newNetworkURLs": 0
+    },
+    {
+      "book": "dark-angels",
+      "pathsRead": [
+        "glossary/generated/cache-revision.js",
+        "books/dark-angels/v2/generated/roster-import.json"
+      ],
+      "retainedSourceRules": 28,
+      "newNetworkURLs": 0
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "pathsRead": [
+        "glossary/generated/cache-revision.js",
+        "books/adeptus-mechanicus/v2/generated/roster-runtime.json"
+      ],
+      "retainedSourceRules": 16,
+      "newNetworkURLs": 0
+    },
+    {
+      "book": "chaos-space-marines",
+      "pathsRead": [
+        "glossary/generated/cache-revision.js",
+        "books/chaos-space-marines/v2/generated/roster-import.json",
+        "books/chaos-space-marines/v2/generated/roster-runtime.json"
+      ],
+      "retainedSourceRules": 25,
+      "newNetworkURLs": 0
+    },
+    {
+      "book": "tau-empire",
+      "pathsRead": [
+        "glossary/generated/cache-revision.js",
+        "books/tau-empire/v2/generated/roster-import.json"
+      ],
+      "retainedSourceRules": 17,
+      "newNetworkURLs": 0
+    },
+    {
+      "book": "tyranids",
+      "pathsRead": [
+        "glossary/generated/cache-revision.js",
+        "books/tyranids/v2/generated/roster-runtime.json"
+      ],
+      "retainedSourceRules": 11,
+      "newNetworkURLs": 0
+    },
+    {
+      "book": "emperors-children",
+      "pathsRead": [
+        "glossary/generated/cache-revision.js",
+        "books/emperors-children/v2/generated/roster-attachments.json",
+        "books/emperors-children/v2/generated/roster-import.json"
+      ],
+      "retainedSourceRules": 14,
+      "newNetworkURLs": 0
+    }
+  ],
+  "inspectedExactRelations": [
+    {
+      "book": "tau-empire",
+      "unitId": "unit-tidewall-shieldline",
+      "unitTitle": "Tidewall Shieldline",
+      "equipmentId": "datasheet-tidewall-shieldline:wargear:1",
+      "sourceCaption": "Tidewall defence platform",
+      "status": "LINKED",
+      "lookup": "explicit native equipmentRequirement",
+      "candidates": [
+        {
+          "ruleId": "datasheet-tidewall-shieldline:section:1",
+          "title": "Tidewall Defence Platform",
+          "fieldPath": "/blocks/2/text",
+          "factId": "datasheet-tidewall-shieldline:section:1::/blocks/2/text"
+        }
+      ],
+      "relation": "The published native rule clause tidewall-defence-platform has a SOURCE/EQUIPMENT_PRESENT equipmentRequirement addressing this exact option /text; clause sourceFields addresses /blocks/2/text. This is an existing contract relation, not a runtime name match.",
+      "scope": "Metadata lookup for an existing native test-selected item; not an imported or recomputed roster state.",
+      "observedInCapture": false
+    }
+  ]
+}

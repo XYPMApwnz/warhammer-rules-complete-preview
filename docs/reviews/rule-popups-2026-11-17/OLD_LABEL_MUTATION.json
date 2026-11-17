@@ -1,0 +1,72 @@
+{
+  "status": "FAIL",
+  "root": "E:\\Warhammer\\worktrees\\rule-popups-v1",
+  "rows": [
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "name": "full-inline-ability-titles-are-not-buttons",
+      "status": "PASS",
+      "detail": {
+        "checked": 180
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "name": "one-exact-rule-complete-canonical-text",
+      "status": "PASS",
+      "detail": {
+        "ruleId": "datasheet-deathshroud-terminators:section:1",
+        "fieldPath": "/blocks/0/text",
+        "title": "Silent Bodyguard"
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "name": "dialog-public-labels-and-named-actions",
+      "status": "FAIL",
+      "error": "Player dialog contains technical text or unnamed controls: [{\"reason\":\"technical-text\",\"text\":\"Rule\"}]\n\n1 !== 0\n"
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "name": "execution",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Player dialog contains technical text or unnamed controls: [{\"reason\":\"technical-text\",\"text\":\"Rule\"}]\n\n1 !== 0\n\n    at assertPlayerDialog (file:///E:/Warhammer/worktrees/rule-popups-v1/tests/helpers/player-dialog-assertions.mjs:22:10)\n    at async check (file:///E:/Warhammer/worktrees/rule-popups-v1/v2/rule-popups-browser-qa.mjs:32:48)\n    at async file:///E:/Warhammer/worktrees/rule-popups-v1/v2/rule-popups-browser-qa.mjs:84:5"
+    }
+  ],
+  "links": [
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "fullBookLinks": 464
+    }
+  ],
+  "timings": [
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "stage": "book-first-render",
+      "elapsedMs": 1083.6037000000001
+    }
+  ],
+  "equipment": [],
+  "shots": [
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "name": "full-book-abilities",
+      "file": "death-guard-1440-full-book-abilities.png"
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "name": "inline-title-result",
+      "file": "death-guard-1440-inline-title-result.png"
+    }
+  ],
+  "errors": [],
+  "missing": []
+}
