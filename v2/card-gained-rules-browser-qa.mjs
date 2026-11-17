@@ -14,6 +14,7 @@ import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {readCurrentMfmRelease} from '../mfm/content/current-mfm-release.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 const own=fileURLToPath(new URL('../',import.meta.url));
 const started=performance.now();
 const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
@@ -27,17 +28,18 @@ const read=name=>JSON.parse(fs.readFileSync(new URL('./fixtures/'+name,import.me
 const sweep=read('sweep-polish-v1.json'),scope=read('unit-recipient-scope-browser.json');
 const tau=read('csm-tau-recipient-gaps-v1-browser.json').find(book=>book.bookId==='tau-empire').browserCases.find(row=>row.id==='csm-tau-gaps-v1:tau:18');
 const tyr=scope.find(book=>book.bookId==='tyranids').browserCases.find(row=>row.id==='unit-no-scope:vicious-insight');
+const formation=read('fabius-safe-import-browser.json').cases.find(row=>row.id==='ec-initial-formation');
 const selected={ 'adeptus-mechanicus':'input-0045','chaos-space-marines':'input-0120','emperors-children':'input-0421',
  'space-marines':'additional-0012','blood-angels':'additional-0010','dark-angels':'additional-0011'};
 const owner=fs.readFileSync(new URL('./fixtures/new-recruit-v37.25-owner-death-guard.txt',import.meta.url),'utf8');
 // Independent oracle: exact fixture identity -> CURRENT raw MFM owner/title.
 // It never reads the price fields produced by app-presentation or the renderer.
-const smPriceBindings={'unit-sm-bc9aa3cbedb2415c':['space-marines','CAPTAIN IN GRAVIS ARMOUR','GRAVIS LINEBREAKER FORCE','Relentless Advance'],'unit-sm-984b95cebb2f47d9':['space-marines','HEAVY INTERCESSOR SQUAD'],'unit-sm-9e163be8d4bb42c1':['space-marines','TERMINATOR SQUAD']};
+const smPriceBindings={'unit-sm-bc9aa3cbedb2415c':['space-marines','CAPTAIN IN GRAVIS ARMOUR','GRAVIS LINEBREAKER FORCE','Relentless Advance'],'unit-sm-984b95cebb2f47d9':['space-marines','HEAVY INTERCESSOR SQUAD'],'unit-sm-9e163be8d4bb42c1':['space-marines','TERMINATOR SQUAD'],'unit-sm-c60b9f00ff7a42b0':['space-marines','LIBRARIAN']};
 const priceBindings={
  'death-guard':{'unit-biologus-putrifier':['death-guard','BIOLOGUS PUTRIFIER'],'unit-deathshroud-terminators':['death-guard','DEATHSHROUD TERMINATORS'],'unit-lord-of-contagion':['death-guard','LORD OF CONTAGION'],'unit-plague-marines':['death-guard','PLAGUE MARINES'],'unit-blightlord-terminators':['death-guard','BLIGHTLORD TERMINATORS']},
  'adeptus-mechanicus':{'unit-cybernetica-datasmith':['adeptus-mechanicus','CYBERNETICA DATASMITH','HALOSCREED BATTLE CLADE','Transoracular Dyad Wafers'],'unit-kastelan-robots':['adeptus-mechanicus','KASTELAN ROBOTS']},
  'chaos-space-marines':{'unit-dark-apostle':['chaos-space-marines','DARK APOSTLE','CHAOS CULT','Warped Foresight'],'unit-accursed-cultists':['chaos-space-marines','ACCURSED CULTISTS']},
- 'emperors-children':{'unit-lord-kakophonist':['emperors-children','LORD KAKOPHONIST','ELEGANT BRUTES','Cacophonic Accompaniment'],'unit-noise-marines':['emperors-children','NOISE MARINES']},
+ 'emperors-children':{'unit-lord-kakophonist':['emperors-children','LORD KAKOPHONIST','ELEGANT BRUTES','Cacophonic Accompaniment'],'unit-noise-marines':['emperors-children','NOISE MARINES'],'unit-lord-exultant':['emperors-children','LORD EXULTANT','COURT OF THE PHOENICIAN','Exalted Patron'],'unit-infractors':['emperors-children','INFRACTORS']},
  'space-marines':smPriceBindings,'blood-angels':smPriceBindings,'dark-angels':smPriceBindings,
  'tau-empire':{'unit-cadre-fireblade':['tau-empire','CADRE FIREBLADE','KAUYON','Exemplar of the Kauyon'],'unit-strike-team':['tau-empire','STRIKE TEAM']},
  tyranids:{'unit-broodlord':['tyranids','BROODLORD'],'unit-genestealers':['tyranids','GENESTEALERS'],'unit-trygon':['tyranids','TRYGON','SUBTERRANEAN ASSAULT','Trygon Prime']}
@@ -68,6 +70,8 @@ const cases=[{id:'owner-dg-v37.25-derived-attachments',book:'death-guard',text:o
  {id:tyr.id,book:'tyranids',text:tyr.text,attachment:{leader:'parsed-unit-1',target:'parsed-unit-2'},source:'v2/fixtures/unit-recipient-scope-browser.json#'+tyr.id},
  ...[sweep.cases.find(row=>row.id==='input-0357')].map(row=>({id:row.id,book:row.bookId,text:row.text,standaloneIds:['parsed-unit-1'],source:'v2/fixtures/sweep-polish-v1.json#'+row.id})),
  {id:'existing-sm-death-blow-unit-metric',book:'space-marines',text:'+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Terminator Storm Force\n5x Terminator Squad (170 pts)\n• 5x Terminator: 5 with Storm bolter, Power fist',standaloneIds:['parsed-unit-1'],requiredMetric:'chargeRoll',source:'v2/card-polish-2-browser-qa.mjs:31–32 (unchanged existing scenario)'},
+ {id:'native-sm-librarian-aggregate-source-links',book:'space-marines',text:'+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Librarian (0 pts): Bolt pistol, Force weapon, Smite',standaloneIds:['parsed-unit-1'],nativeLinks:['ability-sm-76dc910fa6014c38','ability-sm-9c118e29005d43fd'],source:'DERIVED standalone subset of v2/card-display-2-browser-qa.mjs:23,33–36'},
+ {id:'existing-ec-lord-of-host-core-links',book:formation.bookId,text:formation.text,attachment:{leader:'parsed-unit-1',target:'parsed-unit-2'},formation:true,source:'v2/fixtures/fabius-safe-import-browser.json#ec-initial-formation'},
  {id:'derived-csm-three-identical-copy-tiers',book:'chaos-space-marines',text:csmCopySource.text.replace('Created with newrecruit.eu',csmCopyBlock+'\n\nCreated with newrecruit.eu'),source:'v2/fixtures/sweep-polish-v1.json#input-0120',copyTier:{unitId:'unit-accursed-cultists'}},
  {id:'derived-dg-three-identical-copy-tiers',book:'death-guard',text:'DERIVED three identical units (585 Points)\n\nDeath Guard\nVirulent Vectorium (3 Detachment Points)\n\n'+[dgCopyBlock,dgCopyBlock,dgCopyBlock].join('\n')+'\n\nCreated with newrecruit.eu v37.25',source:'DERIVED New Recruit grammar; historical v1.6 Blightlord Terminators unit line',copyTier:{unitId:'unit-blightlord-terminators'}}];
 if(arg('--book'))assert(cases.some(row=>row.book===arg('--book')),'Known book selection');
@@ -165,9 +169,11 @@ async function open(page,row){
  }
  const attachment=row.owner?{leader:units.find(unit=>unit.canonicalUnitId==='unit-lord-of-contagion')?.instanceId,target:units.find(unit=>unit.canonicalUnitId==='unit-deathshroud-terminators')?.instanceId}:row.attachment;
  assert(attachment?.leader&&attachment.target,'Explicit existing attachment case');
+ if(row.formation){const before=await page.evaluate(id=>({state:window.ArmyBookAppV2.roster.snapshot(),view:window.ArmyBookAppV2.roster.effective(id)}),attachment.leader);assert.equal(before.state.initialAttachments,undefined);assert.equal(before.state.initialAttachmentStep,undefined);assert(!before.view.profiles.flatMap(profile=>profile.abilities||[]).some(ability=>['core-scouts','core-infiltrators'].includes(ability.canonicalId)),'Unattached Lord Exultant has no formation grants');}
  await page.locator(`[data-attachment-candidate-for="${attachment.target}"]`).selectOption(attachment.leader);
  await page.locator(`[data-attachment-target-instance-id="${attachment.target}"] [data-roster-action="attach"]`).click();await settled(page);
  await page.locator(`[data-attached-leader-instance-id="${attachment.leader}"]`).waitFor();
+ if(row.formation){const after=await page.evaluate(({leader,target})=>{const r=window.ArmyBookAppV2.roster;return {state:r.snapshot(),leader:r.effective(leader),bodyguard:r.effective(target)};},attachment);assert.equal(after.state.initialAttachments,undefined);assert.equal(after.state.initialAttachmentStep,undefined);const granted=after.leader.profiles.flatMap(profile=>profile.abilities||[]);assert(granted.some(ability=>ability.canonicalId==='core-infiltrators'));assert(granted.some(ability=>ability.canonicalId==='core-scouts'&&ability.parameters.distance===6));assert(!after.bodyguard.profiles.flatMap(profile=>profile.abilities||[]).some(ability=>['core-scouts','core-infiltrators'].includes(ability.canonicalId)),'Formation abilities remain on the source MODEL only');}
  // Derived UI setup: the source export contains no attachment declarations.
  // Foul Infusion is a leading rule; never require CRIT5 on standalone Putrifier.
  if(row.owner){
@@ -190,6 +196,12 @@ async function captureState(page,row,width,phase){
  const value=await page.evaluate(()=>{const r=window.ArmyBookAppV2.roster;return {state:r.snapshot(),projection:r.projection,points:r.points,effective:r.state.units.map(unit=>r.effective(unit.instanceId))};});
  const sha256=hash(value);observations.push({book:row.book,input:row.id,width,phase,sha256,value});return sha256;
 }
+async function openCanonicalReference(page,link,target,body=null){
+ assert.equal(await link.count(),1,'One exact original canonical navigation anchor');await link.click();
+ const dialog=page.locator('dialog.v2-detail-dialog[open]');await dialog.waitFor();assert.equal(await dialog.getAttribute('data-canonical-id'),target,'Actual popup navigates to the exact canonical definition');
+ const text=await dialog.innerText();assert(text.trim(),'Canonical definition popup is not empty');if(body)assert(norm(text).includes(norm(body)),'Native popup retains the complete canonical ability body');
+ await dialog.getByRole('button',{name:'Close rule reference',exact:true}).click();await dialog.waitFor({state:'hidden'});return {target,textSha256:hash(text)};
+}
 let browser,complete=false;
 try{
  browser=await launchChromium();
@@ -203,13 +215,13 @@ try{
     await page.setViewportSize({width,height:1000});
     for(const id of setup.ids){
      const card=await effective(page,id),unit=setup.units.find(unit=>unit.instanceId===id),meta={book:row.book,input:row.id,width,instanceId:id,canonicalUnitId:unit.canonicalUnitId};
-     if(mutation==='technical-id')await card.evaluate(node=>{const caption=document.createElement('small');caption.className='ds-ability-sources';caption.textContent='Source: datasheet-synthetic-internal-id-00001';node.querySelector('.unit-header').append(caption);});
+     if(mutation==='technical-id')await card.evaluate(node=>{const caption=document.createElement('small');caption.className='ds-ability-sources';caption.textContent='From datasheet-synthetic-internal-id-00001';node.querySelector('.unit-header').append(caption);});
      if(mutation==='remove-gained')await card.locator('[data-datasheet-section="gained-rules"]').evaluateAll(nodes=>nodes.forEach(node=>node.remove()));
      if(mutation==='duplicate-price')await card.locator('.ds-cost').evaluate(node=>node.append(node.firstElementChild.cloneNode(true)));
      const facts=await card.evaluate(node=>({title:node.querySelector('h2,h3')?.textContent||'',html:node.outerHTML}));
      const inspected=await card.evaluate(inspectCard);
      inventory.push({...meta,...inspected});
-     await check('a-self-caption-absent',meta,()=>{assert.deepEqual(inspected.selfCaptions,[],'Self-sourced Source/Applies captions must be absent');return inspected.selfCaptions;});
+     await check('a-self-caption-absent',meta,async()=>{assert.deepEqual(inspected.selfCaptions,[],'Self-sourced Source/Applies captions must be absent');await assertNoVisibleLegacyAttribution(card);return inspected.selfCaptions;});
      await check('b-one-source-caption',meta,()=>{assert.deepEqual(inspected.duplicated,[],'A physical rule source is not repeated after each granted weapon ability');return inspected.duplicated;});
      await check('c-gained-final-ordered-groups',meta,async()=>{
       const effectiveProof=observations[observations.length-1].value.effective.find(unit=>unit.instanceId===id);
@@ -244,6 +256,27 @@ try{
       return inspected.cost;
      });
      await check('e-visible-technical-text',meta,()=>{assert.deepEqual(inspected.leaks,[],'Visible text contains no technical labels or internal IDs');return {leaks:inspected.leaks};});
+     await check('canonical-ability-references',meta,async()=>{
+      const references=await card.evaluate(root=>{const cards=new Map(window.ArmyBookAppV2.payload.cards.map(card=>[card.id,card]));const owner=id=>{let card=cards.get(id),seen=new Set();while(card&&!seen.has(card.id)){if(['DATASHEET','DETACHMENT'].includes(card.kind))return card;seen.add(card.id);card=cards.get(card.parentId);}return null;};return [...root.querySelectorAll('.ds-effective-ability[data-canonical-ability-id]')].map(node=>{
+       const id=node.dataset.canonicalAbilityId,sources=JSON.parse(node.dataset.abilitySources||'[]'),links=[...root.querySelectorAll('a[data-target-id]')].filter(link=>link.dataset.targetId===id&&link.closest('.unit-card')===root&&!link.closest('.ds-ability-sources'));
+       const source=sources[0],own=source&&source.sourceInstanceId===root.dataset.rosterInstanceId&&cards.get(source.canonicalRuleId||source.ruleId)?.kind!=='ENHANCEMENT'&&owner(source.canonicalRuleId||source.ruleId)?.kind!=='DETACHMENT';
+       return {id,referenceCount:links.length,nestedButtonLinks:links.filter(link=>link.closest('button')).length,ownChipColors:links.filter(link=>link.closest('span.ds-gained-chip')).map(link=>getComputedStyle(link).color),singleSource:sources.length===1,sourceTargets:[...node.querySelectorAll('.ds-ability-sources a[data-target-id]')].map(link=>link.dataset.targetId),expectedSourceTarget:own&&root.classList.contains('ds-roster-card')?null:source?.canonicalRuleId||source?.ruleId};
+      });});
+      for(const reference of references){assert(reference.referenceCount>0,'Original canonical ability target remains on the same physical card: '+reference.id);assert.equal(reference.nestedButtonLinks,0,'Canonical anchors are not nested in buttons');for(const color of reference.ownChipColors)assert.equal(color,'rgb(199, 174, 117)','An own-chip canonical anchor inherits the gained accent');if(reference.singleSource)assert.deepEqual(reference.sourceTargets,reference.expectedSourceTarget?[reference.expectedSourceTarget]:[],'Core-definition retention leaves the exact single-source proof anchor cardinality unchanged');}
+      return references;
+     });
+     if(row.nativeLinks)await check('native-librarian-source-navigation',meta,async()=>{
+      const opened=[];for(const target of row.nativeLinks){const link=card.locator(`.ds-section-sources a[data-represented-ability-id="${target}"]`);assert.equal(await link.getAttribute('data-target-id'),target,'Native aggregate retains the exact represented ability target');const body=await page.evaluate(target=>{const card=window.ArmyBookAppV2.payload.cards.find(card=>card.id===target),text=card.fields.find(field=>field.source?.path==='/text').value;return text.startsWith(card.title+':')?text.slice(card.title.length+1).trimStart():text;},target);opened.push(await openCanonicalReference(page,link,target,body));}return opened;
+     });
+     if(row.formation&&id===setup.attachment.leader)await check('lord-of-host-core-navigation',meta,async()=>{
+      const modern=await card.evaluate(node=>node.classList.contains('ds-roster-card'));
+      for(const [target,parameters]of [['core-infiltrators',{}],['core-scouts',{distance:6}]]){
+       const ability=card.locator(`.ds-effective-ability[data-canonical-ability-id="${target}"]`);assert.equal(await ability.count(),1,'Exactly one retained MODEL ability');const proof=await ability.evaluate(node=>({parameters:JSON.parse(node.dataset.abilityParameters),subject:node.dataset.recipientSubject,scopes:JSON.parse(node.dataset.recipientScopes).map(scope=>JSON.parse(scope)),sources:JSON.parse(node.dataset.abilitySources),chipTag:node.querySelector('.ds-gained-chip')?.tagName}));
+       assert.deepEqual(proof.parameters,parameters);assert.equal(proof.subject,'MODEL');if(modern)assert.equal(proof.chipTag,'SPAN','Own formation grant uses a non-button chip');else assert.equal(proof.chipTag,undefined,'Historical native link has no new gained-chip wrapper');assert.equal(proof.sources.length,1);const source=proof.sources[0];assert.equal(source.canonicalRuleId||source.ruleId,'datasheet-lord-exultant:section:4');assert.equal(source.sourceInstanceId,id);assert.equal(source.targetInstanceId,id);assert.equal(source.targetProfileId,'datasheet-lord-exultant:profile:1');assert.deepEqual(source.sourceFields,[['blocks',0,'text']]);assert.deepEqual(proof.scopes,[[id,source.targetProfileId,source.targetCompositionId??null]],'Exact MODEL recipient scope remains unchanged');
+       const runtime=await page.evaluate(({id,effectId})=>window.ArmyBookAppV2.roster.effective(id).applied.filter(source=>source.effectId===effectId),{id,effectId:source.effectId});assert.equal(runtime.length,1,'Exact existing executed formation contribution');for(const key of ['ruleId','effectId','sourceInstanceId','targetInstanceId','targetProfileId','targetCompositionId','targetModelInstanceId','sourceFields'])assert.deepEqual(source[key]??null,runtime[0][key]??null,'Rendered MODEL provenance matches the existing runtime: '+key);
+      }
+      return openCanonicalReference(page,card.locator('.ds-effective-ability[data-canonical-ability-id="core-scouts"] a[data-target-id="core-scouts"]'),'core-scouts');
+     });
      await check('existing-unit-metrics-at-top',meta,async()=>{
       const expected=await page.evaluate(instanceId=>{const effective=window.ArmyBookAppV2.roster.effective(instanceId);return Object.entries(effective.unitMetrics||{}).flatMap(([key,value])=>{
        const sources=(effective.unitMetricSources||[]).filter(source=>source.field===key);

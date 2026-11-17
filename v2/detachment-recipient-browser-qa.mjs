@@ -94,7 +94,11 @@ async function openExactGainedGroup(node){
 }
 async function rows(page,ruleId,clauseId){
   const policies=page.locator('main .ds-conditional-policy'),indexes=await policies.evaluateAll((nodes,{ruleId,clauseId})=>nodes.flatMap((node,index)=>{const source=JSON.parse(node.dataset.policySource||'{}');return source.ruleId===ruleId&&source.clauseId===clauseId?[index]:[];}),{ruleId,clauseId});
-  for(const index of indexes)await openExactGainedGroup(policies.nth(index));
+  for(const index of indexes){
+    const exact=policies.nth(index);await openExactGainedGroup(exact);
+    const physical=exact.locator('xpath=ancestor::*[contains(concat(" ",normalize-space(@class)," ")," unit-card ")][1]');
+    await assertNoVisibleLegacyAttribution(physical);
+  }
   const found=await policies.evaluateAll((nodes,{ruleId,clauseId})=>nodes.flatMap(node=>{
   const source=JSON.parse(node.dataset.policySource||'{}');if(source.ruleId!==ruleId||source.clauseId!==clauseId)return [];
   const shared=node.dataset.detachmentClauseTextRef?document.getElementById(node.dataset.detachmentClauseTextRef):null;
