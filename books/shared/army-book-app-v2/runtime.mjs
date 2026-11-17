@@ -15,6 +15,8 @@ import {installDatasheetLayout, flushDatasheetLayouts} from './datasheet-v1-layo
 import {createBookPresenter} from './book-v1.mjs';
 import {createV1RelatedPanel} from './related-v1.mjs';
 import {positionV1Popup} from './popup-v1.mjs';
+import {createRulePopupPresenter,focusedRuleField,rulePopupKinds} from './rule-popup.mjs';
+import {createRuleTermLinker} from './rule-term-links.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
 const rosterRoute = 'view-roster';
 const personalRoute = 'view-roster-guide';
@@ -72,6 +74,8 @@ export function mount(document, payload, options = {}) {
   const exactValue = value => typeof value === 'object' ? JSON.stringify(value) : String(value);
   const humanKind = kind => String(kind || 'Entry').replace(/[-_]/g, ' ');
   const anchor = (label, id, detail = false, presentation = {}) => {
+    const field=detail&&focusedRuleField(cards.get(id),{fieldPath:presentation.fieldPath,label});
+    if(field&&!presentation.fieldPath)presentation={...presentation,fieldPath:field.source.path};
     const node = el('a', detail ? 'v2-reference' : 'v2-card-link', label);
     node.href = routeURL(id,detail,presentation);
     node.dataset.targetId = id;
@@ -179,14 +183,17 @@ export function mount(document, payload, options = {}) {
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state, options.roster.projection);
   const scopedIds = () => personalMode ? personalBook().allowedIds : null;
+  const termLinker=createRuleTermLinker({document,cards,index:payload.glossary,anchor});
+  const rulePopups=createRulePopupPresenter({document,cards,payload,el,factValue,anchor,linkTerms:node=>termLinker.link(node)});
   const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL:options.assetBaseURL,
+    linkTerms:node=>termLinker.link(node),
     renderCanonicalRule:card=>bookPresenter.accepts(card)||card.kind==='STRUCTURED_RULE_TABLE'
       ?bookPresenter.render(card,{inline:true}):renderCard(card,{depth:1}),
     related:renderRelatedRules,roster:options.roster,presentationRuleSources:options.presentationRuleSources,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
-  const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon});
+  const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon,linkTerms:node=>termLinker.link(node)});
   const referencePresenter=createReferencePresenter({el,factValue,anchor,contract:references,cards,payload,allowedIds:scopedIds,
-    renderWeapon:datasheets.renderWeapon,renderProfile:datasheets.renderProfile});
+    renderWeapon:datasheets.renderWeapon,renderProfile:datasheets.renderProfile,linkTerms:node=>termLinker.link(node)});
   let popupPresentation=null;
 
   function factValue(tag, field) {
@@ -214,7 +221,7 @@ export function mount(document, payload, options = {}) {
       field.targetIds.forEach(id => references.append(anchor(cards.get(id).title, id, true)));
       row.append(references);
     }
-    if (payload.sourceDisclosure && field.source) {
+    if (options.devSourceDisclosure === true && payload.sourceDisclosure && field.source) {
       const disclosure = el('details', 'v2-source');
       disclosure.append(el('summary', '', 'Source'), el('code', '', `${field.source.entityId} · ${field.source.path}`));
       row.append(disclosure);
@@ -311,7 +318,9 @@ export function mount(document, payload, options = {}) {
     return container;
   }
 
-  function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true, sourceEvidence = false} = {}) {
+  function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true, sourceEvidence = false, fieldPath = null, wargear = false, originUnitId = null} = {}) {
+    if(inDialog&&!sourceEvidence){const focused=rulePopups.render(card,{fieldPath,wargear,originUnitId});if(focused)return focused;
+      if(rulePopupKinds.has(card.kind)&&card.kind!=='WARGEAR_OPTION')return el('p','v2-not-found','Choose a named ability from the Glossary to read its complete rule.');}
     if(!sourceEvidence&&card.domain==='CORE')return referencePresenter.render(card.id,{popup:inDialog});
     if(!sourceEvidence&&bookPresenter.accepts(card))return bookPresenter.render(card,{inDialog,primaryDetail});
     if(card.kind==='DATASHEET'&&!sourceEvidence) {
@@ -341,7 +350,7 @@ export function mount(document, payload, options = {}) {
     title.className = 'v2-card-title';
     if (!depth && inDialog && primaryDetail) title.id = 'v2-detail-heading';
     cardHeader.append(el('span', 'v2-kind', humanKind(card.kind)), title);
-    const permalink = anchor('↗', card.id);
+    const permalink = anchor('Open in Army Book', card.id);
     permalink.className = 'v2-permalink';
     permalink.setAttribute('aria-label', `Open ${card.title}`);
     permalink.title = 'Open this entry';
@@ -763,7 +772,12 @@ export function mount(document, payload, options = {}) {
       const instanceId=context.instanceId;
       const {variants,selected:effectiveCards}=instanceId?effectiveReference(id,context):{};
       const projectedCards=variants?.get(id);
-      dialogContent.replaceChildren(...(effectiveCards?.length
+      const focused=rulePopups.render(cards.get(id),{fieldPath:context.fieldPath,
+        reference:Boolean(state.armyBookV2.detailReference),
+        wargear:Boolean(popupOrigin?.closest('[data-selected-canonical-ids]')),
+        originUnitId:popupOrigin?.closest('.unit-card[data-roster-instance-id]')?.dataset.cardId||null});
+      const unresolved=rulePopupKinds.has(cards.get(id).kind)&&cards.get(id).kind!=='WARGEAR_OPTION';
+      dialogContent.replaceChildren(...(focused?[focused]:unresolved?[el('p','v2-not-found','Choose a named ability from the Glossary to read its complete rule.')]:effectiveCards?.length
         ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
         : projectedCards ? [el('p','v2-not-found','This profile is not available in this roster unit.')]
         : [(cards.get(id).domain==='CORE'||state.armyBookV2.detailReference)&&!['PROFILE','WEAPON_PROFILE'].includes(cards.get(id).kind)

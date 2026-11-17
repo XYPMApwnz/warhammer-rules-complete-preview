@@ -1,6 +1,6 @@
 /** Catalog articles and popups share this presentation, not generic record cards. */
 import {hasSourceTableLayout, renderSourceTable} from './source-table.mjs';
-export function createReferencePresenter({el,factValue,anchor,contract,cards,payload,allowedIds,renderWeapon,renderProfile}) {
+export function createReferencePresenter({el,factValue,anchor,contract,cards,payload,allowedIds,renderWeapon,renderProfile,linkTerms=()=>{}}) {
   const value=(tag,field)=>{const node=factValue(tag,field);node.className='reference-fact';return node;};
   function render(id,{popup=false}={}) {
     const model=contract.resolve(id,allowedIds());
@@ -13,7 +13,11 @@ export function createReferencePresenter({el,factValue,anchor,contract,cards,pay
       return article;
     }
     const header=el('header','reference-header');
-    header.append(el('p','reference-context',`${model.category} · ${model.contextLabel}`));
+    const coreCode=target.coreCode||target.fields?.find(field=>field.source?.path==='/code')?.value;
+    const popupType=target.domain==='CORE'&&/^24\.\d{2}$/.test(coreCode||'')?'Core ability':
+      ({ABILITY:'Datasheet ability',DATASHEET_ABILITY:'Datasheet ability',WARGEAR_ABILITY:'Wargear ability',ARMY_RULE:'Army rule',
+        ARMY_RULE_COMPONENT:'Army rule',DETACHMENT_RULE:'Detachment rule',ENHANCEMENT:'Enhancement',STRATAGEM:'Stratagem'})[target.kind]||model.category;
+    header.append(el('p','reference-context',`${popup?popupType:model.category} · ${model.contextLabel}`));
     const title=model.titleField?value(popup?'h2':'h1',model.titleField):el(popup?'h2':'h1','',model.title);
     title.classList.add('reference-title');if(popup)title.id='v2-detail-heading';header.append(title);
     const pointId=payload.bookPresentation?.records[id]?.pointRecordId;
@@ -54,13 +58,13 @@ export function createReferencePresenter({el,factValue,anchor,contract,cards,pay
         const rows=new Map();for(const field of fields){if(!rows.has(field.table.row))rows.set(field.table.row,[]);rows.get(field.table.row).push(field);}
         const tbody=el('tbody');for(const rowFields of rows.values()){const row=el('tr');for(const field of rowFields.toSorted((a,b)=>a.table.column-b.table.column)){const cell=el('td');cell.append(value('span',field));if(field.visual){const image=el('img');Object.assign(image,field.visual);image.src=field.visual.url;cell.append(image);}row.append(cell);}tbody.append(row);}table.append(tbody);wrap.append(table);body.append(wrap);
       }
-      article.append(body);
+      linkTerms(body);article.append(body);
     }
     if(model.references.length) {
       const related=el('nav','reference-links');related.setAttribute('aria-label','Related references');related.append(el('h3','','Related references'));
       for(const link of model.references)related.append(anchor(link.label,link.targetId,true,{reference:true}));article.append(related);
     }
-    if(popup){const permalink=anchor('Open full entry',id,false,{reference:true});permalink.className='v2-permalink reference-permalink';article.append(permalink);}
+    if(popup){const permalink=anchor('Open in Glossary',id,false,{reference:true});permalink.className='v2-permalink reference-permalink';article.append(permalink);}
     return article;
   }
   // Text nodes are created through the supplied DOM factory to keep testing portable.

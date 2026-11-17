@@ -8269,6 +8269,24 @@
       ]
     },
     {
+      "path": "books/shared/army-book-app-v2/rule-popup.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/runtime.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/runtime.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/army-book-app-v2/runtime.mjs",
       "reasons": [
         {

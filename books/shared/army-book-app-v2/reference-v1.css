@@ -11,6 +11,12 @@
 .v1-reference-article .reference-definition p { margin: 0 0 14px; white-space: pre-wrap; }
 .v1-reference-article h3 { color: var(--book-ink, #e2dcc9); font-size: 17px; margin: 20px 0 10px; }
 .v1-reference-article .reference-fact { color: inherit; }
+.unit-card a.rule-term-link,
+.v1-reference-article a.rule-term-link {
+  display: inline; min-height: 0; padding: 0; border: 0; background: none;
+  color: inherit; font: inherit; line-height: inherit; white-space: normal;
+  text-decoration: underline; text-underline-offset: 2px;
+}
 .v1-reference-article .reference-links { display: flex; flex-wrap: wrap; gap: 10px 18px; border-top: 1px solid var(--book-control-line, #565b3b); margin-top: 20px; }
 .v1-reference-article .reference-links h3 { flex-basis: 100%; }
 .v1-reference-article a { color: var(--book-link, var(--book-ink, #e2dcc9)); background: transparent; border-color: var(--book-control-line, #565b3b); text-decoration: underline; text-underline-offset: 3px; }

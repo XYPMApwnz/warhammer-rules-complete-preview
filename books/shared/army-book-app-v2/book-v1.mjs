@@ -7,7 +7,7 @@ const bookKinds = new Set(['BOOK_USAGE_RULES','BOOK_USAGE','ARMY_RULE','ARMY_RUL
 const layoutPath=field=>field.presentationPath??field.source?.path;
 const fieldAt = (card,path) => card.fields?.find(field=>layoutPath(field)===path);
 
-export function createBookPresenter({document,payload,cards,el,factValue:makeFactValue,anchor,allowedIds,renderWeapon}) {
+export function createBookPresenter({document,payload,cards,el,factValue:makeFactValue,anchor,allowedIds,renderWeapon,linkTerms=()=>{}}) {
   const config=payload.bookPresentation;
   if(config?.schema!=='army-book-app-v2/book-v1-presentation')throw new TypeError('Missing book presentation projection');
   const records=config.records;
@@ -21,7 +21,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
   const heading=(card,tag,className,{popup=false}={})=>{
     const field=card.fields.find(field=>field.presentation==='heading'||field.type==='heading');
     const node=el(tag,className);
-    if(field){const value=factValue('span',field);if(popup)node.append(value);else{const link=anchor('',card.id,true);link.className='term-button v2-reference';link.append(value);node.append(link);}}
+    if(field)node.append(factValue('span',field));
     else node.textContent=card.title;
     return node;
   };
@@ -33,7 +33,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
     node.dataset.sourceIds=JSON.stringify(ids);
   };
   const paragraph=(node,field,className='content-block')=>{
-    const block=el('div',className);block.append(factValue('p',field));node.append(block);
+    const block=el('div',className);block.append(factValue('p',field));linkTerms(block);node.append(block);
   };
   const textPresentation=(card,field)=>{
     // A source capture can contain a flattened table occurrence in its prose
@@ -97,7 +97,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
       if(!caption)throw new TypeError('Missing structured Stratagem field label');
       line.append(factValue('b',caption),el('br'),factValue('span',field));node.append(line);
     }
-    if(options.popup)sourceFooter(card,node);return node;
+    if(options.popup)sourceFooter(card,node);linkTerms(node);return node;
   };
   const renderEnhancement=(card,options)=>{
     const node=identity(el('article','enhancement surface'),card),record=records[card.id];
@@ -168,8 +168,11 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
     else node=renderRule(card,options);
     if(inDialog&&primaryDetail){
       node.querySelector('h3,h4,h5')?.setAttribute('id','v2-detail-heading');
-      const permalink=anchor('Open this entry',card.id);permalink.className='v2-permalink book-permalink';node.append(permalink);
+      const type={ARMY_RULE:'Army rule',ARMY_RULE_COMPONENT:'Army rule',DETACHMENT_RULE:'Detachment rule',ENHANCEMENT:'Enhancement',STRATAGEM:'Stratagem'}[card.kind];
+      if(type)node.prepend(el('p','reference-context',type));
+      const permalink=anchor('Open in Army Book',card.id);permalink.className='v2-permalink book-permalink';node.append(permalink);
     }
+    linkTerms(node);
     return node;
   };
   return Object.freeze({accepts,render});

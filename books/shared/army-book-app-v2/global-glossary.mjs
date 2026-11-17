@@ -30,6 +30,7 @@ export function adaptGlobalGlossary(corpus,{bookId='',registryLabels={}}={}) {
     const links=(entry.canonicalReferences||[]).filter(reference=>byId.has(reference.id)).map(reference=>({targetId:reference.id,label:reference.relationType==='faqIds'?'FAQ':human(reference.relationType),...(reference.relationType==='sourceRuleId'?{relation:'sourceRuleId'}:{})}));
     for(const id of content.structured?.terrainLayoutReference?.memberIds||[])if(byId.has(id)&&!links.some(link=>link.targetId===id))links.push({targetId:id,label:'Force Disposition'});
     cards.push({id:entry.id,identity,kind:entry.recordType,domain:entry.domain,title:entry.label,fields,links,children:[],
+      ...(entry.domain==='CORE'?{coreCode:entry.facts?.canonicalData?.code||entry.facts?.code}:{}),
       provenance:entry.provenance,...(entry.fieldProvenance?{fieldProvenance:entry.fieldProvenance}:{}),sourceParentId:entry.parent?.canonicalId||null,
       contextRegistryIds:(entry.contexts||[]).map(context=>context.effectiveBookId),
       contextParentIds:(entry.contexts||[]).map(context=>context.parentUnitId).filter(Boolean),referenceVisuals:content.structured});

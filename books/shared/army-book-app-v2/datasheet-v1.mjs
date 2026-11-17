@@ -50,6 +50,7 @@ const layoutPath=field=>field.presentationPath ?? field.source?.path;
 const pointerKey=field=>layoutPath(field)?.slice(1).split('/')[0];
 const single=(card,key)=>card.fields.find(f=>layoutPath(f)==='/'+key);
 const domKey=value=>encodeURIComponent(value).replace(/%/g,'_');
+const weaponFieldLabels=mode=>({range:'Range',attacks:'A',skill:mode==='melee'?'WS':'BS',strength:'S',ap:'AP',damage:'D'});
 
 /** Two source representations, one physical datasheet. An explicit section
  * identity and a unique whole paragraph prove the overlap, never a title match
@@ -102,7 +103,7 @@ export function hasInlineUnitMetricSource(root,source,cards){
   });
 }
 
-export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL,related,roster,navigateSection,renderCanonicalRule,presentationRuleSources=new Map()}) {
+export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL,related,roster,navigateSection,renderCanonicalRule,presentationRuleSources=new Map(),linkTerms=()=>{}}) {
   const listen=(node,type,callback)=>lifecycle?lifecycle.listen(node,type,callback):node.addEventListener(type,callback);
   const config=payload.datasheetPresentation;
   const physicalCards=prepareRosterPresentationCards(cards,payload.rosterPresentation);
@@ -123,6 +124,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     return link;
   };
   const heading=(card,tag='h4')=>{const field=card.fields.find(f=>f.presentation==='heading');return field?factValue(tag,field):el(tag,'',card.title);};
+  const sourceReference=(label,source,id=source.canonicalRuleId||source.ruleId)=>{
+    const paths=(source.sourceFields||[]).filter(Array.isArray).map(path=>'/'+path.map(value=>String(value).replaceAll('~','~0').replaceAll('/','~1')).join('/'));
+    const fields=(cards.get(id)?.fields||[]).filter(field=>typeof field.value==='string'&&
+      (paths.includes(field.source?.path)||paths.includes(layoutPath(field)))&&
+      (field.source?.path?.endsWith('/text')||layoutPath(field)==='/semanticContent'));
+    return anchor(label,id,true,fields.length===1?{fieldPath:fields[0].source.path}:{});
+  };
   const sourceText=(value,{field,heading:repeatedHeading}={})=>{
     const blocks=sourceTextBlocks(value,{heading:repeatedHeading});
     const hasList=blocks.some(block=>block.kind==='LIST');
@@ -224,7 +232,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       origin.sourceCompositionId??null,origin.sourceModelInstanceId??null]),origin])).values()];
     for(const [index,origin]of unique.entries()){
       if(index)note.append(document.createTextNode('; '));
-      const link=anchor(sourceRuleCaption(origin,cards),origin.canonicalRuleId,true);link.dataset.modifierSourceRuleId=origin.canonicalRuleId;
+      const link=sourceReference(sourceRuleCaption(origin,cards),origin,origin.canonicalRuleId);link.dataset.modifierSourceRuleId=origin.canonicalRuleId;
       link.dataset.modifierSourceInstanceId=origin.sourceInstanceId||'';note.append(link);
       const physical=roster.state.units.find(unit=>unit.instanceId===origin.sourceInstanceId);
       if(physical){const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
@@ -256,7 +264,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       for(const [index,{source,traces}]of [...sources.values()].entries()){
         if(index)attribution.append(document.createTextNode('; '));
         const label=cards.get(source.ruleId)?.title||source.ruleId;
-        const link=anchor(sourceRuleCaption({...source,canonicalRuleId:source.ruleId,label},cards),source.ruleId,true);
+        const link=sourceReference(sourceRuleCaption({...source,canonicalRuleId:source.ruleId,label},cards),source,source.ruleId);
         link.dataset.abilitySourceInstanceId=source.sourceInstanceId||'';
         link.dataset.abilitySourceModelInstanceId=source.sourceModelInstanceId||'';
         attribution.append(link);
@@ -303,7 +311,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const note=el('p','ds-ability-sources ds-keyword-source');note.append(document.createTextNode(String(field.value)+' · Source: '));
     for(const [index,source]of field.keywordSources.entries()){
       if(index)note.append(document.createTextNode('; '));
-      const link=anchor(sourceRuleCaption(source,cards),source.canonicalRuleId,true);
+      const link=sourceReference(sourceRuleCaption(source,cards),source,source.canonicalRuleId);
       link.dataset.keywordSourceRuleId=source.canonicalRuleId;
       link.dataset.keywordSourceInstanceId=source.sourceInstanceId||'';
       link.dataset.keywordRecipientInstanceId=source.targetInstanceId;
@@ -383,7 +391,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         }
         for(const [index,{source,targets}]of [...groups.values()].entries()){
           if(index)note.append(document.createTextNode('; '));
-          const origin=anchor(sourceRuleCaption(source,cards),source.canonicalRuleId,true);origin.dataset.weaponGrantSourceRuleId=source.canonicalRuleId;
+          const origin=sourceReference(sourceRuleCaption(source,cards),source,source.canonicalRuleId);origin.dataset.weaponGrantSourceRuleId=source.canonicalRuleId;
           origin.dataset.weaponGrantSourceInstanceId=source.sourceInstanceId||'';note.append(origin);
           const physical=roster?.state.units.find(unit=>unit.instanceId===source.sourceInstanceId);
           if(physical){const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
@@ -414,14 +422,14 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const sources=new Map(card.criticalHitSources.map(source=>[JSON.stringify([source.ruleId,source.sourceInstanceId,source.sourceCompositionId]),source]));
       for(const [index,source]of [...sources.values()].entries()) {
         if(index)note.append(document.createTextNode(' · '));
-        const link=anchor(sourceRuleCaption(source,cards),source.ruleId,true);link.dataset.criticalHitSourceInstanceId=source.sourceInstanceId||'';
+        const link=sourceReference(sourceRuleCaption(source,cards),source,source.ruleId);link.dataset.criticalHitSourceInstanceId=source.sourceInstanceId||'';
         note.append(link);
       }
       nameCell.append(note);
     }
     if(card.rosterQuantity!==undefined)nameLine.append(el('small','ds-weapon-quantity',` ×${card.rosterQuantity}`));
     if(popup) {const h=el('h3');h.append(nameCell);row.append(h);}else row.append(nameCell);
-    const fieldLabels={range:'Range',attacks:'A',skill:(mode?.value??card.weaponMode)==='melee'?'WS':'BS',strength:'S',ap:'AP',damage:'D'};
+    const fieldLabels=weaponFieldLabels(mode?.value??card.weaponMode);
     let table,body;
     if(popup){table=el('table','popup-weapon-table');const head=el('tr');for(const label of Object.values(fieldLabels)){const th=el('th','',label);th.scope='col';head.append(th);}const thead=el('thead');thead.append(head);body=el('tr');const tbody=el('tbody');tbody.append(body);table.append(thead,tbody);}
     for(const [key,label] of Object.entries(fieldLabels)){
@@ -452,7 +460,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       if(role==='abilities'||role==='wargear-abilities'){
         // Split a display caption, retaining exactly the same factual string.
         const caption=value.querySelector('p')||value,text=caption.textContent,colon=text.indexOf(':');
-        if(colon>0&&(caption!==value||value.tagName==='P')){caption.replaceChildren();const label=scopedAnchor(text.slice(0,colon+1),card,instanceId,field.source.path);caption.append(label,document.createTextNode(text.slice(colon+1)));}
+        if(colon>0&&(caption!==value||value.tagName==='P')){caption.replaceChildren();const label=el('strong','ds-inline-rule-title',text.slice(0,colon+1));label.dataset.targetId=card.id;label.dataset.sourceFieldPath=field.source.path;caption.append(label,document.createTextNode(text.slice(colon+1)));}
       }
       content.append(value);used.add(field.id);
       list.append(content);
@@ -676,7 +684,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         source.canonicalRuleId||source.ruleId,source.sourceInstanceId??null,source.sourceCompositionId??null,
         source.sourceModelInstanceId??null,source.sourceFields,sourceSnapshot(source),entry.label]),entry];})).values()];
       unique.forEach(({label,source},index)=>{if(index)proof.append(document.createTextNode('; '));
-        proof.append(anchor(label,source.canonicalRuleId||source.ruleId,true));});
+        proof.append(sourceReference(label,source));});
     };
     // Price facts remain MFM-owned. Select their already declared model/copy
     // bounds rather than parsing human captions or using exported prices.
@@ -786,10 +794,20 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       if(reference){
         let group=null;for(const source of sources){group=sourceGroup(source.canonicalRuleId||source.ruleId,source.sourceInstanceId||null);if(group)break;}
         if(group){
-          let navigation=group.querySelector(':scope > .ds-gained-rule-links');
-          if(!navigation){navigation=el('p','ds-gained-rule-links');navigation.setAttribute('aria-label','Rule definitions');group.append(navigation);}
-          const existing=[...navigation.querySelectorAll('a[data-target-id]')].some(link=>link.dataset.targetId===reference.dataset.targetId&&link.textContent===reference.textContent);
-          if(!existing){if(navigation.childNodes.length)navigation.append(document.createTextNode(' · '));navigation.append(reference);}
+          reference.classList.add('rule-term-link');
+          // The granted Core ability is explained by the existing source prose.
+          // Retain its precise canonical navigation inside that prose, rather
+          // than leaving an unlabelled extra control below the source group.
+          const existing=[...group.querySelectorAll('a[data-target-id]')].some(link=>link.dataset.targetId===reference.dataset.targetId&&link.textContent===reference.textContent);
+          if(!existing){
+            const walker=document.createTreeWalker(group,4);let text,placed=false;
+            while((text=walker.nextNode())){
+              if(text.parentElement.closest('a,button,h1,h2,h3,h4,h5,h6'))continue;
+              const at=text.textContent.indexOf(label);if(at<0)continue;
+              const tail=text.splitText(at);tail.splitText(label.length);tail.replaceWith(reference);placed=true;break;
+            }
+            if(!placed){const definition=el('p','ds-granted-definition','Granted ability: ');definition.append(reference);group.append(definition);}
+          }
         }else if(wrap.querySelector('.ds-gained-chip').tagName==='SPAN'){
           wrap.querySelector('.ds-gained-chip').replaceChildren(document.createTextNode('+ '),reference);
         }else ability.append(reference);
@@ -815,11 +833,14 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     for(const group of root.querySelectorAll('.weapon-group')){
       const rows=[...group.querySelectorAll('.weapon-row:not(.weapon-head)')],bySource=new Map();
-      for(const row of rows){for(const proof of row.querySelectorAll('[data-weapon-grant-sources], [data-critical-hit-sources]')){
-        const sources=JSON.parse(proof.dataset.weaponGrantSources||proof.dataset.criticalHitSources||'[]');
+      const fieldLabels=weaponFieldLabels(group.querySelector('.weapon-table')?.getAttribute('aria-label')?.startsWith('melee')?'melee':'ranged');
+      for(const row of rows){for(const proof of row.querySelectorAll('[data-weapon-grant-sources], [data-critical-hit-sources], .ds-weapon-modifier-proof[data-modifier-attribution]')){
+        const sources=JSON.parse(proof.dataset.weaponGrantSources||proof.dataset.criticalHitSources||proof.dataset.modifierAttribution||'[]');
         const chip=proof.closest('.ds-gained-control')?.querySelector('.ds-gained-chip');if(!chip)continue;
         for(const source of sources){const key=JSON.stringify([source.canonicalRuleId||source.ruleId,source.sourceInstanceId,source.sourceCompositionId||null,source.sourceModelInstanceId||null,source.sourceFields,sourceSnapshot(source)]);
-          if(!bySource.has(key))bySource.set(key,{source,rows:new Map(),contributions:new Map()});const value=bySource.get(key);if(!value.rows.has(row))value.rows.set(row,new Set());value.rows.get(row).add(chip.textContent);if(!value.contributions.has(chip.textContent))value.contributions.set(chip.textContent,[]);value.contributions.get(chip.textContent).push(source);
+          const delta=source.operation==='MODIFY_STAT'&&Number.isFinite(Number(source.before))&&Number.isFinite(Number(source.after))?Number(source.after)-Number(source.before):null;
+          const label=delta!==null&&fieldLabels[source.field]?`${delta<0?'−':'+'}${Math.abs(delta)} ${fieldLabels[source.field]}`:chip.textContent;
+          if(!bySource.has(key))bySource.set(key,{source,rows:new Map(),contributions:new Map()});const value=bySource.get(key);if(!value.rows.has(row))value.rows.set(row,new Set());value.rows.get(row).add(label);if(!value.contributions.has(label))value.contributions.set(label,[]);value.contributions.get(label).push(source);
         }
       }}
       const occurrences=rows.flatMap(row=>JSON.parse(row.dataset.weaponOccurrences||'[]'));
@@ -834,8 +855,21 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         const title=sourceRuleCaption(source,cards),physical=source.sourceInstanceId&&source.sourceInstanceId!==instanceId?humanPhysicalCaption(source.sourceInstanceId):null;
         const attribution=hasForeignSource([source])?` — ${title}${physical?' ('+physical+')':''}`:'';
         const line=el('p','ds-gained-weapon-summary',`All ${mode} weapons: ${commonLabels.join(', ')}${attribution}`);
-        line.dataset.gainedWeaponSummary='';line.dataset.gainedSourceIdentity=JSON.stringify(source);group.insertBefore(line,group.querySelector('.weapon-table'));
+        line.dataset.gainedWeaponSummary='';line.dataset.gainedSourceIdentity=JSON.stringify(source);
+        line.dataset.summaryLabels=JSON.stringify(commonLabels);line.dataset.summaryAttribution=attribution;
+        line.dataset.summarySourceKey=JSON.stringify([source.canonicalRuleId||source.ruleId,source.sourceInstanceId,source.sourceCompositionId||null,source.sourceModelInstanceId||null,source.sourceFields,sourceSnapshot(source)]);
+        group.insertBefore(line,group.querySelector('.weapon-table'));
       }
+    }
+    const weaponGroups=[...root.querySelectorAll('.weapon-group')].filter(group=>group.querySelector('.weapon-row:not(.weapon-head)'));
+    const summaries=new Map();
+    for(const group of weaponGroups)for(const line of group.querySelectorAll(':scope > .ds-gained-weapon-summary')){
+      const key=line.dataset.summarySourceKey+'|'+line.dataset.summaryLabels;
+      if(!summaries.has(key))summaries.set(key,[]);summaries.get(key).push({group,line});
+    }
+    for(const rows of summaries.values())if(weaponGroups.length>1&&new Set(rows.map(row=>row.group)).size===weaponGroups.length){
+      const line=rows[0].line;line.textContent='All weapons: '+JSON.parse(line.dataset.summaryLabels).join(', ')+line.dataset.summaryAttribution;
+      weaponGroups[0].before(line);for(const row of rows.slice(1))row.line.remove();
     }
     for(const old of [...root.children].filter(node=>['attached-rules','enhancements','executable-detachment-rules','conditional-policies'].includes(node.dataset.datasheetSection))){
       if(old.children.length===1)old.remove();
@@ -982,7 +1016,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const sources=new Map(metric.sources.map(source=>[JSON.stringify([source.ruleId,source.sourceInstanceId]),source]));
       for(const [index,source]of [...sources.values()].entries()){
         if(index)node.append(document.createTextNode(' · '));
-        const link=anchor(sourceRuleCaption(source,cards),source.ruleId,true);
+        const link=sourceReference(sourceRuleCaption(source,cards),source,source.ruleId);
         link.dataset.metricSourceInstanceId=source.sourceInstanceId||'';node.append(link);
       }
       unitModifiers.append(node);
@@ -1429,9 +1463,25 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
               // Explicit source spans retain priority; identity and ownership
               // still come exclusively from the imported canonical selection.
               const field=captionSource||captionField||name||selectedField;
+              const effectReferences=equipment?(selection.sourceReferences||[]).flatMap(reference=>{
+                const owner=cards.get(reference.entityId),effect=owner?.fields.find(field=>field.source?.path===reference.path);
+                const marker=owner?.fields.find(field=>field.source?.path===reference.path.replace(/\/text$/,'/wargearAbility'));
+                return typeof effect?.value==='string'&&marker?.value===true?[{owner,effect}]:[];
+              }):[];
+              const generic=cards.get(selection.sourceEquipmentIdentity);
+              const genericField=generic?.kind==='EQUIPMENT_RULE'&&single(generic,'text');
+              const selectedMarker=target.fields.find(field=>field.source?.path===selectedField?.source?.path?.replace(/\/text$/,'/wargearAbility'));
+              const directEffect=equipment&&(['ABILITY','WARGEAR_ABILITY','SUPPLEMENTAL_DATASHEET_RULE','EQUIPMENT_RULE'].includes(target.kind)||
+                target.kind==='DATASHEET_SECTION'&&selectedMarker?.value===true)&&selectedField;
+              const bound=boundAbilities.filter(binding=>binding.itemId===id).map(binding=>({owner:cards.get(binding.ruleId),effect:cards.get(binding.ruleId)?.fields.find(field=>field.source?.path===binding.fieldPath)})).filter(value=>value.effect);
+              const candidates=genericField?[{owner:generic,effect:genericField}]:directEffect?[{owner:target,effect:selectedField}]:effectReferences.length?effectReferences:bound;
+              const distinctEffects=[...new Map(candidates.map(value=>[value.effect.id,value])).values()];
+              const effect=distinctEffects.length===1?distinctEffects[0]:null;
               const effectiveTarget=target.kind==='WEAPON_PROFILE'?variants?.get(id)?.find(candidate=>(item.scopeIds||[null]).includes(candidate.scopeId||null)):null;
-              const link=effectiveTarget?scopedAnchor('',effectiveTarget,instanceId):anchor('',id,true);
-              if(field){const caption=factValue('span',field);
+              const link=effect?anchor('',effect.owner.id,true,{fieldPath:effect.effect.source.path}):effectiveTarget?scopedAnchor('',effectiveTarget,instanceId):equipment||target.kind==='WARGEAR_OPTION'?el('span'):anchor('',id,true);
+              link.classList.remove('term-button');link.classList.add('weapon-button','ds-equipment-link');
+              if(effect){const caption=factValue('span',effect.effect),colon=effect.effect.value.indexOf(':');caption.textContent=colon>0?effect.effect.value.slice(0,colon):effect.owner.title;link.append(caption);}
+              else if(field){const caption=factValue('span',field);
                 if(captionSource)caption.textContent=captionSource.value.slice(captionReference.caption.start,captionReference.caption.end);
                 else if((field===captionField||!name)&&field.value?.indexOf?.(':')>0)caption.textContent=field.value.slice(0,field.value.indexOf(':'));
                 link.append(caption);
@@ -1462,6 +1512,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         const section=renderSection(child,{instanceId,inDialog,sourceListFieldIds,omitSourceHeading:groupedSources.has(child.id)});
         if(groupedSources.has(child.id)){
           const source=el('p','ds-section-sources','Source: ');
+          source.hidden=true;
           groupedSources.get(child.id).forEach((ability,index)=>{if(index)source.append(document.createTextNode('; '));
             const link=scopedAnchor(ability.title,ability,instanceId,'/text');link.dataset.representedAbilityId=ability.id;source.append(link);});
           section.append(source);
@@ -1501,7 +1552,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       if(pointsWarning)context.append(pointsWarning);
       if(u.warlord)context.append(el('span','ds-roster-badge','Warlord'));
       (card.rosterOptionIds||[]).forEach(id=>{const option=cards.get(id);if(!option)throw new TypeError('Unresolved selected canonical option');
-        const link=anchor(option.title,id,true);link.dataset.selectedOptionId=id;context.append(link);});
+        const metadata=el('span');metadata.dataset.selectedOptionId=id;metadata.hidden=true;context.append(metadata);});
       if(assigned)context.append(el('p','',`${['SUPPORT','SUPPORT_EXCEPTION'].includes(assigned.role)?'Supporting':'Leading'}: ${name(assigned.bodyguardInstanceId)}`));
       for(const member of members)context.append(el('p','',`${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
       // Detachment selection lives in roster navigation, not repeated on each unit.
@@ -1581,6 +1632,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     if(payload.relatedRules)root.append(related(card.id,instanceId));
     if(instanceId)presentGainedRules(root,card,instanceId,inDialog);
+    for(const prose of root.querySelectorAll('.ability p,.ds-source-text,[data-attached-rule-text],[data-detachment-field-text],[data-battle-choice-text]'))linkTerms(prose);
     return root;
   };
   return {renderDatasheet,renderProfile,renderWeapon,renderSection};
