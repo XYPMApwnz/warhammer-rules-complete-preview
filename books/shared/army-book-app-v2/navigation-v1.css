@@ -255,36 +255,13 @@ body.v2-v1-navigation #tocPanel .roster-attachment-group {
   position: relative;
 }
 
-body.v2-v1-navigation #tocPanel .roster-attachment-group [data-roster-attachment-role="bodyguard"] {
-  position: relative;
-  padding-top: 8px;
-}
-
-body.v2-v1-navigation #tocPanel .roster-attachment-group [data-roster-attachment-role="bodyguard"] .toc-row::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: -4px;
-  bottom: 50%;
-  left: 10px;
-  border-left: 1px solid var(--v1-toc-tree-line);
-  pointer-events: none;
-}
-
-body.v2-v1-navigation #tocPanel .roster-attachment-group [data-roster-attachment-role="bodyguard"] .toc-row::before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 10px;
-  width: 10px;
-  border-top: 1px solid var(--v1-toc-tree-line);
-  pointer-events: none;
-}
-
-body.v2-v1-navigation #tocPanel .roster-attachment-group [data-roster-attachment-role="bodyguard"] .toc-label {
-  padding-left: 29px;
-}
+body.v2-v1-navigation #tocPanel .roster-attachment-group [data-roster-attachment-role]:not([data-roster-attachment-role="bodyguard"]) .toc-label { padding-left:24px; }
+body.v2-v1-navigation #tocPanel .roster-warlord { color:var(--v1-nav-bronze-bright); }
+body.v2-v1-navigation #tocPanel .toc-roster-summary { font-size:12px; line-height:1.5; margin-bottom:12px; }
+body.v2-v1-navigation #tocPanel .toc-roster-summary p { margin:7px 0; }
+body.v2-v1-navigation #tocPanel .toc-bottom-shortcuts { margin-top:24px; padding-top:12px; border-top:1px solid var(--v1-nav-line); }
+body.v2-v1-navigation #tocPanel .toc-bottom-shortcuts .toc-label { display:block; width:100%; }
+body.v2-v1-navigation #tocPanel[data-roster-scope="true"] .toc-shortcuts { margin:0; padding:0; border:0; }
 
 body.v2-v1-navigation #tocPanel .toc-row {
   position: relative;
@@ -359,7 +336,7 @@ body.v2-v1-navigation #tocScrim {
   display: none;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 760px) {
   body.v2-v1-navigation {
     --v1-nav-header: 64px;
   }
@@ -373,6 +350,7 @@ body.v2-v1-navigation #tocScrim {
     display: inline-grid;
     place-items: center;
   }
+  body.v2-v1-navigation #navMenu[data-roster-menu="true"] { white-space:nowrap; font-size:13px; padding:0 9px; }
 
   body.v2-v1-navigation #navMenu,
   body.v2-v1-navigation #navCollapse {

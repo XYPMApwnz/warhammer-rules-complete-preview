@@ -8,6 +8,7 @@ import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './nor
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
 import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations,countPhysicalCarriers,formatPhysicalCarriers,effectContributionKey,sourceTextBlocks,conditionalSourceTextKey,ruleReferenceTextFields} from './effective-datasheet-presentation.mjs';
 import {renderRosterPointsStatus} from './roster.mjs';
+import {rosterUnitNames} from './roster-labels.mjs';
 import {validateComponentDetachmentText,groupDetachmentTextRows,projectInstanceCards,prepareRosterPresentationCards,projectDetachmentFields,validateAttachedRuleTextPresentation,executableDetachmentSources} from './personal.mjs';
 const sectionRoles = new Map([
   ['ABILITIES','abilities'],['WARGEAR ABILITIES','wargear-abilities'],
@@ -1551,7 +1552,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       tab.type='button';tab.dataset.datasheetTarget=section.id;listen(tab,'click',()=>{if(inDialog)section.scrollIntoView({block:'start'});else navigateSection(card.id,section,nav,instanceId);});nav.append(tab);}
     if(instanceId){const u=roster.state.units.find(u=>u.instanceId===instanceId),context=el('div','ds-roster-context');
       const assigned=roster.state.attachments.find(a=>a.leaderInstanceId===instanceId),members=roster.state.attachments.filter(a=>a.bodyguardInstanceId===instanceId);
-      const name=id=>{const unit=roster.state.units.find(u=>u.instanceId===id),copies=roster.state.units.filter(u=>u.canonicalUnitId===unit.canonicalUnitId);return cards.get(unit.canonicalUnitId).title+(copies.length>1?` #${copies.findIndex(u=>u.instanceId===id)+1}`:'');};
+      const names=rosterUnitNames(roster.state,id=>cards.get(id)?.title),name=id=>names.get(id);
       context.dataset.rosterContextInstanceId=instanceId;
       const pointsWarning=renderRosterPointsStatus(document,{service:roster,instanceId,titleForId:id=>cards.get(id)?.title});
       if(pointsWarning)context.append(pointsWarning);
@@ -1635,7 +1636,17 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       native.dataset.sourceModelScopeId=text.dataset.sourceModelScopeId;text.remove();
       for(const link of links){link.href='#'+native.id;link.dataset.policyTextRef=native.id;}
     }
-    if(payload.relatedRules)root.append(related(card.id,instanceId));
+    if(payload.relatedRules){
+      const rules=related(card.id,instanceId);root.append(rules);
+      if(instanceId&&rules.nodeType===1&&rules.dataset.datasheetSection==='stratagems'){
+        const tab=el('button','local-tab','Stratagems');tab.type='button';tab.dataset.datasheetTarget=rules.id;
+        listen(tab,'click',()=>{
+          if(rules.openRosterStratagems?.()===false)return;
+          rules.open=true;
+          if(inDialog)rules.scrollIntoView({block:'start'});else navigateSection(card.id,rules,nav,instanceId);
+        });nav.append(tab);
+      }
+    }
     if(instanceId)presentGainedRules(root,card,instanceId,inDialog);
     for(const prose of root.querySelectorAll('.ability p,.ds-source-text,[data-attached-rule-text],[data-detachment-field-text],[data-battle-choice-text]'))linkTerms(prose);
     return root;

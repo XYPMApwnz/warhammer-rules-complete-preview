@@ -1,4 +1,5 @@
 import {requiredKeywordField} from '../keyword-values.mjs';
+import {rosterUnitNames,coreStratagemCards} from './roster-labels.mjs';
 /** Disposable presentation views. Roster services own eligibility and effects. */
 import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 import {createSelectedSourceFieldPredicate} from '../roster-v2/context.mjs';
@@ -340,10 +341,11 @@ export function projectPersonalBook(payload, state, projection=null) {
         ['sourceId','sourceEntityId','document','sha256','pointer'].every(key=>typeof proof[key]==='string'&&proof[key]===sourceSnapshot(origin)?.[key]))visit(origin.id);
   }
   for (const id of [...detachments,...enhancements,...units]) assert(allowedIds.has(id),'Unresolved personal book identity: '+id);
-  const copies = new Map();
-  state.units.forEach(unit=>{const list=copies.get(unit.canonicalUnitId)||[];list.push(unit.instanceId);copies.set(unit.canonicalUnitId,list);});
+  const names=rosterUnitNames(state,id=>cards.get(id)?.title);
+  const coreStratagems=coreStratagemCards(cards);
+  coreStratagems.forEach(card=>allowedIds.add(card.id));
   const instances=state.units.map(unit=>({id:unit.canonicalUnitId,instanceId:unit.instanceId,route:instanceRoute(unit.instanceId),
-    title:cards.get(unit.canonicalUnitId).title+(copies.get(unit.canonicalUnitId).length>1?` #${copies.get(unit.canonicalUnitId).indexOf(unit.instanceId)+1}`:'')}));
+    title:names.get(unit.instanceId)}));
   const entries = ids => [...ids].map(id=>({id,title:cards.get(id).title,route:id}));
   return {allowedIds,instances,groups:[
     {id:'army-rules',label:'Army Rules',entries:entries(roots)},

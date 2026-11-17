@@ -17,6 +17,7 @@ import {createV1RelatedPanel} from './related-v1.mjs';
 import {positionV1Popup} from './popup-v1.mjs';
 import {createRulePopupPresenter,focusedRuleField,rulePopupKinds} from './rule-popup.mjs';
 import {createRuleTermLinker} from './rule-term-links.mjs';
+import {rosterUnitNames} from './roster-labels.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
 const rosterRoute = 'view-roster';
 const personalRoute = 'view-roster-guide';
@@ -110,6 +111,8 @@ export function mount(document, payload, options = {}) {
   sidebar.setAttribute('aria-label', 'Rulebook navigation');
   const sidebarHead=el('h2','toc-heading','Contents');
   const shortcuts=el('div','toc-shortcuts');
+  const rosterSummary=el('section','toc-roster-summary');rosterSummary.dataset.rosterSummary='';
+  const bottomShortcuts=el('div','toc-bottom-shortcuts');
   const searchLabel = el('label', 'v2-search');
   searchLabel.append(el('span', 'v2-sr-only', 'Search the army book'));
   const search = el('input');
@@ -121,7 +124,7 @@ export function mount(document, payload, options = {}) {
   searchStatus.setAttribute('role', 'status');
   const navigation = el('ul', 'toc-tree v2-navigation');navigation.id='tocTree';
   navigation.setAttribute('aria-label', 'Army book sections');
-  sidebar.append(sidebarHead,shortcuts,searchLabel,searchStatus,navigation);
+  sidebar.append(sidebarHead,rosterSummary,shortcuts,searchLabel,searchStatus,navigation,bottomShortcuts);
   const main = el('main', 'v2-main');
   main.id = 'main';
   main.tabIndex = -1;
@@ -174,6 +177,8 @@ export function mount(document, payload, options = {}) {
   let activeRelatedPanel=null;
   let routeKey = null;
   let relatedDetachmentId='';
+  let stratagemSnapshot=null;
+  const stratagemRowsByInstance=new Map();
   const indexed = [...cards.values()].map(card => ({card, text: [card.title, card.kind, ...(card.fields || []).map(field => `${field.label} ${field.displayValue || ''} ${exactValue(field.value)}`)].join(' ').toLocaleLowerCase()}));
   const rosterPanel = options.roster ? createRosterPanel(document, {
     service: options.roster, bookId: payload.book.id, open: id=>id?open(id):openLibrary(), showDetail,
@@ -453,6 +458,43 @@ export function mount(document, payload, options = {}) {
     if(!relatedDialog.open)relatedDialog.showModal();relatedBar.lastChild.focus({preventScroll:true});
   }
   function renderRelatedRules(unitId,instanceId=null){
+    if(instanceId){
+      const section=el('details','unit-part ds-roster-stratagems');section.dataset.datasheetSection='stratagems';
+      section.id='roster-stratagems-'+encodeURIComponent(instanceId);
+      const summary=el('summary');summary.append(el('h4','','Stratagems'));section.append(summary);
+      let loaded=false;
+      section.openRosterStratagems=()=>{
+        if(loaded)return section.isConnected;
+        loaded=true;
+        const state=options.roster.state,key=JSON.stringify(options.roster.snapshot());
+        if(stratagemSnapshot!==key){stratagemSnapshot=key;stratagemRowsByInstance.clear();}
+        if(!stratagemRowsByInstance.has(instanceId)){
+          const related=options.roster.related(instanceId);
+          stratagemRowsByInstance.set(instanceId,(Array.isArray(related)?related:related.rows||[])
+            .filter(row=>row.kind==='STRATAGEM'&&state.detachmentIds.includes(row.detachmentId)&&['MATCH','CONDITIONAL'].includes(row.applicability)));
+        }
+        const rows=stratagemRowsByInstance.get(instanceId);
+        section.dataset.stratagemsLoaded='true';
+        if(!rows.length){
+          const card=section.closest('.unit-card');let focused=section.contains(document.activeElement);
+          for(const tab of card?.querySelectorAll('[data-datasheet-target]')||[])if(tab.dataset.datasheetTarget===section.id){focused ||= tab===document.activeElement;tab.remove();}
+          section.remove();if(focused)main.focus({preventScroll:true});return false;
+        }
+        for(const detachmentId of state.detachmentIds){
+          const members=rows.filter(row=>row.detachmentId===detachmentId);if(!members.length)continue;
+          const group=el('section','detachment-content stratagem-grid');group.dataset.detachmentId=detachmentId;
+          group.append(el('h5','',cards.get(detachmentId).title));
+          for(const row of members){const card=bookPresenter.render(cards.get(row.ruleId));
+            card.dataset.ruleId=row.ruleId;card.dataset.applicability=row.applicability;card.dataset.detachmentId=detachmentId;
+            if(row.applicability==='CONDITIONAL')card.prepend(el('p','compatibility-status','Conditionally compatible · Check the full card conditions'));
+            group.append(card);}
+          section.append(group);
+        }
+        return true;
+      };
+      lifecycle.listen(section,'toggle',()=>{if(section.open)section.openRosterStratagems();});
+      return section;
+    }
     const footer=el('section','ds-related-rules');footer.dataset.relatedUnitId=unitId;
     if(instanceId)footer.dataset.rosterRelatedInstanceId=instanceId;
     footer.append(button('Compatible Stratagems & Enhancements','ds-related-rules-button',()=>openRelatedRules(unitId,instanceId)));return footer;
@@ -462,15 +504,32 @@ export function mount(document, payload, options = {}) {
     if(relatedDialog.open&&!window.history.state?.armyBookV2?.detailId&&!lastFocus)relatedDialog.close();
     document.body.classList.toggle('v2-datasheet-mode',Boolean(main.querySelector('.unit-card')));
     if(!contents)return;
-    shortcuts.replaceChildren();
-    const shortcut=(label,action,current)=>{const node=button(label,'toc-label',action);if(current)node.setAttribute('aria-current','location');shortcuts.append(node);};
+    shortcuts.replaceChildren();bottomShortcuts.replaceChildren();rosterSummary.replaceChildren();
+    const shortcut=(label,action,current,target=shortcuts)=>{const node=button(label,'toc-label',action);if(current)node.setAttribute('aria-current','location');target.append(node);};
     const rosterScope=personalMode||selectedView==='ROSTER'&&options.roster?.state?.units?.length;
     if(navigationBlocked){contents.clear();searchStatus.textContent='Roster context unavailable';return;}
     const state=rosterScope?options.roster.state:null,view=rosterScope?personalBook():null;
-    if(payload.glossary)shortcut('Mega Glossary',()=>navigate(glossaryRoute,false,{personalBook:rosterScope}),selectedView==='GLOSSARY');
+    sidebar.dataset.rosterScope=String(Boolean(rosterScope));
+    drawerToggle.dataset.rosterMenu=String(Boolean(rosterScope));
+    drawerToggle.textContent=rosterScope?'Units ▾':'☰';
+    contents.controller.menuLabel=rosterScope?'Units':'Open navigation';
+    if(rosterScope){
+      const names=rosterUnitNames(state,id=>cards.get(id)?.title),nativePoints=options.roster.points;
+      const importedValues=state.units.map(unit=>unit.raw?.points??unit.points);
+      const imported=importedValues.every(Number.isFinite)?importedValues.reduce((sum,value)=>sum+value,0):null;
+      const total=Number.isFinite(nativePoints?.totalPoints)?nativePoints.totalPoints:imported;
+      const limit=rosterPanel.importedMetadata?.pointsLimit;
+      rosterSummary.append(el('strong','',payload.book.title),el('p','',state.detachmentIds.map(id=>cards.get(id).title).join(' · ')));
+      if(nativePoints?.status==='UNRESOLVED')rosterSummary.append(el('p','','Points unresolved'));
+      else if(Number.isFinite(total)){
+        rosterSummary.append(el('p','',limit?`${total} / ${limit}`:`${total} pts`));
+        if(!nativePoints)rosterSummary.append(el('small','','Imported points'));
+      }
+      if(state.warlordInstanceId)rosterSummary.append(el('p','','Warlord: '+names.get(state.warlordInstanceId)));
+    }
     if(rosterPanel){
       shortcut(rosterScope?'Personal guide':'Roster',rosterScope?openPersonalGuide:openRoster,selectedView==='ROSTER'||selectedView==='PERSONAL'&&!selectedInstanceId);
-      if(rosterScope){shortcut('Attachment Setup',openRoster,selectedView==='ROSTER');shortcut('Full Army Book',openLibrary,false);}
+      if(rosterScope){shortcut('Full Army Book',openLibrary,false,bottomShortcuts);shortcut('Attachment Setup',openRoster,selectedView==='ROSTER',bottomShortcuts);}
     }
     const model=projectContents(payload,state,view),query=search.value.trim().toLocaleLowerCase();
     if(query){
@@ -485,16 +544,18 @@ export function mount(document, payload, options = {}) {
     let active=selectedInstanceId?instanceRoute(selectedInstanceId):selectedId||(selectedView==='READER'?'start':null);
     while(active&&!model.nodes.has(active)&&cards.has(active))active=cards.get(active).parentId;
     contents.refresh(model,active);
+    contents.controller.applyViewportState();
   }
 
   function renderPersonalHome(focus=false) {
     selectedView='PERSONAL';selectedId=null;selectedInstanceId=null;glossaryQuery='';
     const view=personalBook(), hero=el('section','v2-hero');
-    hero.append(el('h1','', 'Personal guide'),el('p','v2-hero-subtitle',`${payload.book.title} · ${view.instances.length} imported units`));
+    hero.append(el('h1','', 'Personal guide'),el('p','v2-hero-subtitle',`${payload.book.title} · ${view.instances.length} units`));
     const sections=el('div','v2-library-sections');
     for (const group of view.groups) {const section=el('section','v2-library-section');section.dataset.groupId=group.id;section.append(el('h2','',group.label));
       const list=el('div','v2-library-grid');for (const entry of group.entries) {const link=anchor(entry.title,entry.route);link.dataset.canonicalId=entry.id;if(entry.instanceId)link.dataset.rosterNavInstanceId=entry.instanceId;list.append(link);}section.append(list);sections.append(section);}
-    main.replaceChildren(hero,sections);renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
+    const stratagems=el('section','v2-library-section');stratagems.append(el('h2','','Stratagems'),anchor('Open Stratagems','nav:stratagems'));
+    sections.append(stratagems);main.replaceChildren(hero,sections);renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
   }
 
   function renderInstance(instanceId,focus=false) {
@@ -590,13 +651,17 @@ export function mount(document, payload, options = {}) {
       parent.append(section);
     };
     for(const group of payload.groups.filter(group=>!personalMode&&group.id==='introduction'))for(const rootId of group.itemIds)appendCard(pages,rootId);
-    for(const root of model.roots){
+    for(const root of model.roots.filter(root=>!personalMode||!String(id).startsWith('nav:stratagems')&&id!=='nav:core-stratagems'||root.id==='nav:stratagems')){
       if(personalMode&&root.attachmentGroup){for(const member of root.members)appendInstance(pages,member);continue;}
       if(personalMode&&root.instanceId){appendInstance(pages,root);continue;}
       if(root.id==='start'||!root.id)continue;
       const section=groupSection(root.id,root.label);
       if(root.id==='nav:datasheets')for(const category of root.children){const categorySection=groupSection(category.id,category.label);for(const unit of category.children)appendCard(categorySection,unit.canonicalId);section.append(categorySection);}
-      else for(const rootId of model.groups.get(root.id)||[])appendCard(section,rootId);
+      else if(personalMode&&root.id==='nav:units'){
+        for(const entry of root.children){if(entry.attachmentGroup)entry.members.forEach(member=>appendInstance(section,member));else appendInstance(section,entry);}
+      }else if(personalMode&&root.id==='nav:stratagems'){
+        for(const group of root.children){const part=groupSection(group.id,group.label);for(const entry of group.children)appendCard(part,entry.canonicalId);section.append(part);}
+      }else for(const rootId of model.groups.get(root.id)||[])appendCard(section,rootId);
       pages.append(section);
     }
     main.append(pages);
@@ -940,7 +1005,9 @@ export function mount(document, payload, options = {}) {
   lifecycle.listen(navStyles,'load',()=>{contents.controller.refreshGeometry();if(!personalMode&&main.querySelector('.v1-contents-pages')&&hashId()&&contents.isTarget(hashId()))contents.restore(hashId(),window.history.state?.armyBookV2?.scrollY);});
   lifecycle.observe(new window.MutationObserver(lifecycle.guard(()=>{
     const state=options.roster?.state;
-    const signature=JSON.stringify(state?[state.rosterId,state.detachmentIds,state.units.map(unit=>[unit.instanceId,unit.canonicalUnitId,unit.enhancementIds]),state.attachments]:null);
+    const signature=JSON.stringify(state?[state.rosterId,state.detachmentIds,state.warlordInstanceId,
+      state.units.map(unit=>[unit.instanceId,unit.canonicalUnitId,unit.enhancementIds,unit.startingStrength,
+        (unit.modelRows||[]).map(row=>[row.canonicalProfileId,row.quantity])]),state.attachments]:null);
     if(signature!==lastRosterNavigation){lastRosterNavigation=signature;renderNavigation();}
     contents.controller.scheduleGeometry();
   }))).observe(main,{childList:true,subtree:true});

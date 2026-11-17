@@ -661,3 +661,6 @@
 .ds-roster-card .ds-enhancement-restriction { border-left-color: var(--ds-gained-accent); }
 
 .ds-roster-card .ds-gained-chip > a.v2-reference{color:inherit;background:transparent;border:0;padding:0;font:inherit}
+/* The full roster Stratagem reference is populated on first opening. */
+.unit-card details.ds-roster-stratagems > summary { cursor:pointer; }
+.unit-card details.ds-roster-stratagems > summary h4 { display:inline; }

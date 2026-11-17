@@ -3,6 +3,7 @@ import {keywordField} from '../keyword-values.mjs';
 import {NavigationController} from './navigation-v1-controller.mjs';
 import {Highlighter} from './navigation-v1-targets.mjs';
 import {getSourceContext} from '../source-refs-v2/source-refs.mjs';
+import {coreStratagemCards} from './roster-labels.mjs';
 
 const categories=[['EPIC HERO','Epic Heroes'],['CHARACTER','Characters'],['BATTLELINE','Battleline'],
   ['DEDICATED TRANSPORT','Dedicated Transports'],['FORTIFICATION','Fortifications'],['INFANTRY','Infantry'],
@@ -60,7 +61,7 @@ export function projectContents(payload,state=null,personal=null){
     check(state?.units?.length&&state.detachmentIds?.length,'Imported roster context unavailable.');
     const selected=[...new Set(state.detachmentIds)];
     check(selected.every(id=>record(id).kind==='DETACHMENT'),'Unresolved selected Detachment.');
-    const physical=new Map(personal.instances.map(entry=>[entry.instanceId,leaf(entry.id,entry.title,entry.instanceId)]));
+    const physical=new Map(personal.instances.map(entry=>[entry.instanceId,{...leaf(entry.id,entry.title,entry.instanceId),warlord:state.warlordInstanceId===entry.instanceId}]));
     check(physical.size===state.units.length&&state.units.every(unit=>physical.has(unit.instanceId)),'Missing physical Contents identity.');
     const membership=new Map(),edges=new Map();
     for(const edge of state.attachments||[]){
@@ -78,12 +79,18 @@ export function projectContents(payload,state=null,personal=null){
       const bodyguard=membership.get(id)||(edges.has(id)?id:null);
       if(bodyguard){
         check(!membership.has(bodyguard),'Cyclic Contents attachment.');
-        const members=[...edges.get(bodyguard).map(leader=>({...emit(leader),attachmentRole:'leader'})),{...emit(bodyguard),attachmentRole:'bodyguard'}];
+        const attached=edges.get(bodyguard).map(id=>({id,edge:state.attachments.find(edge=>edge.leaderInstanceId===id)}));
+        attached.sort((a,b)=>Number(['SUPPORT','SUPPORT_EXCEPTION'].includes(a.edge.role))-Number(['SUPPORT','SUPPORT_EXCEPTION'].includes(b.edge.role)));
+        const members=[{...emit(bodyguard),attachmentRole:'bodyguard'},...attached.map(({id,edge})=>({...emit(id),attachmentRole:['SUPPORT','SUPPORT_EXCEPTION'].includes(edge.role)?'support':'leader'}))];
         physicalNodes.push({attachmentGroup:bodyguard,members});
       }else physicalNodes.push(emit(id));
     }
     check(emitted.size===physical.size,'Unaccounted physical Contents entry.');
-    return {nodes,groups,roots:[branch('nav:army-rules','Army Rule',army),branch('nav:detachments','Detachments',selected.map(detachment)),...physicalNodes],scope:'ROSTER'};
+    const strata=selected.map(id=>branch('nav:stratagems:'+id,record(id).title,
+      (record(id).children||[]).filter(child=>record(child).kind==='STRATAGEM').map(id=>leaf(id))));
+    strata.push(branch('nav:core-stratagems','Core Stratagems',coreStratagemCards(cards).map(card=>leaf(card.id))));
+    return {nodes,groups,roots:[branch('nav:army-rules','Army Rule',army),branch('nav:detachments','Detachments',selected.map(detachment)),
+      branch('nav:stratagems','Stratagems',strata),branch('nav:units','Units',physicalNodes,personal.instances.map(entry=>entry.route))],scope:'ROSTER'};
   }
   const roots=[branch('start','Start',[],[])];
   if(army.length)roots.push(branch('nav:army-rules','Army Rule',army));
@@ -138,11 +145,13 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
   });
   const build=(entry,depth=1)=>{
     if(entry.attachmentGroup){
-      const group=make('li','roster-attachment-group'),members=make('ul','roster-attachment-members');group.dataset.rosterAttachmentGroup=entry.attachmentGroup;
+      const group=make('li','roster-attachment-group'),members=make('ul','toc-branch roster-attachment-members');group.dataset.rosterAttachmentGroup=entry.attachmentGroup;
       entry.members.forEach(member=>{const node=build(member,1);node.dataset.rosterAttachmentGroup=entry.attachmentGroup;node.dataset.rosterAttachmentRole=member.attachmentRole;members.append(node);});group.append(members);return group;
     }
     const node=make('li');node.dataset.navId=entry.id;node.dataset.navDepth=String(depth);
     const row=make('div','toc-row'+(entry.children.length?'':' no-toggle')),label=make('button','toc-label',entry.label);label.type='button';
+    if(entry.attachmentRole&&entry.attachmentRole!=='bodyguard')label.prepend(make('span','roster-member-arrow','↳ '));
+    if(entry.warlord){const crown=make('span','roster-warlord',' ♛');crown.setAttribute('role','img');crown.setAttribute('aria-label','Warlord');label.append(crown);}
     label.dataset.navTarget=entry.id;label.dataset.targetId=entry.id;if(entry.searchResult)label.classList.add('v2-search-result');
     if(entry.canonicalId)label.dataset.canonicalId=entry.canonicalId;
     if(entry.instanceId){label.dataset.rosterInstance=entry.instanceId;label.dataset.rosterNavInstanceId=entry.instanceId;}
@@ -169,6 +178,9 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
         const open=new Set([...elements.tree.querySelectorAll('[data-nav-id]')].filter(node=>node.querySelector(':scope > .toc-branch')?.hidden===false).map(node=>node.dataset.navId));
         signature=nextSignature;elements.tree.replaceChildren(...next.roots.map(entry=>build(entry)));controller.indexNavigationItems();controller.activeButtons=new Set();
         for(const item of controller.items)if(open.has(item.node.dataset.navId))controller.openBranch(item.node);
+        if(next.scope==='ROSTER'){
+          const units=controller.itemFor('nav:units');if(units)controller.openBranch(units.node);
+        }
       }
       elements.tree.dataset.scope=next.scope;
       if(id&&controller.itemFor(id))controller.activate(id,{instanceId:controller.itemFor(id).instanceId,keepVisible:!controller.mobile||controller.state.drawer});

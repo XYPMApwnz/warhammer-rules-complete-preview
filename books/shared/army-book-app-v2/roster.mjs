@@ -2,6 +2,7 @@ import {createLifecycle} from './lifecycle.mjs';
 import {epicHeroEnhancementWarning} from '../roster-v2/import.mjs';
 import {playerImportCopy,warlordDisplay,incompleteExportCopy,plainHeaderImportExplanation} from './cosmetics.mjs';
 import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
+import {rosterUnitNames} from './roster-labels.mjs';
 /** Display the service's existing uncertainty; never calculate or complete costs. */
 export function renderRosterPointsStatus(document,{service,instanceId=null,titleForId=()=>null}) {
   const points=service?.points;
@@ -25,11 +26,9 @@ export function renderRosterPointsStatus(document,{service,instanceId=null,title
     MFM_COMPOSITION_TIER_NOT_PROVEN:'The unit size or copy tier could not be matched to a points cost.',
     MFM_ENHANCEMENT_COST_NOT_PROVEN:'The selected Enhancement cost could not be verified.'
   };
-  const list=node('ul'),stateUnits=service.state?.units||[];
+  const state=service.state||{units:[]}, names=rosterUnitNames(state,titleForId),list=node('ul');
   for(const issue of issues){
-    const unit=stateUnits.find(unit=>unit.instanceId===issue.unitInstanceId);
-    const copies=unit?stateUnits.filter(copy=>copy.canonicalUnitId===unit.canonicalUnitId):[];
-    const name=unit?(titleForId(unit.canonicalUnitId)||'Imported unit')+(copies.length>1?` #${copies.findIndex(copy=>copy.instanceId===unit.instanceId)+1}`:''):null;
+    const name=names.get(issue.unitInstanceId)||null;
     const paid=points.units?.find(row=>row.unitInstanceId===issue.unitInstanceId)?.paid;
     const options=(paid?.options||[]).filter(option=>issue.costRecordId===option.costRecordId||
       issue.costRecordIds?.includes(option.costRecordId)||
@@ -111,6 +110,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     .v2-roster h2,.v2-roster h3 { overflow-wrap:anywhere; }
     .v2-roster p { line-height:1.7; overflow-wrap:anywhere; }
     .v2-roster-pane { padding:24px; }
+    .v2-roster-import > summary { cursor:pointer; font-size:19px; font-weight:700; }
+    .v2-roster-import[open] > summary { margin-bottom:14px; }
     .v2-roster-tools { display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
     .v2-roster button { min-height:40px; cursor:pointer; }
     .v2-roster input,.v2-roster select,.v2-roster textarea { font:inherit; font-size:13px; color:var(--v2-ink); background:var(--v2-paper); border:1px solid var(--v2-line); border-radius:7px; padding:10px; max-width:100%; }
@@ -158,8 +159,12 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   heading.append(el('h1', '', 'Attachment Setup'), button('Library', () => open(null), 'library'));
   const status = el('p', 'v2-roster-status', 'Import a New Recruit text export, optionally attach eligible Characters or Support, then open your personal guide.');
   status.setAttribute('role', 'status');
-  const importPane = el('section', 'v2-card v2-roster-pane');
-  importPane.append(el('h2', '', 'Import roster'));
+  const importPane = el('details', 'v2-card v2-roster-pane v2-roster-import');
+  importPane.open = true;
+  importPane.dataset.rosterImport = '';
+  importPane.dataset.rosterImportPanel = '';
+  const importSummary = el('summary', '', 'Import roster');
+  importPane.append(importSummary);
   for(const limitation of importLimitations){
     const notice=el('section','v2-roster-hint');
     notice.dataset.rosterImportLimitation=limitation.ownerId;notice.setAttribute('role','note');
@@ -197,7 +202,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if(!lifecycle.active)return;
     checkResult(await service.load(state));
     if(!lifecycle.active)return;
+    importedMetadata=null;importedRosterId=null;
     renderRoster();
+    foldCompletedImport();
     saveAndReport('Roster backup restored.');
     file.value = '';
   }));
@@ -210,6 +217,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   let bindings = {};
   let importText = '';
   let importResult = null;
+  let importedMetadata=null;
+  let importedRosterId=null;
+  let importDraftPending = false;
   let busy = false;
 
   function setStatus(message, error = false) {
@@ -264,8 +274,15 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (!saved) { setStatus('No saved V2 roster was found in this browser.'); return; }
     checkResult(await service.load(JSON.parse(saved)));
     if(!lifecycle.active)return;
+    importedMetadata=null;importedRosterId=null;
     renderRoster();
+    foldCompletedImport();
     setStatus('Saved roster reloaded and validated.');
+  }
+  function foldCompletedImport() {
+    if(importDraftPending||!service.state?.units?.length)return;
+    importPane.open = false;
+    importSummary.textContent = 'Import another roster';
   }
   function exportBackup() {
     if (!service.state?.units?.length) { setStatus('Import a roster before exporting a backup.', true); return; }
@@ -282,6 +299,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     setStatus('Roster backup exported.');
   }
   async function reviewImport() {
+    importDraftPending = true;
+    importPane.open = true;
     importText = raw.value;
     bindings = {};
     const draft = await service.draft(importText);
@@ -294,7 +313,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     draftArea.replaceChildren();
     if (!draft?.units?.length) return;
     const preview = el('details');
-    preview.append(el('summary', 'v2-roster-hint', `Imported text: ${draft.units.length} physical unit entries`));
+    preview.append(el('summary', 'v2-roster-hint', `Imported text: ${draft.units.length} units`));
     const list = el('ul', 'v2-roster-list');
     draft.units.forEach(unit => {
       const item = el('li', '', `${unit.name} · ${text(unit.rawQuantity)} imported quantity`);
@@ -308,6 +327,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const result = await service.import(importText, structuredClone(bindings), options);
     if(!lifecycle.active)return;
     importResult=result;
+    importPane.open = true;
     renderDraft(importResult.draft);
     if (importResult.status === 'REPLACEMENT_REQUIRED') {
       bindingArea.replaceChildren();
@@ -325,8 +345,11 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     } else if (importResult.status === 'READY') {
       if (!service.state?.units?.length) checkResult(await service.load(importResult.roster));
       if(!lifecycle.active)return;
+      importedMetadata=importResult.draft?.metadata||null;importedRosterId=service.state.rosterId;
       bindingArea.replaceChildren();
+      importDraftPending = raw.value !== importText;
       renderRoster();
+      foldCompletedImport();
       saveAndReport('Roster imported. Attachments are optional. Open your personal guide when ready.');
       rosterArea.scrollIntoView({block: 'start', behavior: 'instant'});
     } else {
@@ -541,19 +564,14 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     section.append(label, results); fill();
     return section;
   }
-  function rosterNames(state, showInstanceNumber = false) {
-    const counts = new Map();
-    const occurrences = new Map();
-    state.units.forEach(unit => counts.set(unit.canonicalUnitId, (counts.get(unit.canonicalUnitId) || 0) + 1));
-    return new Map(state.units.map(unit => {
-      const number = (occurrences.get(unit.canonicalUnitId) || 0) + 1;
-      occurrences.set(unit.canonicalUnitId, number);
-      return [unit.instanceId, `${named(unit.canonicalUnitId)}${showInstanceNumber || counts.get(unit.canonicalUnitId) > 1 ? ` #${number}` : ''}`];
-    }));
-  }
-  function instanceIdentity(unit) {
+  function instanceIdentity(unit, {showWarlord=true} = {}) {
     const identity = el('dl', 'v2-roster-identity');
-    identity.append(identityField('Starting Strength', unit.startingStrength), identityField('Warlord', warlordDisplay(unit,service.state)));
+    identity.append(identityField('Models', unit.startingStrength));
+    if(showWarlord)identity.append(identityField('Warlord', warlordDisplay(unit,service.state)));
+    const unitPoints=service.points?.units?.find(row=>row.unitInstanceId===unit.instanceId);
+    const importedPoints=unit.raw?.points??unit.points;
+    if(unitPoints)identity.append(identityField('Points',Number.isFinite(unitPoints.totalPoints)?`${unitPoints.totalPoints} pts`:'Unresolved'));
+    else if(Number.isFinite(importedPoints))identity.append(identityField('Imported points',`${importedPoints} pts`));
     const enhancements = el('span');
     const activeIds=activeEnhancementsByInstance.get(unit.instanceId)||[];
     activeIds.forEach(id => enhancements.append(reference(id)));
@@ -616,7 +634,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const state = service.state;
     const unit = state?.units?.find(unit => unit.instanceId === instanceId);
     if (!unit) throw new Error('Unresolved physical roster unit.');
-    const names = rosterNames(state, true);
+    const names = rosterUnitNames(state,named);
     const context = el('section', 'v2-roster');
     context.dataset.rosterContextInstanceId = instanceId;
     context.append(style.cloneNode(true), instanceIdentity(unit), instanceGear(unit));
@@ -635,6 +653,45 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     context.append(renderEffective(instanceId, service.effective(instanceId)), renderRelated(instanceId));
     return context;
   }
+  function isPhysicalCharacter(instanceId) {
+    const effective=service.effective(instanceId);
+    // The formed keyword bag may include an attached Character's keywords.
+    // Eligibility reads only this physical component and its own MODEL scopes.
+    return effective.physicalKeywords?.includes('CHARACTER')||effective.profiles?.some(profile=>
+      profile.ownerInstanceId===instanceId&&profile.quantity>0&&profile.keywords?.includes('CHARACTER'))||false;
+  }
+  function warlordSelection(state,names) {
+    const field=el('section');
+    field.dataset.rosterWarlord = '';
+    const currentId=state.warlordInstanceId;
+    const candidates=state.units.filter(unit=>isPhysicalCharacter(unit.instanceId));
+    const label=el('label','v2-roster-field','Warlord');
+    const select=selectRecords(candidates.map(unit=>({id:unit.instanceId,title:names.get(unit.instanceId)})),
+      {value:currentId||'',label:'Warlord'});
+    select.dataset.rosterWarlordSelect = '';
+    select.options[0].textContent='Not selected';
+    // Preserve imported ownership even if its eligibility is not established.
+    if(currentId&&!candidates.some(unit=>unit.instanceId===currentId)) {
+      const imported=el('option','',names.get(currentId));
+      imported.value=currentId;imported.disabled=true;select.append(imported);select.value=currentId;
+    }
+    select.disabled=!candidates.length;
+    label.append(select);field.append(label);
+    if(!candidates.length)field.append(el('p','v2-roster-hint','No eligible CHARACTER is available in this roster.'));
+    const apply=button('Save Warlord',async()=>{
+      const snapshot=service.snapshot(),id=select.value;
+      if(!id||!snapshot.units.some(unit=>unit.instanceId===id)||!isPhysicalCharacter(id))
+        throw actionError('Choose an eligible CHARACTER from this roster.');
+      snapshot.warlordInstanceId=id;
+      snapshot.units.forEach(unit=>{unit.warlord=unit.instanceId===id;});
+      checkResult(await service.load(snapshot));
+      if(!lifecycle.active)return;
+      renderRoster();saveAndReport('Warlord saved.');
+    },'set-warlord');
+    const update=()=>{apply.disabled=!select.value||select.value===currentId||!candidates.some(unit=>unit.instanceId===select.value);};
+    lifecycle.listen(select,'change',update);update();field.append(apply);
+    return field;
+  }
   function renderRoster() {
     if(!lifecycle.active)return;
     const previousScrollY = window.scrollY;
@@ -645,15 +702,17 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const state = service.state;
     if (!state?.units?.length) return;
     const projection=service.projection;
+    const names = rosterUnitNames(state,named);
     activeEnhancementsByInstance=new Map((projection?.units||state.units).map(unit=>[unit.instanceId,unit.enhancementIds]));
     const summary = el('section', 'v2-card v2-roster-pane');
-    summary.append(el('h2', '', 'Attachment Setup'), el('p', 'v2-roster-hint', `${state.units.length} imported unit instances. Attachments are optional; imported army selections remain unchanged.`));
+    summary.append(el('h2', '', 'Your roster'), el('p', 'v2-roster-hint', `${state.units.length} imported units. Select your Warlord and optionally attach Characters or Support.`));
+    summary.append(warlordSelection(state,names));
     for(const unit of state.units){
       const projected=projection?.units?.find(row=>row.instanceId===unit.instanceId);
       const available=service.catalog.some(row=>row.kind==='WEAPON_PROFILE'&&row.parentId===unit.canonicalUnitId);
       const selected=projected&&(projected.weapons.length||projected.profiles.some(row=>row.weapons.length));
       if(available&&projected&&!selected){
-        const hint=el('p','v2-roster-hint',named(unit.canonicalUnitId)+': '+incompleteExportCopy.weapons);
+        const hint=el('p','v2-roster-hint',names.get(unit.instanceId)+': '+incompleteExportCopy.weapons);
         hint.dataset.importHint='weapons';hint.dataset.importHintInstanceId=unit.instanceId;summary.append(hint);
       }
     }
@@ -662,7 +721,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const enhancementWarnings=state.units.flatMap(unit=>{
       const activeIds=new Set(activeEnhancementsByInstance.get(unit.instanceId)||[]);
       return (unit.enhancementIds||[]).filter(id=>!activeIds.has(id)).map(id=>
-        epicHeroEnhancementWarning(named(id),named(unit.canonicalUnitId)));
+        epicHeroEnhancementWarning(named(id),names.get(unit.instanceId)));
     });
     if(enhancementWarnings.length){
       const warning=el('section','v2-roster-points-warning'),list=el('ul','v2-roster-list');
@@ -686,7 +745,6 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         return openPersonalGuide();
       }, 'open-personal-guide'));
     rosterArea.append(summary);
-    const names = rosterNames(state);
     const used = new Set((state.attachments || []).map(record => record.leaderInstanceId));
     const candidatesByTarget = new Map();
     for (const leader of state.units) {
@@ -706,7 +764,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       const heading = el('header', 'v2-roster-instance-header');
       const title = el('div');
       title.append(el('h2', '', names.get(unit.instanceId)));
-      heading.append(title, button('Effective datasheet', () => {
+      heading.append(title, button('Open card', () => {
         if (typeof showInstance !== 'function') throw actionError('Physical datasheet navigation is unavailable.');
         return showInstance(unit.instanceId);
       }, 'show-instance'));
@@ -745,7 +803,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         }
         body.append(attachments);
       }
-      article.append(heading, instanceIdentity(unit), body); rosterArea.append(article);
+      article.append(heading, instanceIdentity(unit,{showWarlord:false}), body); rosterArea.append(article);
     }
     if (activeOwner) {
       const article = [...rosterArea.querySelectorAll('[data-roster-instance-id]')].find(node => node.dataset.rosterInstanceId === activeOwner);
@@ -754,19 +812,24 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         .find(node => node.dataset.sourceChoiceId === activeSourceChoice);
       (sourceAction || article?.querySelector(`[data-roster-action="${preferredAction}"]`) || article?.querySelector('button'))?.focus({preventScroll: true});
       window.scrollTo({top: previousScrollY, behavior: 'instant'});
+    } else if(activeAction==='set-warlord') {
+      rosterArea.querySelector('[data-roster-warlord-select]')?.focus({preventScroll:true});
+      window.scrollTo({top:previousScrollY,behavior:'instant'});
     }
   }
   function render(container) { container.replaceChildren(section); return section; }
   const ready = run(async () => {
     try {
       const saved = window.localStorage.getItem(storageKey);
-      if (saved) await restoreSaved(); else renderRoster();
+      if (saved) await restoreSaved(); else {renderRoster();foldCompletedImport();}
     } catch (error) { renderRoster(); throw error; }
   });
   lifecycle.listen(raw,'input', () => {
+    importDraftPending = true;
+    importPane.open = true;
     bindings = {}; importResult = null; bindingArea.replaceChildren(); draftArea.replaceChildren();
     setStatus('Import this export to resolve its selected entries automatically.');
   });
   lifecycle.cleanup(()=>{section.remove();bindings={};importText='';importResult=null;});
-  return Object.freeze({destroy:lifecycle.destroy,get destroyed(){return !lifecycle.active;},render:lifecycle.guard(render), refresh:lifecycle.guard(renderRoster), renderInstanceContext:lifecycle.guard(renderInstanceContext), ready, storageKey});
+  return Object.freeze({destroy:lifecycle.destroy,get destroyed(){return !lifecycle.active;},get importedMetadata(){return service.state?.rosterId===importedRosterId?importedMetadata:null;},render:lifecycle.guard(render), refresh:lifecycle.guard(renderRoster), renderInstanceContext:lifecycle.guard(renderInstanceContext), ready, storageKey});
 }
