@@ -540,6 +540,11 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   // read from the already validated projection; nothing is written back to it.
   const presentGainedRules=(root,card,instanceId,inDialog)=>{
     root.classList.add('ds-roster-card');
+    // Preserve own canonical-rule navigation, without a self-source label.
+    for(const note of root.querySelectorAll('.ds-section-sources')){
+      const prefix=note.firstChild;
+      if(prefix?.nodeType===Node.TEXT_NODE&&prefix.textContent==='Source: ')prefix.remove();
+    }
     const unit=roster.state.units.find(value=>value.instanceId===instanceId);
     const effective=roster.effective(instanceId),groups=new Map();
     const section=el('section','unit-part ds-gained-rules');section.dataset.datasheetSection='gained-rules';
@@ -773,8 +778,22 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     for(const ability of root.querySelectorAll('.ds-effective-ability[data-ability-sources]')){
       const sources=JSON.parse(ability.dataset.abilitySources),note=ability.querySelector('.ds-ability-sources');if(!note)continue;
-      const label=ability.querySelector('a')?.textContent||ability.textContent;const wrap=gainedChip(label,note,sources);readableProof(note,sources,ability.dataset.recipientSubject);
+      const references=[...ability.querySelectorAll(':scope > a[data-target-id]')].filter(link=>link.dataset.targetId===ability.dataset.canonicalAbilityId);
+      if(references.length!==1)throw new TypeError('Missing unique canonical ability link: '+ability.dataset.canonicalAbilityId);
+      const reference=references[0],label=reference.textContent;
+      const wrap=gainedChip(label,note,sources);readableProof(note,sources,ability.dataset.recipientSubject);
       if(!hasForeignSource(sources))note.replaceChildren();ability.replaceChildren(wrap);
+      if(reference){
+        let group=null;for(const source of sources){group=sourceGroup(source.canonicalRuleId||source.ruleId,source.sourceInstanceId||null);if(group)break;}
+        if(group){
+          let navigation=group.querySelector(':scope > .ds-gained-rule-links');
+          if(!navigation){navigation=el('p','ds-gained-rule-links');navigation.setAttribute('aria-label','Rule definitions');group.append(navigation);}
+          const existing=[...navigation.querySelectorAll('a[data-target-id]')].some(link=>link.dataset.targetId===reference.dataset.targetId&&link.textContent===reference.textContent);
+          if(!existing){if(navigation.childNodes.length)navigation.append(document.createTextNode(' · '));navigation.append(reference);}
+        }else if(wrap.querySelector('.ds-gained-chip').tagName==='SPAN'){
+          wrap.querySelector('.ds-gained-chip').replaceChildren(document.createTextNode('+ '),reference);
+        }else ability.append(reference);
+      }
       if(ability.dataset.recipientSubject==='MODEL')appendRecipientCaption(ability,modelRecipientCaption(JSON.parse(ability.dataset.recipientScopes).map(scope=>{
         const [targetInstanceId,profileId,scopeId]=JSON.parse(scope);return {instanceId:targetInstanceId,profileId,scopeId};
       })));

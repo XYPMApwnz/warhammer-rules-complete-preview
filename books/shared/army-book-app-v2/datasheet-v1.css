@@ -658,3 +658,5 @@
 .ds-roster-card .statline .stat .ds-gained-chip { margin-top: 0; color: var(--ds-gained-accent); font: 700 11px/1.5 var(--ds-ui); }
 .ds-roster-card .statline .stat .ds-gained-tooltip:not([hidden]) { margin-top: 0; color: var(--ink); font: 500 12px/1.6 var(--ds-ui); }
 .ds-roster-card .ds-enhancement-restriction { border-left-color: var(--ds-gained-accent); }
+
+.ds-roster-card .ds-gained-chip > a.v2-reference{color:inherit;background:transparent;border:0;padding:0;font:inherit}
