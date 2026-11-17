@@ -24,17 +24,17 @@ const server=http.createServer((req,res)=>{const address=decodeURIComponent(new 
  if(!file.startsWith(root+path.sep)||!allowed.has(address)&&!isApplicationTestDependency(address)||!fs.existsSync(file)){missing.push(address);res.writeHead(404).end();return;}
  res.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
-const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();};
-async function imported(page,text){await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
+const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();};
+async function imported(page,text){await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible())await replace.click();
  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
  assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./,'Fixture must import through ordinary controls');}
-async function effective(page,id){await roster(page);await page.locator(`[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
+async function effective(page,id){await roster(page);await openCard(page,page.locator(`[data-roster-instance-id="${id}"]`));
  const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`);await card.waitFor();await page.evaluate(()=>document.fonts.ready);
  await page.waitForFunction(()=>Boolean(document.querySelector('main .unit-card.ds-layout')));if(!negative)await assertNoVisibleLegacyAttribution(card);return card;}
 async function shot(page,node,id){
- await (id.startsWith('p1-')?node.locator('h2').first():node).scrollIntoViewIfNeeded();await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+ await (id.startsWith('p1-')?node.locator(':scope > summary, h2').first():node).scrollIntoViewIfNeeded();await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
  const file=path.join(out,id+'.png');await page.screenshot({path:file,fullPage:false});screenshots.push({id,file});}
 async function gainedTooltip(page,card,proof){
  const id=await proof.getAttribute('id');assert(id,'A foreign source tooltip has a stable identity');
@@ -66,12 +66,15 @@ try{
    }
    for(const width of [390,1200,1600]){
     await page.setViewportSize({width,height:1000});await roster(page);await game(page,book,width);
-    await shot(page,page.locator('.v2-roster-pane').first(),`p1-${book}-${width}`);
+    await openImportForm(page);await shot(page,page.locator('.v2-roster-pane').first(),`p1-${book}-${width}`);
     await check(1,book,width,async()=>{const text=await page.locator('.v2-roster-pane').first().innerText();assert.doesNotMatch(text,/NOT_PROVEN|\bMFM\b|source OR|constructed-input|canonical|binding/i);
      if(book==='blood-angels'){assert(text.includes('saved roster is kept'));assert(text.includes('not yet been checked against a real Blood Angels export'));assert(text.includes('any one of its listed conditions'));}
      if(book==='dark-angels'){assert(text.includes('A confirmed Dark Angels unit must be in the roster'));assert(text.includes('not yet been checked against a real Dark Angels export'));}});
     await shot(page,page.locator('.v2-roster-instance').first(),`p6-${book}-${width}`);
-    await check(6,book,width,async()=>{const labels=await page.locator('.v2-roster-identity').evaluateAll(nodes=>nodes.map(n=>{const dt=[...n.querySelectorAll('dt')].find(x=>x.textContent==='Warlord');return dt?.nextElementSibling?.textContent;}));
+    await check(6,book,width,async()=>{assert.equal(await page.locator('[data-roster-warlord-select]').count(),1,'Warlord has one roster-wide control');
+     assert.equal(await page.locator('.v2-roster-instance dt').filter({hasText:/^Warlord$/}).count(),0,'Removed per-unit Warlord captions are absent');
+     const selected=await page.locator('[data-roster-warlord-select]').inputValue();
+     const labels=await page.locator('.v2-roster-instance').evaluateAll((nodes,selected)=>nodes.map(node=>selected?(node.dataset.rosterInstanceId===selected?'Yes':'No'):'Not set'),selected);
      if(book==='death-guard')assert.deepEqual(labels,['No','Yes','No','No','No','No','No','No','No']);else assert(labels.length&&labels.every(x=>x==='Not set'));});
     const first=await effective(page,'parsed-unit-1');
     await check(5,book,width,async()=>assert.equal(await first.locator('.ds-arsenal .ability').count(),0,'Datasheet abilities must stay out of Weapons in every book'));
@@ -130,7 +133,7 @@ try{
      await check(8,book,width,async()=>{const links=card.locator('[data-modifier-source-rule-id="datasheet-daemonettes:section:1"]');assert(await links.count(),'Executed icon modifier provenance must be visible');for(const link of await links.all())assert.equal(await link.innerText(),'Daemonic Icon');});
     }
     if(book==='chaos-space-marines'){
-     const menu=page.getByRole('button',{name:'Open navigation',exact:true});
+     const menu=page.locator('#navMenu');
      if(!await page.getByRole('button',{name:'Full Army Book',exact:true}).isVisible())await menu.click();
      await page.getByRole('button',{name:'Full Army Book',exact:true}).click();
      if(await menu.isVisible()&&await menu.getAttribute('aria-expanded')==='true')await menu.click();
@@ -151,3 +154,15 @@ try{
  if(browser)await browser.close();await new Promise(r=>server.close(r));
 }
 console.log(JSON.stringify({status:'PASS',rows:rows.length,failures:rows.filter(r=>r.status==='FAIL').length,evidence:out}));
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

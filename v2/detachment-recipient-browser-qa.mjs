@@ -64,10 +64,10 @@ const norm=value=>String(value).replace(/\s+/g,' ').replace(/[‘’]/g,"'").tri
 const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
 async function roster(page){
   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+  await page.locator('[data-roster-view]').waitFor();
 }
 async function imported(page,text,expectedIds){
-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
   await page.locator('[data-roster-action="review-import"]').click();
   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
@@ -375,4 +375,11 @@ try{
     limitations:[{scenario:'No selected Detachment',status:'NOT_RUN',reason:'The public New Recruit import requires a resolved Detachment; an empty state is not a valid player fixture. Wrong selected Detachment controls test exclusion through the real UI.'}],
     results,errors,missing,requestFailures,screenshots},null,2)+'\n');
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

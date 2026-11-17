@@ -42,14 +42,14 @@ async function open(book){
  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
 }
 async function submit(text,ready=true){
- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
  await page.locator('[data-roster-action="review-import"]').click();await settled();
  const status=await page.locator('.v2-roster-status').innerText();
  if(ready)assert.ok(status.startsWith('Roster imported.'),'Constructed UI import is READY: '+status);
  return status;
 }
 async function card(id){
- await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
+ await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
  const node=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').first();await node.waitFor();return node;
 }
 async function shot(name,node){await node.scrollIntoViewIfNeeded();const file=path.join(out,name+'.png');await page.screenshot({path:file});return file;}
@@ -236,3 +236,15 @@ finally{
  console.log(JSON.stringify({status:completed?(observe?'OBSERVED':'PASS'):'FAIL',out,checks:results.length}));
 }
 if(failure)throw failure;
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

@@ -196,7 +196,7 @@ const amCompositionImport=`+ DETACHMENT: Rad-Zone Corps
 • 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw
 • 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw`;
 async function imported(page,text){
-  await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
   await page.locator('[data-roster-action="review-import"]').click();
   await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state?.units?.[0]?.instanceId==='parsed-unit-1');
   return page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
@@ -363,14 +363,14 @@ async function equipmentCaptionControls() {
     for(const c of cases) {
       await page.goto(origin+'/v2/app.html');await page.getByRole('link',{name:'Roster',exact:true}).click();
       await page.locator(`main a[data-v2-book="${c.book}"]`).click();await ready();
-      await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+      await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
       await page.getByRole('button',{name:'Import roster',exact:true}).click();
       await page.waitForFunction(()=>ArmyBookAppV2.roster.state?.units.length===2);await ready();
       const before=await page.evaluate(()=>ArmyBookAppV2.roster.snapshot());
       assert.deepEqual(before.units.map(unit=>unit.canonicalUnitId),[c.unit,c.unit]);
       for(const [ordinal,unit]of before.units.entries())for(const view of ['effective','guide']) {
         await roster();
-        if(view==='effective')await page.locator(`[data-roster-instance-id="${unit.instanceId}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
+        if(view==='effective')await openCard(page,page.locator(`[data-roster-instance-id="${unit.instanceId}"]`));
         else {await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
           await page.locator(`main a[data-target-id="roster-unit/${unit.instanceId}"]`).click();}
         await ready();
@@ -503,3 +503,15 @@ try{
   const report={status:'PASS',baselineHead,normalComparisons,personalResults,syntheticResults,pageErrors:errors,screenshots:out};
   fs.writeFileSync(path.join(out,equipmentCaptionsOnly?'equipment-caption-browser-report.json':syntheticOnly?'personal-datasheet-synthetic-browser-report.json':'personal-datasheet-browser-report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

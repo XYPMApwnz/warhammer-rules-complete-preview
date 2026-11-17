@@ -54,10 +54,10 @@ const server=http.createServer((request,response)=>{
   }
   response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});response.end(fs.readFileSync(file));
 });
-const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();};
+const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();};
 async function view(page,id,mode){
   await roster(page);
-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
+  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
   else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();}
   await page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').waitFor();
 }
@@ -274,7 +274,7 @@ try{
       try{
         await page.goto(origin+'/v2/app.html');await page.locator('[data-v2-book="'+c.book+'"]').click();
         await page.waitForFunction(()=>window.ArmyBookAppV2?.roster);await roster(page);
-        await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+        await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
         await page.locator('[data-roster-action="review-import"]').click();await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
         assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
         if(c.attach){const [leader,bodyguard]=c.attach;
@@ -308,3 +308,15 @@ try{
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
 }
 import {openInlineRuleReference} from '../tests/helpers/player-dialog-assertions.mjs';
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

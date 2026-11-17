@@ -220,10 +220,10 @@ try{
     const context=await contextFor();
     try{
       const page=await seed(context);await go(page,'?v2=ROSTER&book=space-marines');
-      await page.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));
+      await openImportForm(page);await page.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));
       await page.getByRole('button',{name:'Import roster',exact:true}).click();
       await poll(page,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);
-      await page.evaluate(()=>ArmyBookAppV2.openRoster());await page.locator('[data-roster-input="raw-text"]').fill(draft);
+      await page.evaluate(()=>ArmyBookAppV2.openRoster());await openImportForm(page);await page.locator('[data-roster-input="raw-text"]').fill(draft);
       await page.evaluate(()=>{
         const input=document.querySelector('[data-roster-input="raw-text"]');input.focus();input.setSelectionRange(4,17,'backward');
         window.pwaDocumentSentinel='working A during sibling automatic update';
@@ -410,14 +410,14 @@ try{
     const context=await contextFor();
     try{
       const page=await seed(context);await go(page,'?v2=ROSTER&book=space-marines');
-      await page.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));
+      await openImportForm(page);await page.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));
       await page.getByRole('button',{name:'Import roster',exact:true}).click();
       await poll(page,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);
-      await page.evaluate(()=>ArmyBookAppV2.openRoster());await page.locator('[data-roster-input="raw-text"]').fill(draft);
+      await page.evaluate(()=>ArmyBookAppV2.openRoster());await openImportForm(page);await page.locator('[data-roster-input="raw-text"]').fill(draft);
       await page.evaluate(()=>window.pwaDocumentSentinel='working A');
       const before=await rosterState(page),sibling=await context.newPage();await go(sibling,'?v2=ROSTER&book=space-marines');
       assert(Number.isFinite(before.totalPoints)&&before.totalPoints>0,'The initial imported roster must have resolved points');
-      await sibling.locator('[data-roster-input="raw-text"]').fill('Sibling unfinished draft');await sibling.evaluate(()=>window.pwaDocumentSentinel='sibling A');
+      await openImportForm(sibling);await sibling.locator('[data-roster-input="raw-text"]').fill('Sibling unfinished draft');await sibling.evaluate(()=>window.pwaDocumentSentinel='sibling A');
       await prepareB(page);await page.evaluate(()=>WHOfflineStatus.check());
       await poll(page,()=>document.querySelector('[data-pwa-update-action]')?.textContent==='Install and restart');
       assert.deepEqual(await rosterState(page),before,'A ready update must preserve working roster, unfinished input and all localStorage');
@@ -480,4 +480,11 @@ try{
 finally{
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
   fs.writeFileSync(path.join(out,'REPORT.json'),JSON.stringify(report,null,2)+'\n');console.log('Evidence '+out);
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

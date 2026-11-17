@@ -31,10 +31,10 @@ async function openRoster(page,bookId='death-guard'){
  await page.goto(origin+'/v2/app.html');await page.locator('[data-v2-book="'+bookId+'"]').click();
  await page.waitForFunction(id=>window.ArmyBookAppV2?.roster&&window.ArmyBookAppV2.payload.book.id===id,bookId);
  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+ await page.locator('[data-roster-view]').waitFor();
 }
 async function submit(page,text){
- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
  await page.locator('[data-roster-action="review-import"]').click();
  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy=true]'));
  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
@@ -70,7 +70,7 @@ try{
   });
   context.setDefaultTimeout(20000);page.on('pageerror',error=>errors.push(error.message));
   try{
-   await openRoster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+   await openRoster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
    await page.locator('[data-roster-action="review-import"]').click();
    await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent.startsWith('Roster imported.'));
    const original=await inspect(page);
@@ -90,7 +90,7 @@ try{
    assert(!/Detachment Points limit exceeded/.test(await page.locator('main').innerText()),'No new native DP legality warning');
    await page.screenshot({path:path.join(out,device+'-owner-v37.25-import.png'),fullPage:true});
    const deathshroud=imported.state.units.find(unit=>unit.canonicalUnitId==='unit-deathshroud-terminators');assert(deathshroud);
-   await page.locator('.v2-roster-instance[data-roster-instance-id="'+deathshroud.instanceId+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
+   await openCard(page,page.locator('.v2-roster-instance[data-roster-instance-id="'+deathshroud.instanceId+'"]'));
    const card=page.locator('main .unit-card[data-roster-instance-id="'+deathshroud.instanceId+'"]');
    assert.match(await card.innerText(),/Icon of Despair/,'The selected Icon is visible on Deathshroud Terminators');
    await card.getByText(/Icon of Despair/).first().scrollIntoViewIfNeeded();
@@ -128,4 +128,16 @@ try{
 }finally{
  fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',results,errors,missing},null,2)+'\n');
  if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+}
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

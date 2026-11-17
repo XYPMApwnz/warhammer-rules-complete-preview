@@ -137,7 +137,7 @@ function inspectCard(card){
  return {selfCaptions,duplicated,sections,groups,weaponSummaries,gainedCount:gained?1:0,localNav:card.querySelector('.local-nav')?.innerText||'',cost:cost?.innerText||'',priceCells:cost?.querySelectorAll('.ds-cost-cell').length||0,instancePriceRows:cost?.querySelectorAll('.ds-instance-price').length||0,leaks,gains};
 }
 async function settled(page){await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));}
-async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
+async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
 async function open(page,row){
  await page.goto(origin+'/v2/app.html');await page.locator(`[data-v2-book="${row.book}"]`).click();
  await page.waitForFunction(book=>window.ArmyBookAppV2?.payload.book.id===book&&Boolean(window.ArmyBookAppV2?.roster),row.book);
@@ -157,7 +157,7 @@ async function open(page,row){
   await page.setViewportSize({width:1440,height:1000});
  }
  await roster(page);
- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(row.text);
+ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(row.text);
  await page.locator('[data-roster-action="review-import"]').click();await settled(page);
  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settled(page);}
  assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./,'Existing fixture imports: '+row.id);
@@ -192,7 +192,7 @@ async function open(page,row){
  }):[attachment.leader,attachment.target];
  return {units,attachment,ids};
 }
-async function effective(page,id){await roster(page);await page.locator(`.v2-roster-instance[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`).first();await card.waitFor();return card;}
+async function effective(page,id){await roster(page);await openCard(page,page.locator(`.v2-roster-instance[data-roster-instance-id="${id}"]`));const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`).first();await card.waitFor();return card;}
 async function captureState(page,row,width,phase){
  const value=await page.evaluate(()=>{const r=window.ArmyBookAppV2.roster;return {state:r.snapshot(),projection:r.projection,points:r.points,effective:r.state.units.map(unit=>r.effective(unit.instanceId))};});
  const sha256=hash(value);observations.push({book:row.book,input:row.id,width,phase,sha256,value});return sha256;
@@ -342,3 +342,15 @@ try{
  if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
 }
 console.log(JSON.stringify({status:'PASS',results:results.length,failures:results.filter(row=>row.status==='FAIL').length,evidence:out}));
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

@@ -28,7 +28,7 @@ async function openBook(book){
 async function importText(book,text){
  await openBook(book);
  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
  await page.locator('[data-roster-action="review-import"]').click();
  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible())await replace.click();
@@ -75,7 +75,7 @@ try{
    assert(active.includes(c.enhancement),'The ordinary CHARACTER keeps its active Enhancement');
    assert.equal(await page.getByText(/Core Rules 25\.04/, {exact:false}).count(),0,'No Epic warning for ordinary CHARACTER');
   }
-  await page.locator('.v2-roster-instance[data-roster-instance-id="'+unit.instanceId+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
+  await openCard(page,page.locator('.v2-roster-instance[data-roster-instance-id="'+unit.instanceId+'"]'));
   const card=page.locator('main .unit-card[data-roster-instance-id="'+unit.instanceId+'"]');await card.waitFor();
   const view=await page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id),unit.instanceId);
   assert.equal(view.enhancements.some(row=>row.canonicalId===c.enhancementId),!c.epic,'Physical datasheet active Enhancement eligibility');
@@ -112,4 +112,16 @@ try{
  fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',root,chosen,current,results,errors,missing},null,2)+'\n');
  if(context)await context.close();if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
  console.log(JSON.stringify({status:completed?'PASS':'FAIL',evidence:out,checks:results.length}));
+}
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

@@ -159,7 +159,7 @@ if(prepareOnly){
   });
   const ready=page=>page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.roster));
   async function openRoster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
-    await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
+    await page.locator('[data-roster-view]').waitFor();}
   async function guideIndex(page){await openRoster(page);await page.getByRole('button',{name:'Open personal guide',exact:true}).click();}
   async function guide(page,instance){await guideIndex(page);await page.locator('main a[data-target-id="roster-unit/'+instance+'"]').click();
     await page.locator('main .unit-card[data-roster-instance-id="'+instance+'"]').waitFor();}
@@ -185,7 +185,7 @@ if(prepareOnly){
       const pageErrors=[];page.on('pageerror',error=>{pageErrors.push(error.message);errors.push({device,variant:fixture.variant,message:error.message});});
       try{
         await page.goto(entry);await page.locator('[data-v2-book="'+bookId+'"]').click();await ready(page);
-        await openRoster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(rosterText);
+        await openRoster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(rosterText);
         await page.locator('[data-roster-action="review-import"]').click();
         await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent.startsWith('Roster imported.'));
         const evidence=await page.evaluate(ruleId=>{const roster=window.ArmyBookAppV2.roster,snapshot=roster.snapshot();return {snapshot,
@@ -239,4 +239,11 @@ if(prepareOnly){
       fixtures:manifest.fixtures,results,errors,requests},null,2)+'\n');
     if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
   }
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

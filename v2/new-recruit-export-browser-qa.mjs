@@ -39,7 +39,7 @@ try{
         await page.locator('[data-v2-book="'+c.bookId+'"]').click();
         await page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
         await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
-        await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+        await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
         await page.locator('[data-roster-action="review-import"]').click();
         const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
         // Replacing an existing roster is an explicit player action.
@@ -50,7 +50,7 @@ try{
         assert.ok(state.units.length,'A real roster must be installed');
         if(c.wounds){
           const id=state.units[0].instanceId;
-          await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
+          await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
           const card=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]');await card.waitFor();
           const stats=await card.locator('.statline').evaluateAll(nodes=>nodes.map(node=>node.innerText));
           const rendered=await card.locator('.statline [data-fact-id]').evaluateAll(nodes=>nodes.map(node=>({id:node.dataset.factId,text:node.textContent})));
@@ -68,4 +68,16 @@ try{
 }finally{
   fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',results,errors,missing},null,2)+'\n');
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+}
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

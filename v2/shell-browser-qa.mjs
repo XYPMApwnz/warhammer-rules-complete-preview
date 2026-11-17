@@ -190,12 +190,26 @@ try{
       }
       await page.evaluate(()=>window.ArmyBookAppV2.openPersonalGuide());await page.waitForSelector('main [data-roster-nav-instance-id]');
       await page.evaluate(()=>window.ArmyBookAppV2.openInstance('parsed-unit-1'));await page.waitForSelector('main .unit-card');await geometry(page);
-      await page.locator('main .ds-related-rules-button').first().click();await page.waitForSelector('dialog.v2-related-dialog[open]');
+      const physicalUrl=page.url();
+      const relatedUnitId=await page.evaluate(()=>window.ArmyBookAppV2.roster.state.units.find(unit=>unit.instanceId==='parsed-unit-1').canonicalUnitId);
+      assert.equal(await page.locator('main .ds-related-rules-button').count(),0,'Roster cards omit the compatible rules button');
+      assert.equal(await page.getByRole('button',{name:'Compatible Stratagems & Enhancements',exact:true,includeHidden:true}).count(),0,'Removed roster label is absent');
+      const fullBookControl=page.getByRole('button',{name:'Full Army Book',exact:true});
+      const bookMenu=page.locator('#navMenu');
+      if(!await fullBookControl.isVisible())await bookMenu.click();
+      await fullBookControl.click();await active(page,book);
+      if(await bookMenu.isVisible()&&await bookMenu.getAttribute('aria-expanded')==='true')await bookMenu.click();
+      await page.locator(`main .unit-card[data-card-id="${relatedUnitId}"] .ds-related-rules-button`).first().click();await page.waitForSelector('dialog.v2-related-dialog[open]');
       await popupGeometry(page,'dialog.v2-related-dialog[open] .related-rules-dialog');
       await page.locator('dialog.v2-related-dialog[open] button[data-kind="enhancements"]').click();
       assert.equal(await page.locator('dialog.v2-related-dialog[open] button[data-kind="enhancements"]').getAttribute('aria-pressed'),'true');
       await screenshot(page,`shell-${book}-related-${device}`);
       await page.getByRole('button',{name:'Close compatible rules',exact:true}).click();await page.waitForSelector('dialog.v2-related-dialog[open]',{state:'hidden'});
+      await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await active(page,book);
+      const restoredOwner=page.locator('.v2-roster-instance[data-roster-instance-id="parsed-unit-1"]');
+      assert.equal(await restoredOwner.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+      await restoredOwner.getByRole('button',{name:'Open card',exact:true}).click();await page.waitForSelector('main .unit-card');
+      assert.equal(page.url(),physicalUrl,'Returning from the Full Army Book restores the exact physical URL');
       assert.equal(new URL(page.url()).searchParams.get('instance'),'parsed-unit-1');
       const link=page.locator(`main .weapon-name a[data-target-id="${c.weapon}"]`).first();
       const href=await link.getAttribute('href'),url=new URL(href);urls[book]=href;

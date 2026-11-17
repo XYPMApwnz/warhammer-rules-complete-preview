@@ -89,10 +89,10 @@ Char2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissia
 const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
 async function roster(page){
   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+  await page.locator('[data-roster-view]').waitFor();
 }
 async function imported(page,text,count){
-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
   await page.locator('[data-roster-action="review-import"]').click();
   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
@@ -466,4 +466,11 @@ try{
 }finally{
   fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({browser:browser?.version(),root:repo,filters:{case:process.env.F2_BROWSER_CASE||null,device:process.env.F2_BROWSER_DEVICE||null},viewports:[{width:1440,height:1000},{width:390,height:844}],results,errors,missing,requestFailures,consoleMessages,screenshots},null,2)+'\n');
   console.log('F2 browser evidence: '+out);if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

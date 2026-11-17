@@ -81,10 +81,10 @@ async function ready(page){
 }
 async function roster(page){
   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await ready(page);
-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+  await page.locator('[data-roster-view]').waitFor();
 }
 async function imported(page,fixture,text){
-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
   await page.locator('[data-roster-action="review-import"]').click();
   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
   const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
@@ -224,4 +224,11 @@ try{
   console.log(JSON.stringify({status:report.status,fixtures:fixtures.length,devices:viewports.length,checks:results.length,jsErrors:errors.length,missing:missing.length,
     forbidden:forbidden.length,httpErrors:httpErrors.length,requestFailures:requestFailures.length,
     realNewRecruitExportTested:false,report:path.join(out,'charge-effects-browser-report.json')}));
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

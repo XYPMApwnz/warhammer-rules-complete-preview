@@ -126,8 +126,8 @@ const browserFailure=Promise.withResolvers();
 const failBrowser=error=>{errors.push(error.message);browserFailure.reject(error);};
 const ready=async page=>{await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
 async function openRosterUI(page){
-  const control=page.locator('.toc-shortcuts button').filter({hasText:/^(Attachment Setup|Roster)$/}).first();
-  if(!await control.isVisible())await page.getByRole('button',{name:'Open navigation',exact:true}).click();
+  const control=page.locator('.toc-bottom-shortcuts button, .toc-shortcuts button').filter({hasText:/^(Attachment Setup|Roster)$/}).first();
+  if(!await control.isVisible())await page.locator('#navMenu').click();
   await control.click();
   await page.locator('[data-roster-instances]').waitFor();
 }

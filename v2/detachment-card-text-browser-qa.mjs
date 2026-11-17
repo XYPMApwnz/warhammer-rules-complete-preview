@@ -27,11 +27,11 @@ const origin='http://127.0.0.1:'+server.address().port;
 const norm=value=>String(value).replace(/[‘’]/g,"'").replace(/\s+/g,' ').trim();
 async function roster(page){
   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+  await page.locator('[data-roster-view]').waitFor();
 }
 async function inspect(page,spec,unit,id,mode,device,stage){
   await roster(page);
-  if(mode==='Effective')await page.locator(`[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
+  if(mode==='Effective')await openCard(page,page.locator(`[data-roster-instance-id="${id}"]`));
   else{
     await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
     await page.locator(`main a[data-target-id="roster-unit/${id}"]`).click();
@@ -110,3 +110,8 @@ try{
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
 }
 console.log(JSON.stringify({status:'PASS',scenarios:cases.length,devices:2,checks:results.length,evidence:out}));
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}

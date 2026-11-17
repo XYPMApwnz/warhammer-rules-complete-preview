@@ -63,11 +63,11 @@ const server=http.createServer((request,response)=>{
 const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
 async function roster(page){
   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+  await page.locator('[data-roster-view]').waitFor();
 }
 async function imported(page,text){
   activity.imports++;
-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
   await page.locator('[data-roster-action="review-import"]').click();
   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
   const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
@@ -90,7 +90,7 @@ async function detach(page){
 }
 async function view(page,id,mode){
   await roster(page);
-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
+  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
   else{
     await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
     await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();
@@ -276,4 +276,16 @@ try{
   fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:!completed||process.exitCode||errors.length||missing.length?'NEW_FAIL':'PASS',
     elapsedMs:Date.now()-started,activity,caseIds:cases.map(c=>c.id),browser:browser?.version(),serviceWorkers:'blocked',realNewRecruitExportTested:false,results,errors,missing,screenshots,snapshots},null,2));
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+}
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

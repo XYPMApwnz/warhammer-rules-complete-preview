@@ -28,7 +28,7 @@ async function open(page,bookId){
  await page.goto(origin+'/v2/app.html');await page.locator(`[data-v2-book="${bookId}"]`).click();
  await page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+ await page.locator('[data-roster-view]').waitFor();
 }
 let browser,completed=false;
 try{
@@ -37,7 +37,7 @@ try{
   const context=await browser.newContext({viewport,serviceWorkers:'block'}),page=await context.newPage();
   context.setDefaultTimeout(20000);page.on('pageerror',error=>errors.push(error.message));
   try{
-   await open(page,c.bookId);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+   await open(page,c.bookId);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
    await page.locator('[data-roster-action="review-import"]').click();
    await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent.startsWith('Roster imported.'));
    const state=await page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
@@ -56,4 +56,11 @@ try{
 }finally{
  fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',results,errors,missing},null,2)+'\n');
  if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

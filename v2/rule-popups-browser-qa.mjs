@@ -32,9 +32,9 @@ let browser,page,current,complete=false;
 async function check(name,fn){try{const detail=await fn();rows.push({...current,name,status:'PASS',detail});}catch(error){rows.push({...current,name,status:'FAIL',error:error.message});if(!observe)throw error;}}
 async function screenshot(name,locator=page){const file=current.book+'-'+current.width+'-'+name+'.png';await locator.screenshot({path:path.join(out,file),animations:'disabled',style});shots.push({...current,name,file});}
 async function settle(){await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));}
-async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
-async function importText(text){await roster();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();await settle();const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settle();}assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);}
-async function effective(instanceId){await roster();await page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();const card=page.locator(`main .unit-card[data-roster-instance-id="${instanceId}"]`).first();await card.waitFor();return card;}
+async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
+async function importText(text){await roster();await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();await settle();const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settle();}assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);}
+async function effective(instanceId){await roster();await openCard(page,page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`));const card=page.locator(`main .unit-card[data-roster-instance-id="${instanceId}"]`).first();await card.waitFor();return card;}
 try{
  browser=await launchChromium();
  for(const book of books){
@@ -203,3 +203,15 @@ finally{
  if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
 }
 console.log(JSON.stringify({status:observe?'OBSERVED':'PASS',checks:rows.length,evidence:out}));
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

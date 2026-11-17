@@ -82,7 +82,7 @@ async function scan(meta){
 }
 async function roster(){
   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+  await page.locator('[data-roster-view]').waitFor();
 }
 async function settled(){await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));}
 async function fullBookCoverage(){
@@ -138,7 +138,7 @@ try{
       }
       for(const input of fixture.cases.filter(row=>row.bookId===book)){
         current={book,screen:'import',inputId:input.id};await roster();
-        await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(input.text);
+        await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(input.text);
         await page.locator('[data-roster-action="review-import"]').click();await settled();
         const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settled();}
         assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./,'Existing positive fixture imports through UI: '+input.id);
@@ -157,7 +157,7 @@ try{
           await scan({book,screen:'roster-after-import-and-attachment',width,inputId:input.id});
           for(const instanceId of instances){
             await roster();
-            await page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
+            await openCard(page,page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`));
             await page.locator(`main .unit-card[data-roster-instance-id="${instanceId}"]`).first().waitFor();
             await scan({book,screen:'opened-physical-instance',width,inputId:input.id,instanceId,attachment:input.attachment});
             if(input.id==='character-pair-0039'){
@@ -217,3 +217,15 @@ try{
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
 }
 console.log(JSON.stringify({status:'PASS',screens:rows.length,elapsedMs:Date.now()-started,evidence:out}));
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

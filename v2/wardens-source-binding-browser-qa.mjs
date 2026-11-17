@@ -22,10 +22,10 @@ const server=http.createServer((request,response)=>{
   response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const origin='http://127.0.0.1:'+server.address().port;
-async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
+async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
 async function inspect(page,id,mode,wanted,stage,device){
   await roster(page);
-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
+  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
   else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();}
   const card=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]');await card.waitFor();
   const block=card.locator('article[data-attached-rule-id="'+BANNER+'"]');assert.equal(await block.count(),wanted?1:0,device+'/'+mode+'/'+stage+'/'+id);
@@ -48,7 +48,7 @@ try{
     try{
       console.log('RUN '+device+' Wardens public import');
       await page.goto(origin+'/v2/app.html');await page.locator('[data-v2-book="space-marines"]').click();await page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
-      await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
+      await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
       await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
       assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
       const units=await page.evaluate(()=>window.ArmyBookAppV2.roster.state.units);
@@ -74,3 +74,15 @@ try{
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
 }
 console.log(JSON.stringify({status:'PASS',devices:2,checks:results.length,evidence:out}));
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

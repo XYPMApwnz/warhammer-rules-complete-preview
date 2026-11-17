@@ -49,6 +49,7 @@ node('v2/sweep-polish-qa.mjs');
 node('books/shared/army-book-app-v2/rule-popup-qa.mjs');
 node('books/shared/army-book-app-v2/rule-term-links-qa.mjs');
 node('books/shared/army-book-app-v2/equipment-reference-qa.mjs');
+node('books/shared/army-book-app-v2/roster-navigation-qa.mjs');
 node('tests/official-updates-qa.mjs');
 node('tests/official-update-books-qa.mjs');
 node('tests/official-update-report-qa.mjs');
@@ -91,6 +92,7 @@ if(mode==='pre-ff'){
  node('v2/sweep-polish-browser-qa.mjs');
  node('v2/card-gained-rules-browser-qa.mjs');
  node('v2/rule-popups-browser-qa.mjs');
+ node('v2/roster-navigation-browser-qa.mjs');
  // Each fixture is admitted once by the existing recipient browser runner.
  node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json']);
  node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json']);
