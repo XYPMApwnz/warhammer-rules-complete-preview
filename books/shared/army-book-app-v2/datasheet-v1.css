@@ -634,7 +634,7 @@
 .ds-roster-card .ds-gained-overview .ds-effective-unit-metric { margin: 0; }
 .ds-roster-card .ds-gained-recipient { display: inline; margin-left: 6px; color: var(--muted); font: 500 11px/1.5 var(--ds-ui); overflow-wrap: anywhere; }
 .ds-roster-card .ds-gained-control { position: relative; display: inline-flex; align-items: baseline; max-width: 100%; }
-.ds-roster-card .ds-gained-chip { display: inline-flex; align-items: center; min-height: 0; padding: 3px 5px; border: 1px solid currentColor; border-radius: 0; background: transparent; color: var(--ds-gained-accent); font: 700 9px/1.2 var(--ds-data); letter-spacing: .025em; text-align: left; white-space: nowrap; }
+.ds-roster-card .ds-gained-chip { display: inline-block; min-height: 0; padding: 3px 5px; border: 1px solid currentColor; border-radius: 0; background: transparent; color: var(--ds-gained-accent); font: 700 9px/1.2 var(--ds-data); letter-spacing: .025em; text-align: left; white-space: nowrap; }
 .ds-roster-card button.ds-gained-chip { cursor: pointer; }
 .ds-roster-card .ds-gained-chip:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .ds-roster-card .ds-gained-tooltip:not([hidden]) { display: block; position: absolute; left: 0; top: 100%; z-index: 40; width: max-content; max-width: min(280px, 75vw); padding: 10px; border: 1px solid var(--ds-gained-accent); border-radius: 5px; background: var(--panel, #161a19); color: var(--ink); font: 500 12px/1.6 var(--ds-ui); white-space: normal; overflow-wrap: anywhere; box-shadow: 0 5px 15px #0006; }

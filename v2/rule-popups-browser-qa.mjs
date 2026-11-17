@@ -109,11 +109,13 @@ try{
       assert.equal(await card.getAttribute('data-card-id'),fixture.unitId);
       const result=await card.evaluate((root,ruleId)=>({modes:[...root.querySelectorAll('.weapon-table')].map(table=>table.getAttribute('aria-label')),
        lines:[...root.querySelectorAll('[data-gained-weapon-summary]')].filter(line=>{const source=JSON.parse(line.dataset.gainedSourceIdentity);return (source.canonicalRuleId||source.ruleId)===ruleId;}).map(line=>line.textContent),
+       selfSourceCaptions:[...root.querySelectorAll('[data-gained-weapon-summary]')].filter(line=>JSON.parse(line.dataset.gainedSourceIdentity).sourceInstanceId===root.dataset.rosterInstanceId&&/\s—\s/.test(line.textContent)).map(line=>line.textContent),
        nativeFont:root.querySelector('.weapon-tag')&&getComputedStyle(root.querySelector('.weapon-tag')).font,
        gainedFonts:[...root.querySelectorAll('.weapon-tags .ds-gained-chip')].map(chip=>getComputedStyle(chip).font),
        wraps:[...root.querySelectorAll('.weapon-tags .ds-gained-chip')].map(chip=>{const range=document.createRange();range.selectNodeContents(chip);return [...range.getClientRects()].map(rect=>rect.top);})}),fixture.ruleId);
       assert(result.modes.some(mode=>mode.startsWith('ranged'))&&result.modes.some(mode=>mode.startsWith('melee')),'Both selected weapon modes are present');
       assert.equal(result.lines.length,1,'One physical source summary covers every ranged and melee group');assert(result.lines[0].startsWith('All weapons: '));
+      assert.deepEqual(result.selfSourceCaptions,[],'A common weapon summary does not repeat its own physical source');
       if(book.id==='tyranids')assert(result.lines[0].includes('SUSTAINED HITS 1'));else for(const label of ['+1 A','+1 S','−1 AP'])assert(result.lines[0].includes(label),'Every independent numeric effect remains readable: '+label);
       assert(result.nativeFont&&result.gainedFonts.length);assert(result.gainedFonts.every(font=>font===result.nativeFont),'Gained and native weapon chips use the same font');
       if(width===1440)assert(result.wraps.every(lines=>new Set(lines.map(top=>Math.round(top))).size<=1),'Gained chip labels do not wrap on desktop');

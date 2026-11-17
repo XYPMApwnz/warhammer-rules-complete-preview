@@ -857,7 +857,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         if(!commonLabels.length)continue;
         const mode=group.querySelector('.weapon-table')?.getAttribute('aria-label')?.startsWith('melee')?'melee':'ranged';
         const title=sourceRuleCaption(source,cards),physical=source.sourceInstanceId&&source.sourceInstanceId!==instanceId?humanPhysicalCaption(source.sourceInstanceId):null;
-        const attribution=hasForeignSource([source])?` — ${title}${physical?' ('+physical+')':''}`:'';
+        const attribution=source.sourceInstanceId!==instanceId&&hasForeignSource([source])?` — ${title}${physical?' ('+physical+')':''}`:'';
         const line=el('p','ds-gained-weapon-summary',`All ${mode} weapons: ${commonLabels.join(', ')}${attribution}`);
         line.dataset.gainedWeaponSummary='';line.dataset.gainedSourceIdentity=JSON.stringify(source);
         line.dataset.summaryLabels=JSON.stringify(commonLabels);line.dataset.summaryAttribution=attribution;
