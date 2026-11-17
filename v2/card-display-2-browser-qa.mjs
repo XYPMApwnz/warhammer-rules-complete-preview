@@ -290,7 +290,9 @@ try{
         }
         if(!baseline&&c.id==='sm-physical'){
           await view(page,'parsed-unit-3','Guide');
-          const link=page.locator('main .unit-card[data-roster-instance-id="parsed-unit-3"] a[data-represented-ability-id]').first();
+          const metadata=page.locator('main .unit-card[data-roster-instance-id="parsed-unit-3"] a[data-represented-ability-id]').first();
+          const target=await metadata.getAttribute('data-represented-ability-id');
+          const link=await openInlineRuleReference(page,metadata,target);
           await link.click();await page.locator('dialog[open]').waitFor();
           assert.match(await page.locator('dialog[open]').innerText(),/Veil of Time|Force Dome/,'Canonical psychic source link opens the real source presenter');
           await page.keyboard.press('Escape');
@@ -305,3 +307,4 @@ try{
   fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:complete&&!process.exitCode?'PASS':'NEW_FAIL',baseline,results,errors,missing,census,screenshots},null,2));
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
 }
+import {openInlineRuleReference} from '../tests/helpers/player-dialog-assertions.mjs';

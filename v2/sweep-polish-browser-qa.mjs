@@ -13,6 +13,7 @@ import {createHash} from 'node:crypto';
 import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+import {assertPlayerDialog} from '../tests/helpers/player-dialog-assertions.mjs';
 
 const own=fileURLToPath(new URL('../',import.meta.url));
 const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
@@ -74,6 +75,7 @@ let browser,page,complete=false,current=null;
 const started=Date.now();
 async function scan(meta){
   current=meta;
+  await assertPlayerDialog(page);
   const result=await page.evaluate(inspectVisiblePlayerText);rows.push({...meta,...result});
   assert(result.scannedTextNodes>0,'Nonempty rendered screen: '+JSON.stringify(meta));
   assert.equal(result.leaks.length,0,'Visible technical text: '+JSON.stringify({...meta,leaks:result.leaks}));

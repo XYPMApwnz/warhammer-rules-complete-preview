@@ -1,3 +1,4 @@
+import {assertDialogActionLabel} from '../tests/helpers/player-dialog-assertions.mjs';
 import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 import {armyBooks} from './army-books.mjs';
@@ -181,7 +182,7 @@ try {
       const direct=await link.getAttribute('href');assert.deepEqual(decodeRoute(direct),decodeRoute(encodeRoute(entry,{destination:'GLOSSARY',...target.identity})));
       await link.click();const popup=await article(page,target.id,true);await popupGeometry(page);
       assert.deepEqual(await popup.locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,`${sample.label}: popup must contain its exact source field and applicable governing condition`);
-      await popup.getByRole('link',{name:'Open full entry',exact:true}).click();const full=await article(page,target.id);
+      await assertDialogActionLabel(page);await popup.getByRole('link',{name:'Open in Glossary',exact:true}).click();const full=await article(page,target.id);
       assert.deepEqual(await full.locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,`${sample.label}: article source-field and condition parity`);
       if(sample.path)assert.equal(decodeRoute(page.url()).fieldPath,sample.path,'Qualified source field lost from route');
       await page.reload();await ready(page);assert.deepEqual(await (await article(page,target.id)).locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,'Reload lost source field or governing condition');
@@ -203,13 +204,13 @@ try {
     await link.click();await article(page,deep,true);await popupGeometry(page);await screenshot(page,device+'-popup');
     const expectedDefinition=contract.resolve(deep).sections.flatMap(section=>section.fields.map(field=>field.value)).join('\n');
     assert.ok((await page.locator('dialog[open]').innerText()).includes(expectedDefinition),'Popup definition differs from enrolled canonical content');
-    assert.ok((await page.locator('dialog[open]').innerText()).includes('Open full entry'));
+    assert.ok((await page.locator('dialog[open]').innerText()).includes('Open in Glossary'));
     await page.keyboard.press('Escape');assert.equal(await page.locator('dialog[open]').count(),0);
     assert.equal(await link.evaluate(node=>node===document.activeElement),true,'Escape failed focus restoration');
     await link.click();await article(page,deep,true);await page.getByRole('button',{name:'Close rule reference',exact:true}).click();
     assert.equal(await link.evaluate(node=>node===document.activeElement),true,'Close failed focus restoration');
     await link.click();await article(page,deep,true);await page.mouse.click(2,2);assert.equal(await page.locator('dialog[open]').count(),0,'Outside click failed');
-    await link.click();await article(page,deep,true);await page.getByRole('link',{name:'Open full entry',exact:true}).click();await article(page,deep);await global(page);
+    await link.click();await article(page,deep,true);await assertDialogActionLabel(page);await page.getByRole('link',{name:'Open in Glossary',exact:true}).click();await article(page,deep);await global(page);
     assert.deepEqual(decodeRoute(page.url()),decodeRoute(href),'Popup permalink changed canonical identity');await screenshot(page,device+'-article');
     await page.reload();await ready(page);await article(page,deep);
     await page.goBack();await ready(page);await page.getByRole('searchbox',{name:'Search glossary',exact:true}).waitFor();

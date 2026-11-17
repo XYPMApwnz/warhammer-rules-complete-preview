@@ -44,6 +44,7 @@ For independent unified V2 certification of Core, DG, AdMech and CSM, follow the
 
 | Change area | Minimum QA | Dependent QA | Release-only QA |
 | --- | --- | --- | --- |
+| Focused rule dialogs, selected equipment and exact prose links | `npm run test:rule-popups` (nine books, 390/1440; old-label mutation) | `test:sweep-polish`, affected canonical-reference browser tests; both new module tests run in quick and the complete browser test runs in pre-ff | `qa:pre-ff` |
 | Space Marines local content/presentation | `qa:sm` | `qa:da`, `qa:ba` when inherited semantics or publication can change | `qa:release` |
 | Dark Angels local overlay | `qa:da` | `qa:sm` only if the shared owner is changed; `qa:effects` or `qa:points` as applicable | `qa:release` |
 | Blood Angels local overlay | `qa:ba` | `qa:sm` only if the shared owner is changed; `qa:effects` or `qa:points` as applicable | `qa:release` |
