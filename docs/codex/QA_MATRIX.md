@@ -59,6 +59,7 @@ For independent unified V2 certification of Core, DG, AdMech and CSM, follow the
 | Points source/projection | `qa:points` | Affected `qa:<book>`, `qa:roster` if assessment changes | `qa:release` |
 | Roster parser/projection/runtime | `qa:roster` | Affected `qa:<book>`, `qa:integration`, targeted browser runtime | `qa:release` |
 | V2 selected Enhancement / declarative grant presentation | `qa:shared:v2:enhancement-presentation` | `qa:shared:v2:enhancement-presentation:browser`, `qa:shared:v2:source-effects`, `qa:integration` | No new content certification |
+| Roster navigation, lazy Stratagem references and existing saved snapshots | `node books/shared/army-book-app-v2/roster-navigation-qa.mjs` (quick/pre-ff) | `node v2/roster-navigation-browser-qa.mjs` (pre-ff, nine books at 390/1440); `--mutation=foreign-detachment --book=death-guard --widths=390` must fail the exact native-row guard | `generated:check`; exact native roster A/B before review |
 | Glossary facts/editorial/build | `qa:glossary` | Affected `qa:<book>` for projection changes; `qa:integration` for viewer wiring | `qa:release` |
 | V2 publication/offline inventory | `qa:publication` | `qa:integration`; targeted rendered/browser QA | `qa:release` |
 | Source manifest/authentication | `qa:sources` | Affected `qa:<book>` and source-specific `--check` | `qa:release` |

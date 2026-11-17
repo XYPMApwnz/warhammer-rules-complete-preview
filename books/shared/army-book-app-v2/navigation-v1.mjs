@@ -30,8 +30,7 @@ const keywordsFor=unit=>new Set(list(keywordField(unit, "intrinsicKeywords")).ma
     units.filter(unit=>unit.isCharacter&&!unit.isEpic&&unattached(unit)).sort(compare).forEach(emit);
     components.filter(component=>!component.epic).sort((a,b)=>componentOrder(a)-componentOrder(b)).forEach(emitComponent);
     units.sort(compare).forEach(emit);
-    const copies=new Map();for(const unit of units.sort((a,b)=>a.physicalOrder-b.physicalOrder)){if(!copies.has(unit.targetId))copies.set(unit.targetId,[]);copies.get(unit.targetId).push(unit.instanceId);}
-    return result.map(unit=>{const peers=copies.get(unit.targetId)||[],ordinal=peers.indexOf(unit.instanceId)+1;return{...unit,label:peers.length>1?`${unit.title} #${ordinal}`:unit.title,navigationAttachment:attachmentByInstance.get(unit.instanceId)||null};});
+    return result.map(unit=>({...unit,navigationAttachment:attachmentByInstance.get(unit.instanceId)||null}));
   }
 
 
@@ -146,7 +145,7 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
   const build=(entry,depth=1)=>{
     if(entry.attachmentGroup){
       const group=make('li','roster-attachment-group'),members=make('ul','toc-branch roster-attachment-members');group.dataset.rosterAttachmentGroup=entry.attachmentGroup;
-      entry.members.forEach(member=>{const node=build(member,1);node.dataset.rosterAttachmentGroup=entry.attachmentGroup;node.dataset.rosterAttachmentRole=member.attachmentRole;members.append(node);});group.append(members);return group;
+      entry.members.forEach(member=>{const node=build(member,depth);node.dataset.rosterAttachmentGroup=entry.attachmentGroup;node.dataset.rosterAttachmentRole=member.attachmentRole;members.append(node);});group.append(members);return group;
     }
     const node=make('li');node.dataset.navId=entry.id;node.dataset.navDepth=String(depth);
     const row=make('div','toc-row'+(entry.children.length?'':' no-toggle')),label=make('button','toc-label',entry.label);label.type='button';

@@ -168,6 +168,14 @@ try{
         await attach(one('unit-lord-of-contagion'),one('unit-deathshroud-terminators'));await attach(one('unit-biologus-putrifier'),one('unit-plague-marines',10));
       }else if(fixture.attachment)await attach(fixture.attachment.leader,fixture.attachment.target);
       state=await snapshot();
+      const setupPrices=new Map((await page.locator('.v2-roster-instance').evaluateAll(nodes=>nodes.map(node=>{
+        const term=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>['Points','MFM base points','Imported points'].includes(term.textContent));
+        const enhancements=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>term.textContent==='Enhancements on this unit');
+        return [node.dataset.rosterInstanceId,{label:term?.textContent,value:term?.nextElementSibling?.textContent,
+          enhancements:[...(enhancements?.nextElementSibling?.querySelectorAll('[data-target-id]')||[])].map(link=>link.dataset.targetId)}];
+      }))));
+      const activeEnhancements=await page.evaluate(()=>ArmyBookAppV2.roster.projection.units.map(unit=>[unit.instanceId,unit.enhancementIds]));
+      for(const [id,ids] of activeEnhancements)assert.deepEqual(setupPrices.get(id).enhancements,ids,'Attachment Setup shows exactly the active chosen Enhancements');
       await check('single-physical-character-warlord-control-and-exact-roundtrip',async()=>{
         assert.equal(await page.locator('[data-roster-warlord]').count(),1);assert.equal(await page.locator('.v2-roster-instance dt').filter({hasText:/^Warlord$/}).count(),0);
         assert.equal(await page.locator('[data-roster-warlord-select]').inputValue(),state.warlordInstanceId||'','Imported Warlord is shown');
@@ -252,9 +260,21 @@ try{
         return {instanceId:focus,calls:await page.evaluate(()=>window.__rosterNavigationRelatedCalls)};
       });
       for(const unit of state.units){const card=await unitCard(unit.instanceId);
+        const price=setupPrices.get(unit.instanceId);if(price.label==='MFM base points'){
+          const actual=await card.locator('.ds-instance-price').innerText();assert(actual.endsWith(' · '+price.value),'Attachment Setup uses the same existing MFM price as the card');
+        }
+        for(const id of new Map(activeEnhancements).get(unit.instanceId))assert.equal(await card.locator(`[data-gained-source-kind="ENHANCEMENT"][data-source-rule-id=${JSON.stringify(id)}]`).count(),1,'The chosen Enhancement remains in Gained rules');
         await check('physical-card-stratagems-'+unit.instanceId,()=>inspectStratagems(card,unit.instanceId,cards));
         assert.equal(await card.locator('.v2-roster-identity dt').filter({hasText:/^Starting Strength$/}).count(),0);}
       await shot('physical-card');await guide();
+      await check('guide-detachment-stratagem-reference-is-complete-and-scoped',async()=>{
+        await page.getByRole('link',{name:'Open Stratagems',exact:true}).click();await frames();
+        const section=page.locator('main [data-contents-target="nav:stratagems"]');await section.waitFor();
+        const expected=payload.cards.filter(card=>card.kind==='STRATAGEM'&&state.detachmentIds.includes(card.parentId));
+        assert.deepEqual((await section.locator('article.stratagem[data-card-id]').evaluateAll(nodes=>nodes.map(node=>node.dataset.cardId))).toSorted(),expected.map(card=>card.id).toSorted(),'Guide lists every roster Detachment Stratagem and no foreign one');
+        for(const source of expected)await assertSourceFields(section.locator(`article.stratagem[data-card-id=${JSON.stringify(source.id)}]`),source);
+        return {ids:expected.map(card=>card.id)};
+      });
       await check('guide-all-core-reference-inventory-and-canonical-text',async()=>{
         const core=payload.cards.filter(card=>card.domain==='CORE'&&card.kind==='CORE_MAIN_RULE'&&card.fields.some(field=>field.source?.path==='/semanticContent'&&String(field.value).split('\n').some(line=>line.trim()==='Core Stratagem')));assert(core.length,'Published Core Stratagem references');
         const ids=await page.locator('#tocTree [data-nav-id="nav:core-stratagems"] [data-canonical-id]').evaluateAll(nodes=>nodes.map(node=>node.dataset.canonicalId));assert.deepEqual(ids.toSorted(),core.map(card=>card.id).toSorted(),'Every Core Stratagem is readable without applicability filtering');

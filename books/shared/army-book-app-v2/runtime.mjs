@@ -184,6 +184,7 @@ export function mount(document, payload, options = {}) {
     service: options.roster, bookId: payload.book.id, open: id=>id?open(id):openLibrary(), showDetail,
     openPersonalGuide, showInstance: openInstance, routeURL, lifecycle,
     titleForId: id => cards.get(id)?.title,
+    presentationCards:cards,
     importLimitations: payload.rulePresentationLimitations?.importLimitations || []
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state, options.roster.projection);

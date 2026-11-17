@@ -1,6 +1,6 @@
 import {createLifecycle} from './lifecycle.mjs';
 import {epicHeroEnhancementWarning} from '../roster-v2/import.mjs';
-import {playerImportCopy,warlordDisplay,incompleteExportCopy,plainHeaderImportExplanation} from './cosmetics.mjs';
+import {playerImportCopy,warlordDisplay,incompleteExportCopy,plainHeaderImportExplanation,rosterBasePoints} from './cosmetics.mjs';
 import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 import {rosterUnitNames} from './roster-labels.mjs';
 /** Display the service's existing uncertainty; never calculate or complete costs. */
@@ -54,7 +54,7 @@ export function importLimitationForNeed(need,limitations=[]){
 }
 
 /** Optional roster view. The injected service owns every identity, fact and effect. */
-export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle,importLimitations=[]}) {
+export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle,importLimitations=[],presentationCards=new Map()}) {
   if (!service || !Array.isArray(service.catalog)) throw new TypeError('A canonical roster service is required.');
   for (const method of ['draft', 'import', 'load', 'snapshot', 'effective', 'related', 'candidates', 'attach', 'detach']) {
     if (typeof service[method] !== 'function') throw new TypeError(`Roster service requires ${method}().`);
@@ -568,9 +568,12 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const identity = el('dl', 'v2-roster-identity');
     identity.append(identityField('Models', unit.startingStrength));
     if(showWarlord)identity.append(identityField('Warlord', warlordDisplay(unit,service.state)));
-    const unitPoints=service.points?.units?.find(row=>row.unitInstanceId===unit.instanceId);
+    const unitPoints=service.points?.units?.find(row=>(row.unitInstanceId||row.instanceId)===unit.instanceId);
+    const basePoints=rosterBasePoints(presentationCards,service.state,unit,unitPoints);
+    const totalPoints=unitPoints?.totalPoints??unitPoints?.total;
     const importedPoints=unit.raw?.points??unit.points;
-    if(unitPoints)identity.append(identityField('Points',Number.isFinite(unitPoints.totalPoints)?`${unitPoints.totalPoints} pts`:'Unresolved'));
+    if(unitPoints)identity.append(identityField('Points',Number.isFinite(totalPoints)?`${totalPoints} pts`:'Unresolved'));
+    else if(Number.isFinite(basePoints))identity.append(identityField('MFM base points',`${basePoints} pts`));
     else if(Number.isFinite(importedPoints))identity.append(identityField('Imported points',`${importedPoints} pts`));
     const enhancements = el('span');
     const activeIds=activeEnhancementsByInstance.get(unit.instanceId)||[];

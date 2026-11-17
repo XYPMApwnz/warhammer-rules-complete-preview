@@ -2,7 +2,7 @@ import {requiredKeywordField} from '../keyword-values.mjs';
 import {createEquipmentReferenceResolver} from './equipment-reference.mjs';
 import {focusedRuleField} from './rule-popup.mjs';
 import {sourceSnapshot,sameSourceEvidence} from '../source-refs-v2/source-refs.mjs';
-import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy,physicalUnitCaption,physicalModelCaption} from './cosmetics.mjs';
+import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy,physicalUnitCaption,physicalModelCaption,rosterBasePoints} from './cosmetics.mjs';
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
@@ -239,9 +239,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const link=sourceReference(sourceRuleCaption(origin,cards),origin,origin.canonicalRuleId);link.dataset.modifierSourceRuleId=origin.canonicalRuleId;
       link.dataset.modifierSourceInstanceId=origin.sourceInstanceId||'';note.append(link);
       const physical=roster.state.units.find(unit=>unit.instanceId===origin.sourceInstanceId);
-      if(physical){const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
-        note.append(document.createTextNode(' — '+(cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId)+
-          (peers.length>1?' #'+(peers.findIndex(unit=>unit.instanceId===physical.instanceId)+1):'')));}
+      if(physical)note.append(document.createTextNode(' — '+physicalUnitCaption(roster.state,cards,physical.instanceId)));
       const model=origin.sourceProfileId&&cards.get(origin.sourceProfileId)?.fields.find(field=>(field.presentationPath||field.source?.path)==='/name');
       if(typeof model?.value==='string')note.append(document.createTextNode(' ('+model.value+')'));
     }
@@ -274,9 +272,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         attribution.append(link);
         const physical=roster.state.units.find(unit=>unit.instanceId===source.sourceInstanceId);
         if(physical){
-          const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
-          const title=cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId;
-          const label=title+(peers.length>1?` #${peers.findIndex(unit=>unit.instanceId===physical.instanceId)+1}`:'');
+          const label=physicalUnitCaption(roster.state,cards,physical.instanceId);
           attribution.append(document.createTextNode(' — '),el('span','',label));
           if(source.sourceModelInstanceId||source.sourceCompositionId)attribution.append(document.createTextNode(' · Bearer: '+
             humanPhysicalCaption(source.sourceInstanceId,{scopeId:source.sourceCompositionId??null,modelInstanceId:source.sourceModelInstanceId??null,profileId:source.sourceProfileId??null})));
@@ -398,9 +394,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           const origin=sourceReference(sourceRuleCaption(source,cards),source,source.canonicalRuleId);origin.dataset.weaponGrantSourceRuleId=source.canonicalRuleId;
           origin.dataset.weaponGrantSourceInstanceId=source.sourceInstanceId||'';note.append(origin);
           const physical=roster?.state.units.find(unit=>unit.instanceId===source.sourceInstanceId);
-          if(physical){const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
-            note.append(document.createTextNode(' — '+(cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId)+
-              (peers.length>1?' #'+(peers.findIndex(unit=>unit.instanceId===physical.instanceId)+1):'')));}
+          if(physical)note.append(document.createTextNode(' — '+physicalUnitCaption(roster.state,cards,physical.instanceId)));
           const model=source.sourceProfileId&&cards.get(source.sourceProfileId)?.fields.find(field=>(field.presentationPath||field.source?.path)==='/name');
           if(typeof model?.value==='string')note.append(document.createTextNode(' ('+model.value+')'));
           const members=targets.flatMap(target=>displayMembers.filter(member=>member.instanceId===target.targetInstanceId&&member.id===target.targetWeaponProfileId&&
@@ -693,22 +687,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     // Price facts remain MFM-owned. Select their already declared model/copy
     // bounds rather than parsing human captions or using exported prices.
     const priced=roster.points?.units?.find(value=>(value.unitInstanceId||value.instanceId)===instanceId);
-    const copyOrdinal=roster.state.units.filter(value=>value.canonicalUnitId===unit.canonicalUnitId).findIndex(value=>value.instanceId===instanceId)+1;
-    const selectedPrices=[];
-    for(const id of cards.get(card.id).children||[]){const price=cards.get(id);if(price?.kind!=='MFM_UNIT_POINTS')continue;
-      const at=path=>price.fields.find(field=>field.source?.path===path)?.value;
-      for(const field of price.fields.filter(field=>field.source?.path.endsWith('/value'))){
-        const prefix=field.source.path.slice(0,-5),schedule=field.source.path.split('/entries/')[0];
-        const min=at(prefix+'minModels'),max=at(prefix+'maxModels');
-        if(typeof min==='number'&&unit.startingStrength>=min&&unit.startingStrength<=(max??min)&&
-          copyOrdinal>=(at(schedule+'/minCopies')??price.pointsSchedule?.minCopies??1)&&
-          copyOrdinal<=(at(schedule+'/maxCopies')??price.pointsSchedule?.maxCopies??Infinity))selectedPrices.push(field);
-      }
-    }
     const cost=root.querySelector('.ds-cost');cost.replaceChildren();cost.dataset.rosterPrice='';
-    const actual=priced?.totalPoints!==undefined&&priced.totalPoints!==null?priced.totalPoints-(priced.enhancementPoints||0):
-      priced?.total!==undefined&&priced.total!==null?priced.total-(priced.enhancementPoints||0):
-      priced?.basePoints??(selectedPrices.length===1?selectedPrices[0].value:null);
+    const actual=rosterBasePoints(cards,roster.state,unit,priced);
     cost.append(el('strong','ds-instance-price',`${unit.startingStrength} ${unit.startingStrength===1?'model':'models'} · ${actual===null?'points unresolved':actual+' pts'}`));
     for(const id of card.rosterEnhancementIds||[]){const rule=cards.get(id),prices=(rule.children||[]).map(id=>cards.get(id)).filter(child=>['MFM_ENHANCEMENT_COST','ENHANCEMENT_COST_QUALIFIERS'].includes(child?.kind));
       const values=prices.flatMap(price=>price.fields.filter(field=>field.source?.path==='/value'));

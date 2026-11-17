@@ -1,15 +1,35 @@
 /** Display-only formatting. Accepted fields and roster state stay untouched. */
+import {rosterUnitNames} from './roster-labels.mjs';
 const captionName=(value,id)=>{
   if(typeof value!=='string'||!value.trim()||value===id)throw new TypeError('Missing human name for physical attribution: '+id);
   return value;
 };
-/** Canonical names plus local ordinals distinguish repeated physical units. */
+/** The same composition-aware name in menus, cards and attribution. */
 export function physicalUnitCaption(state,cards,instanceId){
   const matches=state.units.filter(unit=>unit.instanceId===instanceId);
   if(matches.length!==1)throw new TypeError('Unresolved physical attribution unit: '+instanceId);
-  const unit=matches[0],name=captionName(cards.get(unit.canonicalUnitId)?.title,unit.canonicalUnitId);
-  const peers=state.units.filter(other=>other.canonicalUnitId===unit.canonicalUnitId);
-  return name+(peers.length>1?' #'+(peers.findIndex(other=>other.instanceId===instanceId)+1):'');
+  const unit=matches[0];captionName(cards.get(unit.canonicalUnitId)?.title,unit.canonicalUnitId);
+  return rosterUnitNames(state,id=>cards.get(id)?.title).get(instanceId);
+}
+
+/** Select the existing MFM model/copy bounds. This is the card's established
+ * price reader, shared with Attachment Setup; exported prices never own it. */
+export function rosterBasePoints(cards,state,unit,priced=null){
+  const copyOrdinal=state.units.filter(value=>value.canonicalUnitId===unit.canonicalUnitId).findIndex(value=>value.instanceId===unit.instanceId)+1;
+  const selectedPrices=[];
+  for(const id of cards.get(unit.canonicalUnitId)?.children||[]){const price=cards.get(id);if(price?.kind!=='MFM_UNIT_POINTS')continue;
+    const at=path=>price.fields.find(field=>field.source?.path===path)?.value;
+    for(const field of price.fields.filter(field=>field.source?.path.endsWith('/value'))){
+      const prefix=field.source.path.slice(0,-5),schedule=field.source.path.split('/entries/')[0];
+      const min=at(prefix+'minModels'),max=at(prefix+'maxModels');
+      if(typeof min==='number'&&unit.startingStrength>=min&&unit.startingStrength<=(max??min)&&
+        copyOrdinal>=(at(schedule+'/minCopies')??price.pointsSchedule?.minCopies??1)&&
+        copyOrdinal<=(at(schedule+'/maxCopies')??price.pointsSchedule?.maxCopies??Infinity))selectedPrices.push(field);
+    }
+  }
+  return priced?.totalPoints!==undefined&&priced.totalPoints!==null?priced.totalPoints-(priced.enhancementPoints||0):
+    priced?.total!==undefined&&priced.total!==null?priced.total-(priced.enhancementPoints||0):
+    priced?.basePoints??(selectedPrices.length===1?selectedPrices[0].value:null);
 }
 /** Resolve the exact existing MODEL scope; IDs remain in the underlying trace.
  * Profiles are the normal presenter projection, annotated with runtime MODEL
