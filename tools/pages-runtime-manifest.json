@@ -7945,6 +7945,15 @@
       ]
     },
     {
+      "path": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/datasheet-v1.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
       "reasons": [
         {

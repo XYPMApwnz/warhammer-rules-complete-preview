@@ -21,5 +21,35 @@
       "source": "Existing accepted source-backed native fixture, unchanged text; captured at 9b99ade9975346afc3644ade7f69d01ed71cce31",
       "textSha256": "08d9447bcc9fccb0e5c9bd818d13b0ad4721295f67dc624e0408090e4989154c"
     }
+  ],
+  "equipmentCases": [
+    {
+      "id": "existing-dark-commune-chaos-icon",
+      "bookId": "chaos-space-marines",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Veterans of the Long War\n\n5x Dark Commune (90 pts)\n• 1x Cult Demagogue: Autopistol, Commune stave\n• 1x Mindwitch: Warp Curse, Close combat weapon\n• 1x Iconarch: Autopistol, Close combat weapon, Chaos icon\n• 2x Blessed Blades: Commune blade\n\n5x Dark Commune (90 pts)\n• 1x Cult Demagogue: Autopistol, Commune stave\n• 1x Mindwitch: Warp Curse, Close combat weapon\n• 1x Iconarch: Autopistol, Close combat weapon, Chaos icon\n• 2x Blessed Blades: Commune blade\n\n8x Accursed Cultists (90 pts)\n• 3x Torments: Hideous mutations\n• 5x Mutants: Blasphemous appendages\n\n8x Accursed Cultists (90 pts)\n• 3x Torments: Hideous mutations\n• 5x Mutants: Blasphemous appendages\n\nCreated with newrecruit.eu\n",
+      "unitId": "unit-dark-commune",
+      "instanceId": "parsed-unit-1",
+      "equipmentId": "datasheet-dark-commune:section:2",
+      "ruleId": "datasheet-dark-commune:section:1:block:2:text",
+      "fieldPath": "/text",
+      "selectionText": "Chaos icon",
+      "title": "Chaos Icon",
+      "source": "Unchanged accepted native fixture datasheet-dark-commune:section:1:block:0:text::model-invulnerable at 9b99ade9",
+      "textSha256": "74b7bbe0c774d09f55319184b676d7b19496758968e3890b6eea52c4d9b757dc"
+    },
+    {
+      "id": "existing-tidewall-defence-platform",
+      "bookId": "tau-empire",
+      "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Mont'ka\n1x Tidewall Shieldline (100 pts): 1x Tidewall defence platform\n• 1x Tidewall Shieldline\n",
+      "unitId": "unit-tidewall-shieldline",
+      "instanceId": "parsed-unit-1",
+      "equipmentId": "datasheet-tidewall-shieldline:wargear:1",
+      "ruleId": "datasheet-tidewall-shieldline:section:1",
+      "fieldPath": "/blocks/2/text",
+      "selectionText": "Tidewall defence platform",
+      "title": "Tidewall Defence Platform",
+      "source": "Existing books/tau-empire/v2/roster-import-qa.mjs equipped-platform fixture",
+      "textSha256": "c4e94593b7698640d4990e95704448d30ffc0674501090492cdb38cee117e660"
+    }
   ]
 }

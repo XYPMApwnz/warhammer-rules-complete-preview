@@ -32,6 +32,7 @@ assert.strictEqual(focusedRuleField(section,{fieldPath:silent.source.path}),sile
 assert.strictEqual(focusedRuleField(section,{label:'silent bodyguard'}),silent,'An exact named source prefix selects one field');checks++;
 assert.equal(focusedRuleField(section,{fieldPath:'/blocks/99/text'}),null,'Unknown focus cannot open the whole section');checks++;
 assert.equal(focusedRuleField(section,{fieldPath:'/blocks/1/wargearAbility'}),null,'Boolean classification metadata is never the rule body');checks++;
+assert.equal(focusedRuleField({...section,fields:[{...silent,value:'  '}]},{fieldPath:silent.source.path}),null,'An empty field cannot become a complete rule popup');checks++;
 assert.equal(focusedRuleField({...section,kind:'WEAPON_PROFILE'},{fieldPath:silent.source.path}),null,'Unrelated kinds retain their own presenter');checks++;
 const duplicate={...section,fields:[silent,{...silent,id:'another-field',source:{entityId:section.id,path:'/blocks/9/text'}}]};
 assert.equal(focusedRuleField(duplicate,{label:'Silent Bodyguard'}),null,'Two same-named fields are not guessed');checks++;
@@ -46,7 +47,7 @@ assert.equal(definition[0].dataset.factId,silent.id);assert.equal(definition[0].
 assert.doesNotMatch(article.textContent,/Death Approaches|Icon of Despair|wargear Ability|DATASHEET SECTION|wargearAbility|\/blocks\//,'No sibling rule, metadata label or source pointer is exposed');checks++;
 assert.equal(byClass(article,'ds-rule-popup-source').length,0,'Own source is not repeated');checks++;
 assert.strictEqual(prose[0],byClass(article,'reference-definition')[0],'Only the rule body is supplied to the term-link pass');checks++;
-assert.deepEqual(links[0],{label:'Open in Army Book',targetId:section.id,reference:false,options:{fieldPath:silent.source.path}},'Action preserves exact source field navigation');checks++;
+assert.deepEqual(links[0],{label:'Open in Army Book',targetId:section.id,reference:false,options:{fieldPath:silent.source.path,fullBook:true,contents:true}},'Action preserves exact source field and opens the full Army Book');checks++;
 for(const control of collect(article,node=>['A','BUTTON'].includes(node.tagName)))assert(control.textContent.trim(),'Every emitted action has an accessible text name');checks++;
 const foreign=presenter.render(section,{fieldPath:silent.source.path,originUnitId:'unit-bodyguard'});
 assert.deepEqual(byClass(foreign,'ds-rule-popup-source').map(node=>node.textContent),['From Owner Character'],'Foreign source is the precise parent datasheet, not a guessed title');checks++;

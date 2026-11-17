@@ -1,4 +1,6 @@
 import {requiredKeywordField} from '../keyword-values.mjs';
+import {createEquipmentReferenceResolver} from './equipment-reference.mjs';
+import {focusedRuleField} from './rule-popup.mjs';
 import {sourceSnapshot,sameSourceEvidence} from '../source-refs-v2/source-refs.mjs';
 import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy,physicalUnitCaption,physicalModelCaption} from './cosmetics.mjs';
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
@@ -108,6 +110,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   const config=payload.datasheetPresentation;
   const physicalCards=prepareRosterPresentationCards(cards,payload.rosterPresentation);
   const boundFields=new Map([...cards.values()].flatMap(card=>card.fields.map(field=>[field.id,field])));
+  const equipmentReferences=createEquipmentReferenceResolver({cards,rules:presentationRuleSources});
   if (config?.schema!=='army-book-app-v2/datasheet-layout') throw new TypeError('Missing V2 datasheet layout metadata');
   const identity=(node,card,instanceId)=>{
     node.dataset.cardId=card.id;node.dataset.entityId=card.source?.entityId || card.id;node.dataset.v2EntityId=card.id;
@@ -803,7 +806,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
             const walker=document.createTreeWalker(group,4);let text,placed=false;
             while((text=walker.nextNode())){
               if(text.parentElement.closest('a,button,h1,h2,h3,h4,h5,h6'))continue;
-              const at=text.textContent.indexOf(label);if(at<0)continue;
+              const at=text.textContent.toLocaleLowerCase('en').indexOf(label.toLocaleLowerCase('en'));if(at<0)continue;
+              reference.textContent=text.textContent.slice(at,at+label.length);
               const tail=text.splitText(at);tail.splitText(label.length);tail.replaceWith(reference);placed=true;break;
             }
             if(!placed){const definition=el('p','ds-granted-definition','Granted ability: ');definition.append(reference);group.append(definition);}
@@ -1474,8 +1478,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
               const directEffect=equipment&&(['ABILITY','WARGEAR_ABILITY','SUPPLEMENTAL_DATASHEET_RULE','EQUIPMENT_RULE'].includes(target.kind)||
                 target.kind==='DATASHEET_SECTION'&&selectedMarker?.value===true)&&selectedField;
               const bound=boundAbilities.filter(binding=>binding.itemId===id).map(binding=>({owner:cards.get(binding.ruleId),effect:cards.get(binding.ruleId)?.fields.find(field=>field.source?.path===binding.fieldPath)})).filter(value=>value.effect);
-              const candidates=genericField?[{owner:generic,effect:genericField}]:directEffect?[{owner:target,effect:selectedField}]:effectReferences.length?effectReferences:bound;
-              const distinctEffects=[...new Map(candidates.map(value=>[value.effect.id,value])).values()];
+              const candidates=genericField?[{owner:generic,effect:genericField}]:directEffect?[{owner:target,effect:selectedField}]:effectReferences.length?effectReferences:bound.length?bound:equipmentReferences.resolve(card.id,id,selection);
+              const supported=candidates.filter(value=>value.owner.kind!=='WARGEAR_OPTION'&&focusedRuleField(value.owner,{fieldPath:value.effect.source.path})===value.effect);
+              const distinctEffects=[...new Map(supported.map(value=>[value.effect.id,value])).values()];
               const effect=distinctEffects.length===1?distinctEffects[0]:null;
               const effectiveTarget=target.kind==='WEAPON_PROFILE'?variants?.get(id)?.find(candidate=>(item.scopeIds||[null]).includes(candidate.scopeId||null)):null;
               const link=effect?anchor('',effect.owner.id,true,{fieldPath:effect.effect.source.path}):effectiveTarget?scopedAnchor('',effectiveTarget,instanceId):equipment||target.kind==='WARGEAR_OPTION'?el('span'):anchor('',id,true);

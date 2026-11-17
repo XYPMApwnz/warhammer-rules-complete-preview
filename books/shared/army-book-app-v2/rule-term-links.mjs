@@ -46,13 +46,14 @@ const skip='a,button,script,style,template,noscript,code,pre,input,textarea,sele
  * Call link only on selected rule-prose fragments; it never scans another root.
  * {title} suppresses a repeated full-text title prefix on detached fragments.
  */
-export function createRuleTermLinker({document,cards,index,anchor}) {
+export function createRuleTermLinker({document,cards,index,anchor,availableTargets}) {
   if(!document||typeof anchor!=='function')throw new TypeError('Rule term links require a document and canonical anchor factory');
   const matcher=createExactTermMatcher({cards,index}),processed=new WeakMap();
   const counts={links:0,textNodes:0,byTarget:Object.create(null)};
   const cardMap=cards instanceof Map?cards:new Map((cards||[]).map(card=>[card.id,card]));
   function link(root,{title=null}={}) {
     if(!root)return {links:0,textNodes:0};
+    const available=availableTargets?.();
     const nodes=[],walker=document.createTreeWalker(root,4);let textNode;
     while((textNode=walker.nextNode()))nodes.push(textNode);
     let added=0,scanned=0;
@@ -64,7 +65,7 @@ export function createRuleTermLinker({document,cards,index,anchor}) {
       processed.set(node,text);scanned++;
       const owner=parent.closest('[data-card-id],[data-canonical-id],[data-rule-term-title]');
       const ownerTitle=title||owner?.dataset.ruleTermTitle||cardMap.get(owner?.dataset.cardId||owner?.dataset.canonicalId)?.title;
-      const matches=matcher.match(text,{title:ownerTitle});if(!matches.length)continue;
+      const matches=matcher.match(text,{title:ownerTitle}).filter(match=>!available||available.has(match.targetId));if(!matches.length)continue;
       const fragment=document.createDocumentFragment();let offset=0;
       const appendText=value=>{if(!value)return;const child=document.createTextNode(value);processed.set(child,value);fragment.append(child);};
       for(const match of matches) {

@@ -13,9 +13,10 @@ import {isApplicationTestDependency} from '../books/shared/application-v2/browse
 const own=fileURLToPath(new URL('../',import.meta.url)),arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
 const root=path.resolve(arg('--root')||process.env.RULE_POPUPS_ROOT||own),out=path.resolve(arg('--out')||createQaEvidenceDir('wh-rule-popups-'));
 const observe=process.argv.includes('--observe-only'),widths=(arg('--widths')||'390,1440').split(',').map(Number);
+const mutation=arg('--mutation');assert(!mutation||mutation==='old-label','Only the explicit old-label control is supported');
 const books=armyBooks.filter(book=>!arg('--book')||book.id===arg('--book'));
-const allWeaponCases=JSON.parse(fs.readFileSync(new URL('./fixtures/rule-popups-browser.json',import.meta.url),'utf8')).cases;
-for(const fixture of allWeaponCases)assert.equal(createHash('sha256').update(fixture.text).digest('hex'),fixture.textSha256,'Original source-backed fixture bytes');
+const constructed=JSON.parse(fs.readFileSync(new URL('./fixtures/rule-popups-browser.json',import.meta.url),'utf8')),allWeaponCases=constructed.cases,equipmentCases=constructed.equipmentCases;
+for(const fixture of [...allWeaponCases,...equipmentCases])assert.equal(createHash('sha256').update(fixture.text).digest('hex'),fixture.textSha256,'Original source-backed fixture bytes');
 assert(books.length&&widths.every(width=>width>0));fs.mkdirSync(out,{recursive:true});
 const allowed=new Set(JSON.parse(fs.readFileSync(path.join(own,'tools/pages-runtime-manifest.json'),'utf8')).files.map(row=>'/'+row.path));
 const mime={'.mjs':'text/javascript','.js':'text/javascript','.html':'text/html','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg'};
@@ -79,10 +80,12 @@ try{
      for(const sibling of siblings)assert(!text.includes(sibling.value),'Sibling rule excluded: '+sibling.id);
      return {ruleId:sample.id,fieldPath:sample.path,title:sample.title};
     });
+    if(mutation==='old-label')await page.evaluate(()=>{const span=document.createElement('span');span.textContent='Rule';document.querySelector('dialog[open]').append(span);});
     await check('dialog-public-labels-and-named-actions',()=>assertPlayerDialog(page));await screenshot('ability-popup',dialog);
     if(!observe){
      await page.evaluate(()=>{const span=document.createElement('span');span.dataset.qaMutation='';span.textContent='Rule';document.querySelector('dialog[open]').append(span);});
      const mutated=await page.evaluate(inspectPlayerDialog);assert(mutated.leaks.some(leak=>leak.text==='Rule'),'Old-label mutation must fail');
+     await assert.rejects(()=>assertPlayerDialog(page),/Player dialog contains technical text or unnamed controls/,'The actual dialog guard must reject the old label');
      await page.evaluate(()=>document.querySelector('[data-qa-mutation]').remove());rows.push({...current,name:'old-label-mutation-rejected',status:'PASS',detail:mutated.leaks});
     }
     await dialog.getByRole('button',{name:'Close rule reference',exact:true}).click();
@@ -119,6 +122,19 @@ try{
      observations.push({...current,input:fixture.id,value:await page.evaluate(()=>{const r=ArmyBookAppV2.roster;return {state:r.snapshot(),points:r.points,effective:r.state.units.map(unit=>r.effective(unit.instanceId))};})});
      await screenshot('all-weapons-summary',card.locator('[data-datasheet-section="profile"]'));
     }
+    for(const fixture of equipmentCases.filter(fixture=>fixture.bookId===book.id)){
+     await importText(fixture.text);const card=await effective(fixture.instanceId),item=card.locator('[data-datasheet-section="composition"] [data-selected-canonical-ids]').filter({hasText:new RegExp(fixture.selectionText,'i')});assert.equal(await item.count(),1);
+     const selectionIds=JSON.parse(await item.getAttribute('data-selected-canonical-ids'));assert(selectionIds.includes(fixture.equipmentId),'Original selected equipment identity is retained');
+     await item.locator('a').click();await dialog.waitFor();
+     await check('explicit-contract-equipment-effect',async()=>{
+      assert.equal(await dialog.getAttribute('data-canonical-id'),fixture.ruleId);assert.equal(await dialog.locator('[data-rule-field-path]').getAttribute('data-rule-field-path'),fixture.fieldPath);
+      assert.equal(await dialog.locator('[data-rule-type]').getAttribute('data-rule-type'),'Wargear');assert.equal(await dialog.locator('.reference-title').innerText(),fixture.title);
+      const field=cards.get(fixture.ruleId).fields.find(field=>field.source?.path===fixture.fieldPath),text=await dialog.innerText();
+      assert(norm(text).includes(norm(field.value.slice(field.value.indexOf(':')+1))),'Complete source effect, without the construction permission');assert(!text.includes('can be equipped with'));await assertPlayerDialog(page);
+      return {itemId:fixture.equipmentId,ruleId:fixture.ruleId,fieldPath:fixture.fieldPath};
+     });
+     await screenshot('bound-equipment-popup',dialog);await dialog.getByRole('button',{name:'Close rule reference',exact:true}).click();
+    }
     if(book.id==='death-guard'){
      const text=fs.readFileSync(path.join(own,'v2/fixtures/new-recruit-v37.25-owner-death-guard.txt'),'utf8');
      await importText(text);
@@ -147,7 +163,21 @@ try{
       assert.equal(await dialog.locator('[data-rule-field-path]').getAttribute('data-rule-field-path'),'/blocks/2/text');
       const shown=await dialog.innerText();assert(shown.includes('worsen the Leadership characteristic'));assert(!shown.includes('can be equipped with'));await assertPlayerDialog(page);return {text:shown};
      });
-     if(await dialog.isVisible()){await screenshot('icon-effect-popup',dialog);await dialog.getByRole('button',{name:'Close rule reference',exact:true}).click();}
+     if(await dialog.isVisible()){
+      await screenshot('icon-effect-popup',dialog);
+      if(!observe)await check('named-book-action-opens-source-without-changing-roster',async()=>{
+       const before=await page.evaluate(()=>JSON.stringify(ArmyBookAppV2.roster.snapshot()));
+       const beforeTerms=await dialog.locator('a.rule-term-link').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId));
+       await dialog.getByRole('link',{name:'Open in Army Book',exact:true}).click();await page.locator('main .v1-contents-pages').waitFor();
+       assert.equal(new URL(page.url()).searchParams.get('roster'),null,'Full Army Book is not a filtered personal view');assert.equal(await page.locator('dialog[open]').count(),0);
+       assert.equal(await page.locator('main .rule-term-link').count(),count,'Full-book term targets are rebuilt after leaving personal scope');
+       assert.equal(await page.evaluate(()=>JSON.stringify(ArmyBookAppV2.roster.snapshot())),before,'Reading source does not alter the physical roster');
+       await page.goBack();await dialog.waitFor();assert.equal(await dialog.getAttribute('data-canonical-id'),'datasheet-deathshroud-terminators:section:1');
+       assert.equal(await dialog.locator('[data-rule-field-path]').getAttribute('data-rule-field-path'),'/blocks/2/text');
+       assert.deepEqual(await dialog.locator('a.rule-term-link').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId)),beforeTerms,'Back restores the same scoped exact term targets');return {rosterUnchanged:true,canonicalSourceRestored:true};
+      });
+      await dialog.getByRole('button',{name:'Close rule reference',exact:true}).click();
+     }
      const leaderCard=await effective(leader.instanceId);await screenshot('lord-gained-rules',leaderCard.locator('[data-datasheet-section="gained-rules"]'));
      await check('no-dangling-granted-core-controls',async()=>{
       assert.equal(await leaderCard.locator('.ds-gained-rule-links').count(),0);

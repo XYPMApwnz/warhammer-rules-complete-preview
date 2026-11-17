@@ -9,8 +9,8 @@ export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
  * This never adds facts to the roster, executes clauses or changes F1 rows.
  * Missing/ambiguous metadata cannot prove table placement or executable text. */
 export async function loadDetachmentPresentationSources({payload,assetBaseURL,fetch:read}){
-  const result=new Map(),wanted=new Set(payload.cards.filter(card=>card.kind==='DETACHMENT_RULE').map(card=>card.id));
-  if(!wanted.size||!assetBaseURL||!read)return result;
+  const result=new Map(),published=new Map(payload.cards.map(card=>[card.id,card])),wanted=new Set(published.keys());
+  if(!payload.cards.some(card=>card.kind==='DETACHMENT_RULE')||!assetBaseURL||!read)return result;
   try{
     const root=new URL('../../../',import.meta.url),base=new URL('generated/',assetBaseURL);
     const response=await read(new URL('glossary/generated/cache-revision.js',root));
@@ -24,7 +24,13 @@ export async function loadDetachmentPresentationSources({payload,assetBaseURL,fe
     const ambiguous=new Set();
     for(const input of inputs)if(input.status==='fulfilled'&&input.value?.bookId===payload.book.id)
       for(const rule of input.value.entities||[]){
-        if(!wanted.has(rule.id)||rule.kind!=='DETACHMENT_RULE'||!rule.ruleContract?.clauses||!getRecordedSourceIdentity(rule,{book:input.value}))continue;
+        if(!wanted.has(rule.id)||!rule.ruleContract?.clauses)continue;
+        if((published.get(rule.id).kind==='DETACHMENT_RULE')!==(rule.kind==='DETACHMENT_RULE'))continue;
+        // The same already-read contracts also identify selected equipment's
+        // effect text. Retain addresses only; do not execute a second policy.
+        if(rule.kind!=='DETACHMENT_RULE'&&!rule.ruleContract.clauses.some(clause=>clause.canonicalEquipmentRequirement||
+          clause.rosterEffects?.some(effect=>effect.equipmentRequirement)))continue;
+        if(!getRecordedSourceIdentity(rule,{book:input.value}))continue;
         if(result.has(rule.id)&&JSON.stringify(result.get(rule.id))!==JSON.stringify(rule))ambiguous.add(rule.id);
         else result.set(rule.id,rule);
       }

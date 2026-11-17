@@ -170,7 +170,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
       node.querySelector('h3,h4,h5')?.setAttribute('id','v2-detail-heading');
       const type={ARMY_RULE:'Army rule',ARMY_RULE_COMPONENT:'Army rule',DETACHMENT_RULE:'Detachment rule',ENHANCEMENT:'Enhancement',STRATAGEM:'Stratagem'}[card.kind];
       if(type)node.prepend(el('p','reference-context',type));
-      const permalink=anchor('Open in Army Book',card.id);permalink.className='v2-permalink book-permalink';node.append(permalink);
+      const permalink=anchor('Open in Army Book',card.id,false,{fullBook:true,contents:true});permalink.className='v2-permalink book-permalink';node.append(permalink);
     }
     linkTerms(node);
     return node;

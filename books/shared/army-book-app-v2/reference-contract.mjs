@@ -139,5 +139,6 @@ export function createReferenceContract({cards,index,registryId='book',coreRegis
     const candidates=eligible.filter(entry=>(entry.aliases||[]).some(alias=>alias.match!=='EXACT'&&normalizeGlossaryQuery(alias.label)===token));
     return candidates.length===1?candidates[0].targetId:null;
   }
-  return Object.freeze({resolve,canResolve,identityFor,resolveAlias,search,categories:categoryList,isEntry:id=>entries.has(id)});
+  return Object.freeze({resolve,canResolve,identityFor,resolveAlias,search,categories:categoryList,isEntry:id=>entries.has(id),
+    availableTargets:allowedIds=>new Set(scope(allowedIds))});
 }

@@ -6,7 +6,7 @@ const key=text=>String(text||'').replace(/:\s*$/,'').trim().toLocaleLowerCase('e
 
 export function focusedRuleField(card,{fieldPath,label}={}) {
   if(!card||!rulePopupKinds.has(card.kind))return null;
-  const fields=card.fields.filter(field=>typeof field.value==='string'&&
+  const fields=card.fields.filter(field=>typeof field.value==='string'&&field.value.trim()&&
     (/^\/blocks\/\d+\/text$/.test(pathOf(field)||'')||['/text','/semanticContent'].includes(pathOf(field))));
   if(fieldPath)return fields.find(field=>field.source?.path===fieldPath||pathOf(field)===fieldPath)||null;
   const named=label&&fields.filter(field=>key(prefix(field.value))===key(label));
@@ -42,7 +42,7 @@ export function createRulePopupPresenter({document,cards,payload,el,factValue,an
     let owner=card,seen=new Set();
     while(owner?.parentId&&!seen.has(owner.id)&&owner.kind!=='DATASHEET'){seen.add(owner.id);owner=cards.get(owner.parentId);}
     if(owner?.kind==='DATASHEET'&&originUnitId&&owner.id!==originUnitId)article.append(el('p','ds-rule-popup-source','From '+owner.title));
-    const link=anchor(reference?'Open in Glossary':'Open in Army Book',card.id,false,{fieldPath:field.source.path,...(reference?{reference:true}:{})});
+    const link=anchor(reference?'Open in Glossary':'Open in Army Book',card.id,false,{fieldPath:field.source.path,...(reference?{reference:true}:{fullBook:true,contents:true})});
     link.className='v2-permalink reference-permalink';article.append(link);
     return article;
   }

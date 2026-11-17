@@ -64,4 +64,9 @@ assert.equal(paragraph.dataset.factId,'original-field','Fact owner and dataset s
 assert.deepEqual(anchors,[{label:'CHARACTER',targetId:'character',reference:true,options:{reference:true}},{label:'Feel No Pain',targetId:'feel',reference:true,options:{reference:true}}]);checks++;
 assert.deepEqual(linker.link(root,{title:'Deep Strike'}),{links:0,textNodes:0},'Repeated pass adds no links or work to existing text nodes');checks++;
 assert.equal(linker.counts.links,2);assert.equal(linker.counts.byTarget.feel,1);checks++;
+const scopedAnchors=[],scoped=createRuleTermLinker({document,cards,index:{entries},availableTargets:()=>new Set(['deep']),anchor:(label,id)=>{scopedAnchors.push(id);return element('a',text(label));}});
+const scopedText=element('p',text('Deep Strike and Feel No Pain.'));
+assert.equal(scoped.link(scopedText).links,1);assert.deepEqual(scopedAnchors,['deep'],'An exact but unavailable target remains plain text');assert.equal(scopedText.textContent,'Deep Strike and Feel No Pain.');checks++;
+const contract=createReferenceContract({cards,index:{entries}}),available=contract.availableTargets(null);available.delete('deep');assert(contract.canResolve('deep'),'Mutating a scope snapshot cannot change the private canonical resolver');checks++;
 console.log(JSON.stringify({status:'PASS',checks,terms:matcher.terms.length,ambiguous:matcher.ambiguous.length,fetches:0}));
+import {createReferenceContract} from './reference-contract.mjs';

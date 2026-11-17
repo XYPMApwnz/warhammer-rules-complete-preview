@@ -48,6 +48,7 @@ node('books/shared/army-book-app-v2/plain-header-explanation-qa.mjs');
 node('v2/sweep-polish-qa.mjs');
 node('books/shared/army-book-app-v2/rule-popup-qa.mjs');
 node('books/shared/army-book-app-v2/rule-term-links-qa.mjs');
+node('books/shared/army-book-app-v2/equipment-reference-qa.mjs');
 node('tests/official-updates-qa.mjs');
 node('tests/official-update-books-qa.mjs');
 node('tests/official-update-report-qa.mjs');

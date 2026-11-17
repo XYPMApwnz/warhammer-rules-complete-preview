@@ -183,7 +183,9 @@ export function mount(document, payload, options = {}) {
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state, options.roster.projection);
   const scopedIds = () => personalMode ? personalBook().allowedIds : null;
-  const termLinker=createRuleTermLinker({document,cards,index:payload.glossary,anchor});
+  let termEpoch=0,termScopeEpoch=-1,termTargets;
+  const availableTermTargets=()=>{if(termScopeEpoch!==termEpoch){termTargets=references.availableTargets(scopedIds());termScopeEpoch=termEpoch;}return termTargets;};
+  const termLinker=createRuleTermLinker({document,cards,index:payload.glossary,anchor,availableTargets:availableTermTargets});
   const rulePopups=createRulePopupPresenter({document,cards,payload,el,factValue,anchor,linkTerms:node=>termLinker.link(node)});
   const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL:options.assetBaseURL,
     linkTerms:node=>termLinker.link(node),
@@ -350,7 +352,7 @@ export function mount(document, payload, options = {}) {
     title.className = 'v2-card-title';
     if (!depth && inDialog && primaryDetail) title.id = 'v2-detail-heading';
     cardHeader.append(el('span', 'v2-kind', humanKind(card.kind)), title);
-    const permalink = anchor('Open in Army Book', card.id);
+    const permalink = anchor('Open in Army Book', card.id,false,{fullBook:true,contents:true});
     permalink.className = 'v2-permalink';
     permalink.setAttribute('aria-label', `Open ${card.title}`);
     permalink.title = 'Open this entry';
@@ -716,6 +718,7 @@ export function mount(document, payload, options = {}) {
     }
   }
   function route({focus = false} = {}) {
+    termEpoch++;
     const id = hashId();
     const state = window.history.state;
     let context;
