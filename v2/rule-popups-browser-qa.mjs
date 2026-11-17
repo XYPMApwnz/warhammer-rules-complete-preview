@@ -146,6 +146,7 @@ try{
       const chip=guardCard.locator('.weapon-tags button.ds-gained-chip').filter({hasText:'+ LANCE'}).first();await chip.click();
       const tooltip=guardCard.locator('.ds-gained-tooltip:not([hidden])');await tooltip.waitFor();
       const link=tooltip.locator('a[data-target-id="datasheet-lord-of-contagion:section:1"]');assert.equal(await link.count(),1);await link.click();await dialog.waitFor();
+      assert.equal(await dialog.locator('[data-rule-field-path]').count(),1,'The source popup has one exact canonical text focus');
       assert.equal(await dialog.locator('[data-rule-field-path]').getAttribute('data-rule-field-path'),'/blocks/0/text');
       const sourceField=cards.get('datasheet-lord-of-contagion:section:1').fields.find(field=>field.source?.path==='/blocks/0/text');
       assert(norm(await dialog.innerText()).includes(norm(sourceField.value.slice(sourceField.value.indexOf(':')+1))));
