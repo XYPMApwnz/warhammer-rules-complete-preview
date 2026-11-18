@@ -157,7 +157,7 @@ try {
     const backup=JSON.parse(fs.readFileSync(await download.path(),'utf8'));assert.deepEqual(backup,saved.state);
     await page.evaluate(()=>localStorage.clear());await page.reload();await ready(page);
     await page.getByText('Backup and restore',{exact:true}).click();
-    await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles({name:'roster-v2.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});await settled(page);assert.deepEqual(await snapshot(page),saved);
+    assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles({name:'roster-v2.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});await settled(page);assert.deepEqual(await snapshot(page),saved);
     step=device+'/bounded-ambiguity-ui';
     const candidateUi=await page.evaluate(async()=>{
       const {createRosterPanel}=await import('/books/shared/army-book-app-v2/roster.mjs');

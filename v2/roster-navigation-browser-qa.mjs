@@ -95,7 +95,8 @@ function displayNames(state,cards){
     if(peers.length===1){names.set(unit.instanceId,title);continue;}
     const shape=entry=>JSON.stringify(Object.entries((entry.modelRows||[]).reduce((rows,row)=>{rows[row.canonicalProfileId]=(rows[row.canonicalProfileId]||0)+row.quantity;return rows;},{})).sort());
     const identical=peers.filter(other=>shape(other)===shape(unit)),count=unit.modelRows.reduce((sum,row)=>sum+row.quantity,0);
-    names.set(unit.instanceId,`${title} (${count} ${count===1?'model':'models'})${identical.length>1?' #'+(identical.indexOf(unit)+1):''}`);
+    const differentShapeAtSameSize=peers.some(other=>other.modelRows.reduce((sum,row)=>sum+row.quantity,0)===count&&shape(other)!==shape(unit));
+    names.set(unit.instanceId,count===1&&!differentShapeAtSameSize&&identical.length>1?`${title} #${identical.indexOf(unit)+1}`:`${title} (${count} ${count===1?'model':'models'})${identical.length>1?' #'+(identical.indexOf(unit)+1):''}`);
   }return names;
 }
 async function assertSourceFields(locator,card){
@@ -169,11 +170,13 @@ try{
       }else if(fixture.attachment)await attach(fixture.attachment.leader,fixture.attachment.target);
       state=await snapshot();
       const setupPrices=new Map((await page.locator('.v2-roster-instance').evaluateAll(nodes=>nodes.map(node=>{
-        const term=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>['Points','MFM base points','Imported points'].includes(term.textContent));
-        const enhancements=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>term.textContent==='Enhancements on this unit');
-        return [node.dataset.rosterInstanceId,{label:term?.textContent,value:term?.nextElementSibling?.textContent,
+        const term=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>['Points','Exported points'].includes(term.textContent));
+        const enhancements=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>term.textContent==='Enhancements');
+        return [node.dataset.rosterInstanceId,{label:term?.textContent,origin:term?.parentElement?.dataset.rosterPointsOrigin??null,value:term?.nextElementSibling?.textContent,
           enhancements:[...(enhancements?.nextElementSibling?.querySelectorAll('[data-target-id]')||[])].map(link=>link.dataset.targetId)}];
       }))));
+      assert.equal(await page.locator('.v2-roster-identity dt').filter({hasText:/^(?:MFM base points|Imported points|Enhancements on this unit)$/}).count(),0,'Old identity labels are absent');
+      for(const unit of state.units)if(!unit.enhancementIds?.length)assert.equal(await page.locator(`.v2-roster-instance[data-roster-instance-id="${unit.instanceId}"] .v2-roster-identity dt`).filter({hasText:/^Enhancements$/}).count(),0,'No empty Enhancement field');
       const activeEnhancements=await page.evaluate(()=>ArmyBookAppV2.roster.projection.units.map(unit=>[unit.instanceId,unit.enhancementIds]));
       for(const [id,ids] of activeEnhancements)assert.deepEqual(setupPrices.get(id).enhancements,ids,'Attachment Setup shows exactly the active chosen Enhancements');
       await check('single-physical-character-warlord-control-and-exact-roundtrip',async()=>{
@@ -244,23 +247,27 @@ try{
         await page.keyboard.press('Escape');await frames();assert.equal(await menu.getAttribute('aria-expanded'),'false');assert.equal(await menu.evaluate(node=>node===document.activeElement),true);return {enterOpens:true,escapeReturnsFocus:true};
       });
       const focus=fixture.owner?state.units.find(unit=>unit.canonicalUnitId==='unit-deathshroud-terminators').instanceId:fixture.attachment?.target||state.units[0].instanceId;
+      const expectedFocusRows=await page.evaluate(id=>{const service=ArmyBookAppV2.roster,related=service.related(id),rows=Array.isArray(related)?related:related.rows||[];return rows.filter(row=>row.kind==='STRATAGEM'&&service.state.detachmentIds.includes(row.detachmentId)&&['MATCH','CONDITIONAL'].includes(row.applicability)).map(row=>({id:row.ruleId,detachmentId:row.detachmentId,applicability:row.applicability}));},focus);
       await page.evaluate(()=>{const service=ArmyBookAppV2.roster,related=service.related;window.__rosterNavigationRelatedCalls=[];
         service.related=function(...args){window.__rosterNavigationRelatedCalls.push(args[0]);return related.apply(this,args);};});
       const focused=await unitCard(focus,{keyboard:true});
       await check('lazy-stratagem-first-open-and-repeat-cache',async()=>{
-        assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[],'Card render makes zero related() calls');
-        const pane=focused.locator('details[data-datasheet-section="stratagems"]');assert.equal(await pane.count(),1,'Initial lazy header exists');assert.equal(await pane.evaluate(node=>node.open),false);
-        assert.equal(await focused.locator('.local-tab').filter({hasText:/^Stratagems$/}).count(),1,'Initial local tab exists');
-        await pane.locator(':scope > summary').click();await frames();assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[focus],'Exactly this physical component is resolved once');
-        if(await pane.count()){
-          await pane.locator(':scope > summary').click();await focused.locator('.local-tab').filter({hasText:/^Stratagems$/}).click();await frames();
+        assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[focus],'The exact metadata-only empty precheck resolves only this physical component once');
+        const pane=focused.locator('details[data-datasheet-section="stratagems"]'),tab=focused.locator('.local-tab').filter({hasText:/^Stratagems$/});
+        assert.equal(await pane.count(),expectedFocusRows.length?1:0,'Initial header exists exactly when the unchanged native query has rows');assert.equal(await tab.count(),expectedFocusRows.length?1:0,'No empty local tab is created');
+        assert.equal(await focused.locator('[data-datasheet-section="stratagems"] [data-rule-id][data-applicability]').count(),0,'No Stratagem text/cards are built before first opening');
+        if(expectedFocusRows.length){
+          assert.equal(await pane.evaluate(node=>node.open),false);await pane.locator(':scope > summary').click();await frames();
+          assert.deepEqual(await pane.locator('[data-rule-id][data-applicability]').evaluateAll(nodes=>nodes.map(node=>({id:node.dataset.ruleId,detachmentId:node.dataset.detachmentId,applicability:node.dataset.applicability}))).then(rows=>rows.toSorted((a,b)=>a.id.localeCompare(b.id))),expectedFocusRows.toSorted((a,b)=>a.id.localeCompare(b.id)),'First expansion retains every exact native row');
+          assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[focus],'First expansion reuses the exact precheck metadata');
+          await pane.locator(':scope > summary').click();await tab.click();await frames();
           assert.equal(await pane.evaluate(node=>node.open),true,'The local card menu expands the same lazy section');
           assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[focus],'Repeat expansion through the local menu reuses the current state cache');
         }
-        return {instanceId:focus,calls:await page.evaluate(()=>window.__rosterNavigationRelatedCalls)};
+        return {instanceId:focus,rows:expectedFocusRows,calls:await page.evaluate(()=>window.__rosterNavigationRelatedCalls)};
       });
       for(const unit of state.units){const card=await unitCard(unit.instanceId);
-        const price=setupPrices.get(unit.instanceId);if(price.label==='MFM base points'){
+        const price=setupPrices.get(unit.instanceId);if(price.origin==='base'){assert.equal(price.label,'Points');
           const actual=await card.locator('.ds-instance-price').innerText();assert(actual.endsWith(' · '+price.value),'Attachment Setup uses the same existing MFM price as the card');
         }
         for(const id of new Map(activeEnhancements).get(unit.instanceId))assert.equal(await card.locator(`[data-gained-source-kind="ENHANCEMENT"][data-source-rule-id=${JSON.stringify(id)}]`).count(),1,'The chosen Enhancement remains in Gained rules');

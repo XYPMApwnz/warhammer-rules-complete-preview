@@ -161,13 +161,13 @@ try{
     const sourceSelect=sourceField.locator('select');
     assert.equal(await owner.locator('[data-roster-source-choices-for]').count(),1);
     assert.equal(await sourceSelect.locator('option').first().innerText(),'Not selected');
-    assert.match(await sourceSelect.getAttribute('aria-label'),/^Source selection for Independent source choice on /);
+    assert.match(await sourceSelect.getAttribute('aria-label'),/^Independent source choice for /);assert.doesNotMatch(await sourceSelect.getAttribute('aria-label'),/Source selection for/);
     assert.equal(await sourceField.locator(`a[data-target-id="${secondSourceChoiceId}"]`).count(),1,'Canonical source reference absent');
     await sourceSelect.selectOption('selected');
     assert.equal(await page.evaluate(({owner,id})=>window.syntheticService.sourceChoices(owner).find(c=>c.id===id).value,
       {owner:a.instanceId,id:secondSourceChoiceId}),null,'Changing a select must not apply the source choice');
     await sourceField.locator('[data-roster-action="set-source-choice"]').click();
-    await page.locator('.v2-roster-status').filter({hasText:'Source selection saved.'}).waitFor();
+    await page.locator('.v2-roster-status').filter({hasText:'Choice saved. Review the affected unit.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved. Review the affected unit.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
     assert.equal(await sourceSelect.inputValue(),'selected');
     assert.equal(await otherOwner.locator(`select[data-source-choice-id="${secondSourceChoiceId}"]`).inputValue(),'','Independent physical owner changed');
     assert.equal(await owner.locator(`select[data-source-choice-id="${sourceChoiceId}"]`).inputValue(),'','Independent source choice changed');
@@ -195,7 +195,7 @@ try{
     assert.equal(readOnly.references,1);
     await sourceSelect.selectOption('');
     await sourceField.locator('[data-roster-action="set-source-choice"]').click();
-    await page.locator('.v2-roster-status').filter({hasText:'Source selection saved.'}).waitFor();
+    await page.locator('.v2-roster-status').filter({hasText:'Choice saved. Review the affected unit.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved. Review the affected unit.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
     assert.equal(await sourceSelect.inputValue(),'','Not selected did not remove source choice');
     assert.equal(await page.evaluate(({owner,id})=>window.syntheticService.sourceChoices(owner).find(c=>c.id===id).value,
       {owner:a.instanceId,id:secondSourceChoiceId}),null);

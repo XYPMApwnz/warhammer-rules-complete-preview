@@ -37,7 +37,8 @@ async function importText(book,text){
 }
 async function enhancementIdentity(instanceId){
  return page.locator('.v2-roster-instance[data-roster-instance-id="'+instanceId+'"] .v2-roster-identity').evaluate(node=>{
-  const term=[...node.querySelectorAll('dt')].find(term=>term.textContent.trim()==='Enhancements on this unit');
+  if([...node.querySelectorAll('dt')].some(term=>term.textContent.trim()==='Enhancements on this unit'))throw Error('Old Enhancement identity label is still present');
+  const term=[...node.querySelectorAll('dt')].find(term=>term.textContent.trim()==='Enhancements');
   if(!term)throw Error('Missing active Enhancement identity field');return term.nextElementSibling.textContent;
  });
 }
@@ -63,9 +64,11 @@ try{
   assert.equal(unit.canonicalUnitId,c.unitId);assert.deepEqual(unit.enhancementIds,[c.enhancementId]);assert.equal(Number(unit.raw.points),c.exportPoints);
   const active=await enhancementIdentity(unit.instanceId);
   if(c.epic){
-   const warnings=page.getByText(/Core Rules 25\.04/, {exact:false});
+   const warning=page.locator('[data-roster-import-warning="EPIC_HERO_ENHANCEMENT"]');assert.equal(await warning.count(),1);
+   const details=warning.locator('details');assert.equal(await details.getAttribute('open'),null,'Detailed restriction starts collapsed');await details.locator(':scope > summary').click();
+   const warnings=warning.getByText(/Core Rules 25\.04/, {exact:false});
    assert(await warnings.count()>0,'The import UI must visibly explain the Epic Hero restriction');
-   const warningText=await warnings.allTextContents(),message=warningText.join('\n');
+   const warningText=await warning.allTextContents(),message=warningText.join('\n');assert(!message.includes(c.enhancement+' on '+c.unit+': Core Rules 25.04'),'Old long primary warning is absent');
    assert(message.includes(c.unit)&&message.includes(c.enhancement),'The visible warning names the unit and Enhancement');
    assert.match(message,/not applied/i);assert.match(message,/invalid|violat|illegal/i);
    await warnings.first().scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,current+'-warning.png')});

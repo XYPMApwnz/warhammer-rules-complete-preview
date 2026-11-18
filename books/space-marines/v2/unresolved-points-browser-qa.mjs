@@ -59,7 +59,7 @@ async function warning(name,id='parsed-unit-1'){
   const nodes=page.locator('main [data-roster-points-status="UNRESOLVED"]');
   assert.ok(await nodes.count()>0,'Visible unresolved points warning is missing');
   const text=(await nodes.allInnerTexts()).join('\n');
-  assert.match(text,/Points unresolved/i);assert.match(text,/Points cannot be calculated reliably/i);assert.match(text,/Impulsor/);
+  assert.match(text,/Points total unavailable/);assert.match(text,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);assert.doesNotMatch(text,/Points unresolved|Points cannot be calculated reliably/);assert.match(text,/Impulsor/);
   assert.equal(await nodes.locator(`[data-roster-points-unit-id="${id}"]`).count()>0,true,'Warning must identify the exact physical UNIT');
   const costRecordId=await page.evaluate(instanceId=>window.ArmyBookAppV2.roster.points.unresolved.find(issue=>issue.unitInstanceId===instanceId).costRecordIds[0],id);
   assert.ok(costRecordId);const option=nodes.locator(`[data-roster-points-option-id="${costRecordId}"]`);
@@ -105,11 +105,11 @@ try{
     await roster();
     const backupPane=page.locator('details').filter({has:page.getByText('Backup and restore',{exact:true})});
     if(await backupPane.getAttribute('open')===null)await page.getByText('Backup and restore',{exact:true}).click();
-    await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles(backupFile);
+    assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles(backupFile);
     await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent==='Roster backup restored.');
     for(const name of ['Roster','Effective','Guide'])await check('snapshot-restore-'+name,()=>warning(name));
     await roster();if(await backupPane.getAttribute('open')===null)await page.getByText('Backup and restore',{exact:true}).click();
-    await page.locator('[data-roster-action="reload-saved"]').click();await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent==='Saved roster reloaded and validated.');
+    await page.locator('[data-roster-action="reload-saved"]').click();await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent==='Saved roster reloaded.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Saved roster reloaded and validated/);
     for(const name of ['Roster','Effective','Guide'])await check('load-recompute-'+name,()=>warning(name));
     await importText(fixtures.repeated);
     for(const name of ['Roster','Effective','Guide'])await check('repeated-unknown-'+name,()=>warning(name));

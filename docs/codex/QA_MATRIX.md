@@ -69,6 +69,8 @@ For independent unified V2 certification of Core, DG, AdMech and CSM, follow the
 
 ## Expansion rules
 
+- Import/Attachment Setup copy: `npm run test:import-messages` checks all nine books, exact native choice values, saved-state preservation and player-facing messages at 390/1440. The unit and browser checks also run sequentially in pre-FF. Browser negative controls: `node v2/import-messages-browser-qa.mjs --book=death-guard --widths=390 --mutation=label` (or `--mutation=option`) must fail the visible-copy guard.
+
 - SM changes expand to DA/BA only when inherited facts, exclusions, overrides, relations, effects, points, or publication membership can change.
 - Shared-code changes expand to the books that execute the changed path; do not run all books by reflex.
 - Browser QA is required when the defect or change is observable only through the actual rendered/runtime consumer.

@@ -93,7 +93,7 @@ async function guide(page,id){
 async function sourceChoice(page,owner,ruleId,value){
   await roster(page);const field=page.locator(`[data-roster-instance-id="${owner}"] [data-source-choice-id="${ruleId}"]`).first();
   await field.locator('select').selectOption(value??'');await field.locator('[data-roster-action="set-source-choice"]').click();
-  await page.getByRole('status').filter({hasText:'Source selection saved.'}).waitFor();
+  await page.getByRole('status').filter({hasText:'Choice saved. Review the affected unit.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved. Review the affected unit.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
 }
 async function attach(page,leader,guard){
   await roster(page);await page.locator(`[data-attachment-candidate-for="${guard}"]`).selectOption(leader);
@@ -254,7 +254,7 @@ try{
       await sourceChoice(page,owner,ruleId,options[0]);await imported(page,input,1);await effective(page,owner);await assertPrototype(page,index,true);
       await roster(page);await backupControls(page);const [download]=await Promise.all([page.waitForEvent('download'),page.locator('[data-roster-action="export-backup"]').click()]);
       const file=path.join(out,device+'-prototype-'+index+'-backup.json');await download.saveAs(file);assert.deepEqual(JSON.parse(fs.readFileSync(file,'utf8')),await snapshot(page));
-      await sourceChoice(page,owner,ruleId,null);await roster(page);await backupControls(page);await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles(file);
+      await sourceChoice(page,owner,ruleId,null);await roster(page);await backupControls(page);assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles(file);
       await page.waitForFunction(({owner,ruleId})=>window.ArmyBookAppV2.roster.state.units.find(unit=>unit.instanceId===owner).selectedTauWeaponChoiceIds?.some(id=>id.startsWith(ruleId)),{owner,ruleId});
       await effective(page,owner);await assertPrototype(page,index,true);
     });

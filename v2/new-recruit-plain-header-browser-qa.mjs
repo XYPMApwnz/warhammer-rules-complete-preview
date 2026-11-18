@@ -101,8 +101,10 @@ try{
    for(const denied of current.rejectionCases){
     await submit(page,denied.text);
     const help=page.locator('[data-import-hint="plain-header"]');await help.waitFor();
-    assert.match(await page.locator('.v2-roster-status').innerText(),/The export header could not be recognized/);
-    assert.match(await help.innerText(),/exactly three nonempty lines/);assert.match(await help.innerText(),/Five-line example/);
+    assert.equal(await page.locator('.v2-roster-status').innerText(),'The export header could not be read. Export the complete list as text from New Recruit and try again.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/The export header could not be recognized/);
+    const details=help.locator('details');assert.equal(await details.count(),1);assert.equal(await details.getAttribute('open'),null,'Header details start collapsed');await details.locator(':scope > summary').click();
+    assert.match(await help.innerText(),/Supported headers begin with three nonempty lines: list name and points, faction, then Detachment\(s\)\. Example:/);assert.doesNotMatch(await help.innerText(),/exactly three nonempty lines|Five-line example/);
+    assert.equal(await help.locator('pre').count(),2);assert.equal(await help.locator('pre').nth(0).innerText(),'Unnamed list (950 Points)\nDeath Guard\nContagion Engines and Paragons of Putrescence (2 Detachment Points)');assert.equal(await help.locator('pre').nth(1).innerText(),'Unnamed list (760 Points)\nDeath Guard\nShamblerot Vectorium and Virulent Vectorium (5 Detachment Points)\nDisruption\nStrike Force (2,000 Points)');
     assert.match(await help.innerText(),/Strike Force \(2,000 Points\)/);
     assert.deepEqual(await page.evaluate(()=>ArmyBookAppV2.roster.snapshot()),imported.state,'Rejected header preserves active roster');
     assert.equal(await page.evaluate(()=>localStorage.getItem('army-book-app-v2:roster:death-guard')),saved,'Rejected header preserves exact saved bytes');

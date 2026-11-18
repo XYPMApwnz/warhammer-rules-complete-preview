@@ -176,7 +176,7 @@ try{
         await page.locator('[data-roster-action="review-import"]').click();
         await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
         const status=await page.locator('.v2-roster-status').innerText();
-        const unresolved=await page.locator('select[aria-label^="Matching source entry"]').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('aria-label')));
+        const unresolved=await page.locator('select[aria-label^="Choose a match for"]').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('aria-label')));assert.equal(await page.locator('select[aria-label^="Matching source entry"]').count(),0,'Old clarification accessible label is absent');
         assert.match(status,/^Roster imported\./,c.bookId+' '+c.title+' '+JSON.stringify(unresolved));
         if(c.charge?.bodyguard){
           await page.locator('[data-attachment-candidate-for="'+c.charge.bodyguard+'"]').selectOption(c.charge.source);

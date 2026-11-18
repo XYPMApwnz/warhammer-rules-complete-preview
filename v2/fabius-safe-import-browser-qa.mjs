@@ -105,17 +105,17 @@ async function equipment(width){
  const c=item('p26-explicit-no-weapons');await open(c.bookId);await submit(c.text);const state=await snapshot(),view=await effective('parsed-unit-2');
  assert.equal(view.weapons.length,0,'Missing exported weapon selections must not invent a loadout');
  const importHint=page.locator('[data-import-hint="weapons"][data-import-hint-instance-id="parsed-unit-2"]');await importHint.waitFor();
- assert.match(await importHint.innerText(),/export.*does not specify weapons.*New Recruit.*equipment included/i);
+ const importName=await page.locator('.v2-roster-instance[data-roster-instance-id="parsed-unit-2"] h2').innerText();assert.equal(await importHint.innerText(),importName+': '+'This export does not list this unit’s weapons. Include equipment in your New Recruit export, then import it again.');assert.doesNotMatch(await importHint.innerText(),/does not specify weapons|equipment included/);
  const shots=[await screenshot('missing-equipment-import-'+width,importHint)],unit=await card('parsed-unit-2');
  const hint=unit.locator('[data-import-hint="weapons"]');assert.equal(await hint.count(),1,'An empty Weapons section needs a single human explanation');
- assert.match(await hint.innerText(),/export.*does not specify weapons.*New Recruit.*equipment included/i);assert.equal(await unit.locator('.weapon-row:not(.weapon-head)').count(),0);
+ assert.equal(await hint.innerText(),'This export does not list this unit’s weapons. Include equipment in your New Recruit export, then import it again.');assert.doesNotMatch(await hint.innerText(),/does not specify weapons|equipment included/);assert.equal(await unit.locator('.weapon-row:not(.weapon-head)').count(),0);
  assert.deepEqual(await snapshot(),state,'Showing an incomplete-export hint must not change roster data');shots.push(await screenshot('missing-equipment-card-'+width,hint));
  results.push({case:'equipment',width,status:'PASS',weapons:0,screenshots:shots});
 }
 async function composition(width){
  const complete=item('p26-explicit-no-weapons'),incomplete=item('p26-compact-no-model-rows');await open(complete.bookId);await submit(complete.text);const before=await snapshot();
  await submit(incomplete.text,{ready:false});const hint=page.locator('[data-import-hint="composition"]').first();await hint.waitFor();
- assert.match(await hint.innerText(),/how many models of each type.*quantity for each model type/i);assert.deepEqual(await snapshot(),before,'Unclear composition must not replace the saved roster');
+ assert.equal(await hint.innerText(),'This export does not give the number of models of each type in this unit. Export it with model composition, or add a separate quantity line for each model type, then import it again.');assert.doesNotMatch(await hint.innerText(),/does not say how many models|quantity for each model type/);assert.deepEqual(await snapshot(),before,'Unclear composition must not replace the saved roster');
  const shot=await screenshot('missing-composition-'+width,hint);results.push({case:'composition',width,status:'PASS',snapshotUnchanged:true,screenshots:[shot]});
 }
 try{

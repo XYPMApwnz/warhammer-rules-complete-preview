@@ -131,9 +131,10 @@ async function runPlain(width){
  const help=page.locator('[data-import-hint="plain-header"]');
  if(mutation==='remove-header-help')await help.evaluateAll(nodes=>nodes.forEach(node=>node.remove()));
  if(!observe){
-  assert.match(status,/header could not be recognized/);assert.match(status,/current roster and saved roster were not changed/);
+  assert.equal(status,'The export header could not be read. Export the complete list as text from New Recruit and try again.');assert.doesNotMatch(status,/header could not be recognized|current roster and saved roster were not changed/);
   assert.equal(await help.count(),1);assert.ok(await help.isVisible());
-  assert.match(await help.innerText(),/exactly three nonempty lines/);assert.match(await help.innerText(),/New Recruit/);assert.match(await help.innerText(),/site owner/);
+  const details=help.locator('details');assert.equal(await details.count(),1);assert.equal(await details.getAttribute('open'),null,'Header details start collapsed');await details.locator(':scope > summary').click();
+  assert.match(await help.innerText(),/Supported headers begin with three nonempty lines: list name and points, faction, then Detachment\(s\)\. Example:/);assert.doesNotMatch(await help.innerText(),/exactly three nonempty lines/);assert.match(await help.innerText(),/New Recruit/);assert.match(await help.innerText(),/site owner/);
   const examples=help.locator('pre');assert.equal(await examples.count(),2,'Both supported header examples are shown');
   const example=examples.filter({hasText:/^Unnamed list \(950 Points\)\n/});assert.equal(await example.count(),1);
   assert.equal((await example.innerText()).split('\n').length,3);

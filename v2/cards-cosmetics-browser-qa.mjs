@@ -67,9 +67,12 @@ try{
    for(const width of [390,1200,1600]){
     await page.setViewportSize({width,height:1000});await roster(page);await game(page,book,width);
     await openImportForm(page);await shot(page,page.locator('.v2-roster-pane').first(),`p1-${book}-${width}`);
-    await check(1,book,width,async()=>{const text=await page.locator('.v2-roster-pane').first().innerText();assert.doesNotMatch(text,/NOT_PROVEN|\bMFM\b|source OR|constructed-input|canonical|binding/i);
-     if(book==='blood-angels'){assert(text.includes('saved roster is kept'));assert(text.includes('not yet been checked against a real Blood Angels export'));assert(text.includes('any one of its listed conditions'));}
-     if(book==='dark-angels'){assert(text.includes('A confirmed Dark Angels unit must be in the roster'));assert(text.includes('not yet been checked against a real Dark Angels export'));}});
+    await check(1,book,width,async()=>{const pane=page.locator('.v2-roster-pane').first(),text=await pane.innerText();assert.doesNotMatch(text,/NOT_PROVEN|\bMFM\b|source OR|constructed-input|canonical|binding/i);
+     assert.equal(await pane.locator('[data-roster-known-limitations], [data-roster-scoped-limitation]').count(),0,'Book caveats do not precede the export input');
+     assert.doesNotMatch(await page.locator('[data-roster-view]').textContent(),/not yet been checked against a real (?:Blood|Dark) Angels export/,'Obsolete real-export caveats are absent');
+     const general=page.locator('[data-roster-known-limitations]');
+     if(book==='blood-angels'){assert.equal(await general.count(),1);assert.equal(await general.getAttribute('open'),null,'General book limitations start collapsed');assert.equal(await general.locator(':scope > summary').innerText(),'Known limitations of this Army Book');await general.locator(':scope > summary').click();assert.equal(await general.locator('p').innerText(),'Some rules are not applied automatically. Check their full text before using them.');await general.locator(':scope > summary').click();assert.equal(await page.locator('[data-roster-scoped-limitation="black-rage"], [data-roster-scoped-limitation="legacy-of-the-angel"]').count(),0,'Unrelated Gravis units do not inherit Blood Angels caveats');}
+     if(book==='dark-angels'){assert.equal(await general.count(),0,'No empty general caveat section');const expected=await page.evaluate(()=>{const s=ArmyBookAppV2.roster;return s.state.units.filter(unit=>s.chapterContext(unit.instanceId).armyApplicability.status==='DA_ARMY_CONTEXT_NOT_PROVEN').map(unit=>unit.instanceId);});const notices=page.locator('[data-roster-scoped-limitation="chapter"]');assert.equal(await notices.count(),expected.length);assert(expected.length>0,'The unchanged general-Space-Marines fixture lacks confirmed Dark Angels membership');for(const notice of await notices.all())assert.equal(await notice.innerText(),'The imported roster does not confirm Dark Angels army membership for these units. Check the affected units’ keyword rules before using DEATHWING or RAVENWING.');assert.deepEqual(await notices.evaluateAll(nodes=>nodes.map(node=>node.closest('[data-roster-instance-id]').dataset.rosterInstanceId)),expected);}});
     await shot(page,page.locator('.v2-roster-instance').first(),`p6-${book}-${width}`);
     await check(6,book,width,async()=>{assert.equal(await page.locator('[data-roster-warlord-select]').count(),1,'Warlord has one roster-wide control');
      assert.equal(await page.locator('.v2-roster-instance dt').filter({hasText:/^Warlord$/}).count(),0,'Removed per-unit Warlord captions are absent');
@@ -142,6 +145,12 @@ try{
      await rule.waitFor();await shot(page,rule,`p9-csm-${width}`);
      await check(9,book,width,async()=>{const text=await rule.innerText();assert(!text.includes('- Prey on the Weak'));assert(text.includes('- Friendly HERETIC ASTARTES INFANTRY FLY'));assert(text.includes('- When an enemy unit'));});
     }
+   }
+   if(book==='blood-angels'){
+    // Reuse a committed derived native-policy pair; do not invent roster input.
+    const related=JSON.parse(fs.readFileSync(path.join(own,'v2/fixtures/sweep-polish-v1.json'))).cases.find(row=>row.id==='character-pair-0039');assert.equal(related.bookId,book);
+    await page.setViewportSize({width:1440,height:1000});await imported(page,related.text);
+    await check(1,book,1440,async()=>{const rage=page.locator('[data-roster-instance-id="parsed-unit-2"] [data-roster-scoped-limitation="black-rage"]');assert.equal(await rage.count(),1);assert.equal(await rage.innerText(),'Battlefield conditions are not checked automatically. Check Black Rage during the battle.');const legacy=page.locator('[data-roster-instance-id="parsed-unit-1"] [data-roster-scoped-limitation="legacy-of-the-angel"]');assert.equal(await legacy.count(),1);assert.equal(await legacy.innerText(),'Legacy of the Angel needs an eligible BLOOD ANGELS CHARACTER. Check the affected unit’s keywords before using this rule.');assert.equal(await page.locator('[data-roster-instance-id="parsed-unit-2"] [data-roster-scoped-limitation="legacy-of-the-angel"]').count(),0);assert.doesNotMatch(await page.locator('[data-roster-import]').innerText(),/Black Rage|Legacy of the Angel|saved roster is kept/);});
    }
   }catch(e){await page.screenshot({path:path.join(out,book+'-setup-or-case-failure.png')}).catch(()=>{});throw e;}finally{await context.close();}
  }

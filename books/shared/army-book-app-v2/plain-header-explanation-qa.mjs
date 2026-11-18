@@ -29,10 +29,10 @@ for(const [name,text]of [
   assert.deepEqual(value.units,parsed.units,'An unsupported preamble must not change the body decoder');
   assert.equal(result.status,'NEEDS_BINDINGS');assert.equal(result.roster,null);
   const help=plainHeaderImportExplanation(freeze(result));assert(help,name);
-  assert.match(help.instruction,/exactly three nonempty lines/);
+  assert.equal(help.instruction,'Supported headers begin with three nonempty lines: list name and points, faction, then Detachment(s). Example:');assert.doesNotMatch(help.instruction,/exactly three nonempty lines/);
   assert.equal(help.example.split('\n').length,3);
-  assert.match(help.guidance,/Re-export.*New Recruit/);assert.match(help.guidance,/send the original export as a sample/);
-  assert.match(help.message,/current roster and saved roster were not changed/);
+  assert.equal(help.guidance,'Export the complete roster as text from New Recruit and try again. If the header still cannot be read, send the original export to the site owner.');assert.doesNotMatch(help.guidance,/Re-export|send the original export as a sample/);
+  assert.equal(help.message,'The export header could not be read. Export the complete list as text from New Recruit and try again.');assert.doesNotMatch(help.message,/could not be recognized|current roster and saved roster were not changed/);
   assert.deepEqual(result,before,'Presentation must not alter statuses, needs, errors, metadata or roster');
   assert.deepEqual(service.snapshot(),saved,'Unresolved input must preserve the complete native roster');
   controls.push(name);

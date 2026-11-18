@@ -137,6 +137,7 @@
     "test:full": "npm run test:preview && npm run qa:effects && npm run qa:points && npm run qa:roster",
     "qa:quick": "node tools/qa-queue.mjs quick",
     "qa:pre-ff": "node tools/qa-queue.mjs pre-ff",
+    "test:import-messages": "node books/shared/army-book-app-v2/import-messages-qa.mjs && node v2/import-messages-browser-qa.mjs",
     "mfm:update": "node books/shared/tools/mfm-release-cli.mjs update",
     "mfm:activate": "node books/shared/tools/mfm-release-cli.mjs activate",
     "qa:mfm-current": "node tests/mfm-release-history-qa.mjs && node tests/source-enrollment-qa.mjs && node tests/source-ingestion-contract-qa.mjs && node tests/mfm-numeric-ownership-qa.mjs",

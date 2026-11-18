@@ -286,7 +286,7 @@ try {
     const backup=path.join(evidence,device+'-roster-backup.json');await download.saveAs(backup);assert.deepEqual(JSON.parse(fs.readFileSync(backup,'utf8')),durable.state);
     assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('army-book-app-v2:roster:death-guard'))),durable.state);
     await detach(ids.lord);assert.equal(modelFnp((await snapshot(page)).effective[ids.lord]).length,0);
-    await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles(backup);await settled(page);assert.deepEqual(await snapshot(page),durable,'Backup did not restore the same typed state/effects');await effectiveParity();
+    assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles(backup);await settled(page);assert.deepEqual(await snapshot(page),durable,'Backup did not restore the same typed state/effects');await effectiveParity();
     await page.locator('[data-roster-action="reload-saved"]').click();await settled(page);assert.deepEqual(await snapshot(page),durable,'Saved reload differs from restored backup');
     await page.reload();await ready(page);await page.waitForSelector('main [data-roster-view]');assert.deepEqual(await snapshot(page),durable,'Local storage restore changed deterministic effects');reloadChecks++;await effectiveParity();
     const after=await readerCensus('reader-after-roster');assert.deepEqual(after,before,'Roster mutated canonical Reader facts');
