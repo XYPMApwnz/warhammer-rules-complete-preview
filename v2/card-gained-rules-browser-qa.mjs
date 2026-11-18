@@ -240,8 +240,10 @@ try{
         await tab.click();await page.waitForFunction(({instanceId,target})=>{const section=[...document.querySelectorAll('main .unit-card[data-roster-instance-id]')].find(node=>node.dataset.rosterInstanceId===instanceId)?.querySelector('[id="'+target+'"]'),heading=section?.querySelector('h4');if(!heading)return false;const box=heading.getBoundingClientRect();return box.height>0&&box.top>=0&&box.bottom<=innerHeight;},{instanceId:id,target});
         navigation={mode:'visible-mobile-clicked',target};
        }else{
-        assert.equal(await card.locator('.local-nav').evaluate(node=>getComputedStyle(node).display),'none','Preserve the existing hidden desktop local-navigation policy');
-        navigation={mode:'existing-hidden-desktop-policy',target};
+        assert.equal(await card.locator('.local-nav').evaluate(node=>getComputedStyle(node).display),'flex','Roster section navigation is visible on desktop');
+        assert(await tab.isVisible(),'Desktop Gained rules navigation is player-visible');
+        await tab.click();await page.waitForFunction(({instanceId,target})=>{const section=[...document.querySelectorAll('main .unit-card[data-roster-instance-id]')].find(node=>node.dataset.rosterInstanceId===instanceId)?.querySelector('[id="'+target+'"]'),heading=section?.querySelector('h4');if(!heading)return false;const box=heading.getBoundingClientRect();return box.height>0&&box.top>=0&&box.bottom<=innerHeight;},{instanceId:id,target});
+        navigation={mode:'visible-desktop-clicked',target};
        }
       }
       return {sections:inspected.sections,groups:inspected.groups.map(({kind,tag,open})=>({kind,tag,open})),navigation};
