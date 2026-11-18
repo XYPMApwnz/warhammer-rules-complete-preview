@@ -279,7 +279,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
  check('unknown-points-use-existing-visible-warning-without-false-final-total',()=>{
   const element=tag=>({tag,children:[],dataset:{},value:'',attributes:{},set textContent(v){this.value=String(v);this.children=[];},get textContent(){return this.value+this.children.map(c=>c.textContent).join('');},get childElementCount(){return this.children.length;},append(...v){this.children.push(...v);},setAttribute(k,v){this.attributes[k]=v;}}),document={createElement:element};
   const b=book.mfmPhysicalPaidOptions[0],service=createBloodAngelsRosterService(book);ready(service,header()+fixture(b.ownerUnitId).text);
-  assert.equal(service.points.totalPoints,null);assert.equal(service.points.status,'UNRESOLVED');const warning=renderRosterPointsStatus(document,{service,titleForId:id=>sources.get(id)?.data.title});assert.match(warning.textContent,/Points cannot be calculated reliably/);
+  assert.equal(service.points.totalPoints,null);assert.equal(service.points.status,'UNRESOLVED');const warning=renderRosterPointsStatus(document,{service,titleForId:id=>sources.get(id)?.data.title});assert.match(warning.textContent,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);assert.doesNotMatch(warning.textContent,/Points cannot be calculated reliably/);
   ready(service,header()+fixture(b.ownerUnitId,{unitGear:'1x '+PAID.find(r=>r[0]===b.costRecordId)[2].replace(/^per /,'')}).text,{}, {replaceExisting:true});assert.equal(service.points.status,'RESOLVED');assert.equal(renderRosterPointsStatus(document,{service}),null);
  });
  check('eight-static-lowerings-through-physical-import-effective-and-guide',()=>{

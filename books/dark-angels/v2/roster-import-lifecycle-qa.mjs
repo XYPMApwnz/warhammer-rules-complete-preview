@@ -71,7 +71,7 @@ check('unknown-and-resolved-points-feed-existing-warning-renderer',()=>{
  const document={createElement:element},service=createDarkAngelsRosterService(book),id='unit-da-9f8f2ccbdb7d4c72857c';
  ready(service,header+unitText(id));assert.equal(service.points.status,'UNRESOLVED');assert.equal(service.points.totalPoints,null);
  const warning=renderRosterPointsStatus(document,{service,titleForId:key=>index.get(key)?.data.title});
- assert.match(warning.textContent,/Points cannot be calculated reliably/);assert.match(warning.textContent,/Cyclone/i);
+ assert.match(warning.textContent,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);assert.doesNotMatch(warning.textContent,/Points cannot be calculated reliably/);assert.match(warning.textContent,/Cyclone/i);
  const saved=service.snapshot(),forged=clone(saved);forged.units[0].equipmentContextKnown=true;
  assert.throws(()=>service.load(forged));assert.deepEqual(service.snapshot(),saved);
  ready(service,header+unitText(id,{unitGear:'1x Cyclone Missile Launcher'}),{}, {replaceExisting:true});

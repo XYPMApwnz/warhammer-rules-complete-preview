@@ -20,7 +20,7 @@ const root=path.resolve(arg('--root')||process.env.ROSTER_NAVIGATION_ROOT||own);
 const out=path.resolve(arg('--out')||process.env.ROSTER_NAVIGATION_EVIDENCE_DIR||createQaEvidenceDir('wh-roster-navigation-'));
 const widths=(arg('--widths')||'390,1440').split(',').map(Number),mutation=arg('--mutation');
 assert(widths.length&&widths.every(width=>Number.isInteger(width)&&width>0),'Valid --widths');
-assert(!mutation||mutation==='foreign-detachment','Only --mutation=foreign-detachment is supported');
+assert(!mutation||['foreign-detachment','missing-base-origin'].includes(mutation),'Only the named foreign-Detachment and missing-base-origin mutations are supported');
 const books=armyBooks.filter(book=>!arg('--book')||book.id===arg('--book'));assert(books.length,'Known --book');
 const read=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8'));
 const hash=value=>createHash('sha256').update(typeof value==='string'||Buffer.isBuffer(value)?value:JSON.stringify(value)).digest('hex');
@@ -90,6 +90,21 @@ async function unitCard(id,{keyboard=false}={}){const control=page.locator(`#toc
   await page.waitForFunction(id=>new URL(location.href).searchParams.get('instance')===id,id);
   const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`).first();await card.waitFor();await frames();return card;}
 async function shot(name,locator=page){const file=[current.book,current.width,name].join('-')+'.png';await locator.screenshot({path:path.join(out,file),animations:'disabled'});report.screenshots.push({...current,name,file});save();}
+/** Independent source-field classification: a base-price label must be present
+ * when no native priced row owns this UNIT and exactly one accepted MFM entry
+ * matches its existing MODEL/copy bounds. DOM markers never select the test. */
+function sourceBasePrice(state,cards,unit,nativePoints){
+  if(nativePoints?.units?.some(row=>(row.unitInstanceId||row.instanceId)===unit.instanceId))return null;
+  const ordinal=state.units.filter(row=>row.canonicalUnitId===unit.canonicalUnitId).findIndex(row=>row.instanceId===unit.instanceId)+1,matching=[];
+  for(const id of cards.get(unit.canonicalUnitId).children||[]){const record=cards.get(id);if(record?.kind!=='MFM_UNIT_POINTS')continue;
+    const fieldAt=path=>record.fields.find(field=>field.source?.path===path)?.value;
+    for(const field of record.fields){const path=field.source?.path||'';if(!path.endsWith('/value'))continue;
+      const entry=path.slice(0,-'value'.length),schedule=path.split('/entries/')[0],minimum=fieldAt(entry+'minModels'),maximum=fieldAt(entry+'maxModels')??minimum;
+      if(typeof minimum==='number'&&unit.startingStrength>=minimum&&unit.startingStrength<=maximum&&ordinal>=(fieldAt(schedule+'/minCopies')??record.pointsSchedule?.minCopies??1)&&ordinal<=(fieldAt(schedule+'/maxCopies')??record.pointsSchedule?.maxCopies??Infinity))matching.push(field.value);
+    }
+  }
+  return matching.length===1&&Number.isFinite(matching[0])?matching[0]:null;
+}
 function displayNames(state,cards){
   const names=new Map();for(const unit of state.units){const peers=state.units.filter(other=>other.canonicalUnitId===unit.canonicalUnitId),title=cards.get(unit.canonicalUnitId).title;
     if(peers.length===1){names.set(unit.instanceId,title);continue;}
@@ -121,7 +136,7 @@ async function inspectStratagems(card,id,cards){
   const pane=card.locator('details[data-datasheet-section="stratagems"]');
   if(await pane.count()&&!await pane.evaluate(node=>node.open))await pane.locator(':scope > summary').click();
   await frames();
-  if(mutation&&!mutationInjected){const state=await snapshot(),foreign=[...cards.values()].find(rule=>rule.kind==='STRATAGEM'&&!state.detachmentIds.includes(rule.parentId));assert(foreign,'Mutation requires a foreign Detachment rule');
+  if(mutation==='foreign-detachment'&&!mutationInjected){const state=await snapshot(),foreign=[...cards.values()].find(rule=>rule.kind==='STRATAGEM'&&!state.detachmentIds.includes(rule.parentId));assert(foreign,'Mutation requires a foreign Detachment rule');
     await card.evaluate((root,rule)=>{let section=root.querySelector('[data-datasheet-section="stratagems"]');
       if(!section){section=document.createElement('section');section.dataset.datasheetSection='stratagems';root.append(section);}
       const injected=document.createElement('article');injected.dataset.ruleId=rule.id;injected.dataset.detachmentId=rule.parentId;injected.dataset.applicability='CONDITIONAL';injected.textContent=rule.title;section.append(injected);
@@ -169,12 +184,19 @@ try{
         await attach(one('unit-lord-of-contagion'),one('unit-deathshroud-terminators'));await attach(one('unit-biologus-putrifier'),one('unit-plague-marines',10));
       }else if(fixture.attachment)await attach(fixture.attachment.leader,fixture.attachment.target);
       state=await snapshot();
+      const nativePoints=await page.evaluate(()=>ArmyBookAppV2.roster.points||null);
+      const expectedBasePrices=new Map(state.units.map(unit=>[unit.instanceId,sourceBasePrice(state,cards,unit,nativePoints)]).filter(([,value])=>value!==null));
+      if(mutation==='missing-base-origin'&&!mutationInjected&&expectedBasePrices.size){
+        const first=expectedBasePrices.keys().next().value,marker=page.locator(`.v2-roster-instance[data-roster-instance-id="${first}"] [data-roster-points-origin="base"]`);assert.equal(await marker.count(),1,'Marker mutation starts from the existing base-price field');
+        await marker.evaluate(node=>node.removeAttribute('data-roster-points-origin'));mutationInjected=true;
+      }
       const setupPrices=new Map((await page.locator('.v2-roster-instance').evaluateAll(nodes=>nodes.map(node=>{
         const term=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>['Points','Exported points'].includes(term.textContent));
         const enhancements=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>term.textContent==='Enhancements');
         return [node.dataset.rosterInstanceId,{label:term?.textContent,origin:term?.parentElement?.dataset.rosterPointsOrigin??null,value:term?.nextElementSibling?.textContent,
           enhancements:[...(enhancements?.nextElementSibling?.querySelectorAll('[data-target-id]')||[])].map(link=>link.dataset.targetId)}];
       }))));
+      for(const [id,value]of expectedBasePrices){const observed=setupPrices.get(id);assert.equal(observed.origin,'base','The source-proven base-price branch cannot be skipped by a missing marker: '+id);assert.equal(observed.label,'Points');assert.equal(observed.value,value+' pts','Attachment Setup retains the exact source-proven base price');}
       assert.equal(await page.locator('.v2-roster-identity dt').filter({hasText:/^(?:MFM base points|Imported points|Enhancements on this unit)$/}).count(),0,'Old identity labels are absent');
       for(const unit of state.units)if(!unit.enhancementIds?.length)assert.equal(await page.locator(`.v2-roster-instance[data-roster-instance-id="${unit.instanceId}"] .v2-roster-identity dt`).filter({hasText:/^Enhancements$/}).count(),0,'No empty Enhancement field');
       const activeEnhancements=await page.evaluate(()=>ArmyBookAppV2.roster.projection.units.map(unit=>[unit.instanceId,unit.enhancementIds]));
@@ -268,7 +290,7 @@ try{
         return {instanceId:focus,rows:expectedFocusRows,calls:await page.evaluate(()=>window.__rosterNavigationRelatedCalls)};
       });
       for(const unit of state.units){const card=await unitCard(unit.instanceId);
-        const price=setupPrices.get(unit.instanceId);if(price.origin==='base'){assert.equal(price.label,'Points');
+        const price=setupPrices.get(unit.instanceId);if(expectedBasePrices.has(unit.instanceId)){assert.equal(price.origin,'base');assert.equal(price.label,'Points');
           const actual=await card.locator('.ds-instance-price').innerText();assert(actual.endsWith(' · '+price.value),'Attachment Setup uses the same existing MFM price as the card');
         }
         for(const id of new Map(activeEnhancements).get(unit.instanceId))assert.equal(await card.locator(`[data-gained-source-kind="ENHANCEMENT"][data-source-rule-id=${JSON.stringify(id)}]`).count(),1,'The chosen Enhancement remains in Gained rules');
@@ -305,7 +327,7 @@ try{
     console.log('Roster navigation '+book.id+' '+width+' complete');
   }
   assert.deepEqual(report.errors,[],'Browser errors');assert.deepEqual(report.missing,[],'Runtime files available');
-  assert(!mutation,'Mutation control must fail the exact native-row guard');report.status='PASS';
+  assert(!mutation,'Mutation control must fail its exact native-row or base-price-origin guard');report.status='PASS';
 }catch(error){report.status='FAIL';report.failure={message:error.message,stack:error.stack};throw error;}
 finally{report.finished=new Date().toISOString();save();if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
 console.log(JSON.stringify({status:report.status,checks:report.checks.length,out}));
