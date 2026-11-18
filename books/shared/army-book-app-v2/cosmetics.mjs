@@ -299,10 +299,26 @@ export function importChoiceOptions(choice,{state,cards,projection}){
       const unit=projection?.units.find(unit=>unit.instanceId===ref.unitInstanceId);
       const profiles=unit?.profiles||[];
       const weapons=[...(unit?.weapons||[]),...profiles.flatMap(profile=>profile.weapons||[])];
-      const matches=weapons.filter(weapon=>weapon.canonicalProfileId===ref.canonicalProfileId&&weapon.selectionKey===ref.selectionKey&&(weapon.scopeId??null)===(ref.scopeId??null));
-      if(!matches.length||matches.some(weapon=>![1,2].includes(weapon.physicalQuantity)))throw new TypeError('Unresolved equipment choice caption');
-      const quantity=matches[0].physicalQuantity;
-      if(matches.some(weapon=>weapon.physicalQuantity!==quantity))throw new TypeError('Contradictory equipment choice quantity');
+      const sameOwner=weapon=>weapon.canonicalProfileId===ref.canonicalProfileId&&(weapon.scopeId??null)===(ref.scopeId??null);
+      const matches=weapons.filter(weapon=>sameOwner(weapon)&&weapon.selectionKey===ref.selectionKey);
+      let quantity;
+      if(matches.length){
+        if(matches.some(weapon=>![1,2].includes(weapon.physicalQuantity)))throw new TypeError('Unresolved equipment choice caption');
+        quantity=matches[0].physicalQuantity;
+        if(matches.some(weapon=>weapon.physicalQuantity!==quantity))throw new TypeError('Contradictory equipment choice quantity');
+      }else{
+        // A confirmed quantity-two choice partitions the effective weapon into
+        // selected/remainder rows. Read its existing original-reference trace;
+        // never treat either effective row as a new selectable source weapon.
+        const parts=weapons.filter(weapon=>sameOwner(weapon)&&weapon.quantityPartition?.sourceSelectionKey===ref.selectionKey&&weapon.quantityPartition.sourceRuleId===choice.id);
+        if(parts.length!==2||new Set(parts.map(weapon=>weapon.quantityPartition.role)).size!==2||
+          !parts.every(weapon=>['selected','remainder'].includes(weapon.quantityPartition.role)&&weapon.physicalQuantity===1&&
+            weapon.quantityPartition.originalQuantity===2&&weapon.quantityPartition.sourceSelection?.selectionKey===ref.selectionKey&&
+            weapon.quantityPartition.sourceSelection.physicalQuantity===2&&weapon.quantityPartition.sourceSelection.quantityEvidence?.selectedQuantity===2&&
+            weapon.quantityPartition.sourceSelection.canonicalProfileIds?.length===1&&weapon.quantityPartition.sourceSelection.canonicalProfileIds[0]===ref.canonicalProfileId))
+          throw new TypeError('Unresolved equipment choice caption');
+        quantity=parts[0].quantityPartition.originalQuantity;
+      }
       const name=captionName(cards.get(ref.canonicalProfileId)?.title,ref.canonicalProfileId);
       const peers=decoded.filter(other=>other?.canonicalProfileId===ref.canonicalProfileId),ordinal=peers.indexOf(ref)+1;
       const scope=profiles.find(profile=>profile.scopeId===ref.scopeId);

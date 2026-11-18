@@ -35,6 +35,31 @@ const choice={options:weapons.map(weapon=>({id:JSON.stringify({unitInstanceId:'p
 const weaponLabels=importChoiceOptions(choice,{state,cards,projection:{units:[{instanceId:'parsed-unit-1',weapons,profiles:[]}]}});
 assert.deepEqual(weaponLabels.map(option=>option.title),['Repeated weapon — choose 1 of 2 weapons · Selection 1','Repeated weapon — choose 1 of 2 weapons · Selection 2']);
 assert.deepEqual(weaponLabels.map(option=>option.id),choice.options.map(option=>option.id));
+// Native effects partition a confirmed two-weapon selection into two effective
+// rows. These are projection fixtures, not additional accepted roster formats.
+let partitionCases=0,partitionRefusals=0;
+for(const scopeId of [null,'model-scope'])for(const ruleId of ['prototype-one','prototype-two','prototype-three']){
+  const original={unitInstanceId:'parsed-unit-1',scopeId,selectionKey:'original-weapon',canonicalProfileId:'weapon'};
+  const source={selectionKey:original.selectionKey,physicalQuantity:2,canonicalProfileIds:['weapon'],quantityEvidence:{selectedQuantity:2}};
+  const parts=['selected','remainder'].map(role=>({canonicalProfileId:'weapon',scopeId,selectionKey:original.selectionKey+'/'+role,physicalQuantity:1,
+    quantityPartition:{role,originalQuantity:2,sourceSelectionKey:original.selectionKey,sourceRuleId:ruleId,sourceSelection:structuredClone(source)}}));
+  const project=weapons=>({units:[{instanceId:original.unitInstanceId,weapons:scopeId===null?weapons:[],
+    profiles:scopeId===null?[]:[{scopeId,canonicalProfileId:'unit',weapons}]}]});
+  const selectedChoice={id:ruleId,options:[{id:JSON.stringify(original),title:'Native caption'}]};
+  const argumentsFor=weapons=>({state,cards,projection:project(weapons)});
+  const pristine=[{...original,physicalQuantity:2}],before=structuredClone({state,selectedChoice,parts});
+  assert.deepEqual(importChoiceOptions(selectedChoice,argumentsFor(parts)),importChoiceOptions(selectedChoice,argumentsFor(pristine)),
+    'A partition retains the original choice ID and original two-weapon caption');
+  assert.deepEqual({state,selectedChoice,parts},before,'Caption lookup never mutates source decisions or effective weapons');
+  for(const corrupt of [
+    rows=>rows.pop(),rows=>rows.push(structuredClone(rows[0])),
+    rows=>rows[1].quantityPartition.role='selected',rows=>rows[1].quantityPartition.sourceRuleId='another-rule',
+    rows=>rows[1].quantityPartition.sourceSelectionKey='another-selection',rows=>rows[1].scopeId='another-scope',
+    rows=>rows[1].quantityPartition.sourceSelection.canonicalProfileIds=['another-weapon'],
+    rows=>rows[1].quantityPartition.sourceSelection.quantityEvidence.selectedQuantity=1
+  ]){const bad=structuredClone(parts);corrupt(bad);assert.throws(()=>importChoiceOptions(selectedChoice,argumentsFor(bad)),/Unresolved equipment choice caption/);partitionRefusals++;}
+  partitionCases++;
+}
 assert.throws(()=>physicalUnitCaption(state,new Map([['unit',{title:'unit'}]]),'parsed-unit-1'),/Missing human name/,'The captionName validation remains active');
 assert.throws(()=>importChoiceOptions(choice,{state,cards,projection:{units:[]}}),/Unresolved equipment choice caption/);
 assert.throws(()=>importChoiceOptions({options:[{id:'["missing"]',title:'Recipient'}]},{state,cards}),/Unresolved recipient choice caption/);
@@ -42,4 +67,4 @@ assert.throws(()=>importChoiceOptions({options:[{id:'opaque',title:'parsed-unit-
 assertPlayerImportCopy(formatted.concat(weaponLabels).map(option=>({location:'option',text:option.title})));
 for(const text of ['NOT_PROVEN','canonical','physical','source entry','bindings-1','MFM','parsed-unit-2','UNKNOWN'])
   assert.throws(()=>assertPlayerImportCopy([{location:'mutation',text}]),/Internal import copy/);
-console.log(JSON.stringify({status:'PASS',exactStatuses:9,choiceValuesAndStateUnchanged:true,captionValidationPreserved:true,negativeCopyControls:8}));
+console.log(JSON.stringify({status:'PASS',exactStatuses:9,choiceValuesAndStateUnchanged:true,captionValidationPreserved:true,negativeCopyControls:8,partitionCases,partitionRefusals}));
