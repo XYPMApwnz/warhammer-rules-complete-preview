@@ -7,7 +7,7 @@ for(const [key,expected]of Object.entries({
   'import-success':'Roster imported.','warlord-saved':'Warlord saved.',
   'attached-status':'Character or Support attached.','detached-status':'Character or Support detached.',
   'backup-restored':'Roster backup restored.','saved-restored':'Saved roster reloaded.',
-  'replacement-kept':'Current roster kept.','backup-exported':'Backup downloaded.'
+  'replacement-kept':'Current roster kept.','backup-exported':'Backup downloaded.','source-choice-saved':'Choice saved.'
 }))assert.equal(importMessages[key],expected);
 assert.equal(importNoticeCopy.stormlance,'Stormlance: sources disagree on Detachment Points. Check the current Munitorum Field Manual.');
 assert.equal(importNoticeCopy.unitCount(1),'1 unit');assert.equal(importNoticeCopy.unitCount(3),'3 units');
@@ -42,4 +42,4 @@ assert.throws(()=>importChoiceOptions({options:[{id:'opaque',title:'parsed-unit-
 assertPlayerImportCopy(formatted.concat(weaponLabels).map(option=>({location:'option',text:option.title})));
 for(const text of ['NOT_PROVEN','canonical','physical','source entry','bindings-1','MFM','parsed-unit-2','UNKNOWN'])
   assert.throws(()=>assertPlayerImportCopy([{location:'mutation',text}]),/Internal import copy/);
-console.log(JSON.stringify({status:'PASS',exactStatuses:8,choiceValuesAndStateUnchanged:true,captionValidationPreserved:true,negativeCopyControls:8}));
+console.log(JSON.stringify({status:'PASS',exactStatuses:9,choiceValuesAndStateUnchanged:true,captionValidationPreserved:true,negativeCopyControls:8}));

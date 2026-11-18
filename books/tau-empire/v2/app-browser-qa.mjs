@@ -93,7 +93,7 @@ async function guide(page,id){
 async function sourceChoice(page,owner,ruleId,value){
   await roster(page);const field=page.locator(`[data-roster-instance-id="${owner}"] [data-source-choice-id="${ruleId}"]`).first();
   await field.locator('select').selectOption(value??'');await field.locator('[data-roster-action="set-source-choice"]').click();
-  await page.getByRole('status').filter({hasText:'Choice saved. Review the affected unit.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved. Review the affected unit.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
+  await page.getByRole('status').filter({hasText:'Choice saved.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
 }
 async function attach(page,leader,guard){
   await roster(page);await page.locator(`[data-attachment-candidate-for="${guard}"]`).selectOption(leader);

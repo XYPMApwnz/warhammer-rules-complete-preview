@@ -230,6 +230,9 @@ try{
           const select=field.locator('select');const actual=await select.locator('option').evaluateAll(nodes=>nodes.map(node=>({value:node.value,title:node.textContent})));
           assert.deepEqual(actual.map(row=>row.value),['',...choice.options.map(row=>row.id)],'Only choice captions change; exact values/count/order retained');
           assert.equal(await select.inputValue(),choice.value||'');assert(actual.every(row=>row.title.trim()));assert.equal(new Set(actual.filter(row=>row.value).map(row=>row.title)).size,choice.options.length,'Distinct physical choices retain distinct captions');captions.push(...actual.map(row=>row.title));
+          await select.selectOption(choice.options[0].id);await field.locator('[data-roster-action="set-source-choice"]').click();await settled();
+          assert.equal(await status(),'Choice saved.');assert.doesNotMatch(await status(),/Source selection saved|Review/);
+          assert.equal(await page.evaluate(({instanceId,id})=>ArmyBookAppV2.roster.sourceChoices(instanceId).find(choice=>choice.id===id).value,choice),choice.options[0].id,'Saving delegates the exact existing choice value');
         }
         if(fixture.name==='student'){assert(captions.some(label=>label.includes('Kroot Carnivores (10 models) #1')));assert(captions.some(label=>label.includes('Kroot Carnivores (10 models) #2')));}
         await shot('choices-'+fixture.name);return {choices:native.length,captions,...await guard()};

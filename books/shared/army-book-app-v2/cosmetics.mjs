@@ -77,7 +77,7 @@ export const importMessages=Object.freeze({
   "imported-detachments": "Imported Detachments",
   "enhancements-none-applied": "Not applied",
   "source-selections-heading": "Rule choices",
-  "source-choice-saved": "Choice saved. Review the affected unit.",
+  "source-choice-saved": "Choice saved.",
   "source-choice-placeholder": "Not selected",
   "source-choice-apply": "Save choice",
   "source-choice-unavailable": "This choice cannot be changed here. Send the export to the site owner.",
