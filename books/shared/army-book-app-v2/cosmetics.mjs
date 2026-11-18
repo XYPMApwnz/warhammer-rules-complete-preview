@@ -270,6 +270,10 @@ export const importNoticeCopy=Object.freeze({
   matchLabel:name=>`Choose a match for ${name}`,
   sourceLabel:(choice,unit)=>`${choice} for ${unit}`,
   attachLabel:name=>`Add Character or Support to ${name}`,
+  paidEquipment:name=>`Paid equipment: ${name}`,
+  attachedTo:name=>`Attached to ${name}`,
+  ledBy:name=>`Led by ${name}`,
+  supportedBy:name=>`Supported by ${name}`,
   enhancementWarning:(name,unit)=>`${unit}: ${name} cannot be applied to an Epic Hero. Remove it in New Recruit and import the corrected list.`
 });
 const internalImportLabel=/\b(?:parsed-unit-|unit-|detachment-|datasheet-|refs-|bindings-)|NOT_PROVEN|REFERENCE_ONLY|canonical|physical|source entry|binding/i;

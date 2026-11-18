@@ -37,7 +37,7 @@ export function renderRosterPointsStatus(document,{service,instanceId=null,title
       if(issue.unitInstanceId)item.dataset.rosterPointsUnitId=issue.unitInstanceId;
       if(option)item.dataset.rosterPointsOptionId=option.costRecordId;
       if(issue.reason)item.dataset.rosterPointsReason=issue.reason;
-      item.textContent=[name,option?.label&&'Paid equipment: '+option.label].filter(Boolean).join(' — ');
+      item.textContent=[name,option?.label&&importNoticeCopy.paidEquipment(option.label)].filter(Boolean).join(' — ');
       item.append(node('span',(item.textContent?': ':'')+(reasons[issue.reason]||importMessages["points-message-passthrough"])));
       list.append(item);
     }
@@ -352,7 +352,7 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
       renderBindings(importResult.needsBindings || [],headerExplanation);
       const errors = (importResult.errors || []).map(playerError).join(' ');
       const explanations=[...new Set((importResult.needsBindings||[]).map(need=>need.kind==='COMPOSITION_MEMBER'?incompleteExportCopy.composition:limitationMessage(need)).filter(Boolean))];
-      setStatus(errors || headerExplanation?.message || (explanations.length?explanations.join(' ')+' No roster changes were saved.':
+      setStatus(errors || headerExplanation?.message || (explanations.length?explanations.join(' ')+' '+importNoticeCopy.unchanged:
         importMessages["clarification-status"]), importResult.status === 'INVALID');
       if(importResult.status!=='INVALID')status.dataset.importSeverity=!bindingArea.querySelector('[data-import-severity="error"]')&&bindingArea.querySelector('[data-roster-action="resolve-bindings"]')?'choice':'error';
     }
@@ -650,8 +650,8 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
     const assignment = (state.attachments || []).find(record => record.leaderInstanceId === instanceId);
     if (members.length || assignment) {
       const attachments = el('section'); attachments.append(el('h3', '', 'Attachments'));
-      if (assignment) attachments.append(el('p', '', `Attached to ${names.get(assignment.bodyguardInstanceId)}`));
-      members.forEach(member => attachments.append(el('p', '', `${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`)));
+      if (assignment) attachments.append(el('p', '', importNoticeCopy.attachedTo(names.get(assignment.bodyguardInstanceId))));
+      members.forEach(member => attachments.append(el('p', '', importNoticeCopy[['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'supportedBy':'ledBy'](names.get(member.leaderInstanceId)))));
       context.append(attachments);
     }
     context.append(renderEffective(instanceId, service.effective(instanceId)), renderRelated(instanceId));
@@ -787,7 +787,7 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
       const selections = sourceSelections(unit, names.get(unit.instanceId));
       if (selections) body.append(selections);
       const assignment = (state.attachments || []).find(record => record.leaderInstanceId === unit.instanceId);
-      if (assignment) body.append(el('p', 'v2-roster-hint', `Attached to ${names.get(assignment.bodyguardInstanceId)}`));
+      if (assignment) body.append(el('p', 'v2-roster-hint', importNoticeCopy.attachedTo(names.get(assignment.bodyguardInstanceId))));
       const members = (state.attachments || []).filter(record => record.bodyguardInstanceId === unit.instanceId);
       const candidates = candidatesByTarget.get(unit.instanceId) || [];
       if (members.length || candidates.length) {
@@ -801,7 +801,7 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
             checkResult(await service.detach(member.leaderInstanceId)); renderRoster(); saveAndReport(importMessages["detached-status"]);
           }, 'detach');
           detach.dataset.leaderInstanceId = member.leaderInstanceId;
-          row.append(el('span', '', `${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`), detach);
+          row.append(el('span', '', importNoticeCopy[['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'supportedBy':'ledBy'](names.get(member.leaderInstanceId))), detach);
           attachments.append(row);
         }
         if (candidates.length) {
