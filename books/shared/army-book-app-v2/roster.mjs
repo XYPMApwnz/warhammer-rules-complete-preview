@@ -600,10 +600,11 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
     }
     return gear;
   }
-  function sourceSelections(unit, displayName, readOnly = false) {
+  function sourceSelections(unit, displayName, readOnly = false, projection = null) {
     if (typeof service.sourceChoices !== 'function') return null;
     const choices = service.sourceChoices(unit.instanceId);
     if (!choices?.length) return null;
+    projection??=service.projection;
     const selectionSection = el('section');
     selectionSection.dataset.rosterSourceChoicesFor = unit.instanceId;
     selectionSection.append(el('h3', '', importMessages["source-selections-heading"]));
@@ -612,10 +613,10 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
       field.dataset.sourceChoiceId = choice.id;
       field.append(reference(choice.id, choice.title));
       if (readOnly) {
-        field.append(el('p', '', importChoiceOptions(choice,{state:service.state,cards:presentationCards,projection:service.projection}).find(option => option.id === choice.value)?.title || importMessages["source-choice-placeholder"]));
+        field.append(el('p', '', importChoiceOptions(choice,{state:service.state,cards:presentationCards,projection}).find(option => option.id === choice.value)?.title || importMessages["source-choice-placeholder"]));
       } else {
         const label = el('label', 'v2-roster-field', choice.title);
-        const options=importChoiceOptions(choice,{state:service.state,cards:presentationCards,projection:service.projection});
+        const options=importChoiceOptions(choice,{state:service.state,cards:presentationCards,projection});
         const select = selectRecords(options, {value: choice.value || '', label: importNoticeCopy.sourceLabel(choice.title,displayName)});
         select.options[0].textContent = importMessages["source-choice-placeholder"];
         select.dataset.sourceChoiceId = choice.id;
@@ -706,6 +707,7 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
     const state = service.state;
     if (!state?.units?.length) return;
     const projection=service.projection;
+    const chapterContexts=new Map((service.chapterContexts||[]).map(context=>[context.instanceId,context]));
     const names = rosterUnitNames(state,named);
     activeEnhancementsByInstance=new Map((projection?.units||state.units).map(unit=>[unit.instanceId,unit.enhancementIds]));
     const summary = el('section', 'v2-card v2-roster-pane');
@@ -782,9 +784,9 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
         (presentationCards.get(unit.canonicalUnitId)?.children||[]).some(id=>presentationCards.get(id)?.title==='Black Rage'))notices.push(['black-rage',importNoticeCopy.blackRage]);
       if(importLimitations.some(row=>row.message.includes('Legacy of the Angel requires BLOOD ANGELS and CHARACTER;'))&&
         state.detachmentIds.some(id=>(presentationCards.get(id)?.children||[]).some(child=>presentationCards.get(child)?.id==='detachment-rule-ba-10c56bef78b24440bb5f'))&&isPhysicalCharacter(unit.instanceId))notices.push(['legacy-of-the-angel',importNoticeCopy.legacy]);
-      if(typeof service.chapterContext==='function'&&service.chapterContext(unit.instanceId)?.armyApplicability?.status==='DA_ARMY_CONTEXT_NOT_PROVEN')notices.push(['chapter',importNoticeCopy.chapter]);
+      if(chapterContexts.get(unit.instanceId)?.armyApplicability?.status==='DA_ARMY_CONTEXT_NOT_PROVEN')notices.push(['chapter',importNoticeCopy.chapter]);
       for(const [kind,message]of notices){const notice=el('p','v2-roster-hint',message);notice.dataset.rosterScopedLimitation=kind;notice.setAttribute('role','note');body.append(notice);}
-      const selections = sourceSelections(unit, names.get(unit.instanceId));
+      const selections = sourceSelections(unit, names.get(unit.instanceId),false,projection);
       if (selections) body.append(selections);
       const assignment = (state.attachments || []).find(record => record.leaderInstanceId === unit.instanceId);
       if (assignment) body.append(el('p', 'v2-roster-hint', importNoticeCopy.attachedTo(names.get(assignment.bodyguardInstanceId))));
