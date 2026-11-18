@@ -415,7 +415,8 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
         const placeholder = el('option', '', importMessages["matching-placeholder"]); placeholder.value = ''; select.append(placeholder);
         candidates.forEach((candidate, index) => {
           const ids = [...(candidate.canonicalProfileIds || []), ...(candidate.canonicalEquipmentIds || [])];
-          const candidateTitle = importLabel(candidate.title || candidate.label || (ids.length ? ids.map(named).join(' + ') : named(candidate.id)));
+          const candidateTitle = importLabel(candidate.title || candidate.label || (ids.length ? ids.map(named).join(' + ') : named(candidate.id)),null);
+          if(!candidateTitle)throw new TypeError('Missing human name for import choice');
           const option = el('option', '', candidateTitle);
           option.value = need.kind === 'SELECTION' ? String(index) : candidate.id;
           select.append(option);
