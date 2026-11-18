@@ -1,0 +1,200 @@
+{
+  "schema": "roster-navigation-browser-recipe/v1",
+  "mode": "measure",
+  "phase": "head",
+  "status": "CAPTURE_COMPLETE_COMPARISON_PENDING",
+  "started": "2026-11-17T21:47:25.041Z",
+  "policy": {
+    "freshContext": true,
+    "serviceWorkers": "block",
+    "widths": [
+      390
+    ],
+    "height": 844,
+    "network": "unthrottled local static HTTP",
+    "cpu": "unthrottled",
+    "repetitions": 3,
+    "order": "base/head; head/base; base/head, sequential",
+    "materialRegression": "headMedian/baseMedian > 1.10, strict; no absolute floor",
+    "parallelHeavyRuns": false,
+    "timing": "Node performance.now immediately before actual UI click through exact rendered destination and two animation frames; import/attachment setup and opening Units menu excluded"
+  },
+  "roots": {
+    "base": "E:\\Warhammer\\worktrees\\rule-popups-v1",
+    "head": "E:\\Warhammer\\worktrees\\roster-navigation-v1"
+  },
+  "fixtureRoot": "E:\\Warhammer\\worktrees\\rule-popups-v1",
+  "helperRoot": "E:\\Warhammer\\worktrees\\rule-popups-v1",
+  "identities": {
+    "base": {
+      "sha": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+      "workingTree": "",
+      "diffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "head": {
+      "sha": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+      "workingTree": "M books/shared/army-book-app-v2/datasheet-v1.mjs\n M books/shared/army-book-app-v2/navigation-v1-controller.mjs\n M books/shared/army-book-app-v2/navigation-v1.css\n M books/shared/army-book-app-v2/navigation-v1.mjs\n M books/shared/army-book-app-v2/personal-datasheet-browser-qa.mjs\n M books/shared/army-book-app-v2/personal.mjs\n M books/shared/army-book-app-v2/roster.mjs\n M books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs\n M books/shared/army-book-app-v2/runtime.mjs\n M tests/browser/cold-offline.mjs\n M tests/browser/pwa-bootstrap-update.mjs\n M tests/browser/pwa-update-flow.mjs\n M tools/pages-runtime-manifest.json\n M tools/qa-queue.mjs\n M v2/admech-fnp-browser-qa.mjs\n M v2/attached-rule-text-browser-qa.mjs\n M v2/card-display-2-browser-qa.mjs\n M v2/card-display-browser-qa.mjs\n M v2/card-gained-rules-browser-qa.mjs\n M v2/card-polish-2-browser-qa.mjs\n M v2/card-recipient-browser-qa.mjs\n M v2/card-texts-browser-qa.mjs\n M v2/cards-cosmetics-browser-qa.mjs\n M v2/charge-effects-browser-qa.mjs\n M v2/detachment-card-text-browser-qa.mjs\n M v2/detachment-recipient-browser-qa.mjs\n M v2/detachment-synthetic-table-browser-qa.mjs\n M v2/dg-am-recipient-enrollment-browser-qa.mjs\n M v2/enhancement-presentation-browser-qa.mjs\n M v2/epic-hero-enhancements-browser-qa.mjs\n M v2/fabius-safe-import-browser-qa.mjs\n M v2/new-recruit-export-browser-qa.mjs\n M v2/new-recruit-model-names-browser-qa.mjs\n M v2/new-recruit-plain-header-browser-qa.mjs\n M v2/reviewed-text-coverage-browser-qa.mjs\n M v2/rule-popups-browser-qa.mjs\n M v2/shell-browser-qa.mjs\n M v2/sweep-polish-browser-qa.mjs\n M v2/tyranids-seven-effects-browser-qa.mjs\n M v2/wardens-source-binding-browser-qa.mjs\n?? books/shared/army-book-app-v2/roster-labels.mjs\n?? books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "diffSha256": "0e6e204712efb73b2fce79ad5379aa2df1576ffa0718fcff57b89711ae2d0915"
+    }
+  },
+  "fixtures": [
+    {
+      "book": "death-guard",
+      "id": "owner-v37.25-derived-attachments",
+      "source": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+      "owner": true,
+      "textSha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "id": "input-0045",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#input-0045",
+      "textSha256": "3759a58ee4445e1f18691c42b8a2b63fd5ed4a4be227e535ced8dee0b74e58cc"
+    },
+    {
+      "book": "chaos-space-marines",
+      "id": "input-0120",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-3"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#input-0120",
+      "textSha256": "7e39904278f521e1ba801f6442561c1d800f21ec056e55a74006fbc3e1233194"
+    },
+    {
+      "book": "emperors-children",
+      "id": "input-0421",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-3"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#input-0421",
+      "textSha256": "3c1366d4e67ad2dcfd086a96c66e96c94f879aad44a13bc51e9db99209aa2f78"
+    },
+    {
+      "book": "space-marines",
+      "id": "additional-0012",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#additional-0012",
+      "textSha256": "1e8dc55830aa21264e5dc569c99c50e6d29f8e3baf3c8f3b5fbda63c1cbe73c6"
+    },
+    {
+      "book": "blood-angels",
+      "id": "additional-0010",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#additional-0010",
+      "textSha256": "bc292c8d4044686804c108b7f6dd4390f89c348f63f486196ad220c286460194"
+    },
+    {
+      "book": "dark-angels",
+      "id": "additional-0011",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#additional-0011",
+      "textSha256": "ef7fb4d8dbbbae2d2a940b67aefdc9816cc18bf0bf934bbcdcababff332e4f96"
+    },
+    {
+      "book": "tau-empire",
+      "id": "csm-tau-gaps-v1:tau:18",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/csm-tau-recipient-gaps-v1-browser.json#csm-tau-gaps-v1:tau:18",
+      "textSha256": "b1e2b8927fcfd8fb25fca87ce92d9e3dff4c039bec3ff488476b6b8a3996c83b"
+    },
+    {
+      "book": "tyranids",
+      "id": "unit-no-scope:vicious-insight",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/unit-recipient-scope-browser.json#unit-no-scope:vicious-insight",
+      "textSha256": "2b2a9d106dcf7fd80624611b214b7cafa12eb00a18f768d2c43a4920fbc84e89"
+    }
+  ],
+  "rows": [
+    {
+      "book": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "version": "head",
+      "width": 390,
+      "repeat": 1,
+      "instanceId": "parsed-unit-8",
+      "guideMs": 48.26749999999993,
+      "cardMs": 304.0236
+    },
+    {
+      "book": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "version": "head",
+      "width": 390,
+      "repeat": 2,
+      "instanceId": "parsed-unit-8",
+      "guideMs": 58.89850000000024,
+      "cardMs": 263.4486999999999
+    },
+    {
+      "book": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "version": "head",
+      "width": 390,
+      "repeat": 3,
+      "instanceId": "parsed-unit-8",
+      "guideMs": 64.40790000000015,
+      "cardMs": 296.39519999999993
+    },
+    {
+      "book": "space-marines",
+      "fixture": "additional-0012",
+      "version": "head",
+      "width": 390,
+      "repeat": 1,
+      "instanceId": "parsed-unit-2",
+      "guideMs": 85.01310000000012,
+      "cardMs": 272.5671000000002
+    },
+    {
+      "book": "space-marines",
+      "fixture": "additional-0012",
+      "version": "head",
+      "width": 390,
+      "repeat": 2,
+      "instanceId": "parsed-unit-2",
+      "guideMs": 57.03399999999965,
+      "cardMs": 239.19780000000173
+    },
+    {
+      "book": "space-marines",
+      "fixture": "additional-0012",
+      "version": "head",
+      "width": 390,
+      "repeat": 3,
+      "instanceId": "parsed-unit-2",
+      "guideMs": 69.7628999999979,
+      "cardMs": 282.95080000000235
+    }
+  ],
+  "screenshots": [],
+  "observations": [],
+  "errors": [],
+  "missing": [],
+  "urls": {
+    "base": "http://127.0.0.1:51872/base/v2/app.html",
+    "head": "http://127.0.0.1:51872/head/v2/app.html"
+  },
+  "finished": "2026-11-17T21:47:48.896Z"
+}

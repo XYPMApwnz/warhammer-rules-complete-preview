@@ -1,0 +1,26 @@
+{
+  "schema": "roster-navigation-final-acceptance/v1",
+  "status": "PASS",
+  "mode": "owner-authorized single-test-file completion; not a second full pre-FF",
+  "preffSha": "880a98dbb9dd743f548fc1ed750093912628b570",
+  "finalSha": "5bc1b038437fcac86966f87371760da94d7e9b38",
+  "rawPreffStatus": "FAIL",
+  "rawPreffPassed": 178,
+  "rawPreffFailed": 1,
+  "rawPreffElapsedMs": 8190988,
+  "correctedTest": "v2/card-gained-rules-browser-qa.mjs",
+  "targetedStatus": "PASS",
+  "targetedChecks": 446,
+  "targetedElapsedMs": 124791,
+  "completedJobCoverage": 179,
+  "changedAfterPreff": [
+    "v2/card-gained-rules-browser-qa.mjs"
+  ],
+  "runtimeAndGameplayBytesUnchanged": true,
+  "newNavigationChecks": 224,
+  "sourceTreeClean": true,
+  "authorization": "Original task: after a test-only change, show the one-file run-to-final diff stat and rerun that test separately.",
+  "rawRun": "FINAL_PREFLIGHT_RUN.json",
+  "targetedRun": "POST_PREFLIGHT_TEST_RUN.json",
+  "testOnlyBoundary": "FINAL_TEST_ONLY_DIFF.json"
+}

@@ -1,0 +1,21 @@
+RUN gained rules death-guard
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Preserve the existing hidden desktop local-navigation policy
+
+'flex' !== 'none'
+
+    at file:///E:/Warhammer/worktrees/roster-navigation-v1/v2/card-gained-rules-browser-qa.mjs:243:16
+    at async check (file:///E:/Warhammer/worktrees/roster-navigation-v1/v2/card-gained-rules-browser-qa.mjs:96:60)
+    at async file:///E:/Warhammer/worktrees/roster-navigation-v1/v2/card-gained-rules-browser-qa.mjs:227:6 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'flex',
+  expected: 'none',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

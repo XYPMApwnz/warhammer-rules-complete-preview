@@ -1,0 +1,17 @@
+[book:update] death-guard
+[book:update] BUILD books/death-guard/v2/build.mjs
+[book:update] BUILD books/death-guard/v2/rule-contract-build.mjs
+[book:update] BUILD books/death-guard/v2/roster-contract-build.mjs
+[book:update] BUILD books/death-guard/v2/related-rules-build.mjs
+[book:update] BUILD books/death-guard/v2/glossary-build.mjs
+[book:update] BUILD books/death-guard/v2/app-build.mjs
+[book:update] PASS 24826ms; 0 generated files changed; 0 reviewed metadata pins; 0 gameplay changes; 101 accepted official update entries applied or checked. Report: E:\Warhammer\qa-evidence\roster-navigation-v1-2026-11-17\pre-ff-final-880a98db\125-book-update-command-qa.mjs-evidence\book-update-command-qa-a0hja4\fresh\REPORT.md
+[book:update] death-guard
+[book:update] BUILD books/death-guard/v2/build.mjs
+[book:update] FAIL death-guard: BUILD books/death-guard/v2/build.mjs failed (exit 1): SyntaxError: Expected property name or '}' in JSON at position 2 (line 1 column 3); log: E:\Warhammer\qa-evidence\roster-navigation-v1-2026-11-17\pre-ff-final-880a98db\125-book-update-command-qa.mjs-evidence\book-update-command-qa-a0hja4\invalid\01-death-guard-build.mjs.log
+[book:update] Inputs: books/death-guard/v2/official-updates.json
+[book:update] death-guard
+[book:update] BUILD books/death-guard/v2/build.mjs
+[book:update] FAIL death-guard: BUILD books/death-guard/v2/build.mjs failed (exit 1):   code: 'ENOENT',; log: E:\Warhammer\qa-evidence\roster-navigation-v1-2026-11-17\pre-ff-final-880a98db\125-book-update-command-qa.mjs-evidence\book-update-command-qa-a0hja4\renamed\01-death-guard-build.mjs.log
+[book:update] Inputs: books/death-guard/v2/sources/source-enrollment.json, books/death-guard/v2/sources/source-enrollment.json.renamed.json
+{"status":"PASS","freshness":"read-only","invalidInput":"books/death-guard/v2/official-updates.json","stagedRename":"missing old source rejected","crossDevicePublication":"PASS","interruptedPublicationRollback":"PASS","partialWrites":0,"evidence":"E:\\Warhammer\\qa-evidence\\roster-navigation-v1-2026-11-17\\pre-ff-final-880a98db\\125-book-update-command-qa.mjs-evidence\\book-update-command-qa-a0hja4"}

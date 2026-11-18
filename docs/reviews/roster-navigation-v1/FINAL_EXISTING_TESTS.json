@@ -1,0 +1,826 @@
+{
+  "schema": "roster-navigation-existing-test-audit/v1",
+  "baseline": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+  "finalCommit": "5bc1b038437fcac86966f87371760da94d7e9b38",
+  "files": 31,
+  "review": "NO_OUT_OF_SCOPE_EXPECTATION_CHANGE_FOUND",
+  "testsRunByThisAudit": false,
+  "buildsRunByThisAudit": false,
+  "sourceTreeClean": true,
+  "scope": "31 pre-existing browser tests only; new tests and production files excluded from this patch",
+  "preserved": [
+    "canonical and physical IDs",
+    "sourceInstanceId",
+    "recipients",
+    "scope IDs",
+    "factual rule text",
+    "numeric values",
+    "source hashes",
+    "negative and mutation controls",
+    "exact DG nine-element Warlord Yes/No array and Not set expectations",
+    "shell exact instance and effective-reference checks"
+  ],
+  "knownFailure": {
+    "test": "books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs",
+    "status": "KNOWN_BASELINE_FAILURE_NOT_FIXED",
+    "message": "Error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "baselineCommit": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+    "baselineLog": "base-synthetic-diagnostic.log",
+    "featureLog": "targeted-3-route-context-synthetic-browser-qa.mjs.log",
+    "guardsPreserved": true,
+    "note": "Existing evidence reproduced the same HTTP 404 at the unchanged console-error guard on baseline c477 and feature. This audit did not rerun it or claim PASS."
+  },
+  "patch": "FINAL_EXISTING_TESTS.patch",
+  "patchSha256": "c6391eba04a477b9bb255e5a924ab21ac27a7bedc25245ba2409fb7ceb706960",
+  "rows": [
+    {
+      "file": "v2/admech-fnp-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 77,
+          "afterLine": 77
+        },
+        {
+          "beforeLine": 80,
+          "afterLine": 80
+        },
+        {
+          "beforeLine": 223,
+          "afterLine": 224
+        }
+      ],
+      "before": "Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "8657fb49975132a5cf0f4dbbd1d416446738271c85e4a75e1d3039b412225884",
+      "finalFileSha256": "3cc1021c10c1f83ead68cdd29d163c2888fd043f36d376219d571e425888cf99"
+    },
+    {
+      "file": "v2/attached-rule-text-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 125,
+          "afterLine": 125
+        },
+        {
+          "beforeLine": 128,
+          "afterLine": 128
+        },
+        {
+          "beforeLine": 147,
+          "afterLine": 147
+        },
+        {
+          "beforeLine": 240,
+          "afterLine": 241
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "f3f567a0c1088760e408cd07027f253ca89ba6e55a47d535ea0704722c759811",
+      "finalFileSha256": "4fc82e46fcdfa7d62c530d2ed2ae5cc76f297a3cef41ec23fc11322a9110443f"
+    },
+    {
+      "file": "v2/card-display-2-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 57,
+          "afterLine": 57
+        },
+        {
+          "beforeLine": 60,
+          "afterLine": 60
+        },
+        {
+          "beforeLine": 277,
+          "afterLine": 277
+        },
+        {
+          "beforeLine": 310,
+          "afterLine": 311
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "5d8790c54f96001e6ec36dccadb4d6002dbbf5fc27356687d3e0ad865b4ada5f",
+      "finalFileSha256": "b878f10df044093b77e7ac3a2bb1ef94ce18d3f529a4daf68251d9bf0dff0907"
+    },
+    {
+      "file": "v2/card-display-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 82,
+          "afterLine": 82
+        },
+        {
+          "beforeLine": 85,
+          "afterLine": 85
+        },
+        {
+          "beforeLine": 175,
+          "afterLine": 175
+        },
+        {
+          "beforeLine": 200,
+          "afterLine": 201
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "96be00eccde397ec9c2e5605ea18b5320b42952f4aa4d6c46ab9428d9aa4195c",
+      "finalFileSha256": "5b42b665e6d64707dc18a6c5411ab09d00886ed847dc16482bdbd92f52cd3fe6"
+    },
+    {
+      "file": "v2/card-gained-rules-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 140,
+          "afterLine": 140
+        },
+        {
+          "beforeLine": 160,
+          "afterLine": 160
+        },
+        {
+          "beforeLine": 195,
+          "afterLine": 195
+        },
+        {
+          "beforeLine": 243,
+          "afterLine": 243
+        },
+        {
+          "beforeLine": 344,
+          "afterLine": 347
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input. Require desktop local navigation display:none; mobile already clicks the exact Gained rules tab and validates its physical section.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden. Require desktop display:flex and the exact Gained rules tab visible; click it and use the unchanged mobile physical-target/heading visibility check. Mobile and every factual/value/scope check remain unchanged.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario. The accepted immediate roster-card section menu includes desktop. Sole test-only correction after the full pre-FF; no runtime or generated byte changed.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "ca99211061d68260323d9f1b862b083319ce7fd760acd242740291e18cc63cf2",
+      "finalFileSha256": "100ce83d8ebf5148f07f85f9af2f9f88089e4011bb85bb88b69ab9af8f134a4b"
+    },
+    {
+      "file": "v2/card-polish-2-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 45,
+          "afterLine": 45
+        },
+        {
+          "beforeLine": 52,
+          "afterLine": 52
+        },
+        {
+          "beforeLine": 238,
+          "afterLine": 239
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "c27910f54a509062b64cef463cbbf39a7ad567a43cc358372f10769b87102c32",
+      "finalFileSha256": "5c9030f38139dc00456705d04d1edc5b9927a0f7ef15f31555d183a586f0fa31"
+    },
+    {
+      "file": "v2/card-recipient-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 92,
+          "afterLine": 92
+        },
+        {
+          "beforeLine": 95,
+          "afterLine": 95
+        },
+        {
+          "beforeLine": 469,
+          "afterLine": 470
+        }
+      ],
+      "before": "Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "b1ed4382e7c7d4f0fd01d07144b735fd984e2e047908f7863e62f66bdc8791bf",
+      "finalFileSha256": "a18d71c1942491c4a329e5d49f5ec1722f74e078281e6cc2e542be5f7e3faca5"
+    },
+    {
+      "file": "v2/card-texts-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 39,
+          "afterLine": 39
+        },
+        {
+          "beforeLine": 46,
+          "afterLine": 46
+        },
+        {
+          "beforeLine": 63,
+          "afterLine": 63
+        },
+        {
+          "beforeLine": 183,
+          "afterLine": 184
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "b2174f41b919b65e3f1ca827f6dbde01d05fbac65aacf1eb6e1345430e4a5d13",
+      "finalFileSha256": "03bcb106636ffb4dbd20e339258dd7d6f8b06a6b647e98dea769500b956c69bb"
+    },
+    {
+      "file": "v2/cards-cosmetics-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 27,
+          "afterLine": 27
+        },
+        {
+          "beforeLine": 33,
+          "afterLine": 33
+        },
+        {
+          "beforeLine": 37,
+          "afterLine": 37
+        },
+        {
+          "beforeLine": 69,
+          "afterLine": 69
+        },
+        {
+          "beforeLine": 74,
+          "afterLine": 74
+        },
+        {
+          "beforeLine": 133,
+          "afterLine": 136
+        },
+        {
+          "beforeLine": 153,
+          "afterLine": 157
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input. Import-pane screenshot scrolls to h2; warnings read from open pane; Warlord labels read from each unit dt; drawer found by old name.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden. Screenshot scrolls to actual summary/h2 and disclosure is opened before identical warning checks. Warlord labels derive from the actual selected instance and original rendered unit order; exact nine Yes/No DG array and all Not set expectations remain. Assert exactly one Warlord control and zero removed per-unit captions. Use #navMenu.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario. Authorized heading/form and single roster-wide Warlord-control relocation; no changed owner, ordinal, or expected label values.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "721a88e99c3e42f533a69773b831401b9a7b84205780924568345d41b7260250",
+      "finalFileSha256": "b4f2a013db43e904e413a0f0c4c6e49acb695eef695d64cf57069d055da248a6"
+    },
+    {
+      "file": "v2/charge-effects-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 84,
+          "afterLine": 84
+        },
+        {
+          "beforeLine": 87,
+          "afterLine": 87
+        },
+        {
+          "beforeLine": 227,
+          "afterLine": 228
+        }
+      ],
+      "before": "Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "0125a8a85087b64a94bc48aec5c21beda16b84cb7206ea8f77899977bd6a56e4",
+      "finalFileSha256": "238e94657c5a5df327879334fdfda93f94c9847abfed49982537faee01c0bfb1"
+    },
+    {
+      "file": "v2/detachment-card-text-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 30,
+          "afterLine": 30
+        },
+        {
+          "beforeLine": 34,
+          "afterLine": 34
+        },
+        {
+          "beforeLine": 112,
+          "afterLine": 113
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Wait for the visible import textbox as Setup readiness.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Wait for the unique [data-roster-view] owner, allowing the form to remain folded.",
+      "why": "Authorized action-label change. Authorized layout/readiness relocation.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "70f446cdcea2a68d2bb097ec1e67a539724f7391072bd61136d04657e23868e5",
+      "finalFileSha256": "1d34e0fd35c95d1fcccd2a2eb34fa613f8c6a129333d19c5a284d804acaf24b5"
+    },
+    {
+      "file": "v2/detachment-recipient-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 67,
+          "afterLine": 67
+        },
+        {
+          "beforeLine": 70,
+          "afterLine": 70
+        },
+        {
+          "beforeLine": 378,
+          "afterLine": 379
+        }
+      ],
+      "before": "Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "0e17b74fb6109e37db063ce67ef8154db881c92f96a535bbf29edf56a02dbbba",
+      "finalFileSha256": "8a83a22a5106e9f8e63259fff2eef556aab48ed6f56628f053e6241596eec989"
+    },
+    {
+      "file": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 162,
+          "afterLine": 162
+        },
+        {
+          "beforeLine": 188,
+          "afterLine": 188
+        },
+        {
+          "beforeLine": 242,
+          "afterLine": 243
+        }
+      ],
+      "before": "Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "565925ee73935a7ef319ce8eee127c1ffe8dc45bafadb16308aad596c4eaea7d",
+      "finalFileSha256": "90ab3931e6c2203781430b2e28d5920f4b14faaa925fbdff3165cfb1b7851d7a"
+    },
+    {
+      "file": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 66,
+          "afterLine": 66
+        },
+        {
+          "beforeLine": 70,
+          "afterLine": 70
+        },
+        {
+          "beforeLine": 93,
+          "afterLine": 93
+        },
+        {
+          "beforeLine": 279,
+          "afterLine": 280
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "5498d0f33c551c14c53b711556084a44a50a6f944898eb523df35093717cf521",
+      "finalFileSha256": "5093db3da7cbb40f85e8c7d2a01e46de926667f2267d0b9d8bd1a3b30dfcf988"
+    },
+    {
+      "file": "v2/enhancement-presentation-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 50,
+          "afterLine": 50
+        },
+        {
+          "beforeLine": 53,
+          "afterLine": 53
+        },
+        {
+          "beforeLine": 69,
+          "afterLine": 69
+        },
+        {
+          "beforeLine": 147,
+          "afterLine": 148
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "28175a890198a8cc43ba60fe62548e93b164e05dd7dd123a3e17b252b68deb32",
+      "finalFileSha256": "f346eae09284dd54a80424956c60ddedabed3b11ae3f361c66d7681d8372ce45"
+    },
+    {
+      "file": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 31,
+          "afterLine": 31
+        },
+        {
+          "beforeLine": 78,
+          "afterLine": 78
+        },
+        {
+          "beforeLine": 115,
+          "afterLine": 116
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "7975ad958ef7f908fdf30b2811d0b6c15ccc3b88ba808ec3caeca316fe476c96",
+      "finalFileSha256": "3cb66c3f0b9c6fd7b2849abb6035a5e412c56ace7433be249a836a41802bd2bc"
+    },
+    {
+      "file": "v2/fabius-safe-import-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 42,
+          "afterLine": 42
+        },
+        {
+          "beforeLine": 49,
+          "afterLine": 49
+        },
+        {
+          "beforeLine": 66,
+          "afterLine": 66
+        },
+        {
+          "beforeLine": 145,
+          "afterLine": 146
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "47ce2585d3fe2e0261cabab7629f9e5ab8a1529c3fc0f26ab5ac9b0c81174a17",
+      "finalFileSha256": "91ca16c74fb838ffd79a3aa36f4a0a9260d05dd85dcb5a2783536e46ecd13f9a"
+    },
+    {
+      "file": "v2/new-recruit-export-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 42,
+          "afterLine": 42
+        },
+        {
+          "beforeLine": 53,
+          "afterLine": 53
+        },
+        {
+          "beforeLine": 71,
+          "afterLine": 72
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "0374526f0e31c43bdc1c1121936fc4714a18af98a6be58f6157c16219b6a0c66",
+      "finalFileSha256": "53364e10c9cfea42d1775513a4cc1d1c5d785372113297e3c14466d0daf25291"
+    },
+    {
+      "file": "v2/new-recruit-model-names-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 31,
+          "afterLine": 31
+        },
+        {
+          "beforeLine": 40,
+          "afterLine": 40
+        },
+        {
+          "beforeLine": 59,
+          "afterLine": 60
+        }
+      ],
+      "before": "Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "010d62b78905686baa00034ee910e86aa927fd139ea4aa09112c13dcceb5d36e",
+      "finalFileSha256": "8ffbfdb5b6e85bb80c7d96e170252bac19d2bbc2c428471d88a3288b5c15673b"
+    },
+    {
+      "file": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 34,
+          "afterLine": 34
+        },
+        {
+          "beforeLine": 37,
+          "afterLine": 37
+        },
+        {
+          "beforeLine": 73,
+          "afterLine": 73
+        },
+        {
+          "beforeLine": 93,
+          "afterLine": 93
+        },
+        {
+          "beforeLine": 131,
+          "afterLine": 132
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "59cc81954ffe11e75ffd85efebdefc828bd06f20bcaa616694642d8092bbc7f2",
+      "finalFileSha256": "b3d583fee38aff1443efb3260e8ceacfbd9e34d25f6786789d202cda8318e39d"
+    },
+    {
+      "file": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 32,
+          "afterLine": 32
+        },
+        {
+          "beforeLine": 34,
+          "afterLine": 34
+        },
+        {
+          "beforeLine": 42,
+          "afterLine": 42
+        },
+        {
+          "beforeLine": 84,
+          "afterLine": 85
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "959fd2753734e204d84816a99a981b5b0ed031e193413375f132b729aad320ba",
+      "finalFileSha256": "efc3853cc12dc88c2e0637b2873c1ccbe8fac2689e176bf9a5d2c2ca5d28bc4f"
+    },
+    {
+      "file": "v2/rule-popups-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 35,
+          "afterLine": 35
+        },
+        {
+          "beforeLine": 205,
+          "afterLine": 206
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "7668e8435f3a5ea325c7e8e7ef159ed580ab49ea6e01921af13d635da6cfe9c7",
+      "finalFileSha256": "a5a936c310c873a9747d1bc86869586858cdbd590cb80132b11ea37a488c0a09"
+    },
+    {
+      "file": "v2/sweep-polish-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 85,
+          "afterLine": 85
+        },
+        {
+          "beforeLine": 141,
+          "afterLine": 141
+        },
+        {
+          "beforeLine": 160,
+          "afterLine": 160
+        },
+        {
+          "beforeLine": 219,
+          "afterLine": 220
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "ad89130b9488fffcb9c4374225b4161dde1fac37667f9a4ce87b382a2b540601",
+      "finalFileSha256": "4aed89356bc4f69b1454d8a6036eb9f4e015a16a1d88d7b03f5936881dc8a7d4"
+    },
+    {
+      "file": "v2/tyranids-seven-effects-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 67,
+          "afterLine": 67
+        },
+        {
+          "beforeLine": 70,
+          "afterLine": 70
+        },
+        {
+          "beforeLine": 334,
+          "afterLine": 335
+        }
+      ],
+      "before": "Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "2f4c29e8147316be307721c4ba8241f8e2ddfc26c5cbf578e3111d56a1ad2aff",
+      "finalFileSha256": "6d36032763fc199f703607568e80e8d3b2d2cf99ec22ba1dac2ccf129fbae0a2"
+    },
+    {
+      "file": "v2/wardens-source-binding-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 25,
+          "afterLine": 25
+        },
+        {
+          "beforeLine": 28,
+          "afterLine": 28
+        },
+        {
+          "beforeLine": 51,
+          "afterLine": 51
+        },
+        {
+          "beforeLine": 76,
+          "afterLine": 77
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "e964a91c2ca1556bc9b4f37bfa537683a0ac9f0115d95d1c016502a6a363e7e2",
+      "finalFileSha256": "5fa97ea875b88036125bc81aa728c9488b57b264750e8cca262b7b06a5e8ebd5"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal-datasheet-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 199,
+          "afterLine": 199
+        },
+        {
+          "beforeLine": 366,
+          "afterLine": 366
+        },
+        {
+          "beforeLine": 373,
+          "afterLine": 373
+        },
+        {
+          "beforeLine": 505,
+          "afterLine": 506
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "1fdd99cec1c11c0bbe5888e58e6927b3425f3e9c15361cc85fef5b044c1d5335",
+      "finalFileSha256": "86ed375d3808d55ab9b080439dbd532b2bf028cff93dd7925432daf8772a6e6e"
+    },
+    {
+      "file": "tests/browser/cold-offline.mjs",
+      "changes": [
+        {
+          "beforeLine": 30,
+          "afterLine": 30
+        },
+        {
+          "beforeLine": 34,
+          "afterLine": 34
+        },
+        {
+          "beforeLine": 38,
+          "afterLine": 39
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "ab0eace858a6afd0247fbbe3ba2fb0ad03478c46645141a1b9467fa0311983ca",
+      "finalFileSha256": "d0663c9a5558b6ca117b24863ca900b708a3e2915653876da333a5837db09dfa"
+    },
+    {
+      "file": "tests/browser/pwa-update-flow.mjs",
+      "changes": [
+        {
+          "beforeLine": 35,
+          "afterLine": 35
+        },
+        {
+          "beforeLine": 39,
+          "afterLine": 39
+        },
+        {
+          "beforeLine": 44,
+          "afterLine": 44
+        },
+        {
+          "beforeLine": 51,
+          "afterLine": 52
+        }
+      ],
+      "before": "Open the exact physical owner using Effective datasheet. Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Open the same owner using Open card; assert the old label is absent including hidden controls. Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Authorized action-label change. Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "5c11784c91ec552c52bd31a4751dcdeebc713d40f8a1b50544fcabb88fe983db",
+      "finalFileSha256": "e00e8b956ffbaaf06d7f5bde6d12cc2d01461a4a56cdd036dc9d8c29716eed06"
+    },
+    {
+      "file": "tests/browser/pwa-bootstrap-update.mjs",
+      "changes": [
+        {
+          "beforeLine": 223,
+          "afterLine": 223
+        },
+        {
+          "beforeLine": 226,
+          "afterLine": 226
+        },
+        {
+          "beforeLine": 413,
+          "afterLine": 413
+        },
+        {
+          "beforeLine": 416,
+          "afterLine": 416
+        },
+        {
+          "beforeLine": 420,
+          "afterLine": 420
+        },
+        {
+          "beforeLine": 483,
+          "afterLine": 484
+        }
+      ],
+      "before": "Fill the existing raw-text input directly; some Setup helpers await that input.",
+      "after": "Before the same fills, wait for unique [data-roster-view] and open actual details[data-roster-import] through Import another roster only when raw input is hidden.",
+      "why": "Successful imports now fold the form; no new fixture or import scenario.",
+      "audit": "Original source recovered exactly after reversing enumerated UI migrations (newline-normalized); no numeric/source/identity/factual expectation change.",
+      "baselineFileSha256": "5cf78b0ddc79f02673a420164a8d3e6e19e12e4b44963ad8bd7f61ed123e3da9",
+      "finalFileSha256": "ad1273771946109f98cee54e47ddfc69767ab8d97dab4de28e4426e1ff222e30"
+    },
+    {
+      "file": "v2/shell-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 193,
+          "afterLine": 193
+        },
+        {
+          "beforeLine": 198,
+          "afterLine": 208
+        }
+      ],
+      "before": "Compatible Stratagems & Enhancements dialog opened on parsed-unit-1 roster card.",
+      "after": "Assert removed roster button/label absent, open the actual Full Army Book button and same canonical datasheet, retain dialog geometry/tab/close checks, return via Roster/Open card, and assert the complete original physical URL plus existing instance/effective-reference checks.",
+      "why": "The user removed this panel only from roster cards; its Full Army Book consumer remains supported.",
+      "audit": "Original assertion lines unchanged; only the reviewed panel interaction moved.",
+      "baselineFileSha256": "2ff91d293acb8806be0c55b798db360946b9c2fd6c278853c77172b297d68f6c",
+      "finalFileSha256": "b2bff55291b47b4f19d89f8d8e43bdce5825948f0e90dd2b6f1d0ae80a98a8dd"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs",
+      "changes": [
+        {
+          "beforeLine": 129,
+          "afterLine": 129
+        }
+      ],
+      "before": "Attachment Setup/Roster searched only in .toc-shortcuts; mobile drawer selected by Open navigation name.",
+      "after": "Search bottom shortcuts and the retained full-book shortcuts; open the same #navMenu control across Units/Open navigation labels.",
+      "why": "Attachment Setup moved to the bottom, and the roster drawer has a new accessible label.",
+      "audit": "All remaining source and every original guard/assertion are byte-equivalent after newline normalization.",
+      "baselineFileSha256": "098bab29005279923df6ee1c63e4becbe109ccd269c004b51d74d9020b93828e",
+      "finalFileSha256": "965155b579f9faab144baeeea01e442650a363301d37ea93b3531133c56c0f76"
+    }
+  ]
+}

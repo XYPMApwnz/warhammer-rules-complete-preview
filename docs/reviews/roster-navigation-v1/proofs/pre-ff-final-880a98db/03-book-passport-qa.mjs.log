@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "books": [
+    {
+      "book": "space-marines",
+      "status": "PASS",
+      "producers": 8,
+      "legacyFields": 29
+    },
+    {
+      "book": "blood-angels",
+      "status": "PASS",
+      "producers": 7,
+      "legacyFields": 36
+    },
+    {
+      "book": "dark-angels",
+      "status": "PASS",
+      "producers": 7,
+      "legacyFields": 28
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "status": "PASS",
+      "producers": 4,
+      "legacyFields": 18
+    },
+    {
+      "book": "chaos-space-marines",
+      "status": "PASS",
+      "producers": 5,
+      "legacyFields": 30
+    },
+    {
+      "book": "death-guard",
+      "status": "PASS",
+      "producers": 6,
+      "legacyFields": 11
+    },
+    {
+      "book": "tau-empire",
+      "status": "PASS",
+      "producers": 4,
+      "legacyFields": 26
+    },
+    {
+      "book": "tyranids",
+      "status": "PASS",
+      "producers": 4,
+      "legacyFields": 23
+    },
+    {
+      "book": "emperors-children",
+      "status": "PASS",
+      "producers": 5,
+      "legacyFields": 26
+    }
+  ],
+  "controls": {
+    "unknown-passport-field": 347,
+    "missing-passport-field": 1069,
+    "missing-passport": 9,
+    "unknown-config-field": 9,
+    "unknown-build-path": 9,
+    "unsafe-path": 54,
+    "duplicate-output": 9,
+    "foreign-step-owner": 9,
+    "foreign-output-owner": 9,
+    "foreign-config-owner": 9,
+    "wrong-producer-runtime": 9
+  },
+  "negativeControls": 1542,
+  "baseline": "913cfef538bc96b7f2d9b55e21995c631cabffeb",
+  "unchangedPlan": {
+    "steps": 67,
+    "files": 147,
+    "sha256": "19db00e4817d116a3fc9307f68df4b11b164e1c147153642563baebaabd75880"
+  }
+}

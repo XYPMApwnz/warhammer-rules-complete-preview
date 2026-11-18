@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "scope": "Version-guard presenter behavior; ESM evaluation race remains a separate test",
+  "results": [
+    {
+      "name": "pre-check refuses without loading",
+      "status": "PASS",
+      "calls": 1
+    },
+    {
+      "name": "failed version check preserves current state",
+      "status": "PASS",
+      "calls": 1
+    },
+    {
+      "name": "death-guard real post-check refuses before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "adeptus-mechanicus real post-check refuses before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "chaos-space-marines real post-check refuses before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "emperors-children real post-check refuses before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "tyranids real post-check refuses before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "tau-empire real post-check refuses before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "dark-angels real post-check refuses before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "blood-angels real post-check refuses before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "Glossary JSON rejected before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "Core imported module rejected before iframe creation",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "space-marines real post-check refuses before mount",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "all nine actual roster factories covered",
+      "status": "PASS"
+    },
+    {
+      "name": "returning to current book cancels an outstanding foreign load",
+      "status": "PASS"
+    },
+    {
+      "name": "loader failure preserves current state even while version oracle allows it",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "name": "Core late HTML version flip destroys only the hidden candidate",
+      "status": "PASS"
+    },
+    {
+      "name": "Committed Core remains visible through stable routes and Back/Forward",
+      "status": "PASS"
+    }
+  ]
+}

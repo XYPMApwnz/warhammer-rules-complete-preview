@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "standard-nine-book-registration-and-existing-assets",
+      "status": "PASS"
+    },
+    {
+      "id": "exact-source-owned-corpus-and-inherited-identities",
+      "status": "PASS"
+    },
+    {
+      "id": "all-reference-and-related-rule-targets-resolve",
+      "status": "PASS"
+    },
+    {
+      "id": "limitations-and-source-review-stay-honest",
+      "status": "PASS"
+    }
+  ],
+  "coverage": {
+    "datasheets": 81,
+    "owned": 14,
+    "inherited": 67,
+    "armyRules": 3,
+    "detachments": 18,
+    "enhancements": 32,
+    "upgrades": 8,
+    "stratagems": 60
+  },
+  "sourceCompleteness": "PARTIAL",
+  "semanticCompleteness": "NOT_PROVEN",
+  "realNewRecruitExportTested": false,
+  "browserVerified": false
+}

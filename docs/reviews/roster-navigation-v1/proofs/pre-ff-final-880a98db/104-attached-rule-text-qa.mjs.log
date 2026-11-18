@@ -1,0 +1,322 @@
+{
+  "status": "PASS",
+  "checks": [
+    "death-guard/Foul Infusion: named text, original source, isolation and transitions",
+    "death-guard/Unclean Icon: named text, original source, isolation and transitions",
+    "death-guard/Vector of Disease: named text, original source, isolation and transitions",
+    "death-guard/Sickening Vitality: named text, original source, isolation and transitions",
+    "death-guard/Silent Bodyguard: named text, original source, isolation and transitions",
+    "death-guard/Witherbone Pipes: named text, original source, isolation and transitions",
+    "death-guard/Talisman of Burgeoning: named text, original source, isolation and transitions",
+    "death-guard/Vile Vigour: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Robotic Bodyguard: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Lord of the Machine Cult: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Galvanic Field: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Seekers of Divine Arcana: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Transoracular Dyad Wafers: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Martial Signatum Amplificator: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Temporcopia: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Genetor: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Artisan: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Clandestine Infiltrator: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Malphonic Susurrus: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Peerless Eradicator: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Electromiasmic Brazier: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Vingh’s Wafers of Dynamism: named text, original source, isolation and transitions",
+    "adeptus-mechanicus/Explorator Dispensation: named text, original source, isolation and transitions",
+    "AM newly recorded unit rules transfer while CP-only text remains hidden",
+    "DG recorded group rule transfers while personal and unrecorded siblings do not",
+    "AM declared CHARACTER leading fact exposes Electro-infusion text only while attached",
+    "The seven unproved range-origin links remain hidden on other components",
+    "death-guard: derived links have backing consumers; F1 subset and orphan validation preserved",
+    "adeptus-mechanicus: derived links have backing consumers; F1 subset and orphan validation preserved",
+    "chaos-space-marines: derived links have backing consumers; F1 subset and orphan validation preserved",
+    "emperors-children: derived links have backing consumers; F1 subset and orphan validation preserved",
+    "blood-angels: derived links have backing consumers; F1 subset and orphan validation preserved",
+    "dark-angels: derived links have backing consumers; F1 subset and orphan validation preserved",
+    "space-marines: derived links have backing consumers; F1 subset and orphan validation preserved",
+    "tau-empire: derived links have backing consumers; F1 subset and orphan validation preserved",
+    "tyranids: derived links have backing consumers; F1 subset and orphan validation preserved",
+    "chaos-space-marines: actual attached named text and duplicate isolation",
+    "emperors-children: actual attached named text and duplicate isolation",
+    "tau-empire: actual attached named text and duplicate isolation",
+    "tyranids: actual attached named text and duplicate isolation",
+    "space-marines: native bound runtime attached text",
+    "blood-angels: native bound runtime attached text",
+    "dark-angels: native bound runtime attached text",
+    "space-marines: Grav-chutes requires recorded physical equipment, in the reverse direction",
+    "blood-angels: Grav-chutes requires recorded physical equipment, in the reverse direction",
+    "dark-angels: Grav-chutes requires recorded physical equipment, in the reverse direction",
+    "CSM proven range-origin keeps Tempting Addendum on the source group only",
+    "A sourceFields mutation cannot copy a neighboring ability",
+    "Presentation rejects foreign components, text, source paths and card ownership",
+    "Fabius: roster formation is the default and explicit initial history wins",
+    "Derived recipient link mutations cannot substitute foreign rule/clause/path/proof",
+    "Mixed Boolean roster/BATTLE conditions retain FALSE and UNKNOWN roster gates",
+    "One selected source predicate covers occurrences and declared standalone equipment owners",
+    "Optional ROLE text uses the source UNIT, MODEL row or loadout; never an independent duplicate",
+    "Optional ROSTER_EFFECT source text shares the selection gate without changing execution",
+    "Optional POLICY text is gated before either policy or attached text is displayed"
+  ],
+  "failures": [],
+  "observations": [
+    {
+      "book": "death-guard",
+      "rule": "Foul Infusion",
+      "source": "Biologus Putrifier",
+      "recipient": "Plague Marines",
+      "status": "PASS"
+    },
+    {
+      "book": "death-guard",
+      "rule": "Unclean Icon",
+      "source": "Icon Bearer",
+      "recipient": "Plague Marines",
+      "status": "PASS"
+    },
+    {
+      "book": "death-guard",
+      "rule": "Vector of Disease",
+      "source": "Lord of Contagion",
+      "recipient": "Deathshroud Terminators",
+      "status": "PASS"
+    },
+    {
+      "book": "death-guard",
+      "rule": "Sickening Vitality",
+      "source": "Noxious Blightbringer",
+      "recipient": "Poxwalkers",
+      "status": "PASS"
+    },
+    {
+      "book": "death-guard",
+      "rule": "Silent Bodyguard",
+      "source": "Deathshroud Terminators",
+      "recipient": "Lord of Contagion",
+      "status": "PASS"
+    },
+    {
+      "book": "death-guard",
+      "rule": "Witherbone Pipes",
+      "source": "Noxious Blightbringer",
+      "recipient": "Poxwalkers",
+      "status": "PASS"
+    },
+    {
+      "book": "death-guard",
+      "rule": "Talisman of Burgeoning",
+      "source": "Noxious Blightbringer",
+      "recipient": "Poxwalkers",
+      "status": "PASS"
+    },
+    {
+      "book": "death-guard",
+      "rule": "Vile Vigour",
+      "source": "Lord of Contagion",
+      "recipient": "Deathshroud Terminators",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Robotic Bodyguard",
+      "source": "Kastelan Robots",
+      "recipient": "Cybernetica Datasmith",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Lord of the Machine Cult",
+      "source": "Tech-priest Dominus",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Galvanic Field",
+      "source": "Tech-priest Manipulus",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Seekers of Divine Arcana",
+      "source": "Technoarcheologist",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Transoracular Dyad Wafers",
+      "source": "Cybernetica Datasmith",
+      "recipient": "Kastelan Robots",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Martial Signatum Amplificator",
+      "source": "Tech-priest Dominus",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Temporcopia",
+      "source": "Tech-priest Dominus",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Genetor",
+      "source": "Tech-priest Manipulus",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Artisan",
+      "source": "Tech-priest Manipulus",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Clandestine Infiltrator",
+      "source": "Skitarii Marshal",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Malphonic Susurrus",
+      "source": "Tech-priest Manipulus",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Peerless Eradicator",
+      "source": "Tech-priest Manipulus",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Electromiasmic Brazier",
+      "source": "Tech-priest Manipulus",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Vingh’s Wafers of Dynamism",
+      "source": "Cybernetica Datasmith",
+      "recipient": "Kastelan Robots",
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "rule": "Explorator Dispensation",
+      "source": "Skitarii Marshal",
+      "recipient": "Skitarii Rangers",
+      "status": "PASS"
+    },
+    {
+      "book": "death-guard",
+      "contractLinks": 87,
+      "f1Recipients": 3,
+      "status": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "contractLinks": 239,
+      "f1Recipients": 12,
+      "status": "PASS"
+    },
+    {
+      "book": "chaos-space-marines",
+      "contractLinks": 531,
+      "f1Recipients": 26,
+      "status": "PASS"
+    },
+    {
+      "book": "emperors-children",
+      "contractLinks": 168,
+      "f1Recipients": 8,
+      "status": "PASS"
+    },
+    {
+      "book": "blood-angels",
+      "contractLinks": 240,
+      "f1Recipients": 20,
+      "status": "PASS"
+    },
+    {
+      "book": "dark-angels",
+      "contractLinks": 257,
+      "f1Recipients": 18,
+      "status": "PASS"
+    },
+    {
+      "book": "space-marines",
+      "contractLinks": 299,
+      "f1Recipients": 39,
+      "status": "PASS"
+    },
+    {
+      "book": "tau-empire",
+      "contractLinks": 134,
+      "f1Recipients": 10,
+      "status": "PASS"
+    },
+    {
+      "book": "tyranids",
+      "contractLinks": 118,
+      "f1Recipients": 8,
+      "status": "PASS"
+    },
+    {
+      "book": "chaos-space-marines",
+      "rule": "Daemonkin (Psychic)",
+      "recipient": "legionaries",
+      "status": "PASS"
+    },
+    {
+      "book": "emperors-children",
+      "rule": "Perfectionists",
+      "recipient": "infractors",
+      "status": "PASS"
+    },
+    {
+      "book": "tau-empire",
+      "rule": "Failure Is Not an Option",
+      "recipient": "strike-team",
+      "status": "PASS"
+    },
+    {
+      "book": "tyranids",
+      "rule": "Relentless Hunger",
+      "recipient": "tyrant-guard",
+      "status": "PASS"
+    },
+    {
+      "book": "space-marines",
+      "rule": "Honour of the Company",
+      "recipient": "unit-sm-59162946fee84360",
+      "status": "PASS"
+    },
+    {
+      "book": "blood-angels",
+      "rule": "Blood Chalice",
+      "recipient": "unit-sm-717dd0d07e764a70",
+      "status": "PASS"
+    },
+    {
+      "book": "dark-angels",
+      "rule": "The Lion Helm",
+      "recipient": "unit-sm-3ce46dddf62b45f1",
+      "status": "PASS"
+    }
+  ],
+  "limitations": "Constructed physical snapshots; browser visibility is a separate QA gate. No gameplay facts or stored roster inputs are changed."
+}

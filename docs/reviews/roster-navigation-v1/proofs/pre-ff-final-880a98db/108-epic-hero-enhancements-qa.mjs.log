@@ -1,0 +1,288 @@
+PASS rule/space-marines
+PASS rule/blood-angels
+PASS rule/dark-angels
+PASS rule/adeptus-mechanicus
+PASS rule/chaos-space-marines
+PASS rule/death-guard
+PASS rule/tau-empire
+PASS rule/tyranids
+PASS rule/emperors-children
+PASS import/titus-artificer
+PASS import/captain-artificer
+PASS import/farsight-grenades
+PASS import/coldstar-grenades
+PASS manual/victrix-epic-bearers-not-offered
+PASS faq/darkstrider-pathfinder-upgrade
+PASS integrity/invalid-book-eligibility-is-not-no-match
+PASS integrity/invalid-roster-eligibility-is-not-no-match
+PASS integrity/epic-owner-malformed-weapon-choice-is-rejected
+{
+  "status": "PASS",
+  "root": "E:\\Warhammer\\worktrees\\roster-navigation-v1",
+  "baseline": "f7500b434806e2ebc7fa9d7148bf6ce616cd2b81",
+  "suite": "all",
+  "checks": [
+    {
+      "id": "rule/space-marines",
+      "status": "PASS",
+      "book": "space-marines",
+      "epicUnits": 18,
+      "epicPairs": 1008,
+      "ordinaryCharacters": 24
+    },
+    {
+      "id": "rule/blood-angels",
+      "status": "PASS",
+      "book": "blood-angels",
+      "epicUnits": 5,
+      "epicPairs": 200,
+      "ordinaryCharacters": 28
+    },
+    {
+      "id": "rule/dark-angels",
+      "status": "PASS",
+      "book": "dark-angels",
+      "epicUnits": 7,
+      "epicPairs": 280,
+      "ordinaryCharacters": 25
+    },
+    {
+      "id": "rule/adeptus-mechanicus",
+      "status": "PASS",
+      "book": "adeptus-mechanicus",
+      "epicUnits": 2,
+      "epicPairs": 68,
+      "ordinaryCharacters": 7
+    },
+    {
+      "id": "rule/chaos-space-marines",
+      "status": "PASS",
+      "book": "chaos-space-marines",
+      "epicUnits": 8,
+      "epicPairs": 496,
+      "ordinaryCharacters": 16
+    },
+    {
+      "id": "rule/death-guard",
+      "status": "PASS",
+      "book": "death-guard",
+      "epicUnits": 3,
+      "epicPairs": 90,
+      "ordinaryCharacters": 13
+    },
+    {
+      "id": "rule/tau-empire",
+      "status": "PASS",
+      "book": "tau-empire",
+      "epicUnits": 4,
+      "epicPairs": 92,
+      "ordinaryCharacters": 9
+    },
+    {
+      "id": "rule/tyranids",
+      "status": "PASS",
+      "book": "tyranids",
+      "epicUnits": 4,
+      "epicPairs": 136,
+      "ordinaryCharacters": 9
+    },
+    {
+      "id": "rule/emperors-children",
+      "status": "PASS",
+      "book": "emperors-children",
+      "epicUnits": 3,
+      "epicPairs": 102,
+      "ordinaryCharacters": 6
+    },
+    {
+      "id": "import/titus-artificer",
+      "status": "PASS",
+      "book": "space-marines",
+      "unit": "Captain Titus",
+      "enhancement": "Artificer Armour",
+      "epic": true,
+      "exportPoints": 90,
+      "points": {
+        "owner": "CENTRALIZED_MFM",
+        "source": {
+          "label": "Official MFM v1.6",
+          "version": "v1.6",
+          "currentnessCutoff": "2026-10-20",
+          "verifiedAt": "2026-10-20",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "observedAt": "2026-10-20",
+          "effectiveDate": null,
+          "currentnessEvidence": {
+            "downloadsUrl": "https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/",
+            "downloadsUpdatedAt": "2026-10-14",
+            "liveVersion": "v1.6",
+            "note": "Downloads update date is not the date of this capture or an established effective date."
+          }
+        },
+        "status": "RESOLVED",
+        "totalPoints": 130,
+        "knownPoints": 130,
+        "units": [
+          {
+            "unitInstanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-sm-10396cd2726045a8",
+            "basePoints": 115,
+            "enhancementPoints": 15,
+            "paid": {
+              "unitInstanceId": "parsed-unit-1",
+              "canonicalUnitId": "unit-sm-10396cd2726045a8",
+              "status": "RESOLVED",
+              "knownPaidPoints": 0,
+              "totalPaidPoints": 0,
+              "options": [],
+              "unresolved": []
+            },
+            "totalPoints": 130,
+            "unitPointRecordId": "mfm-unit-points-6fb0b9f36410c64a",
+            "enhancementCostRecordIds": [
+              "mfm-enhancement-e6034fe032b96b7e"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "detachmentPoints": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-sm-6341f5a9b9584677",
+            "value": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "import/captain-artificer",
+      "status": "PASS",
+      "book": "space-marines",
+      "unit": "Captain",
+      "enhancement": "Artificer Armour",
+      "epic": false,
+      "exportPoints": 80,
+      "points": {
+        "owner": "CENTRALIZED_MFM",
+        "source": {
+          "label": "Official MFM v1.6",
+          "version": "v1.6",
+          "currentnessCutoff": "2026-10-20",
+          "verifiedAt": "2026-10-20",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "observedAt": "2026-10-20",
+          "effectiveDate": null,
+          "currentnessEvidence": {
+            "downloadsUrl": "https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/",
+            "downloadsUpdatedAt": "2026-10-14",
+            "liveVersion": "v1.6",
+            "note": "Downloads update date is not the date of this capture or an established effective date."
+          }
+        },
+        "status": "RESOLVED",
+        "totalPoints": 105,
+        "knownPoints": 105,
+        "units": [
+          {
+            "unitInstanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-sm-99eb03d4f2d448e2",
+            "basePoints": 90,
+            "enhancementPoints": 15,
+            "paid": {
+              "unitInstanceId": "parsed-unit-1",
+              "canonicalUnitId": "unit-sm-99eb03d4f2d448e2",
+              "status": "RESOLVED",
+              "knownPaidPoints": 0,
+              "totalPaidPoints": 0,
+              "options": [],
+              "unresolved": []
+            },
+            "totalPoints": 105,
+            "unitPointRecordId": "mfm-unit-points-c2107ef6e00f30ed",
+            "enhancementCostRecordIds": [
+              "mfm-enhancement-e6034fe032b96b7e"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "detachmentPoints": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-sm-6341f5a9b9584677",
+            "value": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "import/farsight-grenades",
+      "status": "PASS",
+      "book": "tau-empire",
+      "unit": "Commander Farsight",
+      "enhancement": "Internal Grenade Racks",
+      "epic": true,
+      "exportPoints": 95,
+      "points": {
+        "status": "NO_TAU_ROSTER_CALCULATOR",
+        "retainedCostRecord": "mfm-enhancement-587cc900250b7aa5",
+        "exportCharge": 20
+      }
+    },
+    {
+      "id": "import/coldstar-grenades",
+      "status": "PASS",
+      "book": "tau-empire",
+      "unit": "Commander in Coldstar Battlesuit",
+      "enhancement": "Internal Grenade Racks",
+      "epic": false,
+      "exportPoints": 95,
+      "points": {
+        "status": "NO_TAU_ROSTER_CALCULATOR",
+        "retainedCostRecord": "mfm-enhancement-587cc900250b7aa5",
+        "exportCharge": 20
+      }
+    },
+    {
+      "id": "manual/victrix-epic-bearers-not-offered",
+      "status": "PASS",
+      "book": "space-marines",
+      "unit": "unit-sm-f169827c554c4eee",
+      "physicalEpicCandidates": [
+        "model-sm-0e744f442661486e",
+        "model-sm-28ca787bfb32419d"
+      ],
+      "offeredEnhancementBearers": 0,
+      "fixtureKind": "CONSTRUCTED_NEW_RECRUIT_PLAIN_HEADER_NOT_REAL_EXPORT"
+    },
+    {
+      "id": "faq/darkstrider-pathfinder-upgrade",
+      "status": "PASS",
+      "book": "tau-empire",
+      "leader": "unit-darkstrider",
+      "bodyguard": "unit-pathfinder-team",
+      "upgrade": "detachment-advanced-acquisition-cadre:enhancement:2",
+      "sourceRelation": "mfm-leader-eligibility-47d31b7a66b9df3b",
+      "fixtureKind": "REAL_ACCEPTED_RULE_COMBINATION_SYNTHETIC_EXPORT"
+    },
+    {
+      "id": "integrity/invalid-book-eligibility-is-not-no-match",
+      "status": "PASS",
+      "fixtureKind": "SYNTHETIC_COMPATIBILITY_BOUNDARY",
+      "expectedError": "Invalid book applicability"
+    },
+    {
+      "id": "integrity/invalid-roster-eligibility-is-not-no-match",
+      "status": "PASS",
+      "fixtureKind": "SYNTHETIC_COMPATIBILITY_BOUNDARY",
+      "expectedError": "Invalid roster-aware rule: enh"
+    },
+    {
+      "id": "integrity/epic-owner-malformed-weapon-choice-is-rejected",
+      "status": "PASS",
+      "fixtureKind": "SYNTHETIC_WEAPON_CHOICE_BOUNDARY",
+      "commonRosterValidation": "PASS",
+      "expectedError": "Unknown physical choice option"
+    }
+  ],
+  "failures": []
+}

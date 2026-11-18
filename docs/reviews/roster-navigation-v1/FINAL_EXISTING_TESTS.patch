@@ -1,0 +1,1202 @@
+diff --git a/books/shared/army-book-app-v2/personal-datasheet-browser-qa.mjs b/books/shared/army-book-app-v2/personal-datasheet-browser-qa.mjs
+index def2661c3c5b35cabc9fde9a788297c48f093caf..3b718b9b927fb4bd3fd623e6221aae4f346d78ba 100644
+--- a/books/shared/army-book-app-v2/personal-datasheet-browser-qa.mjs
++++ b/books/shared/army-book-app-v2/personal-datasheet-browser-qa.mjs
+@@ -196,7 +196,7 @@ const amCompositionImport=`+ DETACHMENT: Rad-Zone Corps
+ • 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw
+ • 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw`;
+ async function imported(page,text){
+-  await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++  await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+   await page.locator('[data-roster-action="review-import"]').click();
+   await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state?.units?.[0]?.instanceId==='parsed-unit-1');
+   return page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
+@@ -363,14 +363,14 @@ async function equipmentCaptionControls() {
+     for(const c of cases) {
+       await page.goto(origin+'/v2/app.html');await page.getByRole('link',{name:'Roster',exact:true}).click();
+       await page.locator(`main a[data-v2-book="${c.book}"]`).click();await ready();
+-      await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
++      await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+       await page.getByRole('button',{name:'Import roster',exact:true}).click();
+       await page.waitForFunction(()=>ArmyBookAppV2.roster.state?.units.length===2);await ready();
+       const before=await page.evaluate(()=>ArmyBookAppV2.roster.snapshot());
+       assert.deepEqual(before.units.map(unit=>unit.canonicalUnitId),[c.unit,c.unit]);
+       for(const [ordinal,unit]of before.units.entries())for(const view of ['effective','guide']) {
+         await roster();
+-        if(view==='effective')await page.locator(`[data-roster-instance-id="${unit.instanceId}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
++        if(view==='effective')await openCard(page,page.locator(`[data-roster-instance-id="${unit.instanceId}"]`));
+         else {await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
+           await page.locator(`main a[data-target-id="roster-unit/${unit.instanceId}"]`).click();}
+         await ready();
+@@ -503,3 +503,15 @@ try{
+   const report={status:'PASS',baselineHead,normalComparisons,personalResults,syntheticResults,pageErrors:errors,screenshots:out};
+   fs.writeFileSync(path.join(out,equipmentCaptionsOnly?'equipment-caption-browser-report.json':syntheticOnly?'personal-datasheet-synthetic-browser-report.json':'personal-datasheet-browser-report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+ }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs b/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs
+index 19ec4e00d57023b6eec6bc28d2a31a28f6b1815c..2cd55415ad58156a31190a2bc585c03d80320c29 100644
+--- a/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs
++++ b/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs
+@@ -126,8 +126,8 @@ const browserFailure=Promise.withResolvers();
+ const failBrowser=error=>{errors.push(error.message);browserFailure.reject(error);};
+ const ready=async page=>{await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
+ async function openRosterUI(page){
+-  const control=page.locator('.toc-shortcuts button').filter({hasText:/^(Attachment Setup|Roster)$/}).first();
+-  if(!await control.isVisible())await page.getByRole('button',{name:'Open navigation',exact:true}).click();
++  const control=page.locator('.toc-bottom-shortcuts button, .toc-shortcuts button').filter({hasText:/^(Attachment Setup|Roster)$/}).first();
++  if(!await control.isVisible())await page.locator('#navMenu').click();
+   await control.click();
+   await page.locator('[data-roster-instances]').waitFor();
+ }
+diff --git a/tests/browser/cold-offline.mjs b/tests/browser/cold-offline.mjs
+index 0d7621f604e15edc367a57e43fc7bfc0c2a80697..7250646cb123d050f3ad46dc2f47e6a91548d3ec 100644
+--- a/tests/browser/cold-offline.mjs
++++ b/tests/browser/cold-offline.mjs
+@@ -27,12 +27,24 @@ async function core(p){await go(p,'?v2=CORE_RULES&registry=core-rules&chapter=co
+ async function mega(p){await go(p,'?v2=GLOSSARY');await p.locator('[data-global-glossary]').waitFor();assert(await p.locator('[data-global-glossary] [data-target-id]').count()>20);}
+ async function css(p){const result=await p.evaluate(()=>{const found={};function visit(sheet){let rules;try{rules=[...sheet.cssRules];}catch{return;}for(const name of ['datasheet-system.css','unit-art.css'])if(sheet.href?.includes(name))found[name]=rules.length;for(const rule of rules)if(rule.styleSheet)visit(rule.styleSheet);}for(const sheet of document.styleSheets)visit(sheet);return{found,display:getComputedStyle(document.querySelector('.statline')).display};});assert(result.found['datasheet-system.css']>0,'Native datasheet CSS must be loaded offline');assert(result.found['unit-art.css']>0,'Native art CSS must be loaded offline');assert.equal(result.display,'flex');return result;}
+ async function sheet(p,book,id){await go(p,'?v2=ARMY_BOOK&book='+book);await poll(p,()=>!!window.ArmyBookAppV2?.open);await p.evaluate(id=>ArmyBookAppV2.open(id),id);await p.locator('main .unit-card').waitFor();return css(p);}
+-async function views(p){await go(p,'?v2=ROSTER&book=space-marines');await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.points.totalPoints),490);await p.getByRole('button',{name:'Effective datasheet',exact:true}).first().click();await p.locator('main .unit-card').waitFor();await css(p);await go(p,'?v2=ROSTER&book=space-marines');await p.getByRole('button',{name:'Open personal guide',exact:true}).click();await poll(p,()=>new URL(location.href).searchParams.get('v2')==='PERSONAL_GUIDE');assert.match(await p.locator('main').innerText(),/Invader|Redemptor|Repulsor/);}
++async function views(p){await go(p,'?v2=ROSTER&book=space-marines');await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.points.totalPoints),490);await openCard(p);await p.locator('main .unit-card').waitFor();await css(p);await go(p,'?v2=ROSTER&book=space-marines');await p.getByRole('button',{name:'Open personal guide',exact:true}).click();await poll(p,()=>new URL(location.href).searchParams.get('v2')==='PERSONAL_GUIDE');assert.match(await p.locator('main').innerText(),/Invader|Redemptor|Repulsor/);}
+ const browser=await launchChromium();
+ try{for(const width of [1440,390]){const context=await browser.newContext({viewport:{width,height:width===390?844:900},isMobile:width===390,hasTouch:width===390,serviceWorkers:'allow'}),p=await context.newPage(),r={width,errors:[]};report.results.push(r);p.setDefaultTimeout(30000);p.on('console',message=>{if(message.type()==='error')console.error('PWA browser console '+message.text());});p.on('pageerror',error=>console.error('PWA page error '+error.stack));p.on('pageerror',e=>r.errors.push(e.message));try{
+ const start=requests.length;await p.goto(base);await ready(p);assert.equal(new URL(p.url()).pathname,prefix+'v2/app.html');assert.equal(await p.locator('[data-v2-book]').count(),9);await poll(p,()=>!!navigator.serviceWorker.controller);await poll(p,()=>navigator.serviceWorker.getRegistration().then(r=>r?.active?.state==='activated'&&!r.installing&&!r.waiting));r.lazyRequests=requests.slice(start).filter(x=>/\/books\/[^/]+\/v2\/generated\/.*\.json$|\/glossary\/v2\/generated\//.test(x));assert.deepEqual(r.lazyRequests,[],'Fresh install must not download large book or glossary data');r.freshCacheBytes=await p.evaluate(async()=>{let n=0;for(const name of await caches.keys()){const cache=await caches.open(name);for(const q of await cache.keys())n+=(await(await cache.match(q)).arrayBuffer()).byteLength;}return n;});r.revision=await p.evaluate(()=>WHPwaExpectedRevision);await p.screenshot({path:path.join(out,`${width}-home.png`),fullPage:true});
+-console.log('STAGE SM import '+width);await go(p,'?v2=ROSTER&book=space-marines');await p.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));await p.getByRole('button',{name:'Import roster',exact:true}).click();await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);r.points=await p.evaluate(()=>ArmyBookAppV2.roster.points);assert.equal(r.points.status,'RESOLVED');assert.equal(r.points.totalPoints,490);assert.deepEqual(r.points.units.map(u=>u.totalPoints),[130,170,190]);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.state.units.reduce((n,u)=>n+u.startingStrength,0)),4);const snapshot=await p.evaluate(()=>ArmyBookAppV2.roster.snapshot());await p.reload({waitUntil:'load'});await ready(p);assert.deepEqual(await p.evaluate(()=>ArmyBookAppV2.roster.snapshot()),snapshot);await go(p,'?v2=ROSTER&book=space-marines');await p.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));await p.getByRole('button',{name:'Import roster',exact:true}).click();await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);assert.deepEqual(await p.evaluate(()=>ArmyBookAppV2.roster.snapshot()),snapshot);r.reloadAndReimport=true;console.log('STAGE online views '+width);await views(p);console.log('STAGE online Core '+width);await core(p);console.log('STAGE online Mega '+width);await mega(p);r.onlineCSS=await sheet(p,'death-guard','unit-lord-of-contagion');await sheet(p,'tyranids','unit-hive-tyrant');
++console.log('STAGE SM import '+width);await go(p,'?v2=ROSTER&book=space-marines');await openImportForm(p);await p.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));await p.getByRole('button',{name:'Import roster',exact:true}).click();await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);r.points=await p.evaluate(()=>ArmyBookAppV2.roster.points);assert.equal(r.points.status,'RESOLVED');assert.equal(r.points.totalPoints,490);assert.deepEqual(r.points.units.map(u=>u.totalPoints),[130,170,190]);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.state.units.reduce((n,u)=>n+u.startingStrength,0)),4);const snapshot=await p.evaluate(()=>ArmyBookAppV2.roster.snapshot());await p.reload({waitUntil:'load'});await ready(p);assert.deepEqual(await p.evaluate(()=>ArmyBookAppV2.roster.snapshot()),snapshot);await go(p,'?v2=ROSTER&book=space-marines');await openImportForm(p);await p.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));await p.getByRole('button',{name:'Import roster',exact:true}).click();await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);assert.deepEqual(await p.evaluate(()=>ArmyBookAppV2.roster.snapshot()),snapshot);r.reloadAndReimport=true;console.log('STAGE online views '+width);await views(p);console.log('STAGE online Core '+width);await core(p);console.log('STAGE online Mega '+width);await mega(p);r.onlineCSS=await sheet(p,'death-guard','unit-lord-of-contagion');await sheet(p,'tyranids','unit-hive-tyrant');
+ r.storage=await p.evaluate(()=>Object.fromEntries(Object.entries(localStorage).sort()));r.cacheBytes=await p.evaluate(async()=>{let sum=0;for(const name of await caches.keys()){const cache=await caches.open(name);for(const request of await cache.keys())sum+=(await(await cache.match(request)).arrayBuffer()).byteLength;}return sum;});
+ if(report.mutation)await p.evaluate(async mutation=>{for(const name of await caches.keys()){const cache=await caches.open(name);for(const request of await cache.keys())if(mutation==='drop-css'&&/\/(datasheet-system|unit-art)\.css/.test(request.url)||mutation==='drop-core-glossary'&&request.url.includes('/glossary/v2/generated/index.en.js'))await cache.delete(request);}},report.mutation);
+ await context.setOffline(true);await p.close();const offline=await context.newPage();offline.setDefaultTimeout(30000);offline.on('pageerror',e=>r.errors.push(e.message));const cssFailures=[];offline.on('requestfailed',q=>{if(q.resourceType()==='stylesheet')cssFailures.push(q.url());});await offline.goto(base);await ready(offline);await views(offline);r.offlineCSS=await sheet(offline,'death-guard','unit-lord-of-contagion');await offline.screenshot({path:path.join(out,`${width}-offline-death-guard.png`),fullPage:true});await sheet(offline,'tyranids','unit-hive-tyrant');await offline.screenshot({path:path.join(out,`${width}-offline-tyranids.png`),fullPage:true});await core(offline);await offline.screenshot({path:path.join(out,`${width}-offline-core.png`),fullPage:true});await mega(offline);assert.deepEqual(await offline.evaluate(()=>Object.fromEntries(Object.entries(localStorage).sort())),r.storage);assert.deepEqual(cssFailures,[]);assert.deepEqual(r.errors,[]);r.status='PASS';console.log('Native V2 cold/offline PASS '+width);
+ }catch(error){console.error('PWA mount diagnostic '+JSON.stringify(await p.evaluate(()=>({url:location.href,main:document.querySelector('main')?.innerText,book:window.WarhammerAppV2?.activeBookId,api:!!window.ArmyBookAppV2})).catch(()=>null)));throw error;}finally{await context.close();}}report.status='PASS';}catch(error){report.status='FAIL';report.error=error.stack;console.error(error.stack);process.exitCode=1;}finally{await browser.close();await new Promise(r=>server.close(r));fs.writeFileSync(path.join(out,'REPORT.json'),JSON.stringify(report,null,2));console.log('Evidence '+out);}
++
++async function openCard(page){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await page.getByRole('button',{name:'Open card',exact:true}).first().click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/tests/browser/pwa-bootstrap-update.mjs b/tests/browser/pwa-bootstrap-update.mjs
+index 1c796e5a5e4cd6869825fc223778c9a676f3cf2a..51adf4f5395a979ca6fe2108dbb628fcf358ff6e 100644
+--- a/tests/browser/pwa-bootstrap-update.mjs
++++ b/tests/browser/pwa-bootstrap-update.mjs
+@@ -220,10 +220,10 @@ try{
+     const context=await contextFor();
+     try{
+       const page=await seed(context);await go(page,'?v2=ROSTER&book=space-marines');
+-      await page.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));
++      await openImportForm(page);await page.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));
+       await page.getByRole('button',{name:'Import roster',exact:true}).click();
+       await poll(page,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);
+-      await page.evaluate(()=>ArmyBookAppV2.openRoster());await page.locator('[data-roster-input="raw-text"]').fill(draft);
++      await page.evaluate(()=>ArmyBookAppV2.openRoster());await openImportForm(page);await page.locator('[data-roster-input="raw-text"]').fill(draft);
+       await page.evaluate(()=>{
+         const input=document.querySelector('[data-roster-input="raw-text"]');input.focus();input.setSelectionRange(4,17,'backward');
+         window.pwaDocumentSentinel='working A during sibling automatic update';
+@@ -410,14 +410,14 @@ try{
+     const context=await contextFor();
+     try{
+       const page=await seed(context);await go(page,'?v2=ROSTER&book=space-marines');
+-      await page.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));
++      await openImportForm(page);await page.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));
+       await page.getByRole('button',{name:'Import roster',exact:true}).click();
+       await poll(page,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);
+-      await page.evaluate(()=>ArmyBookAppV2.openRoster());await page.locator('[data-roster-input="raw-text"]').fill(draft);
++      await page.evaluate(()=>ArmyBookAppV2.openRoster());await openImportForm(page);await page.locator('[data-roster-input="raw-text"]').fill(draft);
+       await page.evaluate(()=>window.pwaDocumentSentinel='working A');
+       const before=await rosterState(page),sibling=await context.newPage();await go(sibling,'?v2=ROSTER&book=space-marines');
+       assert(Number.isFinite(before.totalPoints)&&before.totalPoints>0,'The initial imported roster must have resolved points');
+-      await sibling.locator('[data-roster-input="raw-text"]').fill('Sibling unfinished draft');await sibling.evaluate(()=>window.pwaDocumentSentinel='sibling A');
++      await openImportForm(sibling);await sibling.locator('[data-roster-input="raw-text"]').fill('Sibling unfinished draft');await sibling.evaluate(()=>window.pwaDocumentSentinel='sibling A');
+       await prepareB(page);await page.evaluate(()=>WHOfflineStatus.check());
+       await poll(page,()=>document.querySelector('[data-pwa-update-action]')?.textContent==='Install and restart');
+       assert.deepEqual(await rosterState(page),before,'A ready update must preserve working roster, unfinished input and all localStorage');
+@@ -481,3 +481,10 @@ finally{
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+   fs.writeFileSync(path.join(out,'REPORT.json'),JSON.stringify(report,null,2)+'\n');console.log('Evidence '+out);
+ }
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/tests/browser/pwa-update-flow.mjs b/tests/browser/pwa-update-flow.mjs
+index 9d65b069cbc6285d33f8691c10cb73a74a9bf1d3..e1cba4fbd1b8e2c604f76ea2c469f4c2504205b8 100644
+--- a/tests/browser/pwa-update-flow.mjs
++++ b/tests/browser/pwa-update-flow.mjs
+@@ -32,16 +32,16 @@ async function ready(p){await poll(p,()=>!!window.WarhammerAppV2);await p.evalua
+ async function go(p,query=''){await p.goto(entry+query,{waitUntil:'load'});await ready(p);}
+ async function core(p){await go(p,'?v2=CORE_RULES&registry=core-rules&chapter=core-abilities');assert.equal(await p.locator('iframe.v2-core-reader').count(),1,'Core reader must survive update offline');const f=await(await p.locator('iframe.v2-core-reader').elementHandle()).contentFrame();await f.waitForLoadState('load');assert(await f.evaluate(()=>window.WH40K_GLOSSARY_V2_INDEX?.entries?.length>1000),'Core full glossary dependency must survive update offline');await f.locator('[data-term="core-blast"]').first().click();await f.locator('#termDialog[open]').waitFor();assert.match(await f.locator('#termSummary').innerText(),/High-explosive rounds/);}
+ async function mega(p){await go(p,'?v2=GLOSSARY');await p.locator('[data-global-glossary]').waitFor();assert(await p.locator('[data-global-glossary] [data-target-id]').count()>20);}
+-async function offlineRoster(p){await go(p,'?v2=ROSTER&book=space-marines');await poll(p,()=>!!window.ArmyBookAppV2?.roster?.state);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.points.totalPoints),490);await p.getByRole('button',{name:'Effective datasheet',exact:true}).first().click();await p.locator('main .unit-card').waitFor();const styles=await p.evaluate(()=>{const found=[];function visit(s){let rules;try{rules=[...s.cssRules];}catch{return;}if(s.href&&/\/(datasheet-system|unit-art)\.css/.test(s.href)&&rules.length)found.push(s.href);for(const r of rules)if(r.styleSheet)visit(r.styleSheet);}for(const s of document.styleSheets)visit(s);return{found,display:getComputedStyle(document.querySelector('.statline')).display};});assert.equal(styles.found.length,2,'Both native datasheet styles must survive update offline');assert.equal(styles.display,'flex');await go(p,'?v2=ROSTER&book=space-marines');await p.getByRole('button',{name:'Open personal guide',exact:true}).click();await poll(p,()=>new URL(location.href).searchParams.get('v2')==='PERSONAL_GUIDE');assert.match(await p.locator('main').innerText(),/Invader|Redemptor|Repulsor/);return styles;}
++async function offlineRoster(p){await go(p,'?v2=ROSTER&book=space-marines');await poll(p,()=>!!window.ArmyBookAppV2?.roster?.state);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.points.totalPoints),490);await openCard(p);await p.locator('main .unit-card').waitFor();const styles=await p.evaluate(()=>{const found=[];function visit(s){let rules;try{rules=[...s.cssRules];}catch{return;}if(s.href&&/\/(datasheet-system|unit-art)\.css/.test(s.href)&&rules.length)found.push(s.href);for(const r of rules)if(r.styleSheet)visit(r.styleSheet);}for(const s of document.styleSheets)visit(s);return{found,display:getComputedStyle(document.querySelector('.statline')).display};});assert.equal(styles.found.length,2,'Both native datasheet styles must survive update offline');assert.equal(styles.display,'flex');await go(p,'?v2=ROSTER&book=space-marines');await p.getByRole('button',{name:'Open personal guide',exact:true}).click();await poll(p,()=>new URL(location.href).searchParams.get('v2')==='PERSONAL_GUIDE');assert.match(await p.locator('main').innerText(),/Invader|Redemptor|Repulsor/);return styles;}
+ async function worker(p){return p.evaluate(async()=>{const r=await navigator.serviceWorker.getRegistration(),ask=w=>w?new Promise(resolve=>{const c=new MessageChannel(),t=setTimeout(()=>resolve(null),3000);c.port1.onmessage=e=>{clearTimeout(t);resolve(e.data);};w.postMessage({type:'GET_VERSION'},[c.port2]);}):null;return{active:await ask(r?.active),controller:await ask(navigator.serviceWorker.controller),waiting:await ask(r?.waiting),installing:!!r?.installing};});}
+ async function waitWorker(p,revision){const end=Date.now()+60000;let state;while(Date.now()<end){state=await worker(p);if(state.active?.revision===revision&&state.controller?.revision===revision&&!state.installing)return state;await sleep(200);}throw Error('Worker revision did not become ready: '+JSON.stringify(state));}
+ const draft='Unfinished native V2 import\nNBSP: Blood\u00a0Angels';
+-async function imported(p){await go(p,'?v2=ROSTER&book=space-marines');await p.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));await p.getByRole('button',{name:'Import roster',exact:true}).click();await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.points.totalPoints),490);await p.evaluate(()=>ArmyBookAppV2.openRoster());await p.locator('[data-roster-input="raw-text"]').fill(draft);await p.evaluate(()=>{localStorage.setItem('pwa-test-sentinel','preserve me');window.pwaDocumentSentinel='original A';});return state(p);}
++async function imported(p){await go(p,'?v2=ROSTER&book=space-marines');await openImportForm(p);await p.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));await p.getByRole('button',{name:'Import roster',exact:true}).click();await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.points.totalPoints),490);await p.evaluate(()=>ArmyBookAppV2.openRoster());await openImportForm(p);await p.locator('[data-roster-input="raw-text"]').fill(draft);await p.evaluate(()=>{localStorage.setItem('pwa-test-sentinel','preserve me');window.pwaDocumentSentinel='original A';});return state(p);}
+ async function state(p){return p.evaluate(()=>({storage:Object.fromEntries(Object.entries(localStorage).sort()),snapshot:ArmyBookAppV2.roster.state?ArmyBookAppV2.roster.snapshot():null,draft:document.querySelector('[data-roster-input="raw-text"]')?.value,document:window.pwaDocumentSentinel,revision:window.WHPwaExpectedRevision}));}
+ const browser=await launchChromium();
+ try{
+ const context=await browser.newContext({viewport:{width:1440,height:900},serviceWorkers:'allow'}),p=await context.newPage();p.setDefaultTimeout(30000);p.on('console',message=>{if(message.type()==='error')console.error('PWA browser console '+message.text());});p.on('pageerror',error=>console.error('PWA page error '+error.stack));
+-try{generation='A';console.log('STAGE A install');await go(p);await waitWorker(p,aRevision);await go(p,'?v2=ARMY_BOOK&book=tyranids');await poll(p,()=>window.ArmyBookAppV2?.payload?.book?.id==='tyranids');await core(p);await mega(p);console.log('STAGE import');const before=await imported(p);console.log('STAGE imported');const sibling=await context.newPage();await go(sibling,'?v2=ROSTER&book=space-marines');await sibling.locator('[data-roster-input="raw-text"]').fill('Sibling unfinished draft');await sibling.evaluate(()=>window.pwaDocumentSentinel='sibling A');
++try{generation='A';console.log('STAGE A install');await go(p);await waitWorker(p,aRevision);await go(p,'?v2=ARMY_BOOK&book=tyranids');await poll(p,()=>window.ArmyBookAppV2?.payload?.book?.id==='tyranids');await core(p);await mega(p);console.log('STAGE import');const before=await imported(p);console.log('STAGE imported');const sibling=await context.newPage();await go(sibling,'?v2=ROSTER&book=space-marines');await openImportForm(sibling);await sibling.locator('[data-roster-input="raw-text"]').fill('Sibling unfinished draft');await sibling.evaluate(()=>window.pwaDocumentSentinel='sibling A');
+ console.log('STAGE B check');generation='B';await p.evaluate(()=>WHOfflineStatus.check());const end=Date.now()+60000;let waiting;while(Date.now()<end){waiting=await worker(p);if(waiting.waiting?.revision===bRevision||waiting.active?.revision===bRevision)break;await sleep(200);}assert.equal(waiting.waiting?.revision,bRevision,'B must wait for manual confirmation');assert.equal(waiting.active?.revision,aRevision,'Update must not auto-activate before consent');assert.deepEqual(await state(p),before,'Waiting update must preserve current native state');await poll(p,()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='ready'||document.querySelector('[data-pwa-update-action]')?.textContent==='Install and restart');await p.locator('[data-pwa-update-action]').click();await poll(p,expected=>window.WHPwaExpectedRevision===expected,bRevision);await ready(p);await waitWorker(p,bRevision);await poll(p,()=>!!window.ArmyBookAppV2?.roster);await p.evaluate(()=>ArmyBookAppV2.openRoster());await poll(p,draft=>document.querySelector('[data-roster-input="raw-text"]')?.value===draft,draft);const after=await state(p);assert.deepEqual(after.storage,before.storage,'Confirmed update must preserve all localStorage');assert.deepEqual(after.snapshot,before.snapshot,'Confirmed update must preserve native roster');assert.equal(after.draft,draft);assert.equal(await sibling.evaluate(()=>window.pwaDocumentSentinel),'sibling A','Sibling tab must not automatically reload');assert.equal(await sibling.locator('[data-roster-input="raw-text"]').inputValue(),'Sibling unfinished draft');
+ await context.setOffline(true);report.offlineCSS=await offlineRoster(p);await core(p);await mega(p);await go(p);await p.locator('[data-v2-book="tyranids"]').click();await poll(p,()=>/unavailable|not available|Reconnect/i.test(document.querySelector('main')?.textContent||''));const unavailable=await p.locator('main').innerText();assert.match(unavailable,/unavailable|not available|Reconnect/i);assert(!await p.locator('main .unit-card').count(),'Changed offline data must never mount stale cards');await p.screenshot({path:path.join(out,'changed-book-offline.png'),fullPage:true});report.results.push({case:'manual A→B, sibling, roster, draft, changed-book unavailable',status:'PASS',unavailable});
+ }finally{await context.close();}
+@@ -49,3 +49,15 @@ await context.setOffline(true);report.offlineCSS=await offlineRoster(p);await co
+ if(!mutation){generation='A';failInstall=false;const context=await browser.newContext({serviceWorkers:'allow'}),p=await context.newPage();p.setDefaultTimeout(30000);p.on('console',message=>{if(message.type()==='error')console.error('PWA browser console '+message.text());});p.on('pageerror',error=>console.error('PWA page error '+error.stack));try{await go(p);await waitWorker(p,aRevision);await core(p);await mega(p);console.log('STAGE import');const before=await imported(p);console.log('STAGE imported');generation='B';failInstall=true;await p.evaluate(()=>WHOfflineStatus.check());await poll(p,()=>document.querySelector('[data-pwa-update-action]')?.textContent==='Retry');const failed=await worker(p);assert.equal(failed.active?.revision,aRevision);assert.equal(failed.controller?.revision,aRevision);assert.deepEqual(await state(p),before,'Failed mandatory shell install must leave live native app and data untouched');report.results.push({case:'failed B install preserves A and user state',status:'PASS'});}finally{await context.close();}}
+ report.status='PASS';console.log('Native V2 update browser PASS');
+ }catch(error){report.status='FAIL';report.error=error.stack;console.error(error.stack);process.exitCode=1;}finally{await browser.close();await new Promise(r=>server.close(r));fs.writeFileSync(path.join(out,'REPORT.json'),JSON.stringify(report,null,2));console.log('Evidence '+out);}
++
++async function openCard(page){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await page.getByRole('button',{name:'Open card',exact:true}).first().click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/admech-fnp-browser-qa.mjs b/v2/admech-fnp-browser-qa.mjs
+index 36a9c83ffb0b8ef22a39da0c6c30e9f5a0dffd53..59896042697611b7e1b168f9e8d4d325031c8459 100644
+--- a/v2/admech-fnp-browser-qa.mjs
++++ b/v2/admech-fnp-browser-qa.mjs
+@@ -74,10 +74,10 @@ async function ready(page){
+ }
+ async function roster(page){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await ready(page);
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function imported(page){
+-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(fixture.text);
++  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(fixture.text);
+   await page.locator('[data-roster-action="review-import"]').click();
+   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
+@@ -221,3 +221,10 @@ try{
+     forbidden:forbidden.length,httpErrors:httpErrors.length,requestFailures:requestFailures.length,realNewRecruitExportTested:false,
+     report:path.join(out,'admech-fnp-browser-report.json')}));
+ }
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/attached-rule-text-browser-qa.mjs b/v2/attached-rule-text-browser-qa.mjs
+index 69a9690a5ebd8a7ad5a18f1dd9d4887a8967d3f0..a8bf4cc832df02f55fbff45ba3617526662ba0c5 100644
+--- a/v2/attached-rule-text-browser-qa.mjs
++++ b/v2/attached-rule-text-browser-qa.mjs
+@@ -122,10 +122,10 @@ const server=http.createServer((request,response)=>{
+ const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
+ async function roster(page){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function imported(page,text){
+-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+   await page.locator('[data-roster-action="review-import"]').click();
+   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
+@@ -144,7 +144,7 @@ async function detach(page){
+ }
+ async function view(page,id,mode){
+   await roster(page);
+-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+   else{
+     await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
+     await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();
+@@ -238,3 +238,15 @@ try{
+     browser:browser?.version(),serviceWorkers:'blocked',realNewRecruitExportTested:false,results,errors,missing,screenshots},null,2));
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/card-display-2-browser-qa.mjs b/v2/card-display-2-browser-qa.mjs
+index 3208731dbcb67b5b46edfe030448cf4467cb88a4..298ab0b9e4b5bd02d3f51c5a1e6973cf81f51a1b 100644
+--- a/v2/card-display-2-browser-qa.mjs
++++ b/v2/card-display-2-browser-qa.mjs
+@@ -54,10 +54,10 @@ const server=http.createServer((request,response)=>{
+   }
+   response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});response.end(fs.readFileSync(file));
+ });
+-const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();};
++const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();};
+ async function view(page,id,mode){
+   await roster(page);
+-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+   else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();}
+   await page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').waitFor();
+ }
+@@ -274,7 +274,7 @@ try{
+       try{
+         await page.goto(origin+'/v2/app.html');await page.locator('[data-v2-book="'+c.book+'"]').click();
+         await page.waitForFunction(()=>window.ArmyBookAppV2?.roster);await roster(page);
+-        await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
++        await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+         await page.locator('[data-roster-action="review-import"]').click();await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+         assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
+         if(c.attach){const [leader,bodyguard]=c.attach;
+@@ -308,3 +308,15 @@ try{
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
+ import {openInlineRuleReference} from '../tests/helpers/player-dialog-assertions.mjs';
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/card-display-browser-qa.mjs b/v2/card-display-browser-qa.mjs
+index 03e2ed00e06e628c006f69f65fb683540f5991b6..5e26d3b577723471561f21ff87ece2dac0e981db 100644
+--- a/v2/card-display-browser-qa.mjs
++++ b/v2/card-display-browser-qa.mjs
+@@ -79,10 +79,10 @@ const server=http.createServer((request,response)=>{
+ });
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const origin='http://127.0.0.1:'+server.address().port;
+-const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();};
++const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();};
+ async function view(page,id,mode){
+   await roster(page);
+-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+   else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();}
+   await page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').waitFor();
+ }
+@@ -172,7 +172,7 @@ try{
+         assert.equal((await page.goto(origin+'/v2/app.html')).status(),200,'Application entry must be served');
+         await page.locator('[data-v2-book="'+c.bookId+'"]').click();
+         await page.waitForFunction(()=>window.ArmyBookAppV2?.roster);await roster(page);
+-        await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
++        await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+         await page.locator('[data-roster-action="review-import"]').click();
+         await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+         const status=await page.locator('.v2-roster-status').innerText();
+@@ -198,3 +198,15 @@ try{
+   fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:completed&&!process.exitCode?'PASS':'NEW_FAIL',cases:cases.length,results,errors,missing,screenshots},null,2));
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/card-gained-rules-browser-qa.mjs b/v2/card-gained-rules-browser-qa.mjs
+index 0e00fe4da21a59c6d0dc1b885cf73d60834c04c7..93d13165eca41d5239a222bf33ac17d2d2b11853 100644
+--- a/v2/card-gained-rules-browser-qa.mjs
++++ b/v2/card-gained-rules-browser-qa.mjs
+@@ -137,7 +137,7 @@ function inspectCard(card){
+  return {selfCaptions,duplicated,sections,groups,weaponSummaries,gainedCount:gained?1:0,localNav:card.querySelector('.local-nav')?.innerText||'',cost:cost?.innerText||'',priceCells:cost?.querySelectorAll('.ds-cost-cell').length||0,instancePriceRows:cost?.querySelectorAll('.ds-instance-price').length||0,leaks,gains};
+ }
+ async function settled(page){await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));}
+-async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
++async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
+ async function open(page,row){
+  await page.goto(origin+'/v2/app.html');await page.locator(`[data-v2-book="${row.book}"]`).click();
+  await page.waitForFunction(book=>window.ArmyBookAppV2?.payload.book.id===book&&Boolean(window.ArmyBookAppV2?.roster),row.book);
+@@ -157,7 +157,7 @@ async function open(page,row){
+   await page.setViewportSize({width:1440,height:1000});
+  }
+  await roster(page);
+- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(row.text);
++ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(row.text);
+  await page.locator('[data-roster-action="review-import"]').click();await settled(page);
+  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settled(page);}
+  assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./,'Existing fixture imports: '+row.id);
+@@ -192,7 +192,7 @@ async function open(page,row){
+  }):[attachment.leader,attachment.target];
+  return {units,attachment,ids};
+ }
+-async function effective(page,id){await roster(page);await page.locator(`.v2-roster-instance[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`).first();await card.waitFor();return card;}
++async function effective(page,id){await roster(page);await openCard(page,page.locator(`.v2-roster-instance[data-roster-instance-id="${id}"]`));const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`).first();await card.waitFor();return card;}
+ async function captureState(page,row,width,phase){
+  const value=await page.evaluate(()=>{const r=window.ArmyBookAppV2.roster;return {state:r.snapshot(),projection:r.projection,points:r.points,effective:r.state.units.map(unit=>r.effective(unit.instanceId))};});
+  const sha256=hash(value);observations.push({book:row.book,input:row.id,width,phase,sha256,value});return sha256;
+@@ -240,8 +240,10 @@ try{
+         await tab.click();await page.waitForFunction(({instanceId,target})=>{const section=[...document.querySelectorAll('main .unit-card[data-roster-instance-id]')].find(node=>node.dataset.rosterInstanceId===instanceId)?.querySelector('[id="'+target+'"]'),heading=section?.querySelector('h4');if(!heading)return false;const box=heading.getBoundingClientRect();return box.height>0&&box.top>=0&&box.bottom<=innerHeight;},{instanceId:id,target});
+         navigation={mode:'visible-mobile-clicked',target};
+        }else{
+-        assert.equal(await card.locator('.local-nav').evaluate(node=>getComputedStyle(node).display),'none','Preserve the existing hidden desktop local-navigation policy');
+-        navigation={mode:'existing-hidden-desktop-policy',target};
++        assert.equal(await card.locator('.local-nav').evaluate(node=>getComputedStyle(node).display),'flex','Roster section navigation is visible on desktop');
++        assert(await tab.isVisible(),'Desktop Gained rules navigation is player-visible');
++        await tab.click();await page.waitForFunction(({instanceId,target})=>{const section=[...document.querySelectorAll('main .unit-card[data-roster-instance-id]')].find(node=>node.dataset.rosterInstanceId===instanceId)?.querySelector('[id="'+target+'"]'),heading=section?.querySelector('h4');if(!heading)return false;const box=heading.getBoundingClientRect();return box.height>0&&box.top>=0&&box.bottom<=innerHeight;},{instanceId:id,target});
++        navigation={mode:'visible-desktop-clicked',target};
+        }
+       }
+       return {sections:inspected.sections,groups:inspected.groups.map(({kind,tag,open})=>({kind,tag,open})),navigation};
+@@ -342,3 +344,15 @@ try{
+  if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
+ console.log(JSON.stringify({status:'PASS',results:results.length,failures:results.filter(row=>row.status==='FAIL').length,evidence:out}));
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/card-polish-2-browser-qa.mjs b/v2/card-polish-2-browser-qa.mjs
+index 075f3ace44176c90839e7b880a3747efb6c35a4d..3592e9262c3e7aad48890e06da0a01ad8b415dd5 100644
+--- a/v2/card-polish-2-browser-qa.mjs
++++ b/v2/card-polish-2-browser-qa.mjs
+@@ -42,14 +42,14 @@ async function open(book){
+  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+ }
+ async function submit(text,ready=true){
+- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await page.locator('[data-roster-action="review-import"]').click();await settled();
+  const status=await page.locator('.v2-roster-status').innerText();
+  if(ready)assert.ok(status.startsWith('Roster imported.'),'Constructed UI import is READY: '+status);
+  return status;
+ }
+ async function card(id){
+- await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++ await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+  const node=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').first();await node.waitFor();return node;
+ }
+ async function shot(name,node){await node.scrollIntoViewIfNeeded();const file=path.join(out,name+'.png');await page.screenshot({path:file});return file;}
+@@ -236,3 +236,15 @@ finally{
+  console.log(JSON.stringify({status:completed?(observe?'OBSERVED':'PASS'):'FAIL',out,checks:results.length}));
+ }
+ if(failure)throw failure;
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/card-recipient-browser-qa.mjs b/v2/card-recipient-browser-qa.mjs
+index 79a50e1253abbcffbe2b46a358ee07da1872291d..b093aa6db98161e8f9e23c3ec92648873ef47985 100644
+--- a/v2/card-recipient-browser-qa.mjs
++++ b/v2/card-recipient-browser-qa.mjs
+@@ -89,10 +89,10 @@ Char2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissia
+ const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
+ async function roster(page){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function imported(page,text,count){
+-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+   await page.locator('[data-roster-action="review-import"]').click();
+   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
+@@ -467,3 +467,10 @@ try{
+   fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({browser:browser?.version(),root:repo,filters:{case:process.env.F2_BROWSER_CASE||null,device:process.env.F2_BROWSER_DEVICE||null},viewports:[{width:1440,height:1000},{width:390,height:844}],results,errors,missing,requestFailures,consoleMessages,screenshots},null,2)+'\n');
+   console.log('F2 browser evidence: '+out);if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/card-texts-browser-qa.mjs b/v2/card-texts-browser-qa.mjs
+index 126a8938cd42847b93b97ec5d3435b9656c0efba..74de3bb193ae22eb8f98b09760e3449e6a7b1876 100644
+--- a/v2/card-texts-browser-qa.mjs
++++ b/v2/card-texts-browser-qa.mjs
+@@ -36,14 +36,14 @@ const item=id=>{const row=fixture.cases.find(row=>row.id===id);assert.ok(row,'Mi
+ let browser,context,page,current='initialization',completed=false;
+ const effective=id=>page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id),id);
+ async function settled(){await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));}
+-async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
++async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
+ async function open(book){
+  await page.goto(origin+'/v2/app.html');await page.locator('[data-v2-book="'+book+'"]').click();
+  await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.roster));
+  await page.evaluate(async()=>await window.ArmyBookAppV2.rosterPanel?.ready);await roster();
+ }
+ async function submit(text,{ready=true}={}){
+- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await page.locator('[data-roster-action="review-import"]').click();await settled();
+  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settled();}
+  const status=await page.locator('.v2-roster-status').innerText();
+@@ -60,7 +60,7 @@ async function detach(){
+  await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state.attachments.length===0);
+ }
+ async function card(id){
+- await roster();await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++ await roster();await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+  const value=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').first();await value.waitFor();return value;
+ }
+ async function screenshot(name,node){if(node)await node.scrollIntoViewIfNeeded();const file=path.join(out,name+'.png');await page.screenshot({path:file});return file;}
+@@ -181,3 +181,15 @@ finally{
+  console.log(JSON.stringify({status:completed?(observe?'OBSERVED':'PASS'):'FAIL',evidence:out,checks:results.length}));
+ }
+ if(browserRunError)throw browserRunError;
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/cards-cosmetics-browser-qa.mjs b/v2/cards-cosmetics-browser-qa.mjs
+index 1d729dd5486bf93809bffb12313939d7c4acba58..6b94a8bf88e1746a55a02846ed3b78ec456cbb67 100644
+--- a/v2/cards-cosmetics-browser-qa.mjs
++++ b/v2/cards-cosmetics-browser-qa.mjs
+@@ -24,17 +24,17 @@ const server=http.createServer((req,res)=>{const address=decodeURIComponent(new
+  if(!file.startsWith(root+path.sep)||!allowed.has(address)&&!isApplicationTestDependency(address)||!fs.existsSync(file)){missing.push(address);res.writeHead(404).end();return;}
+  res.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));});
+ await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
+-const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();};
+-async function imported(page,text){await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
++const roster=async page=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();};
++async function imported(page,text){await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
+  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible())await replace.click();
+  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+  assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./,'Fixture must import through ordinary controls');}
+-async function effective(page,id){await roster(page);await page.locator(`[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
++async function effective(page,id){await roster(page);await openCard(page,page.locator(`[data-roster-instance-id="${id}"]`));
+  const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`);await card.waitFor();await page.evaluate(()=>document.fonts.ready);
+  await page.waitForFunction(()=>Boolean(document.querySelector('main .unit-card.ds-layout')));if(!negative)await assertNoVisibleLegacyAttribution(card);return card;}
+ async function shot(page,node,id){
+- await (id.startsWith('p1-')?node.locator('h2').first():node).scrollIntoViewIfNeeded();await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
++ await (id.startsWith('p1-')?node.locator(':scope > summary, h2').first():node).scrollIntoViewIfNeeded();await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+  const file=path.join(out,id+'.png');await page.screenshot({path:file,fullPage:false});screenshots.push({id,file});}
+ async function gainedTooltip(page,card,proof){
+  const id=await proof.getAttribute('id');assert(id,'A foreign source tooltip has a stable identity');
+@@ -66,12 +66,15 @@ try{
+    }
+    for(const width of [390,1200,1600]){
+     await page.setViewportSize({width,height:1000});await roster(page);await game(page,book,width);
+-    await shot(page,page.locator('.v2-roster-pane').first(),`p1-${book}-${width}`);
++    await openImportForm(page);await shot(page,page.locator('.v2-roster-pane').first(),`p1-${book}-${width}`);
+     await check(1,book,width,async()=>{const text=await page.locator('.v2-roster-pane').first().innerText();assert.doesNotMatch(text,/NOT_PROVEN|\bMFM\b|source OR|constructed-input|canonical|binding/i);
+      if(book==='blood-angels'){assert(text.includes('saved roster is kept'));assert(text.includes('not yet been checked against a real Blood Angels export'));assert(text.includes('any one of its listed conditions'));}
+      if(book==='dark-angels'){assert(text.includes('A confirmed Dark Angels unit must be in the roster'));assert(text.includes('not yet been checked against a real Dark Angels export'));}});
+     await shot(page,page.locator('.v2-roster-instance').first(),`p6-${book}-${width}`);
+-    await check(6,book,width,async()=>{const labels=await page.locator('.v2-roster-identity').evaluateAll(nodes=>nodes.map(n=>{const dt=[...n.querySelectorAll('dt')].find(x=>x.textContent==='Warlord');return dt?.nextElementSibling?.textContent;}));
++    await check(6,book,width,async()=>{assert.equal(await page.locator('[data-roster-warlord-select]').count(),1,'Warlord has one roster-wide control');
++     assert.equal(await page.locator('.v2-roster-instance dt').filter({hasText:/^Warlord$/}).count(),0,'Removed per-unit Warlord captions are absent');
++     const selected=await page.locator('[data-roster-warlord-select]').inputValue();
++     const labels=await page.locator('.v2-roster-instance').evaluateAll((nodes,selected)=>nodes.map(node=>selected?(node.dataset.rosterInstanceId===selected?'Yes':'No'):'Not set'),selected);
+      if(book==='death-guard')assert.deepEqual(labels,['No','Yes','No','No','No','No','No','No','No']);else assert(labels.length&&labels.every(x=>x==='Not set'));});
+     const first=await effective(page,'parsed-unit-1');
+     await check(5,book,width,async()=>assert.equal(await first.locator('.ds-arsenal .ability').count(),0,'Datasheet abilities must stay out of Weapons in every book'));
+@@ -130,7 +133,7 @@ try{
+      await check(8,book,width,async()=>{const links=card.locator('[data-modifier-source-rule-id="datasheet-daemonettes:section:1"]');assert(await links.count(),'Executed icon modifier provenance must be visible');for(const link of await links.all())assert.equal(await link.innerText(),'Daemonic Icon');});
+     }
+     if(book==='chaos-space-marines'){
+-     const menu=page.getByRole('button',{name:'Open navigation',exact:true});
++     const menu=page.locator('#navMenu');
+      if(!await page.getByRole('button',{name:'Full Army Book',exact:true}).isVisible())await menu.click();
+      await page.getByRole('button',{name:'Full Army Book',exact:true}).click();
+      if(await menu.isVisible()&&await menu.getAttribute('aria-expanded')==='true')await menu.click();
+@@ -151,3 +154,15 @@ try{
+  if(browser)await browser.close();await new Promise(r=>server.close(r));
+ }
+ console.log(JSON.stringify({status:'PASS',rows:rows.length,failures:rows.filter(r=>r.status==='FAIL').length,evidence:out}));
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/charge-effects-browser-qa.mjs b/v2/charge-effects-browser-qa.mjs
+index b66e8ba1f5fa6ebe1e8f8f3c7ad865b7f9abdadb..7434b5e96b1d6b2bfefd85dbd5a5eab8d0d7b93e 100644
+--- a/v2/charge-effects-browser-qa.mjs
++++ b/v2/charge-effects-browser-qa.mjs
+@@ -81,10 +81,10 @@ async function ready(page){
+ }
+ async function roster(page){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await ready(page);
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function imported(page,fixture,text){
+-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+   await page.locator('[data-roster-action="review-import"]').click();
+   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+   const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
+@@ -225,3 +225,10 @@ try{
+     forbidden:forbidden.length,httpErrors:httpErrors.length,requestFailures:requestFailures.length,
+     realNewRecruitExportTested:false,report:path.join(out,'charge-effects-browser-report.json')}));
+ }
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/detachment-card-text-browser-qa.mjs b/v2/detachment-card-text-browser-qa.mjs
+index fe1037d14ae256860b06dc79314c1592ae5e9d98..5da08bab77e76ef29a52a25f938633897629a055 100644
+--- a/v2/detachment-card-text-browser-qa.mjs
++++ b/v2/detachment-card-text-browser-qa.mjs
+@@ -27,11 +27,11 @@ const origin='http://127.0.0.1:'+server.address().port;
+ const norm=value=>String(value).replace(/[‘’]/g,"'").replace(/\s+/g,' ').trim();
+ async function roster(page){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function inspect(page,spec,unit,id,mode,device,stage){
+   await roster(page);
+-  if(mode==='Effective')await page.locator(`[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
++  if(mode==='Effective')await openCard(page,page.locator(`[data-roster-instance-id="${id}"]`));
+   else{
+     await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
+     await page.locator(`main a[data-target-id="roster-unit/${id}"]`).click();
+@@ -110,3 +110,8 @@ try{
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
+ console.log(JSON.stringify({status:'PASS',scenarios:cases.length,devices:2,checks:results.length,evidence:out}));
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
+diff --git a/v2/detachment-recipient-browser-qa.mjs b/v2/detachment-recipient-browser-qa.mjs
+index c45a2584c5f25d52c996b8f8d43fbf217509a49e..6675f148f2c63b3c0cbd41ee0340a1d0e3a41a48 100644
+--- a/v2/detachment-recipient-browser-qa.mjs
++++ b/v2/detachment-recipient-browser-qa.mjs
+@@ -64,10 +64,10 @@ const norm=value=>String(value).replace(/\s+/g,' ').replace(/[‘’]/g,"'").tri
+ const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
+ async function roster(page){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function imported(page,text,expectedIds){
+-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+   await page.locator('[data-roster-action="review-import"]').click();
+   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
+@@ -376,3 +376,10 @@ try{
+     results,errors,missing,requestFailures,screenshots},null,2)+'\n');
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/detachment-synthetic-table-browser-qa.mjs b/v2/detachment-synthetic-table-browser-qa.mjs
+index 5b97a135c632fc6e1ff7937463cdb525ee9455ca..8d572c7cd0e99af8d26bf1f8f5b02c53cbe64fc1 100644
+--- a/v2/detachment-synthetic-table-browser-qa.mjs
++++ b/v2/detachment-synthetic-table-browser-qa.mjs
+@@ -159,7 +159,7 @@ if(prepareOnly){
+   });
+   const ready=page=>page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.roster));
+   async function openRoster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+-    await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
++    await page.locator('[data-roster-view]').waitFor();}
+   async function guideIndex(page){await openRoster(page);await page.getByRole('button',{name:'Open personal guide',exact:true}).click();}
+   async function guide(page,instance){await guideIndex(page);await page.locator('main a[data-target-id="roster-unit/'+instance+'"]').click();
+     await page.locator('main .unit-card[data-roster-instance-id="'+instance+'"]').waitFor();}
+@@ -185,7 +185,7 @@ if(prepareOnly){
+       const pageErrors=[];page.on('pageerror',error=>{pageErrors.push(error.message);errors.push({device,variant:fixture.variant,message:error.message});});
+       try{
+         await page.goto(entry);await page.locator('[data-v2-book="'+bookId+'"]').click();await ready(page);
+-        await openRoster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(rosterText);
++        await openRoster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(rosterText);
+         await page.locator('[data-roster-action="review-import"]').click();
+         await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent.startsWith('Roster imported.'));
+         const evidence=await page.evaluate(ruleId=>{const roster=window.ArmyBookAppV2.roster,snapshot=roster.snapshot();return {snapshot,
+@@ -240,3 +240,10 @@ if(prepareOnly){
+     if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+   }
+ }
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/dg-am-recipient-enrollment-browser-qa.mjs b/v2/dg-am-recipient-enrollment-browser-qa.mjs
+index 6ff74b59adf88ccc25695561deaad8df865ba83d..b7e03c889e1320e12d49ea957fa77adbe72cabf3 100644
+--- a/v2/dg-am-recipient-enrollment-browser-qa.mjs
++++ b/v2/dg-am-recipient-enrollment-browser-qa.mjs
+@@ -63,11 +63,11 @@ const server=http.createServer((request,response)=>{
+ const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
+ async function roster(page){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function imported(page,text){
+   activity.imports++;
+-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+   await page.locator('[data-roster-action="review-import"]').click();
+   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+   const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
+@@ -90,7 +90,7 @@ async function detach(page){
+ }
+ async function view(page,id,mode){
+   await roster(page);
+-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+   else{
+     await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
+     await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();
+@@ -277,3 +277,15 @@ try{
+     elapsedMs:Date.now()-started,activity,caseIds:cases.map(c=>c.id),browser:browser?.version(),serviceWorkers:'blocked',realNewRecruitExportTested:false,results,errors,missing,screenshots,snapshots},null,2));
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/enhancement-presentation-browser-qa.mjs b/v2/enhancement-presentation-browser-qa.mjs
+index 93bb538b18a6dbf2bd198d5b870a432f81deedc8..634ca867a6574c7fa14b565947a516d84f67c91c 100644
+--- a/v2/enhancement-presentation-browser-qa.mjs
++++ b/v2/enhancement-presentation-browser-qa.mjs
+@@ -47,10 +47,10 @@ const norm=text=>text.replace(/\s+/g,' ').replace(/[‘’]/g,"'").replace(/\s*\
+ const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
+ async function roster(page){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function imported(page,text){
+-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+   await page.locator('[data-roster-action="review-import"]').click();
+   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
+@@ -66,7 +66,7 @@ async function attachment(page,c,detach=false){
+ }
+ async function view(page,id,mode){
+   await roster(page);
+-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+   else{
+     await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
+     await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();
+@@ -145,3 +145,15 @@ try{
+     realNewRecruitExportTested:false,results,errors,missing,requestFailures},null,2));
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/epic-hero-enhancements-browser-qa.mjs b/v2/epic-hero-enhancements-browser-qa.mjs
+index d70e6b47256dc6fbacc8031b820e6e9217315727..bb1ad80b743611a4b59c6336185a6a3a9891a0f4 100644
+--- a/v2/epic-hero-enhancements-browser-qa.mjs
++++ b/v2/epic-hero-enhancements-browser-qa.mjs
+@@ -28,7 +28,7 @@ async function openBook(book){
+ async function importText(book,text){
+  await openBook(book);
+  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await page.locator('[data-roster-action="review-import"]').click();
+  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible())await replace.click();
+@@ -75,7 +75,7 @@ try{
+    assert(active.includes(c.enhancement),'The ordinary CHARACTER keeps its active Enhancement');
+    assert.equal(await page.getByText(/Core Rules 25\.04/, {exact:false}).count(),0,'No Epic warning for ordinary CHARACTER');
+   }
+-  await page.locator('.v2-roster-instance[data-roster-instance-id="'+unit.instanceId+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++  await openCard(page,page.locator('.v2-roster-instance[data-roster-instance-id="'+unit.instanceId+'"]'));
+   const card=page.locator('main .unit-card[data-roster-instance-id="'+unit.instanceId+'"]');await card.waitFor();
+   const view=await page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id),unit.instanceId);
+   assert.equal(view.enhancements.some(row=>row.canonicalId===c.enhancementId),!c.epic,'Physical datasheet active Enhancement eligibility');
+@@ -113,3 +113,15 @@ try{
+  if(context)await context.close();if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+  console.log(JSON.stringify({status:completed?'PASS':'FAIL',evidence:out,checks:results.length}));
+ }
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/fabius-safe-import-browser-qa.mjs b/v2/fabius-safe-import-browser-qa.mjs
+index 04d13372a733c976f8625c3c1c839e334259878f..4858ff0dde3ae3c038aec76eea7b2dfb4fab0df3 100644
+--- a/v2/fabius-safe-import-browser-qa.mjs
++++ b/v2/fabius-safe-import-browser-qa.mjs
+@@ -39,14 +39,14 @@ const toughness=view=>view.profiles.map(model=>Number(field(model,'stats').T));
+ const melee=view=>view.weapons.filter(weapon=>field(weapon,'mode')==='melee').map(weapon=>({id:weapon.id,scopeId:weapon.scopeId||null,strength:Number(field(weapon,'strength'))}));
+ const has=view=>view.profiles.flatMap(model=>model.abilities).map(ability=>({id:ability.canonicalId,parameters:ability.parameters}));
+ async function settled(){await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));}
+-async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
++async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
+ async function open(book){
+  await page.goto(origin+'/v2/app.html');await page.locator('[data-v2-book="'+book+'"]').click();
+  await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.roster));
+  await page.evaluate(async()=>await window.ArmyBookAppV2.rosterPanel?.ready);await roster();
+ }
+ async function submit(text,{ready=true}={}){
+- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await page.locator('[data-roster-action="review-import"]').click();await settled();
+  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settled();}
+  const status=await page.locator('.v2-roster-status').innerText();
+@@ -63,7 +63,7 @@ async function detach(){
+  await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state.attachments.length===0);
+ }
+ async function card(id){
+- await roster();await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++ await roster();await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+  const value=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').first();await value.waitFor();return value;
+ }
+ async function screenshot(name,node){if(node)await node.scrollIntoViewIfNeeded();const file=path.join(out,name+'.png');await page.screenshot({path:file});return file;}
+@@ -143,3 +143,15 @@ try{
+  if(context)await context.close();if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+  console.log(JSON.stringify({status:completed?'PASS':'FAIL',evidence:out,checks:results.length}));
+ }
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/new-recruit-export-browser-qa.mjs b/v2/new-recruit-export-browser-qa.mjs
+index 545165d42ff8a66833fb3dd6503c22329485dda7..40783e3df8d2e9eef505da5c012b921b3719b9e4 100644
+--- a/v2/new-recruit-export-browser-qa.mjs
++++ b/v2/new-recruit-export-browser-qa.mjs
+@@ -39,7 +39,7 @@ try{
+         await page.locator('[data-v2-book="'+c.bookId+'"]').click();
+         await page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
+         await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+-        await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
++        await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+         await page.locator('[data-roster-action="review-import"]').click();
+         const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
+         // Replacing an existing roster is an explicit player action.
+@@ -50,7 +50,7 @@ try{
+         assert.ok(state.units.length,'A real roster must be installed');
+         if(c.wounds){
+           const id=state.units[0].instanceId;
+-          await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++          await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+           const card=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]');await card.waitFor();
+           const stats=await card.locator('.statline').evaluateAll(nodes=>nodes.map(node=>node.innerText));
+           const rendered=await card.locator('.statline [data-fact-id]').evaluateAll(nodes=>nodes.map(node=>({id:node.dataset.factId,text:node.textContent})));
+@@ -69,3 +69,15 @@ try{
+   fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',results,errors,missing},null,2)+'\n');
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/new-recruit-model-names-browser-qa.mjs b/v2/new-recruit-model-names-browser-qa.mjs
+index 1a64b49e73d97bef05ec3e26ba874b0b528860ee..798aa8a58182eff19c023562ee6b004bb2e06884 100644
+--- a/v2/new-recruit-model-names-browser-qa.mjs
++++ b/v2/new-recruit-model-names-browser-qa.mjs
+@@ -28,7 +28,7 @@ async function open(page,bookId){
+  await page.goto(origin+'/v2/app.html');await page.locator(`[data-v2-book="${bookId}"]`).click();
+  await page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
+  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++ await page.locator('[data-roster-view]').waitFor();
+ }
+ let browser,completed=false;
+ try{
+@@ -37,7 +37,7 @@ try{
+   const context=await browser.newContext({viewport,serviceWorkers:'block'}),page=await context.newPage();
+   context.setDefaultTimeout(20000);page.on('pageerror',error=>errors.push(error.message));
+   try{
+-   await open(page,c.bookId);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
++   await open(page,c.bookId);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+    await page.locator('[data-roster-action="review-import"]').click();
+    await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent.startsWith('Roster imported.'));
+    const state=await page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
+@@ -57,3 +57,10 @@ try{
+  fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',results,errors,missing},null,2)+'\n');
+  if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/new-recruit-plain-header-browser-qa.mjs b/v2/new-recruit-plain-header-browser-qa.mjs
+index 4be670661defd590ebc55602be0e88b28cfc6841..10ec6aa4a86653a0908b4f91954ce5e54d88870a 100644
+--- a/v2/new-recruit-plain-header-browser-qa.mjs
++++ b/v2/new-recruit-plain-header-browser-qa.mjs
+@@ -31,10 +31,10 @@ async function openRoster(page,bookId='death-guard'){
+  await page.goto(origin+'/v2/app.html');await page.locator('[data-v2-book="'+bookId+'"]').click();
+  await page.waitForFunction(id=>window.ArmyBookAppV2?.roster&&window.ArmyBookAppV2.payload.book.id===id,bookId);
+  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++ await page.locator('[data-roster-view]').waitFor();
+ }
+ async function submit(page,text){
+- await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++ await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await page.locator('[data-roster-action="review-import"]').click();
+  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy=true]'));
+  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
+@@ -70,7 +70,7 @@ try{
+   });
+   context.setDefaultTimeout(20000);page.on('pageerror',error=>errors.push(error.message));
+   try{
+-   await openRoster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++   await openRoster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+    await page.locator('[data-roster-action="review-import"]').click();
+    await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent.startsWith('Roster imported.'));
+    const original=await inspect(page);
+@@ -90,7 +90,7 @@ try{
+    assert(!/Detachment Points limit exceeded/.test(await page.locator('main').innerText()),'No new native DP legality warning');
+    await page.screenshot({path:path.join(out,device+'-owner-v37.25-import.png'),fullPage:true});
+    const deathshroud=imported.state.units.find(unit=>unit.canonicalUnitId==='unit-deathshroud-terminators');assert(deathshroud);
+-   await page.locator('.v2-roster-instance[data-roster-instance-id="'+deathshroud.instanceId+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++   await openCard(page,page.locator('.v2-roster-instance[data-roster-instance-id="'+deathshroud.instanceId+'"]'));
+    const card=page.locator('main .unit-card[data-roster-instance-id="'+deathshroud.instanceId+'"]');
+    assert.match(await card.innerText(),/Icon of Despair/,'The selected Icon is visible on Deathshroud Terminators');
+    await card.getByText(/Icon of Despair/).first().scrollIntoViewIfNeeded();
+@@ -129,3 +129,15 @@ try{
+  fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',results,errors,missing},null,2)+'\n');
+  if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/reviewed-text-coverage-browser-qa.mjs b/v2/reviewed-text-coverage-browser-qa.mjs
+index 71279b7878308c32ea3b59160b7b90e83e84bb0a..4c20eb54a9581be9fae1d39d3bd57558d8afd62d 100644
+--- a/v2/reviewed-text-coverage-browser-qa.mjs
++++ b/v2/reviewed-text-coverage-browser-qa.mjs
+@@ -29,9 +29,9 @@ const server=http.createServer((request,response)=>{
+  response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));
+ });
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const origin='http://127.0.0.1:'+server.address().port;
+-async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
++async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
+ async function imported(page,text){
+- await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
++ await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
+  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+  const confirm=page.locator('[data-roster-action="confirm-replace-roster"]');if(await confirm.isVisible())await confirm.click();
+  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+@@ -39,7 +39,7 @@ async function imported(page,text){
+ }
+ async function inspect(page,c,device,id,mode,stage,wanted){
+  await roster(page);
+- if(mode==='Effective')await page.locator(`[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
++ if(mode==='Effective')await openCard(page,page.locator(`[data-roster-instance-id="${id}"]`));
+  else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator(`main a[data-target-id="roster-unit/${id}"]`).click();}
+  const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`);await card.waitFor();
+  const rows=await card.locator('article[data-attached-rule-id]').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.attachedRuleId,source:n.dataset.sourceInstanceId,title:n.querySelector('h5')?.textContent,text:n.querySelector('[data-attached-rule-text]')?.textContent,content:n.innerText,gained:(()=>{const group=n.closest('[data-gained-source-kind]'),heading=[...(group?.children||[])].find(child=>child.matches('h4,h5,h6,summary'));return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:heading?.textContent||'',sameCard:group?.closest('.unit-card')===n.closest('.unit-card')};})()})));
+@@ -82,3 +82,15 @@ try{
+  assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);completed=true;
+ }finally{fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',results,errors,missing},null,2)+'\n');if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
+ console.log(JSON.stringify({status:'PASS',scenarios:cases.length,devices:2,checks:results.length,evidence:out}));
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/rule-popups-browser-qa.mjs b/v2/rule-popups-browser-qa.mjs
+index 117d9b50a79c536a1156a84e5096a874c965b522..ef6cc05236365d32b31a67bed5a035dceeb87835 100644
+--- a/v2/rule-popups-browser-qa.mjs
++++ b/v2/rule-popups-browser-qa.mjs
+@@ -32,9 +32,9 @@ let browser,page,current,complete=false;
+ async function check(name,fn){try{const detail=await fn();rows.push({...current,name,status:'PASS',detail});}catch(error){rows.push({...current,name,status:'FAIL',error:error.message});if(!observe)throw error;}}
+ async function screenshot(name,locator=page){const file=current.book+'-'+current.width+'-'+name+'.png';await locator.screenshot({path:path.join(out,file),animations:'disabled',style});shots.push({...current,name,file});}
+ async function settle(){await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));}
+-async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
+-async function importText(text){await roster();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();await settle();const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settle();}assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);}
+-async function effective(instanceId){await roster();await page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();const card=page.locator(`main .unit-card[data-roster-instance-id="${instanceId}"]`).first();await card.waitFor();return card;}
++async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
++async function importText(text){await roster();await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();await settle();const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settle();}assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);}
++async function effective(instanceId){await roster();await openCard(page,page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`));const card=page.locator(`main .unit-card[data-roster-instance-id="${instanceId}"]`).first();await card.waitFor();return card;}
+ try{
+  browser=await launchChromium();
+  for(const book of books){
+@@ -203,3 +203,15 @@ finally{
+  if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
+ console.log(JSON.stringify({status:observe?'OBSERVED':'PASS',checks:rows.length,evidence:out}));
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/shell-browser-qa.mjs b/v2/shell-browser-qa.mjs
+index 9d8ac7542f9f348422b9cceb906d2e4334d8b9be..1ce8c191d8d42cbc2e1aeb5d84d74e52be712a56 100644
+--- a/v2/shell-browser-qa.mjs
++++ b/v2/shell-browser-qa.mjs
+@@ -190,12 +190,26 @@ try{
+       }
+       await page.evaluate(()=>window.ArmyBookAppV2.openPersonalGuide());await page.waitForSelector('main [data-roster-nav-instance-id]');
+       await page.evaluate(()=>window.ArmyBookAppV2.openInstance('parsed-unit-1'));await page.waitForSelector('main .unit-card');await geometry(page);
+-      await page.locator('main .ds-related-rules-button').first().click();await page.waitForSelector('dialog.v2-related-dialog[open]');
++      const physicalUrl=page.url();
++      const relatedUnitId=await page.evaluate(()=>window.ArmyBookAppV2.roster.state.units.find(unit=>unit.instanceId==='parsed-unit-1').canonicalUnitId);
++      assert.equal(await page.locator('main .ds-related-rules-button').count(),0,'Roster cards omit the compatible rules button');
++      assert.equal(await page.getByRole('button',{name:'Compatible Stratagems & Enhancements',exact:true,includeHidden:true}).count(),0,'Removed roster label is absent');
++      const fullBookControl=page.getByRole('button',{name:'Full Army Book',exact:true});
++      const bookMenu=page.locator('#navMenu');
++      if(!await fullBookControl.isVisible())await bookMenu.click();
++      await fullBookControl.click();await active(page,book);
++      if(await bookMenu.isVisible()&&await bookMenu.getAttribute('aria-expanded')==='true')await bookMenu.click();
++      await page.locator(`main .unit-card[data-card-id="${relatedUnitId}"] .ds-related-rules-button`).first().click();await page.waitForSelector('dialog.v2-related-dialog[open]');
+       await popupGeometry(page,'dialog.v2-related-dialog[open] .related-rules-dialog');
+       await page.locator('dialog.v2-related-dialog[open] button[data-kind="enhancements"]').click();
+       assert.equal(await page.locator('dialog.v2-related-dialog[open] button[data-kind="enhancements"]').getAttribute('aria-pressed'),'true');
+       await screenshot(page,`shell-${book}-related-${device}`);
+       await page.getByRole('button',{name:'Close compatible rules',exact:true}).click();await page.waitForSelector('dialog.v2-related-dialog[open]',{state:'hidden'});
++      await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await active(page,book);
++      const restoredOwner=page.locator('.v2-roster-instance[data-roster-instance-id="parsed-unit-1"]');
++      assert.equal(await restoredOwner.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++      await restoredOwner.getByRole('button',{name:'Open card',exact:true}).click();await page.waitForSelector('main .unit-card');
++      assert.equal(page.url(),physicalUrl,'Returning from the Full Army Book restores the exact physical URL');
+       assert.equal(new URL(page.url()).searchParams.get('instance'),'parsed-unit-1');
+       const link=page.locator(`main .weapon-name a[data-target-id="${c.weapon}"]`).first();
+       const href=await link.getAttribute('href'),url=new URL(href);urls[book]=href;
+diff --git a/v2/sweep-polish-browser-qa.mjs b/v2/sweep-polish-browser-qa.mjs
+index fe25be00d8c5520b2f01b4a21a0bd25323b5748e..655c754eff80fe104bc8e67ba51ea961a564b330 100644
+--- a/v2/sweep-polish-browser-qa.mjs
++++ b/v2/sweep-polish-browser-qa.mjs
+@@ -82,7 +82,7 @@ async function scan(meta){
+ }
+ async function roster(){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function settled(){await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));}
+ async function fullBookCoverage(){
+@@ -138,7 +138,7 @@ try{
+       }
+       for(const input of fixture.cases.filter(row=>row.bookId===book)){
+         current={book,screen:'import',inputId:input.id};await roster();
+-        await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(input.text);
++        await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(input.text);
+         await page.locator('[data-roster-action="review-import"]').click();await settled();
+         const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settled();}
+         assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./,'Existing positive fixture imports through UI: '+input.id);
+@@ -157,7 +157,7 @@ try{
+           await scan({book,screen:'roster-after-import-and-attachment',width,inputId:input.id});
+           for(const instanceId of instances){
+             await roster();
+-            await page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
++            await openCard(page,page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`));
+             await page.locator(`main .unit-card[data-roster-instance-id="${instanceId}"]`).first().waitFor();
+             await scan({book,screen:'opened-physical-instance',width,inputId:input.id,instanceId,attachment:input.attachment});
+             if(input.id==='character-pair-0039'){
+@@ -217,3 +217,15 @@ try{
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
+ console.log(JSON.stringify({status:'PASS',screens:rows.length,elapsedMs:Date.now()-started,evidence:out}));
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/tyranids-seven-effects-browser-qa.mjs b/v2/tyranids-seven-effects-browser-qa.mjs
+index 21379414ac320768ac5b41bd3179268c048b5437..981416454a6897920500da392daaf3abd96a2ebf 100644
+--- a/v2/tyranids-seven-effects-browser-qa.mjs
++++ b/v2/tyranids-seven-effects-browser-qa.mjs
+@@ -64,10 +64,10 @@ async function geometry(page){
+ }
+ async function roster(page){
+   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await ready(page);
+-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
++  await page.locator('[data-roster-view]').waitFor();
+ }
+ async function imported(page,fixture,text=fixture.text){
+-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
++  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+   await page.locator('[data-roster-action="review-import"]').click();
+   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
+@@ -332,3 +332,10 @@ try{
+     forbidden:forbidden.length,httpErrors:httpErrors.length,requestFailures:requestFailures.length,realNewRecruitExportTested:false,
+     report:path.join(out,'tyranids-seven-effects-browser-report.json')}));
+ }
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}
+diff --git a/v2/wardens-source-binding-browser-qa.mjs b/v2/wardens-source-binding-browser-qa.mjs
+index 13fcadef37da6a360adc7c6b463911b74cedc343..e60ce7aae6f96f75bce64ccffdaa6c04e3ce3803 100644
+--- a/v2/wardens-source-binding-browser-qa.mjs
++++ b/v2/wardens-source-binding-browser-qa.mjs
+@@ -22,10 +22,10 @@ const server=http.createServer((request,response)=>{
+   response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));
+ });
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const origin='http://127.0.0.1:'+server.address().port;
+-async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}
++async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
+ async function inspect(page,id,mode,wanted,stage,device){
+   await roster(page);
+-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
++  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+   else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();}
+   const card=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]');await card.waitFor();
+   const block=card.locator('article[data-attached-rule-id="'+BANNER+'"]');assert.equal(await block.count(),wanted?1:0,device+'/'+mode+'/'+stage+'/'+id);
+@@ -48,7 +48,7 @@ try{
+     try{
+       console.log('RUN '+device+' Wardens public import');
+       await page.goto(origin+'/v2/app.html');await page.locator('[data-v2-book="space-marines"]').click();await page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
+-      await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
++      await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();
+       await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+       assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
+       const units=await page.evaluate(()=>window.ArmyBookAppV2.roster.state.units);
+@@ -74,3 +74,15 @@ try{
+   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+ }
+ console.log(JSON.stringify({status:'PASS',devices:2,checks:results.length,evidence:out}));
++
++async function openCard(page,owner){
++  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
++  await owner.getByRole('button',{name:'Open card',exact:true}).click();
++}
++
++async function openImportForm(page){
++  await page.locator('[data-roster-view]').waitFor();
++  const raw=page.locator('[data-roster-input="raw-text"]');
++  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
++  await raw.waitFor();
++}

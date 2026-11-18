@@ -1,0 +1,47 @@
+{
+  "test": "mfm-release-history-qa",
+  "status": "PASS",
+  "negativeControls": 4,
+  "elapsedMs": 166,
+  "results": [
+    {
+      "case": "selected-current-release",
+      "status": "PASS",
+      "version": "v1.6",
+      "factionSources": 9,
+      "dependencySources": 2,
+      "historicalSources": 20
+    },
+    {
+      "case": "bad-current-pointer",
+      "status": "PASS",
+      "mutationRejected": true,
+      "message": "ENOENT: no such file or directory, open 'E:\\Warhammer\\qa-tmp\\roster-navigation\\warhammer-mfm-release-history-yXPaqV\\work\\mfm\\content\\mfm-v1.999-scoped.identity-registry.json'"
+    },
+    {
+      "case": "deleted-accepted-historical-source",
+      "status": "PASS",
+      "mutationRejected": true,
+      "message": "Historical source identities must equal the accepted baseline plus authenticated archives\n+ actual - expected\n\n  [\n-   'adeptus-mechanicus-mfm-v1.4',\n    'adeptus-mechanicus-mfm-v1.5',\n    'blood-angels-mfm-v1.4',\n    'chaos-space-marines-mfm-v1.4',\n    'chaos-space-marines-mfm-v1.5',\n    'csm-mfm-v1.3',\n"
+    },
+    {
+      "case": "synthetic-next-release-archives-all-eleven-sources",
+      "status": "PASS",
+      "version": "v1.7",
+      "historicalBefore": 20,
+      "historicalAfter": 31
+    },
+    {
+      "case": "unregistered-archive-entry",
+      "status": "PASS",
+      "mutationRejected": true,
+      "message": "Archived MFM source must remain registered exactly once: unregistered-mfm-v1.6\n\n0 !== 1\n"
+    },
+    {
+      "case": "archived-source-still-active",
+      "status": "PASS",
+      "mutationRejected": true,
+      "message": "Archived MFM declaration must be inactive: death-guard-mfm-v1.6\n\ntrue !== false\n"
+    }
+  ]
+}

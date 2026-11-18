@@ -1,0 +1,342 @@
+{
+  "schema": "roster-navigation-browser-recipe/v1",
+  "mode": "measure",
+  "phase": "both",
+  "status": "PASS",
+  "started": "2026-11-17T23:06:51.575Z",
+  "policy": {
+    "freshContext": true,
+    "serviceWorkers": "block",
+    "widths": [
+      390
+    ],
+    "height": 844,
+    "network": "unthrottled local static HTTP",
+    "cpu": "unthrottled",
+    "repetitions": 3,
+    "order": "base/head; head/base; base/head, sequential",
+    "materialRegression": "headMedian/baseMedian > 1.10 AND headMedian-baseMedian > 100 ms (owner clarification 2)",
+    "parallelHeavyRuns": false,
+    "timing": "Node performance.now immediately before actual UI click through exact rendered destination and two animation frames; import/attachment setup and opening Units menu excluded"
+  },
+  "roots": {
+    "base": "E:\\Warhammer\\worktrees\\rule-popups-v1",
+    "head": "E:\\Warhammer\\worktrees\\roster-navigation-v1"
+  },
+  "fixtureRoot": "E:\\Warhammer\\worktrees\\rule-popups-v1",
+  "helperRoot": "E:\\Warhammer\\worktrees\\rule-popups-v1",
+  "identities": {
+    "base": {
+      "sha": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+      "workingTree": "",
+      "diffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "head": {
+      "sha": "8e17f9d39f286d4cbc930539f817b2fb7ef0047d",
+      "workingTree": "",
+      "diffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "fixtures": [
+    {
+      "book": "death-guard",
+      "id": "owner-v37.25-derived-attachments",
+      "source": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+      "owner": true,
+      "textSha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "id": "input-0045",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#input-0045",
+      "textSha256": "3759a58ee4445e1f18691c42b8a2b63fd5ed4a4be227e535ced8dee0b74e58cc"
+    },
+    {
+      "book": "chaos-space-marines",
+      "id": "input-0120",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-3"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#input-0120",
+      "textSha256": "7e39904278f521e1ba801f6442561c1d800f21ec056e55a74006fbc3e1233194"
+    },
+    {
+      "book": "emperors-children",
+      "id": "input-0421",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-3"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#input-0421",
+      "textSha256": "3c1366d4e67ad2dcfd086a96c66e96c94f879aad44a13bc51e9db99209aa2f78"
+    },
+    {
+      "book": "space-marines",
+      "id": "additional-0012",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#additional-0012",
+      "textSha256": "1e8dc55830aa21264e5dc569c99c50e6d29f8e3baf3c8f3b5fbda63c1cbe73c6"
+    },
+    {
+      "book": "blood-angels",
+      "id": "additional-0010",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#additional-0010",
+      "textSha256": "bc292c8d4044686804c108b7f6dd4390f89c348f63f486196ad220c286460194"
+    },
+    {
+      "book": "dark-angels",
+      "id": "additional-0011",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/sweep-polish-v1.json#additional-0011",
+      "textSha256": "ef7fb4d8dbbbae2d2a940b67aefdc9816cc18bf0bf934bbcdcababff332e4f96"
+    },
+    {
+      "book": "tau-empire",
+      "id": "csm-tau-gaps-v1:tau:18",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/csm-tau-recipient-gaps-v1-browser.json#csm-tau-gaps-v1:tau:18",
+      "textSha256": "b1e2b8927fcfd8fb25fca87ce92d9e3dff4c039bec3ff488476b6b8a3996c83b"
+    },
+    {
+      "book": "tyranids",
+      "id": "unit-no-scope:vicious-insight",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "source": "v2/fixtures/unit-recipient-scope-browser.json#unit-no-scope:vicious-insight",
+      "textSha256": "2b2a9d106dcf7fd80624611b214b7cafa12eb00a18f768d2c43a4920fbc84e89"
+    }
+  ],
+  "rows": [
+    {
+      "book": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "version": "base",
+      "width": 390,
+      "repeat": 1,
+      "instanceId": "parsed-unit-8",
+      "guideMs": 68.36740000000009,
+      "cardMs": 316.4731999999999
+    },
+    {
+      "book": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "version": "head",
+      "width": 390,
+      "repeat": 1,
+      "instanceId": "parsed-unit-8",
+      "guideMs": 37.847099999999955,
+      "cardMs": 264.0585000000001
+    },
+    {
+      "book": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "version": "head",
+      "width": 390,
+      "repeat": 2,
+      "instanceId": "parsed-unit-8",
+      "guideMs": 54.04100000000017,
+      "cardMs": 264.53939999999966
+    },
+    {
+      "book": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "version": "base",
+      "width": 390,
+      "repeat": 2,
+      "instanceId": "parsed-unit-8",
+      "guideMs": 36.3661000000011,
+      "cardMs": 266.41979999999967
+    },
+    {
+      "book": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "version": "base",
+      "width": 390,
+      "repeat": 3,
+      "instanceId": "parsed-unit-8",
+      "guideMs": 45.190599999999904,
+      "cardMs": 278.86149999999907
+    },
+    {
+      "book": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "version": "head",
+      "width": 390,
+      "repeat": 3,
+      "instanceId": "parsed-unit-8",
+      "guideMs": 48.60829999999987,
+      "cardMs": 276.1080000000002
+    },
+    {
+      "book": "space-marines",
+      "fixture": "additional-0012",
+      "version": "base",
+      "width": 390,
+      "repeat": 1,
+      "instanceId": "parsed-unit-2",
+      "guideMs": 39.084100000000035,
+      "cardMs": 241.28380000000107
+    },
+    {
+      "book": "space-marines",
+      "fixture": "additional-0012",
+      "version": "head",
+      "width": 390,
+      "repeat": 1,
+      "instanceId": "parsed-unit-2",
+      "guideMs": 56.57389999999941,
+      "cardMs": 194.08109999999942
+    },
+    {
+      "book": "space-marines",
+      "fixture": "additional-0012",
+      "version": "head",
+      "width": 390,
+      "repeat": 2,
+      "instanceId": "parsed-unit-2",
+      "guideMs": 61.48500000000058,
+      "cardMs": 182.4806000000026
+    },
+    {
+      "book": "space-marines",
+      "fixture": "additional-0012",
+      "version": "base",
+      "width": 390,
+      "repeat": 2,
+      "instanceId": "parsed-unit-2",
+      "guideMs": 37.04679999999644,
+      "cardMs": 183.213800000005
+    },
+    {
+      "book": "space-marines",
+      "fixture": "additional-0012",
+      "version": "base",
+      "width": 390,
+      "repeat": 3,
+      "instanceId": "parsed-unit-2",
+      "guideMs": 38.640999999995984,
+      "cardMs": 224.70820000000094
+    },
+    {
+      "book": "space-marines",
+      "fixture": "additional-0012",
+      "version": "head",
+      "width": 390,
+      "repeat": 3,
+      "instanceId": "parsed-unit-2",
+      "guideMs": 45.46140000000014,
+      "cardMs": 193.14500000000407
+    }
+  ],
+  "screenshots": [],
+  "observations": [],
+  "errors": [],
+  "missing": [],
+  "urls": {
+    "base": "http://127.0.0.1:56540/base/v2/app.html",
+    "head": "http://127.0.0.1:56540/head/v2/app.html"
+  },
+  "comparisons": [
+    {
+      "book": "death-guard",
+      "width": 390,
+      "metric": "guideMs",
+      "baseSamples": [
+        68.36740000000009,
+        36.3661000000011,
+        45.190599999999904
+      ],
+      "headSamples": [
+        37.847099999999955,
+        54.04100000000017,
+        48.60829999999987
+      ],
+      "baseMedianMs": 45.190599999999904,
+      "headMedianMs": 48.60829999999987,
+      "deltaMs": 3.417699999999968,
+      "ratio": 1.075628559921753,
+      "materialRegression": false
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "metric": "cardMs",
+      "baseSamples": [
+        316.4731999999999,
+        266.41979999999967,
+        278.86149999999907
+      ],
+      "headSamples": [
+        264.0585000000001,
+        264.53939999999966,
+        276.1080000000002
+      ],
+      "baseMedianMs": 278.86149999999907,
+      "headMedianMs": 264.53939999999966,
+      "deltaMs": -14.32209999999941,
+      "ratio": 0.9486408127332047,
+      "materialRegression": false
+    },
+    {
+      "book": "space-marines",
+      "width": 390,
+      "metric": "guideMs",
+      "baseSamples": [
+        39.084100000000035,
+        37.04679999999644,
+        38.640999999995984
+      ],
+      "headSamples": [
+        56.57389999999941,
+        61.48500000000058,
+        45.46140000000014
+      ],
+      "baseMedianMs": 38.640999999995984,
+      "headMedianMs": 56.57389999999941,
+      "deltaMs": 17.93290000000343,
+      "ratio": 1.464089956264209,
+      "materialRegression": false
+    },
+    {
+      "book": "space-marines",
+      "width": 390,
+      "metric": "cardMs",
+      "baseSamples": [
+        241.28380000000107,
+        183.213800000005,
+        224.70820000000094
+      ],
+      "headSamples": [
+        194.08109999999942,
+        182.4806000000026,
+        193.14500000000407
+      ],
+      "baseMedianMs": 224.70820000000094,
+      "headMedianMs": 193.14500000000407,
+      "deltaMs": -31.56319999999687,
+      "ratio": 0.8595369461372716,
+      "materialRegression": false
+    }
+  ],
+  "finished": "2026-11-17T23:07:35.038Z"
+}

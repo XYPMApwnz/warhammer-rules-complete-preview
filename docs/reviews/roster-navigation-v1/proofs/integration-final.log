@@ -1,0 +1,536 @@
+
+> qa:integration
+> node v2/source-completeness-check.mjs && node tests/integration-qa.mjs && node books/shared/army-book-app-v2/cosmetics-qa.mjs
+
+{"check":"source-completeness","status":"PARTIAL","inventoryStatus":"PROVEN","books":9,"blocks":7288,"clauses":7491,"classifications":{"UNVERIFIED":7052,"BATTLE_DEPENDENT":401,"EXECUTABLE_REQUIRED":19,"CAPABILITY_MISSING":15,"SOURCE_AMBIGUOUS":4},"executableVerified":0,"executableBindingsChecked":19,"semanticCompleteness":"NOT_PROVEN","historicalEvidence":"Retained, not automatically promoted to current semantic PASS"}
+PASS  all nine generated source-reference tables close, including nine deletion controls
+PASS  native registration matches all published owners
+PASS  held Orks is not a runtime registration
+PASS  root uses the single existing V2 entrypoint
+PASS  root has no legacy application implementation
+PASS  death-guard registration has native loaders
+PASS  death-guard native payload owner matches registration
+PASS  death-guard cards and factual manifest are available
+PASS  death-guard physical roster factory exists
+PASS  death-guard published cover exists
+PASS  death-guard legacy UI is absent
+PASS  adeptus-mechanicus registration has native loaders
+PASS  adeptus-mechanicus native payload owner matches registration
+PASS  adeptus-mechanicus cards and factual manifest are available
+PASS  adeptus-mechanicus physical roster factory exists
+PASS  adeptus-mechanicus published cover exists
+PASS  adeptus-mechanicus legacy UI is absent
+PASS  chaos-space-marines registration has native loaders
+PASS  chaos-space-marines native payload owner matches registration
+PASS  chaos-space-marines cards and factual manifest are available
+PASS  chaos-space-marines physical roster factory exists
+PASS  chaos-space-marines published cover exists
+PASS  chaos-space-marines legacy UI is absent
+PASS  emperors-children registration has native loaders
+PASS  emperors-children native payload owner matches registration
+PASS  emperors-children cards and factual manifest are available
+PASS  emperors-children physical roster factory exists
+PASS  emperors-children published cover exists
+PASS  emperors-children legacy UI is absent
+PASS  tyranids registration has native loaders
+PASS  tyranids native payload owner matches registration
+PASS  tyranids cards and factual manifest are available
+PASS  tyranids physical roster factory exists
+PASS  tyranids published cover exists
+PASS  tyranids legacy UI is absent
+PASS  tau-empire registration has native loaders
+PASS  tau-empire native payload owner matches registration
+PASS  tau-empire cards and factual manifest are available
+PASS  tau-empire physical roster factory exists
+PASS  tau-empire published cover exists
+PASS  tau-empire legacy UI is absent
+PASS  space-marines registration has native loaders
+PASS  space-marines native payload owner matches registration
+PASS  space-marines cards and factual manifest are available
+PASS  space-marines physical roster factory exists
+PASS  space-marines published cover exists
+PASS  space-marines legacy UI is absent
+PASS  dark-angels registration has native loaders
+PASS  dark-angels native payload owner matches registration
+PASS  dark-angels cards and factual manifest are available
+PASS  dark-angels physical roster factory exists
+PASS  dark-angels published cover exists
+PASS  dark-angels legacy UI is absent
+PASS  blood-angels registration has native loaders
+PASS  blood-angels native payload owner matches registration
+PASS  blood-angels cards and factual manifest are available
+PASS  blood-angels physical roster factory exists
+PASS  blood-angels published cover exists
+PASS  blood-angels legacy UI is absent
+PASS  native dependency exists v2/boot.mjs
+PASS  native dependency exists books/shared/application-v2/runtime.mjs
+PASS  native dependency exists books/shared/army-book-app-v2/personal.mjs
+PASS  native dependency exists books/shared/roster-v2/effective-instance.mjs
+PASS  native dependency exists books/shared/roster-v2/import-service.mjs
+PASS  native dependency exists books/core-rules/reader/mount.mjs
+PASS  native dependency exists books/core-rules/reader/index.html
+PASS  native dependency exists books/core-rules/reader/search-index.json
+PASS  native dependency exists glossary/v2/generated/index.en.js
+PASS  native dependency exists glossary/v2/generated/index.en.json
+PASS  runtime path exists .nojekyll
+PASS  runtime path exists assets/adeptus-mechanicus-cover-480.webp
+PASS  runtime path exists assets/adeptus-mechanicus-cover-800.webp
+PASS  runtime path exists assets/adeptus-mechanicus-cover-fallback.jpg
+PASS  runtime path exists assets/adeptus-mechanicus-cover-thumb.jpg
+PASS  runtime path exists assets/apple-touch-icon.png
+PASS  runtime path exists assets/core-rules-cover-480.webp
+PASS  runtime path exists assets/core-rules-cover-800.webp
+PASS  runtime path exists assets/core-rules-cover-fallback.jpg
+PASS  runtime path exists assets/core-rules-cover-thumb.jpg
+PASS  runtime path exists assets/death-guard-cover-480.webp
+PASS  runtime path exists assets/death-guard-cover-800.webp
+PASS  runtime path exists assets/death-guard-cover-fallback.jpg
+PASS  runtime path exists assets/death-guard-cover-thumb.jpg
+PASS  runtime path exists assets/death-guard-cover.jpg
+PASS  runtime path exists assets/games-workshop-logo.png
+PASS  runtime path exists assets/icon-192.png
+PASS  runtime path exists assets/icon-512.png
+PASS  runtime path exists assets/icon-maskable-512.png
+PASS  runtime path exists assets/tyranids-cover-480.webp
+PASS  runtime path exists assets/tyranids-cover-800.webp
+PASS  runtime path exists assets/tyranids-cover-fallback.jpg
+PASS  runtime path exists assets/tyranids-cover-thumb.jpg
+PASS  runtime path exists assets/warhammer-40000-logo-optimized.png
+PASS  runtime path exists books/adeptus-mechanicus/assets/mechanicus-cover-800.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/mechanicus-logo.png
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/archaeopter-fusilave.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/archaeopter-stratoraptor.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/archaeopter-transvector.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/belisarius-cawl-background.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/corpuscarii-electro-priests.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/cybernetica-datasmith.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/fulgurite-electro-priests.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/hastarii-exterminators.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/hastarii-fusiliers.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/ironstrider-ballistarii.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/kastelan-robots.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/kataphron-breachers.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/kataphron-destroyers.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/onager-dunecrawler.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/pteraxii-skystalkers.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/pteraxii-sterylizors.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/serberys-raiders.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/serberys-sulphurhounds.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/servitor-battleclade.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/sicarian-infiltrators.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/sicarian-ruststalkers.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/skitarii-marshal.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/skitarii-rangers.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/skitarii-vanguard.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/skorpius-disintegrator.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/skorpius-dunerider.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/sydonian-dragoons-with-radium-jezzails.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/sydonian-dragoons-with-taser-lances.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/sydonian-skatros.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/tech-priest-dominus.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/tech-priest-enginseer.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/tech-priest-manipulus.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/technoarcheologist.webp
+PASS  runtime path exists books/adeptus-mechanicus/assets/unit-images/thulia-ghuld.webp
+PASS  runtime path exists books/adeptus-mechanicus/book.config.json
+PASS  runtime path exists books/adeptus-mechanicus/v2/generated/app-presentation.json
+PASS  runtime path exists books/adeptus-mechanicus/v2/generated/effective.json
+PASS  runtime path exists books/adeptus-mechanicus/v2/generated/roster-runtime.json
+PASS  runtime path exists books/adeptus-mechanicus/v2/model-name-aliases.json
+PASS  runtime path exists books/adeptus-mechanicus/v2/registration.mjs
+PASS  runtime path exists books/adeptus-mechanicus/v2/roster-import-aliases.json
+PASS  runtime path exists books/adeptus-mechanicus/v2/roster-import.mjs
+PASS  runtime path exists books/adeptus-mechanicus/v2/roster-runtime.mjs
+PASS  runtime path exists books/adeptus-mechanicus/v2/theme.css
+PASS  runtime path exists books/blood-angels/assets/blood-angels-cover-480.webp
+PASS  runtime path exists books/blood-angels/assets/blood-angels-cover-800.webp
+PASS  runtime path exists books/blood-angels/book.config.json
+PASS  runtime path exists books/blood-angels/v2/generated/app-presentation.json
+PASS  runtime path exists books/blood-angels/v2/generated/roster-import.json
+PASS  runtime path exists books/blood-angels/v2/registration.mjs
+PASS  runtime path exists books/blood-angels/v2/roster-boot.mjs
+PASS  runtime path exists books/blood-angels/v2/roster-import.mjs
+PASS  runtime path exists books/blood-angels/v2/roster-paid-options.mjs
+PASS  runtime path exists books/blood-angels/v2/roster-runtime.mjs
+PASS  runtime path exists books/blood-angels/v2/rule-contract-schema.mjs
+PASS  runtime path exists books/blood-angels/v2/theme.css
+PASS  runtime path exists books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp
+PASS  runtime path exists books/chaos-space-marines/assets/chaos-space-marines-cover-800.webp
+PASS  runtime path exists books/chaos-space-marines/assets/source-die-1.png
+PASS  runtime path exists books/chaos-space-marines/assets/source-die-2.png
+PASS  runtime path exists books/chaos-space-marines/assets/source-die-3.png
+PASS  runtime path exists books/chaos-space-marines/assets/source-die-4.png
+PASS  runtime path exists books/chaos-space-marines/assets/source-die-5.png
+PASS  runtime path exists books/chaos-space-marines/assets/source-die-6.png
+PASS  runtime path exists books/chaos-space-marines/book.config.json
+PASS  runtime path exists books/chaos-space-marines/v2/generated/app-presentation.json
+PASS  runtime path exists books/chaos-space-marines/v2/generated/roster-import.json
+PASS  runtime path exists books/chaos-space-marines/v2/generated/roster-runtime.json
+PASS  runtime path exists books/chaos-space-marines/v2/model-name-aliases.json
+PASS  runtime path exists books/chaos-space-marines/v2/registration.mjs
+PASS  runtime path exists books/chaos-space-marines/v2/roster-attachment-bindings.json
+PASS  runtime path exists books/chaos-space-marines/v2/roster-attachment-build.mjs
+PASS  runtime path exists books/chaos-space-marines/v2/roster-attachments.mjs
+PASS  runtime path exists books/chaos-space-marines/v2/roster-boot.mjs
+PASS  runtime path exists books/chaos-space-marines/v2/roster-effect-context.mjs
+PASS  runtime path exists books/chaos-space-marines/v2/roster-import-bindings.mjs
+PASS  runtime path exists books/chaos-space-marines/v2/roster-import.mjs
+PASS  runtime path exists books/chaos-space-marines/v2/roster-presentation.mjs
+PASS  runtime path exists books/chaos-space-marines/v2/roster-runtime.mjs
+PASS  runtime path exists books/chaos-space-marines/v2/theme.css
+PASS  runtime path exists books/core-rules/assets/diagrams/BattleShockExamples1.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/BattleShockExamples2.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/BattleShockExamples3.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/BattleShockExamples4.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/BenefitOfCover.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ControllingATerrainObjective.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/DatasheetExample.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/EngagedMonstersVehiclesShooting.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ExampleAction.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/HiddenAndObscuring.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/MakingAChargeMove.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/MakingASurgeMove.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ModelFullyVisible.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ModelVisible.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/NormalFight.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ObjectiveConsolidation.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/OngoingConsolidation.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/OverrunFight.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/PhaseAbility_Fight.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/PhaseAbility_Shoot.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/PileInMoves.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/PlungingFire.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/Solid.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/StartOfFightPhase.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/TakingToTheSkies.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/TerrainAndMovement.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/TerrainAndMovement2.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/TerrainPlacedOnAMat.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/TerrainPlacedOnTheBattlefield.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/UnitFullyVisible.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/UnitVisible.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex10.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex11.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex12.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex2.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex4.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex5.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex6.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex7.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex8.webp
+PASS  runtime path exists books/core-rules/assets/diagrams/ex9.webp
+PASS  runtime path exists books/core-rules/assets/pages/page-04.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-05.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-08.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-09.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-10.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-11.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-12.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-13.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-14.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-15.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-16.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-17.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-18.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-19.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-20.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-21.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-22.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-23.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-24.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-25.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-28.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-29.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-30.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-31.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-32.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-33.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-34.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-35.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-36.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-37.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-38.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-39.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-40.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-41.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-42.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-43.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-46.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-47.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-48.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-49.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-50.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-51.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-52.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-53.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-54.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-55.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-56.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-57.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-58.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-59.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-62.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-63.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-64.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-65.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-66.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-67.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-68.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-69.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-70.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-71.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-72.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-73.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-74.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-75.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-78.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-79.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-80.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-81.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-82.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-83.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-84.jpg
+PASS  runtime path exists books/core-rules/assets/pages/page-85.jpg
+PASS  runtime path exists books/core-rules/reader/actions.html
+PASS  runtime path exists books/core-rules/reader/aircraft.html
+PASS  runtime path exists books/core-rules/reader/app.js
+PASS  runtime path exists books/core-rules/reader/attached-units.html
+PASS  runtime path exists books/core-rules/reader/attack-sequence.html
+PASS  runtime path exists books/core-rules/reader/battle-round-overview.html
+PASS  runtime path exists books/core-rules/reader/charge-phase.html
+PASS  runtime path exists books/core-rules/reader/command-phase.html
+PASS  runtime path exists books/core-rules/reader/core-abilities.html
+PASS  runtime path exists books/core-rules/reader/core-concepts.html
+PASS  runtime path exists books/core-rules/reader/datasheets.html
+PASS  runtime path exists books/core-rules/reader/fight-phase.html
+PASS  runtime path exists books/core-rules/reader/flying-surging.html
+PASS  runtime path exists books/core-rules/reader/index.html
+PASS  runtime path exists books/core-rules/reader/introduction.html
+PASS  runtime path exists books/core-rules/reader/making-attacks.html
+PASS  runtime path exists books/core-rules/reader/monsters-vehicles.html
+PASS  runtime path exists books/core-rules/reader/mount.mjs
+PASS  runtime path exists books/core-rules/reader/movement-phase.html
+PASS  runtime path exists books/core-rules/reader/moving.html
+PASS  runtime path exists books/core-rules/reader/muster-armies.html
+PASS  runtime path exists books/core-rules/reader/objectives.html
+PASS  runtime path exists books/core-rules/reader/other-concepts.html
+PASS  runtime path exists books/core-rules/reader/other-rules-abilities.html
+PASS  runtime path exists books/core-rules/reader/search-index.json
+PASS  runtime path exists books/core-rules/reader/shooting-phase.html
+PASS  runtime path exists books/core-rules/reader/stratagems.html
+PASS  runtime path exists books/core-rules/reader/strategic-reserves.html
+PASS  runtime path exists books/core-rules/reader/styles.css
+PASS  runtime path exists books/core-rules/reader/terrain.html
+PASS  runtime path exists books/core-rules/reader/transports.html
+PASS  runtime path exists books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json
+PASS  runtime path exists books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json
+PASS  runtime path exists books/dark-angels/assets/dark-angels-cover-480.webp
+PASS  runtime path exists books/dark-angels/assets/dark-angels-cover-800.webp
+PASS  runtime path exists books/dark-angels/book.config.json
+PASS  runtime path exists books/dark-angels/v2/generated/app-presentation.json
+PASS  runtime path exists books/dark-angels/v2/generated/roster-import.json
+PASS  runtime path exists books/dark-angels/v2/physical-chapter.mjs
+PASS  runtime path exists books/dark-angels/v2/registration.mjs
+PASS  runtime path exists books/dark-angels/v2/roster-boot.mjs
+PASS  runtime path exists books/dark-angels/v2/roster-import.mjs
+PASS  runtime path exists books/dark-angels/v2/roster-paid-options.mjs
+PASS  runtime path exists books/dark-angels/v2/roster-runtime.mjs
+PASS  runtime path exists books/dark-angels/v2/rule-contract-declarations.mjs
+PASS  runtime path exists books/dark-angels/v2/rule-contract-schema.mjs
+PASS  runtime path exists books/dark-angels/v2/theme.css
+PASS  runtime path exists books/death-guard/assets/icon-v4.svg
+PASS  runtime path exists books/death-guard/assets/unit-images/beasts-of-nurgle.png
+PASS  runtime path exists books/death-guard/assets/unit-images/biologus-putrifier.png
+PASS  runtime path exists books/death-guard/assets/unit-images/blightlord-terminators.png
+PASS  runtime path exists books/death-guard/assets/unit-images/chaos-land-raider.png
+PASS  runtime path exists books/death-guard/assets/unit-images/chaos-predator-annihilator.png
+PASS  runtime path exists books/death-guard/assets/unit-images/chaos-rhino.png
+PASS  runtime path exists books/death-guard/assets/unit-images/chaos-spawn.png
+PASS  runtime path exists books/death-guard/assets/unit-images/deathshroud-terminators.png
+PASS  runtime path exists books/death-guard/assets/unit-images/defiler.png
+PASS  runtime path exists books/death-guard/assets/unit-images/foetid-bloat-drone.png
+PASS  runtime path exists books/death-guard/assets/unit-images/foul-blightspawn.png
+PASS  runtime path exists books/death-guard/assets/unit-images/great-unclean-one.png
+PASS  runtime path exists books/death-guard/assets/unit-images/helbrute.png
+PASS  runtime path exists books/death-guard/assets/unit-images/icon-bearer.png
+PASS  runtime path exists books/death-guard/assets/unit-images/lord-of-contagion.png
+PASS  runtime path exists books/death-guard/assets/unit-images/lord-of-poxes.png
+PASS  runtime path exists books/death-guard/assets/unit-images/lord-of-virulence.png
+PASS  runtime path exists books/death-guard/assets/unit-images/malignant-plaguecaster.png
+PASS  runtime path exists books/death-guard/assets/unit-images/miasmic-malignifier.png
+PASS  runtime path exists books/death-guard/assets/unit-images/mortarion.png
+PASS  runtime path exists books/death-guard/assets/unit-images/myphitic-blight-hauler.png
+PASS  runtime path exists books/death-guard/assets/unit-images/noxious-blightbringer.png
+PASS  runtime path exists books/death-guard/assets/unit-images/nurglings.png
+PASS  runtime path exists books/death-guard/assets/unit-images/plague-drones.png
+PASS  runtime path exists books/death-guard/assets/unit-images/plague-marines.png
+PASS  runtime path exists books/death-guard/assets/unit-images/plague-surgeon.png
+PASS  runtime path exists books/death-guard/assets/unit-images/plaguebearers.png
+PASS  runtime path exists books/death-guard/assets/unit-images/plagueburst-crawler.png
+PASS  runtime path exists books/death-guard/assets/unit-images/poxwalkers.png
+PASS  runtime path exists books/death-guard/assets/unit-images/rotigus.png
+PASS  runtime path exists books/death-guard/assets/unit-images/tallyman.png
+PASS  runtime path exists books/death-guard/assets/unit-images/typhus.png
+PASS  runtime path exists books/death-guard/book.config.json
+PASS  runtime path exists books/death-guard/v2/generated/app-presentation.json
+PASS  runtime path exists books/death-guard/v2/generated/rule-contract-effective.json
+PASS  runtime path exists books/death-guard/v2/instrument-selections.mjs
+PASS  runtime path exists books/death-guard/v2/registration.mjs
+PASS  runtime path exists books/death-guard/v2/roster-boot.mjs
+PASS  runtime path exists books/death-guard/v2/roster-import-bindings.mjs
+PASS  runtime path exists books/death-guard/v2/rule-contract-schema.mjs
+PASS  runtime path exists books/death-guard/v2/rule-contract-state-fields.mjs
+PASS  runtime path exists books/emperors-children/assets/emperors-children-cover-480.webp
+PASS  runtime path exists books/emperors-children/assets/emperors-children-cover-800.webp
+PASS  runtime path exists books/emperors-children/book.config.json
+PASS  runtime path exists books/emperors-children/v2/generated/app-presentation.json
+PASS  runtime path exists books/emperors-children/v2/generated/roster-attachments.json
+PASS  runtime path exists books/emperors-children/v2/generated/roster-import.json
+PASS  runtime path exists books/emperors-children/v2/registration.mjs
+PASS  runtime path exists books/emperors-children/v2/roster-attachments.mjs
+PASS  runtime path exists books/emperors-children/v2/roster-boot.mjs
+PASS  runtime path exists books/emperors-children/v2/roster-equipment-context.mjs
+PASS  runtime path exists books/emperors-children/v2/roster-import.mjs
+PASS  runtime path exists books/emperors-children/v2/rule-contract-choice-context.mjs
+PASS  runtime path exists books/emperors-children/v2/rule-contract-formation-context.mjs
+PASS  runtime path exists books/emperors-children/v2/rule-contract-permission-declarations.mjs
+PASS  runtime path exists books/emperors-children/v2/rule-contract-schema.mjs
+PASS  runtime path exists books/emperors-children/v2/theme.css
+PASS  runtime path exists books/shared/application-v2/glossary.css
+PASS  runtime path exists books/shared/application-v2/glossary.mjs
+PASS  runtime path exists books/shared/application-v2/home.css
+PASS  runtime path exists books/shared/application-v2/home.mjs
+PASS  runtime path exists books/shared/application-v2/registry.mjs
+PASS  runtime path exists books/shared/application-v2/routes.mjs
+PASS  runtime path exists books/shared/application-v2/runtime.mjs
+PASS  runtime path exists books/shared/application-v2/shell.css
+PASS  runtime path exists books/shared/army-book-app-v2/ability-presentation.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/book-v1.css
+PASS  runtime path exists books/shared/army-book-app-v2/book-v1.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/cosmetics.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/datasheet-v1-layout.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/datasheet-v1.css
+PASS  runtime path exists books/shared/army-book-app-v2/datasheet-v1.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/effective-datasheet-presentation.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/equipment-reference.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/formed-unit-presentation.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/global-glossary-content.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/global-glossary.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/glossary-v1.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/glossary.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/lifecycle.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/navigation-v1-controller.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/navigation-v1-targets.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/navigation-v1.css
+PASS  runtime path exists books/shared/army-book-app-v2/navigation-v1.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/normal-datasheet-bindings.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/personal.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/popup-v1.css
+PASS  runtime path exists books/shared/army-book-app-v2/popup-v1.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/reference-contract.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/reference-v1.css
+PASS  runtime path exists books/shared/army-book-app-v2/reference-v1.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/related-v1.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/roster-labels.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/roster.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/route-context.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/rule-popup.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/rule-term-links.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/runtime.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/source-table.mjs
+PASS  runtime path exists books/shared/army-book-app-v2/styles.css
+PASS  runtime path exists books/shared/datasheet-system.css
+PASS  runtime path exists books/shared/keyword-values.mjs
+PASS  runtime path exists books/shared/offline-status.js
+PASS  runtime path exists books/shared/roster-v2/attached-rule-text.mjs
+PASS  runtime path exists books/shared/roster-v2/attachment-service.mjs
+PASS  runtime path exists books/shared/roster-v2/compatibility-context.mjs
+PASS  runtime path exists books/shared/roster-v2/compatibility-feasibility.mjs
+PASS  runtime path exists books/shared/roster-v2/condition-binding.mjs
+PASS  runtime path exists books/shared/roster-v2/condition-computations.mjs
+PASS  runtime path exists books/shared/roster-v2/condition-context.mjs
+PASS  runtime path exists books/shared/roster-v2/conditional-policy.mjs
+PASS  runtime path exists books/shared/roster-v2/context.mjs
+PASS  runtime path exists books/shared/roster-v2/effective-instance.mjs
+PASS  runtime path exists books/shared/roster-v2/effects.mjs
+PASS  runtime path exists books/shared/roster-v2/enhancement-bearers.mjs
+PASS  runtime path exists books/shared/roster-v2/export-faction.mjs
+PASS  runtime path exists books/shared/roster-v2/import-service.mjs
+PASS  runtime path exists books/shared/roster-v2/import.mjs
+PASS  runtime path exists books/shared/roster-v2/keyword-scopes.mjs
+PASS  runtime path exists books/shared/roster-v2/keywords.mjs
+PASS  runtime path exists books/shared/roster-v2/model-name-aliases.mjs
+PASS  runtime path exists books/shared/roster-v2/parser.mjs
+PASS  runtime path exists books/shared/roster-v2/physical-choice.mjs
+PASS  runtime path exists books/shared/roster-v2/physical-condition-context.mjs
+PASS  runtime path exists books/shared/roster-v2/physical-static-model.mjs
+PASS  runtime path exists books/shared/roster-v2/recipient-execution.mjs
+PASS  runtime path exists books/shared/roster-v2/related.mjs
+PASS  runtime path exists books/shared/roster-v2/runtime.mjs
+PASS  runtime path exists books/shared/roster-v2/singleton-model-import.mjs
+PASS  runtime path exists books/shared/roster-v2/text-roster-facts.mjs
+PASS  runtime path exists books/shared/rule-contract-v2/conditions-build.mjs
+PASS  runtime path exists books/shared/rule-contract-v2/conditions.mjs
+PASS  runtime path exists books/shared/rule-contract-v2/finalize-recipients.mjs
+PASS  runtime path exists books/shared/rule-contract-v2/recipients.mjs
+PASS  runtime path exists books/shared/rule-contract-v2/schema.mjs
+PASS  runtime path exists books/shared/rule-facts.js
+PASS  runtime path exists books/shared/source-refs-v2/source-catalog.json
+PASS  runtime path exists books/shared/source-refs-v2/source-catalog.mjs
+PASS  runtime path exists books/shared/source-refs-v2/source-refs.mjs
+PASS  runtime path exists books/shared/stratagem-presentation.mjs
+PASS  runtime path exists books/shared/styles/offline-status.css
+PASS  runtime path exists books/shared/unit-art.css
+PASS  runtime path exists books/space-marines/assets/space-marines-cover-480.webp
+PASS  runtime path exists books/space-marines/assets/space-marines-cover-800.webp
+PASS  runtime path exists books/space-marines/book.config.json
+PASS  runtime path exists books/space-marines/v2/generated/app-presentation.json
+PASS  runtime path exists books/space-marines/v2/generated/roster-import.json
+PASS  runtime path exists books/space-marines/v2/registration.mjs
+PASS  runtime path exists books/space-marines/v2/roster-boot.mjs
+PASS  runtime path exists books/space-marines/v2/roster-import.mjs
+PASS  runtime path exists books/space-marines/v2/roster-paid-options.mjs
+PASS  runtime path exists books/space-marines/v2/roster-runtime.mjs
+PASS  runtime path exists books/space-marines/v2/roster-static-model-bindings.mjs
+PASS  runtime path exists books/space-marines/v2/rule-contract-schema.mjs
+PASS  runtime path exists books/space-marines/v2/theme.css
+PASS  runtime path exists books/tau-empire/assets/tau-empire-cover-800.webp
+PASS  runtime path exists books/tau-empire/book.config.json
+PASS  runtime path exists books/tau-empire/v2/generated/app-presentation.json
+PASS  runtime path exists books/tau-empire/v2/generated/roster-import.json
+PASS  runtime path exists books/tau-empire/v2/registration.mjs
+PASS  runtime path exists books/tau-empire/v2/roster-boot.mjs
+PASS  runtime path exists books/tau-empire/v2/roster-import.mjs
+PASS  runtime path exists books/tau-empire/v2/roster-source-choices.mjs
+PASS  runtime path exists books/tau-empire/v2/roster-weapon-choices.mjs
+PASS  runtime path exists books/tau-empire/v2/rule-contract-declarations.mjs
+PASS  runtime path exists books/tau-empire/v2/rule-contract-schema.mjs
+PASS  runtime path exists books/tau-empire/v2/theme.css
+PASS  runtime path exists books/tyranids/book.config.json
+PASS  runtime path exists books/tyranids/v2/generated/app-presentation.json
+PASS  runtime path exists books/tyranids/v2/generated/roster-runtime.json
+PASS  runtime path exists books/tyranids/v2/registration.mjs
+PASS  runtime path exists books/tyranids/v2/roster-boot.mjs
+PASS  runtime path exists books/tyranids/v2/roster-import.mjs
+PASS  runtime path exists books/tyranids/v2/roster-source-choices.mjs
+PASS  runtime path exists books/tyranids/v2/theme.css
+PASS  runtime path exists glossary-return.js
+PASS  runtime path exists glossary/generated/cache-revision.js
+PASS  runtime path exists glossary/v2/generated/index.en.js
+PASS  runtime path exists glossary/v2/generated/index.en.json
+PASS  runtime path exists glossary/v2/runtime/glossary-v2-runtime.js
+PASS  runtime path exists index.html
+PASS  runtime path exists manifest.webmanifest
+PASS  runtime path exists service-worker.js
+PASS  runtime path exists v2/app.html
+PASS  runtime path exists v2/army-books.mjs
+PASS  runtime path exists v2/boot.mjs
+PASS  Core definition data is retained
+PASS  legacy guides and held Orks are not published
+PASS  mandatory shell is non-empty
+PASS  mandatory shell paths resolve
+PASS  shared datasheet CSS retained books/shared/datasheet-system.css
+PASS  shared datasheet CSS retained books/shared/unit-art.css
+PASS  service worker uses generated revision
+529/529 native V2 integration checks passed.
+{"status":"PASS","controls":["warlord is a roster-wide display decision","duplicate heading removed, exact restriction and weapon text retained","genuine bullet paragraphs are not a redundant rule heading","only the exact uniquely bound named source supplies a caption","adeptus-mechanicus datasheet-archaeopter-fusilave:section:1 exact keyword source caption","adeptus-mechanicus datasheet-archaeopter-stratoraptor:section:1 exact keyword source caption","adeptus-mechanicus datasheet-archaeopter-transvector:section:1 exact keyword source caption","adeptus-mechanicus datasheet-cybernetica-datasmith:section:1 exact keyword source caption","adeptus-mechanicus import notices retain player warnings without diagnostic jargon","blood-angels import notices retain player warnings without diagnostic jargon","dark-angels import notices retain player warnings without diagnostic jargon","chaos-space-marines import notices retain player warnings without diagnostic jargon","death-guard import notices retain player warnings without diagnostic jargon","emperors-children import notices retain player warnings without diagnostic jargon","space-marines import notices retain player warnings without diagnostic jargon","tau-empire datasheet-ethereal:section:1 exact keyword source caption","tau-empire datasheet-tiger-shark:section:1 exact keyword source caption","tau-empire import notices retain player warnings without diagnostic jargon","tyranids import notices retain player warnings without diagnostic jargon"],"counts":{"blood-angels":{"enhancements":40,"duplicateHeadings":40,"separateRestrictions":40},"dark-angels":{"enhancements":40,"duplicateHeadings":40,"separateRestrictions":40},"space-marines":{"enhancements":56,"duplicateHeadings":56,"separateRestrictions":56}}}

@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "rule": "ability-sm-c4061e257e81492f",
+  "physicalSources": 2,
+  "independentFormations": 2,
+  "cases": [
+    "attached-character-only",
+    "exact-source-model-excluded",
+    "physical-source-attribution",
+    "repeated-unit-isolation",
+    "detach",
+    "reattach",
+    "source-reattach-to-other-bodyguard",
+    "snapshot-reload",
+    "recompute-idempotence",
+    "unknown-aggregate-source-withheld",
+    "multiple-source-model-rows-withheld",
+    "canonical-provenance-preserved",
+    "same-profile-exact-scope-exclusion"
+  ],
+  "mutations": [
+    "source-model-not-excluded",
+    "non-character-models-included",
+    "physical-source-unit-gate-removed",
+    "wrong-fnp-threshold",
+    "wrong-physical-recipient-binding"
+  ],
+  "sourceProofNegativeControls": 3,
+  "nativeMfmScenario": "PASS",
+  "nativeRoles": [
+    "LEADER",
+    "SUPPORT"
+  ],
+  "atomicNativeRejections": 2,
+  "realNewRecruitExportTested": false,
+  "browserVerified": false
+}

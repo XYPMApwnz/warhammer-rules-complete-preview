@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "measuredCommit": "8e17f9d39f286d4cbc930539f817b2fb7ef0047d",
+  "finalCommit": "880a98dbb9dd743f548fc1ed750093912628b570",
+  "changedFiles": [
+    "tools/pages-runtime-manifest.json"
+  ],
+  "manifestJsonDeepEqual": true,
+  "runtimeAndGameplayBytesUnchanged": true,
+  "reason": "Canonical two-space JSON serialization for the existing CRLF/LF packaging invariant. No manifest entry/value, published asset, test, generated fact or gameplay code changed."
+}

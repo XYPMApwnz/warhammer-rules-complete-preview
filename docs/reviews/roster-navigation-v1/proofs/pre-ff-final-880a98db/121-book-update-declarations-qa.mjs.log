@@ -1,0 +1,526 @@
+{
+  "status": "PASS",
+  "books": [
+    {
+      "book": "space-marines",
+      "status": "PASS",
+      "script": "qa:sm",
+      "changedMfmScript": "qa:mfm-current",
+      "reportArtifact": "books/space-marines/v2/generated/app-presentation.json"
+    },
+    {
+      "book": "blood-angels",
+      "status": "PASS",
+      "script": "qa:ba",
+      "changedMfmScript": "qa:mfm-current",
+      "reportArtifact": "books/blood-angels/v2/generated/app-presentation.json"
+    },
+    {
+      "book": "dark-angels",
+      "status": "PASS",
+      "script": "qa:da",
+      "changedMfmScript": "qa:mfm-current",
+      "reportArtifact": "books/dark-angels/v2/generated/app-presentation.json"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "status": "PASS",
+      "script": "qa:am",
+      "changedMfmScript": "qa:mfm-current",
+      "reportArtifact": "books/adeptus-mechanicus/v2/generated/app-presentation.json"
+    },
+    {
+      "book": "chaos-space-marines",
+      "status": "PASS",
+      "script": "qa:csm",
+      "changedMfmScript": "qa:mfm-current",
+      "reportArtifact": "books/chaos-space-marines/v2/generated/app-presentation.json"
+    },
+    {
+      "book": "death-guard",
+      "status": "PASS",
+      "script": "qa:dg",
+      "changedMfmScript": "qa:mfm-current",
+      "reportArtifact": "books/death-guard/v2/generated/app-presentation.json"
+    },
+    {
+      "book": "tau-empire",
+      "status": "PASS",
+      "script": "qa:tau",
+      "changedMfmScript": "qa:mfm-current",
+      "reportArtifact": "books/tau-empire/v2/generated/app-presentation.json"
+    },
+    {
+      "book": "tyranids",
+      "status": "PASS",
+      "script": "qa:tyranids",
+      "changedMfmScript": "qa:mfm-current",
+      "reportArtifact": "books/tyranids/v2/generated/app-presentation.json"
+    },
+    {
+      "book": "emperors-children",
+      "status": "PASS",
+      "script": "qa:ec",
+      "changedMfmScript": "qa:mfm-current",
+      "reportArtifact": "books/emperors-children/v2/generated/app-presentation.json"
+    }
+  ],
+  "negativeControls": 78,
+  "mutations": [
+    {
+      "book": "space-marines",
+      "control": "missing-trigger-map",
+      "field": "passport.qa.onInputChange",
+      "status": "REJECTED"
+    },
+    {
+      "book": "space-marines",
+      "control": "missing-current-MFM-trigger",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "space-marines",
+      "control": "unknown-trigger",
+      "field": "passport.qa.onInputChange.unregisteredInput",
+      "status": "REJECTED"
+    },
+    {
+      "book": "space-marines",
+      "control": "unknown-trigger-script",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "space-marines",
+      "control": "unknown-update-field",
+      "field": "passport.update.unregisteredField",
+      "status": "REJECTED"
+    },
+    {
+      "book": "space-marines",
+      "control": "missing-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "space-marines",
+      "control": "undeclared-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "blood-angels",
+      "control": "missing-trigger-map",
+      "field": "passport.qa.onInputChange",
+      "status": "REJECTED"
+    },
+    {
+      "book": "blood-angels",
+      "control": "missing-current-MFM-trigger",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "blood-angels",
+      "control": "unknown-trigger",
+      "field": "passport.qa.onInputChange.unregisteredInput",
+      "status": "REJECTED"
+    },
+    {
+      "book": "blood-angels",
+      "control": "unknown-trigger-script",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "blood-angels",
+      "control": "unknown-update-field",
+      "field": "passport.update.unregisteredField",
+      "status": "REJECTED"
+    },
+    {
+      "book": "blood-angels",
+      "control": "missing-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "blood-angels",
+      "control": "undeclared-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "dark-angels",
+      "control": "missing-trigger-map",
+      "field": "passport.qa.onInputChange",
+      "status": "REJECTED"
+    },
+    {
+      "book": "dark-angels",
+      "control": "missing-current-MFM-trigger",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "dark-angels",
+      "control": "unknown-trigger",
+      "field": "passport.qa.onInputChange.unregisteredInput",
+      "status": "REJECTED"
+    },
+    {
+      "book": "dark-angels",
+      "control": "unknown-trigger-script",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "dark-angels",
+      "control": "unknown-update-field",
+      "field": "passport.update.unregisteredField",
+      "status": "REJECTED"
+    },
+    {
+      "book": "dark-angels",
+      "control": "missing-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "dark-angels",
+      "control": "undeclared-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "control": "missing-trigger-map",
+      "field": "passport.qa.onInputChange",
+      "status": "REJECTED"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "control": "missing-current-MFM-trigger",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "control": "unknown-trigger",
+      "field": "passport.qa.onInputChange.unregisteredInput",
+      "status": "REJECTED"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "control": "unknown-trigger-script",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "control": "unknown-update-field",
+      "field": "passport.update.unregisteredField",
+      "status": "REJECTED"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "control": "missing-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "control": "undeclared-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "chaos-space-marines",
+      "control": "missing-trigger-map",
+      "field": "passport.qa.onInputChange",
+      "status": "REJECTED"
+    },
+    {
+      "book": "chaos-space-marines",
+      "control": "missing-current-MFM-trigger",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "chaos-space-marines",
+      "control": "unknown-trigger",
+      "field": "passport.qa.onInputChange.unregisteredInput",
+      "status": "REJECTED"
+    },
+    {
+      "book": "chaos-space-marines",
+      "control": "unknown-trigger-script",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "chaos-space-marines",
+      "control": "unknown-update-field",
+      "field": "passport.update.unregisteredField",
+      "status": "REJECTED"
+    },
+    {
+      "book": "chaos-space-marines",
+      "control": "missing-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "chaos-space-marines",
+      "control": "undeclared-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "death-guard",
+      "control": "missing-trigger-map",
+      "field": "passport.qa.onInputChange",
+      "status": "REJECTED"
+    },
+    {
+      "book": "death-guard",
+      "control": "missing-current-MFM-trigger",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "death-guard",
+      "control": "unknown-trigger",
+      "field": "passport.qa.onInputChange.unregisteredInput",
+      "status": "REJECTED"
+    },
+    {
+      "book": "death-guard",
+      "control": "unknown-trigger-script",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "death-guard",
+      "control": "unknown-update-field",
+      "field": "passport.update.unregisteredField",
+      "status": "REJECTED"
+    },
+    {
+      "book": "death-guard",
+      "control": "missing-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "death-guard",
+      "control": "undeclared-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tau-empire",
+      "control": "missing-trigger-map",
+      "field": "passport.qa.onInputChange",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tau-empire",
+      "control": "missing-current-MFM-trigger",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tau-empire",
+      "control": "unknown-trigger",
+      "field": "passport.qa.onInputChange.unregisteredInput",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tau-empire",
+      "control": "unknown-trigger-script",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tau-empire",
+      "control": "unknown-update-field",
+      "field": "passport.update.unregisteredField",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tau-empire",
+      "control": "missing-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tau-empire",
+      "control": "undeclared-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tyranids",
+      "control": "missing-trigger-map",
+      "field": "passport.qa.onInputChange",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tyranids",
+      "control": "missing-current-MFM-trigger",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tyranids",
+      "control": "unknown-trigger",
+      "field": "passport.qa.onInputChange.unregisteredInput",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tyranids",
+      "control": "unknown-trigger-script",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tyranids",
+      "control": "unknown-update-field",
+      "field": "passport.update.unregisteredField",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tyranids",
+      "control": "missing-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "tyranids",
+      "control": "undeclared-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "emperors-children",
+      "control": "missing-trigger-map",
+      "field": "passport.qa.onInputChange",
+      "status": "REJECTED"
+    },
+    {
+      "book": "emperors-children",
+      "control": "missing-current-MFM-trigger",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "emperors-children",
+      "control": "unknown-trigger",
+      "field": "passport.qa.onInputChange.unregisteredInput",
+      "status": "REJECTED"
+    },
+    {
+      "book": "emperors-children",
+      "control": "unknown-trigger-script",
+      "field": "passport.qa.onInputChange.currentMfmRelease",
+      "status": "REJECTED"
+    },
+    {
+      "book": "emperors-children",
+      "control": "unknown-update-field",
+      "field": "passport.update.unregisteredField",
+      "status": "REJECTED"
+    },
+    {
+      "book": "emperors-children",
+      "control": "missing-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "book": "emperors-children",
+      "control": "undeclared-report-artifact",
+      "field": "passport.update.reportArtifact",
+      "status": "REJECTED"
+    },
+    {
+      "control": "empty-input-list",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unknown-input-field",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unknown-input-kind",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unknown-output-group",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unknown-producer",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unsafe-input-path ../outside.json",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unsafe-input-path /books/outside.json",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unsafe-input-path C:/outside.json",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unsafe-input-path books\\outside.json",
+      "status": "REJECTED"
+    },
+    {
+      "control": "nonexistent-input-path",
+      "status": "REJECTED"
+    },
+    {
+      "control": "nonexistent-input-prefix",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unbounded-rebuild",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unknown-rebuild-scope",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unknown-rebuild-field",
+      "status": "REJECTED"
+    },
+    {
+      "control": "unknown-operation",
+      "status": "REJECTED"
+    }
+  ],
+  "selection": {
+    "dg": 9,
+    "smBooks": [
+      "space-marines",
+      "blood-angels",
+      "dark-angels"
+    ],
+    "allBooks": 9,
+    "coreReaderOnCoreChange": true,
+    "mfmBooks": 9,
+    "fallbackReason": "Uncovered changed inputs; running the full declared plan: unregistered-input-for-book-update.json"
+  },
+  "unchangedGate": {
+    "steps": 67,
+    "files": 147,
+    "sha256": "19db00e4817d116a3fc9307f68df4b11b164e1c147153642563baebaabd75880"
+  }
+}

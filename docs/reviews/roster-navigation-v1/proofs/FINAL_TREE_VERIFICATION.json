@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "finalSha": "5bc1b038437fcac86966f87371760da94d7e9b38",
+  "preffSha": "880a98dbb9dd743f548fc1ed750093912628b570",
+  "workingTree": "",
+  "diffSincePreff": [
+    "v2/card-gained-rules-browser-qa.mjs"
+  ],
+  "stat": "v2/card-gained-rules-browser-qa.mjs | 6 ++++--\n 1 file changed, 4 insertions(+), 2 deletions(-)",
+  "commits": [
+    "5bc1b038437fcac86966f87371760da94d7e9b38 test: verify visible desktop roster section navigation",
+    "880a98dbb9dd743f548fc1ed750093912628b570 chore: keep runtime dependency manifest serialization canonical",
+    "8e17f9d39f286d4cbc930539f817b2fb7ef0047d fix: share accepted MFM prices and complete roster navigation controls",
+    "f3806e812aae0e305446def138a2f259289e49c8 test: preserve roster facts and saved snapshots across navigation changes",
+    "ced098f09a86d953f7c72fd75878270dc9b41326 feat: simplify roster navigation and load Stratagems on demand",
+    "7fa1dc25e635ceb7e5744888191e33208222d927 feat: add shared physical roster names and Core reference selection"
+  ]
+}

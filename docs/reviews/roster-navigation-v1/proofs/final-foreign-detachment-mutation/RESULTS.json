@@ -1,0 +1,263 @@
+{
+  "schema": "roster-navigation-browser-qa/v1",
+  "status": "FAIL",
+  "root": "E:\\Warhammer\\worktrees\\roster-navigation-v1",
+  "widths": [
+    390
+  ],
+  "mutation": "foreign-detachment",
+  "fixtures": [
+    {
+      "book": "death-guard",
+      "id": "owner-v37.25-two-explicit-attachments",
+      "owner": true,
+      "textSha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "id": "input-0045",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "textSha256": "3759a58ee4445e1f18691c42b8a2b63fd5ed4a4be227e535ced8dee0b74e58cc"
+    },
+    {
+      "book": "chaos-space-marines",
+      "id": "input-0120",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-3"
+      },
+      "textSha256": "7e39904278f521e1ba801f6442561c1d800f21ec056e55a74006fbc3e1233194"
+    },
+    {
+      "book": "emperors-children",
+      "id": "input-0421",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-3"
+      },
+      "textSha256": "3c1366d4e67ad2dcfd086a96c66e96c94f879aad44a13bc51e9db99209aa2f78"
+    },
+    {
+      "book": "space-marines",
+      "id": "additional-0012",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "textSha256": "1e8dc55830aa21264e5dc569c99c50e6d29f8e3baf3c8f3b5fbda63c1cbe73c6"
+    },
+    {
+      "book": "blood-angels",
+      "id": "additional-0010",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "textSha256": "bc292c8d4044686804c108b7f6dd4390f89c348f63f486196ad220c286460194"
+    },
+    {
+      "book": "dark-angels",
+      "id": "additional-0011",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "textSha256": "ef7fb4d8dbbbae2d2a940b67aefdc9816cc18bf0bf934bbcdcababff332e4f96"
+    },
+    {
+      "book": "tau-empire",
+      "id": "csm-tau-gaps-v1:tau:18",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "textSha256": "b1e2b8927fcfd8fb25fca87ce92d9e3dff4c039bec3ff488476b6b8a3996c83b"
+    },
+    {
+      "book": "tyranids",
+      "id": "unit-no-scope:vicious-insight",
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      },
+      "textSha256": "2b2a9d106dcf7fd80624611b214b7cafa12eb00a18f768d2c43a4920fbc84e89"
+    }
+  ],
+  "checks": [
+    {
+      "book": "death-guard",
+      "width": 390,
+      "name": "accepted-c477-saved-roster-opens-without-migration",
+      "status": "PASS",
+      "detail": {
+        "baseCommit": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+        "bytes": 18012,
+        "units": 8
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "name": "completed-import-folds-and-reopens-with-original-text",
+      "status": "PASS",
+      "detail": {
+        "units": 8
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "name": "single-physical-character-warlord-control-and-exact-roundtrip",
+      "status": "PASS",
+      "detail": {
+        "chosen": "parsed-unit-2",
+        "eligible": [
+          "parsed-unit-1",
+          "parsed-unit-2",
+          "parsed-unit-3",
+          "parsed-unit-4"
+        ],
+        "keys": [
+          "schema",
+          "rosterId",
+          "bookId",
+          "detachments",
+          "detachmentIds",
+          "warlordInstanceId",
+          "units",
+          "attachments"
+        ],
+        "snapshotSha256": "b8b06f027022224ee14727cc93022055e29237c3412dc8821e9f6962d10568bf"
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "name": "failed-and-pending-import-text-remains-open-without-state-loss",
+      "status": "PASS",
+      "detail": {
+        "draftRetained": true,
+        "replacementDeclined": true
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "name": "menu-physical-groups-names-crown-and-bottom-actions",
+      "status": "PASS",
+      "detail": {
+        "entries": [
+          {
+            "id": "parsed-unit-3",
+            "text": "Malignant Plaguecaster"
+          },
+          {
+            "id": "parsed-unit-4",
+            "text": "Noxious Blightbringer"
+          },
+          {
+            "id": "parsed-unit-6",
+            "text": "Plague Marines (10 models)"
+          },
+          {
+            "id": "parsed-unit-1",
+            "text": "Biologus Putrifier"
+          },
+          {
+            "id": "parsed-unit-8",
+            "text": "Deathshroud Terminators"
+          },
+          {
+            "id": "parsed-unit-2",
+            "text": "Lord of Contagion"
+          },
+          {
+            "id": "parsed-unit-5",
+            "text": "Plague Marines (5 models)"
+          },
+          {
+            "id": "parsed-unit-7",
+            "text": "Poxwalkers"
+          }
+        ],
+        "groups": [
+          {
+            "id": "parsed-unit-6",
+            "members": [
+              {
+                "id": "parsed-unit-6",
+                "role": "bodyguard"
+              },
+              {
+                "id": "parsed-unit-1",
+                "role": "support"
+              }
+            ]
+          },
+          {
+            "id": "parsed-unit-8",
+            "members": [
+              {
+                "id": "parsed-unit-8",
+                "role": "bodyguard"
+              },
+              {
+                "id": "parsed-unit-2",
+                "role": "leader"
+              }
+            ]
+          }
+        ],
+        "warlord": "parsed-unit-2"
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "name": "mobile-units-enter-escape-focus",
+      "status": "PASS",
+      "detail": {
+        "enterOpens": true,
+        "escapeReturnsFocus": true
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "name": "lazy-stratagem-first-open-and-repeat-cache",
+      "status": "PASS",
+      "detail": {
+        "instanceId": "parsed-unit-8",
+        "calls": [
+          "parsed-unit-8"
+        ]
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "name": "physical-card-stratagems-parsed-unit-1",
+      "status": "FAIL",
+      "error": "Exact native Detachment Stratagem rows; no foreign Detachment or Core additions\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      applicability: 'CONDITIONAL',\n      detachmentId: 'detachment-shamblerot-vectorium',\n      id: 'detachment-shamblerot-vectorium:stratagem:5'\n...\n      applicability: 'CONDITIONAL',\n+     detachmentId: 'detachment-tallyband-summoners',\n+     id: 'detachment-tallyband-summoners:stratagem:1'\n+   },\n+   {\n+     applicability: 'CONDITIONAL',\n      detachmentId: 'detachment-virulent-vectorium',\n      id: 'detachment-virulent-vectorium:stratagem:2'\n    },\n    {\n      applicability: 'CONDITIONAL',\n"
+    }
+  ],
+  "observations": [],
+  "screenshots": [
+    {
+      "book": "death-guard",
+      "width": 390,
+      "name": "guide-menu-selected-warlord",
+      "file": "death-guard-390-guide-menu-selected-warlord.png"
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "failure": {
+    "message": "Exact native Detachment Stratagem rows; no foreign Detachment or Core additions\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      applicability: 'CONDITIONAL',\n      detachmentId: 'detachment-shamblerot-vectorium',\n      id: 'detachment-shamblerot-vectorium:stratagem:5'\n...\n      applicability: 'CONDITIONAL',\n+     detachmentId: 'detachment-tallyband-summoners',\n+     id: 'detachment-tallyband-summoners:stratagem:1'\n+   },\n+   {\n+     applicability: 'CONDITIONAL',\n      detachmentId: 'detachment-virulent-vectorium',\n      id: 'detachment-virulent-vectorium:stratagem:2'\n    },\n    {\n      applicability: 'CONDITIONAL',\n",
+    "stack": "AssertionError [ERR_ASSERTION]: Exact native Detachment Stratagem rows; no foreign Detachment or Core additions\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      applicability: 'CONDITIONAL',\n      detachmentId: 'detachment-shamblerot-vectorium',\n      id: 'detachment-shamblerot-vectorium:stratagem:5'\n...\n      applicability: 'CONDITIONAL',\n+     detachmentId: 'detachment-tallyband-summoners',\n+     id: 'detachment-tallyband-summoners:stratagem:1'\n+   },\n+   {\n+     applicability: 'CONDITIONAL',\n      detachmentId: 'detachment-virulent-vectorium',\n      id: 'detachment-virulent-vectorium:stratagem:2'\n    },\n    {\n      applicability: 'CONDITIONAL',\n\n    at inspectStratagems (file:///E:/Warhammer/worktrees/roster-navigation-v1/v2/roster-navigation-browser-qa.mjs:131:10)\n    at async check (file:///E:/Warhammer/worktrees/roster-navigation-v1/v2/roster-navigation-browser-qa.mjs:59:52)\n    at async file:///E:/Warhammer/worktrees/roster-navigation-v1/v2/roster-navigation-browser-qa.mjs:267:9"
+  },
+  "finished": "2026-11-17T23:12:59.342Z"
+}

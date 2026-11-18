@@ -1,0 +1,152 @@
+{
+  "status": "PASS",
+  "books": 6,
+  "results": [
+    {
+      "book": "death-guard",
+      "attachmentsBefore": 1,
+      "attachmentsAfter": 1,
+      "identicalSnapshot": "PASS",
+      "effectsAndRecompute": "PASS",
+      "changedInputConfirmation": "PASS",
+      "confirmedReplacement": "PASS",
+      "invalidImportAtomic": "PASS",
+      "explicitDetach": "PASS",
+      "emptySnapshot": "PASS",
+      "wholeGraphValidation": "PASS"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "attachmentsBefore": 1,
+      "attachmentsAfter": 1,
+      "identicalSnapshot": "PASS",
+      "effectsAndRecompute": "PASS",
+      "changedInputConfirmation": "PASS",
+      "confirmedReplacement": "PASS",
+      "invalidImportAtomic": "PASS",
+      "explicitDetach": "PASS",
+      "emptySnapshot": "PASS",
+      "wholeGraphValidation": "PASS"
+    },
+    {
+      "book": "chaos-space-marines",
+      "attachmentsBefore": 1,
+      "attachmentsAfter": 1,
+      "identicalSnapshot": "PASS",
+      "effectsAndRecompute": "PASS",
+      "changedInputConfirmation": "PASS",
+      "confirmedReplacement": "PASS",
+      "invalidImportAtomic": "PASS",
+      "explicitDetach": "PASS",
+      "emptySnapshot": "PASS",
+      "wholeGraphValidation": "PASS"
+    },
+    {
+      "book": "emperors-children",
+      "attachmentsBefore": 1,
+      "attachmentsAfter": 1,
+      "identicalSnapshot": "PASS",
+      "effectsAndRecompute": "PASS",
+      "changedInputConfirmation": "PASS",
+      "confirmedReplacement": "PASS",
+      "invalidImportAtomic": "PASS",
+      "explicitDetach": "PASS",
+      "emptySnapshot": "PASS",
+      "wholeGraphValidation": "PASS"
+    },
+    {
+      "book": "tyranids",
+      "attachmentsBefore": 1,
+      "attachmentsAfter": 1,
+      "identicalSnapshot": "PASS",
+      "effectsAndRecompute": "PASS",
+      "changedInputConfirmation": "PASS",
+      "confirmedReplacement": "PASS",
+      "invalidImportAtomic": "PASS",
+      "explicitDetach": "PASS",
+      "emptySnapshot": "PASS",
+      "wholeGraphValidation": "PASS"
+    },
+    {
+      "book": "tau-empire",
+      "attachmentsBefore": 1,
+      "attachmentsAfter": 1,
+      "identicalSnapshot": "PASS",
+      "effectsAndRecompute": "PASS",
+      "changedInputConfirmation": "PASS",
+      "confirmedReplacement": "PASS",
+      "invalidImportAtomic": "PASS",
+      "explicitDetach": "PASS",
+      "emptySnapshot": "PASS",
+      "wholeGraphValidation": "PASS"
+    }
+  ],
+  "sourceChoiceControls": [
+    {
+      "name": "Prototype",
+      "selectedReimport": "PASS",
+      "clearedReimport": "PASS",
+      "exactProjectionAndProvenance": "PASS"
+    },
+    {
+      "name": "Student",
+      "selectedReimport": "PASS",
+      "clearedReimport": "PASS",
+      "exactProjectionAndProvenance": "PASS"
+    }
+  ],
+  "parsedPhysicalChangeControls": [
+    {
+      "id": "reordered-identical-datasheets",
+      "status": "PASS"
+    },
+    {
+      "id": "deleted-unit",
+      "status": "PASS"
+    },
+    {
+      "id": "changed-loadout",
+      "status": "PASS"
+    },
+    {
+      "id": "changed-model-count",
+      "status": "PASS"
+    },
+    {
+      "id": "changed-detachment",
+      "status": "PASS"
+    }
+  ],
+  "changedInputControls": [
+    "reordered-equal-datasheets",
+    "removed-unit",
+    "model-count",
+    "loadout",
+    "detachment",
+    "input-namespace",
+    "book-namespace"
+  ],
+  "mutationControls": [
+    {
+      "id": "drop-current-attachments",
+      "status": "DETECTED"
+    },
+    {
+      "id": "weak-instance-only-identity",
+      "status": "DETECTED"
+    },
+    {
+      "id": "forced-replacement",
+      "status": "DETECTED"
+    },
+    {
+      "id": "resurrect-empty-list",
+      "status": "DETECTED"
+    },
+    {
+      "id": "skip-full-graph-load",
+      "status": "DETECTED"
+    }
+  ],
+  "realNewRecruitExportTested": false
+}

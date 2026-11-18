@@ -1,0 +1,25 @@
+RUN desktop tyranids unit-genestealers
+PASS desktop unit-genestealers
+RUN desktop tyranids unit-trygon
+PASS desktop unit-trygon
+RUN desktop space-marines unit-sm-59162946fee84360
+PASS desktop unit-sm-59162946fee84360
+RUN desktop space-marines unit-sm-bc409233f3fe4dc1
+PASS desktop unit-sm-bc409233f3fe4dc1
+RUN desktop tau-empire unit-strike-team
+PASS desktop unit-strike-team
+RUN desktop tau-empire unit-crisis-sunforge-battlesuits
+PASS desktop unit-crisis-sunforge-battlesuits
+RUN mobile tyranids unit-genestealers
+PASS mobile unit-genestealers
+RUN mobile tyranids unit-trygon
+PASS mobile unit-trygon
+RUN mobile space-marines unit-sm-59162946fee84360
+PASS mobile unit-sm-59162946fee84360
+RUN mobile space-marines unit-sm-bc409233f3fe4dc1
+PASS mobile unit-sm-bc409233f3fe4dc1
+RUN mobile tau-empire unit-strike-team
+PASS mobile unit-strike-team
+RUN mobile tau-empire unit-crisis-sunforge-battlesuits
+PASS mobile unit-crisis-sunforge-battlesuits
+{"status":"PASS","scenarios":6,"devices":2,"checks":12,"evidence":"E:\\Warhammer\\qa-evidence\\roster-navigation-v1-2026-11-17\\pre-ff-final-880a98db\\160-related-panel-browser-qa.mjs-evidence\\wh-related-panel-browser-dX0UQ5"}

@@ -1,0 +1,16 @@
+file:///E:/Warhammer/worktrees/roster-navigation-v1/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs:153
+      page.on('console',message=>{if(message.type()==='error')failBrowser(new Error(message.text()));});});
+                                                                          ^
+
+Error: Failed to load resource: the server responded with a status of 404 (Not Found)
+    at _Page.<anonymous> (file:///E:/Warhammer/worktrees/roster-navigation-v1/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs:153:75)
+    at _Page._callHandler (C:\Users\denis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright-core\lib\coreBundle.js:10746:33)
+    at _Page.emit (C:\Users\denis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright-core\lib\coreBundle.js:10736:16)
+    at Proxy.<anonymous> (C:\Users\denis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright-core\lib\coreBundle.js:61846:17)
+    at Proxy._callHandler (C:\Users\denis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright-core\lib\coreBundle.js:10746:33)
+    at Proxy.emit (C:\Users\denis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright-core\lib\coreBundle.js:10736:16)
+    at Connection.dispatch (C:\Users\denis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright-core\lib\coreBundle.js:63525:25)
+    at Immediate.<anonymous> (C:\Users\denis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright-core\lib\coreBundle.js:63586:85)
+    at process.processImmediate (node:internal/timers:504:21)
+
+Node.js v24.18.0

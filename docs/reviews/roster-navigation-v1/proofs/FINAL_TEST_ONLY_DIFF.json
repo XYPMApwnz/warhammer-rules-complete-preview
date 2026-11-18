@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "check": "post-preff-test-only-boundary",
+  "runSha": "880a98dbb9dd743f548fc1ed750093912628b570",
+  "finalSha": "5bc1b038437fcac86966f87371760da94d7e9b38",
+  "changedFiles": [
+    "v2/card-gained-rules-browser-qa.mjs"
+  ],
+  "stat": "v2/card-gained-rules-browser-qa.mjs | 6 ++++--\n 1 file changed, 4 insertions(+), 2 deletions(-)",
+  "runtimeAndGameplayBytesUnchanged": true,
+  "reason": "Only the approved desktop local-menu visibility assertion/interaction changed; all other source bytes and all factual expectations are unchanged.",
+  "audit": "FINAL_EXISTING_TESTS.json"
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checks": 22,
+  "names": [
+    "MODEL grant keeps exact canonical identity, title, parameters, profile scope, and provenance",
+    "exact physical Enhancement owner isolates duplicate canonical units and profiles",
+    "UNIT PHYSICAL grants leave intrinsic MODEL abilities and unrelated duplicates unchanged",
+    "UNIT FORMED grants cover the actual formed unit without rewriting any MODEL ability",
+    "FORMED UNIT scope uses standalone UNIT when source does not require attachment",
+    "SOURCE_FORMED_MODELS covers bearer and actually led profiles, not unrelated physical copies",
+    "MODEL recipients can explicitly exclude the bearer while selecting only led profiles",
+    "SOURCE_MODEL gives an imported singleton its physical MODEL identity",
+    "LEADERS_OF_SOURCE changes only the actual attached leading profile",
+    "roster UNIT grants apply typed selectors without implementing global MODEL targeting",
+    "PHYSICAL UNIT target identity remains component-relative inside an actual formation",
+    "PHYSICAL UNIT target keyword cannot be borrowed from a different formed-unit component",
+    "physical UNIT owner selector cannot be borrowed from an attached Bodyguard",
+    "source parameters remain distinct for separate canonical ability references and owners",
+    "identical display titles do not collapse canonical identities or physical parameter values",
+    "detach and reattach reconstruct scoped MODEL and UNIT grants from immutable state",
+    "same grant from independent clauses does not duplicate canonical results",
+    "effective datasheet API preserves separate canonical UNIT and MODEL ability grants",
+    "deterministic rebuild preserves ability and provenance output under independent roster order changes",
+    "unknown canonical ability references, parameters, and invalid parameter types fail closed",
+    "MODEL/UNIT binding confusion and missing UNIT scope fail validation",
+    "missing provenance evidence or battle predicates cannot authorize roster ability execution"
+  ]
+}

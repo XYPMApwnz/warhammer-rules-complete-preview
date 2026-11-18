@@ -1,0 +1,5 @@
+RUN desktop Wardens public import
+PASS desktop Wardens
+RUN mobile Wardens public import
+PASS mobile Wardens
+{"status":"PASS","devices":2,"checks":16,"evidence":"E:\\Warhammer\\qa-evidence\\roster-navigation-v1-2026-11-17\\pre-ff-final-880a98db\\162-wardens-source-binding-browser-qa.mjs-evidence\\wh-wardens-source-browser-l9qoda"}
