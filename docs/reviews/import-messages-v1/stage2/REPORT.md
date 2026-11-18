@@ -1,6 +1,6 @@
 # Import messages — stage 2 implementation review
 
-**Status: FINAL FULL QA PENDING.** The owner has authorized one additional full pre-FF on the exact candidate below and requested publication before that run so independent review can begin. This is not READY_FOR_REVIEW acceptance yet. The preview stays on the accepted base until final PASS.
+**Status: READY_FOR_REVIEW.** The owner-authorized final full pre-FF passed on the exact candidate below: **181/181 PASS, 4,913,222 ms / 81.89 minutes**. The source branch is unchanged. The preview was switched only after PASS, to a package byte-identical to the one verified in that run.
 
 - Candidate: `4060074ae0c7888571367f99f7cb9cc375c167ba`, `codex/import-messages-v1`.
 - Base / unchanged GitHub source: `5bc1b038437fcac86966f87371760da94d7e9b38`.
@@ -81,7 +81,7 @@ The missing-marker mutation must target a book/path using the base fallback. An 
 
 Machine evidence: [targeted acceptance](repair-targeted-acceptance.json), [native A/B](native-ab.json), [exact capture comparison](native-comparison.json), [147-file byte inventory](generated-bytes.json), [startup paths](STARTUP_PATHS_AB.json), [Tau caption trace](TAU_PROFILE_CAPTION_TRACE.json).
 
-## First full pre-FF and pending final run
+## Full pre-FF runs and final acceptance
 
 The single initial run on `9e00487a956b1f00416b4ad9fb743d948eb2d68a` completed **179 PASS / 2 FAIL**, **6,433,676 ms / 107.23 minutes**. Generated rebuild passed **67 steps / 147 outputs**; all other jobs except the two below passed, including PWA, cold offline, source enrollment and ingestion.
 
@@ -90,7 +90,7 @@ The single initial run on `9e00487a956b1f00416b4ad9fb743d948eb2d68a` completed *
 | BA roster QA | Old approved points-warning sentence still asserted | Exact approved new sentence + old absence; entire test rerun PASS |
 | New import-messages browser QA | Prototype Save rerender defect at 390/1440 | Display-only original-reference trace fix; same full 126-check suite rerun PASS |
 
-The owner explicitly authorized **one additional full pre-FF on `4060074ae0c7888571367f99f7cb9cc375c167ba`** and requested these branches pushed first. That run has not started at the time of this evidence commit. Final results and acceptance will be appended after it ends. The preview will not switch before PASS.
+The owner explicitly authorized **one additional full pre-FF on `4060074ae0c7888571367f99f7cb9cc375c167ba`** and requested these branches pushed first. The final run then completed **181 PASS / 0 FAIL in 81.89 minutes**. HEAD remained the exact authorized SHA and the working tree stayed clean. The job identity/order is identical to the first 181-job run. No code or tests changed after the final run. See [final acceptance](FINAL_ACCEPTANCE.json), [all job results](FINAL_PREFLIGHT.json), and [job timing table](FINAL_PREFLIGHT_JOBS.md).
 
 [Diff from the first full-run SHA](REPAIR_FROM_PREFLIGHT.patch), [stat](REPAIR_FROM_PREFLIGHT.stat.txt): seven files—one display module, four QA files, and two normal runtime integrity/stamp outputs. No game data or operation changed. [First full-run summary](FIRST_FULL_PREFLIGHT.json).
 
@@ -102,7 +102,7 @@ The owner explicitly authorized **one additional full pre-FF on `4060074ae0c7888
 | `glossary/generated/cache-revision.js` | Derived revision, byte/integrity metadata | Existing cache producer accounts for changed display code |
 | `v2/app.html` | Derived version stamps | Same existing producer; no startup/precache policy change |
 
-The first tested package had 453 files. The repaired final package and full producer gate will be checked in the newly authorized run. No RAW Wahapedia, release candidate, new runtime file, book binding or catalog definition is added to publication.
+The final producer gate passed all **67 steps / 147 outputs**, byte-identical, in **661,620 ms / 11.03 minutes**. The final runtime package passed packaging QA, contains **453 files / 282,955,545 published bytes**, and has content SHA-256 `6f70b55e6b390f5e218729b9acfb0ba2ca694f7ec3436b9bb62236b20243a6f7`. The separately rebuilt preview package and its normal `--check` result match that tested package exactly. No RAW Wahapedia, release candidate, new runtime file, book binding or catalog definition is added to publication.
 
 ## Diagnostic limits kept separate
 
@@ -110,4 +110,15 @@ Early intermediate browser results collected while runtime revision files were s
 
 All 17 changed old tests retain exact game values, IDs, scope, recipients, source text, limits, mutations and saved-state comparisons. Only approved copy/location observations and the explicitly approved equivalent navigation checks are migrated. Full diffs are attached.
 
-No FF, force push, source/main/release/Pages change or preview switch is authorized by this report. Temporary task files remain while the approved final gate is pending. The evidence branch is for review only and must not be merged.
+No FF, force push, source/main/release/Pages change was performed. The evidence branch is for review only and must not be merged.
+
+## Reviewed preview and cleanup
+
+The owner-authorized preview switch occurred after the final full PASS. The previous server stopped cooperatively; the replacement uses the same HTTP/HTTPS ports, responder, gzip behavior and existing TLS files. No firewall/network/TLS setting changed.
+
+- PC: http://localhost:8765/
+- LAN: http://192.168.1.124:8765/
+- Existing HTTPS: https://192.168.1.124:8443/
+- Preview PID: `39200`; package SHA: `4060074ae0c7888571367f99f7cb9cc375c167ba`. Both HTTP addresses returned 200 with the exact `X-Preview-Package` header. [Response checks](PREVIEW_HTTP_CHECK.json).
+
+The exact task temporary root `E:/Warhammer/qa-tmp/import-messages` was retained: automatic command review rejected its guarded native recursive removal as **blocked by policy**, before execution. No alternative deletion was attempted. The live package remains under the separate `preview-v1` root and its server remains running. [Cleanup record](CLEANUP.json).

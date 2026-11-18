@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+const root='E:/Warhammer/worktrees/import-messages-v1',dir='E:/Warhammer/qa-evidence/import-messages-v1-2026-11-18/stage2',sha='4060074ae0c7888571367f99f7cb9cc375c167ba';
+const read=f=>JSON.parse(fs.readFileSync(path.join(dir,f),'utf8'));
+const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
+const gate=read('FINAL_REPAIRED_FULL_RUN.json'),queue=read('pre-ff-repaired-final/RESULTS.json'),first=read('pre-ff-final/RESULTS.json'),ab=read('ab-repaired/RESULTS.json');
+assert.equal(gate.status,'PASS');assert.equal(gate.sha,sha);assert.equal(gate.headAfter,sha);assert.equal(gate.treeAfter,'');assert.equal(gate.jobs,181);assert.equal(gate.passed,181);assert.equal(gate.failed,0);
+assert.deepEqual(queue.results.map(r=>r.id),first.results.map(r=>r.id));assert(queue.results.every(r=>r.status==='PASS'&&r.exitCode===0));assert.equal(ab.sha,sha);assert.equal(ab.status,'PASS');assert.equal(ab.gameplayDifferences,0);assert.equal(ab.cases,199);assert.equal(ab.states,507);
+assert.equal(git('rev-parse','HEAD'),sha);assert.equal(git('status','--porcelain'),'');
+const rebuild=queue.results.find(r=>r.id==='books/shared/tools/check-generated-rebuild.mjs'),log=fs.readFileSync(rebuild.log,'utf8');assert(log.includes('67/67 BUILD'));assert(log.includes('PASS 147 files'));
+const temporary='E:/Warhammer/qa-tmp/preview-v1',out=path.join(temporary,'package-'+sha.slice(0,8));assert(!fs.existsSync(out),'Never overwrite an existing preview package');
+for(const extra of [[],['--check']])execFileSync(process.execPath,['tools/pages-runtime-package.mjs','--source',root,'--out',out,...extra],{cwd:root,stdio:'inherit',env:{...process.env,PYTHONDONTWRITEBYTECODE:'1',PYTHONUTF8:'1'}});
+const manifest=JSON.parse(fs.readFileSync(path.join(out,'PAGES_RUNTIME_MANIFEST.json'),'utf8')),tested=read('pre-ff-repaired-final/RUNTIME_MANIFEST.json');assert.deepEqual(manifest,tested);
+const acceptance={status:'PASS',sha,base:'5bc1b038437fcac86966f87371760da94d7e9b38',headAfter:git('rev-parse','HEAD'),treeAfter:git('status','--porcelain'),jobs:181,passed:181,failed:0,elapsedMs:gate.elapsedMs,jobOrderMatchesFirstRun:true,generated:{steps:67,files:147,byteDifferences:0,elapsedMs:rebuild.elapsedMs},ab:{books:9,rosters:199,states:507,differences:0},runtime:{root:out,fileCount:manifest.fileCount,contentSha256:manifest.contentSha256,cacheRevision:manifest.cacheRevision,precacheUrls:manifest.precacheUrls,equalsTestedPackage:true},at:new Date().toISOString()};
+assert.equal(acceptance.headAfter,sha);assert.equal(acceptance.treeAfter,'');fs.writeFileSync(path.join(dir,'FINAL_ACCEPTANCE.json'),JSON.stringify(acceptance,null,2)+'\n');
+console.log(JSON.stringify(acceptance));

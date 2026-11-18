@@ -2,7 +2,7 @@
 
 Scope: player copy, its accessible label/location, and the two explicitly approved equivalent navigation observations. Numerical/gameplay expectations, import admission, native fixtures, old saved snapshots, recipients, ownership, limits, rule text, CP and mutations are unchanged. All 17 modified test files pass `node --check`; this is syntax verification only. The final repaired-candidate browser/BA/DA/navigation results are recorded in REPAIR_REPORT.md and repair-targeted/ACCEPTANCE.json. Some pre-existing off-queue harness failures are distinguished in the report.
 
-Full diff: `APPROVED_OLD_TESTS.patch`. Edit-level before/after text: `../STAGE2_OLD_TEST_EDITS.json`. Base line numbers below are 5bc1b038.
+Full diff: `APPROVED_OLD_TESTS.patch`. Every source edit is included in the attached full diff. Base line numbers below are 5bc1b038.
 
 | Test:base line | Was | Now | Why / preserved facts |
 |---|---|---|---|
@@ -12,7 +12,7 @@ Full diff: `APPROVED_OLD_TESTS.patch`. Edit-level before/after text: `../STAGE2_
 | v2/new-recruit-plain-header-browser-qa.mjs:104–106 | Old recognized/header phrases | Exact new primary message; opens collapsed Details and checks exact same 3/5-line examples; old phrases absent | Existing owner bytes, all nine derived imports and exact rejected native/persisted bytes remain |
 | v2/card-display-browser-qa.mjs:179 | Diagnostic selector Matching source entry | Choose a match for; old accessible prefix absent | No change to READY or any exact card/effect/recipient assertion |
 | books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs:164,170,198 | Old Source selection accessible prefix/status | Approved title-for-unit aria and exact Choice saved.; old phrases absent | Exact option values, source identities, independent owners, persistence, rejected-action unchanged state, reset and read-only context retained |
-| books/tau-empire/v2/app-browser-qa.mjs:96,257 | Source selection saved.; Restore a V2 roster backup | Exact approved Choice saved...; Restore a roster backup, old status/label absent | Exact independent Student/Prototype choice values, limits/effects and backup roundtrip retained |
+| books/tau-empire/v2/app-browser-qa.mjs:96,257 | Source selection saved.; Restore a V2 roster backup | Exact approved Choice saved.; Restore a roster backup, old status/label absent | Exact independent Student/Prototype choice values, limits/effects and backup roundtrip retained |
 | books/death-guard/v2/auto-import-browser-qa.mjs:160 | Restore a V2 roster backup accessible label | Restore a roster backup; old label absent | Exact native snapshot unchanged |
 | books/death-guard/v2/roster-browser-qa.mjs:289 | Same old restore label | New exact label, old absent | Same durable typed state/effects and effective parity |
 | books/death-guard/v2/roster-multiple-detachments-browser-qa.mjs:140 | Same old restore label | New exact label, old absent | Exact saved multi-Detachment snapshot |
