@@ -1,0 +1,1524 @@
+{
+  "status": "COMPLETED_179_PASS_2_FAIL",
+  "sha": "9e00487a956b1f00416b4ad9fb743d948eb2d68a",
+  "elapsedMs": 6433675,
+  "passed": 179,
+  "failed": 2,
+  "results": [
+    {
+      "id": "git diff --check",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "status": "PASS",
+      "elapsedMs": 62
+    },
+    {
+      "id": "tests/qa-temp-qa.mjs",
+      "args": [
+        "tests/qa-temp-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 5147
+    },
+    {
+      "id": "tests/book-passport-qa.mjs",
+      "args": [
+        "tests/book-passport-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1203
+    },
+    {
+      "id": "tests/keyword-access-qa.mjs",
+      "args": [
+        "tests/keyword-access-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 2261
+    },
+    {
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "args": [
+        "v2/executable-detachment-source-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 3152
+    },
+    {
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 145
+    },
+    {
+      "id": "v2/sweep-polish-qa.mjs",
+      "args": [
+        "v2/sweep-polish-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 75
+    },
+    {
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 66
+    },
+    {
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-links-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 125
+    },
+    {
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/equipment-reference-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 69
+    },
+    {
+      "id": "books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/roster-navigation-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 593
+    },
+    {
+      "id": "books/shared/army-book-app-v2/import-messages-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/import-messages-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 72
+    },
+    {
+      "id": "tests/official-updates-qa.mjs",
+      "args": [
+        "tests/official-updates-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 82
+    },
+    {
+      "id": "tests/official-update-books-qa.mjs",
+      "args": [
+        "tests/official-update-books-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 162
+    },
+    {
+      "id": "tests/official-update-report-qa.mjs",
+      "args": [
+        "tests/official-update-report-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 74
+    },
+    {
+      "id": "tests/official-update-integration-qa.mjs",
+      "args": [
+        "tests/official-update-integration-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 26253
+    },
+    {
+      "id": "tests/official-effect-review-qa.mjs",
+      "args": [
+        "tests/official-effect-review-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 109
+    },
+    {
+      "id": "tests/current-gw-contract-qa.mjs",
+      "args": [
+        "tests/current-gw-contract-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 72
+    },
+    {
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-candidate-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 18244
+    },
+    {
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-isolation-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 55887
+    },
+    {
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 23710
+    },
+    {
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 3348
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "status": "PASS",
+      "elapsedMs": 483
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "status": "PASS",
+      "elapsedMs": 9171
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "status": "PASS",
+      "elapsedMs": 457
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=adeptus-mechanicus",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "elapsedMs": 6189
+    },
+    {
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 49334
+    },
+    {
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/roster-qa.mjs"
+      ],
+      "status": "FAIL",
+      "elapsedMs": 179304
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "elapsedMs": 25589
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "elapsedMs": 13145
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "elapsedMs": 4488
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=blood-angels",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "elapsedMs": 36221
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "elapsedMs": 342
+    },
+    {
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1115
+    },
+    {
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 16475
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1575
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "status": "PASS",
+      "elapsedMs": 11270
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "status": "PASS",
+      "elapsedMs": 3217
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=chaos-space-marines",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "elapsedMs": 13109
+    },
+    {
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 49800
+    },
+    {
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 263295
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "elapsedMs": 122253
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "elapsedMs": 33437
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "elapsedMs": 17478
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=dark-angels",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "elapsedMs": 37616
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "elapsedMs": 362
+    },
+    {
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "args": [
+        "books/death-guard/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 7732
+    },
+    {
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "args": [
+        "books/death-guard/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 169
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=death-guard"
+      ],
+      "status": "PASS",
+      "elapsedMs": 372
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=death-guard"
+      ],
+      "status": "PASS",
+      "elapsedMs": 9335
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=death-guard",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "elapsedMs": 5664
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=death-guard"
+      ],
+      "status": "PASS",
+      "elapsedMs": 200
+    },
+    {
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 5168
+    },
+    {
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 13141
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1679
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "elapsedMs": 10930
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "elapsedMs": 643
+    },
+    {
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "elapsedMs": 11574
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=emperors-children",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "elapsedMs": 22094
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "elapsedMs": 268
+    },
+    {
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/space-marines/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 97110
+    },
+    {
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 193170
+    },
+    {
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-static-model-bindings-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 9572
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "elapsedMs": 9070
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "elapsedMs": 9765
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "elapsedMs": 3853
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=space-marines",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "elapsedMs": 27375
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "elapsedMs": 365
+    },
+    {
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1643
+    },
+    {
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 4742
+    },
+    {
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 188360
+    },
+    {
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/physical-choice-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 9657
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1727
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "elapsedMs": 9041
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1154
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tau-empire",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "elapsedMs": 18642
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "elapsedMs": 420
+    },
+    {
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "args": [
+        "books/tyranids/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 5054
+    },
+    {
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tyranids/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 5445
+    },
+    {
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1120
+    },
+    {
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "elapsedMs": 8747
+    },
+    {
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "elapsedMs": 745
+    },
+    {
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "elapsedMs": 9830
+    },
+    {
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tyranids",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "elapsedMs": 18259
+    },
+    {
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "elapsedMs": 319
+    },
+    {
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "args": [
+        "books/shared/rule-contract-v2/recipients-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 3279
+    },
+    {
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/physical-selection-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 291
+    },
+    {
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/condition-execution-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 138
+    },
+    {
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/numeric-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 226
+    },
+    {
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/keyword-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 192
+    },
+    {
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/ability-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 178
+    },
+    {
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/weapon-contribution-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 169
+    },
+    {
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/advance-roll-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 143
+    },
+    {
+      "id": "v2/source-effect-regression-qa.mjs",
+      "args": [
+        "v2/source-effect-regression-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 47645
+    },
+    {
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "args": [
+        "v2/detachment-source-binding-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 22533
+    },
+    {
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/reimport-attachments-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 7147
+    },
+    {
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/service-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 137
+    },
+    {
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-service-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 130
+    },
+    {
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-selections-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 148
+    },
+    {
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-service-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 117
+    },
+    {
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-conditions-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 117
+    },
+    {
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "args": [
+        "tests/roster-execution-atomic-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 4329
+    },
+    {
+      "id": "v2/detachment-recipient-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1544
+    },
+    {
+      "id": "v2/card-recipient-qa.mjs",
+      "args": [
+        "v2/card-recipient-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 752
+    },
+    {
+      "id": "v2/attached-rule-text-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 9705
+    },
+    {
+      "id": "v2/card-display-2-qa.mjs",
+      "args": [
+        "v2/card-display-2-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 2085
+    },
+    {
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/singleton-model-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 50
+    },
+    {
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/plain-header-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 66
+    },
+    {
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 5667
+    },
+    {
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/initial-attachment-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 129
+    },
+    {
+      "id": "v2/faction-safe-import-qa.mjs",
+      "args": [
+        "v2/faction-safe-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 926
+    },
+    {
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/card-text-formatting-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 54
+    },
+    {
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/library-currentness-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 247
+    },
+    {
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/text-roster-facts-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 69
+    },
+    {
+      "id": "v2/source-completeness-check.mjs",
+      "args": [
+        "v2/source-completeness-check.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1746
+    },
+    {
+      "id": "tests/integration-qa.mjs",
+      "args": [
+        "tests/integration-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 4335
+    },
+    {
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/cosmetics-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 479
+    },
+    {
+      "id": "tests/codex-workflow-qa.mjs",
+      "args": [
+        "tests/codex-workflow-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 107
+    },
+    {
+      "id": "tests/source-book-clone-qa.mjs",
+      "args": [
+        "tests/source-book-clone-qa.mjs",
+        "--root=E:\\Warhammer\\worktrees\\import-messages-v1"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1710
+    },
+    {
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "args": [
+        "books/shared/source-refs-v2/source-catalog-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1130
+    },
+    {
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "args": [
+        "v2/unit-recipient-scope-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 3100
+    },
+    {
+      "id": "tests/book-update-declarations-qa.mjs",
+      "args": [
+        "tests/book-update-declarations-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 181
+    },
+    {
+      "id": "tests/book-update-report-qa.mjs",
+      "args": [
+        "tests/book-update-report-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 73
+    },
+    {
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "args": [
+        "tests/book-update-snapshots-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 13224
+    },
+    {
+      "id": "tests/book-update-metadata-qa.mjs",
+      "args": [
+        "tests/book-update-metadata-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 63
+    },
+    {
+      "id": "tests/book-update-command-qa.mjs",
+      "args": [
+        "tests/book-update-command-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 57844
+    },
+    {
+      "id": "tests/mfm-release-history-qa.mjs",
+      "args": [
+        "tests/mfm-release-history-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 233
+    },
+    {
+      "id": "tests/mfm-update-qa.mjs",
+      "args": [
+        "tests/mfm-update-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 43211
+    },
+    {
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "args": [
+        "tests/source-catalog-registry-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 61181
+    },
+    {
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "args": [
+        "tests/source-catalog-additions-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 19167
+    },
+    {
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "args": [
+        "books/core-rules/tests/factual-ownership-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 568
+    },
+    {
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-waha-certification-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 209
+    },
+    {
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "args": [
+        "glossary/v2/tests/core-projection-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 311114
+    },
+    {
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "args": [
+        "books/core-rules/tests/term-bindings-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 693
+    },
+    {
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "args": [
+        "books/core-rules/tests/reader-see-also-regression-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1566
+    },
+    {
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-faq-anchor-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1979
+    },
+    {
+      "id": "tests/generated-rebuild-qa.mjs",
+      "args": [
+        "tests/generated-rebuild-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 29544
+    },
+    {
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "args": [
+        "tests/csm-model-alias-bootstrap-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 2652
+    },
+    {
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "args": [
+        "tests/source-review-execution-book-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 3954
+    },
+    {
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "args": [
+        "books/shared/tools/check-generated-rebuild.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 950032
+    },
+    {
+      "id": "tools/pages-runtime-package.mjs",
+      "args": [
+        "tools/pages-runtime-package.mjs",
+        "--source",
+        "E:\\Warhammer\\worktrees\\import-messages-v1",
+        "--out",
+        "E:\\Warhammer\\qa-tmp\\import-messages\\wh-qa-pre-ff-work-k2b0Fb\\work\\runtime"
+      ],
+      "status": "PASS",
+      "elapsedMs": 7246
+    },
+    {
+      "id": "v2/shell-browser-qa.mjs",
+      "args": [
+        "v2/shell-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 56236
+    },
+    {
+      "id": "v2/core-reader-browser-qa.mjs",
+      "args": [
+        "v2/core-reader-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 78145
+    },
+    {
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "args": [
+        "tests/minimal-pwa-cache-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 186
+    },
+    {
+      "id": "v2/pwa-transition-qa.mjs",
+      "args": [
+        "v2/pwa-transition-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 81251
+    },
+    {
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "args": [
+        "tests/browser/pwa-update-flow.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 64852
+    },
+    {
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "args": [
+        "tests/browser/pwa-bootstrap-update.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 147102
+    },
+    {
+      "id": "tests/startup-precache-qa.mjs",
+      "args": [
+        "tests/startup-precache-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 2085
+    },
+    {
+      "id": "tests/browser/cold-offline.mjs",
+      "args": [
+        "tests/browser/cold-offline.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 108955
+    },
+    {
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 182262
+    },
+    {
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "args": [
+        "v2/detachment-synthetic-table-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 53691
+    },
+    {
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "args": [
+        "v2/card-recipient-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 93697
+    },
+    {
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 304814
+    },
+    {
+      "id": "v2/card-display-browser-qa.mjs",
+      "args": [
+        "v2/card-display-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 216034
+    },
+    {
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "args": [
+        "v2/card-display-2-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 103558
+    },
+    {
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "args": [
+        "v2/source-equipment-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 103090
+    },
+    {
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 26305
+    },
+    {
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 84617
+    },
+    {
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 62761
+    },
+    {
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 25446
+    },
+    {
+      "id": "v2/related-panel-browser-qa.mjs",
+      "args": [
+        "v2/related-panel-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 38015
+    },
+    {
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 60869
+    },
+    {
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 10400
+    },
+    {
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "args": [
+        "v2/cards-cosmetics-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 45941
+    },
+    {
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 16196
+    },
+    {
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "args": [
+        "v2/fabius-safe-import-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 34713
+    },
+    {
+      "id": "v2/card-texts-browser-qa.mjs",
+      "args": [
+        "v2/card-texts-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 53006
+    },
+    {
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "args": [
+        "v2/card-polish-2-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 51965
+    },
+    {
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "args": [
+        "v2/sweep-polish-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 57428
+    },
+    {
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "args": [
+        "v2/card-gained-rules-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 92431
+    },
+    {
+      "id": "v2/rule-popups-browser-qa.mjs",
+      "args": [
+        "v2/rule-popups-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 55044
+    },
+    {
+      "id": "v2/roster-navigation-browser-qa.mjs",
+      "args": [
+        "v2/roster-navigation-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 245844
+    },
+    {
+      "id": "v2/import-messages-browser-qa.mjs",
+      "args": [
+        "v2/import-messages-browser-qa.mjs"
+      ],
+      "status": "FAIL",
+      "elapsedMs": 72111
+    },
+    {
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json"
+      ],
+      "status": "PASS",
+      "elapsedMs": 170962
+    },
+    {
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json"
+      ],
+      "status": "PASS",
+      "elapsedMs": 196497
+    },
+    {
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-switch-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 4193
+    },
+    {
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "args": [
+        "tools/pages-runtime-package-qa.mjs",
+        "--source",
+        "E:\\Warhammer\\worktrees\\import-messages-v1",
+        "--published",
+        "E:\\Warhammer\\qa-tmp\\import-messages\\wh-qa-pre-ff-work-k2b0Fb\\work\\runtime",
+        "--work",
+        "E:\\Warhammer\\qa-tmp\\import-messages\\wh-qa-pre-ff-work-k2b0Fb\\work\\packaging"
+      ],
+      "status": "PASS",
+      "elapsedMs": 20847
+    },
+    {
+      "id": "tests/source-enrollment-qa.mjs",
+      "args": [
+        "tests/source-enrollment-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 11300
+    },
+    {
+      "id": "books/shared/tools/source-freshness.mjs",
+      "args": [
+        "books/shared/tools/source-freshness.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 2658
+    },
+    {
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "args": [
+        "tests/source-ingestion-contract-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 10109
+    },
+    {
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/keyword-attribution-qa.mjs"
+      ],
+      "status": "PASS",
+      "elapsedMs": 1621
+    }
+  ]
+}

@@ -1,0 +1,1862 @@
+{
+  "schema": "import-messages-browser-qa/v1",
+  "root": "E:\\Warhammer\\worktrees\\import-messages-v1",
+  "widths": [
+    390,
+    1440
+  ],
+  "mutation": null,
+  "status": "PASS",
+  "checks": [
+    {
+      "book": "adeptus-mechanicus",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 5,
+        "warlordCandidates": 2,
+        "checkedCopyRecords": 20
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": true,
+        "attachmentRoundtrip": true,
+        "checkedCopyRecords": 20
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 20
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 20
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 5,
+        "warlordCandidates": 2,
+        "checkedCopyRecords": 20
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": true,
+        "attachmentRoundtrip": true,
+        "checkedCopyRecords": 20
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 20
+      }
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 20
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 1,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "existing-company-veteran-clarification-exact-candidates",
+      "status": "PASS",
+      "detail": {
+        "nativeStatus": "NEEDS_BINDINGS",
+        "needs": [
+          {
+            "kind": "PROFILE",
+            "candidates": 2
+          }
+        ],
+        "checkedCopyRecords": 10
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 1,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "existing-company-veteran-clarification-exact-candidates",
+      "status": "PASS",
+      "detail": {
+        "nativeStatus": "NEEDS_BINDINGS",
+        "needs": [
+          {
+            "kind": "PROFILE",
+            "candidates": 2
+          }
+        ],
+        "checkedCopyRecords": 10
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 5,
+        "warlordCandidates": 3,
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": true,
+        "attachmentRoundtrip": true,
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 5,
+        "warlordCandidates": 3,
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": true,
+        "attachmentRoundtrip": true,
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "chaos-space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 1,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "existing-company-veteran-clarification-exact-candidates",
+      "status": "PASS",
+      "detail": {
+        "nativeStatus": "NEEDS_BINDINGS",
+        "needs": [
+          {
+            "kind": "PROFILE",
+            "candidates": 2
+          }
+        ],
+        "checkedCopyRecords": 10
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 1,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "existing-company-veteran-clarification-exact-candidates",
+      "status": "PASS",
+      "detail": {
+        "nativeStatus": "NEEDS_BINDINGS",
+        "needs": [
+          {
+            "kind": "PROFILE",
+            "candidates": 2
+          }
+        ],
+        "checkedCopyRecords": 10
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 38,
+        "warlordCandidates": 12,
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": true,
+        "attachmentRoundtrip": true,
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "existing-owner-export-replacement-can-be-kept",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "existing-unsupported-header-details",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 38,
+        "warlordCandidates": 12,
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": true,
+        "attachmentRoundtrip": true,
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "existing-owner-export-replacement-can-be-kept",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "existing-unsupported-header-details",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 105
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 3,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 3,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "emperors-children",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 3,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "existing-company-veteran-clarification-exact-candidates",
+      "status": "PASS",
+      "detail": {
+        "nativeStatus": "NEEDS_BINDINGS",
+        "needs": [
+          {
+            "kind": "PROFILE",
+            "candidates": 2
+          }
+        ],
+        "checkedCopyRecords": 10
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 3,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "space-marines",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "existing-company-veteran-clarification-exact-candidates",
+      "status": "PASS",
+      "detail": {
+        "nativeStatus": "NEEDS_BINDINGS",
+        "needs": [
+          {
+            "kind": "PROFILE",
+            "candidates": 2
+          }
+        ],
+        "checkedCopyRecords": 10
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 4,
+        "warlordCandidates": 2,
+        "checkedCopyRecords": 11
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": true,
+        "attachmentRoundtrip": true,
+        "checkedCopyRecords": 11
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 11
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 11
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "existing-incomplete-composition-clarification",
+      "status": "PASS",
+      "detail": {
+        "nativeStatus": "NEEDS_BINDINGS",
+        "needs": [
+          {
+            "kind": "COMPOSITION_MEMBER",
+            "candidates": 2
+          },
+          {
+            "kind": "COMPOSITION_MEMBER",
+            "candidates": 2
+          }
+        ],
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 4,
+        "warlordCandidates": 2,
+        "checkedCopyRecords": 11
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": true,
+        "attachmentRoundtrip": true,
+        "checkedCopyRecords": 11
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 11
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 11
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "existing-incomplete-composition-clarification",
+      "status": "PASS",
+      "detail": {
+        "nativeStatus": "NEEDS_BINDINGS",
+        "needs": [
+          {
+            "kind": "COMPOSITION_MEMBER",
+            "candidates": 2
+          },
+          {
+            "kind": "COMPOSITION_MEMBER",
+            "candidates": 2
+          }
+        ],
+        "checkedCopyRecords": 19
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 3,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input-copy-and-placement",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "empty-input-is-error-without-roster",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 4
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "successful-import-exact-short-status",
+      "status": "PASS",
+      "detail": {
+        "units": 3,
+        "warlordCandidates": 0,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "warlord-and-attachment-statuses",
+      "status": "PASS",
+      "detail": {
+        "warlordSaved": false,
+        "attachmentRoundtrip": false,
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "backup-download-reload-restore-short-statuses",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "foreign-faction-refusal-preserves-saved-bytes",
+      "status": "PASS",
+      "detail": {
+        "checkedCopyRecords": 6
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "choices-student",
+      "name": "native-choice-values-and-human-captions",
+      "status": "PASS",
+      "detail": {
+        "choices": 2,
+        "captions": [
+          "Not selected",
+          "Kroot Carnivores (10 models) #1",
+          "Kroot Carnivores (10 models) #1 + Kroot Carnivores (10 models) #2",
+          "Kroot Carnivores (10 models) #1 + Kroot Carnivores (10 models) #2 + Kroot Farstalkers",
+          "Kroot Carnivores (10 models) #1 + Kroot Farstalkers",
+          "Kroot Carnivores (10 models) #2",
+          "Kroot Carnivores (10 models) #2 + Kroot Farstalkers",
+          "Kroot Farstalkers",
+          "Not selected",
+          "Kroot Carnivores (10 models) #1",
+          "Kroot Carnivores (10 models) #1 + Kroot Carnivores (10 models) #2",
+          "Kroot Carnivores (10 models) #1 + Kroot Carnivores (10 models) #2 + Kroot Farstalkers",
+          "Kroot Carnivores (10 models) #1 + Kroot Farstalkers",
+          "Kroot Carnivores (10 models) #2",
+          "Kroot Carnivores (10 models) #2 + Kroot Farstalkers",
+          "Kroot Farstalkers"
+        ],
+        "checkedCopyRecords": 38
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "choices-student",
+      "name": "native-choice-values-and-human-captions",
+      "status": "PASS",
+      "detail": {
+        "choices": 2,
+        "captions": [
+          "Not selected",
+          "Kroot Carnivores (10 models) #1",
+          "Kroot Carnivores (10 models) #1 + Kroot Carnivores (10 models) #2",
+          "Kroot Carnivores (10 models) #1 + Kroot Carnivores (10 models) #2 + Kroot Farstalkers",
+          "Kroot Carnivores (10 models) #1 + Kroot Farstalkers",
+          "Kroot Carnivores (10 models) #2",
+          "Kroot Carnivores (10 models) #2 + Kroot Farstalkers",
+          "Kroot Farstalkers",
+          "Not selected",
+          "Kroot Carnivores (10 models) #1",
+          "Kroot Carnivores (10 models) #1 + Kroot Carnivores (10 models) #2",
+          "Kroot Carnivores (10 models) #1 + Kroot Carnivores (10 models) #2 + Kroot Farstalkers",
+          "Kroot Carnivores (10 models) #1 + Kroot Farstalkers",
+          "Kroot Carnivores (10 models) #2",
+          "Kroot Carnivores (10 models) #2 + Kroot Farstalkers",
+          "Kroot Farstalkers"
+        ],
+        "checkedCopyRecords": 38
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "choices-prototype",
+      "name": "native-choice-values-and-human-captions",
+      "status": "PASS",
+      "detail": {
+        "choices": 1,
+        "captions": [
+          "Not selected",
+          "T’au flamer — choose 1 of 2 weapons"
+        ],
+        "checkedCopyRecords": 10
+      }
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "choices-prototype",
+      "name": "native-choice-values-and-human-captions",
+      "status": "PASS",
+      "detail": {
+        "choices": 1,
+        "captions": [
+          "Not selected",
+          "T’au flamer — choose 1 of 2 weapons"
+        ],
+        "checkedCopyRecords": 10
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 390,
+      "scenario": "choices-trygon",
+      "name": "native-choice-values-and-human-captions",
+      "status": "PASS",
+      "detail": {
+        "choices": 2,
+        "captions": [
+          "Not selected",
+          "CHARACTER — selected during Muster Armies",
+          "Not selected",
+          "CHARACTER — selected during Muster Armies"
+        ],
+        "checkedCopyRecords": 14
+      }
+    },
+    {
+      "book": "tyranids",
+      "width": 1440,
+      "scenario": "choices-trygon",
+      "name": "native-choice-values-and-human-captions",
+      "status": "PASS",
+      "detail": {
+        "choices": 2,
+        "captions": [
+          "Not selected",
+          "CHARACTER — selected during Muster Armies",
+          "Not selected",
+          "CHARACTER — selected during Muster Armies"
+        ],
+        "checkedCopyRecords": 14
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input",
+      "file": "blood-angels-390-before-input.png"
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "success",
+      "file": "blood-angels-390-success.png"
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "refusal",
+      "file": "blood-angels-390-refusal.png"
+    },
+    {
+      "book": "blood-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "clarification",
+      "file": "blood-angels-390-clarification.png"
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input",
+      "file": "blood-angels-1440-before-input.png"
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "success",
+      "file": "blood-angels-1440-success.png"
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "refusal",
+      "file": "blood-angels-1440-refusal.png"
+    },
+    {
+      "book": "blood-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "clarification",
+      "file": "blood-angels-1440-clarification.png"
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input",
+      "file": "dark-angels-390-before-input.png"
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "success",
+      "file": "dark-angels-390-success.png"
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "refusal",
+      "file": "dark-angels-390-refusal.png"
+    },
+    {
+      "book": "dark-angels",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "clarification",
+      "file": "dark-angels-390-clarification.png"
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input",
+      "file": "dark-angels-1440-before-input.png"
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "success",
+      "file": "dark-angels-1440-success.png"
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "refusal",
+      "file": "dark-angels-1440-refusal.png"
+    },
+    {
+      "book": "dark-angels",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "clarification",
+      "file": "dark-angels-1440-clarification.png"
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input",
+      "file": "death-guard-390-before-input.png"
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "success",
+      "file": "death-guard-390-success.png"
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "refusal",
+      "file": "death-guard-390-refusal.png"
+    },
+    {
+      "book": "death-guard",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "clarification",
+      "file": "death-guard-390-clarification.png"
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input",
+      "file": "death-guard-1440-before-input.png"
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "success",
+      "file": "death-guard-1440-success.png"
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "refusal",
+      "file": "death-guard-1440-refusal.png"
+    },
+    {
+      "book": "death-guard",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "clarification",
+      "file": "death-guard-1440-clarification.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "before-input",
+      "file": "tau-empire-390-before-input.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "success",
+      "file": "tau-empire-390-success.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "refusal",
+      "file": "tau-empire-390-refusal.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "ordinary-export",
+      "name": "clarification",
+      "file": "tau-empire-390-clarification.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "before-input",
+      "file": "tau-empire-1440-before-input.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "success",
+      "file": "tau-empire-1440-success.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "refusal",
+      "file": "tau-empire-1440-refusal.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "ordinary-export",
+      "name": "clarification",
+      "file": "tau-empire-1440-clarification.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "choices-student",
+      "name": "choices-student",
+      "file": "tau-empire-390-choices-student.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "choices-student",
+      "name": "choices-student",
+      "file": "tau-empire-1440-choices-student.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 390,
+      "scenario": "choices-prototype",
+      "name": "choices-prototype",
+      "file": "tau-empire-390-choices-prototype.png"
+    },
+    {
+      "book": "tau-empire",
+      "width": 1440,
+      "scenario": "choices-prototype",
+      "name": "choices-prototype",
+      "file": "tau-empire-1440-choices-prototype.png"
+    },
+    {
+      "book": "tyranids",
+      "width": 390,
+      "scenario": "choices-trygon",
+      "name": "choices-trygon",
+      "file": "tyranids-390-choices-trygon.png"
+    },
+    {
+      "book": "tyranids",
+      "width": 1440,
+      "scenario": "choices-trygon",
+      "name": "choices-trygon",
+      "file": "tyranids-1440-choices-trygon.png"
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "inputs": [
+    {
+      "book": "adeptus-mechanicus",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1/Haloscreed Battle Clade",
+      "sha256": "a66eccd8b2e254483cf42675825ca4ec28f8d9cefe67e4f54aada54f6691678f"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1/Haloscreed Battle Clade",
+      "sha256": "a66eccd8b2e254483cf42675825ca4ec28f8d9cefe67e4f54aada54f6691678f"
+    },
+    {
+      "book": "blood-angels",
+      "fixture": "v2/fixtures/new-recruit-export.json:native-export/newrecruit-v37.2-user-redemptor.txt",
+      "sha256": "fb0be23eb8036a47d6228ce1babfbb251b5980a7fb63a198033be7e782e957d9"
+    },
+    {
+      "book": "blood-angels",
+      "fixture": "v2/fixtures/new-recruit-export.json:native-export/newrecruit-v37.2-user-redemptor.txt",
+      "sha256": "fb0be23eb8036a47d6228ce1babfbb251b5980a7fb63a198033be7e782e957d9"
+    },
+    {
+      "book": "chaos-space-marines",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1-F2/csm-daemonkin",
+      "sha256": "8501e9d725ea4d79a2240f474921a5184aaf2a1298d1278f1c4ecf28d514f3a6"
+    },
+    {
+      "book": "chaos-space-marines",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1-F2/csm-daemonkin",
+      "sha256": "8501e9d725ea4d79a2240f474921a5184aaf2a1298d1278f1c4ecf28d514f3a6"
+    },
+    {
+      "book": "dark-angels",
+      "fixture": "v2/fixtures/new-recruit-export.json:native-export/newrecruit-v37.3-user-da-10-models.txt",
+      "sha256": "2fa72ca975ac40144da3dc7ffaba612e25e1fa5f9be337c9627bb6127702327d"
+    },
+    {
+      "book": "dark-angels",
+      "fixture": "v2/fixtures/new-recruit-export.json:native-export/newrecruit-v37.3-user-da-10-models.txt",
+      "sha256": "2fa72ca975ac40144da3dc7ffaba612e25e1fa5f9be337c9627bb6127702327d"
+    },
+    {
+      "book": "death-guard",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1-F2/omega",
+      "sha256": "c650ab7ab27bcd54f60ee4f548b681f457a0d50e0b57c1a9b1e2828f87907cf3"
+    },
+    {
+      "book": "death-guard",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1-F2/omega",
+      "sha256": "c650ab7ab27bcd54f60ee4f548b681f457a0d50e0b57c1a9b1e2828f87907cf3"
+    },
+    {
+      "book": "emperors-children",
+      "fixture": "v2/fixtures/new-recruit-export.json:charge/ec-daemonettes",
+      "sha256": "f393e17f3da6eb4e01baa375cbd629368da034f67adb8c342da16c73dea3016e"
+    },
+    {
+      "book": "emperors-children",
+      "fixture": "v2/fixtures/new-recruit-export.json:charge/ec-daemonettes",
+      "sha256": "f393e17f3da6eb4e01baa375cbd629368da034f67adb8c342da16c73dea3016e"
+    },
+    {
+      "book": "space-marines",
+      "fixture": "v2/fixtures/new-recruit-export.json:native-export/newrecruit-v37.3-user-sm.txt",
+      "sha256": "77adceda3ee79ff89352a364a535df3b0d58d9aa246e3491930bf5a64bb7fb6f"
+    },
+    {
+      "book": "space-marines",
+      "fixture": "v2/fixtures/new-recruit-export.json:native-export/newrecruit-v37.3-user-sm.txt",
+      "sha256": "77adceda3ee79ff89352a364a535df3b0d58d9aa246e3491930bf5a64bb7fb6f"
+    },
+    {
+      "book": "tau-empire",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1/broad-fixture",
+      "sha256": "86f2305ef1ce13a79b4487e9b4d5c46caddd029865166abd636c4ffe09dceaf2"
+    },
+    {
+      "book": "tau-empire",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1/broad-fixture",
+      "sha256": "86f2305ef1ce13a79b4487e9b4d5c46caddd029865166abd636c4ffe09dceaf2"
+    },
+    {
+      "book": "tyranids",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1/broad-fixture",
+      "sha256": "fb506fda1bba06748594b25ec876241c3e1b476c7d538e00f52cd78288ee272e"
+    },
+    {
+      "book": "tyranids",
+      "fixture": "v2/fixtures/new-recruit-export.json:F1/broad-fixture",
+      "sha256": "fb506fda1bba06748594b25ec876241c3e1b476c7d538e00f52cd78288ee272e"
+    },
+    {
+      "book": "tau-empire",
+      "fixture": "books/tau-empire/v2/physical-choice-qa.mjs: studentText",
+      "sha256": "c461f9aaff7156b58e298bba329815024ea13cb17a37076c38f8940eadf6ad8e"
+    },
+    {
+      "book": "tau-empire",
+      "fixture": "books/tau-empire/v2/physical-choice-qa.mjs: studentText",
+      "sha256": "c461f9aaff7156b58e298bba329815024ea13cb17a37076c38f8940eadf6ad8e"
+    },
+    {
+      "book": "tau-empire",
+      "fixture": "books/tau-empire/v2/app-qa.mjs: prototypeText",
+      "sha256": "8f88ee1afb180636632ad7e7c83c5093bc75391492191348148d40a6f894ac79"
+    },
+    {
+      "book": "tau-empire",
+      "fixture": "books/tau-empire/v2/app-qa.mjs: prototypeText",
+      "sha256": "8f88ee1afb180636632ad7e7c83c5093bc75391492191348148d40a6f894ac79"
+    },
+    {
+      "book": "tyranids",
+      "fixture": "books/tyranids/v2/roster-ui-qa.mjs: choiceText",
+      "sha256": "ceebd6e5bde9869a8572dadb5fdc2c5605f6652ae6d14846907dc04b282b5e31"
+    },
+    {
+      "book": "tyranids",
+      "fixture": "books/tyranids/v2/roster-ui-qa.mjs: choiceText",
+      "sha256": "ceebd6e5bde9869a8572dadb5fdc2c5605f6652ae6d14846907dc04b282b5e31"
+    }
+  ]
+}

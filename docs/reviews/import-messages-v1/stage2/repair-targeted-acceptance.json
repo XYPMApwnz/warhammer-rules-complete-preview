@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "sha": "4060074ae0c7888571367f99f7cb9cc375c167ba",
+  "normal": [
+    {
+      "label": "unit",
+      "args": [
+        "books/shared/army-book-app-v2/import-messages-qa.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedMs": 63
+    },
+    {
+      "label": "browser",
+      "args": [
+        "v2/import-messages-browser-qa.mjs",
+        "--out=E:\\Warhammer\\qa-evidence\\import-messages-v1-2026-11-18\\stage2\\repair-targeted\\browser"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedMs": 74850
+    },
+    {
+      "label": "ba-roster",
+      "args": [
+        "books/blood-angels/v2/roster-qa.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedMs": 111754
+    },
+    {
+      "label": "da-lifecycle",
+      "args": [
+        "books/dark-angels/v2/roster-import-lifecycle-qa.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedMs": 20537
+    },
+    {
+      "label": "navigation",
+      "args": [
+        "v2/roster-navigation-browser-qa.mjs",
+        "--out=E:\\Warhammer\\qa-evidence\\import-messages-v1-2026-11-18\\stage2\\repair-targeted\\navigation"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedMs": 335036
+    }
+  ],
+  "negative": [
+    {
+      "name": "missing-base-origin",
+      "book": "tau-empire",
+      "status": "PASS_EXPECTED_REFUSAL",
+      "message": "The source-proven base-price branch cannot be skipped by a missing marker: parsed-unit-1\n\nnull !== 'base'\n"
+    },
+    {
+      "name": "foreign-detachment",
+      "book": "death-guard",
+      "status": "PASS_EXPECTED_REFUSAL",
+      "message": "Exact native Detachment Stratagem rows; no foreign Detachment or Core additions\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      applicability: 'CONDITIONAL',\n      detachmentId: 'detachment-shamblerot-vectorium',\n      id: 'detachment-shamblerot-vectorium:stratagem:5'\n...\n      applicability: 'CONDITIONAL',\n+     detachmentId: 'detachment-tallyband-summoners',\n+     id: 'detachment-tallyband-summoners:stratagem:1'\n+   },\n+   {\n+     applicability: 'CONDITIONAL',\n      detachmentId: 'detachment-virulent-vectorium',\n      id: 'detachment-virulent-vectorium:stratagem:2'\n    },\n    {\n      applicability: 'CONDITIONAL',\n"
+    }
+  ],
+  "supersededNonApplicableAttempt": {
+    "book": "space-marines",
+    "reason": "Native priced rows own these units; the base fallback does not run. The generic mutation-exit failure was correctly not accepted as proof."
+  }
+}

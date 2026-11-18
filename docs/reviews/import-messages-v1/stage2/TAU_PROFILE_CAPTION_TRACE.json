@@ -1,0 +1,44 @@
+{
+  "schema": "static-tau-profile-caption-trace/v1",
+  "commit": "9e00487a956b1f00416b4ad9fb743d948eb2d68a",
+  "method": "Read-only committed data and source trace; no native service/test/browser execution",
+  "finding": "NO_CURRENT_GENERIC_PROFILE_CAPTION",
+  "allTauProfileCards": 44,
+  "genericProfileTitles": [],
+  "duplicateInputFixture": "books/tau-empire/v2/roster-import-qa.mjs:739-752",
+  "fixtureBuilder": "books/tau-empire/v2/roster-import-qa.mjs:156-159",
+  "modelProfile": {
+    "id": "datasheet-commander-in-coldstar-battlesuit:profile:1",
+    "title": "Commander In Coldstar Battlesuit",
+    "humanNameFields": [
+      {
+        "id": "datasheet-commander-in-coldstar-battlesuit:profile:1::/name",
+        "label": "name",
+        "value": "Commander In Coldstar Battlesuit",
+        "type": "text",
+        "contextId": "unit-commander-in-coldstar-battlesuit",
+        "source": {
+          "entityId": "datasheet-commander-in-coldstar-battlesuit:profile:1",
+          "path": "/name"
+        },
+        "presentation": "stat"
+      }
+    ]
+  },
+  "staticScopeTrace": {
+    "importModelRowKey": "parsed-unit-1/model-row/1",
+    "loadouts": "None in this inline first-MODEL fixture; two selections are on row.selections",
+    "groupKind": "PROFILE",
+    "scopeConstruction": "`${raw.instanceId}/${row.rowId}/${group.kind}/${group.key}`",
+    "firstUnitScopeId": "parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1",
+    "nativeReferenceCarriesScope": "model.weapons set scopeId in context.mjs:288-297; roster-boot.mjs reference preserves it; scope is non-null for this model-row fixture",
+    "humanCaption": "Commander In Coldstar Battlesuit",
+    "predictedDuplicateChoiceSuffixes": [
+      "Commander In Coldstar Battlesuit · Selection 1",
+      "Commander In Coldstar Battlesuit · Selection 2"
+    ],
+    "notExecuted": true
+  },
+  "unitAggregateCase": "A UNIT-level weapon has null scope and no modelName suffix, so the generic PROFILE title is not read; repeated choices retain Selection N.",
+  "all9Boundary": "Only Tau has typed weapon-reference choices. Tyranids fixed CHARACTER option is untyped text. Other seven native services do not expose sourceChoices."
+}

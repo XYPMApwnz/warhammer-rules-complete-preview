@@ -1,0 +1,469 @@
+diff --git a/books/blood-angels/v2/roster-qa.mjs b/books/blood-angels/v2/roster-qa.mjs
+index df948491..102f41a4 100644
+--- a/books/blood-angels/v2/roster-qa.mjs
++++ b/books/blood-angels/v2/roster-qa.mjs
+@@ -279,7 +279,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
+  check('unknown-points-use-existing-visible-warning-without-false-final-total',()=>{
+   const element=tag=>({tag,children:[],dataset:{},value:'',attributes:{},set textContent(v){this.value=String(v);this.children=[];},get textContent(){return this.value+this.children.map(c=>c.textContent).join('');},get childElementCount(){return this.children.length;},append(...v){this.children.push(...v);},setAttribute(k,v){this.attributes[k]=v;}}),document={createElement:element};
+   const b=book.mfmPhysicalPaidOptions[0],service=createBloodAngelsRosterService(book);ready(service,header()+fixture(b.ownerUnitId).text);
+-  assert.equal(service.points.totalPoints,null);assert.equal(service.points.status,'UNRESOLVED');const warning=renderRosterPointsStatus(document,{service,titleForId:id=>sources.get(id)?.data.title});assert.match(warning.textContent,/Points cannot be calculated reliably/);
++  assert.equal(service.points.totalPoints,null);assert.equal(service.points.status,'UNRESOLVED');const warning=renderRosterPointsStatus(document,{service,titleForId:id=>sources.get(id)?.data.title});assert.match(warning.textContent,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);assert.doesNotMatch(warning.textContent,/Points cannot be calculated reliably/);
+   ready(service,header()+fixture(b.ownerUnitId,{unitGear:'1x '+PAID.find(r=>r[0]===b.costRecordId)[2].replace(/^per /,'')}).text,{}, {replaceExisting:true});assert.equal(service.points.status,'RESOLVED');assert.equal(renderRosterPointsStatus(document,{service}),null);
+  });
+  check('eight-static-lowerings-through-physical-import-effective-and-guide',()=>{
+diff --git a/books/dark-angels/v2/roster-import-lifecycle-qa.mjs b/books/dark-angels/v2/roster-import-lifecycle-qa.mjs
+index 228c499a..77b9c39b 100644
+--- a/books/dark-angels/v2/roster-import-lifecycle-qa.mjs
++++ b/books/dark-angels/v2/roster-import-lifecycle-qa.mjs
+@@ -71,7 +71,7 @@ check('unknown-and-resolved-points-feed-existing-warning-renderer',()=>{
+  const document={createElement:element},service=createDarkAngelsRosterService(book),id='unit-da-9f8f2ccbdb7d4c72857c';
+  ready(service,header+unitText(id));assert.equal(service.points.status,'UNRESOLVED');assert.equal(service.points.totalPoints,null);
+  const warning=renderRosterPointsStatus(document,{service,titleForId:key=>index.get(key)?.data.title});
+- assert.match(warning.textContent,/Points cannot be calculated reliably/);assert.match(warning.textContent,/Cyclone/i);
++ assert.match(warning.textContent,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);assert.doesNotMatch(warning.textContent,/Points cannot be calculated reliably/);assert.match(warning.textContent,/Cyclone/i);
+  const saved=service.snapshot(),forged=clone(saved);forged.units[0].equipmentContextKnown=true;
+  assert.throws(()=>service.load(forged));assert.deepEqual(service.snapshot(),saved);
+  ready(service,header+unitText(id,{unitGear:'1x Cyclone Missile Launcher'}),{}, {replaceExisting:true});
+diff --git a/books/death-guard/v2/auto-import-browser-qa.mjs b/books/death-guard/v2/auto-import-browser-qa.mjs
+index 6de619ac..8661b1b7 100644
+--- a/books/death-guard/v2/auto-import-browser-qa.mjs
++++ b/books/death-guard/v2/auto-import-browser-qa.mjs
+@@ -157,7 +157,7 @@ try {
+     const backup=JSON.parse(fs.readFileSync(await download.path(),'utf8'));assert.deepEqual(backup,saved.state);
+     await page.evaluate(()=>localStorage.clear());await page.reload();await ready(page);
+     await page.getByText('Backup and restore',{exact:true}).click();
+-    await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles({name:'roster-v2.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});await settled(page);assert.deepEqual(await snapshot(page),saved);
++    assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles({name:'roster-v2.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});await settled(page);assert.deepEqual(await snapshot(page),saved);
+     step=device+'/bounded-ambiguity-ui';
+     const candidateUi=await page.evaluate(async()=>{
+       const {createRosterPanel}=await import('/books/shared/army-book-app-v2/roster.mjs');
+diff --git a/books/death-guard/v2/roster-browser-qa.mjs b/books/death-guard/v2/roster-browser-qa.mjs
+index c8947f40..25e7deab 100644
+--- a/books/death-guard/v2/roster-browser-qa.mjs
++++ b/books/death-guard/v2/roster-browser-qa.mjs
+@@ -286,7 +286,7 @@ try {
+     const backup=path.join(evidence,device+'-roster-backup.json');await download.saveAs(backup);assert.deepEqual(JSON.parse(fs.readFileSync(backup,'utf8')),durable.state);
+     assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('army-book-app-v2:roster:death-guard'))),durable.state);
+     await detach(ids.lord);assert.equal(modelFnp((await snapshot(page)).effective[ids.lord]).length,0);
+-    await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles(backup);await settled(page);assert.deepEqual(await snapshot(page),durable,'Backup did not restore the same typed state/effects');await effectiveParity();
++    assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles(backup);await settled(page);assert.deepEqual(await snapshot(page),durable,'Backup did not restore the same typed state/effects');await effectiveParity();
+     await page.locator('[data-roster-action="reload-saved"]').click();await settled(page);assert.deepEqual(await snapshot(page),durable,'Saved reload differs from restored backup');
+     await page.reload();await ready(page);await page.waitForSelector('main [data-roster-view]');assert.deepEqual(await snapshot(page),durable,'Local storage restore changed deterministic effects');reloadChecks++;await effectiveParity();
+     const after=await readerCensus('reader-after-roster');assert.deepEqual(after,before,'Roster mutated canonical Reader facts');
+diff --git a/books/death-guard/v2/roster-multiple-detachments-browser-qa.mjs b/books/death-guard/v2/roster-multiple-detachments-browser-qa.mjs
+index fad99bd8..1894c26d 100644
+--- a/books/death-guard/v2/roster-multiple-detachments-browser-qa.mjs
++++ b/books/death-guard/v2/roster-multiple-detachments-browser-qa.mjs
+@@ -137,7 +137,7 @@ try {
+     const backup=JSON.parse(fs.readFileSync(await download.path(),'utf8'));assert.deepEqual(backup,saved.state);
+     await page.evaluate(()=>localStorage.clear());await page.reload();await ready(page);
+     await page.getByText('Backup and restore',{exact:true}).click();
+-    await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles({name:'roster-v2.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});await settled(page);assert.deepEqual(await snapshot(page),saved);
++    assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles({name:'roster-v2.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});await settled(page);assert.deepEqual(await snapshot(page),saved);
+     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);assert.deepEqual(errors,[]);assert.deepEqual(unexpected,[]);
+     await page.locator('[data-roster-detachments]').scrollIntoViewIfNeeded();
+     await page.screenshot({path:path.join(out,device+'-multi-detachments.png'),animations:'disabled'});
+diff --git a/books/shared/army-book-app-v2/plain-header-explanation-qa.mjs b/books/shared/army-book-app-v2/plain-header-explanation-qa.mjs
+index a1ac99d2..71851d97 100644
+--- a/books/shared/army-book-app-v2/plain-header-explanation-qa.mjs
++++ b/books/shared/army-book-app-v2/plain-header-explanation-qa.mjs
+@@ -29,10 +29,10 @@ for(const [name,text]of [
+   assert.deepEqual(value.units,parsed.units,'An unsupported preamble must not change the body decoder');
+   assert.equal(result.status,'NEEDS_BINDINGS');assert.equal(result.roster,null);
+   const help=plainHeaderImportExplanation(freeze(result));assert(help,name);
+-  assert.match(help.instruction,/exactly three nonempty lines/);
++  assert.equal(help.instruction,'Supported headers begin with three nonempty lines: list name and points, faction, then Detachment(s). Example:');assert.doesNotMatch(help.instruction,/exactly three nonempty lines/);
+   assert.equal(help.example.split('\n').length,3);
+-  assert.match(help.guidance,/Re-export.*New Recruit/);assert.match(help.guidance,/send the original export as a sample/);
+-  assert.match(help.message,/current roster and saved roster were not changed/);
++  assert.equal(help.guidance,'Export the complete roster as text from New Recruit and try again. If the header still cannot be read, send the original export to the site owner.');assert.doesNotMatch(help.guidance,/Re-export|send the original export as a sample/);
++  assert.equal(help.message,'The export header could not be read. Export the complete list as text from New Recruit and try again.');assert.doesNotMatch(help.message,/could not be recognized|current roster and saved roster were not changed/);
+   assert.deepEqual(result,before,'Presentation must not alter statuses, needs, errors, metadata or roster');
+   assert.deepEqual(service.snapshot(),saved,'Unresolved input must preserve the complete native roster');
+   controls.push(name);
+diff --git a/books/shared/army-book-app-v2/points-status-qa.mjs b/books/shared/army-book-app-v2/points-status-qa.mjs
+index 7f7626b7..a4a7a087 100644
+--- a/books/shared/army-book-app-v2/points-status-qa.mjs
++++ b/books/shared/army-book-app-v2/points-status-qa.mjs
+@@ -18,9 +18,11 @@ const points={status:'UNRESOLVED',totalPoints:null,knownPoints:123,
+ const service={state,get points(){return points;}},titleForId=id=>id==='unit-a'?'Repeated unit':null;
+ const render=instanceId=>renderRosterPointsStatus(document,{service,instanceId,titleForId});
+ const before=structuredClone({state,points}),roster=render();
+-assert.match(roster.textContent,/Points unresolved/);assert.match(roster.textContent,/Points cannot be calculated reliably/);
+-assert.match(roster.textContent,/Repeated unit #1/);assert.match(roster.textContent,/Paid option: Equipment A/);
+-assert.match(roster.textContent,/paid equipment selection is unknown/);
++assert.match(roster.textContent,/Points total unavailable/);assert.match(roster.textContent,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);
++assert.doesNotMatch(roster.textContent,/Points unresolved|Points cannot be calculated reliably/);
++assert.match(roster.textContent,/Repeated unit #1/);assert.match(roster.textContent,/Paid equipment: Equipment A/);
++assert.match(roster.textContent,/The export does not identify the paid equipment selected\. Include equipment in your New Recruit export and import it again\./);
++assert.doesNotMatch(roster.textContent,/Paid option:|paid equipment selection is unknown/);
+ assert.equal(roster.attributes.role,'status');
+ assert.ok(!roster.textContent.includes('123'),'Known partial subtotal is not displayed as a total');
+ const row=all(roster).find(node=>node.dataset.rosterPointsOptionId==='cost-a');
+@@ -30,18 +32,18 @@ assert.match(render('first').textContent,/Repeated unit #1/);
+ assert.deepEqual({state,points},before,'Presentation must not mutate service state or result');
+ 
+ points.unresolved=[{unitInstanceId:'first',selectionKey:'first-equipment',reason:'UNRESOLVED_PHYSICAL_QUANTITY'}];
+-assert.match(render().textContent,/quantity is unknown/);
++assert.match(render().textContent,/The export does not identify the equipment quantity\. Include quantities in your New Recruit export and import it again\./);assert.doesNotMatch(render().textContent,/quantity is unknown/);
+ assert.equal(all(render()).find(node=>node.dataset.rosterPointsOptionId)?.dataset.rosterPointsOptionId,'cost-a','Exact physical selection proof attributes the option');
+ points.unresolved=[{unitInstanceId:'first',reason:'MFM_COMPOSITION_TIER_NOT_PROVEN'}];
+-assert.match(render().textContent,/unit size or copy tier/);
++assert.match(render().textContent,/This unit's size or number of copies has no verified points cost\. Check the current points document before using the total\./);assert.doesNotMatch(render().textContent,/unit size or copy tier/);
+ assert.ok(!all(render()).some(node=>node.dataset.rosterPointsOptionId),'No option is invented for an unrelated tier failure');
+ points.unresolved=[{reason:'OTHER_REASON',message:'Required source information is missing.'}];
+-assert.match(render().textContent,/Required source information is missing/);
++assert.match(render().textContent,/The points total could not be verified\. Check the highlighted unit against the current points document\./);assert.doesNotMatch(render().textContent,/Required source information is missing/);
+ assert.ok(!all(render()).some(node=>node.dataset.rosterPointsUnitId),'No UNIT is invented for an unscoped issue');
+ points.unresolved=[];
+-assert.match(render().textContent,/Points unresolved/,'Unknown reason still shows the computed unresolved status');
++assert.match(render().textContent,/Points total unavailable/,'Unknown reason still shows the computed unresolved status');
+ assert.match(renderRosterPointsStatus(document,{service:{points:{status:'UNRESOLVED'}} ,instanceId:'first'}).textContent,
+-  /Points unresolved/,'Missing per-unit details do not hide a proven roster-wide uncertainty');
++  /Points total unavailable/,'Missing per-unit details do not hide a proven roster-wide uncertainty');
+ 
+ points.status='RESOLVED';points.totalPoints=168;
+ assert.equal(render(),null,'A resolved result has no false warning, even if no MODEL bearer was needed for its UNIT quantity');
+@@ -49,6 +51,6 @@ points.totalPoints=0;assert.equal(render(),null,'A real resolved zero is not tre
+ assert.equal(renderRosterPointsStatus(document,{service:{state}}),null,'Other services need not implement points');
+ assert.equal(renderRosterPointsStatus(document,{service:{state,points:null}}),null,'An unloaded service has no warning');
+ points.status='UNRESOLVED';points.totalPoints=null;points.unresolved=before.points.unresolved;
+-assert.match(render('first').textContent,/paid equipment selection is unknown/,'Fresh render reads the current computed result');
++assert.match(render('first').textContent,/The export does not identify the paid equipment selected\. Include equipment in your New Recruit export and import it again\./,'Fresh render reads the current computed result');assert.doesNotMatch(render('first').textContent,/paid equipment selection is unknown/);
+ console.log(JSON.stringify({status:'PASS',unknownPaid:true,unknownQuantity:true,scopedPhysicalCopies:true,
+   exactOptionAttribution:true,noInventedOwner:true,noPartialTotal:true,resolvedAndAbsentService:true,liveResult:true,mutatesService:false}));
+diff --git a/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs b/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs
+index 2cd55415..ae506057 100644
+--- a/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs
++++ b/books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs
+@@ -161,13 +161,13 @@ try{
+     const sourceSelect=sourceField.locator('select');
+     assert.equal(await owner.locator('[data-roster-source-choices-for]').count(),1);
+     assert.equal(await sourceSelect.locator('option').first().innerText(),'Not selected');
+-    assert.match(await sourceSelect.getAttribute('aria-label'),/^Source selection for Independent source choice on /);
++    assert.match(await sourceSelect.getAttribute('aria-label'),/^Independent source choice for /);assert.doesNotMatch(await sourceSelect.getAttribute('aria-label'),/Source selection for/);
+     assert.equal(await sourceField.locator(`a[data-target-id="${secondSourceChoiceId}"]`).count(),1,'Canonical source reference absent');
+     await sourceSelect.selectOption('selected');
+     assert.equal(await page.evaluate(({owner,id})=>window.syntheticService.sourceChoices(owner).find(c=>c.id===id).value,
+       {owner:a.instanceId,id:secondSourceChoiceId}),null,'Changing a select must not apply the source choice');
+     await sourceField.locator('[data-roster-action="set-source-choice"]').click();
+-    await page.locator('.v2-roster-status').filter({hasText:'Source selection saved.'}).waitFor();
++    await page.locator('.v2-roster-status').filter({hasText:'Choice saved.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
+     assert.equal(await sourceSelect.inputValue(),'selected');
+     assert.equal(await otherOwner.locator(`select[data-source-choice-id="${secondSourceChoiceId}"]`).inputValue(),'','Independent physical owner changed');
+     assert.equal(await owner.locator(`select[data-source-choice-id="${sourceChoiceId}"]`).inputValue(),'','Independent source choice changed');
+@@ -195,7 +195,7 @@ try{
+     assert.equal(readOnly.references,1);
+     await sourceSelect.selectOption('');
+     await sourceField.locator('[data-roster-action="set-source-choice"]').click();
+-    await page.locator('.v2-roster-status').filter({hasText:'Source selection saved.'}).waitFor();
++    await page.locator('.v2-roster-status').filter({hasText:'Choice saved.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
+     assert.equal(await sourceSelect.inputValue(),'','Not selected did not remove source choice');
+     assert.equal(await page.evaluate(({owner,id})=>window.syntheticService.sourceChoices(owner).find(c=>c.id===id).value,
+       {owner:a.instanceId,id:secondSourceChoiceId}),null);
+diff --git a/books/space-marines/v2/unresolved-points-browser-qa.mjs b/books/space-marines/v2/unresolved-points-browser-qa.mjs
+index ef61ee6d..392db58b 100644
+--- a/books/space-marines/v2/unresolved-points-browser-qa.mjs
++++ b/books/space-marines/v2/unresolved-points-browser-qa.mjs
+@@ -59,7 +59,7 @@ async function warning(name,id='parsed-unit-1'){
+   const nodes=page.locator('main [data-roster-points-status="UNRESOLVED"]');
+   assert.ok(await nodes.count()>0,'Visible unresolved points warning is missing');
+   const text=(await nodes.allInnerTexts()).join('\n');
+-  assert.match(text,/Points unresolved/i);assert.match(text,/Points cannot be calculated reliably/i);assert.match(text,/Impulsor/);
++  assert.match(text,/Points total unavailable/);assert.match(text,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);assert.doesNotMatch(text,/Points unresolved|Points cannot be calculated reliably/);assert.match(text,/Impulsor/);
+   assert.equal(await nodes.locator(`[data-roster-points-unit-id="${id}"]`).count()>0,true,'Warning must identify the exact physical UNIT');
+   const costRecordId=await page.evaluate(instanceId=>window.ArmyBookAppV2.roster.points.unresolved.find(issue=>issue.unitInstanceId===instanceId).costRecordIds[0],id);
+   assert.ok(costRecordId);const option=nodes.locator(`[data-roster-points-option-id="${costRecordId}"]`);
+@@ -105,11 +105,11 @@ try{
+     await roster();
+     const backupPane=page.locator('details').filter({has:page.getByText('Backup and restore',{exact:true})});
+     if(await backupPane.getAttribute('open')===null)await page.getByText('Backup and restore',{exact:true}).click();
+-    await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles(backupFile);
++    assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles(backupFile);
+     await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent==='Roster backup restored.');
+     for(const name of ['Roster','Effective','Guide'])await check('snapshot-restore-'+name,()=>warning(name));
+     await roster();if(await backupPane.getAttribute('open')===null)await page.getByText('Backup and restore',{exact:true}).click();
+-    await page.locator('[data-roster-action="reload-saved"]').click();await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent==='Saved roster reloaded and validated.');
++    await page.locator('[data-roster-action="reload-saved"]').click();await page.waitForFunction(()=>document.querySelector('.v2-roster-status')?.textContent==='Saved roster reloaded.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Saved roster reloaded and validated/);
+     for(const name of ['Roster','Effective','Guide'])await check('load-recompute-'+name,()=>warning(name));
+     await importText(fixtures.repeated);
+     for(const name of ['Roster','Effective','Guide'])await check('repeated-unknown-'+name,()=>warning(name));
+diff --git a/books/tau-empire/v2/app-browser-qa.mjs b/books/tau-empire/v2/app-browser-qa.mjs
+index c52d1c45..346852e0 100644
+--- a/books/tau-empire/v2/app-browser-qa.mjs
++++ b/books/tau-empire/v2/app-browser-qa.mjs
+@@ -93,7 +93,7 @@ async function guide(page,id){
+ async function sourceChoice(page,owner,ruleId,value){
+   await roster(page);const field=page.locator(`[data-roster-instance-id="${owner}"] [data-source-choice-id="${ruleId}"]`).first();
+   await field.locator('select').selectOption(value??'');await field.locator('[data-roster-action="set-source-choice"]').click();
+-  await page.getByRole('status').filter({hasText:'Source selection saved.'}).waitFor();
++  await page.getByRole('status').filter({hasText:'Choice saved.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
+ }
+ async function attach(page,leader,guard){
+   await roster(page);await page.locator(`[data-attachment-candidate-for="${guard}"]`).selectOption(leader);
+@@ -254,7 +254,7 @@ try{
+       await sourceChoice(page,owner,ruleId,options[0]);await imported(page,input,1);await effective(page,owner);await assertPrototype(page,index,true);
+       await roster(page);await backupControls(page);const [download]=await Promise.all([page.waitForEvent('download'),page.locator('[data-roster-action="export-backup"]').click()]);
+       const file=path.join(out,device+'-prototype-'+index+'-backup.json');await download.saveAs(file);assert.deepEqual(JSON.parse(fs.readFileSync(file,'utf8')),await snapshot(page));
+-      await sourceChoice(page,owner,ruleId,null);await roster(page);await backupControls(page);await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles(file);
++      await sourceChoice(page,owner,ruleId,null);await roster(page);await backupControls(page);assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles(file);
+       await page.waitForFunction(({owner,ruleId})=>window.ArmyBookAppV2.roster.state.units.find(unit=>unit.instanceId===owner).selectedTauWeaponChoiceIds?.some(id=>id.startsWith(ruleId)),{owner,ruleId});
+       await effective(page,owner);await assertPrototype(page,index,true);
+     });
+diff --git a/v2/card-display-browser-qa.mjs b/v2/card-display-browser-qa.mjs
+index 5e26d3b5..3627a708 100644
+--- a/v2/card-display-browser-qa.mjs
++++ b/v2/card-display-browser-qa.mjs
+@@ -176,7 +176,7 @@ try{
+         await page.locator('[data-roster-action="review-import"]').click();
+         await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+         const status=await page.locator('.v2-roster-status').innerText();
+-        const unresolved=await page.locator('select[aria-label^="Matching source entry"]').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('aria-label')));
++        const unresolved=await page.locator('select[aria-label^="Choose a match for"]').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('aria-label')));assert.equal(await page.locator('select[aria-label^="Matching source entry"]').count(),0,'Old clarification accessible label is absent');
+         assert.match(status,/^Roster imported\./,c.bookId+' '+c.title+' '+JSON.stringify(unresolved));
+         if(c.charge?.bodyguard){
+           await page.locator('[data-attachment-candidate-for="'+c.charge.bodyguard+'"]').selectOption(c.charge.source);
+diff --git a/v2/card-polish-2-browser-qa.mjs b/v2/card-polish-2-browser-qa.mjs
+index 3592e926..5e07aad6 100644
+--- a/v2/card-polish-2-browser-qa.mjs
++++ b/v2/card-polish-2-browser-qa.mjs
+@@ -131,9 +131,10 @@ async function runPlain(width){
+  const help=page.locator('[data-import-hint="plain-header"]');
+  if(mutation==='remove-header-help')await help.evaluateAll(nodes=>nodes.forEach(node=>node.remove()));
+  if(!observe){
+-  assert.match(status,/header could not be recognized/);assert.match(status,/current roster and saved roster were not changed/);
++  assert.equal(status,'The export header could not be read. Export the complete list as text from New Recruit and try again.');assert.doesNotMatch(status,/header could not be recognized|current roster and saved roster were not changed/);
+   assert.equal(await help.count(),1);assert.ok(await help.isVisible());
+-  assert.match(await help.innerText(),/exactly three nonempty lines/);assert.match(await help.innerText(),/New Recruit/);assert.match(await help.innerText(),/site owner/);
++  const details=help.locator('details');assert.equal(await details.count(),1);assert.equal(await details.getAttribute('open'),null,'Header details start collapsed');await details.locator(':scope > summary').click();
++  assert.match(await help.innerText(),/Supported headers begin with three nonempty lines: list name and points, faction, then Detachment\(s\)\. Example:/);assert.doesNotMatch(await help.innerText(),/exactly three nonempty lines/);assert.match(await help.innerText(),/New Recruit/);assert.match(await help.innerText(),/site owner/);
+   const examples=help.locator('pre');assert.equal(await examples.count(),2,'Both supported header examples are shown');
+   const example=examples.filter({hasText:/^Unnamed list \(950 Points\)\n/});assert.equal(await example.count(),1);
+   assert.equal((await example.innerText()).split('\n').length,3);
+diff --git a/v2/cards-cosmetics-browser-qa.mjs b/v2/cards-cosmetics-browser-qa.mjs
+index 6b94a8bf..7c9caa6f 100644
+--- a/v2/cards-cosmetics-browser-qa.mjs
++++ b/v2/cards-cosmetics-browser-qa.mjs
+@@ -67,9 +67,12 @@ try{
+    for(const width of [390,1200,1600]){
+     await page.setViewportSize({width,height:1000});await roster(page);await game(page,book,width);
+     await openImportForm(page);await shot(page,page.locator('.v2-roster-pane').first(),`p1-${book}-${width}`);
+-    await check(1,book,width,async()=>{const text=await page.locator('.v2-roster-pane').first().innerText();assert.doesNotMatch(text,/NOT_PROVEN|\bMFM\b|source OR|constructed-input|canonical|binding/i);
+-     if(book==='blood-angels'){assert(text.includes('saved roster is kept'));assert(text.includes('not yet been checked against a real Blood Angels export'));assert(text.includes('any one of its listed conditions'));}
+-     if(book==='dark-angels'){assert(text.includes('A confirmed Dark Angels unit must be in the roster'));assert(text.includes('not yet been checked against a real Dark Angels export'));}});
++    await check(1,book,width,async()=>{const pane=page.locator('.v2-roster-pane').first(),text=await pane.innerText();assert.doesNotMatch(text,/NOT_PROVEN|\bMFM\b|source OR|constructed-input|canonical|binding/i);
++     assert.equal(await pane.locator('[data-roster-known-limitations], [data-roster-scoped-limitation]').count(),0,'Book caveats do not precede the export input');
++     assert.doesNotMatch(await page.locator('[data-roster-view]').textContent(),/not yet been checked against a real (?:Blood|Dark) Angels export/,'Obsolete real-export caveats are absent');
++     const general=page.locator('[data-roster-known-limitations]');
++     if(book==='blood-angels'){assert.equal(await general.count(),1);assert.equal(await general.getAttribute('open'),null,'General book limitations start collapsed');assert.equal(await general.locator(':scope > summary').innerText(),'Known limitations of this Army Book');await general.locator(':scope > summary').click();assert.equal(await general.locator('p').innerText(),'Some rules are not applied automatically. Check their full text before using them.');await general.locator(':scope > summary').click();assert.equal(await page.locator('[data-roster-scoped-limitation="black-rage"], [data-roster-scoped-limitation="legacy-of-the-angel"]').count(),0,'Unrelated Gravis units do not inherit Blood Angels caveats');}
++     if(book==='dark-angels'){assert.equal(await general.count(),0,'No empty general caveat section');const expected=await page.evaluate(()=>{const s=ArmyBookAppV2.roster;return s.state.units.filter(unit=>s.chapterContext(unit.instanceId).armyApplicability.status==='DA_ARMY_CONTEXT_NOT_PROVEN').map(unit=>unit.instanceId);});const notices=page.locator('[data-roster-scoped-limitation="chapter"]');assert.equal(await notices.count(),expected.length);assert(expected.length>0,'The unchanged general-Space-Marines fixture lacks confirmed Dark Angels membership');for(const notice of await notices.all())assert.equal(await notice.innerText(),'The imported roster does not confirm Dark Angels army membership for these units. Check the affected units’ keyword rules before using DEATHWING or RAVENWING.');assert.deepEqual(await notices.evaluateAll(nodes=>nodes.map(node=>node.closest('[data-roster-instance-id]').dataset.rosterInstanceId)),expected);}});
+     await shot(page,page.locator('.v2-roster-instance').first(),`p6-${book}-${width}`);
+     await check(6,book,width,async()=>{assert.equal(await page.locator('[data-roster-warlord-select]').count(),1,'Warlord has one roster-wide control');
+      assert.equal(await page.locator('.v2-roster-instance dt').filter({hasText:/^Warlord$/}).count(),0,'Removed per-unit Warlord captions are absent');
+@@ -143,6 +146,12 @@ try{
+      await check(9,book,width,async()=>{const text=await rule.innerText();assert(!text.includes('- Prey on the Weak'));assert(text.includes('- Friendly HERETIC ASTARTES INFANTRY FLY'));assert(text.includes('- When an enemy unit'));});
+     }
+    }
++   if(book==='blood-angels'){
++    // Reuse a committed derived native-policy pair; do not invent roster input.
++    const related=JSON.parse(fs.readFileSync(path.join(own,'v2/fixtures/sweep-polish-v1.json'))).cases.find(row=>row.id==='character-pair-0039');assert.equal(related.bookId,book);
++    await page.setViewportSize({width:1440,height:1000});await imported(page,related.text);
++    await check(1,book,1440,async()=>{const rage=page.locator('[data-roster-instance-id="parsed-unit-2"] [data-roster-scoped-limitation="black-rage"]');assert.equal(await rage.count(),1);assert.equal(await rage.innerText(),'Battlefield conditions are not checked automatically. Check Black Rage during the battle.');const legacy=page.locator('[data-roster-instance-id="parsed-unit-1"] [data-roster-scoped-limitation="legacy-of-the-angel"]');assert.equal(await legacy.count(),1);assert.equal(await legacy.innerText(),'Legacy of the Angel needs an eligible BLOOD ANGELS CHARACTER. Check the affected unit’s keywords before using this rule.');assert.equal(await page.locator('[data-roster-instance-id="parsed-unit-2"] [data-roster-scoped-limitation="legacy-of-the-angel"]').count(),0);assert.doesNotMatch(await page.locator('[data-roster-import]').innerText(),/Black Rage|Legacy of the Angel|saved roster is kept/);});
++   }
+   }catch(e){await page.screenshot({path:path.join(out,book+'-setup-or-case-failure.png')}).catch(()=>{});throw e;}finally{await context.close();}
+  }
+  assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);
+diff --git a/v2/epic-hero-enhancements-browser-qa.mjs b/v2/epic-hero-enhancements-browser-qa.mjs
+index bb1ad80b..182a47c5 100644
+--- a/v2/epic-hero-enhancements-browser-qa.mjs
++++ b/v2/epic-hero-enhancements-browser-qa.mjs
+@@ -37,7 +37,8 @@ async function importText(book,text){
+ }
+ async function enhancementIdentity(instanceId){
+  return page.locator('.v2-roster-instance[data-roster-instance-id="'+instanceId+'"] .v2-roster-identity').evaluate(node=>{
+-  const term=[...node.querySelectorAll('dt')].find(term=>term.textContent.trim()==='Enhancements on this unit');
++  if([...node.querySelectorAll('dt')].some(term=>term.textContent.trim()==='Enhancements on this unit'))throw Error('Old Enhancement identity label is still present');
++  const term=[...node.querySelectorAll('dt')].find(term=>term.textContent.trim()==='Enhancements');
+   if(!term)throw Error('Missing active Enhancement identity field');return term.nextElementSibling.textContent;
+  });
+ }
+@@ -63,9 +64,11 @@ try{
+   assert.equal(unit.canonicalUnitId,c.unitId);assert.deepEqual(unit.enhancementIds,[c.enhancementId]);assert.equal(Number(unit.raw.points),c.exportPoints);
+   const active=await enhancementIdentity(unit.instanceId);
+   if(c.epic){
+-   const warnings=page.getByText(/Core Rules 25\.04/, {exact:false});
++   const warning=page.locator('[data-roster-import-warning="EPIC_HERO_ENHANCEMENT"]');assert.equal(await warning.count(),1);
++   const details=warning.locator('details');assert.equal(await details.getAttribute('open'),null,'Detailed restriction starts collapsed');await details.locator(':scope > summary').click();
++   const warnings=warning.getByText(/Core Rules 25\.04/, {exact:false});
+    assert(await warnings.count()>0,'The import UI must visibly explain the Epic Hero restriction');
+-   const warningText=await warnings.allTextContents(),message=warningText.join('\n');
++   const warningText=await warning.allTextContents(),message=warningText.join('\n');assert(!message.includes(c.enhancement+' on '+c.unit+': Core Rules 25.04'),'Old long primary warning is absent');
+    assert(message.includes(c.unit)&&message.includes(c.enhancement),'The visible warning names the unit and Enhancement');
+    assert.match(message,/not applied/i);assert.match(message,/invalid|violat|illegal/i);
+    await warnings.first().scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,current+'-warning.png')});
+diff --git a/v2/fabius-safe-import-browser-qa.mjs b/v2/fabius-safe-import-browser-qa.mjs
+index 4858ff0d..d1f908ff 100644
+--- a/v2/fabius-safe-import-browser-qa.mjs
++++ b/v2/fabius-safe-import-browser-qa.mjs
+@@ -105,17 +105,17 @@ async function equipment(width){
+  const c=item('p26-explicit-no-weapons');await open(c.bookId);await submit(c.text);const state=await snapshot(),view=await effective('parsed-unit-2');
+  assert.equal(view.weapons.length,0,'Missing exported weapon selections must not invent a loadout');
+  const importHint=page.locator('[data-import-hint="weapons"][data-import-hint-instance-id="parsed-unit-2"]');await importHint.waitFor();
+- assert.match(await importHint.innerText(),/export.*does not specify weapons.*New Recruit.*equipment included/i);
++ const importName=await page.locator('.v2-roster-instance[data-roster-instance-id="parsed-unit-2"] h2').innerText();assert.equal(await importHint.innerText(),importName+': '+'This export does not list this unit’s weapons. Include equipment in your New Recruit export, then import it again.');assert.doesNotMatch(await importHint.innerText(),/does not specify weapons|equipment included/);
+  const shots=[await screenshot('missing-equipment-import-'+width,importHint)],unit=await card('parsed-unit-2');
+  const hint=unit.locator('[data-import-hint="weapons"]');assert.equal(await hint.count(),1,'An empty Weapons section needs a single human explanation');
+- assert.match(await hint.innerText(),/export.*does not specify weapons.*New Recruit.*equipment included/i);assert.equal(await unit.locator('.weapon-row:not(.weapon-head)').count(),0);
++ assert.equal(await hint.innerText(),'This export does not list this unit’s weapons. Include equipment in your New Recruit export, then import it again.');assert.doesNotMatch(await hint.innerText(),/does not specify weapons|equipment included/);assert.equal(await unit.locator('.weapon-row:not(.weapon-head)').count(),0);
+  assert.deepEqual(await snapshot(),state,'Showing an incomplete-export hint must not change roster data');shots.push(await screenshot('missing-equipment-card-'+width,hint));
+  results.push({case:'equipment',width,status:'PASS',weapons:0,screenshots:shots});
+ }
+ async function composition(width){
+  const complete=item('p26-explicit-no-weapons'),incomplete=item('p26-compact-no-model-rows');await open(complete.bookId);await submit(complete.text);const before=await snapshot();
+  await submit(incomplete.text,{ready:false});const hint=page.locator('[data-import-hint="composition"]').first();await hint.waitFor();
+- assert.match(await hint.innerText(),/how many models of each type.*quantity for each model type/i);assert.deepEqual(await snapshot(),before,'Unclear composition must not replace the saved roster');
++ assert.equal(await hint.innerText(),'This export does not give the number of models of each type in this unit. Export it with model composition, or add a separate quantity line for each model type, then import it again.');assert.doesNotMatch(await hint.innerText(),/does not say how many models|quantity for each model type/);assert.deepEqual(await snapshot(),before,'Unclear composition must not replace the saved roster');
+  const shot=await screenshot('missing-composition-'+width,hint);results.push({case:'composition',width,status:'PASS',snapshotUnchanged:true,screenshots:[shot]});
+ }
+ try{
+diff --git a/v2/new-recruit-plain-header-browser-qa.mjs b/v2/new-recruit-plain-header-browser-qa.mjs
+index 10ec6aa4..90c4c9a7 100644
+--- a/v2/new-recruit-plain-header-browser-qa.mjs
++++ b/v2/new-recruit-plain-header-browser-qa.mjs
+@@ -101,8 +101,10 @@ try{
+    for(const denied of current.rejectionCases){
+     await submit(page,denied.text);
+     const help=page.locator('[data-import-hint="plain-header"]');await help.waitFor();
+-    assert.match(await page.locator('.v2-roster-status').innerText(),/The export header could not be recognized/);
+-    assert.match(await help.innerText(),/exactly three nonempty lines/);assert.match(await help.innerText(),/Five-line example/);
++    assert.equal(await page.locator('.v2-roster-status').innerText(),'The export header could not be read. Export the complete list as text from New Recruit and try again.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/The export header could not be recognized/);
++    const details=help.locator('details');assert.equal(await details.count(),1);assert.equal(await details.getAttribute('open'),null,'Header details start collapsed');await details.locator(':scope > summary').click();
++    assert.match(await help.innerText(),/Supported headers begin with three nonempty lines: list name and points, faction, then Detachment\(s\)\. Example:/);assert.doesNotMatch(await help.innerText(),/exactly three nonempty lines|Five-line example/);
++    assert.equal(await help.locator('pre').count(),2);assert.equal(await help.locator('pre').nth(0).innerText(),'Unnamed list (950 Points)\nDeath Guard\nContagion Engines and Paragons of Putrescence (2 Detachment Points)');assert.equal(await help.locator('pre').nth(1).innerText(),'Unnamed list (760 Points)\nDeath Guard\nShamblerot Vectorium and Virulent Vectorium (5 Detachment Points)\nDisruption\nStrike Force (2,000 Points)');
+     assert.match(await help.innerText(),/Strike Force \(2,000 Points\)/);
+     assert.deepEqual(await page.evaluate(()=>ArmyBookAppV2.roster.snapshot()),imported.state,'Rejected header preserves active roster');
+     assert.equal(await page.evaluate(()=>localStorage.getItem('army-book-app-v2:roster:death-guard')),saved,'Rejected header preserves exact saved bytes');
+diff --git a/v2/roster-navigation-browser-qa.mjs b/v2/roster-navigation-browser-qa.mjs
+index 4beb517d..30b4db27 100644
+--- a/v2/roster-navigation-browser-qa.mjs
++++ b/v2/roster-navigation-browser-qa.mjs
+@@ -20,7 +20,7 @@ const root=path.resolve(arg('--root')||process.env.ROSTER_NAVIGATION_ROOT||own);
+ const out=path.resolve(arg('--out')||process.env.ROSTER_NAVIGATION_EVIDENCE_DIR||createQaEvidenceDir('wh-roster-navigation-'));
+ const widths=(arg('--widths')||'390,1440').split(',').map(Number),mutation=arg('--mutation');
+ assert(widths.length&&widths.every(width=>Number.isInteger(width)&&width>0),'Valid --widths');
+-assert(!mutation||mutation==='foreign-detachment','Only --mutation=foreign-detachment is supported');
++assert(!mutation||['foreign-detachment','missing-base-origin'].includes(mutation),'Only the named foreign-Detachment and missing-base-origin mutations are supported');
+ const books=armyBooks.filter(book=>!arg('--book')||book.id===arg('--book'));assert(books.length,'Known --book');
+ const read=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8'));
+ const hash=value=>createHash('sha256').update(typeof value==='string'||Buffer.isBuffer(value)?value:JSON.stringify(value)).digest('hex');
+@@ -90,12 +90,28 @@ async function unitCard(id,{keyboard=false}={}){const control=page.locator(`#toc
+   await page.waitForFunction(id=>new URL(location.href).searchParams.get('instance')===id,id);
+   const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`).first();await card.waitFor();await frames();return card;}
+ async function shot(name,locator=page){const file=[current.book,current.width,name].join('-')+'.png';await locator.screenshot({path:path.join(out,file),animations:'disabled'});report.screenshots.push({...current,name,file});save();}
++/** Independent source-field classification: a base-price label must be present
++ * when no native priced row owns this UNIT and exactly one accepted MFM entry
++ * matches its existing MODEL/copy bounds. DOM markers never select the test. */
++function sourceBasePrice(state,cards,unit,nativePoints){
++  if(nativePoints?.units?.some(row=>(row.unitInstanceId||row.instanceId)===unit.instanceId))return null;
++  const ordinal=state.units.filter(row=>row.canonicalUnitId===unit.canonicalUnitId).findIndex(row=>row.instanceId===unit.instanceId)+1,matching=[];
++  for(const id of cards.get(unit.canonicalUnitId).children||[]){const record=cards.get(id);if(record?.kind!=='MFM_UNIT_POINTS')continue;
++    const fieldAt=path=>record.fields.find(field=>field.source?.path===path)?.value;
++    for(const field of record.fields){const path=field.source?.path||'';if(!path.endsWith('/value'))continue;
++      const entry=path.slice(0,-'value'.length),schedule=path.split('/entries/')[0],minimum=fieldAt(entry+'minModels'),maximum=fieldAt(entry+'maxModels')??minimum;
++      if(typeof minimum==='number'&&unit.startingStrength>=minimum&&unit.startingStrength<=maximum&&ordinal>=(fieldAt(schedule+'/minCopies')??record.pointsSchedule?.minCopies??1)&&ordinal<=(fieldAt(schedule+'/maxCopies')??record.pointsSchedule?.maxCopies??Infinity))matching.push(field.value);
++    }
++  }
++  return matching.length===1&&Number.isFinite(matching[0])?matching[0]:null;
++}
+ function displayNames(state,cards){
+   const names=new Map();for(const unit of state.units){const peers=state.units.filter(other=>other.canonicalUnitId===unit.canonicalUnitId),title=cards.get(unit.canonicalUnitId).title;
+     if(peers.length===1){names.set(unit.instanceId,title);continue;}
+     const shape=entry=>JSON.stringify(Object.entries((entry.modelRows||[]).reduce((rows,row)=>{rows[row.canonicalProfileId]=(rows[row.canonicalProfileId]||0)+row.quantity;return rows;},{})).sort());
+     const identical=peers.filter(other=>shape(other)===shape(unit)),count=unit.modelRows.reduce((sum,row)=>sum+row.quantity,0);
+-    names.set(unit.instanceId,`${title} (${count} ${count===1?'model':'models'})${identical.length>1?' #'+(identical.indexOf(unit)+1):''}`);
++    const differentShapeAtSameSize=peers.some(other=>other.modelRows.reduce((sum,row)=>sum+row.quantity,0)===count&&shape(other)!==shape(unit));
++    names.set(unit.instanceId,count===1&&!differentShapeAtSameSize&&identical.length>1?`${title} #${identical.indexOf(unit)+1}`:`${title} (${count} ${count===1?'model':'models'})${identical.length>1?' #'+(identical.indexOf(unit)+1):''}`);
+   }return names;
+ }
+ async function assertSourceFields(locator,card){
+@@ -120,7 +136,7 @@ async function inspectStratagems(card,id,cards){
+   const pane=card.locator('details[data-datasheet-section="stratagems"]');
+   if(await pane.count()&&!await pane.evaluate(node=>node.open))await pane.locator(':scope > summary').click();
+   await frames();
+-  if(mutation&&!mutationInjected){const state=await snapshot(),foreign=[...cards.values()].find(rule=>rule.kind==='STRATAGEM'&&!state.detachmentIds.includes(rule.parentId));assert(foreign,'Mutation requires a foreign Detachment rule');
++  if(mutation==='foreign-detachment'&&!mutationInjected){const state=await snapshot(),foreign=[...cards.values()].find(rule=>rule.kind==='STRATAGEM'&&!state.detachmentIds.includes(rule.parentId));assert(foreign,'Mutation requires a foreign Detachment rule');
+     await card.evaluate((root,rule)=>{let section=root.querySelector('[data-datasheet-section="stratagems"]');
+       if(!section){section=document.createElement('section');section.dataset.datasheetSection='stratagems';root.append(section);}
+       const injected=document.createElement('article');injected.dataset.ruleId=rule.id;injected.dataset.detachmentId=rule.parentId;injected.dataset.applicability='CONDITIONAL';injected.textContent=rule.title;section.append(injected);
+@@ -168,12 +184,21 @@ try{
+         await attach(one('unit-lord-of-contagion'),one('unit-deathshroud-terminators'));await attach(one('unit-biologus-putrifier'),one('unit-plague-marines',10));
+       }else if(fixture.attachment)await attach(fixture.attachment.leader,fixture.attachment.target);
+       state=await snapshot();
++      const nativePoints=await page.evaluate(()=>ArmyBookAppV2.roster.points||null);
++      const expectedBasePrices=new Map(state.units.map(unit=>[unit.instanceId,sourceBasePrice(state,cards,unit,nativePoints)]).filter(([,value])=>value!==null));
++      if(mutation==='missing-base-origin'&&!mutationInjected&&expectedBasePrices.size){
++        const first=expectedBasePrices.keys().next().value,marker=page.locator(`.v2-roster-instance[data-roster-instance-id="${first}"] [data-roster-points-origin="base"]`);assert.equal(await marker.count(),1,'Marker mutation starts from the existing base-price field');
++        await marker.evaluate(node=>node.removeAttribute('data-roster-points-origin'));mutationInjected=true;
++      }
+       const setupPrices=new Map((await page.locator('.v2-roster-instance').evaluateAll(nodes=>nodes.map(node=>{
+-        const term=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>['Points','MFM base points','Imported points'].includes(term.textContent));
+-        const enhancements=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>term.textContent==='Enhancements on this unit');
+-        return [node.dataset.rosterInstanceId,{label:term?.textContent,value:term?.nextElementSibling?.textContent,
++        const term=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>['Points','Exported points'].includes(term.textContent));
++        const enhancements=[...node.querySelectorAll('.v2-roster-identity dt')].find(term=>term.textContent==='Enhancements');
++        return [node.dataset.rosterInstanceId,{label:term?.textContent,origin:term?.parentElement?.dataset.rosterPointsOrigin??null,value:term?.nextElementSibling?.textContent,
+           enhancements:[...(enhancements?.nextElementSibling?.querySelectorAll('[data-target-id]')||[])].map(link=>link.dataset.targetId)}];
+       }))));
++      for(const [id,value]of expectedBasePrices){const observed=setupPrices.get(id);assert.equal(observed.origin,'base','The source-proven base-price branch cannot be skipped by a missing marker: '+id);assert.equal(observed.label,'Points');assert.equal(observed.value,value+' pts','Attachment Setup retains the exact source-proven base price');}
++      assert.equal(await page.locator('.v2-roster-identity dt').filter({hasText:/^(?:MFM base points|Imported points|Enhancements on this unit)$/}).count(),0,'Old identity labels are absent');
++      for(const unit of state.units)if(!unit.enhancementIds?.length)assert.equal(await page.locator(`.v2-roster-instance[data-roster-instance-id="${unit.instanceId}"] .v2-roster-identity dt`).filter({hasText:/^Enhancements$/}).count(),0,'No empty Enhancement field');
+       const activeEnhancements=await page.evaluate(()=>ArmyBookAppV2.roster.projection.units.map(unit=>[unit.instanceId,unit.enhancementIds]));
+       for(const [id,ids] of activeEnhancements)assert.deepEqual(setupPrices.get(id).enhancements,ids,'Attachment Setup shows exactly the active chosen Enhancements');
+       await check('single-physical-character-warlord-control-and-exact-roundtrip',async()=>{
+@@ -244,23 +269,28 @@ try{
+         await page.keyboard.press('Escape');await frames();assert.equal(await menu.getAttribute('aria-expanded'),'false');assert.equal(await menu.evaluate(node=>node===document.activeElement),true);return {enterOpens:true,escapeReturnsFocus:true};
+       });
+       const focus=fixture.owner?state.units.find(unit=>unit.canonicalUnitId==='unit-deathshroud-terminators').instanceId:fixture.attachment?.target||state.units[0].instanceId;
++      const expectedFocusRows=await page.evaluate(id=>{const service=ArmyBookAppV2.roster,related=service.related(id),rows=Array.isArray(related)?related:related.rows||[];return rows.filter(row=>row.kind==='STRATAGEM'&&service.state.detachmentIds.includes(row.detachmentId)&&['MATCH','CONDITIONAL'].includes(row.applicability)).map(row=>({id:row.ruleId,detachmentId:row.detachmentId,applicability:row.applicability}));},focus);
++      const expectedPrecheckComponents=await page.evaluate(id=>{const service=ArmyBookAppV2.roster,group=service.effective(id).formedUnit;return group?[group.bodyguardInstanceId,...service.state.units.filter(unit=>group.memberInstanceIds.includes(unit.instanceId)&&unit.instanceId!==group.bodyguardInstanceId).map(unit=>unit.instanceId)]:[id];},focus);
+       await page.evaluate(()=>{const service=ArmyBookAppV2.roster,related=service.related;window.__rosterNavigationRelatedCalls=[];
+         service.related=function(...args){window.__rosterNavigationRelatedCalls.push(args[0]);return related.apply(this,args);};});
+       const focused=await unitCard(focus,{keyboard:true});
+       await check('lazy-stratagem-first-open-and-repeat-cache',async()=>{
+-        assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[],'Card render makes zero related() calls');
+-        const pane=focused.locator('details[data-datasheet-section="stratagems"]');assert.equal(await pane.count(),1,'Initial lazy header exists');assert.equal(await pane.evaluate(node=>node.open),false);
+-        assert.equal(await focused.locator('.local-tab').filter({hasText:/^Stratagems$/}).count(),1,'Initial local tab exists');
+-        await pane.locator(':scope > summary').click();await frames();assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[focus],'Exactly this physical component is resolved once');
+-        if(await pane.count()){
+-          await pane.locator(':scope > summary').click();await focused.locator('.local-tab').filter({hasText:/^Stratagems$/}).click();await frames();
++        assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),expectedPrecheckComponents,'The exact metadata-only precheck resolves each displayed native formed component once');
++        const pane=focused.locator('details[data-datasheet-section="stratagems"]'),tab=focused.locator('.local-tab').filter({hasText:/^Stratagems$/});
++        assert.equal(await pane.count(),expectedFocusRows.length?1:0,'Initial header exists exactly when the unchanged native query has rows');assert.equal(await tab.count(),expectedFocusRows.length?1:0,'No empty local tab is created');
++        assert.equal(await focused.locator('[data-datasheet-section="stratagems"] [data-rule-id][data-applicability]').count(),0,'No Stratagem text/cards are built before first opening');
++        if(expectedFocusRows.length){
++          assert.equal(await pane.evaluate(node=>node.open),false);await pane.locator(':scope > summary').click();await frames();
++          assert.deepEqual(await pane.locator('[data-rule-id][data-applicability]').evaluateAll(nodes=>nodes.map(node=>({id:node.dataset.ruleId,detachmentId:node.dataset.detachmentId,applicability:node.dataset.applicability}))).then(rows=>rows.toSorted((a,b)=>a.id.localeCompare(b.id))),expectedFocusRows.toSorted((a,b)=>a.id.localeCompare(b.id)),'First expansion retains every exact native row');
++          assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),expectedPrecheckComponents,'First expansion reuses the exact precheck metadata');
++          await pane.locator(':scope > summary').click();await tab.click();await frames();
+           assert.equal(await pane.evaluate(node=>node.open),true,'The local card menu expands the same lazy section');
+-          assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[focus],'Repeat expansion through the local menu reuses the current state cache');
++          assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),expectedPrecheckComponents,'Repeat expansion through the local menu reuses the current state cache');
+         }
+-        return {instanceId:focus,calls:await page.evaluate(()=>window.__rosterNavigationRelatedCalls)};
++        return {instanceId:focus,rows:expectedFocusRows,calls:await page.evaluate(()=>window.__rosterNavigationRelatedCalls)};
+       });
+       for(const unit of state.units){const card=await unitCard(unit.instanceId);
+-        const price=setupPrices.get(unit.instanceId);if(price.label==='MFM base points'){
++        const price=setupPrices.get(unit.instanceId);if(expectedBasePrices.has(unit.instanceId)){assert.equal(price.origin,'base');assert.equal(price.label,'Points');
+           const actual=await card.locator('.ds-instance-price').innerText();assert(actual.endsWith(' · '+price.value),'Attachment Setup uses the same existing MFM price as the card');
+         }
+         for(const id of new Map(activeEnhancements).get(unit.instanceId))assert.equal(await card.locator(`[data-gained-source-kind="ENHANCEMENT"][data-source-rule-id=${JSON.stringify(id)}]`).count(),1,'The chosen Enhancement remains in Gained rules');
+@@ -297,7 +327,7 @@ try{
+     console.log('Roster navigation '+book.id+' '+width+' complete');
+   }
+   assert.deepEqual(report.errors,[],'Browser errors');assert.deepEqual(report.missing,[],'Runtime files available');
+-  assert(!mutation,'Mutation control must fail the exact native-row guard');report.status='PASS';
++  assert(!mutation,'Mutation control must fail its exact native-row or base-price-origin guard');report.status='PASS';
+ }catch(error){report.status='FAIL';report.failure={message:error.message,stack:error.stack};throw error;}
+ finally{report.finished=new Date().toISOString();save();if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
+ console.log(JSON.stringify({status:report.status,checks:report.checks.length,out}));

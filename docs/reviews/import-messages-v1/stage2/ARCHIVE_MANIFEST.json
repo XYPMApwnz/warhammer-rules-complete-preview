@@ -1,0 +1,294 @@
+{
+  "schema": "import-messages-stage2-review-archive/v1",
+  "state": "FINAL_FULL_QA_PENDING",
+  "candidate": "4060074ae0c7888571367f99f7cb9cc375c167ba",
+  "base": "5bc1b038437fcac86966f87371760da94d7e9b38",
+  "parentEvidence": "7a7100203c8f65501f06df8ae22c7829304fc13f",
+  "files": [
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/REPORT.md",
+      "bytes": 12114,
+      "sha256": "f979fa33f15f4cbc0dc60e0ed451c925d4de97df4abff70f7b99b4843ac85d6d"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/messages-approved.csv",
+      "bytes": 233085,
+      "sha256": "48e7b11a57cc4d5b517a52e163e6b6a725e50bd892e9b733a5c2d4d7d81920aa"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/OLD_TEST_TABLE.md",
+      "bytes": 7884,
+      "sha256": "a4ec7c0a2d3ec9841e628970d95209d82e101e61a245fabfc9dc7b8b5dee34ed"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/APPROVED_OLD_TESTS.patch",
+      "bytes": 56042,
+      "sha256": "17b983382a4cd0dcf43cd3263dd2f79287c871eb00b743a23c69088b14574b45"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/REPAIR_FROM_PREFLIGHT.patch",
+      "bytes": 171413,
+      "sha256": "fb45892ca0c198de224ad7466b68bc07a91733a628b188333e57f1752a808207"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/REPAIR_FROM_PREFLIGHT.stat.txt",
+      "bytes": 531,
+      "sha256": "44b71a0aa39bf81fd1555a509e228dc2d4c4917744b8b4a682879ff87a5f9ad6"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/STARTUP_PATHS_AB.json",
+      "bytes": 19850,
+      "sha256": "671ac15173a291033b113cf9b610586f53e67e177fa100098569ce85f535b272"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/TAU_PROFILE_CAPTION_TRACE.json",
+      "bytes": 2256,
+      "sha256": "701ef9e02f1fe32eb5d3192e592765bdfabe1158ba0eb3a10afa7aea5a92d2fe"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/repair-targeted-acceptance.json",
+      "bytes": 2537,
+      "sha256": "9d9c50ffcf86786897d53b14143e9c41ca4b70998824b32d7f721bf4f08d5805"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/native-ab.json",
+      "bytes": 438,
+      "sha256": "80d7dfc227f603be1601495e1b349c3830d7d4234df3353791c5a2ae430e3624"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/native-comparison.json",
+      "bytes": 3239,
+      "sha256": "8f78c909762a6273722fc697954b466db50155a55969bce7686012d4bc62cc18"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/generated-bytes.json",
+      "bytes": 50441,
+      "sha256": "fb70d33a4a2a581f6e81206f9695f5490882fad899f74cc7bee93968fae9a736"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/FIRST_FULL_PREFLIGHT.json",
+      "bytes": 36079,
+      "sha256": "ce4bf933371b524205f65f4e5454f65c139be34cf8dacdeec2b12281e220558a"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/blood-angels-1440-before-input.png",
+      "bytes": 272342,
+      "sha256": "605b6acddf570c81556724c494e325eb4a287d01cdf9e741bab37e4163abc37b"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/blood-angels-1440-clarification.png",
+      "bytes": 290764,
+      "sha256": "aae7d06c2e50eae779b903a164f8732ae3721fb3a8d1d854896cc74c7121905b"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/blood-angels-1440-refusal.png",
+      "bytes": 294201,
+      "sha256": "d6eb57e2046aa97c03265fd0aaabd92ee98e4ce52af244f4a4fb5807a5b25f6b"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/blood-angels-1440-success.png",
+      "bytes": 306589,
+      "sha256": "433343d33e2e6e0a6c895c51c01b3b62de2556aad438c0c0f6217439df4114cd"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/blood-angels-390-before-input.png",
+      "bytes": 43466,
+      "sha256": "5eaf1e5074d73e050ba540f3042c78743f783e00e4f971356313e1f654ae1b80"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/blood-angels-390-clarification.png",
+      "bytes": 51664,
+      "sha256": "eb9c1bfe35302c2d4fd0dd5e6215b6f390dafa7ac762fe9ff63d0ba60e1cd437"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/blood-angels-390-refusal.png",
+      "bytes": 51450,
+      "sha256": "a49c23e19b8633c9dd1d87163f0794a917593ce083f6ab44d629b801dafae9de"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/blood-angels-390-success.png",
+      "bytes": 50128,
+      "sha256": "9cefe52194f14dbd3e0d7c42c3a445b0bc8ab59041e3043ca2927fae89a4af5b"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/dark-angels-1440-before-input.png",
+      "bytes": 272933,
+      "sha256": "fdc7d2057d5ec18bc25fc4924b57041ffdfdae30543daad1cbc7ddeb200abe36"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/dark-angels-1440-clarification.png",
+      "bytes": 294692,
+      "sha256": "394744e199f796e5e1c9557c2dd2f3fd818ea08eab9ca7681ceba0f3ec51277f"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/dark-angels-1440-refusal.png",
+      "bytes": 301901,
+      "sha256": "11b1ffa6a12c95bbf28b8fd66eb93ca10b0e829ff3cdd5a6052ce062012a3481"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/dark-angels-1440-success.png",
+      "bytes": 307830,
+      "sha256": "8bbe2325499dc6a856658d1592cc6f7ac0db43faa584b87d5f50bb04bb147844"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/dark-angels-390-before-input.png",
+      "bytes": 43254,
+      "sha256": "79d75994d7d6fb7fd1ed8c93a0804ac553c9888a99efc1206e1d30b2441d4740"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/dark-angels-390-clarification.png",
+      "bytes": 51658,
+      "sha256": "a62fb59da1f2a55886c43b78d00ef0a74e82440dc85c21a5787d1984649614ea"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/dark-angels-390-refusal.png",
+      "bytes": 53423,
+      "sha256": "8e3a04b4b03054995095bbe09b010d769c4cc36d22be61b309037570e784b5dc"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/dark-angels-390-success.png",
+      "bytes": 50273,
+      "sha256": "343b8e20688de50f8a9835dfbab575cf5c037b534698f47dc2391288644549e9"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/death-guard-1440-before-input.png",
+      "bytes": 254579,
+      "sha256": "8509a85fd0af4ab1ed6283e7c49b825c3e3b9090a643b026b651660d2f109040"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/death-guard-1440-clarification.png",
+      "bytes": 236501,
+      "sha256": "00c7a018e4d3e8059a84e9cbabefc2bc298db409b64e8b108b847f368cf883e2"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/death-guard-1440-refusal.png",
+      "bytes": 232745,
+      "sha256": "31801839dd3fe61e3c48d48fdfaf81e48d195671ee30fca0a222eb109d6f5df6"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/death-guard-1440-success.png",
+      "bytes": 222202,
+      "sha256": "a17c157e086f66db0738836faa124649d53e4002c1fc5ed05fd7cdec121fa529"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/death-guard-390-before-input.png",
+      "bytes": 42085,
+      "sha256": "6e10ae6d2a25682e04b9e57697ff785a15cbf56ca4543e5c2ceb4254306b4db3"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/death-guard-390-clarification.png",
+      "bytes": 52487,
+      "sha256": "c2154d1a937938c564db5a40184d95ed6cffd0419cbb14a023f221629d44996f"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/death-guard-390-refusal.png",
+      "bytes": 55258,
+      "sha256": "5a401630edf05f6d061ab6f41473efece310456e9e7ba7de9f33fb90212aca20"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/death-guard-390-success.png",
+      "bytes": 49481,
+      "sha256": "98f7378f0d9737058254fba7a8f8b0300e722c19940c1ac75096deb464c8b283"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/GALLERY.html",
+      "bytes": 7936,
+      "sha256": "f50e047fbc87d9197c7e3bf218cbc687001cc1e7c78f6e2405053cb59c40f4cb"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/RESULTS.json",
+      "bytes": 48448,
+      "sha256": "09fba331ff4f38bc157f1c5d3a6a5ccebd3181362eff8f926e01259c3cfc1280"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-1440-before-input.png",
+      "bytes": 271994,
+      "sha256": "7b9fcbdebe06d2adeed1cebf52315f6fb3e02c57341b8eab49e61717592803d4"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-1440-choices-prototype.png",
+      "bytes": 204839,
+      "sha256": "bfa0a03f0924c91c1fa49fd9d17de6cf9e5613be240e525b01d1a301eb9ccfef"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-1440-choices-student.png",
+      "bytes": 213911,
+      "sha256": "8a9be96ed0fcf99c054b5ffb69dc603470d8862e507b5530e4976de30b5237a8"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-1440-clarification.png",
+      "bytes": 289810,
+      "sha256": "68371e987bb6ad04a6a6bd191587d66bb7d34153ac72be3c27b99f3a53065877"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-1440-refusal.png",
+      "bytes": 301177,
+      "sha256": "1b963cf7eb37aff39e6385f7642a72f18f36377d18fd590d2d08767572ead7c8"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-1440-success.png",
+      "bytes": 299880,
+      "sha256": "409a9e2c07bf52720239bd8c1c2a5074fb30b33e1df59c5f505e5e00806d2cea"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-390-before-input.png",
+      "bytes": 42961,
+      "sha256": "dd9c727ecd02ab21b8f60ac60b2394482502d6cddecbbccf655910f97cfdb99e"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-390-choices-prototype.png",
+      "bytes": 40982,
+      "sha256": "d673621a9778452a8e04b12485a9cf18e546e4d083d97308b606bb72b52fd9cc"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-390-choices-student.png",
+      "bytes": 43338,
+      "sha256": "4ad2fd54b1bdb3c4649dd68f8952570ce8d22d360b7a3edcc295a4368cb9cf3c"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-390-clarification.png",
+      "bytes": 52790,
+      "sha256": "8aeeba75c15399c73236c9e5dddefa38c814cad9ae6b430643f13d23cbb38f7a"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-390-refusal.png",
+      "bytes": 52786,
+      "sha256": "4dfc0fe8a3428637d96b5cd203403a8fd893168ca5a28db578a49ba56e31978b"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tau-empire-390-success.png",
+      "bytes": 50280,
+      "sha256": "85a18186830fe0ad6629ea35be7b8a6988d40656dfe82d490123145f0eaa3209"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tyranids-1440-choices-trygon.png",
+      "bytes": 198283,
+      "sha256": "b88926d8fb0f156685bc3e3320a6096b374afc09028d7a584cca161ac524537f"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/browser/tyranids-390-choices-trygon.png",
+      "bytes": 42926,
+      "sha256": "cb32e5119d3c5f3d288b3d10d3b5748db652f07510fa809ff0648737559b6f91"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/recipes/verify-repaired-ab.mjs",
+      "bytes": 2991,
+      "sha256": "2b4369bc1e2b9be601d48281af3ef563113a74c876fb11e84f63fc94c05f8b11"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/recipes/run-repair-targeted.mjs",
+      "bytes": 3170,
+      "sha256": "cf481bb2492bf9a22aaff7bb4335bdc56ac1903a2f0441a0f52f2b98c7fef7be"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/stage2/recipes/compare-startup-graph.mjs",
+      "bytes": 1678,
+      "sha256": "994576b04617dbb59c9f23c3058d8259484de31e6d4ab243a1448fec2a6f5262"
+    },
+    {
+      "file": "docs/reviews/import-messages-v1/README.md",
+      "bytes": 534,
+      "sha256": "c277f9c30c83fb94cb2005e59f37e3bc3443038c9a15fa936d0c0d8c47405e45"
+    }
+  ]
+}
