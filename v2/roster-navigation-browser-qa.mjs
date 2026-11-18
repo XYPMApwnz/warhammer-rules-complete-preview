@@ -248,21 +248,22 @@ try{
       });
       const focus=fixture.owner?state.units.find(unit=>unit.canonicalUnitId==='unit-deathshroud-terminators').instanceId:fixture.attachment?.target||state.units[0].instanceId;
       const expectedFocusRows=await page.evaluate(id=>{const service=ArmyBookAppV2.roster,related=service.related(id),rows=Array.isArray(related)?related:related.rows||[];return rows.filter(row=>row.kind==='STRATAGEM'&&service.state.detachmentIds.includes(row.detachmentId)&&['MATCH','CONDITIONAL'].includes(row.applicability)).map(row=>({id:row.ruleId,detachmentId:row.detachmentId,applicability:row.applicability}));},focus);
+      const expectedPrecheckComponents=await page.evaluate(id=>{const service=ArmyBookAppV2.roster,group=service.effective(id).formedUnit;return group?[group.bodyguardInstanceId,...service.state.units.filter(unit=>group.memberInstanceIds.includes(unit.instanceId)&&unit.instanceId!==group.bodyguardInstanceId).map(unit=>unit.instanceId)]:[id];},focus);
       await page.evaluate(()=>{const service=ArmyBookAppV2.roster,related=service.related;window.__rosterNavigationRelatedCalls=[];
         service.related=function(...args){window.__rosterNavigationRelatedCalls.push(args[0]);return related.apply(this,args);};});
       const focused=await unitCard(focus,{keyboard:true});
       await check('lazy-stratagem-first-open-and-repeat-cache',async()=>{
-        assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[focus],'The exact metadata-only empty precheck resolves only this physical component once');
+        assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),expectedPrecheckComponents,'The exact metadata-only precheck resolves each displayed native formed component once');
         const pane=focused.locator('details[data-datasheet-section="stratagems"]'),tab=focused.locator('.local-tab').filter({hasText:/^Stratagems$/});
         assert.equal(await pane.count(),expectedFocusRows.length?1:0,'Initial header exists exactly when the unchanged native query has rows');assert.equal(await tab.count(),expectedFocusRows.length?1:0,'No empty local tab is created');
         assert.equal(await focused.locator('[data-datasheet-section="stratagems"] [data-rule-id][data-applicability]').count(),0,'No Stratagem text/cards are built before first opening');
         if(expectedFocusRows.length){
           assert.equal(await pane.evaluate(node=>node.open),false);await pane.locator(':scope > summary').click();await frames();
           assert.deepEqual(await pane.locator('[data-rule-id][data-applicability]').evaluateAll(nodes=>nodes.map(node=>({id:node.dataset.ruleId,detachmentId:node.dataset.detachmentId,applicability:node.dataset.applicability}))).then(rows=>rows.toSorted((a,b)=>a.id.localeCompare(b.id))),expectedFocusRows.toSorted((a,b)=>a.id.localeCompare(b.id)),'First expansion retains every exact native row');
-          assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[focus],'First expansion reuses the exact precheck metadata');
+          assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),expectedPrecheckComponents,'First expansion reuses the exact precheck metadata');
           await pane.locator(':scope > summary').click();await tab.click();await frames();
           assert.equal(await pane.evaluate(node=>node.open),true,'The local card menu expands the same lazy section');
-          assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),[focus],'Repeat expansion through the local menu reuses the current state cache');
+          assert.deepEqual(await page.evaluate(()=>window.__rosterNavigationRelatedCalls),expectedPrecheckComponents,'Repeat expansion through the local menu reuses the current state cache');
         }
         return {instanceId:focus,rows:expectedFocusRows,calls:await page.evaluate(()=>window.__rosterNavigationRelatedCalls)};
       });
