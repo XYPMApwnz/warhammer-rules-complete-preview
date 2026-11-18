@@ -1,0 +1,88 @@
+{
+  "schema": "import-messages-v1/authenticity-provenance",
+  "head": "5bc1b038437fcac86966f87371760da94d7e9b38",
+  "method": "Read-only source/test/history trace and exact text/hash comparison; no application modules, tests or builds executed; no raw export dump.",
+  "conclusion": "Both blanket player warnings should be removed as obsolete against documented accepted sample coverage. Origin confidence remains limited to explicit repository enrollment declarations; retain qualified sample evidence in collapsed Details, without general certification.",
+  "rows": [
+    {
+      "book": "blood-angels",
+      "sourceFixtureLabel": "native-export/newrecruit-v37.2-user-redemptor.txt",
+      "actualRepositoryFile": "books/blood-angels/v2/fixtures/newrecruit-v37.2-user-redemptor.txt",
+      "declaredProvenance": "Literal user-supplied NR v37.2 input",
+      "provenanceLocations": [
+        "books/blood-angels/v2/multi-detachment-qa.mjs:1",
+        "books/blood-angels/v2/multi-detachment-qa.mjs:10",
+        "books/blood-angels/v2/multi-detachment-qa.mjs:11"
+      ],
+      "enrollmentCommit": "da991b776abdb56487a76f713515649274477d70",
+      "enrollmentDate": "2026-10-23",
+      "fixtureComparison": {
+        "embeddedFixtureLocation": "v2/fixtures/new-recruit-export.json:23",
+        "bytes": 919,
+        "sha256": "fb0be23eb8036a47d6228ce1babfbb251b5980a7fb63a198033be7e782e957d9",
+        "matchesNativeTestPin": true,
+        "exactUtf8TextEqual": true,
+        "lfNormalizedEqual": true,
+        "normalization": "Only CRLF/CR to LF; no wording, Unicode whitespace, model or equipment normalization. Exact equality already holds.",
+        "sourceFixturePathNote": "native-export/... is a provenance label in the JSON, not a directory path. The actual source lives in the respective native book fixtures directory."
+      },
+      "staticCoverage": "One Redemptor Dreadnought; NR v37.2; 19 imported Detachments, physical inventory and centrally resolved 180 points; saved-state/reload/reimport and negative guards. Acceptance explicitly does not assess army legality.",
+      "currentObservation": "Parent root reports READY through the normal current browser import for this exact embedded faction fixture at 5bc1b038437fcac86966f87371760da94d7e9b38. This subagent did not run browser or native tests.",
+      "contradictingOldMetadata": [
+        "books/blood-angels/v2/app-build.mjs:37",
+        "books/blood-angels/v2/source-issues.json:255",
+        "books/blood-angels/v2/README.md:228"
+      ],
+      "currentPlayerText": "This importer has not yet been checked against a real Blood Angels export.",
+      "stage1Disposition": "REMOVE_FROM_PLAYER_COPY",
+      "reason": "The blanket never-checked statement conflicts with explicit repository-enrolled, SHA-pinned user-export coverage and the reported current exact-sample acceptance. It is obsolete as a universal player warning; this does not certify all rosters or independently authenticate the export generator.",
+      "optionalCollapsedDetailsText": "A supplied Blood Angels New Recruit v37.2 sample imports successfully. Coverage is limited to that sample; use the full rules to check your roster.",
+      "coveragePlacement": "Preserve evidence links and exact tested sample scope in collapsed Details; no replacement warning is required.",
+      "limits": [
+        "User authenticity is declared by the enrolled native tests; no separate upstream download, original chat attachment, signed export manifest or independent generator attestation was found in the scoped files. Hashes bind the accepted bytes to their tests, not the external origin.",
+        "One BA sample and the exact DA ten-model sample cannot establish whole-book compatibility, complete army legality, exhaustive New Recruit versions, all weapons, or battlefield mechanics.",
+        "Static tests here establish documented coverage intent. Only the parent browser observation establishes current execution; native tests were not run in this follow-up."
+      ]
+    },
+    {
+      "book": "dark-angels",
+      "sourceFixtureLabel": "native-export/newrecruit-v37.3-user-da-10-models.txt",
+      "actualRepositoryFile": "books/dark-angels/v2/fixtures/newrecruit-v37.3-user-da-10-models.txt",
+      "declaredProvenance": "Corrected user export paste; only Markdown transport decoded; test labels this SHA_PINNED_CORRECTED_USER_PASTES_V37_3",
+      "provenanceLocations": [
+        "books/dark-angels/v2/newrecruit-v37.3-qa.mjs:1",
+        "books/dark-angels/v2/newrecruit-v37.3-qa.mjs:47",
+        "books/dark-angels/v2/newrecruit-v37.3-qa.mjs:48",
+        "books/dark-angels/v2/newrecruit-v37.3-qa.mjs:61"
+      ],
+      "enrollmentCommit": "27eb38febd1d149137866861097e51e8330c8629",
+      "enrollmentDate": "2026-10-24",
+      "fixtureComparison": {
+        "embeddedFixtureLocation": "v2/fixtures/new-recruit-export.json:58",
+        "bytes": 972,
+        "sha256": "2fa72ca975ac40144da3dc7ffaba612e25e1fa5f9be337c9627bb6127702327d",
+        "matchesNativeTestPin": true,
+        "exactUtf8TextEqual": true,
+        "lfNormalizedEqual": true,
+        "normalization": "Only CRLF/CR to LF; no wording, Unicode whitespace, model or equipment normalization. Exact equality already holds.",
+        "sourceFixturePathNote": "native-export/... is a provenance label in the JSON, not a directory path. The actual source lives in the respective native book fixtures directory."
+      },
+      "staticCoverage": "Ten-model Deathwing Terminator Squad; NR v37.3; 19 imported Detachments, 9+1 model composition, 7+2 Terminator loadouts and two physical Cyclone purchases; centrally resolved 400 points; reload/reimport. The same test separately covers a five-model corrected user paste. Acceptance explicitly does not assess army legality.",
+      "currentObservation": "Parent root reports READY through the normal current browser import for this exact embedded faction fixture at 5bc1b038437fcac86966f87371760da94d7e9b38. This subagent did not run browser or native tests.",
+      "contradictingOldMetadata": [
+        "books/dark-angels/v2/app-build.mjs:40",
+        "books/dark-angels/v2/source-issues.json:26"
+      ],
+      "currentPlayerText": "This importer has been tested with sample lists, but has not yet been checked against a real Dark Angels export.",
+      "stage1Disposition": "REMOVE_FROM_PLAYER_COPY",
+      "reason": "The blanket never-checked statement conflicts with explicit repository-enrolled, SHA-pinned user-export coverage and the reported current exact-sample acceptance. It is obsolete as a universal player warning; this does not certify all rosters or independently authenticate the export generator.",
+      "optionalCollapsedDetailsText": "A supplied Dark Angels New Recruit v37.3 sample imports successfully. Coverage is limited to that sample; use the full rules to check your roster.",
+      "coveragePlacement": "Preserve evidence links and exact tested sample scope in collapsed Details; no replacement warning is required.",
+      "limits": [
+        "User authenticity is declared by the enrolled native tests; no separate upstream download, original chat attachment, signed export manifest or independent generator attestation was found in the scoped files. Hashes bind the accepted bytes to their tests, not the external origin.",
+        "One BA sample and the exact DA ten-model sample cannot establish whole-book compatibility, complete army legality, exhaustive New Recruit versions, all weapons, or battlefield mechanics.",
+        "Static tests here establish documented coverage intent. Only the parent browser observation establishes current execution; native tests were not run in this follow-up."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3044 @@
+{
+  "status": "COMPLETE",
+  "sha": "5bc1b038437fcac86966f87371760da94d7e9b38",
+  "observations": [
+    {
+      "id": "space-marines/empty-import",
+      "book": "space-marines",
+      "scenario": "empty-import",
+      "fixture": "books/shared/roster-v2/import.mjs:271; empty input through existing Import roster control",
+      "text": "Attachment Setup\nLibrary\n\nNo supported units were found. Paste a New Recruit text export.\n\nImport roster\nNew Recruit text export\nImport roster\n—\n\nThis Detachment could not be matched to the rules in this Army Book. Check its name in the New Recruit export. No roster changes were saved.\n\nBackup and restore",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "No supported units were found. Paste a New Recruit text export.",
+        "Import roster",
+        "New Recruit text export",
+        "Import roster",
+        "—",
+        "This Detachment could not be matched to the rules in this Army Book. Check its name in the New Recruit export. No roster changes were saved.",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state."
+      ],
+      "status": "No supported units were found. Paste a New Recruit text export.",
+      "errorStyle": true,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import roster"
+        },
+        {
+          "tag": "LEGEND",
+          "text": "—"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Import roster",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        }
+      ],
+      "limitations": [],
+      "clarifications": [
+        {
+          "kind": "DETACHMENT",
+          "key": "detachment/1",
+          "text": "—\n\nThis Detachment could not be matched to the rules in this Army Book. Check its name in the New Recruit export. No roster changes were saved.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "death-guard/backup-restored",
+      "book": "death-guard",
+      "scenario": "backup-restored",
+      "fixture": "v2/fixtures/roster-navigation-saved-v2.json: death-guard snapshot; unchanged schema/fields",
+      "text": "Attachment Setup\nLibrary\n\nRoster backup restored.\n\nImport another roster\nBackup and restore\nExport backup\nReload saved roster\nRestore a V2 roster backup\n\nImported rosters and attachments are saved in this browser. Backups contain V2 roster state.\n\nYour roster\n\n8 imported units. Select your Warlord and optionally attach Characters or Support.\n\nWarlord\nNot selected\nBiologus Putrifier\nLord of Contagion\nMalignant Plaguecaster\nNoxious Blightbringer\nSave Warlord\n\nImported Detachments\n\nShamblerot Vectorium\nVirulent Vectorium\nOpen personal guide\nBiologus Putrifier\nOpen card\nModels\n1\nMFM base points\n60 pts\nEnhancements on this unit\nNone imported\n\nAttached to Plague Marines (10 models)\n\nLord of Contagion\nOpen card\nModels\n1\nMFM base points\n110 pts\nEnhancements on this unit\nNone imported\n\nAttached to Deathshroud Terminators\n\nMalignant Plaguecaster\nOpen card\nModels\n1\nMFM base points\n60 pts\nEnhancements on this unit\nNone imported\nNoxious Blightbringer\nOpen card\nModels\n1\nMFM base points\n50 pts\nEnhancements on this unit\nNone imported\nPlague Marines (5 models)\nOpen card\nModels\n5\nMFM base points\n90 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nMalignant Plaguecaster\nNoxious Blightbringer\n+ Add Character / Support\nPlague Marines (10 models)\nOpen card\nModels\n10\nMFM base points\n175 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nSupported by Biologus Putrifier\nDetach\nEligible imported Character / Support\nChoose an entry…\nMalignant Plaguecaster\nNoxious Blightbringer\n+ Add Character / Support\nPoxwalkers\nOpen card\nModels\n10\nMFM base points\n65 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nMalignant Plaguecaster\nNoxious Blightbringer\n+ Add Character / Support\nDeathshroud Terminators\nOpen card\nModels\n3\nMFM base points\n150 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nLed by Lord of Contagion\nDetach",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "Roster backup restored.",
+        "Import another roster",
+        "New Recruit text export",
+        "Import roster",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state.",
+        "Your roster",
+        "8 imported units. Select your Warlord and optionally attach Characters or Support.",
+        "Warlord",
+        "Save Warlord",
+        "Imported Detachments",
+        "Shamblerot Vectorium",
+        "Virulent Vectorium",
+        "Open personal guide",
+        "Biologus Putrifier",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "60 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Attached to Plague Marines (10 models)",
+        "Lord of Contagion",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "110 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Attached to Deathshroud Terminators",
+        "Malignant Plaguecaster",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "60 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Noxious Blightbringer",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "50 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Plague Marines (5 models)",
+        "Open card",
+        "Models",
+        "5",
+        "MFM base points",
+        "90 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Plague Marines (10 models)",
+        "Open card",
+        "Models",
+        "10",
+        "MFM base points",
+        "175 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Supported by Biologus Putrifier",
+        "Detach",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Poxwalkers",
+        "Open card",
+        "Models",
+        "10",
+        "MFM base points",
+        "65 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Deathshroud Terminators",
+        "Open card",
+        "Models",
+        "3",
+        "MFM base points",
+        "150 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Led by Lord of Contagion",
+        "Detach"
+      ],
+      "status": "Roster backup restored.",
+      "errorStyle": false,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import another roster"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        },
+        {
+          "tag": "H2",
+          "text": "Your roster"
+        },
+        {
+          "tag": "H2",
+          "text": "Biologus Putrifier"
+        },
+        {
+          "tag": "H2",
+          "text": "Lord of Contagion"
+        },
+        {
+          "tag": "H2",
+          "text": "Malignant Plaguecaster"
+        },
+        {
+          "tag": "H2",
+          "text": "Noxious Blightbringer"
+        },
+        {
+          "tag": "H2",
+          "text": "Plague Marines (5 models)"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Plague Marines (10 models)"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Poxwalkers"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Deathshroud Terminators"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Export backup",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Reload saved roster",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Warlord",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Biologus Putrifier",
+              "disabled": false
+            },
+            {
+              "text": "Lord of Contagion",
+              "disabled": false
+            },
+            {
+              "text": "Malignant Plaguecaster",
+              "disabled": false
+            },
+            {
+              "text": "Noxious Blightbringer",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Save Warlord",
+          "label": null,
+          "placeholder": null,
+          "disabled": true,
+          "action": "set-warlord"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open personal guide",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "open-personal-guide"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Plague Marines (5 models)",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Malignant Plaguecaster",
+              "disabled": false
+            },
+            {
+              "text": "Noxious Blightbringer",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Detach",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "detach"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Plague Marines (10 models)",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Malignant Plaguecaster",
+              "disabled": false
+            },
+            {
+              "text": "Noxious Blightbringer",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Poxwalkers",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Malignant Plaguecaster",
+              "disabled": false
+            },
+            {
+              "text": "Noxious Blightbringer",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Detach",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "detach"
+        }
+      ],
+      "limitations": [],
+      "clarifications": []
+    },
+    {
+      "id": "death-guard/backup-exported",
+      "book": "death-guard",
+      "scenario": "backup-exported",
+      "fixture": "Existing Export backup action on exact accepted snapshot",
+      "text": "Attachment Setup\nLibrary\n\nRoster backup exported.\n\nImport another roster\nBackup and restore\nExport backup\nReload saved roster\nRestore a V2 roster backup\n\nImported rosters and attachments are saved in this browser. Backups contain V2 roster state.\n\nYour roster\n\n8 imported units. Select your Warlord and optionally attach Characters or Support.\n\nWarlord\nNot selected\nBiologus Putrifier\nLord of Contagion\nMalignant Plaguecaster\nNoxious Blightbringer\nSave Warlord\n\nImported Detachments\n\nShamblerot Vectorium\nVirulent Vectorium\nOpen personal guide\nBiologus Putrifier\nOpen card\nModels\n1\nMFM base points\n60 pts\nEnhancements on this unit\nNone imported\n\nAttached to Plague Marines (10 models)\n\nLord of Contagion\nOpen card\nModels\n1\nMFM base points\n110 pts\nEnhancements on this unit\nNone imported\n\nAttached to Deathshroud Terminators\n\nMalignant Plaguecaster\nOpen card\nModels\n1\nMFM base points\n60 pts\nEnhancements on this unit\nNone imported\nNoxious Blightbringer\nOpen card\nModels\n1\nMFM base points\n50 pts\nEnhancements on this unit\nNone imported\nPlague Marines (5 models)\nOpen card\nModels\n5\nMFM base points\n90 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nMalignant Plaguecaster\nNoxious Blightbringer\n+ Add Character / Support\nPlague Marines (10 models)\nOpen card\nModels\n10\nMFM base points\n175 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nSupported by Biologus Putrifier\nDetach\nEligible imported Character / Support\nChoose an entry…\nMalignant Plaguecaster\nNoxious Blightbringer\n+ Add Character / Support\nPoxwalkers\nOpen card\nModels\n10\nMFM base points\n65 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nMalignant Plaguecaster\nNoxious Blightbringer\n+ Add Character / Support\nDeathshroud Terminators\nOpen card\nModels\n3\nMFM base points\n150 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nLed by Lord of Contagion\nDetach",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "Roster backup exported.",
+        "Import another roster",
+        "New Recruit text export",
+        "Import roster",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state.",
+        "Your roster",
+        "8 imported units. Select your Warlord and optionally attach Characters or Support.",
+        "Warlord",
+        "Save Warlord",
+        "Imported Detachments",
+        "Shamblerot Vectorium",
+        "Virulent Vectorium",
+        "Open personal guide",
+        "Biologus Putrifier",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "60 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Attached to Plague Marines (10 models)",
+        "Lord of Contagion",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "110 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Attached to Deathshroud Terminators",
+        "Malignant Plaguecaster",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "60 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Noxious Blightbringer",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "50 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Plague Marines (5 models)",
+        "Open card",
+        "Models",
+        "5",
+        "MFM base points",
+        "90 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Plague Marines (10 models)",
+        "Open card",
+        "Models",
+        "10",
+        "MFM base points",
+        "175 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Supported by Biologus Putrifier",
+        "Detach",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Poxwalkers",
+        "Open card",
+        "Models",
+        "10",
+        "MFM base points",
+        "65 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Deathshroud Terminators",
+        "Open card",
+        "Models",
+        "3",
+        "MFM base points",
+        "150 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Led by Lord of Contagion",
+        "Detach"
+      ],
+      "status": "Roster backup exported.",
+      "errorStyle": false,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import another roster"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        },
+        {
+          "tag": "H2",
+          "text": "Your roster"
+        },
+        {
+          "tag": "H2",
+          "text": "Biologus Putrifier"
+        },
+        {
+          "tag": "H2",
+          "text": "Lord of Contagion"
+        },
+        {
+          "tag": "H2",
+          "text": "Malignant Plaguecaster"
+        },
+        {
+          "tag": "H2",
+          "text": "Noxious Blightbringer"
+        },
+        {
+          "tag": "H2",
+          "text": "Plague Marines (5 models)"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Plague Marines (10 models)"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Poxwalkers"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Deathshroud Terminators"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Export backup",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Reload saved roster",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Warlord",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Biologus Putrifier",
+              "disabled": false
+            },
+            {
+              "text": "Lord of Contagion",
+              "disabled": false
+            },
+            {
+              "text": "Malignant Plaguecaster",
+              "disabled": false
+            },
+            {
+              "text": "Noxious Blightbringer",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Save Warlord",
+          "label": null,
+          "placeholder": null,
+          "disabled": true,
+          "action": "set-warlord"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open personal guide",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "open-personal-guide"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Plague Marines (5 models)",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Malignant Plaguecaster",
+              "disabled": false
+            },
+            {
+              "text": "Noxious Blightbringer",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Detach",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "detach"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Plague Marines (10 models)",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Malignant Plaguecaster",
+              "disabled": false
+            },
+            {
+              "text": "Noxious Blightbringer",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Poxwalkers",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Malignant Plaguecaster",
+              "disabled": false
+            },
+            {
+              "text": "Noxious Blightbringer",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Detach",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "detach"
+        }
+      ],
+      "limitations": [],
+      "clarifications": []
+    },
+    {
+      "id": "space-marines/epic-enhancement",
+      "book": "space-marines",
+      "scenario": "epic-enhancement",
+      "fixture": "v2/fixtures/epic-hero-enhancements.json: titus-artificer",
+      "inputSha256": "af01be72a5de8d6eb46239438db4165122dec2f880ab8c76eb56c802e746cbb8",
+      "text": "Attachment Setup\nLibrary\n\nRoster imported. Attachments are optional. Open your personal guide when ready.\n\nImport another roster\nBackup and restore\nYour roster\n\n1 imported units. Select your Warlord and optionally attach Characters or Support.\n\nWarlord\nNot selected\nCaptain Titus\nSave Warlord\nInvalid imported Enhancements\nArtificer Armour on Captain Titus: Core Rules 25.04 prohibits Enhancements on Epic Hero units. This Enhancement is not applied, and the imported army list is invalid. Imported points are retained.\n\nImported Detachments\n\nGladius Task Force\nOpen personal guide\nCaptain Titus\nOpen card\nModels\n1\nPoints\n130 pts\nEnhancements on this unit\nNone applied",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "Roster imported. Attachments are optional. Open your personal guide when ready.",
+        "Import another roster",
+        "New Recruit text export",
+        "Import roster",
+        "Imported text: 1 units",
+        "Captain Titus · 1 imported quantity",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state.",
+        "Your roster",
+        "1 imported units. Select your Warlord and optionally attach Characters or Support.",
+        "Warlord",
+        "Save Warlord",
+        "Invalid imported Enhancements",
+        "Artificer Armour on Captain Titus: Core Rules 25.04 prohibits Enhancements on Epic Hero units. This Enhancement is not applied, and the imported army list is invalid. Imported points are retained.",
+        "Imported Detachments",
+        "Gladius Task Force",
+        "Open personal guide",
+        "Captain Titus",
+        "Open card",
+        "Models",
+        "1",
+        "Points",
+        "130 pts",
+        "Enhancements on this unit",
+        "None applied"
+      ],
+      "status": "Roster imported. Attachments are optional. Open your personal guide when ready.",
+      "errorStyle": false,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import another roster"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": ""
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        },
+        {
+          "tag": "H2",
+          "text": "Your roster"
+        },
+        {
+          "tag": "H3",
+          "text": "Invalid imported Enhancements"
+        },
+        {
+          "tag": "H2",
+          "text": "Captain Titus"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Warlord",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Captain Titus",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Save Warlord",
+          "label": null,
+          "placeholder": null,
+          "disabled": true,
+          "action": "set-warlord"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open personal guide",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "open-personal-guide"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        }
+      ],
+      "limitations": [],
+      "clarifications": []
+    },
+    {
+      "id": "tau-empire/student-options",
+      "book": "tau-empire",
+      "scenario": "student-options",
+      "fixture": "books/tau-empire/v2/physical-choice-qa.mjs:21-27 exact existing studentText",
+      "inputSha256": "c461f9aaff7156b58e298bba329815024ea13cb17a37076c38f8940eadf6ad8e",
+      "text": "Attachment Setup\nLibrary\n\nRoster imported. Attachments are optional. Open your personal guide when ready.\n\nImport another roster\nBackup and restore\nYour roster\n\n5 imported units. Select your Warlord and optionally attach Characters or Support.\n\nWarlord\nNot selected\nKroot Trail Shaper\nKroot War Shaper\nSave Warlord\n\nKroot Trail Shaper: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nKroot War Shaper: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nKroot Carnivores (10 models) #1: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nKroot Carnivores (10 models) #2: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nKroot Farstalkers: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nImported Detachments\n\nAuxiliary Cadre\nOpen personal guide\nKroot Trail Shaper\nOpen card\nModels\n1\nMFM base points\n50 pts\nEnhancements on this unit\nStudent of Kauyon\nSource selections\nStudent of Kauyon\nStudent of Kauyon\nNot selected\nKroot Carnivores · parsed-unit-3\nKroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4\nKroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5\nKroot Carnivores · parsed-unit-3 + Kroot Farstalkers · parsed-unit-5\nKroot Carnivores · parsed-unit-4\nKroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5\nKroot Farstalkers · parsed-unit-5\nApply source selection\nKroot War Shaper\nOpen card\nModels\n1\nMFM base points\n60 pts\nEnhancements on this unit\nStudent of Kauyon\nSource selections\nStudent of Kauyon\nStudent of Kauyon\nNot selected\nKroot Carnivores · parsed-unit-3\nKroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4\nKroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5\nKroot Carnivores · parsed-unit-3 + Kroot Farstalkers · parsed-unit-5\nKroot Carnivores · parsed-unit-4\nKroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5\nKroot Farstalkers · parsed-unit-5\nApply source selection\nKroot Carnivores (10 models) #1\nOpen card\nModels\n10\nMFM base points\n65 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nKroot Trail Shaper\nKroot War Shaper\n+ Add Character / Support\nKroot Carnivores (10 models) #2\nOpen card\nModels\n10\nMFM base points\n65 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nKroot Trail Shaper\nKroot War Shaper\n+ Add Character / Support\nKroot Farstalkers\nOpen card\nModels\n12\nMFM base points\n75 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nKroot Trail Shaper\nKroot War Shaper\n+ Add Character / Support",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "Roster imported. Attachments are optional. Open your personal guide when ready.",
+        "Import another roster",
+        "New Recruit text export",
+        "Import roster",
+        "Imported text: 5 units",
+        "Kroot Trail Shaper · 1 imported quantity",
+        "Kroot War Shaper · 1 imported quantity",
+        "Kroot Carnivores · 10 imported quantity",
+        "Kroot Carnivores · 10 imported quantity",
+        "Kroot Farstalkers · 12 imported quantity",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state.",
+        "Your roster",
+        "5 imported units. Select your Warlord and optionally attach Characters or Support.",
+        "Warlord",
+        "Save Warlord",
+        "Kroot Trail Shaper: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Kroot War Shaper: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Kroot Carnivores (10 models) #1: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Kroot Carnivores (10 models) #2: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Kroot Farstalkers: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Imported Detachments",
+        "Auxiliary Cadre",
+        "Open personal guide",
+        "Kroot Trail Shaper",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "50 pts",
+        "Enhancements on this unit",
+        "Student of Kauyon",
+        "Source selections",
+        "Student of Kauyon",
+        "Student of Kauyon",
+        "Apply source selection",
+        "Kroot War Shaper",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "60 pts",
+        "Enhancements on this unit",
+        "Student of Kauyon",
+        "Source selections",
+        "Student of Kauyon",
+        "Student of Kauyon",
+        "Apply source selection",
+        "Kroot Carnivores (10 models) #1",
+        "Open card",
+        "Models",
+        "10",
+        "MFM base points",
+        "65 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Kroot Carnivores (10 models) #2",
+        "Open card",
+        "Models",
+        "10",
+        "MFM base points",
+        "65 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Kroot Farstalkers",
+        "Open card",
+        "Models",
+        "12",
+        "MFM base points",
+        "75 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support"
+      ],
+      "status": "Roster imported. Attachments are optional. Open your personal guide when ready.",
+      "errorStyle": false,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import another roster"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": ""
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        },
+        {
+          "tag": "H2",
+          "text": "Your roster"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot Trail Shaper"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot War Shaper"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot Carnivores (10 models) #1"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot Carnivores (10 models) #2"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot Farstalkers"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Warlord",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Trail Shaper",
+              "disabled": false
+            },
+            {
+              "text": "Kroot War Shaper",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Save Warlord",
+          "label": null,
+          "placeholder": null,
+          "disabled": true,
+          "action": "set-warlord"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open personal guide",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "open-personal-guide"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Student of Kauyon on Kroot Trail Shaper",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-4",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Student of Kauyon on Kroot War Shaper",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-4",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Kroot Carnivores (10 models) #1",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Trail Shaper",
+              "disabled": false
+            },
+            {
+              "text": "Kroot War Shaper",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Kroot Carnivores (10 models) #2",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Trail Shaper",
+              "disabled": false
+            },
+            {
+              "text": "Kroot War Shaper",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Kroot Farstalkers",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Trail Shaper",
+              "disabled": false
+            },
+            {
+              "text": "Kroot War Shaper",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        }
+      ],
+      "limitations": [],
+      "clarifications": []
+    },
+    {
+      "id": "tau-empire/student-options-saved",
+      "book": "tau-empire",
+      "scenario": "student-options-saved",
+      "fixture": "books/tau-empire/v2/physical-choice-qa.mjs:21-27 exact existing studentText; existing first declared native option, unchanged option value",
+      "text": "Attachment Setup\nLibrary\n\nSource selection saved.\n\nImport another roster\nBackup and restore\nYour roster\n\n5 imported units. Select your Warlord and optionally attach Characters or Support.\n\nWarlord\nNot selected\nKroot Trail Shaper\nKroot War Shaper\nSave Warlord\n\nKroot Trail Shaper: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nKroot War Shaper: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nKroot Carnivores (10 models) #1: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nKroot Carnivores (10 models) #2: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nKroot Farstalkers: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.\n\nImported Detachments\n\nAuxiliary Cadre\nOpen personal guide\nKroot Trail Shaper\nOpen card\nModels\n1\nMFM base points\n50 pts\nEnhancements on this unit\nStudent of Kauyon\nSource selections\nStudent of Kauyon\nStudent of Kauyon\nNot selected\nKroot Carnivores · parsed-unit-3\nKroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4\nKroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5\nKroot Carnivores · parsed-unit-3 + Kroot Farstalkers · parsed-unit-5\nKroot Carnivores · parsed-unit-4\nKroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5\nKroot Farstalkers · parsed-unit-5\nApply source selection\nKroot War Shaper\nOpen card\nModels\n1\nMFM base points\n60 pts\nEnhancements on this unit\nStudent of Kauyon\nSource selections\nStudent of Kauyon\nStudent of Kauyon\nNot selected\nKroot Carnivores · parsed-unit-3\nKroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4\nKroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5\nKroot Carnivores · parsed-unit-3 + Kroot Farstalkers · parsed-unit-5\nKroot Carnivores · parsed-unit-4\nKroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5\nKroot Farstalkers · parsed-unit-5\nApply source selection\nKroot Carnivores (10 models) #1\nOpen card\nModels\n10\nMFM base points\n65 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nKroot Trail Shaper\nKroot War Shaper\n+ Add Character / Support\nKroot Carnivores (10 models) #2\nOpen card\nModels\n10\nMFM base points\n65 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nKroot Trail Shaper\nKroot War Shaper\n+ Add Character / Support\nKroot Farstalkers\nOpen card\nModels\n12\nMFM base points\n75 pts\nEnhancements on this unit\nNone imported\nCharacters / Support\nEligible imported Character / Support\nChoose an entry…\nKroot Trail Shaper\nKroot War Shaper\n+ Add Character / Support",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "Source selection saved.",
+        "Import another roster",
+        "New Recruit text export",
+        "Import roster",
+        "Imported text: 5 units",
+        "Kroot Trail Shaper · 1 imported quantity",
+        "Kroot War Shaper · 1 imported quantity",
+        "Kroot Carnivores · 10 imported quantity",
+        "Kroot Carnivores · 10 imported quantity",
+        "Kroot Farstalkers · 12 imported quantity",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state.",
+        "Your roster",
+        "5 imported units. Select your Warlord and optionally attach Characters or Support.",
+        "Warlord",
+        "Save Warlord",
+        "Kroot Trail Shaper: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Kroot War Shaper: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Kroot Carnivores (10 models) #1: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Kroot Carnivores (10 models) #2: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Kroot Farstalkers: This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.",
+        "Imported Detachments",
+        "Auxiliary Cadre",
+        "Open personal guide",
+        "Kroot Trail Shaper",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "50 pts",
+        "Enhancements on this unit",
+        "Student of Kauyon",
+        "Source selections",
+        "Student of Kauyon",
+        "Student of Kauyon",
+        "Apply source selection",
+        "Kroot War Shaper",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "60 pts",
+        "Enhancements on this unit",
+        "Student of Kauyon",
+        "Source selections",
+        "Student of Kauyon",
+        "Student of Kauyon",
+        "Apply source selection",
+        "Kroot Carnivores (10 models) #1",
+        "Open card",
+        "Models",
+        "10",
+        "MFM base points",
+        "65 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Kroot Carnivores (10 models) #2",
+        "Open card",
+        "Models",
+        "10",
+        "MFM base points",
+        "65 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support",
+        "Kroot Farstalkers",
+        "Open card",
+        "Models",
+        "12",
+        "MFM base points",
+        "75 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Characters / Support",
+        "Eligible imported Character / Support",
+        "+ Add Character / Support"
+      ],
+      "status": "Source selection saved.",
+      "errorStyle": false,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import another roster"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": ""
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        },
+        {
+          "tag": "H2",
+          "text": "Your roster"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot Trail Shaper"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot War Shaper"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot Carnivores (10 models) #1"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot Carnivores (10 models) #2"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Kroot Farstalkers"
+        },
+        {
+          "tag": "H3",
+          "text": "Characters / Support"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Warlord",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Trail Shaper",
+              "disabled": false
+            },
+            {
+              "text": "Kroot War Shaper",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Save Warlord",
+          "label": null,
+          "placeholder": null,
+          "disabled": true,
+          "action": "set-warlord"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open personal guide",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "open-personal-guide"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Student of Kauyon on Kroot Trail Shaper",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-4",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Student of Kauyon on Kroot War Shaper",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-3 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-4",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Carnivores · parsed-unit-4 + Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Farstalkers · parsed-unit-5",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Kroot Carnivores (10 models) #1",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Trail Shaper",
+              "disabled": false
+            },
+            {
+              "text": "Kroot War Shaper",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Kroot Carnivores (10 models) #2",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Trail Shaper",
+              "disabled": false
+            },
+            {
+              "text": "Kroot War Shaper",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Add Character / Support to Kroot Farstalkers",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Choose an entry…",
+              "disabled": false
+            },
+            {
+              "text": "Kroot Trail Shaper",
+              "disabled": false
+            },
+            {
+              "text": "Kroot War Shaper",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+ Add Character / Support",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "attach"
+        }
+      ],
+      "limitations": [],
+      "clarifications": []
+    },
+    {
+      "id": "tau-empire/prototype-options",
+      "book": "tau-empire",
+      "scenario": "prototype-options",
+      "fixture": "books/tau-empire/v2/app-qa.mjs:55-59 exact existing prototypeText",
+      "inputSha256": "8f88ee1afb180636632ad7e7c83c5093bc75391492191348148d40a6f894ac79",
+      "text": "Attachment Setup\nLibrary\n\nRoster imported. Attachments are optional. Open your personal guide when ready.\n\nImport another roster\nBackup and restore\nYour roster\n\n1 imported units. Select your Warlord and optionally attach Characters or Support.\n\nWarlord\nNot selected\nCommander In Coldstar Battlesuit\nSave Warlord\n\nImported Detachments\n\nExperimental Prototype Cadre\nOpen personal guide\nCommander In Coldstar Battlesuit\nOpen card\nModels\n1\nMFM base points\n95 pts\nEnhancements on this unit\nThermoneutronic Projector\nSource selections\nThermoneutronic Projector\nThermoneutronic Projector\nNot selected\nT’au flamer — select one of the two imported weapons\nApply source selection",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "Roster imported. Attachments are optional. Open your personal guide when ready.",
+        "Import another roster",
+        "New Recruit text export",
+        "Import roster",
+        "Imported text: 1 units",
+        "Commander In Coldstar Battlesuit · 1 imported quantity",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state.",
+        "Your roster",
+        "1 imported units. Select your Warlord and optionally attach Characters or Support.",
+        "Warlord",
+        "Save Warlord",
+        "Imported Detachments",
+        "Experimental Prototype Cadre",
+        "Open personal guide",
+        "Commander In Coldstar Battlesuit",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "95 pts",
+        "Enhancements on this unit",
+        "Thermoneutronic Projector",
+        "Source selections",
+        "Thermoneutronic Projector",
+        "Thermoneutronic Projector",
+        "Apply source selection"
+      ],
+      "status": "Roster imported. Attachments are optional. Open your personal guide when ready.",
+      "errorStyle": false,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import another roster"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": ""
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        },
+        {
+          "tag": "H2",
+          "text": "Your roster"
+        },
+        {
+          "tag": "H2",
+          "text": "Commander In Coldstar Battlesuit"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Warlord",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Commander In Coldstar Battlesuit",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Save Warlord",
+          "label": null,
+          "placeholder": null,
+          "disabled": true,
+          "action": "set-warlord"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open personal guide",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "open-personal-guide"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Thermoneutronic Projector on Commander In Coldstar Battlesuit",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "T’au flamer — select one of the two imported weapons",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        }
+      ],
+      "limitations": [],
+      "clarifications": []
+    },
+    {
+      "id": "tau-empire/prototype-options-saved",
+      "book": "tau-empire",
+      "scenario": "prototype-options-saved",
+      "fixture": "books/tau-empire/v2/app-qa.mjs:55-59 exact existing prototypeText; existing first declared native option, unchanged option value",
+      "text": "Attachment Setup\nLibrary\n\nSource selection saved.\n\nImport another roster\nBackup and restore\nYour roster\n\n1 imported units. Select your Warlord and optionally attach Characters or Support.\n\nWarlord\nNot selected\nCommander In Coldstar Battlesuit\nSave Warlord\n\nImported Detachments\n\nExperimental Prototype Cadre\nOpen personal guide\nCommander In Coldstar Battlesuit\nOpen card\nModels\n1\nMFM base points\n95 pts\nEnhancements on this unit\nThermoneutronic Projector\nSource selections\nThermoneutronic Projector\nThermoneutronic Projector\nNot selected\nT’au flamer — select one of the two imported weapons\nApply source selection",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "Source selection saved.",
+        "Import another roster",
+        "New Recruit text export",
+        "Import roster",
+        "Imported text: 1 units",
+        "Commander In Coldstar Battlesuit · 1 imported quantity",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state.",
+        "Your roster",
+        "1 imported units. Select your Warlord and optionally attach Characters or Support.",
+        "Warlord",
+        "Save Warlord",
+        "Imported Detachments",
+        "Experimental Prototype Cadre",
+        "Open personal guide",
+        "Commander In Coldstar Battlesuit",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "95 pts",
+        "Enhancements on this unit",
+        "Thermoneutronic Projector",
+        "Source selections",
+        "Thermoneutronic Projector",
+        "Thermoneutronic Projector",
+        "Apply source selection"
+      ],
+      "status": "Source selection saved.",
+      "errorStyle": false,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import another roster"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": ""
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        },
+        {
+          "tag": "H2",
+          "text": "Your roster"
+        },
+        {
+          "tag": "H2",
+          "text": "Commander In Coldstar Battlesuit"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Warlord",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Commander In Coldstar Battlesuit",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Save Warlord",
+          "label": null,
+          "placeholder": null,
+          "disabled": true,
+          "action": "set-warlord"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open personal guide",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "open-personal-guide"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Thermoneutronic Projector on Commander In Coldstar Battlesuit",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "T’au flamer — select one of the two imported weapons",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        }
+      ],
+      "limitations": [],
+      "clarifications": []
+    },
+    {
+      "id": "tyranids/trygon-options",
+      "book": "tyranids",
+      "scenario": "trygon-options",
+      "fixture": "books/tyranids/v2/roster-ui-qa.mjs:92-96 exact existing choiceText",
+      "inputSha256": "ceebd6e5bde9869a8572dadb5fdc2c5605f6652ae6d14846907dc04b282b5e31",
+      "text": "Attachment Setup\nLibrary\n\nRoster imported. Attachments are optional. Open your personal guide when ready.\n\nImport another roster\nBackup and restore\nYour roster\n\n3 imported units. Select your Warlord and optionally attach Characters or Support.\n\nWarlord\nNot selected\n\nNo eligible CHARACTER is available in this roster.\n\nSave Warlord\n\nImported Detachments\n\nSubterranean Assault\nOpen personal guide\nTrygon (1 model) #1\nOpen card\nModels\n1\nMFM base points\n135 pts\nEnhancements on this unit\nTrygon Prime\nSource selections\nSurprise Assault\nSurprise Assault\nNot selected\nCHARACTER — selected during Muster Armies\nApply source selection\nTrygon (1 model) #2\nOpen card\nModels\n1\nMFM base points\n135 pts\nEnhancements on this unit\nNone imported\nSource selections\nSurprise Assault\nSurprise Assault\nNot selected\nCHARACTER — selected during Muster Armies\nApply source selection\nPsychophage\nOpen card\nModels\n1\nMFM base points\n110 pts\nEnhancements on this unit\nNone imported",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "Roster imported. Attachments are optional. Open your personal guide when ready.",
+        "Import another roster",
+        "New Recruit text export",
+        "Import roster",
+        "Imported text: 3 units",
+        "Trygon · 1 imported quantity",
+        "Trygon · 1 imported quantity",
+        "Psychophage · 1 imported quantity",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state.",
+        "Your roster",
+        "3 imported units. Select your Warlord and optionally attach Characters or Support.",
+        "Warlord",
+        "No eligible CHARACTER is available in this roster.",
+        "Save Warlord",
+        "Imported Detachments",
+        "Subterranean Assault",
+        "Open personal guide",
+        "Trygon (1 model) #1",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "135 pts",
+        "Enhancements on this unit",
+        "Trygon Prime",
+        "Source selections",
+        "Surprise Assault",
+        "Surprise Assault",
+        "Apply source selection",
+        "Trygon (1 model) #2",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "135 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Source selections",
+        "Surprise Assault",
+        "Surprise Assault",
+        "Apply source selection",
+        "Psychophage",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "110 pts",
+        "Enhancements on this unit",
+        "None imported"
+      ],
+      "status": "Roster imported. Attachments are optional. Open your personal guide when ready.",
+      "errorStyle": false,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import another roster"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": ""
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        },
+        {
+          "tag": "H2",
+          "text": "Your roster"
+        },
+        {
+          "tag": "H2",
+          "text": "Trygon (1 model) #1"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        },
+        {
+          "tag": "H2",
+          "text": "Trygon (1 model) #2"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        },
+        {
+          "tag": "H2",
+          "text": "Psychophage"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Warlord",
+          "placeholder": null,
+          "disabled": true,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Save Warlord",
+          "label": null,
+          "placeholder": null,
+          "disabled": true,
+          "action": "set-warlord"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open personal guide",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "open-personal-guide"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Surprise Assault on Trygon (1 model) #1",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "CHARACTER — selected during Muster Armies",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Surprise Assault on Trygon (1 model) #2",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "CHARACTER — selected during Muster Armies",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        }
+      ],
+      "limitations": [],
+      "clarifications": []
+    },
+    {
+      "id": "tyranids/trygon-options-saved",
+      "book": "tyranids",
+      "scenario": "trygon-options-saved",
+      "fixture": "books/tyranids/v2/roster-ui-qa.mjs:92-96 exact existing choiceText; existing first declared native option, unchanged option value",
+      "text": "Attachment Setup\nLibrary\n\nSource selection saved.\n\nImport another roster\nBackup and restore\nYour roster\n\n3 imported units. Select your Warlord and optionally attach Characters or Support.\n\nWarlord\nNot selected\nTrygon (1 model) #1\nSave Warlord\n\nImported Detachments\n\nSubterranean Assault\nOpen personal guide\nTrygon (1 model) #1\nOpen card\nModels\n1\nMFM base points\n135 pts\nEnhancements on this unit\nTrygon Prime\nSource selections\nSurprise Assault\nSurprise Assault\nNot selected\nCHARACTER — selected during Muster Armies\nApply source selection\nTrygon (1 model) #2\nOpen card\nModels\n1\nMFM base points\n135 pts\nEnhancements on this unit\nNone imported\nSource selections\nSurprise Assault\nSurprise Assault\nNot selected\nCHARACTER — selected during Muster Armies\nApply source selection\nPsychophage\nOpen card\nModels\n1\nMFM base points\n110 pts\nEnhancements on this unit\nNone imported",
+      "visibleText": [
+        "Attachment Setup",
+        "Library",
+        "Source selection saved.",
+        "Import another roster",
+        "New Recruit text export",
+        "Import roster",
+        "Imported text: 3 units",
+        "Trygon · 1 imported quantity",
+        "Trygon · 1 imported quantity",
+        "Psychophage · 1 imported quantity",
+        "Backup and restore",
+        "Export backup",
+        "Reload saved roster",
+        "Restore a V2 roster backup",
+        "Imported rosters and attachments are saved in this browser. Backups contain V2 roster state.",
+        "Your roster",
+        "3 imported units. Select your Warlord and optionally attach Characters or Support.",
+        "Warlord",
+        "Save Warlord",
+        "Imported Detachments",
+        "Subterranean Assault",
+        "Open personal guide",
+        "Trygon (1 model) #1",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "135 pts",
+        "Enhancements on this unit",
+        "Trygon Prime",
+        "Source selections",
+        "Surprise Assault",
+        "Surprise Assault",
+        "Apply source selection",
+        "Trygon (1 model) #2",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "135 pts",
+        "Enhancements on this unit",
+        "None imported",
+        "Source selections",
+        "Surprise Assault",
+        "Surprise Assault",
+        "Apply source selection",
+        "Psychophage",
+        "Open card",
+        "Models",
+        "1",
+        "MFM base points",
+        "110 pts",
+        "Enhancements on this unit",
+        "None imported"
+      ],
+      "status": "Source selection saved.",
+      "errorStyle": false,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Attachment Setup"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Import another roster"
+        },
+        {
+          "tag": "SUMMARY",
+          "text": ""
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Backup and restore"
+        },
+        {
+          "tag": "H2",
+          "text": "Your roster"
+        },
+        {
+          "tag": "H2",
+          "text": "Trygon (1 model) #1"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        },
+        {
+          "tag": "H2",
+          "text": "Trygon (1 model) #2"
+        },
+        {
+          "tag": "H3",
+          "text": "Source selections"
+        },
+        {
+          "tag": "H2",
+          "text": "Psychophage"
+        }
+      ],
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "text": "Library",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "library"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "",
+          "label": "New Recruit text export",
+          "placeholder": "Paste the text export here…",
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "review-import"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "export-backup"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "reload-saved"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "label": "Restore a V2 roster backup",
+          "placeholder": null,
+          "disabled": false,
+          "action": null
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Warlord",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "Trygon (1 model) #1",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Save Warlord",
+          "label": null,
+          "placeholder": null,
+          "disabled": true,
+          "action": "set-warlord"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open personal guide",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "open-personal-guide"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Surprise Assault on Trygon (1 model) #1",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "CHARACTER — selected during Muster Armies",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        },
+        {
+          "tag": "SELECT",
+          "text": null,
+          "label": "Source selection for Surprise Assault on Trygon (1 model) #2",
+          "placeholder": null,
+          "disabled": false,
+          "action": null,
+          "options": [
+            {
+              "text": "Not selected",
+              "disabled": false
+            },
+            {
+              "text": "CHARACTER — selected during Muster Armies",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Apply source selection",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "set-source-choice"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Open card",
+          "label": null,
+          "placeholder": null,
+          "disabled": false,
+          "action": "show-instance"
+        }
+      ],
+      "limitations": [],
+      "clarifications": []
+    }
+  ],
+  "errors": []
+}

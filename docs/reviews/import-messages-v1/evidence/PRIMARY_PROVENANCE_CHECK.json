@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "book": "blood-angels",
+      "file": "books/blood-angels/v2/fixtures/newrecruit-v37.2-user-redemptor.txt",
+      "bytes": 919,
+      "sha256": "fb0be23eb8036a47d6228ce1babfbb251b5980a7fb63a198033be7e782e957d9",
+      "exactEmbeddedFixtureMatch": true
+    },
+    {
+      "book": "dark-angels",
+      "file": "books/dark-angels/v2/fixtures/newrecruit-v37.3-user-da-10-models.txt",
+      "bytes": 972,
+      "sha256": "2fa72ca975ac40144da3dc7ffaba612e25e1fa5f9be337c9627bb6127702327d",
+      "exactEmbeddedFixtureMatch": true
+    }
+  ]
+}
