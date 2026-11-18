@@ -71,6 +71,7 @@ async function observed(){return page.evaluate(()=>({snapshot:ArmyBookAppV2.rost
 async function shot(name){
   if(!galleryBooks.has(current.book)&&!name.startsWith('choices-'))return;
   await page.locator('[data-roster-view]').scrollIntoViewIfNeeded();await page.evaluate(()=>scrollTo(0,0));
+  if(name.startsWith('choices-'))await page.locator('[data-roster-source-choices-for]').first().scrollIntoViewIfNeeded();
   const file=`${current.book}-${current.width}-${name}.png`;
   await page.screenshot({path:path.join(out,file),animations:'disabled'});
   report.screenshots.push({...current,name,file});save();
