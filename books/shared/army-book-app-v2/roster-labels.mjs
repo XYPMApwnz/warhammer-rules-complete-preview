@@ -22,6 +22,10 @@ export function rosterUnitNames(state,titleForId) {
     if(!shape)return [unit.instanceId,`${title} #${copies.indexOf(unit)+1}`];
     const identical=copies.filter(copy=>composition(copy)?.key===shape.key);
     const differentShapeAtSameSize=copies.some(copy=>{const other=composition(copy);return other?.count===shape.count&&other.key!==shape.key;});
+    // Identical one-MODEL copies need only their physical ordinal. Keep the
+    // composition label whenever it distinguishes different MODEL profiles.
+    if(shape.count===1&&!differentShapeAtSameSize&&identical.length>1)
+      return [unit.instanceId,`${title} #${identical.indexOf(unit)+1}`];
     const profiles=differentShapeAtSameSize?shape.profiles?.map(([id,quantity])=>{const name=titleForId(id);return name?`${quantity} ${name}`:null;}):null;
     const size=profiles?.every(Boolean)?profiles.join(', '):`${shape.count} ${shape.count===1?'model':'models'}`;
     return [unit.instanceId,`${title} (${size})${identical.length>1?' #'+(identical.indexOf(unit)+1):''}`];

@@ -181,7 +181,7 @@ export function mount(document, payload, options = {}) {
   const stratagemRowsByInstance=new Map();
   const indexed = [...cards.values()].map(card => ({card, text: [card.title, card.kind, ...(card.fields || []).map(field => `${field.label} ${field.displayValue || ''} ${exactValue(field.value)}`)].join(' ').toLocaleLowerCase()}));
   const rosterPanel = options.roster ? createRosterPanel(document, {
-    service: options.roster, bookId: payload.book.id, open: id=>id?open(id):openLibrary(), showDetail,
+    service: options.roster, bookId: payload.book.id, bookTitle:payload.book.title, open: id=>id?open(id):openLibrary(), showDetail,
     openPersonalGuide, showInstance: openInstance, routeURL, lifecycle,
     titleForId: id => cards.get(id)?.title,
     presentationCards:cards,
@@ -460,6 +460,19 @@ export function mount(document, payload, options = {}) {
   }
   function renderRelatedRules(unitId,instanceId=null){
     if(instanceId){
+      const state=options.roster.state,key=JSON.stringify(options.roster.snapshot());
+      if(stratagemSnapshot!==key){stratagemSnapshot=key;stratagemRowsByInstance.clear();}
+      if(!stratagemRowsByInstance.has(instanceId)){
+        // The native query returns eligibility metadata only, without building
+        // rule text or cards. Reuse that exact read-only result for the empty
+        // section check and the first expansion; do not infer applicability
+        // from the presence of a Detachment or evaluate a second UI policy.
+        const related=options.roster.related(instanceId);
+        stratagemRowsByInstance.set(instanceId,(Array.isArray(related)?related:related.rows||[])
+          .filter(row=>row.kind==='STRATAGEM'&&state.detachmentIds.includes(row.detachmentId)&&['MATCH','CONDITIONAL'].includes(row.applicability)));
+      }
+      const rows=stratagemRowsByInstance.get(instanceId);
+      if(!rows.length)return document.createDocumentFragment();
       const section=el('details','unit-part ds-roster-stratagems');section.dataset.datasheetSection='stratagems';
       section.id='roster-stratagems-'+encodeURIComponent(instanceId);
       const summary=el('summary');summary.append(el('h4','','Stratagems'));section.append(summary);
@@ -467,20 +480,7 @@ export function mount(document, payload, options = {}) {
       section.openRosterStratagems=()=>{
         if(loaded)return section.isConnected;
         loaded=true;
-        const state=options.roster.state,key=JSON.stringify(options.roster.snapshot());
-        if(stratagemSnapshot!==key){stratagemSnapshot=key;stratagemRowsByInstance.clear();}
-        if(!stratagemRowsByInstance.has(instanceId)){
-          const related=options.roster.related(instanceId);
-          stratagemRowsByInstance.set(instanceId,(Array.isArray(related)?related:related.rows||[])
-            .filter(row=>row.kind==='STRATAGEM'&&state.detachmentIds.includes(row.detachmentId)&&['MATCH','CONDITIONAL'].includes(row.applicability)));
-        }
-        const rows=stratagemRowsByInstance.get(instanceId);
         section.dataset.stratagemsLoaded='true';
-        if(!rows.length){
-          const card=section.closest('.unit-card');let focused=section.contains(document.activeElement);
-          for(const tab of card?.querySelectorAll('[data-datasheet-target]')||[])if(tab.dataset.datasheetTarget===section.id){focused ||= tab===document.activeElement;tab.remove();}
-          section.remove();if(focused)main.focus({preventScroll:true});return false;
-        }
         for(const detachmentId of state.detachmentIds){
           const members=rows.filter(row=>row.detachmentId===detachmentId);if(!members.length)continue;
           const group=el('section','detachment-content stratagem-grid');group.dataset.detachmentId=detachmentId;
@@ -555,7 +555,9 @@ export function mount(document, payload, options = {}) {
     const sections=el('div','v2-library-sections');
     for (const group of view.groups) {const section=el('section','v2-library-section');section.dataset.groupId=group.id;section.append(el('h2','',group.label));
       const list=el('div','v2-library-grid');for (const entry of group.entries) {const link=anchor(entry.title,entry.route);link.dataset.canonicalId=entry.id;if(entry.instanceId)link.dataset.rosterNavInstanceId=entry.instanceId;list.append(link);}section.append(list);sections.append(section);}
-    const stratagems=el('section','v2-library-section');stratagems.append(el('h2','','Stratagems'),anchor('Open Stratagems','nav:stratagems'));
+    const stratagems=el('section','v2-library-section'),stratagemLinks=el('div','v2-library-grid');
+    stratagemLinks.append(anchor('Open Stratagems','nav:stratagems'));
+    stratagems.append(el('h2','','Stratagems'),stratagemLinks);
     sections.append(stratagems);main.replaceChildren(hero,sections);renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
   }
 
