@@ -51861,7 +51861,9 @@
                 ],
                 "quote": "PLAGUE MARINES"
               }
-            }
+            },
+            "purpose": "OWNER",
+            "binding": "SOURCE_UNIT"
           }
         ],
         "category": "UNIT_ATTACK_TARGET_RANGE",
@@ -51902,6 +51904,15 @@
                     ],
                     "quote": "PLAGUE MARINES"
                   }
+                },
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1."
                 }
               }
             ],
@@ -51932,8 +51943,38 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "wound-reroll::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE MARINES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "PLAGUE MARINES"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [

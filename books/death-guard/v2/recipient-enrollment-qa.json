@@ -589,6 +589,19 @@
       ],
       "browserCase": "death-guard:detachment-virulent-vectorium:enhancement:3:39",
       "visibility": "EXPECTED_ATTACHED"
+    },
+    {
+      "ruleId": "detachment-flyblown-host:enhancement:1",
+      "clauseId": "wound-reroll",
+      "quote": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.",
+      "reason": "The selected PLAGUE MARINES physical UNIT is the explicit SOURCE_UNIT owner; the same formed UNIT receives conditional text without executing the battle-dependent reroll.",
+      "question": null,
+      "kind": "RECORDED",
+      "sourcePath": [
+        "text"
+      ],
+      "browserCase": "death-guard:detachment-flyblown-host:enhancement:1:28",
+      "visibility": "EXPECTED_ATTACHED"
     }
   ],
   "deferred": [
@@ -1011,19 +1024,6 @@
       "quote": "CONTAGION ENGINE unit only. When this unit has fought, one model in this unit heals D3 wounds.",
       "reason": "One chosen model is not all models in the component; retain NOT_RECORDED without a complete selection address.",
       "question": "Which existing source-bound participant/selection relationship proves the complete receiver without inventing a selector or adding conditions?"
-    },
-    {
-      "ruleId": "detachment-flyblown-host:enhancement:1",
-      "clauseId": "wound-reroll",
-      "quote": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.",
-      "reason": "Existing UNIT assignment owner lacks SOURCE_UNIT binding or OWNER purpose. The O-1 owner gate cannot resolve it; adding an owner relation or changing O-1 is outside this task. Keep NOT_RECORDED.",
-      "question": "May a separate task establish the source-bound UNIT assignment owner relation and verify the O-1 gate?",
-      "kind": "RECORDED",
-      "sourcePath": [
-        "text"
-      ],
-      "browserCase": "death-guard:detachment-flyblown-host:enhancement:1:28",
-      "visibility": "EXPECTED_ATTACHED"
     },
     {
       "ruleId": "detachment-mortarions-hammer:enhancement:3",
@@ -1844,7 +1844,7 @@
       "target": "parsed-unit-1",
       "reverse": true,
       "skipAttach": false,
-      "expectedAttached": false,
+      "expectedAttached": true,
       "negative": [],
       "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Flyblown Host\n1x Biologus Putrifier (0 pts)\n7x Plague Marines (0 pts)\nEnhancement: Insectile Murmuration\n7x Plague Marines (0 pts)",
       "canonical": {
@@ -1857,7 +1857,7 @@
       "clauseIds": [
         "wound-reroll"
       ],
-      "visibilityReason": "Existing UNIT assignment owner lacks SOURCE_UNIT binding or OWNER purpose. The O-1 owner gate cannot resolve it; adding an owner relation or changing O-1 is outside this task. Keep NOT_RECORDED."
+      "visibilityReason": "The exact selected PLAGUE MARINES UNIT owns this upgrade; conditional full text reaches its attached component through the recorded SOURCE_UNIT FORMED recipient. Independent duplicates and detached former components receive no text."
     },
     {
       "id": "death-guard:detachment-mortarions-hammer:enhancement:1:29",

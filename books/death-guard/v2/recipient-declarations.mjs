@@ -177,6 +177,9 @@ adopt("detachment-mortarions-hammer:enhancement:3","fire-overwatch",text,
 adopt("detachment-champions-of-contagion:enhancement:3","return-models",text,
   "PLAGUE SURGEON only. Each time the bearer uses its Tainted Narthecium ability, you can return up to D3 destroyed models to the bearer’s unit (instead of 1).","affected-unit",
   {"subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
+adopt("detachment-flyblown-host:enhancement:1","wound-reroll",text,
+  "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.","affected-unit",
+  {"subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
 
 const valueAt=(entity,field)=>field.reduce((value,key)=>value?.[key],entity.data);
 
