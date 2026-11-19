@@ -16,6 +16,15 @@ negative controls before the other glossary checks.
 Both queues run sequentially, deduplicate leaf
 commands and retain every exit status and log even after a failure. The final
 exit code remains nonzero if any check failed; historical failures are not PASS.
+`npm run markup:census -- --check` reads all nine actual native factories and
+checks source fingerprints, reviewed categories, consumed bindings and the exact
+named debt list. It runs in quick and pre-FF (about six seconds locally).
+`--report=<external.json|external.md>` retains counts by book/kind, partial and
+resolved totals without changing inputs. `test:markup-census` exercises missing
+categories, stale sources, new debt, an actual removed roster computer, source
+field loss and the retirement/closure boundaries in both queues. The focused
+Insectile Murmuration native parity check runs in both queues; its existing O-1
+browser witness at 390/1440 runs once in pre-FF via `markup-insectile-browser-qa`.
 `test:pwa-update` includes both working-screen manual updates and the initial
 bootstrap auto-update regression (`test:pwa-bootstrap`), with once-per-version
 failure recovery, saved-state retention, prepared offline startup and offline reopening controls.

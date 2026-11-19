@@ -101,6 +101,42 @@ unless you explicitly run `mfm:update` without saved input.
 5. Review the new report before committing. If an old test needs a different
    expectation or an unrelated gameplay value changed, stop for owner review.
 
+## Rule-markup coverage changed
+
+1. After rebuilding the affected book, run `npm run markup:census -- --check`.
+   To retain the exact nine-book result, add
+   `--report=E:/Warhammer/qa-evidence/my-update/markup.json` (or `.md`). This is
+   read-only and does not change decisions, book data or generated files.
+2. For `STALE_DECISION` or `SOURCE_FIELD_LOSS`, compare the named canonical
+   owner/field with the accepted source. Review its execution, physical
+   recipients and complete text before updating the versioned decision in
+   `tools/markup-census/decisions.v1.json`. Never copy a fingerprint simply to
+   silence the error. New rules need their own exact source-bound decision;
+   removed rules require source evidence in `retirements.v1.json`.
+3. `STALE_BINDING_PROOF` or `MISSING_COMPUTER` means the actual native coverage
+   path changed. Restore the missing operation/recipient/condition computer, or
+   obtain an explicit review of the new coverage. A generic BATTLE_ONLY label
+   does not establish deliberate text-only intent. The resolved percentage is
+   not the percentage of all semantics automatically executed.
+   Physical-condition proofs include the relevant computer implementation,
+   dispatch and native adapter wiring. A change to that code needs review of
+   those affected proofs; this does not freeze unrelated files or outputs.
+4. `debt-baseline.v1.json` preserves the accepted 46 GAP / 171 UNKNOWN identities,
+   reasons and next actions. Do not rewrite that history or add a count-based
+   allowance. A resolved item leaves `debt.v1.json` only with an entry in
+   `closures.v1.json`, the new reviewed decision, and a source-bound test plus
+   fixture. New debt or a source change to unresolved debt needs an explicit
+   reviewed migration; this command cannot authorize it.
+   Exact reviewed structural exclusions also live with the decisions. A new
+   section/table or a new source text field cannot silently inherit a generic
+   structural exemption. For retirement, provide a
+   `markup-retirement-review/v1` record identifying the prior source fingerprint
+   and the accepted replacement source document with its SHA-256.
+5. Rerun the census and its controls with `npm run test:markup-census`, then the
+   affected book/runtime/browser checks. Review the exact debt/decision diff
+   before the final pre-FF run and independent review. There is deliberately
+   no automatic decision-refresh option.
+
 ## What the command selects
 
 `--book=<id>` runs the declared book chain and its declared dependants. `--all`

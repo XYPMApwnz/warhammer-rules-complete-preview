@@ -1,0 +1,29 @@
+{
+  "schema": "markup-closures/v1",
+  "records": [
+    {
+      "book": "death-guard",
+      "id": "detachment-flyblown-host:enhancement:1",
+      "previousCategory": "GAP",
+      "category": "RECIPIENTS_ONLY",
+      "reason": "markup-gate-v1 item 2 authorizes the exact O-1 UNIT-upgrade owner/recipient fix. Existing exact source fixture plus native state/effect parity and browser full-text checks establish coverage.",
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "books/death-guard/v2/insectile-recipient-qa.mjs",
+          "identity": "detachment-flyblown-host:enhancement:1"
+        },
+        {
+          "kind": "fixture",
+          "path": "books/death-guard/v2/recipient-enrollment-qa.json",
+          "identity": "death-guard:detachment-flyblown-host:enhancement:1:28"
+        },
+        {
+          "kind": "test",
+          "path": "v2/markup-insectile-browser-qa.mjs",
+          "identity": "detachment-flyblown-host:enhancement:1"
+        }
+      ]
+    }
+  ]
+}
