@@ -15,7 +15,7 @@ import {installDatasheetLayout, flushDatasheetLayouts} from './datasheet-v1-layo
 import {createBookPresenter} from './book-v1.mjs';
 import {createV1RelatedPanel} from './related-v1.mjs';
 import {positionV1Popup} from './popup-v1.mjs';
-import {createRulePopupPresenter,focusedRuleField,rulePopupKinds} from './rule-popup.mjs';
+import {createRulePopupPresenter,focusedRuleField} from './rule-popup.mjs';
 import {createRuleTermLinker} from './rule-term-links.mjs';
 import {rosterUnitNames} from './roster-labels.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
@@ -327,8 +327,8 @@ export function mount(document, payload, options = {}) {
   }
 
   function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true, sourceEvidence = false, fieldPath = null, wargear = false, originUnitId = null} = {}) {
-    if(inDialog&&!sourceEvidence){const focused=rulePopups.render(card,{fieldPath,wargear,originUnitId});if(focused)return focused;
-      if(rulePopupKinds.has(card.kind)&&card.kind!=='WARGEAR_OPTION')return el('p','v2-not-found','Choose a named ability from the Glossary to read its complete rule.');}
+    if(inDialog&&!sourceEvidence){const options={fieldPath,wargear,originUnitId};
+      const rule=rulePopups.render(card,options)||rulePopups.renderSection(card,options);if(rule)return rule;}
     if(!sourceEvidence&&card.domain==='CORE')return referencePresenter.render(card.id,{popup:inDialog});
     if(!sourceEvidence&&bookPresenter.accepts(card))return bookPresenter.render(card,{inDialog,primaryDetail});
     if(card.kind==='DATASHEET'&&!sourceEvidence) {
@@ -843,12 +843,12 @@ export function mount(document, payload, options = {}) {
       const instanceId=context.instanceId;
       const {variants,selected:effectiveCards}=instanceId?effectiveReference(id,context):{};
       const projectedCards=variants?.get(id);
-      const focused=rulePopups.render(cards.get(id),{fieldPath:context.fieldPath,
+      const ruleOptions={fieldPath:context.fieldPath,
         reference:Boolean(state.armyBookV2.detailReference),
         wargear:Boolean(popupOrigin?.closest('[data-selected-canonical-ids]')),
-        originUnitId:popupOrigin?.closest('.unit-card[data-roster-instance-id]')?.dataset.cardId||null});
-      const unresolved=rulePopupKinds.has(cards.get(id).kind)&&cards.get(id).kind!=='WARGEAR_OPTION';
-      dialogContent.replaceChildren(...(focused?[focused]:unresolved?[el('p','v2-not-found','Choose a named ability from the Glossary to read its complete rule.')]:effectiveCards?.length
+        originUnitId:popupOrigin?.closest('.unit-card[data-roster-instance-id]')?.dataset.cardId||null};
+      const focused=rulePopups.render(cards.get(id),ruleOptions)||rulePopups.renderSection(cards.get(id),ruleOptions);
+      dialogContent.replaceChildren(...(focused?[focused]:effectiveCards?.length
         ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
         : projectedCards ? [el('p','v2-not-found','This profile is not available in this roster unit.')]
         : [(cards.get(id).domain==='CORE'||state.armyBookV2.detailReference)&&!['PROFILE','WEAPON_PROFILE'].includes(cards.get(id).kind)

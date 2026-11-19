@@ -426,7 +426,12 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       nameCell.append(note);
     }
     if(card.rosterQuantity!==undefined)nameLine.append(el('small','ds-weapon-quantity',` ×${card.rosterQuantity}`));
-    if(popup) {const h=el('h3');h.append(nameCell);row.append(h);}else row.append(nameCell);
+    if(popup) {
+      const modeValue=mode?.value??card.weaponMode;
+      if(!['ranged','melee'].includes(modeValue))throw new TypeError('Missing typed weapon mode: '+card.id);
+      row.append(el('p','reference-context',modeValue==='ranged'?'Ranged weapon':'Melee weapon'));
+      const h=el('h3');h.append(nameCell);row.append(h);
+    }else row.append(nameCell);
     const fieldLabels=weaponFieldLabels(mode?.value??card.weaponMode);
     let table,body;
     if(popup){table=el('table','popup-weapon-table');const head=el('tr');for(const label of Object.values(fieldLabels)){const th=el('th','',label);th.scope='col';head.append(th);}const thead=el('thead');thead.append(head);body=el('tr');const tbody=el('tbody');tbody.append(body);table.append(thead,tbody);}
