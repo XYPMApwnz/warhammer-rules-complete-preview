@@ -1,0 +1,509 @@
+{
+  "status": "ANALYZED_NO_PRODUCTION_CHANGE",
+  "intervalMs": 68.6,
+  "sampleIntervalsIntersectingClick": 73,
+  "scope": "CPU samples are clipped to actual click/ready trace markers; full CPU profile includes pre-click Playwright actionability and post-ready work. Inclusive frames overlap and must not be added.",
+  "topSelf": [
+    {
+      "name": "getBoundingClientRect",
+      "url": "",
+      "line": 0,
+      "selfMs": 18.011,
+      "inclusiveMs": 18.011
+    },
+    {
+      "name": "(program)",
+      "url": "",
+      "line": 0,
+      "selfMs": 6.399999999999999,
+      "inclusiveMs": 6.399999999999999
+    },
+    {
+      "name": "projectEffectiveInstance",
+      "url": "http://localhost:8765/books/shared/roster-v2/effective-instance.mjs",
+      "line": 13,
+      "selfMs": 4.668,
+      "inclusiveMs": 16.765
+    },
+    {
+      "name": "match",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/rule-term-links.mjs",
+      "line": 28,
+      "selfMs": 3.067,
+      "inclusiveMs": 3.067
+    },
+    {
+      "name": "clone",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 34,
+      "selfMs": 3.009,
+      "inclusiveMs": 3.009
+    },
+    {
+      "name": "clone",
+      "url": "http://localhost:8765/books/shared/roster-v2/runtime.mjs",
+      "line": 9,
+      "selfMs": 2.996,
+      "inclusiveMs": 2.996
+    },
+    {
+      "name": "renderDatasheet",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 909,
+      "selfMs": 1.774,
+      "inclusiveMs": 32.89099999999999
+    },
+    {
+      "name": "ownershipFor",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 343,
+      "selfMs": 1.678,
+      "inclusiveMs": 3.173
+    },
+    {
+      "name": "renderCard",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 329,
+      "selfMs": 1.598,
+      "inclusiveMs": 34.489
+    },
+    {
+      "name": "renderComponent",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 578,
+      "selfMs": 1.567,
+      "inclusiveMs": 36.05599999999999
+    },
+    {
+      "name": "projectPersonalBook",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/personal.mjs",
+      "line": 318,
+      "selfMs": 1.517,
+      "inclusiveMs": 1.517
+    },
+    {
+      "name": "factValue",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 207,
+      "selfMs": 1.508,
+      "inclusiveMs": 1.508
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/roster-v2/effective-instance.mjs",
+      "line": 117,
+      "selfMs": 1.501,
+      "inclusiveMs": 1.501
+    },
+    {
+      "name": "createTreeWalker",
+      "url": "",
+      "line": 0,
+      "selfMs": 1.501,
+      "inclusiveMs": 1.501
+    },
+    {
+      "name": "activate",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "line": 224,
+      "selfMs": 1.501,
+      "inclusiveMs": 19.512
+    },
+    {
+      "name": "identity",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 116,
+      "selfMs": 1.5,
+      "inclusiveMs": 1.5
+    },
+    {
+      "name": "renderInstance",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 564,
+      "selfMs": 1.499,
+      "inclusiveMs": 61.56500000000001
+    },
+    {
+      "name": "lookup",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 87,
+      "selfMs": 1.497,
+      "inclusiveMs": 1.497
+    },
+    {
+      "name": "sourceSnapshotChecked",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 326,
+      "selfMs": 1.495,
+      "inclusiveMs": 2.99
+    },
+    {
+      "name": "decode",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 306,
+      "selfMs": 1.495,
+      "inclusiveMs": 4.485
+    }
+  ],
+  "topRepositoryInclusive": [
+    {
+      "name": "navigate",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 929,
+      "selfMs": 0.447,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "openInstance",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 959,
+      "selfMs": 0.0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/roster.mjs",
+      "line": 777,
+      "selfMs": 0.0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "run",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/roster.mjs",
+      "line": 248,
+      "selfMs": 0.0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/roster.mjs",
+      "line": 81,
+      "selfMs": 0.0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/lifecycle.mjs",
+      "line": 5,
+      "selfMs": 0.0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "renderInstance",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 564,
+      "selfMs": 1.499,
+      "inclusiveMs": 61.56500000000001
+    },
+    {
+      "name": "route",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 788,
+      "selfMs": 0.0,
+      "inclusiveMs": 61.56500000000001
+    },
+    {
+      "name": "renderPhysicalUnit",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 576,
+      "selfMs": 0.0,
+      "inclusiveMs": 37.54099999999999
+    },
+    {
+      "name": "renderComponent",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 578,
+      "selfMs": 1.567,
+      "inclusiveMs": 36.05599999999999
+    },
+    {
+      "name": "renderFormedUnit",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "line": 5,
+      "selfMs": 0.0,
+      "inclusiveMs": 36.05599999999999
+    },
+    {
+      "name": "renderCard",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 329,
+      "selfMs": 1.598,
+      "inclusiveMs": 34.489
+    },
+    {
+      "name": "renderDatasheet",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 909,
+      "selfMs": 1.774,
+      "inclusiveMs": 32.89099999999999
+    },
+    {
+      "name": "renderNavigation",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 504,
+      "selfMs": 0.0,
+      "inclusiveMs": 21.007999999999996
+    },
+    {
+      "name": "activate",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "line": 224,
+      "selfMs": 1.501,
+      "inclusiveMs": 19.512
+    },
+    {
+      "name": "refresh",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/navigation-v1.mjs",
+      "line": 173,
+      "selfMs": 0.0,
+      "inclusiveMs": 19.512
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/roster-v2/effective-instance.mjs",
+      "line": 39,
+      "selfMs": 0.0,
+      "inclusiveMs": 18.348
+    },
+    {
+      "name": "keepRowVisible",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "line": 238,
+      "selfMs": 0.0,
+      "inclusiveMs": 18.011
+    },
+    {
+      "name": "projectEffectiveInstance",
+      "url": "http://localhost:8765/books/shared/roster-v2/effective-instance.mjs",
+      "line": 13,
+      "selfMs": 4.668,
+      "inclusiveMs": 16.765
+    },
+    {
+      "name": "effective",
+      "url": "http://localhost:8765/books/shared/roster-v2/runtime.mjs",
+      "line": 152,
+      "selfMs": 0.0,
+      "inclusiveMs": 16.765
+    },
+    {
+      "name": "effective",
+      "url": "http://localhost:8765/books/shared/roster-v2/runtime.mjs",
+      "line": 99,
+      "selfMs": 0.0,
+      "inclusiveMs": 16.765
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 1245,
+      "selfMs": 1.322,
+      "inclusiveMs": 9.001999999999999
+    },
+    {
+      "name": "modifiers",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 185,
+      "selfMs": 0.0,
+      "inclusiveMs": 7.666
+    },
+    {
+      "name": "link",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/rule-term-links.mjs",
+      "line": 54,
+      "selfMs": 0.0,
+      "inclusiveMs": 7.5009999999999994
+    },
+    {
+      "name": "linkTerms",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 197,
+      "selfMs": 0.0,
+      "inclusiveMs": 7.5009999999999994
+    }
+  ],
+  "mainThreadEvents": [
+    {
+      "name": "EventDispatch",
+      "overlapMs": 62.749,
+      "durationMs": 62.805,
+      "startFromClickMs": -0.056,
+      "eventType": "click"
+    },
+    {
+      "name": "UpdateLayoutTree",
+      "overlapMs": 0.391,
+      "durationMs": 0.391,
+      "startFromClickMs": 0.519,
+      "eventType": null
+    },
+    {
+      "name": "Layout",
+      "overlapMs": 0.098,
+      "durationMs": 0.098,
+      "startFromClickMs": 0.916,
+      "eventType": null
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.003,
+      "durationMs": 0.003,
+      "startFromClickMs": 40.766,
+      "eventType": "blur"
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.002,
+      "durationMs": 0.002,
+      "startFromClickMs": 40.77,
+      "eventType": "focusout"
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.001,
+      "durationMs": 0.001,
+      "startFromClickMs": 40.772,
+      "eventType": "DOMFocusOut"
+    },
+    {
+      "name": "UpdateLayoutTree",
+      "overlapMs": 0.031,
+      "durationMs": 0.031,
+      "startFromClickMs": 40.79,
+      "eventType": null
+    },
+    {
+      "name": "UpdateLayoutTree",
+      "overlapMs": 0.717,
+      "durationMs": 0.717,
+      "startFromClickMs": 42.766,
+      "eventType": null
+    },
+    {
+      "name": "Layout",
+      "overlapMs": 18.287,
+      "durationMs": 18.287,
+      "startFromClickMs": 43.488,
+      "eventType": null
+    },
+    {
+      "name": "UpdateLayoutTree",
+      "overlapMs": 0.056,
+      "durationMs": 0.056,
+      "startFromClickMs": 61.918,
+      "eventType": null
+    },
+    {
+      "name": "UpdateLayoutTree",
+      "overlapMs": 0.008,
+      "durationMs": 0.008,
+      "startFromClickMs": 61.982,
+      "eventType": null
+    },
+    {
+      "name": "Layout",
+      "overlapMs": 0.054,
+      "durationMs": 0.054,
+      "startFromClickMs": 61.993,
+      "eventType": null
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.002,
+      "durationMs": 0.002,
+      "startFromClickMs": 62.056,
+      "eventType": "focus"
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.001,
+      "durationMs": 0.001,
+      "startFromClickMs": 62.059,
+      "eventType": "focusin"
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.001,
+      "durationMs": 0.001,
+      "startFromClickMs": 62.06,
+      "eventType": "DOMFocusIn"
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.002,
+      "durationMs": 0.002,
+      "startFromClickMs": 62.746,
+      "eventType": "DOMActivate"
+    },
+    {
+      "name": "UpdateLayoutTree",
+      "overlapMs": 0.036,
+      "durationMs": 0.036,
+      "startFromClickMs": 62.755,
+      "eventType": null
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.002,
+      "durationMs": 0.002,
+      "startFromClickMs": 63.199,
+      "eventType": "pointerover"
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.001,
+      "durationMs": 0.001,
+      "startFromClickMs": 63.208,
+      "eventType": "mouseover"
+    },
+    {
+      "name": "EventDispatch",
+      "overlapMs": 0.022,
+      "durationMs": 0.022,
+      "startFromClickMs": 63.219,
+      "eventType": "scroll"
+    },
+    {
+      "name": "UpdateLayoutTree",
+      "overlapMs": 0.04,
+      "durationMs": 0.04,
+      "startFromClickMs": 63.493,
+      "eventType": null
+    },
+    {
+      "name": "Layout",
+      "overlapMs": 0.356,
+      "durationMs": 0.356,
+      "startFromClickMs": 63.534,
+      "eventType": null
+    },
+    {
+      "name": "Paint",
+      "overlapMs": 2.89,
+      "durationMs": 2.89,
+      "startFromClickMs": 64.758,
+      "eventType": null
+    },
+    {
+      "name": "Paint",
+      "overlapMs": 0.071,
+      "durationMs": 0.071,
+      "startFromClickMs": 67.542,
+      "eventType": null
+    }
+  ],
+  "gcInsideMeasuredIntervalMs": 0,
+  "thresholdViolations": [
+    {
+      "width": 390,
+      "slot": 3,
+      "medianMs": {
+        "dark-angels": 64.90000000596046,
+        "space-marines": 42.79999999701977,
+        "death-guard": 51.5
+      },
+      "daVsSm": 1.5163551404317652,
+      "daWithin1point5Sm": false
+    }
+  ]
+}

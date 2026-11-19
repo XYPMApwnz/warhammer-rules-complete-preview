@@ -1,0 +1,184 @@
+index,job,arguments,status,elapsedMs
+1,git diff --check,"[""diff"", ""--check""]",PASS,30
+2,tests/qa-temp-qa.mjs,"[""tests/qa-temp-qa.mjs""]",PASS,3739
+3,tests/book-passport-qa.mjs,"[""tests/book-passport-qa.mjs""]",PASS,768
+4,tests/keyword-access-qa.mjs,"[""tests/keyword-access-qa.mjs""]",PASS,1873
+5,v2/executable-detachment-source-qa.mjs,"[""v2/executable-detachment-source-qa.mjs""]",PASS,2672
+6,books/shared/army-book-app-v2/plain-header-explanation-qa.mjs,"[""books/shared/army-book-app-v2/plain-header-explanation-qa.mjs""]",PASS,110
+7,v2/sweep-polish-qa.mjs,"[""v2/sweep-polish-qa.mjs""]",PASS,43
+8,books/shared/army-book-app-v2/rule-popup-qa.mjs,"[""books/shared/army-book-app-v2/rule-popup-qa.mjs""]",PASS,44
+9,books/shared/army-book-app-v2/rule-popup-section-qa.mjs,"[""books/shared/army-book-app-v2/rule-popup-section-qa.mjs""]",PASS,2095
+10,books/shared/army-book-app-v2/rule-term-links-qa.mjs,"[""books/shared/army-book-app-v2/rule-term-links-qa.mjs""]",PASS,89
+11,books/shared/army-book-app-v2/equipment-reference-qa.mjs,"[""books/shared/army-book-app-v2/equipment-reference-qa.mjs""]",PASS,42
+12,books/shared/army-book-app-v2/roster-navigation-qa.mjs,"[""books/shared/army-book-app-v2/roster-navigation-qa.mjs""]",PASS,494
+13,books/shared/army-book-app-v2/import-messages-qa.mjs,"[""books/shared/army-book-app-v2/import-messages-qa.mjs""]",PASS,55
+14,tests/official-updates-qa.mjs,"[""tests/official-updates-qa.mjs""]",PASS,53
+15,tests/official-update-books-qa.mjs,"[""tests/official-update-books-qa.mjs""]",PASS,122
+16,tests/official-update-report-qa.mjs,"[""tests/official-update-report-qa.mjs""]",PASS,49
+17,tests/official-update-integration-qa.mjs,"[""tests/official-update-integration-qa.mjs""]",PASS,19170
+18,tests/official-effect-review-qa.mjs,"[""tests/official-effect-review-qa.mjs""]",PASS,96
+19,tests/current-gw-contract-qa.mjs,"[""tests/current-gw-contract-qa.mjs""]",PASS,51
+20,books/core-rules/tests/core-importer-candidate-qa.mjs,"[""books/core-rules/tests/core-importer-candidate-qa.mjs""]",PASS,13739
+21,books/core-rules/tests/core-importer-isolation-qa.mjs,"[""books/core-rules/tests/core-importer-isolation-qa.mjs""]",PASS,36515
+22,books/adeptus-mechanicus/v2/app-qa.mjs,"[""books/adeptus-mechanicus/v2/app-qa.mjs""]",PASS,16086
+23,books/adeptus-mechanicus/v2/roster-import-qa.mjs,"[""books/adeptus-mechanicus/v2/roster-import-qa.mjs""]",PASS,3157
+24,v2/new-recruit-export-qa.mjs,"[""v2/new-recruit-export-qa.mjs"", ""--book=adeptus-mechanicus""]",PASS,469
+25,v2/new-recruit-plain-header-qa.mjs,"[""v2/new-recruit-plain-header-qa.mjs"", ""--book=adeptus-mechanicus""]",PASS,7079
+26,v2/new-recruit-model-names-qa.mjs,"[""v2/new-recruit-model-names-qa.mjs"", ""--book=adeptus-mechanicus""]",PASS,385
+27,v2/related-panel-qa.mjs,"[""v2/related-panel-qa.mjs"", ""--book=adeptus-mechanicus"", ""--phase=all""]",PASS,3702
+28,books/blood-angels/v2/app-qa.mjs,"[""books/blood-angels/v2/app-qa.mjs""]",PASS,27258
+29,books/blood-angels/v2/roster-qa.mjs,"[""books/blood-angels/v2/roster-qa.mjs""]",PASS,101745
+30,v2/new-recruit-export-qa.mjs,"[""v2/new-recruit-export-qa.mjs"", ""--book=blood-angels""]",PASS,15184
+31,v2/new-recruit-plain-header-qa.mjs,"[""v2/new-recruit-plain-header-qa.mjs"", ""--book=blood-angels""]",PASS,10261
+32,v2/new-recruit-model-names-qa.mjs,"[""v2/new-recruit-model-names-qa.mjs"", ""--book=blood-angels""]",PASS,3750
+33,v2/related-panel-qa.mjs,"[""v2/related-panel-qa.mjs"", ""--book=blood-angels"", ""--phase=all""]",PASS,23886
+34,v2/detachment-card-text-qa.mjs,"[""v2/detachment-card-text-qa.mjs"", ""--book=blood-angels""]",PASS,298
+35,books/chaos-space-marines/v2/app-qa.mjs,"[""books/chaos-space-marines/v2/app-qa.mjs""]",PASS,1068
+36,books/chaos-space-marines/v2/roster-import-qa.mjs,"[""books/chaos-space-marines/v2/roster-import-qa.mjs""]",PASS,10084
+37,v2/new-recruit-export-qa.mjs,"[""v2/new-recruit-export-qa.mjs"", ""--book=chaos-space-marines""]",PASS,1543
+38,v2/new-recruit-plain-header-qa.mjs,"[""v2/new-recruit-plain-header-qa.mjs"", ""--book=chaos-space-marines""]",PASS,8869
+39,v2/new-recruit-model-names-qa.mjs,"[""v2/new-recruit-model-names-qa.mjs"", ""--book=chaos-space-marines""]",PASS,3069
+40,v2/related-panel-qa.mjs,"[""v2/related-panel-qa.mjs"", ""--book=chaos-space-marines"", ""--phase=all""]",PASS,7699
+41,books/dark-angels/v2/app-qa.mjs,"[""books/dark-angels/v2/app-qa.mjs""]",PASS,28526
+42,books/dark-angels/v2/roster-import-qa.mjs,"[""books/dark-angels/v2/roster-import-qa.mjs""]",PASS,177521
+43,v2/new-recruit-export-qa.mjs,"[""v2/new-recruit-export-qa.mjs"", ""--book=dark-angels""]",PASS,101731
+44,v2/new-recruit-plain-header-qa.mjs,"[""v2/new-recruit-plain-header-qa.mjs"", ""--book=dark-angels""]",PASS,21381
+45,v2/new-recruit-model-names-qa.mjs,"[""v2/new-recruit-model-names-qa.mjs"", ""--book=dark-angels""]",PASS,10425
+46,v2/related-panel-qa.mjs,"[""v2/related-panel-qa.mjs"", ""--book=dark-angels"", ""--phase=all""]",PASS,23335
+47,v2/detachment-card-text-qa.mjs,"[""v2/detachment-card-text-qa.mjs"", ""--book=dark-angels""]",PASS,365
+48,books/death-guard/v2/app-qa.mjs,"[""books/death-guard/v2/app-qa.mjs""]",PASS,7009
+49,books/death-guard/v2/roster-import-qa.mjs,"[""books/death-guard/v2/roster-import-qa.mjs""]",PASS,155
+50,v2/new-recruit-export-qa.mjs,"[""v2/new-recruit-export-qa.mjs"", ""--book=death-guard""]",PASS,371
+51,v2/new-recruit-plain-header-qa.mjs,"[""v2/new-recruit-plain-header-qa.mjs"", ""--book=death-guard""]",PASS,7696
+52,v2/related-panel-qa.mjs,"[""v2/related-panel-qa.mjs"", ""--book=death-guard"", ""--phase=all""]",PASS,3360
+53,v2/detachment-card-text-qa.mjs,"[""v2/detachment-card-text-qa.mjs"", ""--book=death-guard""]",PASS,194
+54,books/emperors-children/v2/app-qa.mjs,"[""books/emperors-children/v2/app-qa.mjs""]",PASS,4069
+55,books/emperors-children/v2/roster-import-qa.mjs,"[""books/emperors-children/v2/roster-import-qa.mjs""]",PASS,8245
+56,v2/new-recruit-export-qa.mjs,"[""v2/new-recruit-export-qa.mjs"", ""--book=emperors-children""]",PASS,1682
+57,v2/new-recruit-plain-header-qa.mjs,"[""v2/new-recruit-plain-header-qa.mjs"", ""--book=emperors-children""]",PASS,7786
+58,v2/new-recruit-model-names-qa.mjs,"[""v2/new-recruit-model-names-qa.mjs"", ""--book=emperors-children""]",PASS,642
+59,v2/reviewed-text-coverage-qa.mjs,"[""v2/reviewed-text-coverage-qa.mjs"", ""--book=emperors-children""]",PASS,9309
+60,v2/related-panel-qa.mjs,"[""v2/related-panel-qa.mjs"", ""--book=emperors-children"", ""--phase=all""]",PASS,14671
+61,v2/detachment-card-text-qa.mjs,"[""v2/detachment-card-text-qa.mjs"", ""--book=emperors-children""]",PASS,225
+62,books/space-marines/v2/app-qa.mjs,"[""books/space-marines/v2/app-qa.mjs""]",PASS,44028
+63,books/space-marines/v2/roster-import-qa.mjs,"[""books/space-marines/v2/roster-import-qa.mjs""]",PASS,118973
+64,books/space-marines/v2/roster-static-model-bindings-qa.mjs,"[""books/space-marines/v2/roster-static-model-bindings-qa.mjs""]",PASS,9426
+65,v2/new-recruit-export-qa.mjs,"[""v2/new-recruit-export-qa.mjs"", ""--book=space-marines""]",PASS,8959
+66,v2/new-recruit-plain-header-qa.mjs,"[""v2/new-recruit-plain-header-qa.mjs"", ""--book=space-marines""]",PASS,8509
+67,v2/new-recruit-model-names-qa.mjs,"[""v2/new-recruit-model-names-qa.mjs"", ""--book=space-marines""]",PASS,3784
+68,v2/related-panel-qa.mjs,"[""v2/related-panel-qa.mjs"", ""--book=space-marines"", ""--phase=all""]",PASS,25929
+69,v2/detachment-card-text-qa.mjs,"[""v2/detachment-card-text-qa.mjs"", ""--book=space-marines""]",PASS,341
+70,v2/wardens-source-binding-qa.mjs,"[""v2/wardens-source-binding-qa.mjs""]",PASS,1669
+71,books/tau-empire/v2/app-qa.mjs,"[""books/tau-empire/v2/app-qa.mjs""]",PASS,4598
+72,books/tau-empire/v2/roster-import-qa.mjs,"[""books/tau-empire/v2/roster-import-qa.mjs""]",PASS,175561
+73,books/tau-empire/v2/physical-choice-qa.mjs,"[""books/tau-empire/v2/physical-choice-qa.mjs""]",PASS,9385
+74,v2/new-recruit-export-qa.mjs,"[""v2/new-recruit-export-qa.mjs"", ""--book=tau-empire""]",PASS,1644
+75,v2/new-recruit-plain-header-qa.mjs,"[""v2/new-recruit-plain-header-qa.mjs"", ""--book=tau-empire""]",PASS,8174
+76,v2/new-recruit-model-names-qa.mjs,"[""v2/new-recruit-model-names-qa.mjs"", ""--book=tau-empire""]",PASS,1090
+77,v2/related-panel-qa.mjs,"[""v2/related-panel-qa.mjs"", ""--book=tau-empire"", ""--phase=all""]",PASS,15187
+78,v2/detachment-card-text-qa.mjs,"[""v2/detachment-card-text-qa.mjs"", ""--book=tau-empire""]",PASS,373
+79,books/tyranids/v2/app-qa.mjs,"[""books/tyranids/v2/app-qa.mjs""]",PASS,4759
+80,books/tyranids/v2/roster-import-qa.mjs,"[""books/tyranids/v2/roster-import-qa.mjs""]",PASS,5249
+81,v2/new-recruit-export-qa.mjs,"[""v2/new-recruit-export-qa.mjs"", ""--book=tyranids""]",PASS,1036
+82,v2/new-recruit-plain-header-qa.mjs,"[""v2/new-recruit-plain-header-qa.mjs"", ""--book=tyranids""]",PASS,8544
+83,v2/new-recruit-model-names-qa.mjs,"[""v2/new-recruit-model-names-qa.mjs"", ""--book=tyranids""]",PASS,732
+84,v2/reviewed-text-coverage-qa.mjs,"[""v2/reviewed-text-coverage-qa.mjs"", ""--book=tyranids""]",PASS,10054
+85,v2/related-panel-qa.mjs,"[""v2/related-panel-qa.mjs"", ""--book=tyranids"", ""--phase=all""]",PASS,16136
+86,v2/detachment-card-text-qa.mjs,"[""v2/detachment-card-text-qa.mjs"", ""--book=tyranids""]",PASS,298
+87,books/shared/rule-contract-v2/recipients-qa.mjs,"[""books/shared/rule-contract-v2/recipients-qa.mjs""]",PASS,3120
+88,books/shared/roster-v2/physical-selection-effects-qa.mjs,"[""books/shared/roster-v2/physical-selection-effects-qa.mjs""]",PASS,186
+89,books/shared/roster-v2/condition-execution-qa.mjs,"[""books/shared/roster-v2/condition-execution-qa.mjs""]",PASS,127
+90,books/shared/roster-v2/numeric-effects-qa.mjs,"[""books/shared/roster-v2/numeric-effects-qa.mjs""]",PASS,198
+91,books/shared/roster-v2/keyword-effects-qa.mjs,"[""books/shared/roster-v2/keyword-effects-qa.mjs""]",PASS,173
+92,books/shared/roster-v2/ability-effects-qa.mjs,"[""books/shared/roster-v2/ability-effects-qa.mjs""]",PASS,156
+93,books/shared/roster-v2/weapon-contribution-effects-qa.mjs,"[""books/shared/roster-v2/weapon-contribution-effects-qa.mjs""]",PASS,141
+94,books/shared/roster-v2/advance-roll-effects-qa.mjs,"[""books/shared/roster-v2/advance-roll-effects-qa.mjs""]",PASS,127
+95,v2/source-effect-regression-qa.mjs,"[""v2/source-effect-regression-qa.mjs""]",PASS,45504
+96,v2/detachment-source-binding-qa.mjs,"[""v2/detachment-source-binding-qa.mjs""]",PASS,21356
+97,books/shared/roster-v2/reimport-attachments-qa.mjs,"[""books/shared/roster-v2/reimport-attachments-qa.mjs""]",PASS,6904
+98,books/shared/roster-v2/service-qa.mjs,"[""books/shared/roster-v2/service-qa.mjs""]",PASS,107
+99,books/shared/roster-v2/import-service-qa.mjs,"[""books/shared/roster-v2/import-service-qa.mjs""]",PASS,112
+100,books/shared/roster-v2/import-selections-qa.mjs,"[""books/shared/roster-v2/import-selections-qa.mjs""]",PASS,118
+101,books/shared/roster-v2/attachment-service-qa.mjs,"[""books/shared/roster-v2/attachment-service-qa.mjs""]",PASS,100
+102,books/shared/roster-v2/attachment-conditions-qa.mjs,"[""books/shared/roster-v2/attachment-conditions-qa.mjs""]",PASS,102
+103,tests/roster-execution-atomic-qa.mjs,"[""tests/roster-execution-atomic-qa.mjs""]",PASS,4112
+104,v2/detachment-recipient-qa.mjs,"[""v2/detachment-recipient-qa.mjs""]",PASS,1496
+105,v2/card-recipient-qa.mjs,"[""v2/card-recipient-qa.mjs""]",PASS,679
+106,v2/attached-rule-text-qa.mjs,"[""v2/attached-rule-text-qa.mjs""]",PASS,9240
+107,v2/card-display-2-qa.mjs,"[""v2/card-display-2-qa.mjs""]",PASS,2062
+108,books/shared/roster-v2/singleton-model-import-qa.mjs,"[""books/shared/roster-v2/singleton-model-import-qa.mjs""]",PASS,41
+109,books/shared/roster-v2/plain-header-qa.mjs,"[""books/shared/roster-v2/plain-header-qa.mjs""]",PASS,54
+110,v2/epic-hero-enhancements-qa.mjs,"[""v2/epic-hero-enhancements-qa.mjs""]",PASS,5447
+111,books/shared/roster-v2/initial-attachment-qa.mjs,"[""books/shared/roster-v2/initial-attachment-qa.mjs""]",PASS,118
+112,v2/faction-safe-import-qa.mjs,"[""v2/faction-safe-import-qa.mjs""]",PASS,885
+113,books/shared/army-book-app-v2/card-text-formatting-qa.mjs,"[""books/shared/army-book-app-v2/card-text-formatting-qa.mjs""]",PASS,42
+114,books/shared/army-book-app-v2/library-currentness-qa.mjs,"[""books/shared/army-book-app-v2/library-currentness-qa.mjs""]",PASS,233
+115,books/shared/roster-v2/text-roster-facts-qa.mjs,"[""books/shared/roster-v2/text-roster-facts-qa.mjs""]",PASS,44
+116,v2/source-completeness-check.mjs,"[""v2/source-completeness-check.mjs""]",PASS,1629
+117,tests/integration-qa.mjs,"[""tests/integration-qa.mjs""]",PASS,3763
+118,books/shared/army-book-app-v2/cosmetics-qa.mjs,"[""books/shared/army-book-app-v2/cosmetics-qa.mjs""]",PASS,466
+119,tests/codex-workflow-qa.mjs,"[""tests/codex-workflow-qa.mjs""]",PASS,109
+120,tests/source-book-clone-qa.mjs,"[""tests/source-book-clone-qa.mjs"", ""--root=E:\\Warhammer\\worktrees\\polish-5-v1""]",PASS,1677
+121,books/shared/source-refs-v2/source-catalog-qa.mjs,"[""books/shared/source-refs-v2/source-catalog-qa.mjs""]",PASS,1054
+122,v2/unit-recipient-scope-qa.mjs,"[""v2/unit-recipient-scope-qa.mjs""]",PASS,2986
+123,tests/book-update-declarations-qa.mjs,"[""tests/book-update-declarations-qa.mjs""]",PASS,153
+124,tests/book-update-report-qa.mjs,"[""tests/book-update-report-qa.mjs""]",PASS,64
+125,tests/book-update-snapshots-qa.mjs,"[""tests/book-update-snapshots-qa.mjs""]",PASS,11053
+126,tests/book-update-metadata-qa.mjs,"[""tests/book-update-metadata-qa.mjs""]",PASS,52
+127,tests/book-update-command-qa.mjs,"[""tests/book-update-command-qa.mjs""]",PASS,53197
+128,tests/mfm-release-history-qa.mjs,"[""tests/mfm-release-history-qa.mjs""]",PASS,203
+129,tests/mfm-update-qa.mjs,"[""tests/mfm-update-qa.mjs""]",PASS,36180
+130,tests/source-catalog-registry-qa.mjs,"[""tests/source-catalog-registry-qa.mjs""]",PASS,48267
+131,tests/source-catalog-additions-qa.mjs,"[""tests/source-catalog-additions-qa.mjs""]",PASS,10712
+132,books/core-rules/tests/factual-ownership-qa.mjs,"[""books/core-rules/tests/factual-ownership-qa.mjs""]",PASS,518
+133,books/core-rules/tests/core-waha-certification-qa.mjs,"[""books/core-rules/tests/core-waha-certification-qa.mjs""]",PASS,216
+134,glossary/v2/tests/core-projection-qa.mjs,"[""glossary/v2/tests/core-projection-qa.mjs""]",PASS,168374
+135,books/core-rules/tests/term-bindings-qa.mjs,"[""books/core-rules/tests/term-bindings-qa.mjs""]",PASS,666
+136,books/core-rules/tests/reader-see-also-regression-qa.mjs,"[""books/core-rules/tests/reader-see-also-regression-qa.mjs""]",PASS,1489
+137,books/core-rules/tests/core-faq-anchor-qa.mjs,"[""books/core-rules/tests/core-faq-anchor-qa.mjs""]",PASS,1889
+138,tests/generated-rebuild-qa.mjs,"[""tests/generated-rebuild-qa.mjs""]",PASS,22856
+139,tests/csm-model-alias-bootstrap-qa.mjs,"[""tests/csm-model-alias-bootstrap-qa.mjs""]",PASS,2599
+140,tests/source-review-execution-book-qa.mjs,"[""tests/source-review-execution-book-qa.mjs""]",PASS,3385
+141,books/shared/tools/check-generated-rebuild.mjs,"[""books/shared/tools/check-generated-rebuild.mjs""]",PASS,662287
+142,tools/pages-runtime-package.mjs,"[""tools/pages-runtime-package.mjs"", ""--source"", ""E:\\Warhammer\\worktrees\\polish-5-v1"", ""--out"", ""E:\\Warhammer\\qa-tmp\\polish-5\\wh-qa-pre-ff-work-H5Koen\\work\\runtime""]",PASS,5641
+143,v2/shell-browser-qa.mjs,"[""v2/shell-browser-qa.mjs""]",PASS,39371
+144,v2/core-reader-browser-qa.mjs,"[""v2/core-reader-browser-qa.mjs""]",PASS,56858
+145,tests/minimal-pwa-cache-qa.mjs,"[""tests/minimal-pwa-cache-qa.mjs""]",PASS,127
+146,v2/pwa-transition-qa.mjs,"[""v2/pwa-transition-qa.mjs""]",PASS,63840
+147,tests/browser/pwa-update-flow.mjs,"[""tests/browser/pwa-update-flow.mjs""]",PASS,47684
+148,tests/browser/pwa-bootstrap-update.mjs,"[""tests/browser/pwa-bootstrap-update.mjs""]",PASS,126280
+149,tests/startup-precache-qa.mjs,"[""tests/startup-precache-qa.mjs""]",PASS,1636
+150,tests/browser/cold-offline.mjs,"[""tests/browser/cold-offline.mjs""]",PASS,78063
+151,v2/detachment-recipient-browser-qa.mjs,"[""v2/detachment-recipient-browser-qa.mjs""]",PASS,137893
+152,v2/detachment-synthetic-table-browser-qa.mjs,"[""v2/detachment-synthetic-table-browser-qa.mjs""]",PASS,41909
+153,v2/card-recipient-browser-qa.mjs,"[""v2/card-recipient-browser-qa.mjs""]",PASS,69321
+154,v2/attached-rule-text-browser-qa.mjs,"[""v2/attached-rule-text-browser-qa.mjs""]",PASS,240089
+155,v2/card-display-browser-qa.mjs,"[""v2/card-display-browser-qa.mjs""]",PASS,148009
+156,v2/card-display-2-browser-qa.mjs,"[""v2/card-display-2-browser-qa.mjs""]",PASS,76326
+157,v2/source-equipment-browser-qa.mjs,"[""v2/source-equipment-browser-qa.mjs""]",PASS,75571
+158,v2/new-recruit-export-browser-qa.mjs,"[""v2/new-recruit-export-browser-qa.mjs""]",PASS,16628
+159,v2/new-recruit-plain-header-browser-qa.mjs,"[""v2/new-recruit-plain-header-browser-qa.mjs""]",PASS,52981
+160,v2/new-recruit-model-names-browser-qa.mjs,"[""v2/new-recruit-model-names-browser-qa.mjs""]",PASS,39183
+161,v2/reviewed-text-coverage-browser-qa.mjs,"[""v2/reviewed-text-coverage-browser-qa.mjs""]",PASS,20314
+162,v2/related-panel-browser-qa.mjs,"[""v2/related-panel-browser-qa.mjs""]",PASS,26876
+163,v2/detachment-card-text-browser-qa.mjs,"[""v2/detachment-card-text-browser-qa.mjs""]",PASS,55353
+164,v2/wardens-source-binding-browser-qa.mjs,"[""v2/wardens-source-binding-browser-qa.mjs""]",PASS,10131
+165,v2/cards-cosmetics-browser-qa.mjs,"[""v2/cards-cosmetics-browser-qa.mjs""]",PASS,50881
+166,v2/epic-hero-enhancements-browser-qa.mjs,"[""v2/epic-hero-enhancements-browser-qa.mjs""]",PASS,15779
+167,v2/fabius-safe-import-browser-qa.mjs,"[""v2/fabius-safe-import-browser-qa.mjs""]",PASS,34560
+168,v2/card-texts-browser-qa.mjs,"[""v2/card-texts-browser-qa.mjs""]",PASS,52774
+169,v2/card-polish-2-browser-qa.mjs,"[""v2/card-polish-2-browser-qa.mjs""]",PASS,50805
+170,v2/sweep-polish-browser-qa.mjs,"[""v2/sweep-polish-browser-qa.mjs""]",PASS,58776
+171,v2/card-gained-rules-browser-qa.mjs,"[""v2/card-gained-rules-browser-qa.mjs""]",PASS,94023
+172,v2/rule-popups-browser-qa.mjs,"[""v2/rule-popups-browser-qa.mjs""]",PASS,54978
+173,v2/polish-5-browser-qa.mjs,"[""v2/polish-5-browser-qa.mjs""]",PASS,57230
+174,v2/roster-navigation-browser-qa.mjs,"[""v2/roster-navigation-browser-qa.mjs""]",PASS,250444
+175,v2/import-messages-browser-qa.mjs,"[""v2/import-messages-browser-qa.mjs""]",PASS,72369
+176,v2/dg-am-recipient-enrollment-browser-qa.mjs,"[""v2/dg-am-recipient-enrollment-browser-qa.mjs"", ""--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json""]",PASS,185051
+177,v2/dg-am-recipient-enrollment-browser-qa.mjs,"[""v2/dg-am-recipient-enrollment-browser-qa.mjs"", ""--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json""]",PASS,216046
+178,books/core-rules/tests/core-switch-browser-qa.mjs,"[""books/core-rules/tests/core-switch-browser-qa.mjs""]",PASS,4164
+179,tools/pages-runtime-package-qa.mjs,"[""tools/pages-runtime-package-qa.mjs"", ""--source"", ""E:\\Warhammer\\worktrees\\polish-5-v1"", ""--published"", ""E:\\Warhammer\\qa-tmp\\polish-5\\wh-qa-pre-ff-work-H5Koen\\work\\runtime"", ""--work"", ""E:\\Warhammer\\qa-tmp\\polish-5\\wh-qa-pre-ff-work-H5Koen\\work\\packaging""]",PASS,20761
+180,tests/source-enrollment-qa.mjs,"[""tests/source-enrollment-qa.mjs""]",PASS,10691
+181,books/shared/tools/source-freshness.mjs,"[""books/shared/tools/source-freshness.mjs""]",PASS,2475
+182,tests/source-ingestion-contract-qa.mjs,"[""tests/source-ingestion-contract-qa.mjs""]",PASS,7995
+183,books/shared/army-book-app-v2/keyword-attribution-qa.mjs,"[""books/shared/army-book-app-v2/keyword-attribution-qa.mjs""]",PASS,1446

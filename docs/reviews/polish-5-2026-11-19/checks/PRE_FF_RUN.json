@@ -1,0 +1,21 @@
+{
+  "schema": "polish5-authorized-single-preff/v1",
+  "sha": "635c503b4bb45d13e3c2cc92c439b86a75e1c954",
+  "status": "PASS",
+  "started": "2026-11-19T18:05:54.528Z",
+  "expectedJobs": 183,
+  "command": [
+    "node",
+    "tools/qa-queue.mjs",
+    "pre-ff",
+    "--out=E:/Warhammer/qa-evidence/polish-5-v1-2026-11-19/pre-ff"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "finished": "2026-11-19T19:30:05.444Z",
+  "elapsedMs": 5050916,
+  "headAfter": "635c503b4bb45d13e3c2cc92c439b86a75e1c954",
+  "treeAfter": "",
+  "passed": 183,
+  "failed": 0
+}

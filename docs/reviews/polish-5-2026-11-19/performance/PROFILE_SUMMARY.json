@@ -1,0 +1,447 @@
+{
+  "case": {
+    "slot": 3,
+    "bookId": "dark-angels",
+    "inputId": "sweep2-dark-angels-c99e4df19d6ce4d2"
+  },
+  "width": 1440,
+  "measured": {
+    "readyMs": 68.6000000089407,
+    "automationElapsedMs": 83.06650000001537,
+    "url": "http://localhost:8765/v2/app.html?v2=UNIT_INSTANCE&book=dark-angels&registry=dark-angels&roster=import-e045a61fdeefd027&instance=parsed-unit-1#roster-unit%2Fparsed-unit-1",
+    "instanceId": "parsed-unit-1",
+    "title": "Sammael",
+    "cardDomNodes": 176,
+    "cardTextLength": 1303,
+    "weaponRows": 4,
+    "profileCount": 1
+  },
+  "trace": "slowest-card.trace.json",
+  "cpu": "slowest-card.cpuprofile",
+  "sampleDurationMs": 275.981,
+  "topSelf": [
+    {
+      "name": "(program)",
+      "url": "",
+      "line": 0,
+      "selfMs": 182.0069999999999,
+      "inclusiveMs": 182.0069999999999
+    },
+    {
+      "name": "(idle)",
+      "url": "",
+      "line": 0,
+      "selfMs": 26.416000000000004,
+      "inclusiveMs": 26.416000000000004
+    },
+    {
+      "name": "getBoundingClientRect",
+      "url": "",
+      "line": 0,
+      "selfMs": 18.011,
+      "inclusiveMs": 18.011
+    },
+    {
+      "name": "(garbage collector)",
+      "url": "",
+      "line": 0,
+      "selfMs": 5.006,
+      "inclusiveMs": 5.006
+    },
+    {
+      "name": "projectEffectiveInstance",
+      "url": "http://localhost:8765/books/shared/roster-v2/effective-instance.mjs",
+      "line": 13,
+      "selfMs": 4.668,
+      "inclusiveMs": 16.765
+    },
+    {
+      "name": "match",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/rule-term-links.mjs",
+      "line": 28,
+      "selfMs": 3.067,
+      "inclusiveMs": 3.067
+    },
+    {
+      "name": "clone",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 34,
+      "selfMs": 3.009,
+      "inclusiveMs": 3.009
+    },
+    {
+      "name": "clone",
+      "url": "http://localhost:8765/books/shared/roster-v2/runtime.mjs",
+      "line": 9,
+      "selfMs": 2.996,
+      "inclusiveMs": 2.996
+    },
+    {
+      "name": "renderDatasheet",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 909,
+      "selfMs": 1.774,
+      "inclusiveMs": 32.89099999999999
+    },
+    {
+      "name": "ownershipFor",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 343,
+      "selfMs": 1.678,
+      "inclusiveMs": 3.173
+    },
+    {
+      "name": "renderCard",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 329,
+      "selfMs": 1.598,
+      "inclusiveMs": 34.489
+    },
+    {
+      "name": "renderComponent",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 578,
+      "selfMs": 1.567,
+      "inclusiveMs": 36.05599999999999
+    },
+    {
+      "name": "projectPersonalBook",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/personal.mjs",
+      "line": 318,
+      "selfMs": 1.517,
+      "inclusiveMs": 1.517
+    },
+    {
+      "name": "factValue",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 207,
+      "selfMs": 1.508,
+      "inclusiveMs": 1.508
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/roster-v2/effective-instance.mjs",
+      "line": 117,
+      "selfMs": 1.501,
+      "inclusiveMs": 1.501
+    },
+    {
+      "name": "createTreeWalker",
+      "url": "",
+      "line": 0,
+      "selfMs": 1.501,
+      "inclusiveMs": 1.501
+    },
+    {
+      "name": "activate",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "line": 224,
+      "selfMs": 1.501,
+      "inclusiveMs": 19.512
+    },
+    {
+      "name": "identity",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 116,
+      "selfMs": 1.5,
+      "inclusiveMs": 1.5
+    },
+    {
+      "name": "renderInstance",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 564,
+      "selfMs": 1.499,
+      "inclusiveMs": 61.56500000000001
+    },
+    {
+      "name": "lookup",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 87,
+      "selfMs": 1.497,
+      "inclusiveMs": 1.497
+    },
+    {
+      "name": "sourceSnapshotChecked",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 326,
+      "selfMs": 1.495,
+      "inclusiveMs": 2.99
+    },
+    {
+      "name": "decode",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 306,
+      "selfMs": 1.495,
+      "inclusiveMs": 4.485
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 677,
+      "selfMs": 1.493,
+      "inclusiveMs": 1.493
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/personal.mjs",
+      "line": 272,
+      "selfMs": 1.485,
+      "inclusiveMs": 1.485
+    },
+    {
+      "name": "clone",
+      "url": "http://localhost:8765/books/shared/roster-v2/effective-instance.mjs",
+      "line": 11,
+      "selfMs": 1.422,
+      "inclusiveMs": 1.422
+    },
+    {
+      "name": "check",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 366,
+      "selfMs": 1.352,
+      "inclusiveMs": 2.656
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 1245,
+      "selfMs": 1.322,
+      "inclusiveMs": 9.001999999999999
+    },
+    {
+      "name": "predicateContext",
+      "url": "http://localhost:8765/books/shared/roster-v2/context.mjs",
+      "line": 330,
+      "selfMs": 0.88,
+      "inclusiveMs": 0.88
+    },
+    {
+      "name": "navigate",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 929,
+      "selfMs": 0.447,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/roster-v2/physical-condition-context.mjs",
+      "line": 21,
+      "selfMs": 0.177,
+      "inclusiveMs": 0.177
+    }
+  ],
+  "topRepositoryInclusive": [
+    {
+      "name": "navigate",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 929,
+      "selfMs": 0.447,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "openInstance",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 959,
+      "selfMs": 0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/roster.mjs",
+      "line": 777,
+      "selfMs": 0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "run",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/roster.mjs",
+      "line": 248,
+      "selfMs": 0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/roster.mjs",
+      "line": 81,
+      "selfMs": 0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/lifecycle.mjs",
+      "line": 5,
+      "selfMs": 0,
+      "inclusiveMs": 62.01200000000001
+    },
+    {
+      "name": "renderInstance",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 564,
+      "selfMs": 1.499,
+      "inclusiveMs": 61.56500000000001
+    },
+    {
+      "name": "route",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 788,
+      "selfMs": 0,
+      "inclusiveMs": 61.56500000000001
+    },
+    {
+      "name": "renderPhysicalUnit",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 576,
+      "selfMs": 0,
+      "inclusiveMs": 37.54099999999999
+    },
+    {
+      "name": "renderComponent",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 578,
+      "selfMs": 1.567,
+      "inclusiveMs": 36.05599999999999
+    },
+    {
+      "name": "renderFormedUnit",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "line": 5,
+      "selfMs": 0,
+      "inclusiveMs": 36.05599999999999
+    },
+    {
+      "name": "renderCard",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 329,
+      "selfMs": 1.598,
+      "inclusiveMs": 34.489
+    },
+    {
+      "name": "renderDatasheet",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 909,
+      "selfMs": 1.774,
+      "inclusiveMs": 32.89099999999999
+    },
+    {
+      "name": "renderNavigation",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 504,
+      "selfMs": 0,
+      "inclusiveMs": 21.007999999999996
+    },
+    {
+      "name": "activate",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "line": 224,
+      "selfMs": 1.501,
+      "inclusiveMs": 19.512
+    },
+    {
+      "name": "refresh",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/navigation-v1.mjs",
+      "line": 173,
+      "selfMs": 0,
+      "inclusiveMs": 19.512
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/roster-v2/effective-instance.mjs",
+      "line": 39,
+      "selfMs": 0,
+      "inclusiveMs": 18.348
+    },
+    {
+      "name": "keepRowVisible",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "line": 238,
+      "selfMs": 0,
+      "inclusiveMs": 18.011
+    },
+    {
+      "name": "projectEffectiveInstance",
+      "url": "http://localhost:8765/books/shared/roster-v2/effective-instance.mjs",
+      "line": 13,
+      "selfMs": 4.668,
+      "inclusiveMs": 16.765
+    },
+    {
+      "name": "effective",
+      "url": "http://localhost:8765/books/shared/roster-v2/runtime.mjs",
+      "line": 152,
+      "selfMs": 0,
+      "inclusiveMs": 16.765
+    },
+    {
+      "name": "effective",
+      "url": "http://localhost:8765/books/shared/roster-v2/runtime.mjs",
+      "line": 99,
+      "selfMs": 0,
+      "inclusiveMs": 16.765
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 1245,
+      "selfMs": 1.322,
+      "inclusiveMs": 9.001999999999999
+    },
+    {
+      "name": "modifiers",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 185,
+      "selfMs": 0,
+      "inclusiveMs": 7.666
+    },
+    {
+      "name": "link",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/rule-term-links.mjs",
+      "line": 54,
+      "selfMs": 0,
+      "inclusiveMs": 7.5009999999999994
+    },
+    {
+      "name": "linkTerms",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/runtime.mjs",
+      "line": 197,
+      "selfMs": 0,
+      "inclusiveMs": 7.5009999999999994
+    },
+    {
+      "name": "renderWeapon",
+      "url": "http://localhost:8765/books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 362,
+      "selfMs": 0,
+      "inclusiveMs": 6.183
+    },
+    {
+      "name": "getSourceContext",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 469,
+      "selfMs": 0,
+      "inclusiveMs": 6.174
+    },
+    {
+      "name": "validateBindings",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 349,
+      "selfMs": 0,
+      "inclusiveMs": 6.022
+    },
+    {
+      "name": "",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 319,
+      "selfMs": 0,
+      "inclusiveMs": 6.0200000000000005
+    },
+    {
+      "name": "snapshotValue",
+      "url": "http://localhost:8765/books/shared/source-refs-v2/source-refs.mjs",
+      "line": 318,
+      "selfMs": 0,
+      "inclusiveMs": 6.0200000000000005
+    }
+  ],
+  "events": []
+}

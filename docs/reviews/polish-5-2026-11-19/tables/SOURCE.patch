@@ -1,0 +1,169 @@
+diff --git a/books/shared/army-book-app-v2/datasheet-v1.mjs b/books/shared/army-book-app-v2/datasheet-v1.mjs
+index a8354dce..871a737e 100644
+--- a/books/shared/army-book-app-v2/datasheet-v1.mjs
++++ b/books/shared/army-book-app-v2/datasheet-v1.mjs
+@@ -426,7 +426,12 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
+       nameCell.append(note);
+     }
+     if(card.rosterQuantity!==undefined)nameLine.append(el('small','ds-weapon-quantity',` ×${card.rosterQuantity}`));
+-    if(popup) {const h=el('h3');h.append(nameCell);row.append(h);}else row.append(nameCell);
++    if(popup) {
++      const modeValue=mode?.value??card.weaponMode;
++      if(!['ranged','melee'].includes(modeValue))throw new TypeError('Missing typed weapon mode: '+card.id);
++      row.append(el('p','reference-context',modeValue==='ranged'?'Ranged weapon':'Melee weapon'));
++      const h=el('h3');h.append(nameCell);row.append(h);
++    }else row.append(nameCell);
+     const fieldLabels=weaponFieldLabels(mode?.value??card.weaponMode);
+     let table,body;
+     if(popup){table=el('table','popup-weapon-table');const head=el('tr');for(const label of Object.values(fieldLabels)){const th=el('th','',label);th.scope='col';head.append(th);}const thead=el('thead');thead.append(head);body=el('tr');const tbody=el('tbody');tbody.append(body);table.append(thead,tbody);}
+diff --git a/books/shared/army-book-app-v2/rule-popup.mjs b/books/shared/army-book-app-v2/rule-popup.mjs
+index 75e6dda9..d4319f94 100644
+--- a/books/shared/army-book-app-v2/rule-popup.mjs
++++ b/books/shared/army-book-app-v2/rule-popup.mjs
+@@ -3,48 +3,77 @@ export const rulePopupKinds = new Set(['ABILITY','WARGEAR_ABILITY','DATASHEET_SE
+ const pathOf=field=>field.presentationPath??field.source?.path;
+ const prefix=text=>{const colon=text.indexOf(':');return colon>0&&colon<160?text.slice(0,colon):null;};
+ const key=text=>String(text||'').replace(/:\s*$/,'').trim().toLocaleLowerCase('en');
++const ruleTextFields=card=>card.fields.filter(field=>typeof field.value==='string'&&field.value.trim()&&
++  (/^\/blocks\/\d+\/text$/.test(pathOf(field)||'')||['/text','/semanticContent'].includes(pathOf(field))));
+ 
+ export function focusedRuleField(card,{fieldPath,label}={}) {
+   if(!card||!rulePopupKinds.has(card.kind))return null;
+-  const fields=card.fields.filter(field=>typeof field.value==='string'&&field.value.trim()&&
+-    (/^\/blocks\/\d+\/text$/.test(pathOf(field)||'')||['/text','/semanticContent'].includes(pathOf(field))));
+-  if(fieldPath)return fields.find(field=>field.source?.path===fieldPath||pathOf(field)===fieldPath)||null;
++  const fields=ruleTextFields(card);
++  if(fieldPath){
++    const matches=fields.filter(field=>field.source?.path===fieldPath||pathOf(field)===fieldPath);
++    return matches.length===1?matches[0]:null;
++  }
+   const named=label&&fields.filter(field=>key(prefix(field.value))===key(label));
+   return named?.length===1?named[0]:fields.length===1?fields[0]:null;
+ }
+ 
++export function ruleFieldPath(card,field) {
++  // Keep an existing canonical URL when it is unique. A projected display
++  // address is needed only when multiple source members reuse a local path.
++  for(const path of new Set([field.source?.path,pathOf(field)]))
++    if(path&&focusedRuleField(card,{fieldPath:path})===field)return path;
++  return null;
++}
++
+ export function createRulePopupPresenter({document,cards,payload,el,factValue,anchor,linkTerms}) {
+-  function render(card,{fieldPath,wargear=false,originUnitId=null,reference=false}={}) {
+-    if(!rulePopupKinds.has(card.kind)||card.kind==='WARGEAR_OPTION')return null;
+-    const field=focusedRuleField(card,{fieldPath});
+-    if(!field)return null;
+-    const marker=card.fields.find(candidate=>candidate.source?.path===field.source?.path?.replace(/\/text$/,'/wargearAbility'));
++  function renderFields(card,fields,{fieldPath,wargear=false,originUnitId=null,reference=false,wholeSection=false}={}) {
++    const field=fields[0];
++    const focusedPath=fieldPath||ruleFieldPath(card,field);
++    const markerFor=field=>card.fields.find(candidate=>candidate.source?.path===field.source?.path?.replace(/\/text$/,'/wargearAbility'));
++    const marker=markerFor(field);
+     const caption=prefix(field.value),splitCaption=caption&&(key(caption)===key(card.title)||
+       /^\/blocks\/\d+\/text$/.test(field.source.path)&&typeof marker?.value==='boolean');
+-    const title=splitCaption?caption:card.title;
+-    const type=wargear||card.kind==='EQUIPMENT_RULE'?'Wargear':marker?.value===true||card.kind==='WARGEAR_ABILITY'?'Wargear ability':'Datasheet ability';
+-    const article=el('article','v1-reference-article ds-rule-popup');article.dataset.cardId=card.id;
+-    article.dataset.ruleFieldPath=field.source.path;article.dataset.ruleType=type;
++    const title=!wholeSection&&splitCaption?caption:card.title;
++    const markers=fields.map(markerFor).map(marker=>marker?.value);
++    const type=wargear||card.kind==='EQUIPMENT_RULE'?'Wargear':card.kind==='WARGEAR_ABILITY'||markers.every(value=>value===true)?'Wargear ability':
++      wholeSection&&card.kind==='DATASHEET_SECTION'&&!markers.every(value=>value===false)?'Datasheet section':'Datasheet ability';
++    const article=el('article','v1-reference-article '+(wholeSection?'ds-rule-section':'ds-rule-popup'));article.dataset.cardId=card.id;
++    if(wholeSection)article.dataset.ruleSectionFull='';else article.dataset.ruleFieldPath=focusedPath;
++    article.dataset.ruleType=type;
+     article.append(el('p','reference-context',type));
+     const heading=el('h2','reference-title',title);heading.id='v2-detail-heading';article.append(heading);
+     const body=el('section','reference-definition');body.dataset.cardId=card.id;
+     // Keep the exact canonical fact/value; only split its repeated caption.
+-    const paragraph=factValue('p',field);paragraph.classList.add('reference-fact');
+-    if(splitCaption)paragraph.textContent=field.value.slice(field.value.indexOf(':')+1).trimStart();
+-    body.append(paragraph);
++    for(const source of fields){
++      const paragraph=factValue('p',source);paragraph.classList.add('reference-fact');
++      if(!wholeSection&&splitCaption)paragraph.textContent=source.value.slice(source.value.indexOf(':')+1).trimStart();
++      body.append(paragraph);
++    }
+     for(const note of card.fields.filter(candidate=>/^\/qualifications\/\d+\/value\/sourceText$/.test(candidate.source?.path||''))) {
+       const index=Number(note.source.path.split('/')[2]);
+       const qualifier=card.fields.find(candidate=>candidate.source?.path===`/qualifications/${index}/field/0`);
+-      if(qualifier&&field.source.path.split('/')[1]!==qualifier.value)continue;
++      if(qualifier&&!fields.some(field=>field.source.path.split('/')[1]===qualifier.value))continue;
+       body.append(factValue('p',note));
+     }
+     linkTerms?.(body);article.append(body);
+     let owner=card,seen=new Set();
+     while(owner?.parentId&&!seen.has(owner.id)&&owner.kind!=='DATASHEET'){seen.add(owner.id);owner=cards.get(owner.parentId);}
+     if(owner?.kind==='DATASHEET'&&originUnitId&&owner.id!==originUnitId)article.append(el('p','ds-rule-popup-source','From '+owner.title));
+-    const link=anchor(reference?'Open in Glossary':'Open in Army Book',card.id,false,{fieldPath:field.source.path,...(reference?{reference:true}:{fullBook:true,contents:true})});
++    const link=anchor(reference?'Open in Glossary':'Open in Army Book',card.id,false,{...(!wholeSection?{fieldPath:focusedPath}:{}),...(reference?{reference:true}:{fullBook:true,contents:true})});
+     link.className='v2-permalink reference-permalink';article.append(link);
+     return article;
+   }
+-  return Object.freeze({render});
++  function render(card,options={}) {
++    if(!rulePopupKinds.has(card.kind)||card.kind==='WARGEAR_OPTION')return null;
++    const field=focusedRuleField(card,options);
++    return field&&(options.fieldPath||ruleFieldPath(card,field))?renderFields(card,[field],options):null;
++  }
++  function renderSection(card,options={}) {
++    if(!rulePopupKinds.has(card.kind)||card.kind==='WARGEAR_OPTION')return null;
++    const fields=ruleTextFields(card);
++    // An ambiguous name never chooses a sibling rule. Keep every canonical
++    // text in the exact section, without rendering classification metadata.
++    return fields.length?renderFields(card,fields,{...options,wholeSection:true}):null;
++  }
++  return Object.freeze({render,renderSection});
+ }
+diff --git a/books/shared/army-book-app-v2/runtime.mjs b/books/shared/army-book-app-v2/runtime.mjs
+index f96edfea..15654b00 100644
+--- a/books/shared/army-book-app-v2/runtime.mjs
++++ b/books/shared/army-book-app-v2/runtime.mjs
+@@ -15,7 +15,7 @@ import {installDatasheetLayout, flushDatasheetLayouts} from './datasheet-v1-layo
+ import {createBookPresenter} from './book-v1.mjs';
+ import {createV1RelatedPanel} from './related-v1.mjs';
+ import {positionV1Popup} from './popup-v1.mjs';
+-import {createRulePopupPresenter,focusedRuleField,rulePopupKinds} from './rule-popup.mjs';
++import {createRulePopupPresenter,focusedRuleField,ruleFieldPath} from './rule-popup.mjs';
+ import {createRuleTermLinker} from './rule-term-links.mjs';
+ import {rosterUnitNames} from './roster-labels.mjs';
+ const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
+@@ -76,7 +76,8 @@ export function mount(document, payload, options = {}) {
+   const humanKind = kind => String(kind || 'Entry').replace(/[-_]/g, ' ');
+   const anchor = (label, id, detail = false, presentation = {}) => {
+     const field=detail&&focusedRuleField(cards.get(id),{fieldPath:presentation.fieldPath,label});
+-    if(field&&!presentation.fieldPath)presentation={...presentation,fieldPath:field.source.path};
++    const fieldPath=field&&ruleFieldPath(cards.get(id),field);
++    if(fieldPath&&!presentation.fieldPath)presentation={...presentation,fieldPath};
+     const node = el('a', detail ? 'v2-reference' : 'v2-card-link', label);
+     node.href = routeURL(id,detail,presentation);
+     node.dataset.targetId = id;
+@@ -327,8 +328,8 @@ export function mount(document, payload, options = {}) {
+   }
+ 
+   function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true, sourceEvidence = false, fieldPath = null, wargear = false, originUnitId = null} = {}) {
+-    if(inDialog&&!sourceEvidence){const focused=rulePopups.render(card,{fieldPath,wargear,originUnitId});if(focused)return focused;
+-      if(rulePopupKinds.has(card.kind)&&card.kind!=='WARGEAR_OPTION')return el('p','v2-not-found','Choose a named ability from the Glossary to read its complete rule.');}
++    if(inDialog&&!sourceEvidence){const options={fieldPath,wargear,originUnitId};
++      const rule=rulePopups.render(card,options)||rulePopups.renderSection(card,options);if(rule)return rule;}
+     if(!sourceEvidence&&card.domain==='CORE')return referencePresenter.render(card.id,{popup:inDialog});
+     if(!sourceEvidence&&bookPresenter.accepts(card))return bookPresenter.render(card,{inDialog,primaryDetail});
+     if(card.kind==='DATASHEET'&&!sourceEvidence) {
+@@ -843,12 +844,12 @@ export function mount(document, payload, options = {}) {
+       const instanceId=context.instanceId;
+       const {variants,selected:effectiveCards}=instanceId?effectiveReference(id,context):{};
+       const projectedCards=variants?.get(id);
+-      const focused=rulePopups.render(cards.get(id),{fieldPath:context.fieldPath,
++      const ruleOptions={fieldPath:context.fieldPath,
+         reference:Boolean(state.armyBookV2.detailReference),
+         wargear:Boolean(popupOrigin?.closest('[data-selected-canonical-ids]')),
+-        originUnitId:popupOrigin?.closest('.unit-card[data-roster-instance-id]')?.dataset.cardId||null});
+-      const unresolved=rulePopupKinds.has(cards.get(id).kind)&&cards.get(id).kind!=='WARGEAR_OPTION';
+-      dialogContent.replaceChildren(...(focused?[focused]:unresolved?[el('p','v2-not-found','Choose a named ability from the Glossary to read its complete rule.')]:effectiveCards?.length
++        originUnitId:popupOrigin?.closest('.unit-card[data-roster-instance-id]')?.dataset.cardId||null};
++      const focused=rulePopups.render(cards.get(id),ruleOptions)||rulePopups.renderSection(cards.get(id),ruleOptions);
++      dialogContent.replaceChildren(...(focused?[focused]:effectiveCards?.length
+         ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
+         : projectedCards ? [el('p','v2-not-found','This profile is not available in this roster unit.')]
+         : [(cards.get(id).domain==='CORE'||state.armyBookV2.detailReference)&&!['PROFILE','WEAPON_PROFILE'].includes(cards.get(id).kind)

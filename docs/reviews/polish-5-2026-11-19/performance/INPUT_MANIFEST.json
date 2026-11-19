@@ -1,0 +1,136 @@
+{
+  "source": "E:/Warhammer/qa-evidence/auto-qa-sweep-2-2026-11-19/inventory/ALL_INPUTS.json",
+  "inputInventorySha256": "28fa433c925f03699e92b6d36bff2c7a3a00d7ef12d4ab34b0d943738190e471",
+  "cases": [
+    {
+      "slot": 1,
+      "bookId": "dark-angels",
+      "inputId": "sweep2-dark-angels-91e0e3430ac4da73",
+      "textSha256": "91e0e3430ac4da73b47c948a4ba930ceec3f529de75cf9723cddedc4a15a8b99",
+      "sources": [
+        {
+          "path": "v2/fixtures/new-recruit-export.json",
+          "key": "/compactEquipment/29/absentText",
+          "fileSha256": "1a0699208f7a8e5dde13155eeb00f60e1d53ed7601ab5b06cc27aa186227cf01"
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "bookId": "space-marines",
+      "inputId": "sweep2-space-marines-069d138d9a1b52b5",
+      "textSha256": "069d138d9a1b52b53b13a7b90879d73a19e107e016fdd08c6de7444034591efc",
+      "sources": [
+        {
+          "path": "v2/fixtures/new-recruit-export.json",
+          "key": "/compactEquipment/23/rowText",
+          "fileSha256": "1a0699208f7a8e5dde13155eeb00f60e1d53ed7601ab5b06cc27aa186227cf01"
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "bookId": "death-guard",
+      "inputId": "sweep2-death-guard-18d55de373762932",
+      "textSha256": "18d55de37376293217831cd272fe17f03bc9de1920cb7b854b481563af7f775d",
+      "sources": [
+        {
+          "path": "books/death-guard/v2/related-rules-browser-qa.mjs",
+          "key": "javascript-static-expression",
+          "line": 105,
+          "fileSha256": "d3c51806757841cbe3d8f8ab7933fb9661f3f91821b78f06707d88c2b8a295d3"
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "bookId": "dark-angels",
+      "inputId": "sweep2-dark-angels-b186b1423c542b68",
+      "textSha256": "b186b1423c542b68cf1608b24caadce4f9fff9d68eabcdf5041d68d12635208e",
+      "sources": [
+        {
+          "path": "v2/fixtures/source-equipment-entity-browser.json",
+          "key": "/1/browserCases/3/text",
+          "fileSha256": "4eebf16cbe6408fed0f4544af7cd095afcc34129e86f2ab33e81ca34fd259172"
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "bookId": "space-marines",
+      "inputId": "sweep2-space-marines-05651a32bb0a64af",
+      "textSha256": "05651a32bb0a64af18c16a7a7e95d49b8281a1074bf58976613cb88a85da61db",
+      "sources": [
+        {
+          "path": "v2/fixtures/sm-da-recipient-gaps-v1-browser.json",
+          "key": "/0/browserCases/13/text",
+          "fileSha256": "3ace11aa077f48c816b6dde44b11f4576db6e315f51aa6ab7bec51752e37d0cb"
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "bookId": "death-guard",
+      "inputId": "sweep2-death-guard-051d5e68c89b6bd7",
+      "textSha256": "051d5e68c89b6bd7e8baedaac97b882e020fda36a525f6c58818d9507daf473b",
+      "sources": [
+        {
+          "path": "books/death-guard/v2/recipient-enrollment-qa.json",
+          "key": "/browserCases/7/text",
+          "fileSha256": "7bb2ee9e9650a4c1992464a593b0a7e94dedffe4b210f0f10bd0632bf0ead334"
+        },
+        {
+          "path": "books/death-guard/v2/recipient-enrollment-qa.json",
+          "key": "/browserCases/8/text",
+          "fileSha256": "7bb2ee9e9650a4c1992464a593b0a7e94dedffe4b210f0f10bd0632bf0ead334"
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "bookId": "dark-angels",
+      "inputId": "sweep2-dark-angels-c99e4df19d6ce4d2",
+      "textSha256": "c99e4df19d6ce4d290b466cdf41ffa3e288bd7ac455a5d3dd44cc9bfa92ef799",
+      "sources": [
+        {
+          "path": "books/dark-angels/v2/advance-gameplay-qa.mjs",
+          "key": "javascript-static-expression",
+          "line": 12,
+          "fileSha256": "8fd7b19472b5201ac7e6d2093c259531b34129f58c6e0471df2956ff5770683d"
+        },
+        {
+          "path": "v2/fixtures/sweep-polish-v1.json",
+          "key": "/cases/8/text",
+          "fileSha256": "1bd38812b65e255c782f8cf78e90fe3436b1c96cb3a7bb8c5463dd7fa8d12eca"
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "bookId": "space-marines",
+      "inputId": "sweep2-space-marines-1e64aeaeaaa8d99b",
+      "textSha256": "1e64aeaeaaa8d99b3c9f611f7318e34fb8b37556423d1ede71d1d9cb59753ec1",
+      "sources": [
+        {
+          "path": "v2/fixtures/sm-da-recipient-gaps-v1-browser.json",
+          "key": "/0/browserCases/15/text",
+          "fileSha256": "3ace11aa077f48c816b6dde44b11f4576db6e315f51aa6ab7bec51752e37d0cb"
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "bookId": "death-guard",
+      "inputId": "sweep2-death-guard-24153268504dc21a",
+      "textSha256": "24153268504dc21af0cb41e819077e656a6f8ba9c91734d98036eb60a9d3a822",
+      "sources": [
+        {
+          "path": "v2/card-display-2-browser-qa.mjs",
+          "key": "bounded-factory/dg-physical",
+          "fileSha256": "b878f10df044093b77e7ac3a2bb1ef94ce18d3f529a4daf68251d9bf0dff0907"
+        }
+      ]
+    }
+  ],
+  "notes": "Exact existing input texts; not balanced unit composition across books. No synthetic roster added. See per-run physical unit/card size metrics."
+}

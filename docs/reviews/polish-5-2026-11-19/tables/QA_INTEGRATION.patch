@@ -1,0 +1,44 @@
+diff --git a/docs/codex/QA_MATRIX.md b/docs/codex/QA_MATRIX.md
+index d9c6f2c3..8765232f 100644
+--- a/docs/codex/QA_MATRIX.md
++++ b/docs/codex/QA_MATRIX.md
+@@ -45,6 +45,7 @@ For independent unified V2 certification of Core, DG, AdMech and CSM, follow the
+ | Change area | Minimum QA | Dependent QA | Release-only QA |
+ | --- | --- | --- | --- |
+ | Focused rule dialogs, selected equipment and exact prose links | `npm run test:rule-popups` (nine books, 390/1440; old-label mutation) | `test:sweep-polish`, affected canonical-reference browser tests; all three new module tests run in quick and the complete browser test runs in pre-ff | `qa:pre-ff` |
++| Ambiguous named ability sections and weapon popup types | `npm run test:polish-5` (nine-book canonical-field census, actual named links at 390/1440, unknown-name fallback) | Existing exact-focus popup tests remain unchanged; the section census runs in quick and pre-ff, the browser census in pre-ff | `qa:pre-ff` |
+ | Space Marines local content/presentation | `qa:sm` | `qa:da`, `qa:ba` when inherited semantics or publication can change | `qa:release` |
+ | Dark Angels local overlay | `qa:da` | `qa:sm` only if the shared owner is changed; `qa:effects` or `qa:points` as applicable | `qa:release` |
+ | Blood Angels local overlay | `qa:ba` | `qa:sm` only if the shared owner is changed; `qa:effects` or `qa:points` as applicable | `qa:release` |
+diff --git a/package.json b/package.json
+index 03b9ae23..457414f1 100644
+--- a/package.json
++++ b/package.json
+@@ -29,6 +29,7 @@
+     "test:sweep-polish": "node v2/sweep-polish-qa.mjs && node v2/sweep-polish-browser-qa.mjs",
+     "test:card-gained-rules": "node v2/card-gained-rules-browser-qa.mjs",
+     "test:rule-popups": "node books/shared/army-book-app-v2/rule-popup-qa.mjs && node books/shared/army-book-app-v2/rule-term-links-qa.mjs && node books/shared/army-book-app-v2/equipment-reference-qa.mjs && node v2/rule-popups-browser-qa.mjs",
++    "test:polish-5": "node books/shared/army-book-app-v2/rule-popup-section-qa.mjs && node v2/polish-5-browser-qa.mjs",
+     "test:cold-offline": "node tests/browser/cold-offline.mjs",
+     "test:browser": "node tests/helpers/run-qa-suite.mjs v2/shell-browser-qa.mjs v2/core-reader-browser-qa.mjs npm:test:pwa npm:test:pwa-update npm:test:cold-offline v2/detachment-recipient-browser-qa.mjs v2/detachment-synthetic-table-browser-qa.mjs v2/card-recipient-browser-qa.mjs v2/attached-rule-text-browser-qa.mjs v2/card-display-browser-qa.mjs v2/card-display-2-browser-qa.mjs v2/source-equipment-browser-qa.mjs v2/new-recruit-export-browser-qa.mjs v2/new-recruit-plain-header-browser-qa.mjs v2/new-recruit-model-names-browser-qa.mjs v2/reviewed-text-coverage-browser-qa.mjs && node v2/related-panel-browser-qa.mjs && node v2/detachment-card-text-browser-qa.mjs && node v2/wardens-source-binding-browser-qa.mjs && node v2/cards-cosmetics-browser-qa.mjs && node v2/epic-hero-enhancements-browser-qa.mjs && node v2/fabius-safe-import-browser-qa.mjs && node v2/card-texts-browser-qa.mjs && node v2/card-polish-2-browser-qa.mjs",
+     "test:release": "npm run test:full",
+diff --git a/tools/qa-queue.mjs b/tools/qa-queue.mjs
+index 15cba73b..477ea003 100644
+--- a/tools/qa-queue.mjs
++++ b/tools/qa-queue.mjs
+@@ -47,6 +47,7 @@ node('v2/executable-detachment-source-qa.mjs');
+ node('books/shared/army-book-app-v2/plain-header-explanation-qa.mjs');
+ node('v2/sweep-polish-qa.mjs');
+ node('books/shared/army-book-app-v2/rule-popup-qa.mjs');
++node('books/shared/army-book-app-v2/rule-popup-section-qa.mjs');
+ node('books/shared/army-book-app-v2/rule-term-links-qa.mjs');
+ node('books/shared/army-book-app-v2/equipment-reference-qa.mjs');
+ node('books/shared/army-book-app-v2/roster-navigation-qa.mjs');
+@@ -93,6 +94,7 @@ if(mode==='pre-ff'){
+  node('v2/sweep-polish-browser-qa.mjs');
+  node('v2/card-gained-rules-browser-qa.mjs');
+  node('v2/rule-popups-browser-qa.mjs');
++ node('v2/polish-5-browser-qa.mjs');
+  node('v2/roster-navigation-browser-qa.mjs');
+  node('v2/import-messages-browser-qa.mjs');
+  // Each fixture is admitted once by the existing recipient browser runner.
