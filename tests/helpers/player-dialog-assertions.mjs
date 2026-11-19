@@ -8,7 +8,7 @@ export function inspectPlayerDialog(){
   for(let node=walker.nextNode();node;node=walker.nextNode()){
     if(!visible(node.parentElement)||node.parentElement.closest('script,style,code[hidden]'))continue;
     const text=node.textContent.trim();
-    if(text==='Rule'||text.includes('wargear Ability')||/\b(?:unit|datasheet|detachment|ability|army-rule|core|refs|bindings)-[a-z0-9][a-z0-9_-]{7,}|(?:^|\s)\/(?:text|title|blocks|fields|semanticContent|qualifications|wargearAbility)(?:\b|\/)/.test(text))leaks.push({reason:'technical-text',text});
+    if(text==='Rule'||text.includes('wargear Ability')||text.includes('Choose a named ability from the Glossary to read its complete rule.')||/\b(?:unit|datasheet|detachment|ability|army-rule|core|refs|bindings)-[a-z0-9][a-z0-9_-]{7,}|(?:^|\s)\/(?:text|title|blocks|fields|semanticContent|qualifications|wargearAbility)(?:\b|\/)/.test(text))leaks.push({reason:'technical-text',text});
   }
   for(const node of dialog.querySelectorAll('a,button,[role="button"]'))if(visible(node)){
     const name=node.getAttribute('aria-label')||node.textContent.trim()||node.querySelector('img[alt]')?.alt;
