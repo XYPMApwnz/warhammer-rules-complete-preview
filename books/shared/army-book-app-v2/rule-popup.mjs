@@ -9,7 +9,10 @@ const ruleTextFields=card=>card.fields.filter(field=>typeof field.value==='strin
 export function focusedRuleField(card,{fieldPath,label}={}) {
   if(!card||!rulePopupKinds.has(card.kind))return null;
   const fields=ruleTextFields(card);
-  if(fieldPath)return fields.find(field=>field.source?.path===fieldPath||pathOf(field)===fieldPath)||null;
+  if(fieldPath){
+    const matches=fields.filter(field=>field.source?.path===fieldPath||pathOf(field)===fieldPath);
+    return matches.length===1?matches[0]:null;
+  }
   const named=label&&fields.filter(field=>key(prefix(field.value))===key(label));
   return named?.length===1?named[0]:fields.length===1?fields[0]:null;
 }
@@ -26,7 +29,7 @@ export function createRulePopupPresenter({document,cards,payload,el,factValue,an
     const type=wargear||card.kind==='EQUIPMENT_RULE'?'Wargear':card.kind==='WARGEAR_ABILITY'||markers.every(value=>value===true)?'Wargear ability':
       wholeSection&&markers.some(value=>value===true)?'Datasheet section':'Datasheet ability';
     const article=el('article','v1-reference-article '+(wholeSection?'ds-rule-section':'ds-rule-popup'));article.dataset.cardId=card.id;
-    if(wholeSection)article.dataset.ruleSectionFull='';else article.dataset.ruleFieldPath=field.source.path;
+    if(wholeSection)article.dataset.ruleSectionFull='';else article.dataset.ruleFieldPath=pathOf(field);
     article.dataset.ruleType=type;
     article.append(el('p','reference-context',type));
     const heading=el('h2','reference-title',title);heading.id='v2-detail-heading';article.append(heading);
@@ -47,7 +50,7 @@ export function createRulePopupPresenter({document,cards,payload,el,factValue,an
     let owner=card,seen=new Set();
     while(owner?.parentId&&!seen.has(owner.id)&&owner.kind!=='DATASHEET'){seen.add(owner.id);owner=cards.get(owner.parentId);}
     if(owner?.kind==='DATASHEET'&&originUnitId&&owner.id!==originUnitId)article.append(el('p','ds-rule-popup-source','From '+owner.title));
-    const link=anchor(reference?'Open in Glossary':'Open in Army Book',card.id,false,{...(!wholeSection?{fieldPath:field.source.path}:{}),...(reference?{reference:true}:{fullBook:true,contents:true})});
+    const link=anchor(reference?'Open in Glossary':'Open in Army Book',card.id,false,{...(!wholeSection?{fieldPath:pathOf(field)}:{}),...(reference?{reference:true}:{fullBook:true,contents:true})});
     link.className='v2-permalink reference-permalink';article.append(link);
     return article;
   }

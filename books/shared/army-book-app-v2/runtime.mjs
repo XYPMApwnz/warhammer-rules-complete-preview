@@ -76,7 +76,7 @@ export function mount(document, payload, options = {}) {
   const humanKind = kind => String(kind || 'Entry').replace(/[-_]/g, ' ');
   const anchor = (label, id, detail = false, presentation = {}) => {
     const field=detail&&focusedRuleField(cards.get(id),{fieldPath:presentation.fieldPath,label});
-    if(field&&!presentation.fieldPath)presentation={...presentation,fieldPath:field.source.path};
+    if(field&&!presentation.fieldPath)presentation={...presentation,fieldPath:field.presentationPath??field.source.path};
     const node = el('a', detail ? 'v2-reference' : 'v2-card-link', label);
     node.href = routeURL(id,detail,presentation);
     node.dataset.targetId = id;
