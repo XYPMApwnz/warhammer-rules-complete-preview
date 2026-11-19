@@ -1,0 +1,198 @@
+{
+  "schema": "auto-qa-sweep-reference-recheck/v1",
+  "sha": "4060074ae0c7888571367f99f7cb9cc375c167ba",
+  "status": "COMPLETED",
+  "method": "Replay recorded parent origin and actual parent link; only fall back to the exact already observed parent URL. Click exact failed child in the actual modal context. No deep replay chain, synthetic href or showDetail call.",
+  "summary": {
+    "rawOriginalErrors": 530,
+    "rechecked": 530,
+    "resolvedByActualParentDialog": 530,
+    "remainingObservationGaps": 0,
+    "outcomes": {
+      "NAVIGATED_TO_MAIN": 4,
+      "CHILD_DIALOG": 526
+    },
+    "namedRules": 8,
+    "namedDialogsObserved": 8,
+    "namedInstructionConfirmed": 8,
+    "typeObservations": 10
+  },
+  "namedRules": [
+    {
+      "bookId": "death-guard",
+      "width": 390,
+      "link": {
+        "index": 19,
+        "targetId": "datasheet-mortarion:section:1",
+        "href": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=death-guard&registry=death-guard&view=reference#datasheet-mortarion%3Asection%3A1",
+        "fieldPath": null,
+        "label": "Lord of the Death Guard",
+        "tag": "A",
+        "scope": "main",
+        "term": true
+      },
+      "source": {
+        "screenshot": "screens/finding-structured-10d82723ebe7-390.jpg",
+        "width": 390,
+        "url": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=death-guard&registry=death-guard&view=reference#datasheet-mortarion%3Asection%3A1",
+        "label": "Popup: Lord of the Death Guard"
+      },
+      "namedAbilityInstructionShown": true,
+      "visibleHumanLabels": []
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "width": 390,
+      "link": {
+        "index": 10,
+        "targetId": "datasheet-belisarius-cawl:section:4",
+        "href": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=adeptus-mechanicus&registry=adeptus-mechanicus&view=reference#datasheet-belisarius-cawl%3Asection%3A4",
+        "fieldPath": null,
+        "label": "Canticles of the Omnissiah",
+        "tag": "A",
+        "scope": "main",
+        "term": true
+      },
+      "source": {
+        "screenshot": "screens/finding-structured-83607a19b1fa-390.jpg",
+        "width": 390,
+        "url": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=adeptus-mechanicus&registry=adeptus-mechanicus&view=reference#datasheet-belisarius-cawl%3Asection%3A4",
+        "label": "Popup: Canticles of the Omnissiah"
+      },
+      "namedAbilityInstructionShown": true,
+      "visibleHumanLabels": []
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "width": 390,
+      "link": {
+        "index": 12,
+        "targetId": "datasheet-thulia-ghuld:section:4",
+        "href": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=adeptus-mechanicus&registry=adeptus-mechanicus&view=reference#datasheet-thulia-ghuld%3Asection%3A4",
+        "fieldPath": null,
+        "label": "Icon of War",
+        "tag": "A",
+        "scope": "main",
+        "term": true
+      },
+      "source": {
+        "screenshot": "screens/finding-structured-3ec7ffa070c1-390.jpg",
+        "width": 390,
+        "url": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=adeptus-mechanicus&registry=adeptus-mechanicus&view=reference#datasheet-thulia-ghuld%3Asection%3A4",
+        "label": "Popup: Icon of War"
+      },
+      "namedAbilityInstructionShown": true,
+      "visibleHumanLabels": []
+    },
+    {
+      "bookId": "emperors-children",
+      "width": 390,
+      "link": {
+        "index": 14,
+        "targetId": "datasheet-fulgrim:section:5",
+        "href": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=emperors-children&registry=emperors-children&view=reference#datasheet-fulgrim%3Asection%3A5",
+        "fieldPath": null,
+        "label": "Daemon Primarch of Slaanesh",
+        "tag": "A",
+        "scope": "main",
+        "term": true
+      },
+      "source": {
+        "screenshot": "screens/finding-structured-e838325ba87a-390.jpg",
+        "width": 390,
+        "url": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=emperors-children&registry=emperors-children&view=reference#datasheet-fulgrim%3Asection%3A5",
+        "label": "Popup: Daemon Primarch of Slaanesh"
+      },
+      "namedAbilityInstructionShown": true,
+      "visibleHumanLabels": []
+    },
+    {
+      "bookId": "death-guard",
+      "width": 1440,
+      "link": {
+        "index": 19,
+        "targetId": "datasheet-mortarion:section:1",
+        "href": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=death-guard&registry=death-guard&view=reference#datasheet-mortarion%3Asection%3A1",
+        "fieldPath": null,
+        "label": "Lord of the Death Guard",
+        "tag": "A",
+        "scope": "main",
+        "term": true
+      },
+      "source": {
+        "screenshot": "screens/finding-structured-10d82723ebe7-1440.jpg",
+        "width": 1440,
+        "url": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=death-guard&registry=death-guard&view=reference#datasheet-mortarion%3Asection%3A1",
+        "label": "Popup: Lord of the Death Guard"
+      },
+      "namedAbilityInstructionShown": true,
+      "visibleHumanLabels": []
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "width": 1440,
+      "link": {
+        "index": 10,
+        "targetId": "datasheet-belisarius-cawl:section:4",
+        "href": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=adeptus-mechanicus&registry=adeptus-mechanicus&view=reference#datasheet-belisarius-cawl%3Asection%3A4",
+        "fieldPath": null,
+        "label": "Canticles of the Omnissiah",
+        "tag": "A",
+        "scope": "main",
+        "term": true
+      },
+      "source": {
+        "screenshot": "screens/finding-structured-83607a19b1fa-1440.jpg",
+        "width": 1440,
+        "url": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=adeptus-mechanicus&registry=adeptus-mechanicus&view=reference#datasheet-belisarius-cawl%3Asection%3A4",
+        "label": "Popup: Canticles of the Omnissiah"
+      },
+      "namedAbilityInstructionShown": true,
+      "visibleHumanLabels": []
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "width": 1440,
+      "link": {
+        "index": 12,
+        "targetId": "datasheet-thulia-ghuld:section:4",
+        "href": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=adeptus-mechanicus&registry=adeptus-mechanicus&view=reference#datasheet-thulia-ghuld%3Asection%3A4",
+        "fieldPath": null,
+        "label": "Icon of War",
+        "tag": "A",
+        "scope": "main",
+        "term": true
+      },
+      "source": {
+        "screenshot": "screens/finding-structured-3ec7ffa070c1-1440.jpg",
+        "width": 1440,
+        "url": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=adeptus-mechanicus&registry=adeptus-mechanicus&view=reference#datasheet-thulia-ghuld%3Asection%3A4",
+        "label": "Popup: Icon of War"
+      },
+      "namedAbilityInstructionShown": true,
+      "visibleHumanLabels": []
+    },
+    {
+      "bookId": "emperors-children",
+      "width": 1440,
+      "link": {
+        "index": 14,
+        "targetId": "datasheet-fulgrim:section:5",
+        "href": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=emperors-children&registry=emperors-children&view=reference#datasheet-fulgrim%3Asection%3A5",
+        "fieldPath": null,
+        "label": "Daemon Primarch of Slaanesh",
+        "tag": "A",
+        "scope": "main",
+        "term": true
+      },
+      "source": {
+        "screenshot": "screens/finding-structured-e838325ba87a-1440.jpg",
+        "width": 1440,
+        "url": "http://localhost:8765/v2/app.html?v2=REFERENCE&book=emperors-children&registry=emperors-children&view=reference#datasheet-fulgrim%3Asection%3A5",
+        "label": "Popup: Daemon Primarch of Slaanesh"
+      },
+      "namedAbilityInstructionShown": true,
+      "visibleHumanLabels": []
+    }
+  ]
+}
