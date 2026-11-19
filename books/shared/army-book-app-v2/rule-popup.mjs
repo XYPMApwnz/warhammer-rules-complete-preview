@@ -27,7 +27,7 @@ export function createRulePopupPresenter({document,cards,payload,el,factValue,an
     const title=!wholeSection&&splitCaption?caption:card.title;
     const markers=fields.map(markerFor).map(marker=>marker?.value);
     const type=wargear||card.kind==='EQUIPMENT_RULE'?'Wargear':card.kind==='WARGEAR_ABILITY'||markers.every(value=>value===true)?'Wargear ability':
-      wholeSection&&markers.some(value=>value===true)?'Datasheet section':'Datasheet ability';
+      wholeSection&&card.kind==='DATASHEET_SECTION'&&!markers.every(value=>value===false)?'Datasheet section':'Datasheet ability';
     const article=el('article','v1-reference-article '+(wholeSection?'ds-rule-section':'ds-rule-popup'));article.dataset.cardId=card.id;
     if(wholeSection)article.dataset.ruleSectionFull='';else article.dataset.ruleFieldPath=pathOf(field);
     article.dataset.ruleType=type;

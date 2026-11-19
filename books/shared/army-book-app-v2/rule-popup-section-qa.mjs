@@ -52,7 +52,11 @@ for(const book of armyBooks){
     assert(!article.textContent.includes('wargear Ability'),'Boolean classification label is not visible');checks++;
     for(const control of walk(article).filter(node=>['A','BUTTON'].includes(node.tagName))){assert(control.textContent.trim(),'Every action has an accessible name');checks++;}
     const action=actions.at(-1);same(action.targetId,card.id,'Army Book action preserves selected identity');same(action.label,'Open in Army Book','Explicit source action');
-    if(section){same(article.dataset.ruleSectionFull,'','Explicit full-section presentation');same(action.options,{fullBook:true,contents:true},'Whole-section source action does not guess a field');}
+    if(section){
+      same(article.dataset.ruleSectionFull,'','Explicit full-section presentation');same(action.options,{fullBook:true,contents:true},'Whole-section source action does not guess a field');
+      if(card.kind==='DATASHEET_SECTION'&&!card.fields.some(field=>typeof field.value==='boolean'&&field.source.path.endsWith('/wargearAbility')))
+        same(article.dataset.ruleType,'Datasheet section','Unclassified source sections such as composition are not asserted to be abilities');
+    }
     else same(article.dataset.ruleFieldPath,fields[0].presentationPath??fields[0].source.path,'Focused section-relative path is exact');
   }
   for(const card of payload.cards.filter(card=>supported.has(card.kind))){
