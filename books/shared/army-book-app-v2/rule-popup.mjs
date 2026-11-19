@@ -17,9 +17,18 @@ export function focusedRuleField(card,{fieldPath,label}={}) {
   return named?.length===1?named[0]:fields.length===1?fields[0]:null;
 }
 
+export function ruleFieldPath(card,field) {
+  // Keep an existing canonical URL when it is unique. A projected display
+  // address is needed only when multiple source members reuse a local path.
+  for(const path of new Set([field.source?.path,pathOf(field)]))
+    if(path&&focusedRuleField(card,{fieldPath:path})===field)return path;
+  return null;
+}
+
 export function createRulePopupPresenter({document,cards,payload,el,factValue,anchor,linkTerms}) {
-  function renderFields(card,fields,{wargear=false,originUnitId=null,reference=false,wholeSection=false}={}) {
+  function renderFields(card,fields,{fieldPath,wargear=false,originUnitId=null,reference=false,wholeSection=false}={}) {
     const field=fields[0];
+    const focusedPath=fieldPath||ruleFieldPath(card,field);
     const markerFor=field=>card.fields.find(candidate=>candidate.source?.path===field.source?.path?.replace(/\/text$/,'/wargearAbility'));
     const marker=markerFor(field);
     const caption=prefix(field.value),splitCaption=caption&&(key(caption)===key(card.title)||
@@ -29,7 +38,7 @@ export function createRulePopupPresenter({document,cards,payload,el,factValue,an
     const type=wargear||card.kind==='EQUIPMENT_RULE'?'Wargear':card.kind==='WARGEAR_ABILITY'||markers.every(value=>value===true)?'Wargear ability':
       wholeSection&&card.kind==='DATASHEET_SECTION'&&!markers.every(value=>value===false)?'Datasheet section':'Datasheet ability';
     const article=el('article','v1-reference-article '+(wholeSection?'ds-rule-section':'ds-rule-popup'));article.dataset.cardId=card.id;
-    if(wholeSection)article.dataset.ruleSectionFull='';else article.dataset.ruleFieldPath=pathOf(field);
+    if(wholeSection)article.dataset.ruleSectionFull='';else article.dataset.ruleFieldPath=focusedPath;
     article.dataset.ruleType=type;
     article.append(el('p','reference-context',type));
     const heading=el('h2','reference-title',title);heading.id='v2-detail-heading';article.append(heading);
@@ -50,14 +59,14 @@ export function createRulePopupPresenter({document,cards,payload,el,factValue,an
     let owner=card,seen=new Set();
     while(owner?.parentId&&!seen.has(owner.id)&&owner.kind!=='DATASHEET'){seen.add(owner.id);owner=cards.get(owner.parentId);}
     if(owner?.kind==='DATASHEET'&&originUnitId&&owner.id!==originUnitId)article.append(el('p','ds-rule-popup-source','From '+owner.title));
-    const link=anchor(reference?'Open in Glossary':'Open in Army Book',card.id,false,{...(!wholeSection?{fieldPath:pathOf(field)}:{}),...(reference?{reference:true}:{fullBook:true,contents:true})});
+    const link=anchor(reference?'Open in Glossary':'Open in Army Book',card.id,false,{...(!wholeSection?{fieldPath:focusedPath}:{}),...(reference?{reference:true}:{fullBook:true,contents:true})});
     link.className='v2-permalink reference-permalink';article.append(link);
     return article;
   }
   function render(card,options={}) {
     if(!rulePopupKinds.has(card.kind)||card.kind==='WARGEAR_OPTION')return null;
     const field=focusedRuleField(card,options);
-    return field?renderFields(card,[field],options):null;
+    return field&&(options.fieldPath||ruleFieldPath(card,field))?renderFields(card,[field],options):null;
   }
   function renderSection(card,options={}) {
     if(!rulePopupKinds.has(card.kind)||card.kind==='WARGEAR_OPTION')return null;

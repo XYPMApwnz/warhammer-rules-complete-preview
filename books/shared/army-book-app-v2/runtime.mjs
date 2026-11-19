@@ -15,7 +15,7 @@ import {installDatasheetLayout, flushDatasheetLayouts} from './datasheet-v1-layo
 import {createBookPresenter} from './book-v1.mjs';
 import {createV1RelatedPanel} from './related-v1.mjs';
 import {positionV1Popup} from './popup-v1.mjs';
-import {createRulePopupPresenter,focusedRuleField} from './rule-popup.mjs';
+import {createRulePopupPresenter,focusedRuleField,ruleFieldPath} from './rule-popup.mjs';
 import {createRuleTermLinker} from './rule-term-links.mjs';
 import {rosterUnitNames} from './roster-labels.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
@@ -76,7 +76,8 @@ export function mount(document, payload, options = {}) {
   const humanKind = kind => String(kind || 'Entry').replace(/[-_]/g, ' ');
   const anchor = (label, id, detail = false, presentation = {}) => {
     const field=detail&&focusedRuleField(cards.get(id),{fieldPath:presentation.fieldPath,label});
-    if(field&&!presentation.fieldPath)presentation={...presentation,fieldPath:field.presentationPath??field.source.path};
+    const fieldPath=field&&ruleFieldPath(cards.get(id),field);
+    if(fieldPath&&!presentation.fieldPath)presentation={...presentation,fieldPath};
     const node = el('a', detail ? 'v2-reference' : 'v2-card-link', label);
     node.href = routeURL(id,detail,presentation);
     node.dataset.targetId = id;
