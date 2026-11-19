@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "base": "635c503b4bb45d13e3c2cc92c439b86a75e1c954",
+  "head": "4d49446d8068e57cfa143a698886922a803a0690",
+  "files": 147,
+  "identical": 146,
+  "changed": [
+    {
+      "file": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "before": "752ed88943326fa1c112d45b4cfd5e8da5a0c5bf392aef2aee4f8bacbc7e5b2f",
+      "after": "1579bd3784e47ab6b343ed99496d5255db593fc81aadaaa0eaa65e59962045ad",
+      "identical": false,
+      "beforeBytes": 2293806,
+      "afterBytes": 2295405
+    }
+  ],
+  "factualBytesSha256": "23639c8e9938750628d68ade45ce33aafef3185bbe1ad382fbcb166f9bdd5987",
+  "executionBytesSha256": "d3bc5166dccc18ab4c05cd04eea4130bc513ffe80b03974a4a48199c0f65454a",
+  "allowance": "Exact Insectile UNIT owner and SOURCE_UNIT FORMED text recipient metadata only; canonical data, effects, execution gates unchanged.",
+  "runtimeManifestUnchanged": true,
+  "newStartupFiles": [],
+  "fullRebuildGate": {
+    "status": "PASS",
+    "sha": "4d49446d8068e57cfa143a698886922a803a0690",
+    "job": "books/shared/tools/check-generated-rebuild.mjs",
+    "elapsedMs": 668292,
+    "outputs": 147
+  }
+}

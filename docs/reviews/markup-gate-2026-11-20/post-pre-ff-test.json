@@ -1,0 +1,93 @@
+{
+  "schema": "markup-gate-post-preff-test-only/v1",
+  "status": "PASS",
+  "sha": "9efbd95f67c5e65bc62b477e36acf9d710ff4784",
+  "fullPreffSha": "4d49446d8068e57cfa143a698886922a803a0690",
+  "elapsedMs": 7328,
+  "controls": [
+    {
+      "name": "missing reviewed category",
+      "code": "UNCLASSIFIED",
+      "status": "DETECTED"
+    },
+    {
+      "name": "stale accepted source fingerprint",
+      "code": "STALE_DECISION",
+      "status": "DETECTED"
+    },
+    {
+      "name": "new GAP outside exact named debt",
+      "code": "NEW_DEBT",
+      "status": "DETECTED"
+    },
+    {
+      "name": "actual INITIAL_ATTACHMENT computer removed from EXECUTED",
+      "code": "MISSING_COMPUTER",
+      "status": "DETECTED"
+    },
+    {
+      "name": "actual physical-equipment binder removed from EXECUTED",
+      "code": "MISSING_COMPUTER",
+      "status": "DETECTED"
+    },
+    {
+      "name": "actual accepted source text field lost",
+      "code": "SOURCE_FIELD_LOSS",
+      "status": "DETECTED"
+    },
+    {
+      "name": "new named rule cannot hide in a known excluded native kind",
+      "code": "INCOMPLETE_DENOMINATOR",
+      "status": "DETECTED"
+    },
+    {
+      "name": "new source rule field outside the recognized blocks is not omitted",
+      "code": "INCOMPLETE_DENOMINATOR",
+      "status": "DETECTED"
+    },
+    {
+      "name": "new native rule without decision",
+      "code": "UNCLASSIFIED",
+      "status": "DETECTED"
+    },
+    {
+      "name": "duplicate physical rule occurrence",
+      "code": "DUPLICATE_ID",
+      "status": "DETECTED"
+    },
+    {
+      "name": "accepted rule disappears without retirement",
+      "code": "SOURCE_FIELD_LOSS",
+      "status": "DETECTED"
+    },
+    {
+      "name": "historical debt item deleted to improve percentage",
+      "code": "BASELINE_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "name": "active debt removed without evidence",
+      "code": "UNEXPLAINED_DEBT_REMOVAL",
+      "status": "DETECTED"
+    },
+    {
+      "name": "closure without a fixture",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "unrelated test cannot close debt",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "real unrelated test/common-word identity cannot close debt",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    }
+  ],
+  "changedFiles": [
+    "tests/markup-census-qa.mjs"
+  ],
+  "explanation": "Initial numeric certification remains on introducing ledger; current HEAD matches the exact reviewed registry/native denominator. All mutation controls retained. No second full pre-FF."
+}

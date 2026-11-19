@@ -1,0 +1,393 @@
+diff --git a/books/death-guard/v2/insectile-recipient-qa.mjs b/books/death-guard/v2/insectile-recipient-qa.mjs
+new file mode 100644
+index 00000000..ea55ba3d
+--- /dev/null
++++ b/books/death-guard/v2/insectile-recipient-qa.mjs
+@@ -0,0 +1,113 @@
++/** Source-bound UNIT upgrade text; no battle reroll execution is introduced. */
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import {execFileSync} from 'node:child_process';
++import {fileURLToPath} from 'node:url';
++import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
++import {validateRuleRecipients,presentationRecipientLinks} from '../../shared/rule-contract-v2/recipients.mjs';
++import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
++import {createDGRosterRuntime} from './roster-boot.mjs';
++
++const BASE='635c503b4bb45d13e3c2cc92c439b86a75e1c954';
++const root=fileURLToPath(new URL('../../../',import.meta.url));
++const ruleId='detachment-flyblown-host:enhancement:1',clauseId='wound-reroll';
++const fixture=JSON.parse(fs.readFileSync(new URL('./recipient-enrollment-qa.json',import.meta.url),'utf8'));
++const cases=fixture.browserCases.filter(row=>row.canonical.ruleId===ruleId&&row.clauseIds.includes(clauseId));
++assert.equal(cases.length,1,'One existing physical source/recipient fixture');
++const c=cases[0];
++assert.equal(c.id,'death-guard:detachment-flyblown-host:enhancement:1:28');
++assert.equal(c.expectedAttached,true,'The exact former missing-text case is now admitted');
++assert.equal(c.ownerInstance,'parsed-unit-2');assert.equal(c.target,'parsed-unit-1');
++assert.deepEqual(c.canonical.sourcePath,['text']);
++const relative='books/death-guard/v2/generated/rule-contract-effective.json';
++const before=parseSourceFixtureJSON(execFileSync('git',['show',BASE+':'+relative],
++  {cwd:root,encoding:'utf8',maxBuffer:64*1024*1024}));
++const book=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/rule-contract-effective.json',import.meta.url),'utf8'));
++const source=book.entities.find(entity=>entity.id===ruleId),historical=before.entities.find(entity=>entity.id===ruleId);
++assert.deepEqual(source.data,historical.data,'Complete canonical wording/values unchanged');
++assert.equal(source.data.text,c.canonical.text,'Independent exact complete source text');
++assert.deepEqual(sourceSnapshot(source,{book}),sourceSnapshot(historical,{book:before}),'Original source ownership/provenance retained');
++const contract=source.ruleContract,clause=contract.clauses.find(row=>row.id===clauseId);
++const historicalClause=historical.ruleContract.clauses.find(row=>row.id===clauseId);
++const owner=contract.roles.find(row=>row.id===contract.assignment.ownerRoleId);
++assert.equal(owner.subject,'UNIT');assert.equal(owner.purpose,'OWNER');assert.equal(owner.binding,'SOURCE_UNIT');
++assert.deepEqual(owner.selector,historical.ruleContract.roles.find(row=>row.id===owner.id).selector,
++  'Exact PLAGUE MARINES source eligibility, without borrowed Character keywords');
++assert.deepEqual(contract.assignment,historical.ruleContract.assignment,'Physical enhancement assignment unchanged');
++assert.deepEqual(clause.conditions,historicalClause.conditions,'Original battle target/range gate unchanged');
++assert.equal(clause.rosterClassification,'BATTLE_ONLY');assert.deepEqual(clause.rosterEffects,[]);
++assert.equal(clause.conditionalPolicy,undefined,'No replacement execution/policy');
++assert.equal(clause.recipientStatus,'RECORDED');assert.equal(clause.recipients.length,1);
++const recipient=clause.recipients[0];
++assert.equal(recipient.id,'wound-reroll::recipient/role/1');
++assert.equal(recipient.roleId,'affected-unit');assert.equal(recipient.who,'UNIT');
++assert.equal(recipient.side,'FRIENDLY');assert.equal(recipient.from,'SOURCE_UNIT');
++assert.equal(recipient.scope,'FORMED');assert.equal(recipient.purpose,'EFFECT_RECIPIENT');
++assert.deepEqual(recipient.selector,historicalClause.roles.find(row=>row.id==='affected-unit').selector);
++validateRuleRecipients(book,source);
++assert.equal(presentationRecipientLinks(source,clause).filter(link=>link.path==='ROLE').length,1,
++  'One exact O-1 recipient channel');
++
++const runtimes=[before,book].map(createDGRosterRuntime);
++const selected=runtime=>runtime.effective(c.target).attachedRuleTexts.filter(row=>row.ruleId===ruleId);
++const gameplay=runtime=>JSON.stringify(runtime.projection);
++const withoutAttachedText=runtime=>runtime.state.units.map(unit=>{
++  const {attachedRuleTexts,...rest}=runtime.effective(unit.instanceId);return rest;
++});
++const parity=stage=>{
++  assert.equal(gameplay(runtimes[1]),gameplay(runtimes[0]),stage+': complete native execution is unchanged');
++  assert.deepEqual(runtimes[1].snapshot(),runtimes[0].snapshot(),stage+': saved physical roster is unchanged');
++  assert.deepEqual(withoutAttachedText(runtimes[1]),withoutAttachedText(runtimes[0]),
++    stage+': every effective field except admitted text is unchanged');
++};
++for(const runtime of runtimes){
++  assert.equal(runtime.import(c.text,{}, {replaceExisting:true}).status,'READY');
++  for(const edge of [...runtime.state.attachments])runtime.detach(edge.leaderInstanceId);
++  assert.equal(runtime.state.units.length,3,'Leader, exact upgrade owner, independent duplicate');
++  assert.equal(selected(runtime).length,0,'A standalone Character does not inherit the UNIT upgrade');
++  runtime.attach('parsed-unit-1','parsed-unit-2');
++}
++parity('attached');
++assert.equal(selected(runtimes[0]).length,0,'Accepted historical source reproduces the missing text');
++const [row]=selected(runtimes[1]);assert.equal(selected(runtimes[1]).length,1,'One complete rule block');
++assert.equal(row.title,'Insectile Murmuration');assert.equal(row.text,c.canonical.text);
++assert.equal(row.ruleId,ruleId);assert.equal(row.sourceInstanceId,c.ownerInstance);
++assert.equal(row.sourceUnitId,'unit-plague-marines');assert.equal(row.recipientInstanceId,c.target);
++assert.deepEqual(row.sourcePath,['text']);assert.equal(row.sourceLabel,'Plague Marines');
++assert.equal(row.proofs.length,1);assert.equal(row.proofs[0].clauseId,clauseId);
++assert.equal(row.proofs[0].recipientId,recipient.id);assert.equal(row.proofs[0].path,'ROLE');
++assert.equal(row.proofs[0].relation,'EFFECT_RECIPIENT');assert.deepEqual(row.proofs[0].modelScopeIds,[]);
++assert.deepEqual(sourceSnapshot(row,{slot:'sourceProvenance'}),sourceSnapshot(source,{book}));
++assert.equal(runtimes[1].effective('parsed-unit-3').attachedRuleTexts.filter(row=>row.ruleId===ruleId).length,0,
++  'An unrelated duplicate does not receive text');
++const attached=runtimes[1].snapshot();
++for(const runtime of runtimes)runtime.detach('parsed-unit-1');
++parity('detached');assert.equal(selected(runtimes[1]).length,0,'Detach removes the former recipient text');
++for(const runtime of runtimes)runtime.reattach('parsed-unit-1','parsed-unit-2');
++parity('reattached');assert.deepEqual(selected(runtimes[1]),[row],'Reattach restores the exact original source block');
++runtimes[1].load(attached);assert.deepEqual(selected(runtimes[1]),[row],'Snapshot reload preserves physical ownership');
++
++const mutationResults=[];
++for(const mode of ['missing-owner-proof','physical-recipient']){
++  const candidate=structuredClone(book),rule=candidate.entities.find(entity=>entity.id===ruleId);
++  const alteredOwner=rule.ruleContract.roles.find(role=>role.id===owner.id);
++  // Either explicit owner channel is independently sufficient. Removing both
++  // reproduces the accepted historical owner-gate defect exactly.
++  if(mode==='missing-owner-proof'){delete alteredOwner.binding;delete alteredOwner.purpose;}
++  if(mode==='physical-recipient'){
++    const altered=rule.ruleContract.clauses.find(row=>row.id===clauseId);
++    altered.roles.find(role=>role.id==='affected-unit').scope='PHYSICAL';
++    altered.recipients[0].scope='PHYSICAL';
++  }
++  const runtime=createDGRosterRuntime(candidate);runtime.load(attached);
++  assert.equal(selected(runtime).length,0,mode+': the exact positive text assertion must fail');
++  assert.equal(gameplay(runtime),gameplay(runtimes[1]),mode+': no effect is introduced by text metadata');
++  mutationResults.push({mode,status:'DETECTED'});
++}
++const omitted=createDGRosterRuntime(book);
++assert.equal(omitted.import(c.text.replace('\nEnhancement: Insectile Murmuration',''),{}, {replaceExisting:true}).status,'READY');
++omitted.attach('parsed-unit-1','parsed-unit-2');assert.equal(selected(omitted).length,0,'Unselected UNIT upgrade never transfers');
++console.log(JSON.stringify({status:'PASS',ruleId,source:c.ownerInstance,recipient:c.target,
++  canonicalText:'EXACT',scope:'UNIT/FROM_SOURCE_UNIT/FORMED',blocks:1,
++  baselineMissingText:'REPRODUCED',gameplayParity:'PASS',mutations:mutationResults,
++  independentDuplicate:'PASS',detachReattach:'PASS',snapshotReload:'PASS',unselected:'PASS'}));
+diff --git a/books/death-guard/v2/recipient-enrollment-qa.json b/books/death-guard/v2/recipient-enrollment-qa.json
+index 76ac0319..ecc0a94f 100644
+--- a/books/death-guard/v2/recipient-enrollment-qa.json
++++ b/books/death-guard/v2/recipient-enrollment-qa.json
+@@ -591,0 +592,13 @@
++    },
++    {
++      "ruleId": "detachment-flyblown-host:enhancement:1",
++      "clauseId": "wound-reroll",
++      "quote": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.",
++      "reason": "The selected PLAGUE MARINES physical UNIT is the explicit SOURCE_UNIT owner; the same formed UNIT receives conditional text without executing the battle-dependent reroll.",
++      "question": null,
++      "kind": "RECORDED",
++      "sourcePath": [
++        "text"
++      ],
++      "browserCase": "death-guard:detachment-flyblown-host:enhancement:1:28",
++      "visibility": "EXPECTED_ATTACHED"
+@@ -1015,13 +1027,0 @@
+-    {
+-      "ruleId": "detachment-flyblown-host:enhancement:1",
+-      "clauseId": "wound-reroll",
+-      "quote": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.",
+-      "reason": "Existing UNIT assignment owner lacks SOURCE_UNIT binding or OWNER purpose. The O-1 owner gate cannot resolve it; adding an owner relation or changing O-1 is outside this task. Keep NOT_RECORDED.",
+-      "question": "May a separate task establish the source-bound UNIT assignment owner relation and verify the O-1 gate?",
+-      "kind": "RECORDED",
+-      "sourcePath": [
+-        "text"
+-      ],
+-      "browserCase": "death-guard:detachment-flyblown-host:enhancement:1:28",
+-      "visibility": "EXPECTED_ATTACHED"
+-    },
+@@ -1847 +1847 @@
+-      "expectedAttached": false,
++      "expectedAttached": true,
+@@ -1860 +1860 @@
+-      "visibilityReason": "Existing UNIT assignment owner lacks SOURCE_UNIT binding or OWNER purpose. The O-1 owner gate cannot resolve it; adding an owner relation or changing O-1 is outside this task. Keep NOT_RECORDED."
++      "visibilityReason": "The exact selected PLAGUE MARINES UNIT owns this upgrade; conditional full text reaches its attached component through the recorded SOURCE_UNIT FORMED recipient. Independent duplicates and detached former components receive no text."
+diff --git a/tests/markup-census-qa.mjs b/tests/markup-census-qa.mjs
+new file mode 100644
+index 00000000..44814210
+--- /dev/null
++++ b/tests/markup-census-qa.mjs
+@@ -0,0 +1,120 @@
++/** Native denominator, exact debt and real-code mutation controls. No producers. */
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import path from 'node:path';
++import {fileURLToPath,pathToFileURL} from 'node:url';
++import {execFileSync} from 'node:child_process';
++import {collectNativeInventory,sourceSnapshot} from '../tools/markup-census/native-inventory.mjs';
++import {checkMarkup,decisionKey,KINDS} from '../tools/markup-census/check.mjs';
++import {probeConditionComputers} from '../tools/markup-census/computers.mjs';
++import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
++import {verifyMarkupEvidence} from '../tools/markup-census/evidence.mjs';
++
++const root=fileURLToPath(new URL('../',import.meta.url)),directory=path.join(root,'tools/markup-census');
++const read=name=>JSON.parse(fs.readFileSync(path.join(directory,name+'.v1.json'),'utf8'));
++const started=performance.now(),inventory=await collectNativeInventory({root});
++const registry=read('decisions'),baseline=read('debt-baseline'),debt=read('debt'),closures=read('closures'),retirements=read('retirements');
++const computerAvailability=await probeConditionComputers({inventory,root});
++const verifyEvidence=(evidence,row)=>verifyMarkupEvidence({root,evidence,row});
++const input={inventory,registry,baseline,debt,closures,retirements,computerAvailability,verifyEvidence};
++const result=checkMarkup(input);
++// These exact numbers certify the introducing decision ledger, not every
++// future reviewed source release. Current HEAD must satisfy the actual registry
++// and native denominator below; adding a reviewed rule must not require repins.
++const INITIAL='4d49446d8068e57cfa143a698886922a803a0690';
++const original=JSON.parse(execFileSync('git',['show',INITIAL+':tools/markup-census/decisions.v1.json'],
++ {cwd:root,encoding:'utf8',maxBuffer:16*1024*1024}));
++assert.equal(original.records.length,2724,'Accepted initial physical source denominator');
++const categories=['EXECUTED','RECIPIENTS_ONLY','TEXT_ONLY_INTENDED','GAP','UNKNOWN'];
++const counts=rows=>Object.fromEntries(categories.map(category=>[category,rows.filter(row=>row.category===category).length]));
++assert.deepEqual(counts(original.records),{EXECUTED:812,RECIPIENTS_ONLY:1478,TEXT_ONLY_INTENDED:218,GAP:45,UNKNOWN:171},
++ 'The introducing ledger changes only the authorized Insectile debt from the accepted census');
++assert.equal(original.records.filter(row=>row.partial).length,126,'Accepted initial partial marker count');
++assert.equal(original.records.filter(row=>!['GAP','UNKNOWN'].includes(row.category)).length,2508);
++const retiredKeys=new Set(retirements.records.map(decisionKey));
++const current=registry.records.filter(row=>!retiredKeys.has(decisionKey(row)));
++assert.equal(result.N,inventory.rows.length,'Complete current native denominator');
++assert.equal(result.N,current.length,'Every current decision has a native source');
++assert.deepEqual(result.counts,counts(current),'Exact current categories, not frozen release counts');
++assert.equal(result.partial,current.filter(row=>row.partial).length);
++assert.deepEqual(result.debt,{original:baseline.records.length,active:debt.records.length,closed:closures.records.length});
++assert.equal(result.resolved.count,result.N-result.counts.GAP-result.counts.UNKNOWN);
++assert.equal(result.summary.length,inventory.books.length*KINDS.length);
++assert.equal(inventory.books.length,9);
++for(const book of inventory.books){
++ assert(book.nativeReads.length,'The actual browser factory must read a native artifact: '+book.book);
++ assert(book.nativeReads.includes(book.nativeInput),'The observed native input must be the browser factory input: '+book.book);
++}
++assert.equal(new Set(inventory.rows.map(decisionKey)).size,result.N);
++assert.equal(baseline.records.filter(row=>row.category==='GAP').length,46);
++assert.equal(baseline.records.filter(row=>row.category==='UNKNOWN').length,171);
++const controls=[];
++const reject=(name,code,overrides)=>{
++ assert.throws(()=>checkMarkup({...input,...overrides}),error=>error.message.includes('Markup census '+code+':'),
++  name+' must fail closed with '+code);
++ controls.push({name,code,status:'DETECTED'});
++};
++const decisionIndex=registry.records.findIndex(row=>row.category==='RECIPIENTS_ONLY'&&row.kind==='ABILITY');
++const changeDecision=mutate=>{
++ const copy={...registry,records:[...registry.records]},row=structuredClone(copy.records[decisionIndex]);
++ copy.records[decisionIndex]=row;mutate(row);return copy;
++};
++reject('missing reviewed category','UNCLASSIFIED',{registry:changeDecision(row=>{delete row.category;})});
++reject('stale accepted source fingerprint','STALE_DECISION',{registry:changeDecision(row=>{row.sourceFingerprint='0'.repeat(64);})});
++reject('new GAP outside exact named debt','NEW_DEBT',{registry:changeDecision(row=>{row.category='GAP';})});
++
++// Delete an actual dispatch case in memory. All imports still use the same real
++// dependencies; no second implementation or invented roster value is supplied.
++const computationFile=path.join(root,'books/shared/roster-v2/condition-computations.mjs');
++let code=fs.readFileSync(computationFile,'utf8');
++assert.equal(code.split("case 'INITIAL_ATTACHMENT':").length-1,1,'One exact native case for the negative control');
++code=code.replace("case 'INITIAL_ATTACHMENT':","case 'REMOVED_INITIAL_ATTACHMENT':");
++code=code.replace(/\bfrom\s+(['"])(\.[^'"]+)\1/g,(_all,_quote,specifier)=>'from '+JSON.stringify(new URL(specifier,pathToFileURL(computationFile)).href));
++const removed=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
++const missingComputer=await probeConditionComputers({inventory,root,compute:removed.computeRosterCondition});
++assert.equal(missingComputer.find(row=>row.kind==='INITIAL_ATTACHMENT').available,false);
++assert(inventory.rows.some(row=>registry.records.find(d=>decisionKey(d)===decisionKey(row))?.category==='EXECUTED'&&
++ row.conditions.some(c=>c.declaredComputation?.kind==='INITIAL_ATTACHMENT')),'Mutation must affect a real EXECUTED source rule');
++reject('actual INITIAL_ATTACHMENT computer removed from EXECUTED','MISSING_COMPUTER',{computerAvailability:missingComputer});
++
++const bindingFile=path.join(root,'books/shared/roster-v2/condition-binding.mjs');
++let bindingCode=fs.readFileSync(bindingFile,'utf8');
++assert.equal(bindingCode.split("case 'equipmentBearerSatisfied':").length-1,1);
++bindingCode=bindingCode.replace("case 'equipmentBearerSatisfied':","case 'REMOVED_equipmentBearerSatisfied':")
++ .replace(/\bfrom\s+(['"])(\.[^'"]+)\1/g,(_all,_quote,specifier)=>'from '+JSON.stringify(new URL(specifier,pathToFileURL(bindingFile)).href));
++const removedBinder=await import('data:text/javascript;base64,'+Buffer.from(bindingCode).toString('base64'));
++const physicalMissing=await probeConditionComputers({inventory,root,bind:removedBinder.createRosterConditionBinding});
++assert(physicalMissing.some(row=>row.key==='equipmentBearerSatisfied'&&!row.available));
++reject('actual physical-equipment binder removed from EXECUTED','MISSING_COMPUTER',{computerAvailability:physicalMissing});
++
++// Lose a real source field, then obtain the field metadata from the same native
++// source-snapshot reader. Existing record IDs/names cannot hide that loss.
++const sourceRow=inventory.rows.find(row=>row.sourceFields.some(field=>JSON.stringify(field)==='["text"]')&&row.sourceField?.[0]==='text');
++assert(sourceRow);
++const native=parseProducerJSON(fs.readFileSync(path.join(root,sourceRow.nativeInput),'utf8'));
++const source=structuredClone((native.book||native).entities.find(entity=>entity.id===sourceRow.sourceEntityId));
++assert.equal(typeof source.data.text,'string');delete source.data.text;
++const lost=sourceSnapshot(source),changed={...sourceRow,sourceSnapshot:{...sourceRow.sourceSnapshot,
++ fields:lost.fields.map(field=>({...field,present:true}))}};
++reject('actual accepted source text field lost','SOURCE_FIELD_LOSS',{inventory:{...inventory,
++ rows:inventory.rows.map(row=>row===sourceRow?changed:row)}});
++const excluded=inventory.exclusions.find(row=>row.ambiguous&&row.kind==='DATASHEET_SECTION');
++assert(excluded);
++const extra={...excluded,id:'unreviewed-named-section',reason:'Unclassified new named source ability'};
++reject('new named rule cannot hide in a known excluded native kind','INCOMPLETE_DENOMINATOR',{inventory:{...inventory,exclusions:[...inventory.exclusions,extra]}});
++const blockRow=inventory.rows.find(row=>row.book==='adeptus-mechanicus'&&row.kind==='ABILITY'&&row.sourceField?.[0]==='blocks');
++const sourceOwner=inventory.sourceEntities.find(row=>row.book===blockRow.book&&row.id===blockRow.sourceEntityId);
++const newField={field:['extraRules',0,'text'],valueFingerprint:'1'.repeat(64),type:'string'};
++reject('new source rule field outside the recognized blocks is not omitted','INCOMPLETE_DENOMINATOR',{inventory:{...inventory,
++ sourceEntities:inventory.sourceEntities.map(row=>row===sourceOwner?{...row,fields:[...row.fields,newField]}:row)}});
++reject('new native rule without decision','UNCLASSIFIED',{inventory:{...inventory,rows:[...inventory.rows,{...inventory.rows[0],id:'unreviewed-new-rule'}]}});
++reject('duplicate physical rule occurrence','DUPLICATE_ID',{inventory:{...inventory,rows:[...inventory.rows,inventory.rows[0]]}});
++reject('accepted rule disappears without retirement','SOURCE_FIELD_LOSS',{inventory:{...inventory,rows:inventory.rows.slice(1)}});
++reject('historical debt item deleted to improve percentage','BASELINE_CHANGED',{baseline:{...baseline,records:baseline.records.slice(1)}});
++reject('active debt removed without evidence','UNEXPLAINED_DEBT_REMOVAL',{debt:{...debt,records:debt.records.slice(1)}});
++reject('closure without a fixture','MISSING_CLOSURE_EVIDENCE',{closures:{...closures,records:closures.records.map(row=>({...row,evidence:row.evidence.filter(evidence=>evidence.kind!=='fixture')}))}});
++reject('unrelated test cannot close debt','MISSING_CLOSURE_EVIDENCE',{verifyEvidence:()=>false});
++reject('real unrelated test/common-word identity cannot close debt','MISSING_CLOSURE_EVIDENCE',{closures:{...closures,records:closures.records.map(row=>({...row,
++ evidence:row.evidence.map((evidence,i)=>i===0?{kind:'test',path:'tests/markup-census-qa.mjs',identity:'assert'}:evidence)}))}});
++console.log(JSON.stringify({status:'PASS',N:result.N,counts:result.counts,partial:result.partial,
++ nativeFactories:inventory.books.map(book=>({book:book.book,reads:book.nativeReads})),controls,elapsedMs:Math.round(performance.now()-started)}));
+diff --git a/tests/markup-evidence-qa.mjs b/tests/markup-evidence-qa.mjs
+new file mode 100644
+index 00000000..fe551f44
+--- /dev/null
++++ b/tests/markup-evidence-qa.mjs
+@@ -0,0 +1,83 @@
++/** Real closure linkage plus independent unrelated/forged evidence controls. */
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import path from 'node:path';
++import {fileURLToPath} from 'node:url';
++import {createHash} from 'node:crypto';
++import {verifyMarkupEvidence} from '../tools/markup-census/evidence.mjs';
++import {createQaTempDir,cleanupQaTempDir} from './helpers/qa-temp.mjs';
++
++const root=fileURLToPath(new URL('../',import.meta.url));
++const ruleId='detachment-flyblown-host:enhancement:1',clauseId='wound-reroll';
++const caseId='death-guard:detachment-flyblown-host:enhancement:1:28';
++const row={book:'death-guard',id:ruleId,sourceEntityId:ruleId,clauseIds:[clauseId]};
++const fixturePath='books/death-guard/v2/recipient-enrollment-qa.json';
++const fixture=JSON.parse(fs.readFileSync(path.join(root,fixturePath),'utf8'));
++const cases=fixture.browserCases.filter(record=>record.id===caseId);
++assert.equal(cases.length,1,'The approved physical source fixture is unique');
++assert.equal(cases[0].canonical.ruleId,ruleId);
++assert.deepEqual(cases[0].clauseIds,[clauseId]);
++assert.equal(cases[0].expectedAttached,true,'The closure fixture now requires the text');
++const controls=[];
++const check=(name,expected,{evidence,context=row,atRoot=root})=>{
++ assert.equal(verifyMarkupEvidence({root:atRoot,evidence,row:context}),expected,name);
++ controls.push({name,status:'PASS'});
++};
++const realFixture={kind:'fixture',path:fixturePath,identity:caseId};
++check('approved native source test',true,{evidence:{kind:'test',path:'books/death-guard/v2/insectile-recipient-qa.mjs',identity:ruleId}});
++check('approved browser source test',true,{evidence:{kind:'test',path:'v2/markup-insectile-browser-qa.mjs',identity:ruleId}});
++check('approved exact browser fixture and clause',true,{evidence:realFixture});
++check('approved exact source recipient record',true,{evidence:{...realFixture,identity:ruleId}});
++check('unrelated canonical-owner context cannot retarget closure',false,{evidence:{...realFixture,identity:ruleId},context:{...row,id:'different-census-rule'}});
++check('unrelated real test with common-word identity',false,{evidence:{kind:'test',path:'tests/markup-census-qa.mjs',identity:'assert'}});
++check('unrelated fixture common-word identity',false,{evidence:{...realFixture,identity:'RECORDED'}});
++check('existing fixture cannot prove another clause',false,{evidence:realFixture,context:{...row,clauseIds:['not-the-reviewed-clause']}});
++check('missing exact decision clause context',false,{evidence:realFixture,context:{book:row.book,id:ruleId,sourceEntityId:ruleId}});
++check('reviewed fixture subset accepted explicitly',true,{evidence:{...realFixture,clauseIds:[clauseId]},context:{...row,clauseIds:[clauseId,'another-reviewed-clause']}});
++check('unreviewed fixture subset rejected',false,{evidence:{...realFixture,clauseIds:['unreviewed-clause']}});
++check('fixture cannot cover omitted decision clause implicitly',false,{evidence:realFixture,context:{...row,clauseIds:[clauseId,'another-reviewed-clause']}});
++check('unknown evidence kind',false,{evidence:{...realFixture,kind:'unreviewed'}});
++check('missing evidence file',false,{evidence:{...realFixture,path:'tests/missing-markup-evidence-fixture.json'}});
++check('lexical path escape',false,{evidence:{...realFixture,path:'../recipient-enrollment-qa.json'}});
++check('absolute evidence path',false,{evidence:{...realFixture,path:path.join(root,fixturePath)}});
++
++const arena=createQaTempDir('markup-evidence-qa-'),isolated=path.join(arena,'repository');
++try{
++ fs.mkdirSync(isolated);
++ const write=(name,value)=>{
++  fs.writeFileSync(path.join(isolated,name),typeof value==='string'?value:JSON.stringify(value));return name;
++ };
++ const forged=mutate=>{
++  const document={schema:fixture.schema,bookId:fixture.bookId,browserCases:[structuredClone(cases[0])]};
++  mutate(document);return {kind:'fixture',path:write('forged-fixture.json',document),identity:caseId};
++ };
++ check('source-linked identity cannot hide a different canonical rule',false,{atRoot:isolated,evidence:forged(document=>{document.browserCases[0].canonical.ruleId='unrelated-rule';})});
++ check('same rule but wrong exact clause',false,{atRoot:isolated,evidence:forged(document=>{document.browserCases[0].clauseIds=['different-clause'];})});
++ check('duplicate browser-case identity',false,{atRoot:isolated,evidence:forged(document=>{document.browserCases.push(structuredClone(document.browserCases[0]));})});
++ check('unknown fixture schema cannot close debt',false,{atRoot:isolated,evidence:forged(document=>{document.schema='unreviewed-fixture/v1';})});
++ check('fixture without source text cannot close debt',false,{atRoot:isolated,evidence:forged(document=>{delete document.browserCases[0].canonical.text;})});
++ check('fixture without exact source field cannot close debt',false,{atRoot:isolated,evidence:forged(document=>{document.browserCases[0].canonical.sourcePath=[];})});
++ const unrelated=write('unrelated-qa.mjs',"import assert from 'node:assert/strict';\nassert.equal('unrelated-rule','unrelated-rule');\n");
++ check('valid test form still needs the exact canonical rule',false,{atRoot:isolated,evidence:{kind:'test',path:unrelated,identity:ruleId}});
++ const noTest=write('source-qa.mjs',`export const source=${JSON.stringify(ruleId)};\n`);
++ check('a source constant alone is not a test witness',false,{atRoot:isolated,evidence:{kind:'test',path:noTest,identity:ruleId}});
++ const literal=write('exact-qa.mjs',`import assert from 'node:assert/strict';\nassert.equal(${JSON.stringify(ruleId)},${JSON.stringify(ruleId)});\n`);
++ check('exact literal witness is linked without executing it',true,{atRoot:isolated,evidence:{kind:'test',path:literal,identity:ruleId}});
++ const document='books/death-guard/sources/retirement-control.txt',acceptedBytes=Buffer.from('Accepted replacement source in this isolated control.\n');
++ fs.mkdirSync(path.dirname(path.join(isolated,document)),{recursive:true});fs.writeFileSync(path.join(isolated,document),acceptedBytes);
++ const prior='a'.repeat(64),retirement={schema:'markup-retirement-review/v1',records:[{book:row.book,id:row.id,sourceEntityId:row.sourceEntityId,
++  previousSourceFingerprint:prior,reason:'The accepted replacement source explicitly retires this exact source owner.',
++  acceptedSource:{document,sha256:createHash('sha256').update(acceptedBytes).digest('hex')}}]};
++ const retirementFile=write('retirement.json',retirement),retirementEvidence={kind:'source',path:retirementFile,identity:ruleId};
++ check('retirement review pins prior identity and accepted source bytes',true,{atRoot:isolated,context:{...row,sourceFingerprint:prior},evidence:retirementEvidence});
++ check('retirement cannot target a different prior fingerprint',false,{atRoot:isolated,context:{...row,sourceFingerprint:'b'.repeat(64)},evidence:retirementEvidence});
++ fs.appendFileSync(path.join(isolated,document),'tampered source');
++ check('retirement source bytes cannot be substituted',false,{atRoot:isolated,context:{...row,sourceFingerprint:prior},evidence:retirementEvidence});
++ const outside=path.join(arena,'outside');fs.mkdirSync(outside);
++ fs.copyFileSync(path.join(isolated,literal),path.join(outside,literal));
++ fs.symlinkSync(outside,path.join(isolated,'linked'),'junction');
++ check('junction evidence cannot escape the repository',false,{atRoot:isolated,evidence:{kind:'test',path:'linked/'+literal,identity:ruleId}});
++}finally{
++ cleanupQaTempDir(arena);
++}
++console.log(JSON.stringify({status:'PASS',controls}));
+diff --git a/v2/markup-insectile-browser-qa.mjs b/v2/markup-insectile-browser-qa.mjs
+new file mode 100644
+index 00000000..61258ee6
+--- /dev/null
++++ b/v2/markup-insectile-browser-qa.mjs
+@@ -0,0 +1,15 @@
++/** Exact existing O-1 witness, through unchanged strict UI assertions. */
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import {execFileSync} from 'node:child_process';
++import {fileURLToPath} from 'node:url';
++
++const fixture=JSON.parse(fs.readFileSync(new URL('../books/death-guard/v2/recipient-enrollment-qa.json',import.meta.url),'utf8'));
++const cases=fixture.browserCases.filter(row=>row.canonical.ruleId==='detachment-flyblown-host:enhancement:1');
++assert.equal(cases.length,1);assert.equal(cases[0].expectedAttached,true);
++assert.deepEqual(cases[0].clauseIds,['wound-reroll']);
++const args=process.argv.slice(2);
++assert(args.every(arg=>arg.startsWith('--out=')),'Only the evidence output location is configurable');
++execFileSync(process.execPath,[fileURLToPath(new URL('./dg-am-recipient-enrollment-browser-qa.mjs',import.meta.url)),
++  '--books=death-guard','--case=Insectile Murmuration',
++  '--screenshots=death-guard:detachment-flyblown-host:enhancement:1:28',...args],{stdio:'inherit'});

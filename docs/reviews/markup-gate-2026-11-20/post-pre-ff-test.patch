@@ -1,0 +1,37 @@
+diff --git a/tests/markup-census-qa.mjs b/tests/markup-census-qa.mjs
+index 32e692ea..44814210 100644
+--- a/tests/markup-census-qa.mjs
++++ b/tests/markup-census-qa.mjs
+@@ -5,0 +6 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
++import {execFileSync} from 'node:child_process';
+@@ -7 +8 @@ import {collectNativeInventory,sourceSnapshot} from '../tools/markup-census/nati
+-import {checkMarkup,decisionKey} from '../tools/markup-census/check.mjs';
++import {checkMarkup,decisionKey,KINDS} from '../tools/markup-census/check.mjs';
+@@ -20,5 +21,22 @@ const result=checkMarkup(input);
+-assert.equal(result.N,2724,'Accepted physical source denominator');
+-assert.deepEqual(result.counts,{EXECUTED:812,RECIPIENTS_ONLY:1478,TEXT_ONLY_INTENDED:218,GAP:45,UNKNOWN:171},
+- 'Only the authorized Insectile debt closure changes the accepted census');
+-assert.equal(result.partial,126);assert.deepEqual(result.debt,{original:217,active:216,closed:1});
+-assert.equal(result.resolved.count,2508);assert.equal(result.summary.length,63);
++// These exact numbers certify the introducing decision ledger, not every
++// future reviewed source release. Current HEAD must satisfy the actual registry
++// and native denominator below; adding a reviewed rule must not require repins.
++const INITIAL='4d49446d8068e57cfa143a698886922a803a0690';
++const original=JSON.parse(execFileSync('git',['show',INITIAL+':tools/markup-census/decisions.v1.json'],
++ {cwd:root,encoding:'utf8',maxBuffer:16*1024*1024}));
++assert.equal(original.records.length,2724,'Accepted initial physical source denominator');
++const categories=['EXECUTED','RECIPIENTS_ONLY','TEXT_ONLY_INTENDED','GAP','UNKNOWN'];
++const counts=rows=>Object.fromEntries(categories.map(category=>[category,rows.filter(row=>row.category===category).length]));
++assert.deepEqual(counts(original.records),{EXECUTED:812,RECIPIENTS_ONLY:1478,TEXT_ONLY_INTENDED:218,GAP:45,UNKNOWN:171},
++ 'The introducing ledger changes only the authorized Insectile debt from the accepted census');
++assert.equal(original.records.filter(row=>row.partial).length,126,'Accepted initial partial marker count');
++assert.equal(original.records.filter(row=>!['GAP','UNKNOWN'].includes(row.category)).length,2508);
++const retiredKeys=new Set(retirements.records.map(decisionKey));
++const current=registry.records.filter(row=>!retiredKeys.has(decisionKey(row)));
++assert.equal(result.N,inventory.rows.length,'Complete current native denominator');
++assert.equal(result.N,current.length,'Every current decision has a native source');
++assert.deepEqual(result.counts,counts(current),'Exact current categories, not frozen release counts');
++assert.equal(result.partial,current.filter(row=>row.partial).length);
++assert.deepEqual(result.debt,{original:baseline.records.length,active:debt.records.length,closed:closures.records.length});
++assert.equal(result.resolved.count,result.N-result.counts.GAP-result.counts.UNKNOWN);
++assert.equal(result.summary.length,inventory.books.length*KINDS.length);
