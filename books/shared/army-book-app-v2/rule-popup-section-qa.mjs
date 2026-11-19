@@ -8,7 +8,7 @@ import {parseProducerJSON} from '../source-refs-v2/producer-io.mjs';
 import {armyBooks} from '../../../v2/army-books.mjs';
 const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
 const root=path.resolve(arg('--root')||fileURLToPath(new URL('../../../',import.meta.url)));
-const {createRulePopupPresenter,focusedRuleField}=await import(pathToFileURL(path.join(root,'books/shared/army-book-app-v2/rule-popup.mjs')));
+const {createRulePopupPresenter,focusedRuleField,ruleFieldPath}=await import(pathToFileURL(path.join(root,'books/shared/army-book-app-v2/rule-popup.mjs')));
 
 class Element {
   constructor(tag,className='',value=''){this.tagName=tag.toUpperCase();this.className=className;this.children=[];this.dataset={};this.value=value;this.classList={add:name=>{this.className+=' '+name;}};}
@@ -64,6 +64,8 @@ for(const book of armyBooks){
     summary.ruleCards++;summary.bodyFields+=fields.length;
     for(const field of fields){
       const locator=field.presentationPath??field.source.path;
+      const canonicalMatches=fields.filter(candidate=>candidate.source.path===field.source.path||candidate.presentationPath===field.source.path);
+      if(canonicalMatches.length===1)same(ruleFieldPath(card,field),field.source.path,'Unique canonical URLs stay unchanged rather than switching to display paths');
       const matches=fields.filter(candidate=>candidate.source.path===locator||candidate.presentationPath===locator);
       if(matches.length===1){
         same(focusedRuleField(card,{fieldPath:locator}),field,'Unique section-relative focus preserves original canonical field object');
