@@ -1,0 +1,196 @@
+2026-11-20T11:56:35.021Z pw:api => browserType.launch started
+2026-11-20T11:56:35.291Z pw:api <= browserType.launch succeeded
+2026-11-20T11:56:35.292Z pw:api => browser.newContext started
+2026-11-20T11:56:35.340Z pw:api <= browser.newContext succeeded
+2026-11-20T11:56:35.346Z pw:api => browserContext.addInitScript started
+2026-11-20T11:56:35.347Z pw:api <= browserContext.addInitScript succeeded
+2026-11-20T11:56:35.355Z pw:api => browserContext.newPage started
+2026-11-20T11:56:35.548Z pw:api <= browserContext.newPage succeeded
+2026-11-20T11:56:35.549Z pw:api => page.goto started
+2026-11-20T11:56:35.550Z pw:api navigating to "http://127.0.0.1:64767/baseline50/v2/app.html", waiting until "load"
+2026-11-20T11:56:35.590Z pw:api   "commit" event fired
+2026-11-20T11:56:35.590Z pw:api   navigated to "http://127.0.0.1:64767/baseline50/v2/app.html"
+2026-11-20T11:56:35.604Z pw:api   "domcontentloaded" event fired
+2026-11-20T11:56:35.639Z pw:api   "load" event fired
+2026-11-20T11:56:35.640Z pw:api <= page.goto succeeded
+2026-11-20T11:56:35.645Z pw:api => locator.waitFor started
+2026-11-20T11:56:35.656Z pw:api waiting for locator('[data-v2-book="death-guard"]') to be visible
+2026-11-20T11:56:36.129Z pw:api   locator resolved to visible <a class="book" data-v2-shell-link="" data-v2-book="death-guard" href="http://127.0.0.1:64767/baseline50/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard">…</a>
+2026-11-20T11:56:36.130Z pw:api <= locator.waitFor succeeded
+2026-11-20T11:56:36.131Z pw:api => page.evaluate started
+2026-11-20T11:56:36.211Z pw:api <= page.evaluate succeeded
+2026-11-20T11:56:36.211Z pw:api => locator.click started
+2026-11-20T11:56:36.212Z pw:api waiting for locator('[data-v2-book="death-guard"]')
+2026-11-20T11:56:36.217Z pw:api   locator resolved to <a class="book" data-v2-shell-link="" data-v2-book="death-guard" href="http://127.0.0.1:64767/baseline50/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard">…</a>
+2026-11-20T11:56:36.219Z pw:api attempting click action
+2026-11-20T11:56:36.220Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:36.239Z pw:api   element is visible, enabled and stable
+2026-11-20T11:56:36.240Z pw:api   scrolling into view if needed
+2026-11-20T11:56:36.241Z pw:api   done scrolling
+2026-11-20T11:56:36.245Z pw:api   performing click action
+2026-11-20T11:56:36.270Z pw:api   navigated to "http://127.0.0.1:64767/baseline50/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard"
+2026-11-20T11:56:36.272Z pw:api   click action done
+2026-11-20T11:56:36.272Z pw:api   waiting for scheduled navigations to finish
+2026-11-20T11:56:36.286Z pw:api   navigations have finished
+2026-11-20T11:56:36.286Z pw:api <= locator.click succeeded
+2026-11-20T11:56:36.290Z pw:api => page.waitForFunction started
+2026-11-20T11:56:37.191Z pw:api <= page.waitForFunction succeeded
+2026-11-20T11:56:37.191Z pw:api => page.evaluate started
+2026-11-20T11:56:37.941Z pw:api   "networkidle" event fired
+2026-11-20T11:56:38.121Z pw:api <= page.evaluate succeeded
+2026-11-20T11:56:38.121Z pw:api => page.evaluate started
+2026-11-20T11:56:38.123Z pw:api <= page.evaluate succeeded
+2026-11-20T11:56:38.123Z pw:api => locator.scrollIntoViewIfNeeded started
+2026-11-20T11:56:38.124Z pw:api waiting for locator('.v2-library-card[data-target-id="unit-plague-marines"]')
+2026-11-20T11:56:38.133Z pw:api   locator resolved to visible <a class="v2-library-card" data-target-id="unit-plague-marines" href="http://127.0.0.1:64767/baseline50/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard#unit-plague-marines">…</a>
+2026-11-20T11:56:38.136Z pw:api attempting scroll into view action
+2026-11-20T11:56:38.136Z pw:api   waiting for element to be stable
+2026-11-20T11:56:38.141Z pw:api <= locator.scrollIntoViewIfNeeded succeeded
+2026-11-20T11:56:38.142Z pw:api => page.evaluate started
+2026-11-20T11:56:38.155Z pw:api <= page.evaluate succeeded
+CARD_ACTION_BEGIN baseline50
+2026-11-20T11:56:38.156Z pw:api => locator.click started
+2026-11-20T11:56:38.156Z pw:api waiting for locator('.v2-library-card[data-target-id="unit-plague-marines"]')
+2026-11-20T11:56:38.162Z pw:api   locator resolved to <a class="v2-library-card" data-target-id="unit-plague-marines" href="http://127.0.0.1:64767/baseline50/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard#unit-plague-marines">…</a>
+2026-11-20T11:56:38.164Z pw:api attempting click action
+2026-11-20T11:56:38.164Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:38.179Z pw:api   element is not stable
+2026-11-20T11:56:38.179Z pw:api retrying click action
+2026-11-20T11:56:38.179Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:38.192Z pw:api   element is not stable
+2026-11-20T11:56:38.192Z pw:api retrying click action
+2026-11-20T11:56:38.192Z pw:api   waiting 20ms
+2026-11-20T11:56:38.215Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:38.227Z pw:api   element is not stable
+2026-11-20T11:56:38.227Z pw:api retrying click action
+2026-11-20T11:56:38.227Z pw:api   waiting 100ms
+2026-11-20T11:56:38.330Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:38.336Z pw:api   element is visible, enabled and stable
+2026-11-20T11:56:38.336Z pw:api   scrolling into view if needed
+2026-11-20T11:56:38.337Z pw:api   done scrolling
+2026-11-20T11:56:38.341Z pw:api   <a aria-current="page" data-v2-destination="ARMY_BOOK" href="http://127.0.0.1:64767/baseline50/v2/app.html?v2=HOME&section=army-books">Army Books</a> from <header class="v2-primary-header">…</header> subtree intercepts pointer events
+2026-11-20T11:56:38.341Z pw:api retrying click action
+2026-11-20T11:56:38.341Z pw:api   waiting 100ms
+2026-11-20T11:56:38.449Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:38.466Z pw:api   element is not stable
+2026-11-20T11:56:38.467Z pw:api retrying click action
+2026-11-20T11:56:38.467Z pw:api   waiting 500ms
+2026-11-20T11:56:38.971Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:38.980Z pw:api   element is visible, enabled and stable
+2026-11-20T11:56:38.980Z pw:api   scrolling into view if needed
+2026-11-20T11:56:38.982Z pw:api   done scrolling
+2026-11-20T11:56:38.985Z pw:api   performing click action
+2026-11-20T11:56:38.999Z pw:api   navigated to "http://127.0.0.1:64767/baseline50/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard"
+2026-11-20T11:56:39.005Z pw:api   navigated to "http://127.0.0.1:64767/baseline50/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard#unit-plague-marines"
+2026-11-20T11:56:39.050Z pw:api   click action done
+2026-11-20T11:56:39.050Z pw:api   waiting for scheduled navigations to finish
+2026-11-20T11:56:39.062Z pw:api   navigations have finished
+2026-11-20T11:56:39.062Z pw:api <= locator.click succeeded
+CARD_CLICK_RETURN baseline50 906.8553000000002
+2026-11-20T11:56:39.063Z pw:api => page.waitForFunction started
+2026-11-20T11:56:39.070Z pw:api <= page.waitForFunction succeeded
+2026-11-20T11:56:39.070Z pw:api => page.evaluate started
+2026-11-20T11:56:39.171Z pw:api <= page.evaluate succeeded
+2026-11-20T11:56:39.172Z pw:api => page.evaluate started
+2026-11-20T11:56:39.174Z pw:api <= page.evaluate succeeded
+{"version":"baseline50","bookMs":1910.2632,"clickMs":906.8553000000002,"elapsedMs":1015.9592000000002,"events":{"event":3439.7000000001863,"dispatchEnd":3476.0999999996275,"mountedAtDispatchEnd":true,"frame1":3477.5999999996275,"frame2":3494.399999999441},"dispatchMs":36.39999999944121,"eventToTwoFramesMs":54.69999999925494}
+2026-11-20T11:56:39.175Z pw:api => browserContext.close started
+2026-11-20T11:56:39.186Z pw:api <= browserContext.close succeeded
+2026-11-20T11:56:39.186Z pw:api => browser.newContext started
+2026-11-20T11:56:39.216Z pw:api <= browser.newContext succeeded
+2026-11-20T11:56:39.216Z pw:api => browserContext.addInitScript started
+2026-11-20T11:56:39.216Z pw:api <= browserContext.addInitScript succeeded
+2026-11-20T11:56:39.216Z pw:api => browserContext.newPage started
+2026-11-20T11:56:39.349Z pw:api <= browserContext.newPage succeeded
+2026-11-20T11:56:39.349Z pw:api => page.goto started
+2026-11-20T11:56:39.349Z pw:api navigating to "http://127.0.0.1:64767/head/v2/app.html", waiting until "load"
+2026-11-20T11:56:39.367Z pw:api   "commit" event fired
+2026-11-20T11:56:39.367Z pw:api   navigated to "http://127.0.0.1:64767/head/v2/app.html"
+2026-11-20T11:56:39.387Z pw:api   "domcontentloaded" event fired
+2026-11-20T11:56:39.411Z pw:api   "load" event fired
+2026-11-20T11:56:39.411Z pw:api <= page.goto succeeded
+2026-11-20T11:56:39.412Z pw:api => locator.waitFor started
+2026-11-20T11:56:39.412Z pw:api waiting for locator('[data-v2-book="death-guard"]') to be visible
+2026-11-20T11:56:39.760Z pw:api   locator resolved to visible <a class="book" data-v2-shell-link="" data-v2-book="death-guard" href="http://127.0.0.1:64767/head/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard">…</a>
+2026-11-20T11:56:39.761Z pw:api <= locator.waitFor succeeded
+2026-11-20T11:56:39.761Z pw:api => page.evaluate started
+2026-11-20T11:56:39.787Z pw:api <= page.evaluate succeeded
+2026-11-20T11:56:39.787Z pw:api => locator.click started
+2026-11-20T11:56:39.787Z pw:api waiting for locator('[data-v2-book="death-guard"]')
+2026-11-20T11:56:39.790Z pw:api   locator resolved to <a class="book" data-v2-shell-link="" data-v2-book="death-guard" href="http://127.0.0.1:64767/head/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard">…</a>
+2026-11-20T11:56:39.792Z pw:api attempting click action
+2026-11-20T11:56:39.792Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:39.806Z pw:api   element is visible, enabled and stable
+2026-11-20T11:56:39.806Z pw:api   scrolling into view if needed
+2026-11-20T11:56:39.807Z pw:api   done scrolling
+2026-11-20T11:56:39.809Z pw:api   performing click action
+2026-11-20T11:56:39.825Z pw:api   navigated to "http://127.0.0.1:64767/head/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard"
+2026-11-20T11:56:39.842Z pw:api   click action done
+2026-11-20T11:56:39.842Z pw:api   waiting for scheduled navigations to finish
+2026-11-20T11:56:39.843Z pw:api   navigations have finished
+2026-11-20T11:56:39.844Z pw:api <= locator.click succeeded
+2026-11-20T11:56:39.844Z pw:api => page.waitForFunction started
+2026-11-20T11:56:40.755Z pw:api <= page.waitForFunction succeeded
+2026-11-20T11:56:40.756Z pw:api => page.evaluate started
+2026-11-20T11:56:40.931Z pw:api <= page.evaluate succeeded
+2026-11-20T11:56:40.932Z pw:api => page.evaluate started
+2026-11-20T11:56:40.933Z pw:api <= page.evaluate succeeded
+2026-11-20T11:56:40.933Z pw:api => locator.scrollIntoViewIfNeeded started
+2026-11-20T11:56:40.934Z pw:api waiting for locator('.v2-library-card[data-target-id="unit-plague-marines"]')
+2026-11-20T11:56:40.955Z pw:api   locator resolved to visible <a class="v2-library-card" data-target-id="unit-plague-marines" href="http://127.0.0.1:64767/head/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard#unit-plague-marines">…</a>
+2026-11-20T11:56:40.963Z pw:api attempting scroll into view action
+2026-11-20T11:56:40.963Z pw:api   waiting for element to be stable
+2026-11-20T11:56:40.972Z pw:api <= locator.scrollIntoViewIfNeeded succeeded
+2026-11-20T11:56:40.972Z pw:api => page.evaluate started
+2026-11-20T11:56:40.987Z pw:api <= page.evaluate succeeded
+CARD_ACTION_BEGIN head
+2026-11-20T11:56:40.987Z pw:api => locator.click started
+2026-11-20T11:56:40.988Z pw:api waiting for locator('.v2-library-card[data-target-id="unit-plague-marines"]')
+2026-11-20T11:56:40.994Z pw:api   locator resolved to <a class="v2-library-card" data-target-id="unit-plague-marines" href="http://127.0.0.1:64767/head/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard#unit-plague-marines">…</a>
+2026-11-20T11:56:40.994Z pw:api attempting click action
+2026-11-20T11:56:40.994Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:41.007Z pw:api   element is not stable
+2026-11-20T11:56:41.007Z pw:api retrying click action
+2026-11-20T11:56:41.007Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:41.021Z pw:api   element is not stable
+2026-11-20T11:56:41.021Z pw:api retrying click action
+2026-11-20T11:56:41.021Z pw:api   waiting 20ms
+2026-11-20T11:56:41.044Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:41.056Z pw:api   element is not stable
+2026-11-20T11:56:41.056Z pw:api retrying click action
+2026-11-20T11:56:41.056Z pw:api   waiting 100ms
+2026-11-20T11:56:41.158Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:41.162Z pw:api   element is visible, enabled and stable
+2026-11-20T11:56:41.162Z pw:api   scrolling into view if needed
+2026-11-20T11:56:41.164Z pw:api   done scrolling
+2026-11-20T11:56:41.167Z pw:api   <a aria-current="page" data-v2-destination="ARMY_BOOK" href="http://127.0.0.1:64767/head/v2/app.html?v2=HOME&section=army-books">Army Books</a> from <header class="v2-primary-header">…</header> subtree intercepts pointer events
+2026-11-20T11:56:41.167Z pw:api retrying click action
+2026-11-20T11:56:41.167Z pw:api   waiting 100ms
+2026-11-20T11:56:41.274Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:41.287Z pw:api   element is not stable
+2026-11-20T11:56:41.287Z pw:api retrying click action
+2026-11-20T11:56:41.287Z pw:api   waiting 500ms
+2026-11-20T11:56:41.387Z pw:api   "networkidle" event fired
+2026-11-20T11:56:41.794Z pw:api   waiting for element to be visible, enabled and stable
+2026-11-20T11:56:41.804Z pw:api   element is visible, enabled and stable
+2026-11-20T11:56:41.804Z pw:api   scrolling into view if needed
+2026-11-20T11:56:41.805Z pw:api   done scrolling
+2026-11-20T11:56:41.809Z pw:api   performing click action
+2026-11-20T11:56:41.821Z pw:api   navigated to "http://127.0.0.1:64767/head/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard"
+2026-11-20T11:56:41.825Z pw:api   navigated to "http://127.0.0.1:64767/head/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard#unit-plague-marines"
+2026-11-20T11:56:41.864Z pw:api   click action done
+2026-11-20T11:56:41.864Z pw:api   waiting for scheduled navigations to finish
+2026-11-20T11:56:41.870Z pw:api   navigations have finished
+2026-11-20T11:56:41.870Z pw:api <= locator.click succeeded
+CARD_CLICK_RETURN head 882.8518000000004
+2026-11-20T11:56:41.870Z pw:api => page.waitForFunction started
+2026-11-20T11:56:41.873Z pw:api <= page.waitForFunction succeeded
+2026-11-20T11:56:41.873Z pw:api => page.evaluate started
+2026-11-20T11:56:41.883Z pw:api <= page.evaluate succeeded
+2026-11-20T11:56:41.883Z pw:api => page.evaluate started
+2026-11-20T11:56:41.885Z pw:api <= page.evaluate succeeded
+{"version":"head","bookMs":1144.6040999999996,"clickMs":882.8518000000004,"elapsedMs":896.0266000000001,"events":{"event":2464.0999999996275,"dispatchEnd":2498.2000000001863,"mountedAtDispatchEnd":true,"frame1":2499.7000000001863,"frame2":2510.5},"dispatchMs":34.10000000055879,"eventToTwoFramesMs":46.40000000037253}
+2026-11-20T11:56:41.886Z pw:api => browserContext.close started
+2026-11-20T11:56:41.894Z pw:api <= browserContext.close succeeded
+2026-11-20T11:56:41.895Z pw:api => browser.close started
+2026-11-20T11:56:42.037Z pw:api <= browser.close succeeded

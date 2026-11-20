@@ -1,0 +1,2439 @@
+{
+  "mode": "pre-ff",
+  "root": "E:\\Warhammer\\worktrees\\polish-6-v1",
+  "elapsedMs": 8091971,
+  "results": [
+    {
+      "command": "git",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "id": "git diff --check",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 58,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\01-git_diff_--check.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/qa-temp-qa.mjs"
+      ],
+      "id": "tests/qa-temp-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6822,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\02-qa-temp-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-passport-qa.mjs"
+      ],
+      "id": "tests/book-passport-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1684,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\03-book-passport-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/keyword-access-qa.mjs"
+      ],
+      "id": "tests/keyword-access-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3405,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\04-keyword-access-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tools/markup-census.mjs",
+        "--check"
+      ],
+      "id": "tools/markup-census.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 12315,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\05-markup-census.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/markup-census-qa.mjs"
+      ],
+      "id": "tests/markup-census-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 15129,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\06-markup-census-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/markup-evidence-qa.mjs"
+      ],
+      "id": "tests/markup-evidence-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 146,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\07-markup-evidence-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/markup-owner-only-qa.mjs"
+      ],
+      "id": "tests/markup-owner-only-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 15689,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\08-markup-owner-only-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/application-v2/source-metadata-qa.mjs"
+      ],
+      "id": "books/shared/application-v2/source-metadata-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 159,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\09-source-metadata-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/model-base-caption-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/model-base-caption-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 68,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\10-model-base-caption-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/import-notices-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/import-notices-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1382,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\11-import-notices-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 75,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\12-rule-term-visibility-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/navigation-geometry-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 171,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\13-navigation-geometry-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/death-guard/v2/insectile-recipient-qa.mjs"
+      ],
+      "id": "books/death-guard/v2/insectile-recipient-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 677,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\14-insectile-recipient-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/executable-detachment-source-qa.mjs"
+      ],
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 4382,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\15-executable-detachment-source-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 178,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\16-plain-header-explanation-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/sweep-polish-qa.mjs"
+      ],
+      "id": "v2/sweep-polish-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 73,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\17-sweep-polish-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 69,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\18-rule-popup-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-section-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/rule-popup-section-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3829,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\19-rule-popup-section-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-links-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 143,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\20-rule-term-links-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/equipment-reference-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 70,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\21-equipment-reference-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/roster-navigation-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 831,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\22-roster-navigation-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/import-messages-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/import-messages-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 79,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\23-import-messages-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-updates-qa.mjs"
+      ],
+      "id": "tests/official-updates-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 92,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\24-official-updates-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-update-books-qa.mjs"
+      ],
+      "id": "tests/official-update-books-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 201,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\25-official-update-books-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-update-report-qa.mjs"
+      ],
+      "id": "tests/official-update-report-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 75,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\26-official-update-report-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-update-integration-qa.mjs"
+      ],
+      "id": "tests/official-update-integration-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 24825,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\27-official-update-integration-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-effect-review-qa.mjs"
+      ],
+      "id": "tests/official-effect-review-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 155,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\28-official-effect-review-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/current-gw-contract-qa.mjs"
+      ],
+      "id": "tests/current-gw-contract-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 85,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\29-current-gw-contract-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-importer-candidate-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 25949,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\30-core-importer-candidate-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-importer-isolation-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 62791,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\31-core-importer-isolation-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/adeptus-mechanicus/v2/app-qa.mjs"
+      ],
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 30995,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\32-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/adeptus-mechanicus/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 5616,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\33-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 876,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\34-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 11424,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\35-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 636,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\36-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=adeptus-mechanicus",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6730,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\37-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/blood-angels/v2/app-qa.mjs"
+      ],
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 53479,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\38-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/blood-angels/v2/roster-qa.mjs"
+      ],
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 192484,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\39-roster-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 27777,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\40-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 15268,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\41-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 5727,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\42-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=blood-angels",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 40342,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\43-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 511,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\44-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/chaos-space-marines/v2/app-qa.mjs"
+      ],
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2000,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\45-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/chaos-space-marines/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 18287,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\46-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2897,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\47-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 14414,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\48-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 4646,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\49-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=chaos-space-marines",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 15289,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\50-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/dark-angels/v2/app-qa.mjs"
+      ],
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 54969,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\51-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/dark-angels/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 330874,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\52-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 206646,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\53-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 37529,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\54-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 18766,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\55-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=dark-angels",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 40186,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\56-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 625,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\57-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/death-guard/v2/app-qa.mjs"
+      ],
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 12960,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\58-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/death-guard/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 263,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\59-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=death-guard"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 715,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\60-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=death-guard"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 10845,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\61-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=death-guard",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 5970,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\62-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=death-guard"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 335,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\63-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/emperors-children/v2/app-qa.mjs"
+      ],
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 7185,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\64-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/emperors-children/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 14789,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\65-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3090,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\66-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 12508,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\67-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1026,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\68-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 14211,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\69-reviewed-text-coverage-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=emperors-children",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 23035,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\70-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 393,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\71-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/space-marines/v2/app-qa.mjs"
+      ],
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 84096,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\72-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/space-marines/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 221001,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\73-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/space-marines/v2/roster-static-model-bindings-qa.mjs"
+      ],
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 18269,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\74-roster-static-model-bindings-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=space-marines"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 16579,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\75-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=space-marines"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 14131,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\76-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=space-marines"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6030,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\77-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=space-marines",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 45506,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\78-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=space-marines"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 598,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\79-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/wardens-source-binding-qa.mjs"
+      ],
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2829,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\80-wardens-source-binding-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tau-empire/v2/app-qa.mjs"
+      ],
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8510,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\81-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tau-empire/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 325457,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\82-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tau-empire/v2/physical-choice-qa.mjs"
+      ],
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 18318,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\83-physical-choice-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3424,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\84-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 12620,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\85-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1776,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\86-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tau-empire",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 25669,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\87-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 674,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\88-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tyranids/v2/app-qa.mjs"
+      ],
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8640,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\89-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tyranids/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9811,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\90-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1852,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\91-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 12477,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\92-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1238,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\93-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 15386,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\94-reviewed-text-coverage-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tyranids",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 27731,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\95-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 457,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\96-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/rule-contract-v2/recipients-qa.mjs"
+      ],
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6179,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\97-recipients-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/physical-selection-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 365,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\98-physical-selection-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/condition-execution-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 185,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\99-condition-execution-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/numeric-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 295,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\100-numeric-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/keyword-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 294,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\101-keyword-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/ability-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 207,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\102-ability-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/weapon-contribution-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 270,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\103-weapon-contribution-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/advance-roll-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 201,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\104-advance-roll-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/source-effect-regression-qa.mjs"
+      ],
+      "id": "v2/source-effect-regression-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 84931,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\105-source-effect-regression-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-source-binding-qa.mjs"
+      ],
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 39909,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\106-detachment-source-binding-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/reimport-attachments-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 13351,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\107-reimport-attachments-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/service-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 170,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\108-service-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/import-service-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 192,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\109-import-service-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/import-selections-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 217,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\110-import-selections-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/attachment-service-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 141,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\111-attachment-service-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/attachment-conditions-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 161,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\112-attachment-conditions-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/roster-execution-atomic-qa.mjs"
+      ],
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8027,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\113-roster-execution-atomic-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-recipient-qa.mjs"
+      ],
+      "id": "v2/detachment-recipient-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2801,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\114-detachment-recipient-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-recipient-qa.mjs"
+      ],
+      "id": "v2/card-recipient-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1270,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\115-card-recipient-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/attached-rule-text-qa.mjs"
+      ],
+      "id": "v2/attached-rule-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 18020,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\116-attached-rule-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-display-2-qa.mjs"
+      ],
+      "id": "v2/card-display-2-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3530,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\117-card-display-2-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/singleton-model-import-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 77,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\118-singleton-model-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/plain-header-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 95,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\119-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/epic-hero-enhancements-qa.mjs"
+      ],
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 10526,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\120-epic-hero-enhancements-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/initial-attachment-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 182,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\121-initial-attachment-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/faction-safe-import-qa.mjs"
+      ],
+      "id": "v2/faction-safe-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1634,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\122-faction-safe-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/card-text-formatting-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 87,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\123-card-text-formatting-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/library-currentness-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 288,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\124-library-currentness-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/text-roster-facts-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 66,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\125-text-roster-facts-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/source-completeness-check.mjs"
+      ],
+      "id": "v2/source-completeness-check.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3044,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\126-source-completeness-check.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/integration-qa.mjs"
+      ],
+      "id": "tests/integration-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6751,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\127-integration-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/cosmetics-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 735,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\128-cosmetics-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/codex-workflow-qa.mjs"
+      ],
+      "id": "tests/codex-workflow-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 170,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\129-codex-workflow-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-book-clone-qa.mjs",
+        "--root=E:\\Warhammer\\worktrees\\polish-6-v1"
+      ],
+      "id": "tests/source-book-clone-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2995,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\130-source-book-clone-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/source-refs-v2/source-catalog-qa.mjs"
+      ],
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1828,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\131-source-catalog-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/unit-recipient-scope-qa.mjs"
+      ],
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 5672,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\132-unit-recipient-scope-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-declarations-qa.mjs"
+      ],
+      "id": "tests/book-update-declarations-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 257,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\133-book-update-declarations-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-report-qa.mjs"
+      ],
+      "id": "tests/book-update-report-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 116,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\134-book-update-report-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-snapshots-qa.mjs"
+      ],
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 18326,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\135-book-update-snapshots-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-metadata-qa.mjs"
+      ],
+      "id": "tests/book-update-metadata-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 79,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\136-book-update-metadata-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-command-qa.mjs"
+      ],
+      "id": "tests/book-update-command-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 82458,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\137-book-update-command-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/mfm-release-history-qa.mjs"
+      ],
+      "id": "tests/mfm-release-history-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 294,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\138-mfm-release-history-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/mfm-update-qa.mjs"
+      ],
+      "id": "tests/mfm-update-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 51780,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\139-mfm-update-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-catalog-registry-qa.mjs"
+      ],
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 80992,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\140-source-catalog-registry-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-catalog-additions-qa.mjs"
+      ],
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 18936,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\141-source-catalog-additions-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/factual-ownership-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 887,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\142-factual-ownership-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-waha-certification-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 281,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\143-core-waha-certification-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "glossary/v2/tests/core-projection-qa.mjs"
+      ],
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 287542,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\144-core-projection-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/term-bindings-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1153,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\145-term-bindings-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/reader-see-also-regression-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2721,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\146-reader-see-also-regression-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-faq-anchor-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2631,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\147-core-faq-anchor-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/generated-rebuild-qa.mjs"
+      ],
+      "id": "tests/generated-rebuild-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 35528,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\148-generated-rebuild-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/csm-model-alias-bootstrap-qa.mjs"
+      ],
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3991,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\149-csm-model-alias-bootstrap-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-review-execution-book-qa.mjs"
+      ],
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 5844,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\150-source-review-execution-book-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/tools/check-generated-rebuild.mjs"
+      ],
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1206942,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\151-check-generated-rebuild.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tools/pages-runtime-package.mjs",
+        "--source",
+        "E:\\Warhammer\\worktrees\\polish-6-v1",
+        "--out",
+        "E:\\Warhammer\\qa-tmp\\polish-6\\wh-qa-pre-ff-work-iCnFAk\\work\\runtime"
+      ],
+      "id": "tools/pages-runtime-package.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6315,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\152-pages-runtime-package.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/shell-browser-qa.mjs"
+      ],
+      "id": "v2/shell-browser-qa.mjs",
+      "exitCode": 1,
+      "signal": null,
+      "status": "FAIL",
+      "elapsedMs": 16116,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\153-shell-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/core-reader-browser-qa.mjs"
+      ],
+      "id": "v2/core-reader-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 98713,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\154-core-reader-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/minimal-pwa-cache-qa.mjs"
+      ],
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 188,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\155-minimal-pwa-cache-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/pwa-transition-qa.mjs"
+      ],
+      "id": "v2/pwa-transition-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 103450,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\156-pwa-transition-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser/pwa-update-flow.mjs"
+      ],
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 81182,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\157-pwa-update-flow.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser/pwa-bootstrap-update.mjs"
+      ],
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 175586,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\158-pwa-bootstrap-update.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/startup-precache-qa.mjs"
+      ],
+      "id": "tests/startup-precache-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1406,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\159-startup-precache-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser/cold-offline.mjs"
+      ],
+      "id": "tests/browser/cold-offline.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 85459,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\160-cold-offline.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-recipient-browser-qa.mjs"
+      ],
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 147174,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\161-detachment-recipient-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-synthetic-table-browser-qa.mjs"
+      ],
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 91599,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\162-detachment-synthetic-table-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-recipient-browser-qa.mjs"
+      ],
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 127797,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\163-card-recipient-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/attached-rule-text-browser-qa.mjs"
+      ],
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 358764,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\164-attached-rule-text-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-display-browser-qa.mjs"
+      ],
+      "id": "v2/card-display-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 195324,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\165-card-display-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-display-2-browser-qa.mjs"
+      ],
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 105556,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\166-card-display-2-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/source-equipment-browser-qa.mjs"
+      ],
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 116119,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\167-source-equipment-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-browser-qa.mjs"
+      ],
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 18808,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\168-new-recruit-export-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-browser-qa.mjs"
+      ],
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 69784,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\169-new-recruit-plain-header-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-browser-qa.mjs"
+      ],
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 44630,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\170-new-recruit-model-names-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/reviewed-text-coverage-browser-qa.mjs"
+      ],
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 29987,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\171-reviewed-text-coverage-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-browser-qa.mjs"
+      ],
+      "id": "v2/related-panel-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 33507,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\172-related-panel-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-browser-qa.mjs"
+      ],
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 85289,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\173-detachment-card-text-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/wardens-source-binding-browser-qa.mjs"
+      ],
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 14557,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\174-wardens-source-binding-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/cards-cosmetics-browser-qa.mjs"
+      ],
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 62065,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\175-cards-cosmetics-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/epic-hero-enhancements-browser-qa.mjs"
+      ],
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 20932,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\176-epic-hero-enhancements-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/fabius-safe-import-browser-qa.mjs"
+      ],
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 49493,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\177-fabius-safe-import-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-texts-browser-qa.mjs"
+      ],
+      "id": "v2/card-texts-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 70923,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\178-card-texts-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-polish-2-browser-qa.mjs"
+      ],
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 72113,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\179-card-polish-2-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/sweep-polish-browser-qa.mjs"
+      ],
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 79703,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\180-sweep-polish-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-gained-rules-browser-qa.mjs"
+      ],
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 121585,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\181-card-gained-rules-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/rule-popups-browser-qa.mjs"
+      ],
+      "id": "v2/rule-popups-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 158108,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\182-rule-popups-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/polish-5-browser-qa.mjs"
+      ],
+      "id": "v2/polish-5-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 91773,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\183-polish-5-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/roster-navigation-browser-qa.mjs"
+      ],
+      "id": "v2/roster-navigation-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 283355,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\184-roster-navigation-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/import-messages-browser-qa.mjs"
+      ],
+      "id": "v2/import-messages-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 69344,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\185-import-messages-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/markup-insectile-browser-qa.mjs"
+      ],
+      "id": "v2/markup-insectile-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9907,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\186-markup-insectile-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/library-sources-browser-qa.mjs"
+      ],
+      "id": "v2/library-sources-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 25924,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\187-library-sources-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/import-notices-browser-qa.mjs"
+      ],
+      "id": "v2/import-notices-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 12021,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\188-import-notices-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/lazy-glossary-browser-qa.mjs"
+      ],
+      "id": "v2/lazy-glossary-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 126858,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\189-lazy-glossary-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json"
+      ],
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 201660,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\190-dg-am-recipient-enrollment-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json"
+      ],
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 240702,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\191-dg-am-recipient-enrollment-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-switch-browser-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 5222,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\192-core-switch-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tools/pages-runtime-package-qa.mjs",
+        "--source",
+        "E:\\Warhammer\\worktrees\\polish-6-v1",
+        "--published",
+        "E:\\Warhammer\\qa-tmp\\polish-6\\wh-qa-pre-ff-work-iCnFAk\\work\\runtime",
+        "--work",
+        "E:\\Warhammer\\qa-tmp\\polish-6\\wh-qa-pre-ff-work-iCnFAk\\work\\packaging"
+      ],
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 24900,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\193-pages-runtime-package-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-enrollment-qa.mjs"
+      ],
+      "id": "tests/source-enrollment-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 13909,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\194-source-enrollment-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/tools/source-freshness.mjs"
+      ],
+      "id": "books/shared/tools/source-freshness.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3835,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\195-source-freshness.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-ingestion-contract-qa.mjs"
+      ],
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 11644,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\196-source-ingestion-contract-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/keyword-attribution-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1940,
+      "log": "E:\\Warhammer\\qa-evidence\\polish-6-v1-2026-11-20\\pre-ff\\197-keyword-attribution-qa.mjs.log"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "baseJobs": 189,
+  "headJobs": 198,
+  "existingOrderPreserved": true,
+  "removed": [],
+  "added": [
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-metadata-build-qa.mjs"
+      ],
+      "id": "tests/source-metadata-build-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/application-v2/source-metadata-qa.mjs"
+      ],
+      "id": "books/shared/application-v2/source-metadata-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/model-base-caption-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/model-base-caption-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/import-notices-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/import-notices-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/navigation-geometry-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/library-sources-browser-qa.mjs"
+      ],
+      "id": "v2/library-sources-browser-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/import-notices-browser-qa.mjs"
+      ],
+      "id": "v2/import-notices-browser-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/lazy-glossary-browser-qa.mjs"
+      ],
+      "id": "v2/lazy-glossary-browser-qa.mjs"
+    }
+  ]
+}

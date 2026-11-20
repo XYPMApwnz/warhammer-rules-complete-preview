@@ -1,0 +1,269 @@
+{
+  "schema": "lazy-glossary-timing/v1",
+  "stage": "final",
+  "started": "2026-11-20T11:53:15.536Z",
+  "policy": {
+    "freshContext": true,
+    "width": 390,
+    "height": 844,
+    "serviceWorkers": "block",
+    "network": "unthrottled local static HTTP",
+    "cpu": "unthrottled",
+    "repetitions": 3,
+    "order": "forward; reverse; forward",
+    "parallelHeavyRuns": false,
+    "bookEndpoint": "book click → mounted unit-card + two animation frames (same rule-popups recipe)",
+    "cardEndpoint": "library datasheet click → selected card + two animation frames",
+    "threshold": "final book median <= beforeB median * 1.05; card median <= baseline50"
+  },
+  "roots": {
+    "beforeB": "E:/Warhammer/worktrees/card-gained-rules-v1",
+    "baseline50": "E:/Warhammer/qa-tmp/polish-6/runtime-50",
+    "head": "E:/Warhammer/worktrees/polish-6-v1"
+  },
+  "rows": [
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "beforeB",
+      "bookMs": 1616.3966,
+      "cardMs": 999.9664999999995,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "baseline50",
+      "bookMs": 1717.9552000000003,
+      "cardMs": 919.6889000000001,
+      "proseLinksOnBook": 464,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "head",
+      "bookMs": 1138.5383999999995,
+      "cardMs": 905.1146000000008,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "head",
+      "bookMs": 1173.3737,
+      "cardMs": 925.612000000001,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "baseline50",
+      "bookMs": 1745.4026999999987,
+      "cardMs": 902.2145,
+      "proseLinksOnBook": 464,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "beforeB",
+      "bookMs": 1601.7296999999999,
+      "cardMs": 930.1225000000013,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "beforeB",
+      "bookMs": 1704.053899999999,
+      "cardMs": 936.8895000000011,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "baseline50",
+      "bookMs": 1733.0665999999983,
+      "cardMs": 899.0024999999987,
+      "proseLinksOnBook": 464,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "head",
+      "bookMs": 1129.2566000000006,
+      "cardMs": 893.068900000002,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "beforeB",
+      "bookMs": 5138.6658000000025,
+      "cardMs": 961.4518000000025,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "baseline50",
+      "bookMs": 5761.176099999997,
+      "cardMs": 959.2019,
+      "proseLinksOnBook": 689,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "head",
+      "bookMs": 2160.5316999999995,
+      "cardMs": 930.7523000000001,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "head",
+      "bookMs": 2264.970500000003,
+      "cardMs": 937.8785999999964,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "baseline50",
+      "bookMs": 5878.967700000001,
+      "cardMs": 945.6667000000016,
+      "proseLinksOnBook": 689,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "beforeB",
+      "bookMs": 5309.691299999999,
+      "cardMs": 971.5915000000023,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "beforeB",
+      "bookMs": 5390.411599999992,
+      "cardMs": 968.1691000000137,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "baseline50",
+      "bookMs": 5870.748200000002,
+      "cardMs": 973.1352000000043,
+      "proseLinksOnBook": 689,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "head",
+      "bookMs": 2220.717499999999,
+      "cardMs": 898.1621000000014,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 3
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.58",
+  "runtimeHashes": {
+    "beforeB": {
+      "books/shared/army-book-app-v2/runtime.mjs": "470397895010047d047ade5cc8a2674c6018def2dc585d7008901861cd8b1412",
+      "books/shared/army-book-app-v2/navigation-v1.mjs": "b48ceb07f0bdbbd2ac0147989e41933ed721b0addbffd93429938098e4366826",
+      "books/shared/army-book-app-v2/navigation-v1-controller.mjs": "400b84410b3d3ccfe1cd351abdba4314deaf27d19f7ef393ede8680af1d95069",
+      "books/shared/application-v2/runtime.mjs": "4cd3a510ed6adef9d4163db9279fe3b3e3aa85d43f9fdbbdbcfb08d524a1a2f8",
+      "books/shared/application-v2/home.mjs": "33f2db5085333d9cd4babfebf7b0c9752cf532be5fedd29a849efc528b22d7a5"
+    },
+    "baseline50": {
+      "books/shared/army-book-app-v2/runtime.mjs": "d79caf8cf4c682d66de38274aa1f893e0fa52f8ea3d4d038166cba4c2c7f3fc4",
+      "books/shared/army-book-app-v2/rule-term-links.mjs": "93b53e945ce90046c59065b5339a0449407e65d6d651ebb602566583ebe5ed3c",
+      "books/shared/army-book-app-v2/navigation-v1.mjs": "63ba24f1a73492cb95e164d8b0d00f2195adfd4a2384996f1b86cf1a9a1cb3d3",
+      "books/shared/army-book-app-v2/navigation-v1-controller.mjs": "1d7f0d856e59ab527dafb799a77e8fbab552b37e987b6f4a34eb68545d2fdd0a",
+      "books/shared/application-v2/runtime.mjs": "4cd3a510ed6adef9d4163db9279fe3b3e3aa85d43f9fdbbdbcfb08d524a1a2f8",
+      "books/shared/application-v2/home.mjs": "33f2db5085333d9cd4babfebf7b0c9752cf532be5fedd29a849efc528b22d7a5"
+    },
+    "head": {
+      "books/shared/army-book-app-v2/runtime.mjs": "7f847d400b221ce8d0cfb3871aa8e4645d23f8e8db6e900a7b23949a9e4e18b0",
+      "books/shared/army-book-app-v2/rule-term-links.mjs": "bcde25db27db0e173cd4f8b5e5a2a9a3b95985eef8722cbd6a287943a487576b",
+      "books/shared/army-book-app-v2/navigation-v1.mjs": "b8c6c2b60452b23a46baaf64da910138ccb8b09bb95f8500640a95dc5bd6fab2",
+      "books/shared/army-book-app-v2/navigation-v1-controller.mjs": "22a8fe82821dda9d9bd1cb0e2637ce00c3d4af813c30872edce549fd2605a039",
+      "books/shared/application-v2/runtime.mjs": "6c2abf6f7042ac5a802a353057bdad0d0a87f203b012587d70f5efbbac54ffde",
+      "books/shared/application-v2/home.mjs": "ee4f99d7f1465293d865a1bebf80d9ec43383872ec2690137f0b893ad9a2c993"
+    }
+  },
+  "medians": {
+    "death-guard": {
+      "beforeB": {
+        "bookMs": 1616.3966,
+        "cardMs": 936.8895000000011,
+        "proseLinksOnBook": 0
+      },
+      "baseline50": {
+        "bookMs": 1733.0665999999983,
+        "cardMs": 902.2145,
+        "proseLinksOnBook": 464
+      },
+      "head": {
+        "bookMs": 1138.5383999999995,
+        "cardMs": 905.1146000000008,
+        "proseLinksOnBook": 0
+      }
+    },
+    "space-marines": {
+      "beforeB": {
+        "bookMs": 5309.691299999999,
+        "cardMs": 968.1691000000137,
+        "proseLinksOnBook": 0
+      },
+      "baseline50": {
+        "bookMs": 5870.748200000002,
+        "cardMs": 959.2019,
+        "proseLinksOnBook": 689
+      },
+      "head": {
+        "bookMs": 2220.717499999999,
+        "cardMs": 930.7523000000001,
+        "proseLinksOnBook": 0
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "lane": "death-guard",
+      "bookRatioToBeforeB": 0.7043682225018287,
+      "cardRatioToBaseline50": 1.0032144240643448,
+      "bookPass": true,
+      "cardPass": false
+    },
+    {
+      "lane": "space-marines",
+      "bookRatioToBeforeB": 0.41823853300096736,
+      "cardRatioToBaseline50": 0.9703403423200059,
+      "bookPass": true,
+      "cardPass": true
+    }
+  ],
+  "status": "FAIL_THRESHOLD",
+  "finished": "2026-11-20T11:54:38.830Z"
+}

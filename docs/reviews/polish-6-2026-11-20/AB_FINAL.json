@@ -1,0 +1,4454 @@
+{
+  "schema": "polish-six-exact-native-ab/v1",
+  "status": "PASS",
+  "started": "2026-11-20T17:19:12.478Z",
+  "lanes": {
+    "base": {
+      "root": "E:/Warhammer/worktrees/markup-gap-close-v1",
+      "elapsedMs": 43799,
+      "manifest": {
+        "schema": "core-refresh-native-capture/v1",
+        "root": "E:\\Warhammer\\worktrees\\markup-gap-close-v1",
+        "sha": "50c9a9c89d8e66e0466dbeeabc918ec1d465c87f",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "E:\\Warhammer\\qa-evidence\\card-polish-2-v1-2026-11-14\\RECIPES\\capture-native.mjs",
+          "--root=E:/Warhammer/worktrees/markup-gap-close-v1",
+          "--out=E:/Warhammer/qa-tmp/polish-6/ab-final-base"
+        ],
+        "fixtureFile": "E:/Warhammer/qa-evidence/i4-unified-roster-service-20261103/browser-fixtures.json",
+        "fixtureSha256": "0cdc522a45fd237b29a4bc72802017e12ec23d0f71e1367eb72a546e1de2c1d6",
+        "startedUtc": "2026-11-20T17:19:12.541Z",
+        "status": "PASS",
+        "scope": "Existing 199 native fixtures with full decoded public service import/snapshot/projection/effective/related/points observations. No semantic filtering.",
+        "books": [
+          {
+            "bookId": "adeptus-mechanicus",
+            "file": "adeptus-mechanicus.ndjson",
+            "bytes": 4783543,
+            "sha256": "8fc5e2549023ea68f095a0b9a83f4f1fb1060d31b2786add8288a8c12575bfe8",
+            "cases": 21,
+            "elapsedMs": 589
+          },
+          {
+            "bookId": "blood-angels",
+            "file": "blood-angels.ndjson",
+            "bytes": 394829,
+            "sha256": "70e7c737e31a86ef13350942c218e7774c7825485552ffdfe38441512fa44bc9",
+            "cases": 4,
+            "elapsedMs": 2494
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "file": "chaos-space-marines.ndjson",
+            "bytes": 20893204,
+            "sha256": "fb3e9601b23ecb7b74a8730037211ce724e1f8819eac9fecf1be9bfbe5a5e625",
+            "cases": 67,
+            "elapsedMs": 17823
+          },
+          {
+            "bookId": "dark-angels",
+            "file": "dark-angels.ndjson",
+            "bytes": 630817,
+            "sha256": "b9a7849c8ed02bd0b34a5c165d3a0583699e836cd0aea0b0b4df34ec7675dd22",
+            "cases": 5,
+            "elapsedMs": 11494
+          },
+          {
+            "bookId": "death-guard",
+            "file": "death-guard.ndjson",
+            "bytes": 8628074,
+            "sha256": "4d1b3d231298560ff5dba4bae9c1e6f4ca5d5dec496c634e0e377f5c81995a9c",
+            "cases": 11,
+            "elapsedMs": 764
+          },
+          {
+            "bookId": "emperors-children",
+            "file": "emperors-children.ndjson",
+            "bytes": 2973820,
+            "sha256": "f9deadbc79792d6b94bd3dc3d3eaa2a69f8a8c036352df544db199501d4e3c0a",
+            "cases": 14,
+            "elapsedMs": 1529
+          },
+          {
+            "bookId": "space-marines",
+            "file": "space-marines.ndjson",
+            "bytes": 1190997,
+            "sha256": "9efad112bc2740ed762900f898a2f22ec3195f1d426308fab9d76aed81514ff7",
+            "cases": 5,
+            "elapsedMs": 5311
+          },
+          {
+            "bookId": "tau-empire",
+            "file": "tau-empire.ndjson",
+            "bytes": 4026203,
+            "sha256": "33b0d4d457ff7e152b97e56d3f563bb0096d9f7e93d778eb28b9bd5bf3de07ee",
+            "cases": 54,
+            "elapsedMs": 1594
+          },
+          {
+            "bookId": "tyranids",
+            "file": "tyranids.ndjson",
+            "bytes": 4676364,
+            "sha256": "5748fcf97b1a5ac6bbc60ab7674af4868ee474486c672eea5475ec102123a415",
+            "cases": 18,
+            "elapsedMs": 2006
+          }
+        ],
+        "cases": [
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F1/Haloscreed Battle Clade",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 69
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F1/Lords of the Forge",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 40
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F2/AM-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 50
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "charge/am-gait",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "charge/am-gait/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/additional-weapon-and-optional-wargear",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 7
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/ambiguous-partial-unit",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 0
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/detailed-ranger-alpha-and-plasma-selection",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/duplicate-character-exact-enhancement-owner",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/duplicate-kastelan-different-sizes-and-loadouts",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 8
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/foreign-owner-weapon",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/missing-warlord-is-unknown",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 6
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/mixed-profile-unknown-member",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/multi-detachments-enhancement-owner-warlord",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 50
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/paired-profile-weapon-selection",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 7
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/servitor-detailed-current-source",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 8
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/unknown-enhancement",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/unknown-weapon-selection",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/unresolved-detachment",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F2/AM-1/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 45
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F2/AM-1/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 44
+          },
+          {
+            "bookId": "blood-angels",
+            "fixtureId": "native-export/newrecruit-v37.2-user-redemptor.txt",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 294
+          },
+          {
+            "bookId": "blood-angels",
+            "fixtureId": "i2c/blood-angels",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 730
+          },
+          {
+            "bookId": "blood-angels",
+            "fixtureId": "i2c/blood-angels/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 650
+          },
+          {
+            "bookId": "blood-angels",
+            "fixtureId": "i2c/blood-angels/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 550
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1-F2/csm-daemonkin",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 511
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1-F2/csm-symbiote",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 528
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1/table/Creations of Bile",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 980
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1/table/Huron's Marauders",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 720
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-dark-commune:section:1:block:0:text::model-invulnerable",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 431
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-fabius-bile:section:1:block:0:text::bodyguard-melee-strength",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "initial-history",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 529
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-fabius-bile:section:1:block:0:text::bodyguard-toughness",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "initial-history",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 532
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-helbrute:section:1:block:1:text::equipped-melee-attacks",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 141
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:1::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 156
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:1::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 159
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:2::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:2::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 157
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:3::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 157
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:3::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:4::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:4::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 156
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:1::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:1::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:2::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 157
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:2::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 155
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:3::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:3::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 157
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:4::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 156
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:4::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 153
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-master-of-possession:section:1:block:0:text::charge-roll-clause",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 398
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-traitor-enforcer:section:1:block:1:text::character-feel-no-pain",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 374
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cabal-of-chaos:enhancement:1::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cabal-of-chaos:enhancement:1::roster-clause-2",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cabal-of-chaos:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 142
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-chaos-cult:enhancement:4::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 402
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-chaos-cult:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 146
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-creations-of-bile:enhancement:1::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 612
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 611
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-creations-of-bile:enhancement:4::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:2::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:3::battle-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:4::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 394
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:4::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 402
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:4::roster-clause-3",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 392
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 144
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:rule::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 145
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:rule::roster-clause-3",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 142
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-deceptors:enhancement:1::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-deceptors:enhancement:3::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-devotees-of-destruction:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 141
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-dread-talons:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 375
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-fellhammer-siege-host:enhancement:2::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-huron-s-marauders:enhancement:4::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-murdertalon-raiders:enhancement:1::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 355
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-murdertalon-raiders:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 351
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-murdertalon-raiders:enhancement:2::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 355
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-nightmare-hunt:enhancement:1::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 394
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-nightmare-hunt:enhancement:4::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 386
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-pactbound-zealots:enhancement:2::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 12
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-pactbound-zealots:enhancement:4::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 12
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-pactbound-zealots:rule::source-clause-1-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 520
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-raiders:enhancement:3::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-raiders:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 407
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-warband:enhancement:2::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-warband:enhancement:4::charge-roll-clause",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-warband:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 420
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-warband:rule::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 421
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-soulforged-warpack:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 388
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-warpstrike-champions:enhancement:4::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 401
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1-F2/csm-daemonkin/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 463
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1-F2/csm-daemonkin/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 461
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "native-export/newrecruit-v37.3-user-da-10-models.txt",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 1495
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "native-export/newrecruit-v37.3-user-da.txt",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 1634
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "i2c/dark-angels",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 3777
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "i2c/dark-angels/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 2108
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "i2c/dark-angels/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 2107
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F1-F2/omega",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 527
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F1/Flyblown Host",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 7
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F1/Virulent Vectorium",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 6
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F2/DG-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 19
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F2/deathshroud",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "charge/dg-bearers",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "charge/dg-bearers/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "charge/dg-drones",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "charge/dg-drones/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F2/deathshroud/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 16
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F2/deathshroud/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "charge/ec-daemonettes",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 183
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "charge/ec-daemonettes/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 91
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "charge/ec-seekers",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 110
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "charge/ec-seekers/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 107
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/aggregate-equipment-unresolved",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 62
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/bsdata-model-variants",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 83
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/character-bodyguard",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 115
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/legions-physical-equipment",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 126
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/native-fnp-physical-instances",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 130
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/possessed-blade-missing-decision",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 54
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/unit-upgrades",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 92
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "source-choice/equipped-blade",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 62
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/character-bodyguard/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 120
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/character-bodyguard/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 96
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "native-export/newrecruit-v37.3-user-sm.txt",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 267
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "i2c/single-source",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/2",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 701
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "i2c/two-formations",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/2",
+              "attach-explicit/1",
+              "attach-explicit/5",
+              "attach-explicit/4",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 1125
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "i2c/single-source/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/2",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 662
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "i2c/single-source/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/2",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 664
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "F1/broad-fixture",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 101
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-ax-1-0-tiger-shark",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-breacher-team",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-broadside-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-cadre-fireblade",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-commander-farsight",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-commander-in-coldstar-battlesuit",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-commander-in-enforcer-battlesuit",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-commander-shadowsun",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-crisis-fireknife-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-crisis-starscythe-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-crisis-sunforge-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-darkstrider",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-devilfish",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-ethereal",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-firesight-team",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-ghostkeel-battlesuit",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-hammerhead-gunship",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-carnivores",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-farstalkers",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-flesh-shaper",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-hounds",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-lone-spear",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-trail-shaper",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-war-shaper",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-krootox-rampagers",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-krootox-riders",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-manta",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-pathfinder-team",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-piranhas",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-razorshark-strike-fighter",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-riptide-battlesuit",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-sky-ray-gunship",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-stealth-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-stormsurge",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-strike-team",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-sun-shark-bomber",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-taunar-supremacy-armour",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-the-twin-lance",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-tidewall-droneport",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-tidewall-gunrig",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-tidewall-shieldline",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-tiger-shark",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-vespid-stingwings",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "source-choice/student",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "source-choice/parsed-unit-2",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 83
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "source-equipment/marker",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 27
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "shield/split-row-inherited-loadout",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 46
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "shield/homogeneous",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 25
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "student-shared-recipient-clear-one",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "source-choice/parsed-unit-2",
+              "source-choice/parsed-unit-1",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 92
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "prototype-selected/0",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 46
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "prototype-selected/1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 50
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "prototype-selected/2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 45
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "shield/split-row-inherited-loadout/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 43
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "shield/split-row-inherited-loadout/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 45
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "F1/broad-fixture",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 112
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/A",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 130
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/B",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 99
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/C",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 132
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/D",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 84
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/E",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 107
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/F",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 81
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/G",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 98
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/H",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 73
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/chameleonic",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 123
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/elevated",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 113
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/guardian",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 126
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/leaderBeasts",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 132
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/mindhunger",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 84
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/power",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 117
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "source-choice/trygon",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 82
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "source-choice/trygon/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 86
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "source-choice/trygon/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 101
+          }
+        ],
+        "counts": {
+          "cases": 199,
+          "ready": 177,
+          "needsBindings": 22,
+          "other": 0,
+          "frames": 507
+        },
+        "finishedUtc": "2026-11-20T17:19:56.205Z"
+      }
+    },
+    "head": {
+      "root": "E:/Warhammer/worktrees/polish-6-v1",
+      "elapsedMs": 42887,
+      "manifest": {
+        "schema": "core-refresh-native-capture/v1",
+        "root": "E:\\Warhammer\\worktrees\\polish-6-v1",
+        "sha": "9876164de85f1e35aa2cf070a3eb9de662093980",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "E:\\Warhammer\\qa-evidence\\card-polish-2-v1-2026-11-14\\RECIPES\\capture-native.mjs",
+          "--root=E:/Warhammer/worktrees/polish-6-v1",
+          "--out=E:/Warhammer/qa-tmp/polish-6/ab-final-head"
+        ],
+        "fixtureFile": "E:/Warhammer/qa-evidence/i4-unified-roster-service-20261103/browser-fixtures.json",
+        "fixtureSha256": "0cdc522a45fd237b29a4bc72802017e12ec23d0f71e1367eb72a546e1de2c1d6",
+        "startedUtc": "2026-11-20T17:19:56.340Z",
+        "status": "PASS",
+        "scope": "Existing 199 native fixtures with full decoded public service import/snapshot/projection/effective/related/points observations. No semantic filtering.",
+        "books": [
+          {
+            "bookId": "adeptus-mechanicus",
+            "file": "adeptus-mechanicus.ndjson",
+            "bytes": 4783543,
+            "sha256": "8fc5e2549023ea68f095a0b9a83f4f1fb1060d31b2786add8288a8c12575bfe8",
+            "cases": 21,
+            "elapsedMs": 541
+          },
+          {
+            "bookId": "blood-angels",
+            "file": "blood-angels.ndjson",
+            "bytes": 394829,
+            "sha256": "70e7c737e31a86ef13350942c218e7774c7825485552ffdfe38441512fa44bc9",
+            "cases": 4,
+            "elapsedMs": 2481
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "file": "chaos-space-marines.ndjson",
+            "bytes": 20893204,
+            "sha256": "fb3e9601b23ecb7b74a8730037211ce724e1f8819eac9fecf1be9bfbe5a5e625",
+            "cases": 67,
+            "elapsedMs": 17643
+          },
+          {
+            "bookId": "dark-angels",
+            "file": "dark-angels.ndjson",
+            "bytes": 630817,
+            "sha256": "b9a7849c8ed02bd0b34a5c165d3a0583699e836cd0aea0b0b4df34ec7675dd22",
+            "cases": 5,
+            "elapsedMs": 11115
+          },
+          {
+            "bookId": "death-guard",
+            "file": "death-guard.ndjson",
+            "bytes": 8628074,
+            "sha256": "4d1b3d231298560ff5dba4bae9c1e6f4ca5d5dec496c634e0e377f5c81995a9c",
+            "cases": 11,
+            "elapsedMs": 740
+          },
+          {
+            "bookId": "emperors-children",
+            "file": "emperors-children.ndjson",
+            "bytes": 2973820,
+            "sha256": "f9deadbc79792d6b94bd3dc3d3eaa2a69f8a8c036352df544db199501d4e3c0a",
+            "cases": 14,
+            "elapsedMs": 1531
+          },
+          {
+            "bookId": "space-marines",
+            "file": "space-marines.ndjson",
+            "bytes": 1190997,
+            "sha256": "9efad112bc2740ed762900f898a2f22ec3195f1d426308fab9d76aed81514ff7",
+            "cases": 5,
+            "elapsedMs": 5113
+          },
+          {
+            "bookId": "tau-empire",
+            "file": "tau-empire.ndjson",
+            "bytes": 4026203,
+            "sha256": "33b0d4d457ff7e152b97e56d3f563bb0096d9f7e93d778eb28b9bd5bf3de07ee",
+            "cases": 54,
+            "elapsedMs": 1573
+          },
+          {
+            "bookId": "tyranids",
+            "file": "tyranids.ndjson",
+            "bytes": 4676364,
+            "sha256": "5748fcf97b1a5ac6bbc60ab7674af4868ee474486c672eea5475ec102123a415",
+            "cases": 18,
+            "elapsedMs": 1979
+          }
+        ],
+        "cases": [
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F1/Haloscreed Battle Clade",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 70
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F1/Lords of the Forge",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 40
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F2/AM-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 51
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "charge/am-gait",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "charge/am-gait/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/additional-weapon-and-optional-wargear",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 7
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/ambiguous-partial-unit",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 0
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/detailed-ranger-alpha-and-plasma-selection",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/duplicate-character-exact-enhancement-owner",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/duplicate-kastelan-different-sizes-and-loadouts",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 8
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/foreign-owner-weapon",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/missing-warlord-is-unknown",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 6
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/mixed-profile-unknown-member",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/multi-detachments-enhancement-owner-warlord",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 48
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/paired-profile-weapon-selection",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 7
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/servitor-detailed-current-source",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 8
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/unknown-enhancement",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/unknown-weapon-selection",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "native-json/unresolved-detachment",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 1
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F2/AM-1/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 45
+          },
+          {
+            "bookId": "adeptus-mechanicus",
+            "fixtureId": "F2/AM-1/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 46
+          },
+          {
+            "bookId": "blood-angels",
+            "fixtureId": "native-export/newrecruit-v37.2-user-redemptor.txt",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 310
+          },
+          {
+            "bookId": "blood-angels",
+            "fixtureId": "i2c/blood-angels",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 748
+          },
+          {
+            "bookId": "blood-angels",
+            "fixtureId": "i2c/blood-angels/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 650
+          },
+          {
+            "bookId": "blood-angels",
+            "fixtureId": "i2c/blood-angels/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 561
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1-F2/csm-daemonkin",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 516
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1-F2/csm-symbiote",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 549
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1/table/Creations of Bile",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 977
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1/table/Huron's Marauders",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 727
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-dark-commune:section:1:block:0:text::model-invulnerable",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 432
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-fabius-bile:section:1:block:0:text::bodyguard-melee-strength",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "initial-history",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 537
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-fabius-bile:section:1:block:0:text::bodyguard-toughness",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "initial-history",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 532
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-helbrute:section:1:block:1:text::equipped-melee-attacks",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 142
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:1::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 163
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:1::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 159
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:2::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 155
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:2::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 156
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:3::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 155
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:3::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:4::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 157
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:4::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 155
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:1::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 155
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:1::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 153
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:2::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:2::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 151
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:3::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 153
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:3::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:4::selected-characteristic-modifier",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 152
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-heretic-astartes-daemon-prince:section:3:option:4::selected-model-keyword",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 154
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-master-of-possession:section:1:block:0:text::charge-roll-clause",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 390
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "datasheet-traitor-enforcer:section:1:block:1:text::character-feel-no-pain",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 373
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cabal-of-chaos:enhancement:1::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cabal-of-chaos:enhancement:1::roster-clause-2",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cabal-of-chaos:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 137
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-chaos-cult:enhancement:4::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 393
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-chaos-cult:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 142
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-creations-of-bile:enhancement:1::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 605
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 609
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-creations-of-bile:enhancement:4::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:2::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:3::battle-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:4::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 392
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:4::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 400
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:enhancement:4::roster-clause-3",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 387
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 141
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:rule::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 140
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-cult-of-the-arkifane:rule::roster-clause-3",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 138
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-deceptors:enhancement:1::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-deceptors:enhancement:3::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-devotees-of-destruction:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 139
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-dread-talons:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 370
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-fellhammer-siege-host:enhancement:2::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-huron-s-marauders:enhancement:4::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-murdertalon-raiders:enhancement:1::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 338
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-murdertalon-raiders:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 340
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-murdertalon-raiders:enhancement:2::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 349
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-nightmare-hunt:enhancement:1::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 381
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-nightmare-hunt:enhancement:4::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 383
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-pactbound-zealots:enhancement:2::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 12
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-pactbound-zealots:enhancement:4::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-pactbound-zealots:rule::source-clause-1-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 510
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-raiders:enhancement:3::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 11
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-raiders:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 395
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-warband:enhancement:2::roster-clause-1",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-warband:enhancement:4::charge-roll-clause",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 10
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-warband:rule::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 407
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-renegade-warband:rule::roster-clause-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 408
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-soulforged-warpack:enhancement:2::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 375
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "detachment-warpstrike-champions:enhancement:4::roster-clause-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 389
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1-F2/csm-daemonkin/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 453
+          },
+          {
+            "bookId": "chaos-space-marines",
+            "fixtureId": "F1-F2/csm-daemonkin/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 453
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "native-export/newrecruit-v37.3-user-da-10-models.txt",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 1476
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "native-export/newrecruit-v37.3-user-da.txt",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 1647
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "i2c/dark-angels",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 3524
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "i2c/dark-angels/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 2105
+          },
+          {
+            "bookId": "dark-angels",
+            "fixtureId": "i2c/dark-angels/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 2068
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F1-F2/omega",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 525
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F1/Flyblown Host",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 8
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F1/Virulent Vectorium",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 7
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F2/DG-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 17
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F2/deathshroud",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "charge/dg-bearers",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "charge/dg-bearers/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "charge/dg-drones",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "charge/dg-drones/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F2/deathshroud/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 17
+          },
+          {
+            "bookId": "death-guard",
+            "fixtureId": "F2/deathshroud/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "charge/ec-daemonettes",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 162
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "charge/ec-daemonettes/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 98
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "charge/ec-seekers",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 111
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "charge/ec-seekers/disabled",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 106
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/aggregate-equipment-unresolved",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 79
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/bsdata-model-variants",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 90
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/character-bodyguard",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 103
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/legions-physical-equipment",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 139
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/native-fnp-physical-instances",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 118
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/possessed-blade-missing-decision",
+            "importStatus": "NEEDS_BINDINGS",
+            "frames": [],
+            "elapsedMs": 57
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/unit-upgrades",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 88
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "source-choice/equipped-blade",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 84
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/character-bodyguard/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 108
+          },
+          {
+            "bookId": "emperors-children",
+            "fixtureId": "native-json/character-bodyguard/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 109
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "native-export/newrecruit-v37.3-user-sm.txt",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 261
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "i2c/single-source",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/2",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 692
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "i2c/two-formations",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/2",
+              "attach-explicit/1",
+              "attach-explicit/5",
+              "attach-explicit/4",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 1138
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "i2c/single-source/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/2",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 702
+          },
+          {
+            "bookId": "space-marines",
+            "fixtureId": "i2c/single-source/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "attach-explicit/2",
+              "attach-explicit/1",
+              "reload",
+              "detach-existing"
+            ],
+            "elapsedMs": 655
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "F1/broad-fixture",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 103
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-ax-1-0-tiger-shark",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-breacher-team",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-broadside-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-cadre-fireblade",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-commander-farsight",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-commander-in-coldstar-battlesuit",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-commander-in-enforcer-battlesuit",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-commander-shadowsun",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-crisis-fireknife-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-crisis-starscythe-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-crisis-sunforge-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-darkstrider",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-devilfish",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-ethereal",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-firesight-team",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-ghostkeel-battlesuit",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-hammerhead-gunship",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-carnivores",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-farstalkers",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-flesh-shaper",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-hounds",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-lone-spear",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-trail-shaper",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-kroot-war-shaper",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-krootox-rampagers",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-krootox-riders",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-manta",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-pathfinder-team",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-piranhas",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-razorshark-strike-fighter",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-riptide-battlesuit",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-sky-ray-gunship",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-stealth-battlesuits",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-stormsurge",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-strike-team",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-sun-shark-bomber",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-taunar-supremacy-armour",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-the-twin-lance",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-tidewall-droneport",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 13
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-tidewall-gunrig",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-tidewall-shieldline",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-tiger-shark",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 15
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "native-unit/unit-vespid-stingwings",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 14
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "source-choice/student",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "source-choice/parsed-unit-2",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 82
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "source-equipment/marker",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 26
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "shield/split-row-inherited-loadout",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 47
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "shield/homogeneous",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 26
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "student-shared-recipient-clear-one",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "source-choice/parsed-unit-2",
+              "source-choice/parsed-unit-1",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 94
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "prototype-selected/0",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 48
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "prototype-selected/1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 52
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "prototype-selected/2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 46
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "shield/split-row-inherited-loadout/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 44
+          },
+          {
+            "bookId": "tau-empire",
+            "fixtureId": "shield/split-row-inherited-loadout/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 45
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "F1/broad-fixture",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 108
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/A",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 131
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/B",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 100
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/C",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 132
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/D",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 85
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/E",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 107
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/F",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 84
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/G",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 96
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "native-ui/H",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 70
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/chameleonic",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 125
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/elevated",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 113
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/guardian",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 129
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/leaderBeasts",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 130
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/mindhunger",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload"
+            ],
+            "elapsedMs": 82
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "seven-effects/power",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "reload",
+              "attach",
+              "detach"
+            ],
+            "elapsedMs": 116
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "source-choice/trygon",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 83
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "source-choice/trygon/I4-timing-repeat-1",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 86
+          },
+          {
+            "bookId": "tyranids",
+            "fixtureId": "source-choice/trygon/I4-timing-repeat-2",
+            "importStatus": "READY",
+            "frames": [
+              "import",
+              "source-choice/parsed-unit-1",
+              "reload"
+            ],
+            "elapsedMs": 100
+          }
+        ],
+        "counts": {
+          "cases": 199,
+          "ready": 177,
+          "needsBindings": 22,
+          "other": 0,
+          "frames": 507
+        },
+        "finishedUtc": "2026-11-20T17:20:39.103Z"
+      }
+    }
+  },
+  "books": [
+    {
+      "book": "adeptus-mechanicus",
+      "rosters": 21,
+      "states": 42,
+      "bytes": 4783543,
+      "sha256": "8fc5e2549023ea68f095a0b9a83f4f1fb1060d31b2786add8288a8c12575bfe8",
+      "identical": true,
+      "differences": 0
+    },
+    {
+      "book": "blood-angels",
+      "rosters": 4,
+      "states": 14,
+      "bytes": 394829,
+      "sha256": "70e7c737e31a86ef13350942c218e7774c7825485552ffdfe38441512fa44bc9",
+      "identical": true,
+      "differences": 0
+    },
+    {
+      "book": "chaos-space-marines",
+      "rosters": 67,
+      "states": 164,
+      "bytes": 20893204,
+      "sha256": "fb3e9601b23ecb7b74a8730037211ce724e1f8819eac9fecf1be9bfbe5a5e625",
+      "identical": true,
+      "differences": 0
+    },
+    {
+      "book": "dark-angels",
+      "rosters": 5,
+      "states": 16,
+      "bytes": 630817,
+      "sha256": "b9a7849c8ed02bd0b34a5c165d3a0583699e836cd0aea0b0b4df34ec7675dd22",
+      "identical": true,
+      "differences": 0
+    },
+    {
+      "book": "death-guard",
+      "rosters": 11,
+      "states": 32,
+      "bytes": 8628074,
+      "sha256": "4d1b3d231298560ff5dba4bae9c1e6f4ca5d5dec496c634e0e377f5c81995a9c",
+      "identical": true,
+      "differences": 0
+    },
+    {
+      "book": "emperors-children",
+      "rosters": 14,
+      "states": 34,
+      "bytes": 2973820,
+      "sha256": "f9deadbc79792d6b94bd3dc3d3eaa2a69f8a8c036352df544db199501d4e3c0a",
+      "identical": true,
+      "differences": 0
+    },
+    {
+      "book": "space-marines",
+      "rosters": 5,
+      "states": 24,
+      "bytes": 1190997,
+      "sha256": "9efad112bc2740ed762900f898a2f22ec3195f1d426308fab9d76aed81514ff7",
+      "identical": true,
+      "differences": 0
+    },
+    {
+      "book": "tau-empire",
+      "rosters": 54,
+      "states": 122,
+      "bytes": 4026203,
+      "sha256": "33b0d4d457ff7e152b97e56d3f563bb0096d9f7e93d778eb28b9bd5bf3de07ee",
+      "identical": true,
+      "differences": 0
+    },
+    {
+      "book": "tyranids",
+      "rosters": 18,
+      "states": 59,
+      "bytes": 4676364,
+      "sha256": "5748fcf97b1a5ac6bbc60ab7674af4868ee474486c672eea5475ec102123a415",
+      "identical": true,
+      "differences": 0
+    }
+  ],
+  "finished": "2026-11-20T17:20:39.230Z",
+  "differences": 0
+}

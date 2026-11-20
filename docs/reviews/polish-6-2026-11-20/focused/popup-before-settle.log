@@ -1,0 +1,14 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: Error: First-show rule links did not finish
+    at ready (eval at evaluate (:311:30), <anonymous>:10:74)
+    at showBookCards (E:\Warhammer\worktrees\polish-6-v1\v2\rule-popups-browser-qa.mjs:39:29)
+    at E:\Warhammer\worktrees\polish-6-v1\v2\rule-popups-browser-qa.mjs:195:14
+    at async check (E:\Warhammer\worktrees\polish-6-v1\v2\rule-popups-browser-qa.mjs:32:48)
+    at async file:///E:/Warhammer/worktrees/polish-6-v1/v2/rule-popups-browser-qa.mjs:190:19 {
+  log: []
+}
+
+Node.js v24.18.0

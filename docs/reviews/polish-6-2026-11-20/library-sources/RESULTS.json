@@ -1,0 +1,2322 @@
+{
+  "status": "PASS",
+  "root": "E:\\Warhammer\\worktrees\\polish-6-v1",
+  "widths": [
+    390,
+    1440
+  ],
+  "sourceOwners": {
+    "coreCaptureDate": "2026-11-11",
+    "coreCorpusFingerprint": "2E39280BEB3D0C92F87F4F3DB231CA3BC40192C12575AF998E5D2A2DB684C14A"
+  },
+  "inventory": [
+    {
+      "bookId": "space-marines",
+      "title": "Space Marines",
+      "mfmPointer": "mfm/current.json",
+      "baseCards": 0,
+      "rows": []
+    },
+    {
+      "bookId": "blood-angels",
+      "title": "Blood Angels",
+      "mfmPointer": "mfm/current.json",
+      "baseCards": 0,
+      "rows": []
+    },
+    {
+      "bookId": "dark-angels",
+      "title": "Dark Angels",
+      "mfmPointer": "mfm/current.json",
+      "baseCards": 0,
+      "rows": []
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "title": "Adeptus Mechanicus",
+      "mfmPointer": "mfm/current.json",
+      "baseCards": 35,
+      "rows": [
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-archaeopter-fusilave:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-archaeopter-fusilave",
+          "unitTitle": "Archaeopter Fusilave",
+          "presentationCardId": "datasheet-archaeopter-fusilave:profile:default:base",
+          "fieldId": "datasheet-archaeopter-fusilave:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀170 x 109mm)",
+          "displayed": "(⌀170 x 109mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-archaeopter-stratoraptor:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-archaeopter-stratoraptor",
+          "unitTitle": "Archaeopter Stratoraptor",
+          "presentationCardId": "datasheet-archaeopter-stratoraptor:profile:default:base",
+          "fieldId": "datasheet-archaeopter-stratoraptor:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀170 x 109mm)",
+          "displayed": "(⌀170 x 109mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-archaeopter-transvector:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-archaeopter-transvector",
+          "unitTitle": "Archaeopter Transvector",
+          "presentationCardId": "datasheet-archaeopter-transvector:profile:default:base",
+          "fieldId": "datasheet-archaeopter-transvector:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀170 x 109mm)",
+          "displayed": "(⌀170 x 109mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-belisarius-cawl:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-belisarius-cawl",
+          "unitTitle": "Belisarius Cawl",
+          "presentationCardId": "datasheet-belisarius-cawl:profile:default:base",
+          "fieldId": "datasheet-belisarius-cawl:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀105 x 70mm)",
+          "displayed": "(⌀105 x 70mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-corpuscarii-electro-priests:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-corpuscarii-electro-priests",
+          "unitTitle": "Corpuscarii Electro-priests",
+          "presentationCardId": "datasheet-corpuscarii-electro-priests:profile:default:base",
+          "fieldId": "datasheet-corpuscarii-electro-priests:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-cybernetica-datasmith:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-cybernetica-datasmith",
+          "unitTitle": "Cybernetica Datasmith",
+          "presentationCardId": "datasheet-cybernetica-datasmith:profile:default:base",
+          "fieldId": "datasheet-cybernetica-datasmith:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-fulgurite-electro-priests:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-fulgurite-electro-priests",
+          "unitTitle": "Fulgurite Electro-priests",
+          "presentationCardId": "datasheet-fulgurite-electro-priests:profile:default:base",
+          "fieldId": "datasheet-fulgurite-electro-priests:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-hastarii-exterminators:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-hastarii-exterminators",
+          "unitTitle": "Hastarii Exterminators",
+          "presentationCardId": "datasheet-hastarii-exterminators:profile:default:base",
+          "fieldId": "datasheet-hastarii-exterminators:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-hastarii-fusiliers:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-hastarii-fusiliers",
+          "unitTitle": "Hastarii Fusiliers",
+          "presentationCardId": "datasheet-hastarii-fusiliers:profile:default:base",
+          "fieldId": "datasheet-hastarii-fusiliers:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-ironstrider-ballistarii:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-ironstrider-ballistarii",
+          "unitTitle": "Ironstrider Ballistarii",
+          "presentationCardId": "datasheet-ironstrider-ballistarii:profile:default:base",
+          "fieldId": "datasheet-ironstrider-ballistarii:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀105 x 70mm)",
+          "displayed": "(⌀105 x 70mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-kastelan-robots:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-kastelan-robots",
+          "unitTitle": "Kastelan Robots",
+          "presentationCardId": "datasheet-kastelan-robots:profile:default:base",
+          "fieldId": "datasheet-kastelan-robots:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-kataphron-breachers:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-kataphron-breachers",
+          "unitTitle": "Kataphron Breachers",
+          "presentationCardId": "datasheet-kataphron-breachers:profile:default:base",
+          "fieldId": "datasheet-kataphron-breachers:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-kataphron-destroyers:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-kataphron-destroyers",
+          "unitTitle": "Kataphron Destroyers",
+          "presentationCardId": "datasheet-kataphron-destroyers:profile:default:base",
+          "fieldId": "datasheet-kataphron-destroyers:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-onager-dunecrawler:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-onager-dunecrawler",
+          "unitTitle": "Onager Dunecrawler",
+          "presentationCardId": "datasheet-onager-dunecrawler:profile:default:base",
+          "fieldId": "datasheet-onager-dunecrawler:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀130mm)",
+          "displayed": "(⌀130mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-pteraxii-skystalkers:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-pteraxii-skystalkers",
+          "unitTitle": "Pteraxii Skystalkers",
+          "presentationCardId": "datasheet-pteraxii-skystalkers:profile:default:base",
+          "fieldId": "datasheet-pteraxii-skystalkers:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-pteraxii-sterylizors:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-pteraxii-sterylizors",
+          "unitTitle": "Pteraxii Sterylizors",
+          "presentationCardId": "datasheet-pteraxii-sterylizors:profile:default:base",
+          "fieldId": "datasheet-pteraxii-sterylizors:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-serberys-raiders:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-serberys-raiders",
+          "unitTitle": "Serberys Raiders",
+          "presentationCardId": "datasheet-serberys-raiders:profile:default:base",
+          "fieldId": "datasheet-serberys-raiders:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60 x 35.5mm)",
+          "displayed": "(⌀60 x 35.5mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-serberys-sulphurhounds:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-serberys-sulphurhounds",
+          "unitTitle": "Serberys Sulphurhounds",
+          "presentationCardId": "datasheet-serberys-sulphurhounds:profile:default:base",
+          "fieldId": "datasheet-serberys-sulphurhounds:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60 x 35.5mm)",
+          "displayed": "(⌀60 x 35.5mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-servitor-battleclade:profile:servitor-underseer:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-servitor-battleclade",
+          "unitTitle": "Servitor Battleclade",
+          "presentationCardId": "datasheet-servitor-battleclade:profile:servitor-underseer:base",
+          "fieldId": "datasheet-servitor-battleclade:profile:servitor-underseer:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-servitor-battleclade",
+          "unitTitle": "Servitor Battleclade",
+          "presentationCardId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors:base",
+          "fieldId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀25mm)",
+          "displayed": "(⌀25mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-servitor-battleclade",
+          "unitTitle": "Servitor Battleclade",
+          "presentationCardId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors:base",
+          "fieldId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors:base::/notes/0",
+          "sourcePath": "/notes/0",
+          "value": "Gun servitors 32mm",
+          "displayed": "Gun servitors 32mm"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-sicarian-infiltrators:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-sicarian-infiltrators",
+          "unitTitle": "Sicarian Infiltrators",
+          "presentationCardId": "datasheet-sicarian-infiltrators:profile:default:base",
+          "fieldId": "datasheet-sicarian-infiltrators:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-sicarian-ruststalkers:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-sicarian-ruststalkers",
+          "unitTitle": "Sicarian Ruststalkers",
+          "presentationCardId": "datasheet-sicarian-ruststalkers:profile:default:base",
+          "fieldId": "datasheet-sicarian-ruststalkers:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-skitarii-marshal:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-skitarii-marshal",
+          "unitTitle": "Skitarii Marshal",
+          "presentationCardId": "datasheet-skitarii-marshal:profile:default:base",
+          "fieldId": "datasheet-skitarii-marshal:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-skitarii-rangers:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-skitarii-rangers",
+          "unitTitle": "Skitarii Rangers",
+          "presentationCardId": "datasheet-skitarii-rangers:profile:default:base",
+          "fieldId": "datasheet-skitarii-rangers:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀25mm)",
+          "displayed": "(⌀25mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-skitarii-rangers:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-skitarii-rangers",
+          "unitTitle": "Skitarii Rangers",
+          "presentationCardId": "datasheet-skitarii-rangers:profile:default:base",
+          "fieldId": "datasheet-skitarii-rangers:profile:default:base::/notes/0",
+          "sourcePath": "/notes/0",
+          "value": "60 x 35mm if equipped with transuranic arquebus",
+          "displayed": "60 x 35mm if equipped with transuranic arquebus"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-skitarii-vanguard:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-skitarii-vanguard",
+          "unitTitle": "Skitarii Vanguard",
+          "presentationCardId": "datasheet-skitarii-vanguard:profile:default:base",
+          "fieldId": "datasheet-skitarii-vanguard:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀25mm)",
+          "displayed": "(⌀25mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-skitarii-vanguard:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-skitarii-vanguard",
+          "unitTitle": "Skitarii Vanguard",
+          "presentationCardId": "datasheet-skitarii-vanguard:profile:default:base",
+          "fieldId": "datasheet-skitarii-vanguard:profile:default:base::/notes/0",
+          "sourcePath": "/notes/0",
+          "value": "60 x 35mm if equipped with transuranic arquebus",
+          "displayed": "60 x 35mm if equipped with transuranic arquebus"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-skorpius-disintegrator:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-skorpius-disintegrator",
+          "unitTitle": "Skorpius Disintegrator",
+          "presentationCardId": "datasheet-skorpius-disintegrator:profile:default:base",
+          "fieldId": "datasheet-skorpius-disintegrator:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-skorpius-dunerider:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-skorpius-dunerider",
+          "unitTitle": "Skorpius Dunerider",
+          "presentationCardId": "datasheet-skorpius-dunerider:profile:default:base",
+          "fieldId": "datasheet-skorpius-dunerider:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-sydonian-dragoons-with-radium-jezzails:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-sydonian-dragoons-with-radium-jezzails",
+          "unitTitle": "Sydonian Dragoons With Radium Jezzails",
+          "presentationCardId": "datasheet-sydonian-dragoons-with-radium-jezzails:profile:default:base",
+          "fieldId": "datasheet-sydonian-dragoons-with-radium-jezzails:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀105 x 70mm)",
+          "displayed": "(⌀105 x 70mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-sydonian-dragoons-with-taser-lances:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-sydonian-dragoons-with-taser-lances",
+          "unitTitle": "Sydonian Dragoons With Taser Lances",
+          "presentationCardId": "datasheet-sydonian-dragoons-with-taser-lances:profile:default:base",
+          "fieldId": "datasheet-sydonian-dragoons-with-taser-lances:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀105 x 70mm)",
+          "displayed": "(⌀105 x 70mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-sydonian-skatros:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-sydonian-skatros",
+          "unitTitle": "Sydonian Skatros",
+          "presentationCardId": "datasheet-sydonian-skatros:profile:default:base",
+          "fieldId": "datasheet-sydonian-skatros:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-tech-priest-dominus:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-tech-priest-dominus",
+          "unitTitle": "Tech-priest Dominus",
+          "presentationCardId": "datasheet-tech-priest-dominus:profile:default:base",
+          "fieldId": "datasheet-tech-priest-dominus:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-tech-priest-enginseer:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-tech-priest-enginseer",
+          "unitTitle": "Tech-priest Enginseer",
+          "presentationCardId": "datasheet-tech-priest-enginseer:profile:default:base",
+          "fieldId": "datasheet-tech-priest-enginseer:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-tech-priest-manipulus:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-tech-priest-manipulus",
+          "unitTitle": "Tech-priest Manipulus",
+          "presentationCardId": "datasheet-tech-priest-manipulus:profile:default:base",
+          "fieldId": "datasheet-tech-priest-manipulus:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-technoarcheologist:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-technoarcheologist",
+          "unitTitle": "Technoarcheologist",
+          "presentationCardId": "datasheet-technoarcheologist:profile:default:base",
+          "fieldId": "datasheet-technoarcheologist:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "adeptus-mechanicus",
+          "baseId": "datasheet-thulia-ghuld:profile:default:base",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-thulia-ghuld",
+          "unitTitle": "Thulia Ghuld",
+          "presentationCardId": "datasheet-thulia-ghuld:profile:default:base",
+          "fieldId": "datasheet-thulia-ghuld:profile:default:base::/text",
+          "sourcePath": "/text",
+          "value": "(⌀80mm)",
+          "displayed": "(⌀80mm)"
+        }
+      ]
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "title": "Chaos Space Marines",
+      "mfmPointer": "mfm/current.json",
+      "baseCards": 60,
+      "rows": [
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-cultist-mob:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-cultist-mob",
+          "unitTitle": "Cultist Mob",
+          "presentationCardId": "datasheet-cultist-mob:section:2",
+          "fieldId": "datasheet-cultist-mob:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀25mm)",
+          "displayed": "(⌀25mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-legionaries:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-legionaries",
+          "unitTitle": "Legionaries",
+          "presentationCardId": "datasheet-legionaries:section:2",
+          "fieldId": "datasheet-legionaries:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-lord:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-lord",
+          "unitTitle": "Chaos Lord",
+          "presentationCardId": "datasheet-chaos-lord:section:2",
+          "fieldId": "datasheet-chaos-lord:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-lord-in-terminator-armour:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-lord-in-terminator-armour",
+          "unitTitle": "Chaos Lord In Terminator Armour",
+          "presentationCardId": "datasheet-chaos-lord-in-terminator-armour:section:2",
+          "fieldId": "datasheet-chaos-lord-in-terminator-armour:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-lord-with-jump-pack:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-lord-with-jump-pack",
+          "unitTitle": "Chaos Lord with Jump Pack",
+          "presentationCardId": "datasheet-chaos-lord-with-jump-pack:section:2",
+          "fieldId": "datasheet-chaos-lord-with-jump-pack:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-cultist-firebrand:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-cultist-firebrand",
+          "unitTitle": "Cultist Firebrand",
+          "presentationCardId": "datasheet-cultist-firebrand:section:2",
+          "fieldId": "datasheet-cultist-firebrand:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-dark-apostle:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-dark-apostle",
+          "unitTitle": "Dark Apostle",
+          "presentationCardId": "datasheet-dark-apostle:section:2",
+          "fieldId": "datasheet-dark-apostle:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "DARK APOSTLE: ⌀40mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-dark-apostle:base:2",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-dark-apostle",
+          "unitTitle": "Dark Apostle",
+          "presentationCardId": "datasheet-dark-apostle:section:2",
+          "fieldId": "datasheet-dark-apostle:base:2::/text",
+          "sourcePath": "/text",
+          "value": "(⌀25mm)",
+          "displayed": "DARK DISCIPLE: ⌀25mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-dark-commune:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-dark-commune",
+          "unitTitle": "Dark Commune",
+          "presentationCardId": "datasheet-dark-commune:section:2",
+          "fieldId": "datasheet-dark-commune:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "CULT DEMAGOGUE: ⌀32mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-dark-commune:base:2",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-dark-commune",
+          "unitTitle": "Dark Commune",
+          "presentationCardId": "datasheet-dark-commune:section:2",
+          "fieldId": "datasheet-dark-commune:base:2::/text",
+          "sourcePath": "/text",
+          "value": "(⌀28.5mm)",
+          "displayed": "OTHER MODELS: ⌀28.5mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-heretic-astartes-daemon-prince:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-heretic-astartes-daemon-prince",
+          "unitTitle": "Heretic Astartes Daemon Prince",
+          "presentationCardId": "datasheet-heretic-astartes-daemon-prince:section:2",
+          "fieldId": "datasheet-heretic-astartes-daemon-prince:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-heretic-astartes-daemon-prince-with-wings:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-heretic-astartes-daemon-prince-with-wings",
+          "unitTitle": "Heretic Astartes Daemon Prince With Wings",
+          "presentationCardId": "datasheet-heretic-astartes-daemon-prince-with-wings:section:2",
+          "fieldId": "datasheet-heretic-astartes-daemon-prince-with-wings:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-lord-discordant-on-helstalker:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-lord-discordant-on-helstalker",
+          "unitTitle": "Lord Discordant On Helstalker",
+          "presentationCardId": "datasheet-lord-discordant-on-helstalker:section:2",
+          "fieldId": "datasheet-lord-discordant-on-helstalker:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀120 x 92mm)",
+          "displayed": "(⌀120 x 92mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-master-of-executions:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-master-of-executions",
+          "unitTitle": "Master Of Executions",
+          "presentationCardId": "datasheet-master-of-executions:section:2",
+          "fieldId": "datasheet-master-of-executions:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-master-of-possession:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-master-of-possession",
+          "unitTitle": "Master Of Possession",
+          "presentationCardId": "datasheet-master-of-possession:section:2",
+          "fieldId": "datasheet-master-of-possession:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-red-corsairs-reave-captain:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-red-corsairs-reave-captain",
+          "unitTitle": "Red Corsairs Reave-Captain",
+          "presentationCardId": "datasheet-red-corsairs-reave-captain:section:2",
+          "fieldId": "datasheet-red-corsairs-reave-captain:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-sorcerer:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-sorcerer",
+          "unitTitle": "Sorcerer",
+          "presentationCardId": "datasheet-sorcerer:section:2",
+          "fieldId": "datasheet-sorcerer:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-sorcerer-in-terminator-armour:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-sorcerer-in-terminator-armour",
+          "unitTitle": "Sorcerer In Terminator Armour",
+          "presentationCardId": "datasheet-sorcerer-in-terminator-armour:section:2",
+          "fieldId": "datasheet-sorcerer-in-terminator-armour:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-traitor-enforcer:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-traitor-enforcer",
+          "unitTitle": "Traitor Enforcer",
+          "presentationCardId": "datasheet-traitor-enforcer:section:2",
+          "fieldId": "datasheet-traitor-enforcer:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "TRAITOR ENFORCER: ⌀32mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-traitor-enforcer:base:2",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-traitor-enforcer",
+          "unitTitle": "Traitor Enforcer",
+          "presentationCardId": "datasheet-traitor-enforcer:section:2",
+          "fieldId": "datasheet-traitor-enforcer:base:2::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "TRAITOR OGRYN: ⌀40mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-warpsmith:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-warpsmith",
+          "unitTitle": "Warpsmith",
+          "presentationCardId": "datasheet-warpsmith:section:2",
+          "fieldId": "datasheet-warpsmith:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60 x 35.5mm)",
+          "displayed": "(⌀60 x 35.5mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-rhino:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-rhino",
+          "unitTitle": "Chaos Rhino",
+          "presentationCardId": "datasheet-chaos-rhino:section:3",
+          "fieldId": "datasheet-chaos-rhino:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-abaddon-the-despoiler:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-abaddon-the-despoiler",
+          "unitTitle": "Abaddon The Despoiler",
+          "presentationCardId": "datasheet-abaddon-the-despoiler:section:2",
+          "fieldId": "datasheet-abaddon-the-despoiler:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-cypher:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-cypher",
+          "unitTitle": "Cypher",
+          "presentationCardId": "datasheet-cypher:section:2",
+          "fieldId": "datasheet-cypher:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-fabius-bile:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-fabius-bile",
+          "unitTitle": "Fabius Bile",
+          "presentationCardId": "datasheet-fabius-bile:section:2",
+          "fieldId": "datasheet-fabius-bile:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "FABIUS BILE: ⌀40mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-fabius-bile:base:2",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-fabius-bile",
+          "unitTitle": "Fabius Bile",
+          "presentationCardId": "datasheet-fabius-bile:section:2",
+          "fieldId": "datasheet-fabius-bile:base:2::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "SURGEON ACOLYTE: ⌀32mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-haarken-worldclaimer:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-haarken-worldclaimer",
+          "unitTitle": "Haarken Worldclaimer",
+          "presentationCardId": "datasheet-haarken-worldclaimer:section:2",
+          "fieldId": "datasheet-haarken-worldclaimer:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-huron-blackheart:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-huron-blackheart",
+          "unitTitle": "Huron Blackheart",
+          "presentationCardId": "datasheet-huron-blackheart:section:2",
+          "fieldId": "datasheet-huron-blackheart:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-kravek-morne:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-kravek-morne",
+          "unitTitle": "Kravek Morne",
+          "presentationCardId": "datasheet-kravek-morne:section:2",
+          "fieldId": "datasheet-kravek-morne:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-masters-of-the-maelstrom:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-masters-of-the-maelstrom",
+          "unitTitle": "Masters of the Maelstrom",
+          "presentationCardId": "datasheet-masters-of-the-maelstrom:section:2",
+          "fieldId": "datasheet-masters-of-the-maelstrom:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "Garreon the Corpsemaster / Garlon Souleater / Katar Garrix: ⌀40mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-masters-of-the-maelstrom:base:2",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-masters-of-the-maelstrom",
+          "unitTitle": "Masters of the Maelstrom",
+          "presentationCardId": "datasheet-masters-of-the-maelstrom:section:2",
+          "fieldId": "datasheet-masters-of-the-maelstrom:base:2::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mmThe Enforcer 32mm)",
+          "displayed": "Captain Sargotta: ⌀40mm; The Enforcer: ⌀32mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-vashtorr-the-arkifane:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-vashtorr-the-arkifane",
+          "unitTitle": "Vashtorr The Arkifane",
+          "presentationCardId": "datasheet-vashtorr-the-arkifane:section:2",
+          "fieldId": "datasheet-vashtorr-the-arkifane:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀80mm)",
+          "displayed": "(⌀80mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-accursed-cultists:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-accursed-cultists",
+          "unitTitle": "Accursed Cultists",
+          "presentationCardId": "datasheet-accursed-cultists:section:2",
+          "fieldId": "datasheet-accursed-cultists:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀25mm)",
+          "displayed": "MUTANT: ⌀25mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-accursed-cultists:base:2",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-accursed-cultists",
+          "unitTitle": "Accursed Cultists",
+          "presentationCardId": "datasheet-accursed-cultists:section:2",
+          "fieldId": "datasheet-accursed-cultists:base:2::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "TORMENT: ⌀40mm"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-terminator-squad:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-terminator-squad",
+          "unitTitle": "Chaos Terminator Squad",
+          "presentationCardId": "datasheet-chaos-terminator-squad:section:2",
+          "fieldId": "datasheet-chaos-terminator-squad:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chosen:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chosen",
+          "unitTitle": "Chosen",
+          "presentationCardId": "datasheet-chosen:section:2",
+          "fieldId": "datasheet-chosen:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-fellgor-beastmen:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-fellgor-beastmen",
+          "unitTitle": "Fellgor Beastmen",
+          "presentationCardId": "datasheet-fellgor-beastmen:section:2",
+          "fieldId": "datasheet-fellgor-beastmen:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-havocs:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-havocs",
+          "unitTitle": "Havocs",
+          "presentationCardId": "datasheet-havocs:section:2",
+          "fieldId": "datasheet-havocs:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-mutilators:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-mutilators",
+          "unitTitle": "Mutilators",
+          "presentationCardId": "datasheet-mutilators:section:2",
+          "fieldId": "datasheet-mutilators:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-nemesis-claw:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-nemesis-claw",
+          "unitTitle": "Nemesis Claw",
+          "presentationCardId": "datasheet-nemesis-claw:section:2",
+          "fieldId": "datasheet-nemesis-claw:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-obliterators:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-obliterators",
+          "unitTitle": "Obliterators",
+          "presentationCardId": "datasheet-obliterators:section:2",
+          "fieldId": "datasheet-obliterators:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-possessed:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-possessed",
+          "unitTitle": "Possessed",
+          "presentationCardId": "datasheet-possessed:section:2",
+          "fieldId": "datasheet-possessed:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-raptors:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-raptors",
+          "unitTitle": "Raptors",
+          "presentationCardId": "datasheet-raptors:section:2",
+          "fieldId": "datasheet-raptors:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-red-corsairs-raiders:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-red-corsairs-raiders",
+          "unitTitle": "Red Corsairs Raiders",
+          "presentationCardId": "datasheet-red-corsairs-raiders:section:2",
+          "fieldId": "datasheet-red-corsairs-raiders:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-traitor-guardsmen-squad:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-traitor-guardsmen-squad",
+          "unitTitle": "Traitor Guardsmen Squad",
+          "presentationCardId": "datasheet-traitor-guardsmen-squad:section:2",
+          "fieldId": "datasheet-traitor-guardsmen-squad:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀25mm)",
+          "displayed": "(⌀25mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-warp-talons:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-warp-talons",
+          "unitTitle": "Warp Talons",
+          "presentationCardId": "datasheet-warp-talons:section:2",
+          "fieldId": "datasheet-warp-talons:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-bikers:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-bikers",
+          "unitTitle": "Chaos Bikers",
+          "presentationCardId": "datasheet-chaos-bikers:section:2",
+          "fieldId": "datasheet-chaos-bikers:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀75 x 42mm)",
+          "displayed": "(⌀75 x 42mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-land-raider:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-land-raider",
+          "unitTitle": "Chaos Land Raider",
+          "presentationCardId": "datasheet-chaos-land-raider:section:3",
+          "fieldId": "datasheet-chaos-land-raider:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-predator-annihilator:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-predator-annihilator",
+          "unitTitle": "Chaos Predator Annihilator",
+          "presentationCardId": "datasheet-chaos-predator-annihilator:section:2",
+          "fieldId": "datasheet-chaos-predator-annihilator:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-predator-destructor:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-predator-destructor",
+          "unitTitle": "Chaos Predator Destructor",
+          "presentationCardId": "datasheet-chaos-predator-destructor:section:2",
+          "fieldId": "datasheet-chaos-predator-destructor:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-spawn:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-spawn",
+          "unitTitle": "Chaos Spawn",
+          "presentationCardId": "datasheet-chaos-spawn:section:2",
+          "fieldId": "datasheet-chaos-spawn:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-chaos-vindicator:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-chaos-vindicator",
+          "unitTitle": "Chaos Vindicator",
+          "presentationCardId": "datasheet-chaos-vindicator:section:2",
+          "fieldId": "datasheet-chaos-vindicator:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-defiler:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-defiler",
+          "unitTitle": "Defiler",
+          "presentationCardId": "datasheet-defiler:section:2",
+          "fieldId": "datasheet-defiler:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀160mm)",
+          "displayed": "(⌀160mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-forgefiend:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-forgefiend",
+          "unitTitle": "Forgefiend",
+          "presentationCardId": "datasheet-forgefiend:section:2",
+          "fieldId": "datasheet-forgefiend:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀120 x 92mm)",
+          "displayed": "(⌀120 x 92mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-helbrute:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-helbrute",
+          "unitTitle": "Helbrute",
+          "presentationCardId": "datasheet-helbrute:section:2",
+          "fieldId": "datasheet-helbrute:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-heldrake:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-heldrake",
+          "unitTitle": "Heldrake",
+          "presentationCardId": "datasheet-heldrake:section:2",
+          "fieldId": "datasheet-heldrake:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀120 x 92mm flying base)",
+          "displayed": "(⌀120 x 92mm flying base)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-khorne-lord-of-skulls:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-khorne-lord-of-skulls",
+          "unitTitle": "Khorne Lord Of Skulls",
+          "presentationCardId": "datasheet-khorne-lord-of-skulls:section:2",
+          "fieldId": "datasheet-khorne-lord-of-skulls:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-maulerfiend:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-maulerfiend",
+          "unitTitle": "Maulerfiend",
+          "presentationCardId": "datasheet-maulerfiend:section:2",
+          "fieldId": "datasheet-maulerfiend:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀120 x 92mm)",
+          "displayed": "(⌀120 x 92mm)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-noctilith-crown:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-noctilith-crown",
+          "unitTitle": "Noctilith Crown",
+          "presentationCardId": "datasheet-noctilith-crown:section:2",
+          "fieldId": "datasheet-noctilith-crown:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "chaos-space-marines",
+          "baseId": "datasheet-venomcrawler:base:1",
+          "baseKind": "MODEL_BASE_METADATA",
+          "unitId": "unit-venomcrawler",
+          "unitTitle": "Venomcrawler",
+          "presentationCardId": "datasheet-venomcrawler:section:2",
+          "fieldId": "datasheet-venomcrawler:base:1::/text",
+          "sourcePath": "/text",
+          "value": "(⌀100mm)",
+          "displayed": "(⌀100mm)"
+        }
+      ]
+    },
+    {
+      "bookId": "death-guard",
+      "title": "Death Guard",
+      "mfmPointer": "mfm/current.json",
+      "baseCards": 36,
+      "rows": [
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-beasts-of-nurgle:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-beasts-of-nurgle",
+          "unitTitle": "Beasts of Nurgle",
+          "presentationCardId": "datasheet-beasts-of-nurgle:model-base:default",
+          "fieldId": "datasheet-beasts-of-nurgle:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-biologus-putrifier:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-biologus-putrifier",
+          "unitTitle": "Biologus Putrifier",
+          "presentationCardId": "datasheet-biologus-putrifier:model-base:default",
+          "fieldId": "datasheet-biologus-putrifier:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-blightlord-terminators:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-blightlord-terminators",
+          "unitTitle": "Blightlord Terminators",
+          "presentationCardId": "datasheet-blightlord-terminators:model-base:default",
+          "fieldId": "datasheet-blightlord-terminators:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-chaos-land-raider:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-chaos-land-raider",
+          "unitTitle": "Chaos Land Raider",
+          "presentationCardId": "datasheet-chaos-land-raider:model-base:default",
+          "fieldId": "datasheet-chaos-land-raider:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-chaos-predator-annihilator:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-chaos-predator-annihilator",
+          "unitTitle": "Chaos Predator Annihilator",
+          "presentationCardId": "datasheet-chaos-predator-annihilator:model-base:default",
+          "fieldId": "datasheet-chaos-predator-annihilator:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-chaos-predator-destructor:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-chaos-predator-destructor",
+          "unitTitle": "Chaos Predator Destructor",
+          "presentationCardId": "datasheet-chaos-predator-destructor:model-base:default",
+          "fieldId": "datasheet-chaos-predator-destructor:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-chaos-rhino:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-chaos-rhino",
+          "unitTitle": "Chaos Rhino",
+          "presentationCardId": "datasheet-chaos-rhino:model-base:default",
+          "fieldId": "datasheet-chaos-rhino:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-chaos-spawn:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-chaos-spawn",
+          "unitTitle": "Chaos Spawn",
+          "presentationCardId": "datasheet-chaos-spawn:model-base:default",
+          "fieldId": "datasheet-chaos-spawn:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-daemon-prince-of-nurgle:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-daemon-prince-of-nurgle",
+          "unitTitle": "Daemon Prince of Nurgle",
+          "presentationCardId": "datasheet-daemon-prince-of-nurgle:model-base:default",
+          "fieldId": "datasheet-daemon-prince-of-nurgle:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-daemon-prince-of-nurgle-with-wings:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-daemon-prince-of-nurgle-with-wings",
+          "unitTitle": "Daemon Prince of Nurgle with Wings",
+          "presentationCardId": "datasheet-daemon-prince-of-nurgle-with-wings:model-base:default",
+          "fieldId": "datasheet-daemon-prince-of-nurgle-with-wings:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-deathshroud-terminators:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-deathshroud-terminators",
+          "unitTitle": "Deathshroud Terminators",
+          "presentationCardId": "datasheet-deathshroud-terminators:model-base:default",
+          "fieldId": "datasheet-deathshroud-terminators:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-defiler:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-defiler",
+          "unitTitle": "Defiler",
+          "presentationCardId": "datasheet-defiler:model-base:default",
+          "fieldId": "datasheet-defiler:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀160mm)",
+          "displayed": "(⌀160mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-foetid-bloat-drone:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-foetid-bloat-drone",
+          "unitTitle": "Foetid Bloat-drone",
+          "presentationCardId": "datasheet-foetid-bloat-drone:model-base:default",
+          "fieldId": "datasheet-foetid-bloat-drone:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-foetid-bloat-drone-with-heavy-blight-launcher",
+          "unitTitle": "Foetid Bloat-drone with Heavy Blight Launcher",
+          "presentationCardId": "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:model-base:default",
+          "fieldId": "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-foul-blightspawn:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-foul-blightspawn",
+          "unitTitle": "Foul Blightspawn",
+          "presentationCardId": "datasheet-foul-blightspawn:model-base:default",
+          "fieldId": "datasheet-foul-blightspawn:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-great-unclean-one:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-great-unclean-one",
+          "unitTitle": "Great Unclean One",
+          "presentationCardId": "datasheet-great-unclean-one:model-base:default",
+          "fieldId": "datasheet-great-unclean-one:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀130mm)",
+          "displayed": "(⌀130mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-helbrute:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-helbrute",
+          "unitTitle": "Helbrute",
+          "presentationCardId": "datasheet-helbrute:model-base:default",
+          "fieldId": "datasheet-helbrute:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-icon-bearer:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-icon-bearer",
+          "unitTitle": "Icon Bearer",
+          "presentationCardId": "datasheet-icon-bearer:model-base:default",
+          "fieldId": "datasheet-icon-bearer:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-lord-of-contagion:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-lord-of-contagion",
+          "unitTitle": "Lord of Contagion",
+          "presentationCardId": "datasheet-lord-of-contagion:model-base:default",
+          "fieldId": "datasheet-lord-of-contagion:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-lord-of-poxes:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-lord-of-poxes",
+          "unitTitle": "Lord of Poxes",
+          "presentationCardId": "datasheet-lord-of-poxes:model-base:default",
+          "fieldId": "datasheet-lord-of-poxes:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-lord-of-virulence:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-lord-of-virulence",
+          "unitTitle": "Lord of Virulence",
+          "presentationCardId": "datasheet-lord-of-virulence:model-base:default",
+          "fieldId": "datasheet-lord-of-virulence:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-malignant-plaguecaster:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-malignant-plaguecaster",
+          "unitTitle": "Malignant Plaguecaster",
+          "presentationCardId": "datasheet-malignant-plaguecaster:model-base:default",
+          "fieldId": "datasheet-malignant-plaguecaster:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-miasmic-malignifier:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-miasmic-malignifier",
+          "unitTitle": "Miasmic Malignifier",
+          "presentationCardId": "datasheet-miasmic-malignifier:model-base:default",
+          "fieldId": "datasheet-miasmic-malignifier:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-mortarion:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-mortarion",
+          "unitTitle": "Mortarion",
+          "presentationCardId": "datasheet-mortarion:model-base:default",
+          "fieldId": "datasheet-mortarion:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀100mm)",
+          "displayed": "(⌀100mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-myphitic-blight-hauler:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-myphitic-blight-hauler",
+          "unitTitle": "Myphitic Blight-hauler",
+          "presentationCardId": "datasheet-myphitic-blight-hauler:model-base:default",
+          "fieldId": "datasheet-myphitic-blight-hauler:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀80mm)",
+          "displayed": "(⌀80mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-noxious-blightbringer:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-noxious-blightbringer",
+          "unitTitle": "Noxious Blightbringer",
+          "presentationCardId": "datasheet-noxious-blightbringer:model-base:default",
+          "fieldId": "datasheet-noxious-blightbringer:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-nurglings:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-nurglings",
+          "unitTitle": "Nurglings",
+          "presentationCardId": "datasheet-nurglings:model-base:default",
+          "fieldId": "datasheet-nurglings:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-plague-drones:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-plague-drones",
+          "unitTitle": "Plague Drones",
+          "presentationCardId": "datasheet-plague-drones:model-base:default",
+          "fieldId": "datasheet-plague-drones:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀60mm)",
+          "displayed": "(⌀60mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-plague-marines:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-plague-marines",
+          "unitTitle": "Plague Marines",
+          "presentationCardId": "datasheet-plague-marines:model-base:default",
+          "fieldId": "datasheet-plague-marines:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-plague-surgeon:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-plague-surgeon",
+          "unitTitle": "Plague Surgeon",
+          "presentationCardId": "datasheet-plague-surgeon:model-base:default",
+          "fieldId": "datasheet-plague-surgeon:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-plaguebearers:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-plaguebearers",
+          "unitTitle": "Plaguebearers",
+          "presentationCardId": "datasheet-plaguebearers:model-base:default",
+          "fieldId": "datasheet-plaguebearers:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀32mm)",
+          "displayed": "(⌀32mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-plagueburst-crawler:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-plagueburst-crawler",
+          "unitTitle": "Plagueburst Crawler",
+          "presentationCardId": "datasheet-plagueburst-crawler:model-base:default",
+          "fieldId": "datasheet-plagueburst-crawler:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀Use model)",
+          "displayed": "(Use model base)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-poxwalkers:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-poxwalkers",
+          "unitTitle": "Poxwalkers",
+          "presentationCardId": "datasheet-poxwalkers:model-base:default",
+          "fieldId": "datasheet-poxwalkers:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀25mm)",
+          "displayed": "(⌀25mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-rotigus:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-rotigus",
+          "unitTitle": "Rotigus",
+          "presentationCardId": "datasheet-rotigus:model-base:default",
+          "fieldId": "datasheet-rotigus:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀130mm)",
+          "displayed": "(⌀130mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-tallyman:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-tallyman",
+          "unitTitle": "Tallyman",
+          "presentationCardId": "datasheet-tallyman:model-base:default",
+          "fieldId": "datasheet-tallyman:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀40mm)",
+          "displayed": "(⌀40mm)"
+        },
+        {
+          "bookId": "death-guard",
+          "baseId": "datasheet-typhus:model-base:default",
+          "baseKind": "MODEL_BASE",
+          "unitId": "unit-typhus",
+          "unitTitle": "Typhus",
+          "presentationCardId": "datasheet-typhus:model-base:default",
+          "fieldId": "datasheet-typhus:model-base:default::/text",
+          "sourcePath": "/text",
+          "value": "(⌀50mm)",
+          "displayed": "(⌀50mm)"
+        }
+      ]
+    },
+    {
+      "bookId": "tau-empire",
+      "title": "T’au Empire",
+      "mfmPointer": "mfm/current.json",
+      "baseCards": 0,
+      "rows": []
+    },
+    {
+      "bookId": "tyranids",
+      "title": "Tyranids",
+      "mfmPointer": "mfm/current.json",
+      "baseCards": 0,
+      "rows": []
+    },
+    {
+      "bookId": "emperors-children",
+      "title": "Emperor’s Children",
+      "mfmPointer": "mfm/current.json",
+      "baseCards": 0,
+      "rows": []
+    }
+  ],
+  "checks": [
+    {
+      "width": 390,
+      "name": "home-source-caption",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 22,
+        "y": 638.75,
+        "width": 346,
+        "height": 39
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "space-marines",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 14,
+        "y": 412.5625,
+        "width": 362,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "space-marines",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 390,
+      "bookId": "blood-angels",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 14,
+        "y": 412.671875,
+        "width": 362,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "blood-angels",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 390,
+      "bookId": "dark-angels",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 14,
+        "y": 412.671875,
+        "width": 362,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "dark-angels",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 390,
+      "bookId": "adeptus-mechanicus",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 14,
+        "y": 411.984375,
+        "width": 362,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "adeptus-mechanicus",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 38,
+      "baseCards": 35,
+      "renderedFacts": 38,
+      "modelInstructions": 2,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 390,
+      "bookId": "chaos-space-marines",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 14,
+        "y": 412.40625,
+        "width": 362,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "chaos-space-marines",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 60,
+      "baseCards": 60,
+      "renderedFacts": 60,
+      "modelInstructions": 7,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 390,
+      "bookId": "chaos-space-marines",
+      "name": "csm-public-datasheet-model-base",
+      "unitId": "unit-chaos-rhino",
+      "fieldId": "datasheet-chaos-rhino:base:1::/text",
+      "sourceValue": "(⌀Use model)",
+      "displayed": "(Use model base)"
+    },
+    {
+      "width": 390,
+      "bookId": "death-guard",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 14,
+        "y": 411.953125,
+        "width": 362,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "death-guard",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 36,
+      "baseCards": 36,
+      "renderedFacts": 36,
+      "modelInstructions": 6,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 390,
+      "bookId": "tau-empire",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 14,
+        "y": 411.859375,
+        "width": 362,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "tau-empire",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 390,
+      "bookId": "tyranids",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 14,
+        "y": 412.71875,
+        "width": 362,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "tyranids",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 390,
+      "bookId": "emperors-children",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 14,
+        "y": 412.59375,
+        "width": 362,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 390,
+      "bookId": "emperors-children",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 1440,
+      "name": "home-source-caption",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 170,
+        "y": 826.984375,
+        "width": 1100,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "space-marines",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 348.546875,
+        "y": 490.625,
+        "width": 1033.859375,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "space-marines",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 1440,
+      "bookId": "blood-angels",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 348.546875,
+        "y": 490.5625,
+        "width": 1033.859375,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "blood-angels",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 1440,
+      "bookId": "dark-angels",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 348.546875,
+        "y": 490.5625,
+        "width": 1033.859375,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "dark-angels",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 1440,
+      "bookId": "adeptus-mechanicus",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 348.546875,
+        "y": 490.4375,
+        "width": 1033.859375,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "adeptus-mechanicus",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 38,
+      "baseCards": 35,
+      "renderedFacts": 38,
+      "modelInstructions": 2,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 1440,
+      "bookId": "chaos-space-marines",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 348.546875,
+        "y": 490.375,
+        "width": 1033.859375,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "chaos-space-marines",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 60,
+      "baseCards": 60,
+      "renderedFacts": 60,
+      "modelInstructions": 7,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 1440,
+      "bookId": "chaos-space-marines",
+      "name": "csm-public-datasheet-model-base",
+      "unitId": "unit-chaos-rhino",
+      "fieldId": "datasheet-chaos-rhino:base:1::/text",
+      "sourceValue": "(⌀Use model)",
+      "displayed": "(Use model base)"
+    },
+    {
+      "width": 1440,
+      "bookId": "death-guard",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 348.546875,
+        "y": 490.46875,
+        "width": 1033.859375,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "death-guard",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 36,
+      "baseCards": 36,
+      "renderedFacts": 36,
+      "modelInstructions": 6,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 1440,
+      "bookId": "tau-empire",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 348.546875,
+        "y": 490.5,
+        "width": 1033.859375,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "tau-empire",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 1440,
+      "bookId": "tyranids",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 348.546875,
+        "y": 490.5,
+        "width": 1033.859375,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "tyranids",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    },
+    {
+      "width": 1440,
+      "bookId": "emperors-children",
+      "name": "book-source-caption",
+      "mfmPointer": "mfm/current.json",
+      "text": "Points: Munitorum Field Manual v1.6 · Core Rules: 11 Nov 2026",
+      "bounds": {
+        "x": 348.546875,
+        "y": 490.0625,
+        "width": 1033.859375,
+        "height": 19.5
+      }
+    },
+    {
+      "width": 1440,
+      "bookId": "emperors-children",
+      "name": "all-native-model-base-facts",
+      "sourceRows": 0,
+      "baseCards": 0,
+      "renderedFacts": 0,
+      "modelInstructions": 0,
+      "sourceValuesPreserved": true
+    }
+  ],
+  "screenshots": [
+    {
+      "width": 390,
+      "name": "home-sources",
+      "title": "Home · source caption",
+      "file": "390-home-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html"
+    },
+    {
+      "width": 390,
+      "bookId": "space-marines",
+      "name": "space-marines-sources",
+      "title": "Space Marines · homepage source caption",
+      "file": "390-space-marines-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=space-marines&registry=space-marines"
+    },
+    {
+      "width": 390,
+      "bookId": "blood-angels",
+      "name": "blood-angels-sources",
+      "title": "Blood Angels · homepage source caption",
+      "file": "390-blood-angels-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=blood-angels&registry=blood-angels"
+    },
+    {
+      "width": 390,
+      "bookId": "dark-angels",
+      "name": "dark-angels-sources",
+      "title": "Dark Angels · homepage source caption",
+      "file": "390-dark-angels-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=dark-angels&registry=dark-angels"
+    },
+    {
+      "width": 390,
+      "bookId": "adeptus-mechanicus",
+      "name": "adeptus-mechanicus-sources",
+      "title": "Adeptus Mechanicus · homepage source caption",
+      "file": "390-adeptus-mechanicus-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=adeptus-mechanicus&registry=adeptus-mechanicus"
+    },
+    {
+      "width": 390,
+      "bookId": "chaos-space-marines",
+      "name": "chaos-space-marines-sources",
+      "title": "Chaos Space Marines · homepage source caption",
+      "file": "390-chaos-space-marines-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=chaos-space-marines&registry=chaos-space-marines"
+    },
+    {
+      "width": 390,
+      "bookId": "chaos-space-marines",
+      "name": "chaos-space-marines-model-base",
+      "title": "Chaos Rhino · Use model base",
+      "file": "390-chaos-space-marines-model-base.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=chaos-space-marines&registry=chaos-space-marines#unit-chaos-rhino"
+    },
+    {
+      "width": 390,
+      "bookId": "death-guard",
+      "name": "death-guard-sources",
+      "title": "Death Guard · homepage source caption",
+      "file": "390-death-guard-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard"
+    },
+    {
+      "width": 390,
+      "bookId": "tau-empire",
+      "name": "tau-empire-sources",
+      "title": "T’au Empire · homepage source caption",
+      "file": "390-tau-empire-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=tau-empire&registry=tau-empire"
+    },
+    {
+      "width": 390,
+      "bookId": "tyranids",
+      "name": "tyranids-sources",
+      "title": "Tyranids · homepage source caption",
+      "file": "390-tyranids-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=tyranids&registry=tyranids"
+    },
+    {
+      "width": 390,
+      "bookId": "emperors-children",
+      "name": "emperors-children-sources",
+      "title": "Emperor’s Children · homepage source caption",
+      "file": "390-emperors-children-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=emperors-children&registry=emperors-children"
+    },
+    {
+      "width": 1440,
+      "name": "home-sources",
+      "title": "Home · source caption",
+      "file": "1440-home-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html"
+    },
+    {
+      "width": 1440,
+      "bookId": "space-marines",
+      "name": "space-marines-sources",
+      "title": "Space Marines · homepage source caption",
+      "file": "1440-space-marines-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=space-marines&registry=space-marines"
+    },
+    {
+      "width": 1440,
+      "bookId": "blood-angels",
+      "name": "blood-angels-sources",
+      "title": "Blood Angels · homepage source caption",
+      "file": "1440-blood-angels-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=blood-angels&registry=blood-angels"
+    },
+    {
+      "width": 1440,
+      "bookId": "dark-angels",
+      "name": "dark-angels-sources",
+      "title": "Dark Angels · homepage source caption",
+      "file": "1440-dark-angels-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=dark-angels&registry=dark-angels"
+    },
+    {
+      "width": 1440,
+      "bookId": "adeptus-mechanicus",
+      "name": "adeptus-mechanicus-sources",
+      "title": "Adeptus Mechanicus · homepage source caption",
+      "file": "1440-adeptus-mechanicus-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=adeptus-mechanicus&registry=adeptus-mechanicus"
+    },
+    {
+      "width": 1440,
+      "bookId": "chaos-space-marines",
+      "name": "chaos-space-marines-sources",
+      "title": "Chaos Space Marines · homepage source caption",
+      "file": "1440-chaos-space-marines-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=chaos-space-marines&registry=chaos-space-marines"
+    },
+    {
+      "width": 1440,
+      "bookId": "chaos-space-marines",
+      "name": "chaos-space-marines-model-base",
+      "title": "Chaos Rhino · Use model base",
+      "file": "1440-chaos-space-marines-model-base.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=chaos-space-marines&registry=chaos-space-marines#unit-chaos-rhino"
+    },
+    {
+      "width": 1440,
+      "bookId": "death-guard",
+      "name": "death-guard-sources",
+      "title": "Death Guard · homepage source caption",
+      "file": "1440-death-guard-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard"
+    },
+    {
+      "width": 1440,
+      "bookId": "tau-empire",
+      "name": "tau-empire-sources",
+      "title": "T’au Empire · homepage source caption",
+      "file": "1440-tau-empire-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=tau-empire&registry=tau-empire"
+    },
+    {
+      "width": 1440,
+      "bookId": "tyranids",
+      "name": "tyranids-sources",
+      "title": "Tyranids · homepage source caption",
+      "file": "1440-tyranids-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=tyranids&registry=tyranids"
+    },
+    {
+      "width": 1440,
+      "bookId": "emperors-children",
+      "name": "emperors-children-sources",
+      "title": "Emperor’s Children · homepage source caption",
+      "file": "1440-emperors-children-sources.png",
+      "url": "http://127.0.0.1:62042/v2/app.html?v2=ARMY_BOOK&book=emperors-children&registry=emperors-children"
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

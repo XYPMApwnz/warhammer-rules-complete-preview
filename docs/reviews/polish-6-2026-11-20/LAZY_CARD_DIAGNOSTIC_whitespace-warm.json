@@ -1,0 +1,255 @@
+{
+  "schema": "lazy-card-cpu-diagnostic/v1",
+  "browser": "154.0.8037.58",
+  "note": "eventTaskEnd is a capture-listener microtask timestamp, not completion of the whole event dispatch; CPU profiles and selectedDOM establish rendering cost.",
+  "rows": [
+    {
+      "lane": "death-guard",
+      "version": "baseline50",
+      "clickMs": 104.89630000000034,
+      "elapsedMs": 203.54719999999998,
+      "eventPhases": {
+        "event": 2674.5,
+        "eventTaskEnd": 2674.7000000001863,
+        "selectedDOM": 2716.3000000002794,
+        "frame1": 2718.3000000002794,
+        "frame2": 2736.4000000003725
+      },
+      "eventWorkMs": 0.20000000018626451,
+      "eventToDOMMs": 41.8000000002794,
+      "eventToTwoFramesMs": 61.90000000037253,
+      "topSelfMs": [
+        [
+          "(program) @ :0",
+          193.024
+        ],
+        [
+          "(idle) @ :0",
+          107.80599999999995
+        ],
+        [
+          "replaceChildren @ :0",
+          13.351
+        ],
+        [
+          "focus @ :0",
+          11.965999999999998
+        ],
+        [
+          "querySelectorAll @ :0",
+          10.766
+        ],
+        [
+          "section @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1.mjs:119",
+          5.877
+        ],
+        [
+          " @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1.mjs:125",
+          4.997
+        ],
+        [
+          " @ :5605",
+          3.4640000000000004
+        ],
+        [
+          "append @ :0",
+          2.5050000000000003
+        ],
+        [
+          "renderSelected @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/runtime.mjs:708",
+          1.646
+        ],
+        [
+          "elementsFromPoint @ :0",
+          1.5699999999999998
+        ],
+        [
+          "(garbage collector) @ :0",
+          1.527
+        ],
+        [
+          " @ :0",
+          1.439
+        ],
+        [
+          "routeURL @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/runtime.mjs:929",
+          1.235
+        ],
+        [
+          "el @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/runtime.mjs:63",
+          1.028
+        ]
+      ],
+      "appInclusiveMs": [
+        [
+          "renderSelected @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/runtime.mjs:708",
+          36.567999999999984
+        ],
+        [
+          "refreshGeometry @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1-controller.mjs:252",
+          25.16100000000001
+        ],
+        [
+          "section @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1.mjs:119",
+          21.64
+        ],
+        [
+          "range @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1.mjs:136",
+          17.662
+        ],
+        [
+          "renderCard @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/runtime.mjs:330",
+          9.572999999999999
+        ],
+        [
+          " @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1.mjs:125",
+          4.997
+        ],
+        [
+          "refresh @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1.mjs:173",
+          1.536
+        ],
+        [
+          "tracking @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1.mjs:135",
+          0.51
+        ],
+        [
+          "projectContents @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1.mjs:38",
+          0.501
+        ],
+        [
+          "link @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/rule-term-links.mjs:54",
+          0.5
+        ],
+        [
+          " @ http://127.0.0.1:59349/baseline50/books/shared/army-book-app-v2/navigation-v1.mjs:138",
+          0.492
+        ]
+      ]
+    },
+    {
+      "lane": "death-guard",
+      "version": "head",
+      "clickMs": 99.17640000000029,
+      "elapsedMs": 114.64720000000034,
+      "eventPhases": {
+        "event": 2302.899999999907,
+        "eventTaskEnd": 2302.899999999907,
+        "selectedDOM": 2344.399999999907,
+        "frame1": 2346.2000000001863,
+        "frame2": 2364.899999999907
+      },
+      "eventWorkMs": 0,
+      "eventToDOMMs": 41.5,
+      "eventToTwoFramesMs": 62,
+      "topSelfMs": [
+        [
+          "(program) @ :0",
+          189.214
+        ],
+        [
+          "(idle) @ :0",
+          16.122
+        ],
+        [
+          "focus @ :0",
+          13.000999999999998
+        ],
+        [
+          "querySelectorAll @ :0",
+          11.503
+        ],
+        [
+          "replaceChildren @ :0",
+          11.083
+        ],
+        [
+          "section @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1.mjs:119",
+          8.350000000000001
+        ],
+        [
+          "delete @ :0",
+          3.0749999999999997
+        ],
+        [
+          " @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1.mjs:125",
+          3.008
+        ],
+        [
+          " @ :5605",
+          2.933
+        ],
+        [
+          "(garbage collector) @ :0",
+          2.511
+        ],
+        [
+          "el @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/runtime.mjs:65",
+          2.061
+        ],
+        [
+          "elementsFromPoint @ :0",
+          1.5030000000000001
+        ],
+        [
+          "anchor @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/runtime.mjs:79",
+          1.143
+        ],
+        [
+          " @ :0",
+          1.018
+        ],
+        [
+          "refreshGeometry @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1-controller.mjs:252",
+          1.0110000000000001
+        ]
+      ],
+      "appInclusiveMs": [
+        [
+          "renderSelected @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/runtime.mjs:723",
+          36.02
+        ],
+        [
+          "refreshGeometry @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1-controller.mjs:252",
+          24.337
+        ],
+        [
+          "section @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1.mjs:119",
+          22.250999999999998
+        ],
+        [
+          "range @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1.mjs:136",
+          17.831
+        ],
+        [
+          "renderCard @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/runtime.mjs:338",
+          12.519000000000002
+        ],
+        [
+          " @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1.mjs:125",
+          3.008
+        ],
+        [
+          "link @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/rule-term-links.mjs:75",
+          2.602
+        ],
+        [
+          "refresh @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1.mjs:173",
+          1.001
+        ],
+        [
+          " @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1.mjs:54",
+          0.506
+        ],
+        [
+          "detachment @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1.mjs:51",
+          0.506
+        ],
+        [
+          "projectContents @ http://127.0.0.1:59349/head/books/shared/army-book-app-v2/navigation-v1.mjs:38",
+          0.506
+        ]
+      ]
+    }
+  ]
+}

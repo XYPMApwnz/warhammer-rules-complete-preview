@@ -1,0 +1,38 @@
+{
+  "schema": "lazy-card-actionability/v1",
+  "sameEndpointAsFixedRecipe": true,
+  "profiler": false,
+  "browser": "154.0.8037.58",
+  "rows": [
+    {
+      "version": "baseline50",
+      "bookMs": 1910.2632,
+      "clickMs": 906.8553000000002,
+      "elapsedMs": 1015.9592000000002,
+      "events": {
+        "event": 3439.7000000001863,
+        "dispatchEnd": 3476.0999999996275,
+        "mountedAtDispatchEnd": true,
+        "frame1": 3477.5999999996275,
+        "frame2": 3494.399999999441
+      },
+      "dispatchMs": 36.39999999944121,
+      "eventToTwoFramesMs": 54.69999999925494
+    },
+    {
+      "version": "head",
+      "bookMs": 1144.6040999999996,
+      "clickMs": 882.8518000000004,
+      "elapsedMs": 896.0266000000001,
+      "events": {
+        "event": 2464.0999999996275,
+        "dispatchEnd": 2498.2000000001863,
+        "mountedAtDispatchEnd": true,
+        "frame1": 2499.7000000001863,
+        "frame2": 2510.5
+      },
+      "dispatchMs": 34.10000000055879,
+      "eventToTwoFramesMs": 46.40000000037253
+    }
+  ]
+}

@@ -1,0 +1,1184 @@
+diff --git a/books/shared/application-v2/browser-test-dependencies.mjs b/books/shared/application-v2/browser-test-dependencies.mjs
+index abb5a772..f80f2906 100644
+--- a/books/shared/application-v2/browser-test-dependencies.mjs
++++ b/books/shared/application-v2/browser-test-dependencies.mjs
+@@ -5,6 +5,9 @@ const dependencies=new Map([
+   ['/v2/app.html','text/html'],
+   ['/v2/boot.mjs','text/javascript'],
+   ['/v2/army-books.mjs','text/javascript'],
++  ['/books/shared/application-v2/source-metadata.mjs','text/javascript'],
++  ['/books/shared/army-book-app-v2/import-notices.mjs','text/javascript'],
++  ['/books/shared/application-v2/generated/source-metadata.v1.json','application/json'],
+   ...armyBooks.map(book=>[`/books/${book.id}/book.config.json`,'application/json']),
+   ['/books/shared/keyword-values.mjs','text/javascript'],
+   ['/books/shared/rule-facts.js','text/javascript'],
+diff --git a/books/shared/application-v2/source-metadata-qa.mjs b/books/shared/application-v2/source-metadata-qa.mjs
+new file mode 100644
+index 00000000..918e3cb2
+--- /dev/null
++++ b/books/shared/application-v2/source-metadata-qa.mjs
+@@ -0,0 +1,53 @@
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import {createSourceMetadataLoader,formatSourcesLine,createSourcesLine} from './source-metadata.mjs';
++import {BOOK_PASSPORT_IDS,readBookPassport} from '../tools/book-passport.mjs';
++import {projectCoreBattleSizes} from '../tools/build-source-metadata.mjs';
++const read=file=>JSON.parse(fs.readFileSync(new URL('../../../'+file,import.meta.url),'utf8'));
++const path='books/shared/application-v2/generated/source-metadata.v1.json';
++const metadata=read(path),canonical=read('books/core-rules/content/core-rules.digital-11e.json'),release=read('mfm/current.json');
++const rawBefore=JSON.stringify(canonical),rule=canonical.records.find(row=>row.code==='25.03'),table=rule.content.find(block=>block.type==='comparison-table');
++assert.equal(metadata.core.captureDate,canonical.meta.captureDate);
++assert.equal(metadata.core.corpusFingerprint,canonical.meta.corpusFingerprint);
++assert.equal(metadata.mfm.version,release.version);
++for(const id of BOOK_PASSPORT_IDS)assert.equal(metadata.books[id].mfmVersion,read(readBookPassport(id).mfm.currentRelease).version);
++for(const [index,row]of table.rows.entries())assert.deepEqual(metadata.core.battleSizes[index],{
++ label:row.label,pointsLimit:Number(row.cells[table.columns.indexOf('Points Total')-1]),detachmentPoints:Number(row.cells[table.columns.indexOf('Detachment Points (DP)')-1])});
++const reordered=structuredClone(rule),other=reordered.content.find(block=>block.type==='comparison-table');
++[other.columns[1],other.columns[2]]=[other.columns[2],other.columns[1]];
++for(const row of other.rows)[row.cells[0],row.cells[1]]=[row.cells[1],row.cells[0]];
++assert.deepEqual(projectCoreBattleSizes(reordered),metadata.core.battleSizes,'Source headings still own the table numbers');
++assert.equal(JSON.stringify(canonical),rawBefore);
++let requests=0,parses=0;
++const fetch=async url=>{assert(url.href.endsWith('/'+path));requests++;return {ok:true,json:async()=>{parses++;return structuredClone(metadata);}};};
++const loader=createSourceMetadataLoader({fetch});
++const [global,core,...books]=await Promise.all([loader.global(),loader.core(),...BOOK_PASSPORT_IDS.map(id=>loader.book(id))]);
++assert.equal(requests,1);assert.equal(parses,1,'Every concurrent consumer shares one fetch and parse');
++assert.equal(global.mfmVersion,release.version);assert.equal(global.coreCaptureDate,canonical.meta.captureDate);assert.equal(global.coreCorpusFingerprint,canonical.meta.corpusFingerprint);
++assert.deepEqual(core,metadata.core);assert.equal(await loader.core(),core);
++for(const [index,id]of BOOK_PASSPORT_IDS.entries())assert.equal(books[index].mfmVersion,metadata.books[id].mfmVersion);
++const sourceLine=formatSourcesLine(global);
++async function changed(mutator){const value=structuredClone(metadata);mutator(value);return createSourceMetadataLoader({fetch:async()=>({ok:true,json:async()=>value})});}
++const releaseChanged=await changed(value=>{value.mfm.version+='-changed';});
++assert.notEqual(formatSourcesLine(await releaseChanged.global()),sourceLine,'MFM metadata change updates the line');
++const dateChanged=await changed(value=>{value.core.captureDate='2026-11-12';});
++assert.notEqual(formatSourcesLine(await dateChanged.global()),sourceLine,'Core capture metadata change updates the line');
++const selected=await changed(value=>{value.books['synthetic-book']={mfmVersion:'v9.0-passport-selected'};});
++assert.equal((await selected.book('synthetic-book')).mfmVersion,'v9.0-passport-selected','Per-book generated ownership is not replaced by the global version');
++await assert.rejects(loader.book('../wrong'),/Invalid source metadata book/);
++await assert.rejects(loader.book('unregistered'),/metadata unavailable for book/);
++for(const poison of [value=>{delete value.schema;},value=>{value.core.captureDate='2026-02-30';},value=>{value.core.battleSizes[0].detachmentPoints=null;},value=>{delete value.books;}]){
++ const invalid=await changed(poison);await assert.rejects(invalid.global(),/metadata unavailable or invalid/);
++}
++let failures=1;
++const retry=createSourceMetadataLoader({fetch:async url=>failures-- >0?{ok:false}:fetch(url)});
++await assert.rejects(retry.global(),/metadata unavailable/);assert.equal((await retry.global()).mfmVersion,release.version);
++const oldFetch=globalThis.fetch;let defaultRequests=0;
++try{globalThis.fetch=async url=>{defaultRequests++;return fetch(url);};const defaults=createSourceMetadataLoader();await defaults.global();await defaults.book(BOOK_PASSPORT_IDS[0]);assert.equal(defaultRequests,1);}finally{globalThis.fetch=oldFetch;}
++const document={createElement:tag=>({tagName:tag,dataset:{}})},line=createSourcesLine(document,global);
++assert.equal(line.textContent,sourceLine);assert.equal(line.dataset.v2SourcesLine,'');assert.equal(line.tagName,'p');
++assert.throws(()=>formatSourcesLine({mfmVersion:release.version,coreCaptureDate:'unavailable'}),/metadata unavailable/);
++const runtime=fs.readFileSync(new URL('./source-metadata.mjs',import.meta.url),'utf8');
++assert.doesNotMatch(runtime,/\bimport[^;]*\bwith\s*\{/,'Metadata runtime needs no JSON import attributes');
++assert.doesNotMatch(runtime,/core-rules\.digital-11e\.json|mfm\/current\.json/,'The browser never requests the full source owners for metadata');
++console.log(JSON.stringify({status:'PASS',books:BOOK_PASSPORT_IDS.length,fetches:1,parses:1,sourceMutationChangesLine:true,battleSizes:core.battleSizes.length}));
+diff --git a/books/shared/army-book-app-v2/import-notices-qa.mjs b/books/shared/army-book-app-v2/import-notices-qa.mjs
+new file mode 100644
+index 00000000..50952f77
+--- /dev/null
++++ b/books/shared/army-book-app-v2/import-notices-qa.mjs
+@@ -0,0 +1,95 @@
++/** Header notices are separate from native import admission and saved state. */
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import {parse} from '../roster-v2/parser.mjs';
++import {lexicalDraft} from '../roster-v2/import.mjs';
++import {importRosterNotices} from './import-notices.mjs';
++import {importNoticeCopy} from './cosmetics.mjs';
++import {projectCoreBattleSizes} from '../tools/build-source-metadata.mjs';
++import {assertPlayerImportCopy} from '../../../tests/helpers/import-copy-assertions.mjs';
++
++const read=file=>JSON.parse(fs.readFileSync(new URL(file,import.meta.url),'utf8'));
++const core=read('../../core-rules/content/core-rules.digital-11e.json');
++const rule=core.records.find(row=>row.code==='25.03'),battleSizes=projectCoreBattleSizes(rule);
++assert.deepEqual(battleSizes,[{label:'INCURSION',pointsLimit:1000,detachmentPoints:2},
++  {label:'STRIKE FORCE',pointsLimit:2000,detachmentPoints:3}]);
++const notices=[];
++const context=book=>{
++  const payload=read(`../../${book}/v2/generated/app-presentation.json`),cards=new Map(payload.cards.map(card=>[card.id,card]));
++  const entities=payload.cards.filter(card=>card.kind==='DETACHMENT').map(card=>({id:card.id,kind:card.kind,data:{title:card.title}}));
++  const forceDispositions=[...new Set(Object.values(payload.bookPresentation.records).flatMap(row=>(row.forceDispositions||[]).map(field=>field.displayValue??field.value)))];
++  return {cards,bookPresentation:payload.bookPresentation,battleSizes,book:{entities,importHeaderContext:{forceDispositions}}};
++};
++const dg=context('death-guard'),owner=fs.readFileSync(new URL('../../../v2/fixtures/new-recruit-v37.25-owner-death-guard.txt',import.meta.url),'utf8');
++const metadata=lexicalDraft(owner,parse,dg.book).metadata;
++const state={detachmentIds:['detachment-shamblerot-vectorium','detachment-virulent-vectorium']};
++const input={...dg,metadata,state},before=structuredClone(input),ownerNotices=importRosterNotices(input);
++assert.deepEqual(ownerNotices,[{kind:'DETACHMENT_POINTS_OVER_BATTLE_SIZE',total:5,limit:3,battleSize:'Strike Force'}]);
++assert.deepEqual(input,before,'The projection must not modify roster, metadata, prices or memberships');
++assert.match(importNoticeCopy.detachmentPoints(ownerNotices[0]),/5 DP.*Strike Force.*3 DP/);
++notices.push(...ownerNotices);
++// DISRUPTION belongs to the first selected Detachment; union membership must
++// suppress the warning even though it does not belong to the second.
++const mismatch=importRosterNotices({...input,state:{detachmentIds:['detachment-virulent-vectorium']}});
++assert.deepEqual(mismatch,[{kind:'FORCE_DISPOSITION_NOT_SELECTED',disposition:'Disruption'}]);notices.push(...mismatch);
++assert.deepEqual(importRosterNotices({...input,metadata:{...metadata,plainHeader:{...metadata.plainHeader,detachmentPoints:999}}}),ownerNotices,
++  'Header-declared DP never replaces the book-owned Detachment prices');
++const threeLines=owner.replace('Disruption\nStrike Force (2,000 Points)\n','');
++assert.deepEqual(importRosterNotices({...input,metadata:lexicalDraft(threeLines,parse,dg.book).metadata}),[],
++  'An existing three-line header supplies no guessed battle size or Force Disposition');
++for(const patch of [{metadata:null},{metadata:{...metadata,plainHeader:undefined}},
++  {metadata:{...metadata,pointsLimit:1000}},{battleSizes:[]},{state:{detachmentIds:['missing']}},
++  {bookPresentation:null},{cards:new Map()}])assert.deepEqual(importRosterNotices({...input,...patch}),[]);
++assert.deepEqual(importRosterNotices({...input,metadata:{...metadata,battleSize:'Incursion',pointsLimit:1000,disposition:'—'},
++  state:{detachmentIds:['detachment-virulent-vectorium']}}),
++  [{kind:'DETACHMENT_POINTS_OVER_BATTLE_SIZE',total:3,limit:2,battleSize:'Incursion'}],
++  'This note compares table values and makes no legality claim about Core exceptions');
++assert.deepEqual(importRosterNotices({...input,metadata:{...metadata,disposition:'Unknown Force Disposition'}}),ownerNotices);
++// A changed source table must change the note. The UI owns no DP constants.
++const changedRule=structuredClone(rule),table=changedRule.content.find(row=>row.type==='comparison-table');
++table.rows.find(row=>row.label==='STRIKE FORCE').cells[table.columns.indexOf('Detachment Points (DP)')-1]='6';
++assert.deepEqual(importRosterNotices({...input,battleSizes:projectCoreBattleSizes(changedRule)}),[]);
++// The other declared producer shape owns exact relation labels rather than
++// Force Disposition IDs. Its existing field paths still require proof.
++const namedInput=structuredClone(input);
++for(const record of Object.values(namedInput.bookPresentation.records).filter(row=>row.kind==='DETACHMENT')){
++  const card=namedInput.cards.get(record.pointRecordId);card.kind='DETACHMENT_ROSTER_METADATA';
++  for(const [index,field]of record.forceDispositions.entries()){
++    const owned=card.fields.find(row=>row.id===field.id),path=`/forceDispositions/${index}`;
++    for(const row of [owned,field]){row.id=`${record.pointRecordId}::${path}`;row.source.path=path;row.value=field.displayValue;}
++    delete field.displayValue;
++  }
++}
++assert.deepEqual(importRosterNotices(namedInput),ownerNotices,'Both enrolled point-owner shapes preserve the same notice');
++assert.deepEqual(importRosterNotices({...namedInput,state:{detachmentIds:['detachment-virulent-vectorium']}}),mismatch,
++  'Exact named relations also check membership across the selected Detachments');
++// Each accepted/derived plain-header fixture keeps its own explicit selected
++// identities; notice projection neither parses a second book nor imports units.
++const fixtures=read('../../../v2/fixtures/new-recruit-plain-header-v37.25.json'),cases=[];
++if(!process.argv.includes('--owner-only'))for(const fixture of fixtures.derived){
++  const contextForBook=fixture.bookId==='death-guard'?dg:context(fixture.bookId);
++  const draft=lexicalDraft(fixture.plainText,parse,contextForBook.book),fixtureState={detachmentIds:fixture.expectedDetachmentIds};
++  const args={...contextForBook,metadata:draft.metadata,state:fixtureState},original=structuredClone(args);
++  const result=importRosterNotices(args);assert.deepEqual(args,original);
++  assert(draft.metadata.plainHeader,'The established fixture remains a recognized plain header');
++  const selected=fixture.expectedDetachmentIds.map(id=>contextForBook.bookPresentation.records[id]);
++  const ownedPrices=selected.map(record=>contextForBook.cards.get(record.pointRecordId).fields.find(field=>field.source.path==='/detachmentPoints').value);
++  const total=ownedPrices.reduce((sum,value)=>sum+value,0);
++  const hasMember=selected.some(record=>record.forceDispositions.some(field=>
++    (field.displayValue??field.value).toUpperCase()===fixture.disposition.toUpperCase()));
++  const expected=[];
++  if(total>3)expected.push({kind:'DETACHMENT_POINTS_OVER_BATTLE_SIZE',total,limit:3,battleSize:'Strike Force'});
++  if(!hasMember)expected.push({kind:'FORCE_DISPOSITION_NOT_SELECTED',disposition:fixture.disposition});
++  assert.deepEqual(result,expected,fixture.bookId+': independent direct source price/membership expectation');
++  const ownerKinds=selected.map(record=>contextForBook.cards.get(record.pointRecordId).kind);
++  assert(ownerKinds.every(kind=>kind===(fixture.bookId==='chaos-space-marines'?'DETACHMENT_ROSTER_METADATA':'MFM_DETACHMENT')),
++    'The expected enrolled source shapes remain explicit');
++  assert(importRosterNotices({...args,battleSizes:battleSizes.map(row=>({...row,detachmentPoints:0}))})
++    .some(row=>row.kind==='DETACHMENT_POINTS_OVER_BATTLE_SIZE'),fixture.bookId+': each selected source-owned DP price is consumed');
++  cases.push({book:fixture.bookId,ownerKinds,total,sourceMembership:hasMember,notices:result});notices.push(...result);
++}
++assertPlayerImportCopy(notices.map(notice=>({location:'import header note',
++  text:importNoticeCopy[notice.kind==='DETACHMENT_POINTS_OVER_BATTLE_SIZE'?'detachmentPoints':'forceDisposition'](notice)})));
++const runtime=fs.readFileSync(new URL('./runtime.mjs',import.meta.url),'utf8');
++if(!process.argv.includes('--owner-only'))assert.doesNotMatch(runtime,/Imported points/,'The T’au summary has the same points label as the other eight books');
++console.log(JSON.stringify({status:'PASS',owner:ownerNotices,missingContextControls:8,sourceLimitMutation:true,anySelectedMembership:true,cases}));
+diff --git a/books/shared/army-book-app-v2/model-base-caption-qa.mjs b/books/shared/army-book-app-v2/model-base-caption-qa.mjs
+new file mode 100644
+index 00000000..3b07df3f
+--- /dev/null
++++ b/books/shared/army-book-app-v2/model-base-caption-qa.mjs
+@@ -0,0 +1,15 @@
++import assert from 'node:assert/strict';
++import {modelBaseCaption} from './cosmetics.mjs';
++const cases=[
++  ['(⌀Use model)','(Use model base)'],['(ØUse model)','(Use model base)'],
++  ['(Use model)','(Use model base)'],['Use model','Use model base'],
++  ['Profile: (⌀Use model)','Profile: (Use model base)'],
++  ['Profile: ØUse model','Profile: Use model base'],
++  ['(⌀32mm)','(⌀32mm)'],['(Ø120x92mm)','(Ø120x92mm)'],
++  ['Profile: (⌀80mm)','Profile: (⌀80mm)'],['Use model base','Use model base']
++];
++for(const [value,expected]of cases){
++  const field=Object.freeze({value});assert.equal(modelBaseCaption(field.value),expected);assert.equal(field.value,value);
++}
++assert.equal(modelBaseCaption(null),null);
++console.log(JSON.stringify({status:'PASS',cases:cases.length,sourceValuesUnchanged:true}));
+diff --git a/books/shared/army-book-app-v2/navigation-geometry-qa.mjs b/books/shared/army-book-app-v2/navigation-geometry-qa.mjs
+new file mode 100644
+index 00000000..2c99ebd4
+--- /dev/null
++++ b/books/shared/army-book-app-v2/navigation-geometry-qa.mjs
+@@ -0,0 +1,50 @@
++/** Fresh per-pass lookups must agree with the original live DOM scan. */
++import assert from 'node:assert/strict';
++import {createContentsSectionLookup} from './navigation-v1.mjs';
++import {NavigationController} from './navigation-v1-controller.mjs';
++let checks=0;
++const node=(name,dataset={})=>({name,dataset});
++const hero=node('hero'),heading=node('heading',{contentsTarget:'group'}),headingDuplicate=node('second heading',{contentsTarget:'group'});
++const first=node('first canonical',{cardId:'shared'}),second=node('second canonical',{cardId:'shared'});
++const physical=node('physical bodyguard',{rosterInstanceId:'unit-a',cardId:'shared'}),physicalDuplicate=node('second bodyguard',{rosterInstanceId:'unit-a'});
++const character=node('physical character',{rosterInstanceId:'unit-b',cardId:'character'});
++const combined='[data-contents-target],[data-roster-instance-id],[data-card-id]';
++let tree=[heading,first,physical,second,character,headingDuplicate,physicalDuplicate],scans=0;
++const main={querySelector:selector=>selector==='.v2-hero'?hero:null,querySelectorAll:selector=>{
++  scans++;if(selector===combined)return tree;
++  const property={'[data-contents-target]':'contentsTarget','[data-roster-instance-id]':'rosterInstanceId','[data-card-id]':'cardId'}[selector];return tree.filter(node=>Object.hasOwn(node.dataset,property));
++}};
++const model={nodes:new Map([['physical',{instanceId:'unit-a',canonicalId:'shared'}],['character-route',{instanceId:'unit-b',canonicalId:'shared'}],['canonical-route',{canonicalId:'shared'}],['absent-physical',{instanceId:'missing',canonicalId:'shared'}]]),groups:new Map([['group',['shared','character']],['canonical-group',['shared','character']],['missing-group',['missing']],['empty-group',[]]])};
++// This is intentionally the pre-change scan, rather than a second map builder.
++const old=id=>{
++  if(id==='start')return main.querySelector('.v2-hero')||main;
++  const heading=[...main.querySelectorAll('[data-contents-target]')].find(node=>node.dataset.contentsTarget===id);if(heading)return heading;
++  const row=model.nodes.get(id);
++  if(row?.instanceId)return [...main.querySelectorAll('[data-roster-instance-id]')].find(node=>node.dataset.rosterInstanceId===row.instanceId)||null;
++  const target=model.groups.get(id)?.[0]||row?.canonicalId||id;
++  return [...main.querySelectorAll('[data-card-id]')].find(node=>node.dataset.cardId===target)||null;
++};
++const ids=['start','group','physical','character-route','canonical-route','canonical-group','shared','character','absent-physical','missing-group','empty-group','unknown'];
++let lookup=createContentsSectionLookup(main,model);assert.equal(scans,1,'Exactly one combined DOM scan per pass');checks++;
++for(const id of ids){assert.equal(lookup(id),old(id),'Original first-match/priority semantics: '+id);checks++;}
++assert.equal(lookup('shared'),first);assert.equal(lookup('physical'),physical);assert.equal(lookup('group'),heading);assert.equal(lookup('character-route'),character);checks++;
++const previous=scans;for(let i=0;i<100;i++)for(const id of ids)lookup(id);assert.equal(scans,previous,'Repeated geometry lookups never rescan DOM');checks++;
++// Replacement and reordering are observed by the next pass, never a long-lived cache.
++tree=[character,physicalDuplicate,second,headingDuplicate];lookup=createContentsSectionLookup(main,model);
++for(const id of ids){assert.equal(lookup(id),old(id),'Fresh replacement semantics: '+id);checks++;}
++assert.equal(lookup('shared'),second);assert.equal(lookup('physical'),physicalDuplicate);assert.equal(lookup('group'),headingDuplicate);checks++;
++const wrongLast=node('mutated last match',{cardId:'shared'});tree=[first,wrongLast];lookup=createContentsSectionLookup(main,model);
++assert.throws(()=>assert.equal(lookup('shared'),wrongLast),assert.AssertionError,'Last-match mutation is rejected');checks++;
++tree=[];lookup=createContentsSectionLookup(main,model);assert.equal(lookup('shared'),null);assert.equal(lookup('physical'),null);checks++;
++assert.throws(()=>assert.equal(lookup('shared'),first),assert.AssertionError,'Stale detached-node mutation is rejected');checks++;
++const bare={querySelector:()=>null,querySelectorAll:()=>[]};assert.equal(createContentsSectionLookup(bare,model)('start'),bare);checks++;
++// Exercise the actual controller hook lifetime, including failure cleanup.
++const priorDocument=globalThis.document,priorWindow=globalThis.window;let started=0,finished=0,inside=false;
++globalThis.window={scrollY:0};globalThis.document={documentElement:{style:{setProperty(){}}}};
++try{
++ const controller={destroyed:false,adapter:{beforeGeometry(){started++;inside=true;},afterGeometry(){finished++;inside=false;},range(){assert(inside);return {top:0,bottom:1};}},header:{getBoundingClientRect:()=>({bottom:10})},geometry:{},items:[{}],readViewport(){assert(inside);}};
++ NavigationController.prototype.refreshGeometry.call(controller);assert.equal(started,1);assert.equal(finished,1);assert(!inside);checks++;
++ controller.adapter.range=()=>{throw new Error('layout failed');};assert.throws(()=>NavigationController.prototype.refreshGeometry.call(controller),/layout failed/);assert.equal(started,2);assert.equal(finished,2);assert(!inside,'Failed geometry cannot retain a stale DOM index');checks++;
++ controller.destroyed=true;NavigationController.prototype.refreshGeometry.call(controller);assert.equal(started,2);checks++;
++}finally{if(priorDocument===undefined)delete globalThis.document;else globalThis.document=priorDocument;if(priorWindow===undefined)delete globalThis.window;else globalThis.window=priorWindow;}
++console.log(JSON.stringify({status:'PASS',checks}));
+diff --git a/books/shared/army-book-app-v2/rule-term-visibility-qa.mjs b/books/shared/army-book-app-v2/rule-term-visibility-qa.mjs
+new file mode 100644
+index 00000000..354f3aad
+--- /dev/null
++++ b/books/shared/army-book-app-v2/rule-term-visibility-qa.mjs
+@@ -0,0 +1,69 @@
++/** Decoration waits for a real first display; canonical matching stays shared. */
++import assert from 'node:assert/strict';
++import {createRuleTermLinker,createVisibleRuleTermLinks,onlyRuleTermDecorations} from './rule-term-links.mjs';
++let checks=0;
++class Element {
++  constructor({boundary=false,id,title,parent=null}={}){this.boundary=boundary;this.dataset={...(id?{cardId:id}:{}),...(title?{ruleTermTitle:title}:{})};this.parentElement=parent;this.isConnected=true;}
++  closest(selector){for(let node=this;node;node=node.parentElement){if(selector.startsWith('.unit-card')?node.boundary:node.dataset.cardId||node.dataset.ruleTermTitle)return node;}return null;}
++  contains(other){for(let node=other;node;node=node.parentElement)if(node===this)return true;return false;}
++  getBoundingClientRect(){const top=this.top||0,height=this.height||100;return {width:100,height,top,bottom:top+height,left:0,right:100};}
++}
++let observer;
++class Observer {
++  constructor(callback){this.callback=callback;this.observed=new Set();observer=this;}
++  observe(node){this.observed.add(node);}
++  unobserve(node){this.observed.delete(node);}
++  disconnect(){this.observed.clear();}
++  emit(target,isIntersecting=true){this.callback([{target,isIntersecting}]);}
++}
++const make=(ObserverType=Observer,options={})=>{
++  const calls=[],layouts=[],cleanups=[],frames=new Map(),listeners=new Map();let frameId=0;
++  const lifecycle={active:true,cleanup:callback=>cleanups.push(callback),frame:callback=>{const id=++frameId;frames.set(id,callback);return id;},cancelFrame:id=>frames.delete(id),listen:(target,type,callback)=>listeners.set(type,callback)};
++  const manager=createVisibleRuleTermLinks({document:{defaultView:{IntersectionObserver:ObserverType,innerWidth:390,innerHeight:844}},cards:new Map([['parent',{title:'Original parent'}],['child',{title:'Original child'}]]),linker:{link:(root,options)=>{calls.push({root,options});if(root.grow)options.boundary.height=150;}},lifecycle,onLayout:boundary=>layouts.push(boundary),...options});
++  return {calls,layouts,manager,lifecycle,frames,scroll:()=>listeners.get('scroll')?.(),runFrame:()=>{const pending=[...frames.values()];frames.clear();pending.forEach(callback=>callback());},destroy:()=>{lifecycle.active=false;cleanups.forEach(callback=>callback());}};
++};
++const {manager,calls,destroy}=make(),page=new Element(),parent=new Element({id:'parent',boundary:true,parent:page}),child=new Element({id:'child',boundary:true,parent}),prose=new Element({parent:child}),detached=new Element();
++manager.defer(prose);manager.defer(child);manager.defer(parent);manager.defer(detached);
++assert.equal(calls.length,0,'Building the complete book never scans prose');checks++;
++manager.mount(page);
++assert.equal(calls.length,0,'Mounting offscreen cards never scans prose');checks++;
++assert.equal(child.dataset.ruleTermState,'pending');assert.equal(parent.dataset.ruleTermState,'pending','Only actual pending groups receive presentation markers');checks++;
++assert.deepEqual([...observer.observed],[child,parent],'One observer target per card, detached leftovers discarded');checks++;
++observer.emit(parent,false);assert.equal(calls.length,0,'Non-visible observer records do not activate a card');checks++;
++observer.emit(parent);assert.equal(calls.length,1);assert.equal(calls[0].root,parent,'Showing a parent does not process nested unseen cards');checks++;
++assert.equal(parent.dataset.ruleTermState,'ready');assert.equal(child.dataset.ruleTermState,'pending','A completed group becomes ready without activating its children');checks++;
++assert(!observer.observed.has(parent));assert(observer.observed.has(child));checks++;
++observer.emit(child);assert.deepEqual(calls.slice(1).map(call=>call.root),[prose,child],'Original presenter order is retained inside each shown card');checks++;
++assert(calls.slice(1).every(call=>call.options.boundary===child));checks++;
++assert.equal(calls[1].options.outsideTitle,'Original child','Title context is captured before DOM reparenting');checks++;
++assert.equal(calls[1].options.ownerRoot,prose);checks++;
++observer.emit(child);assert.equal(calls.length,3,'Repeat intersections cannot add links again');checks++;
++const late=new Element({parent:child});manager.defer(late);manager.mount(page,child);assert.equal(calls.length,4,'Explicit Contents targets are ready before geometry is measured');checks++;
++const replacement=new Element({id:'child',boundary:true,parent:page});manager.defer(replacement);manager.mount(page);manager.reset();observer.emit(replacement);assert.equal(calls.length,4,'Reset discards work from replaced views');assert.equal(observer.observed.size,0);checks++;
++assert.equal(replacement.dataset.ruleTermState,undefined,'Reset removes stale pending state instead of claiming decoration completed');checks++;
++manager.defer(child);manager.mount(page);child.isConnected=false;observer.emit(child);assert.equal(calls.length,4,'Removed cards cannot acquire links');checks++;
++destroy();child.isConnected=true;observer.emit(child);assert.equal(calls.length,4,'Destroyed mounts cannot acquire links');assert.equal(observer.observed.size,0);checks++;
++const fallback=make(null);fallback.manager.defer(parent);fallback.manager.mount(page);assert.equal(fallback.calls.length,1,'Browsers without an observer retain canonical links');fallback.destroy();checks++;
++const changed=make(),resized=new Element({boundary:true,parent:page});resized.grow=true;changed.manager.defer(resized);changed.manager.mount(page);observer.emit(resized);assert.deepEqual(changed.layouts,[resized],'Real first-show size changes still remeasure navigation');changed.destroy();checks++;
++let allowed=false;const controlled=make(Observer,{canReveal:()=>allowed,viewportTop:()=>120}),passing=new Element({boundary:true,parent:page});passing.top=150;
++controlled.manager.defer(passing);controlled.manager.mount(page);observer.emit(passing);assert.equal(controlled.calls.length,0,'Transient controlled-scroll intersections stay queued');assert.equal(controlled.frames.size,1);checks++;
++controlled.runFrame();assert.equal(controlled.calls.length,0);assert.equal(controlled.frames.size,1,'Blocked work owns only one pending frame');checks++;
++allowed=true;controlled.runFrame();assert.equal(controlled.calls.length,1,'Settled or cancelled scrolling flushes the current visible card');assert.equal(controlled.frames.size,0);observer.emit(passing);assert.equal(controlled.calls.length,1,'Stable viewport decoration occurs once');checks++;
++const hidden=new Element({boundary:true,parent:page});hidden.top=1000;allowed=false;controlled.manager.defer(hidden);controlled.manager.mount(page);observer.emit(hidden);allowed=true;controlled.runFrame();assert.equal(controlled.calls.length,1,'A passed-over card outside the final viewport is never scanned');assert.equal(controlled.frames.size,0);checks++;
++hidden.top=0;controlled.scroll();controlled.runFrame();assert.equal(controlled.calls.length,1,'A card covered by the sticky header is never scanned');checks++;
++hidden.top=150;controlled.scroll();controlled.runFrame();assert.equal(controlled.calls.length,2,'Manual scrolling reveals previously covered pending prose');checks++;
++const destination=new Element({boundary:true,parent:page});allowed=false;controlled.manager.defer(destination);controlled.manager.mount(page,destination);assert.equal(controlled.calls.length,3,'The explicit destination is decorated before controlled-scroll geometry');checks++;
++const abandoned=new Element({boundary:true,parent:page});abandoned.top=150;controlled.manager.defer(abandoned);controlled.manager.mount(page);observer.emit(abandoned);assert.equal(controlled.frames.size,1);controlled.manager.reset();assert.equal(controlled.frames.size,0,'Route replacement cancels the pending reveal frame');observer.emit(abandoned);assert.equal(controlled.calls.length,3);checks++;
++controlled.manager.defer(abandoned);controlled.manager.mount(page);observer.emit(abandoned);assert.equal(controlled.frames.size,1);controlled.destroy();assert.equal(controlled.frames.size,0,'Destroy cancels the pending reveal frame');observer.emit(abandoned);controlled.scroll();assert.equal(controlled.frames.size,0);assert.equal(controlled.calls.length,3,'Destroyed views cannot schedule or decorate');checks++;
++let inventoryReads=0;const index={get entries(){inventoryReads++;return [];}};
++const linker=createRuleTermLinker({document:{},cards:new Map(),index,anchor:()=>{}});
++assert.equal(inventoryReads,0,'Constructing a linker alone does not compile the vocabulary');checks++;
++assert.equal(linker.matcher,linker.matcher);assert.equal(inventoryReads,1,'The existing exact matcher is compiled at most once per mount');checks++;
++linker.prepare();linker.prepare();assert.equal(inventoryReads,1);assert.deepEqual(linker.counts,{links:0,textNodes:0,byTarget:Object.create(null)},'Preparing the vocabulary reads no page prose and places no links');checks++;
++const text={nodeType:3,nodeValue:'Deep Strike',textContent:'Deep Strike'},link={nodeType:1,textContent:'Deep Strike',matches:selector=>selector==='a.rule-term-link'},other={nodeType:1,matches:()=>false};
++const decoration={type:'childList',removedNodes:[text],addedNodes:[link]};
++assert(onlyRuleTermDecorations([decoration]));checks++;
++for(const records of [[],[{...decoration,removedNodes:[]}],[{...decoration,removedNodes:[other]}],[{...decoration,addedNodes:[text]}],[{...decoration,addedNodes:[link,other]}],[{...decoration,type:'attributes'}],[decoration,{...decoration,addedNodes:[other]}],[{...decoration,addedNodes:[{...link,textContent:'Changed prose'}]}]]){
++  assert(!onlyRuleTermDecorations(records),'Real or mixed layout mutations still require navigation geometry');checks++;
++}
++console.log(JSON.stringify({status:'PASS',checks}));
+diff --git a/tests/book-passport-qa.mjs b/tests/book-passport-qa.mjs
+index 1a9dfbf6..67614240 100644
+--- a/tests/book-passport-qa.mjs
++++ b/tests/book-passport-qa.mjs
+@@ -7,6 +7,7 @@ import {execFileSync} from 'node:child_process';
+ import {createHash} from 'node:crypto';
+ import {BOOK_PASSPORT_IDS,bookPassportSchema,readBookPassport} from '../books/shared/tools/book-passport.mjs';
+ import {generatedRebuildPlan} from '../books/shared/tools/generated-rebuild-plan.mjs';
++import {withoutSourceMetadataStep,SOURCE_METADATA_OUTPUT} from './helpers/source-metadata-plan.mjs';
+ 
+ const root=fileURLToPath(new URL('../',import.meta.url));
+ const baseline=JSON.parse(fs.readFileSync(new URL('./fixtures/book-passport-baseline.json',import.meta.url)));
+@@ -82,8 +83,11 @@ for(const id of BOOK_PASSPORT_IDS){
+  results.push({book:id,status:'PASS',producers:config.passport.build.steps.length,legacyFields:expected.legacyKeys.length});
+ }
+ const tracked=execFileSync('git',['ls-tree','-r','--name-only','-z',baseline.base],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024}).split('\0').filter(Boolean);
++assert(!tracked.includes(SOURCE_METADATA_OUTPUT),'The accepted baseline predates the requested metadata extension');
++tracked.push(SOURCE_METADATA_OUTPUT);
+ const plan=generatedRebuildPlan(tracked,{root});
+-assert.equal(plan.steps.length,baseline.baselinePlan.steps,'Producer count changed');
+-assert.equal(plan.files.length,baseline.baselinePlan.files,'Compared output count changed');
+-assert.equal(sha(JSON.stringify(plan)),baseline.baselinePlan.sha256,'Producer order, arguments, outputs or comparison policy changed from the immutable baseline');
+-console.log(JSON.stringify({status:'PASS',books:results,controls,negativeControls:Object.values(controls).reduce((sum,value)=>sum+value,0),baseline:baseline.base,unchangedPlan:{steps:plan.steps.length,files:plan.files.length,sha256:baseline.baselinePlan.sha256}},null,2));
++const legacyPlan=withoutSourceMetadataStep(plan);
++assert.equal(legacyPlan.steps.length,baseline.baselinePlan.steps,'Producer count changed');
++assert.equal(legacyPlan.files.length,baseline.baselinePlan.files,'Compared output count changed');
++assert.equal(sha(JSON.stringify(legacyPlan)),baseline.baselinePlan.sha256,'Producer order, arguments, outputs or comparison policy changed from the immutable baseline');
++console.log(JSON.stringify({status:'PASS',books:results,controls,negativeControls:Object.values(controls).reduce((sum,value)=>sum+value,0),baseline:baseline.base,unchangedPlan:{steps:legacyPlan.steps.length,files:legacyPlan.files.length,sha256:baseline.baselinePlan.sha256},sourceMetadataExtension:{steps:1,files:1}},null,2));
+diff --git a/tests/book-update-declarations-qa.mjs b/tests/book-update-declarations-qa.mjs
+index 09d46ffc..8ba327ea 100644
+--- a/tests/book-update-declarations-qa.mjs
++++ b/tests/book-update-declarations-qa.mjs
+@@ -7,6 +7,7 @@ import {execFileSync} from 'node:child_process';
+ import {createHash} from 'node:crypto';
+ import {BOOK_PASSPORT_IDS,readBookPassport} from '../books/shared/tools/book-passport.mjs';
+ import {generatedRebuildPlan} from '../books/shared/tools/generated-rebuild-plan.mjs';
++import {withoutSourceMetadataStep} from './helpers/source-metadata-plan.mjs';
+ import {bookUpdateDeclarations,selectBookUpdate,validateUpdateInputs,validateUpdateOperations} from '../books/shared/tools/book-update-declarations.mjs';
+ 
+ const root=fileURLToPath(new URL('../',import.meta.url));
+@@ -14,9 +15,10 @@ const tracked=execFileSync('git',['ls-tree','-r','--name-only','-z','HEAD'],{cwd
+ const baseline=JSON.parse(fs.readFileSync(new URL('./fixtures/book-passport-baseline.json',import.meta.url),'utf8'));
+ const plan=generatedRebuildPlan(tracked,{root});
+ const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+-assert.equal(plan.steps.length,baseline.baselinePlan.steps,'Update metadata must not add or remove gate producers');
+-assert.equal(plan.files.length,baseline.baselinePlan.files,'Update metadata must not change gate coverage');
+-assert.equal(sha(JSON.stringify(plan)),baseline.baselinePlan.sha256,'Update metadata must preserve the exact accepted rebuild plan');
++const legacyPlan=withoutSourceMetadataStep(plan);
++assert.equal(legacyPlan.steps.length,baseline.baselinePlan.steps,'Update metadata must not add or remove gate producers');
++assert.equal(legacyPlan.files.length,baseline.baselinePlan.files,'Update metadata must not change gate coverage');
++assert.equal(sha(JSON.stringify(legacyPlan)),baseline.baselinePlan.sha256,'Update metadata must preserve the exact accepted rebuild plan');
+ 
+ const results=[],mutations=[];
+ for(const id of BOOK_PASSPORT_IDS){
+@@ -105,4 +107,4 @@ assert.throws(()=>selectBookUpdate(declarations),/Choose --book=<id> or --all/);
+ 
+ console.log(JSON.stringify({status:'PASS',books:results,negativeControls:mutations.length,mutations,
+  selection:{dg:dg.steps.length,smBooks:sm.books,allBooks:all.books.length,coreReaderOnCoreChange:core.shared.includes(reader),mfmBooks:mfm.books.length,fallbackReason:fallback.fallbackReason},
+- unchangedGate:{steps:plan.steps.length,files:plan.files.length,sha256:sha(JSON.stringify(plan))}},null,2));
++ unchangedGate:{steps:legacyPlan.steps.length,files:legacyPlan.files.length,sha256:sha(JSON.stringify(legacyPlan))},sourceMetadataExtension:{steps:1,files:1}},null,2));
+diff --git a/tests/helpers/source-metadata-plan.mjs b/tests/helpers/source-metadata-plan.mjs
+new file mode 100644
+index 00000000..53261458
+--- /dev/null
++++ b/tests/helpers/source-metadata-plan.mjs
+@@ -0,0 +1,14 @@
++/** Preserve the immutable legacy plan and admit only the requested additive step. */
++import assert from 'node:assert/strict';
++export const SOURCE_METADATA_OUTPUT='books/shared/application-v2/generated/source-metadata.v1.json';
++export function withoutSourceMetadataStep(plan){
++  const producer='books/shared/tools/build-source-metadata.mjs';
++  const output=SOURCE_METADATA_OUTPUT;
++  const matches=plan.steps.filter(step=>step.producer===producer);
++  assert.equal(matches.length,1,'One exact source metadata producer is required');
++  assert.deepEqual(matches[0],{book:'source-metadata',producer,outputs:[output],args:[],runtime:'node'});
++  const index=plan.steps.indexOf(matches[0]);
++  assert.equal(plan.steps[index+1]?.producer,'books/core-rules/reader/build.mjs','Metadata follows book producers and precedes shared consumers');
++  assert.equal(plan.files.filter(file=>file===output).length,1,'One metadata output is required');
++  return {...plan,steps:plan.steps.filter(step=>step!==matches[0]),files:plan.files.filter(file=>file!==output)};
++}
+diff --git a/tests/helpers/startup-graph.mjs b/tests/helpers/startup-graph.mjs
+index 2e01e0ba..9f31340a 100644
+--- a/tests/helpers/startup-graph.mjs
++++ b/tests/helpers/startup-graph.mjs
+@@ -73,6 +73,10 @@ export function buildStartupGraph(root){
+           deferredCandidates.push({from:relative,request,resolved:target,kind:'selected-book-data-import'});
+         }else add(relative,request,'static-import',phase);
+       }
++      // Direct literal fetches of shared JSON are real resource dependencies.
++      // Property calls (e.g. view.fetch in a lazy glossary action) remain deferred.
++      for(const match of !isBookModule(relative)?text.matchAll(/(?<![\w$.])fetch\s*\(\s*new\s+URL\(\s*["'](\.[^"']+\.json)["']\s*,\s*import\.meta\.url\s*\)/g):[])
++        add(relative,match[1],'direct-literal-json-fetch',phase);
+       for(const match of text.matchAll(/new\s+URL\(\s*["'](\.[^"']+)["']\s*,\s*import\.meta\.url\s*\)/g)){
+         if(/\.css(?:[?#]|$)/.test(match[1]))add(relative,match[1],'shell-stylesheet',phase);
+         else if(/\.json(?:[?#]|$)/.test(match[1]))deferredCandidates.push({from:relative,request:match[1],kind:'literal-data-url-not-an-eager-import'});
+diff --git a/tests/source-metadata-build-qa.mjs b/tests/source-metadata-build-qa.mjs
+new file mode 100644
+index 00000000..f1e5d4e9
+--- /dev/null
++++ b/tests/source-metadata-build-qa.mjs
+@@ -0,0 +1,161 @@
++/** Exact independent source equality and stale/rebuild controls; no input writes. */
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import path from 'node:path';
++import {fileURLToPath} from 'node:url';
++import {spawnSync,execFileSync} from 'node:child_process';
++import {createHash} from 'node:crypto';
++import {createQaTempDir,cleanupQaTempDir} from './helpers/qa-temp.mjs';
++import {BOOK_PASSPORT_IDS} from '../books/shared/tools/book-passport.mjs';
++import {buildSourceMetadata,runSourceMetadataBuild,SOURCE_METADATA_OUTPUT} from '../books/shared/tools/build-source-metadata.mjs';
++import {generatedRebuildPlan} from '../books/shared/tools/generated-rebuild-plan.mjs';
++import {bookUpdateDeclarations,selectBookUpdate} from '../books/shared/tools/book-update-declarations.mjs';
++import {withoutSourceMetadataStep} from './helpers/source-metadata-plan.mjs';
++
++const root=fileURLToPath(new URL('../',import.meta.url));
++const read=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8'));
++const corePath='books/core-rules/content/core-rules.digital-11e.json',releasePath='mfm/current.json';
++const core=read(corePath),release=read(releasePath);
++const rule=core.records.find(record=>record.code==='25.03'),table=rule.content.find(block=>block.type==='comparison-table');
++const expected={schema:'application-source-metadata/v1',mfm:{version:release.version},
++  core:{captureDate:core.meta.captureDate,corpusFingerprint:core.meta.corpusFingerprint,
++    battleSizes:table.rows.map(row=>{
++      const cells=Object.fromEntries(table.columns.map((column,index)=>[column,index===0?row.label:row.cells[index-1]]));
++      return {label:cells['BATTLE SIZE'],pointsLimit:Number(cells['Points Total']),detachmentPoints:Number(cells['Detachment Points (DP)'])};
++    })},books:Object.fromEntries([...BOOK_PASSPORT_IDS].sort().map(id=>{
++      const passport=read(`books/${id}/book.config.json`).passport;
++      return [id,{mfmVersion:read(passport.mfm.currentRelease).version}];
++    }))};
++const actual=buildSourceMetadata();
++assert.deepEqual(actual,expected,'The entire artifact must equal independent current source/passport projections');
++assert.deepEqual(read(SOURCE_METADATA_OUTPUT),expected,'The checked-in artifact must equal its source owners exactly');
++assert.equal(runSourceMetadataBuild({check:true}).status,'PASS');
++const sourceBefore=JSON.stringify({core,release});
++const loads=new Map();
++assert.deepEqual(buildSourceMetadata({readJSON:relative=>{
++  loads.set(relative,(loads.get(relative)||0)+1);return read(relative);
++}}),expected);
++assert.ok([...loads.values()].every(count=>count===1),'Each source owner is read once even when passports share it');
++assert.equal(loads.get(corePath),1);assert.equal(loads.get(releasePath),1);
++assert.equal(JSON.stringify({core,release}),sourceBefore,'Projection cannot mutate accepted inputs');
++
++// The additive output may be uncommitted while this focused test is developed.
++// Only this exact owned path supplements the real index inventory for the test.
++const indexed=execFileSync('git',['ls-files','--cached','-z'],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024}).split('\0').filter(Boolean);
++const tracked=[...new Set([...indexed,SOURCE_METADATA_OUTPUT])];
++const plan=generatedRebuildPlan(tracked,{root}),baseline=read('tests/fixtures/book-passport-baseline.json').baselinePlan;
++const metadataProducer='books/shared/tools/build-source-metadata.mjs';
++const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
++const assertLegacyPlan=candidate=>{
++  const legacy=withoutSourceMetadataStep(candidate);
++  assert.equal(legacy.steps.length,baseline.steps);
++  assert.equal(legacy.files.length,baseline.files);
++  assert.equal(hash(legacy),baseline.sha256,'The original immutable legacy plan hash must still match');
++};
++const planBefore=hash(plan);assertLegacyPlan(plan);
++assert.equal(hash(plan),planBefore,'Projecting the legacy fixture must not modify the actual rebuild plan');
++assert.equal(plan.steps.length,baseline.steps+1);assert.equal(plan.files.length,baseline.files+1);
++const planNegativeControls=[];
++for(const [name,mutate]of[
++  ['legacy producer arguments',candidate=>{candidate.steps.find(step=>step.producer!==metadataProducer).args.push('--qa-unaccepted-argument');}],
++  ['legacy producer output',candidate=>{
++    const step=candidate.steps.find(step=>step.producer!==metadataProducer&&step.outputs.length);
++    const original=step.outputs[0],changed=original+'.qa-unaccepted-output';step.outputs[0]=changed;
++    candidate.files[candidate.files.indexOf(original)]=changed;
++  }]
++]){
++  const poisoned=structuredClone(plan);mutate(poisoned);
++  assert.throws(()=>assertLegacyPlan(poisoned),/original immutable legacy plan hash/,name+' cannot bypass the old fixture hash');
++  planNegativeControls.push(name);
++}
++for(const [name,mutate]of[
++  ['duplicate metadata step',candidate=>{candidate.steps.push(structuredClone(candidate.steps.find(step=>step.producer===metadataProducer)));}],
++  ['wrong metadata output',candidate=>{candidate.steps.find(step=>step.producer===metadataProducer).outputs=[SOURCE_METADATA_OUTPUT+'.wrong'];}],
++  ['extra metadata argument',candidate=>{candidate.steps.find(step=>step.producer===metadataProducer).args.push('--qa-extra');}],
++  ['wrong metadata position',candidate=>{
++    const index=candidate.steps.findIndex(step=>step.producer===metadataProducer),[step]=candidate.steps.splice(index,1);
++    candidate.steps.push(step);
++  }],
++  ['duplicate metadata file',candidate=>{candidate.files.push(SOURCE_METADATA_OUTPUT);}],
++  ['missing metadata file',candidate=>{candidate.files=candidate.files.filter(file=>file!==SOURCE_METADATA_OUTPUT);}]
++]){
++  const poisoned=structuredClone(plan);mutate(poisoned);
++  assert.throws(()=>withoutSourceMetadataStep(poisoned),{code:'ERR_ASSERTION'},name+' must be rejected before projecting the legacy plan');
++  planNegativeControls.push(name);
++}
++const declarations=bookUpdateDeclarations({root,tracked,plan}),metadataSelectionInputs=[releasePath,corePath,
++  ...BOOK_PASSPORT_IDS.map(id=>`books/${id}/book.config.json`)];
++for(const changed of metadataSelectionInputs){
++  const selected=selectBookUpdate(declarations,{books:['death-guard'],changed:[changed]});
++  assert.equal(selected.fullPlan,false,'Metadata input must have explicit update coverage: '+changed);
++  assert.equal(selected.steps.filter(step=>step.producer===metadataProducer).length,1,'A source change automatically selects the metadata producer: '+changed);
++  assert(selected.steps.find(step=>step.producer===metadataProducer).outputs.includes(SOURCE_METADATA_OUTPUT));
++}
++
++const scratch=createQaTempDir('wh-source-metadata-build-'),outputPath=path.join(scratch,'source-metadata.v1.json');
++let passed=false;const mutationResults=[];
++try{
++  runSourceMetadataBuild({outputPath});const original=fs.readFileSync(outputPath);
++  runSourceMetadataBuild({outputPath});assert.deepEqual(fs.readFileSync(outputPath),original,'Rebuilding is byte deterministic');
++  const mutations=[
++    {name:'MFM version',path:releasePath,change:value=>{value.version+='-source-change';}},
++    {name:'Core capture date',path:corePath,change:value=>{
++      const date=new Date(`${value.meta.captureDate}T00:00:00Z`);date.setUTCDate(date.getUTCDate()+1);value.meta.captureDate=date.toISOString().slice(0,10);
++    }},
++    {name:'Core corpus fingerprint',path:corePath,change:value=>{value.meta.corpusFingerprint=(value.meta.corpusFingerprint[0]==='0'?'1':'0')+value.meta.corpusFingerprint.slice(1);}},
++    ...['Points Total','Detachment Points (DP)'].map(column=>({name:'Core table '+column,path:corePath,change:value=>{
++      const selected=value.records.find(row=>row.code==='25.03').content.find(block=>block.type==='comparison-table');
++      const index=selected.columns.indexOf(column)-1;selected.rows[0].cells[index]=String(Number(selected.rows[0].cells[index])+1);
++    }}))
++  ];
++  for(const mutation of mutations){
++    fs.writeFileSync(outputPath,original);
++    const input=read(mutation.path);mutation.change(input);
++    const readJSON=relative=>relative===mutation.path?structuredClone(input):read(relative);
++    assert.throws(()=>runSourceMetadataBuild({outputPath,check:true,readJSON}),error=>error.code==='ERR_SOURCE_METADATA_STALE',mutation.name+' invalidates the old artifact');
++    assert.deepEqual(fs.readFileSync(outputPath),original,'A failed check must not write generated bytes');
++    runSourceMetadataBuild({outputPath,readJSON});assert.notDeepEqual(fs.readFileSync(outputPath),original,mutation.name+' must change the rebuilt artifact');
++    assert.equal(runSourceMetadataBuild({outputPath,check:true,readJSON}).status,'PASS');
++    mutationResults.push(mutation.name);
++  }
++  const selectedBook=BOOK_PASSPORT_IDS[0],configPath=`books/${selectedBook}/book.config.json`,config=read(configPath);
++  const alternatePath='mfm/qa-source-metadata/current.json';config.passport.mfm.currentRelease=alternatePath;
++  const alternate={...release,version:release.version+'-book-selected'};
++  const readJSON=relative=>relative===configPath?config:relative===alternatePath?alternate:read(relative);
++  const selected=buildSourceMetadata({readJSON});
++  assert.equal(selected.mfm.version,expected.mfm.version,'A book pointer does not replace the global pointer');
++  assert.equal(selected.books[selectedBook].mfmVersion,alternate.version,'The book version follows its own passport pointer');
++  for(const id of BOOK_PASSPORT_IDS.filter(id=>id!==selectedBook))assert.equal(selected.books[id].mfmVersion,expected.books[id].mfmVersion);
++  fs.writeFileSync(outputPath,original);
++  assert.throws(()=>runSourceMetadataBuild({outputPath,check:true,readJSON}),error=>error.code==='ERR_SOURCE_METADATA_STALE');
++  runSourceMetadataBuild({outputPath,readJSON});assert.notDeepEqual(fs.readFileSync(outputPath),original);
++  assert.equal(runSourceMetadataBuild({outputPath,check:true,readJSON}).status,'PASS');
++  mutationResults.push('Book passport release pointer');
++
++  for(const [label,change]of [
++    ['calendar date',value=>{value.meta.captureDate='2026-02-30';}],
++    ['fingerprint',value=>{delete value.meta.corpusFingerprint;}],
++    ['battle-size column',value=>{value.records.find(row=>row.code==='25.03').content.find(block=>block.type==='comparison-table').columns[1]='Unknown column';}],
++    ['battle-size number',value=>{value.records.find(row=>row.code==='25.03').content.find(block=>block.type==='comparison-table').rows[0].cells[0]='unknown';}]
++  ]){
++    const invalid=structuredClone(core);change(invalid);
++    assert.throws(()=>buildSourceMetadata({readJSON:relative=>relative===corePath?invalid:read(relative)}),/Source metadata:/,'Reject invalid source '+label);
++  }
++  assert.throws(()=>buildSourceMetadata({readJSON:relative=>relative===releasePath?{...release,version:''}:read(relative)}),/Source metadata:/);
++  fs.writeFileSync(outputPath,'{}\n');
++  const producer=fileURLToPath(new URL('../books/shared/tools/build-source-metadata.mjs',import.meta.url));
++  const staleCLI=spawnSync(process.execPath,[producer,'--check',`--root=${root}`,`--out=${outputPath}`],{encoding:'utf8'});
++  assert.equal(staleCLI.status,1,'The normal generated gate must fail on stale metadata');
++  assert.match(staleCLI.stderr,/Generated source metadata is stale:/);
++  assert.equal(fs.readFileSync(outputPath,'utf8'),'{}\n','The CLI check cannot write its stale output');
++  const rebuildCLI=spawnSync(process.execPath,[producer,`--root=${root}`,`--out=${outputPath}`],{encoding:'utf8'});
++  assert.equal(rebuildCLI.status,0,rebuildCLI.stderr);
++  assert.deepEqual(fs.readFileSync(outputPath),original,'The normal CLI rebuild restores exact deterministic bytes');
++  assert.equal(runSourceMetadataBuild({outputPath,check:true}).status,'PASS');
++  assert.equal(JSON.stringify({core,release}),sourceBefore,'Mutation controls never write or change accepted owner objects');
++  passed=true;
++}finally{if(passed)cleanupQaTempDir(scratch);}
++console.log(JSON.stringify({status:'PASS',books:BOOK_PASSPORT_IDS.length,sourceEquality:'whole-artifact',sourceMutations:mutationResults,
++  bytes:fs.statSync(path.join(root,SOURCE_METADATA_OUTPUT)).size,normalCLIStaleRejection:true,sourceInputsWritten:false,
++  generatedPlan:{steps:plan.steps.length,files:plan.files.length,unchangedLegacyHash:baseline.sha256,negativeControls:planNegativeControls,
++    automaticMetadataSelectionInputs:metadataSelectionInputs.length}}));
+diff --git a/tests/startup-precache-qa.mjs b/tests/startup-precache-qa.mjs
+index f60224c3..9f44fe41 100644
+--- a/tests/startup-precache-qa.mjs
++++ b/tests/startup-precache-qa.mjs
+@@ -43,6 +43,19 @@ try{
+   let mutationMessage;
+   assert.throws(()=>assertCovered(graph,mutated),error=>{mutationMessage=error.message;return error.code==='ERR_ASSERTION'&&error.message.includes(critical);},'Removing a required startup resource must fail and identify that file');
+   report.checks.push({name:'removed-startup-resource-is-rejected',status:'PASS',removed:critical,message:mutationMessage});
++  for(const required of ['books/shared/application-v2/source-metadata.mjs','books/shared/army-book-app-v2/import-notices.mjs',
++    'books/shared/application-v2/generated/source-metadata.v1.json']){
++    assert(graph.nodes.some(node=>node.path===required),'The parsed startup graph must reach '+required);
++    const without=cache.urls.filter(url=>decodeURIComponent(new URL(url,'https://startup.invalid/').pathname).slice(1)!==required);
++    assert.equal(without.length,cache.urls.length-1,'Remove exactly the new required resource: '+required);
++    assert.throws(()=>assertCovered(graph,without),error=>error.code==='ERR_ASSERTION'&&error.message.includes(required),
++      'Missing source/notice dependency must fail with its exact filename');
++    report.checks.push({name:'removed-source-notice-startup-resource-is-rejected',status:'PASS',removed:required});
++  }
++  for(const owner of ['mfm/current.json','books/core-rules/content/core-rules.digital-11e.json']){
++    assert(!graph.nodes.some(node=>node.path===owner),'Full metadata source owner must not be fetched at startup: '+owner);
++    assert(!cache.urls.some(url=>new URL(url,'https://startup.invalid/').pathname.slice(1)===owner),'Build-only source owner must not be precached: '+owner);
++  }
+   const bookModule=graph.selectedBookRoots[0].path;
+   const removedBookCode=cache.urls.filter(url=>decodeURIComponent(new URL(url,'https://startup.invalid/').pathname).slice(1)!==bookModule);
+   assert.equal(removedBookCode.length,cache.urls.length-1,'Selected-book code mutation must remove exactly one precache entry');
+diff --git a/v2/card-texts-browser-qa.mjs b/v2/card-texts-browser-qa.mjs
+index 74de3bb1..b4234048 100644
+--- a/v2/card-texts-browser-qa.mjs
++++ b/v2/card-texts-browser-qa.mjs
+@@ -150,8 +150,12 @@ async function headers(width,book){
+  if(!observe){
+   const payload=JSON.parse(fs.readFileSync(path.join(root,'books',book,'v2/generated/app-presentation.json')));
+   const data=payload.book.dataVersions;assert.ok(data,'Source-owned version metadata must be published');
+-  assert.equal(labels.core,'Core rules snapshot: '+data.coreSnapshotDate);
+-  assert.equal(labels.mfm,'MFM points: '+data.mfmVersion);
++  const coreCaptureDate=JSON.parse(fs.readFileSync(path.join(root,'books/core-rules/content/core-rules.digital-11e.json'))).meta.captureDate;
++  const passport=JSON.parse(fs.readFileSync(path.join(root,'books',book,'book.config.json'))).passport;
++  const mfmRelease=JSON.parse(fs.readFileSync(path.join(root,passport.mfm.currentRelease)));
++  assert.equal(labels.core,'Core rules snapshot: '+coreCaptureDate);
++  assert.equal(labels.mfm,'MFM points: '+mfmRelease.version);
++  if(data.coreSnapshotDate!==coreCaptureDate)assert.ok(!labels.core.includes(data.coreSnapshotDate),'The stale generated Core catalog date is absent');
+   assert.ok(labels.official?.startsWith('Book corrections: '));
+   assert.equal(Object.keys(labels).length,3,'Three separate source labels');
+   for(const update of data.officialUpdates){assert.ok(labels.official.includes(update.version));if(update.date)assert.ok(labels.official.includes(update.date));}
+diff --git a/v2/import-notices-browser-qa.mjs b/v2/import-notices-browser-qa.mjs
+new file mode 100644
+index 00000000..e9a98375
+--- /dev/null
++++ b/v2/import-notices-browser-qa.mjs
+@@ -0,0 +1,158 @@
++/** Real owner export and bounded derived controls through the public import UI.
++ * Native snapshots and saved bytes remain exact across presenter refreshes. */
++import fs from 'node:fs';
++import path from 'node:path';
++import http from 'node:http';
++import assert from 'node:assert/strict';
++import {createHash} from 'node:crypto';
++import {fileURLToPath} from 'node:url';
++import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
++import {assertPlayerImportCopy,collectPlayerImportCopy} from '../tests/helpers/import-copy-assertions.mjs';
++import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
++
++const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
++const root=path.resolve(arg('--root')||fileURLToPath(new URL('../',import.meta.url)));
++const out=path.resolve(arg('--out')||createQaEvidenceDir('wh-import-notices-browser-'));
++const widths=(arg('--widths')||'390,1440').split(',').map(Number);
++assert(widths.length&&widths.every(width=>Number.isSafeInteger(width)&&width>0));
++const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
++const fixtures=read('v2/fixtures/new-recruit-plain-header-v37.25.json');
++const ownerBytes=fs.readFileSync(path.join(root,'v2/fixtures',fixtures.owner.file)),owner=ownerBytes.toString('utf8');
++assert.equal(createHash('sha256').update(ownerBytes).digest('hex'),fixtures.owner.sha256);
++const tau=fixtures.derived.find(row=>row.bookId==='tau-empire');assert(tau);
++const csm=fixtures.derived.find(row=>row.bookId==='chaos-space-marines');assert(csm);
++const allowed=new Set(read('tools/pages-runtime-manifest.json').files.map(row=>'/'+row.path));
++const report={status:'RUNNING',root,widths,checks:[],screenshots:[],errors:[],missing:[]};
++fs.mkdirSync(out,{recursive:true});
++const save=()=>fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify(report,null,2)+'\n');save();
++const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json',
++  '.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.webmanifest':'application/manifest+json'};
++const server=http.createServer((request,response)=>{
++  const address=decodeURIComponent(new URL(request.url,'http://local').pathname),file=path.resolve(root,'.'+address);
++  if(address==='/favicon.ico'){response.writeHead(204).end();return;}
++  if(!file.startsWith(root+path.sep)||!allowed.has(address)&&!isApplicationTestDependency(address)||!fs.existsSync(file)){
++    report.missing.push(address);response.writeHead(404).end();return;
++  }
++  response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));
++});
++await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
++const origin='http://127.0.0.1:'+server.address().port;
++let browser;
++const settled=page=>page.waitForFunction(()=>!document.querySelector('[data-roster-view][aria-busy="true"]'));
++async function open(page,book){
++  await page.goto(origin+'/v2/app.html');await page.locator(`[data-v2-book="${book}"]`).click();
++  await page.waitForFunction(book=>window.ArmyBookAppV2?.payload.book.id===book&&ArmyBookAppV2.roster,book);
++  await page.evaluate(async()=>{await WarhammerAppV2.ready;await ArmyBookAppV2.rosterPanel.ready;});
++  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await settled(page);
++}
++async function submit(page,text,bindings={}){
++  const native=await page.evaluate(({text,bindings})=>{
++    const result=ArmyBookAppV2.roster.import(text,bindings,{replaceExisting:true});
++    return {status:result.status,errors:result.errors,needs:result.needsBindings,state:ArmyBookAppV2.roster.snapshot()};
++  },{text,bindings});
++  assert.equal(native.status,'READY',JSON.stringify({errors:native.errors,needs:native.needs}));
++  const pane=page.locator('details[data-roster-import]');
++  if(!await pane.evaluate(node=>node.open))await pane.locator(':scope > summary').click();
++  await page.locator('[data-roster-input="raw-text"]').fill(text);
++  await page.locator('[data-roster-action="review-import"]').click();await settled(page);
++  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
++  if(await replace.isVisible()){await replace.click();await settled(page);}
++  assert.equal(await page.locator('.v2-roster-status').innerText(),'Roster imported.');
++  const actual=await page.evaluate(()=>({state:ArmyBookAppV2.roster.snapshot(),saved:localStorage.getItem(ArmyBookAppV2.rosterPanel.storageKey)}));
++  assert.deepEqual(actual.state,native.state,'The public UI preserves the exact native import outcome');
++  assert.deepEqual(JSON.parse(actual.saved),native.state,'The saved roster preserves the native state');
++  await page.evaluate(()=>ArmyBookAppV2.rosterPanel.refresh());
++  assert.deepEqual(await page.evaluate(()=>({state:ArmyBookAppV2.roster.snapshot(),saved:localStorage.getItem(ArmyBookAppV2.rosterPanel.storageKey)})),actual,
++    'Informational notice rendering cannot change the roster or saved bytes');
++  return actual.state;
++}
++async function shot(page,width,name){
++  const file=`${width}-${name}.png`;await page.screenshot({path:path.join(out,file),animations:'disabled'});
++  report.screenshots.push({width,name,file});save();
++}
++async function guard(page){
++  return assertPlayerImportCopy(await page.locator('[data-roster-view]').evaluate(collectPlayerImportCopy));
++}
++async function presentationReused(page,book){
++  const result=await page.evaluate(book=>({
++    requests:performance.getEntriesByType('resource').filter(row=>new URL(row.name).pathname===`/books/${book}/v2/generated/app-presentation.json`).length,
++    parses:window.__noticePresentationParses[book]||0
++  }),book);
++  assert.deepEqual(result,{requests:1,parses:1},'Header notices reuse the already loaded Army Book presentation');return result;
++}
++try{
++  browser=await launchChromium();
++  for(const width of widths){
++    const context=await browser.newContext({viewport:{width,height:width<600?844:1000},serviceWorkers:'block'});
++    context.setDefaultTimeout(25000);const page=await context.newPage();
++    await page.addInitScript(()=>{
++      window.__noticePresentationParses={};const json=Response.prototype.json;
++      Response.prototype.json=function(...args){
++        const match=new URL(this.url,location.href).pathname.match(/^\/books\/([^/]+)\/v2\/generated\/app-presentation\.json$/);
++        if(match)window.__noticePresentationParses[match[1]]=(window.__noticePresentationParses[match[1]]||0)+1;
++        return json.apply(this,args);
++      };
++    });
++    page.on('pageerror',error=>report.errors.push(error.message));
++    try{
++      await open(page,'death-guard');
++      const state=await submit(page,owner);
++      assert.equal(state.units.length,8);
++      assert.deepEqual(state.detachmentIds,['detachment-shamblerot-vectorium','detachment-virulent-vectorium']);
++      const dp=page.locator('[data-roster-header-notice="DETACHMENT_POINTS_OVER_BATTLE_SIZE"]');
++      assert.equal(await dp.innerText(),'The selected Detachments total 5 DP. The Strike Force table allows 3 DP. Review your Detachments and the Core Rules before playing.');
++      assert.equal(await page.locator('[data-roster-header-notice="FORCE_DISPOSITION_NOT_SELECTED"]').count(),0,
++        'Disruption is a member of one selected Detachment, so no membership warning appears');
++      await page.locator('[data-roster-header-notices]').scrollIntoViewIfNeeded();await shot(page,width,'death-guard-owner-dp');
++      report.checks.push({width,name:'real-owner-dp',nativeStatus:'READY',units:8,totalDP:5,tableLimit:3,
++        anySelectedMembership:true,copyRecords:await guard(page),presentation:await presentationReused(page,'death-guard')});
++      const mismatched=owner.replace('\nDisruption\n','\nReconnaissance\n');assert.notEqual(mismatched,owner);
++      await submit(page,mismatched);
++      const force=page.locator('[data-roster-header-notice="FORCE_DISPOSITION_NOT_SELECTED"]');
++      assert.equal(await force.innerText(),'The exported Force Disposition, Reconnaissance, is not listed for any selected Detachment. Check the Force Disposition and Detachments in New Recruit.');
++      assert.equal(await dp.count(),1);await force.scrollIntoViewIfNeeded();await shot(page,width,'death-guard-disposition-note');
++      report.checks.push({width,name:'known-disposition-mismatch',nativeStatus:'READY',copyRecords:await guard(page)});
++      const threeLines=owner.replace('Disruption\nStrike Force (2,000 Points)\n','');
++      await submit(page,threeLines);assert.equal(await page.locator('[data-roster-header-notices]').count(),0);
++      report.checks.push({width,name:'three-line-header',nativeStatus:'READY',noGuessedContext:true,copyRecords:await guard(page)});
++      await open(page,'chaos-space-marines');await submit(page,csm.plainText,csm.bindings);
++      assert.equal(await page.locator('[data-roster-header-notice="DETACHMENT_POINTS_OVER_BATTLE_SIZE"]').count(),0,
++        'The source-owned CSM 2 DP selection stays within the Strike Force table value');
++      assert.equal(await page.locator('[data-roster-header-notice="FORCE_DISPOSITION_NOT_SELECTED"]').count(),0,
++        'The CSM named source relation matches its exported Force Disposition');
++      const otherDisposition=await page.evaluate(()=>{
++        const rows=Object.values(ArmyBookAppV2.payload.bookPresentation.records).filter(row=>row.kind==='DETACHMENT');
++        const selected=new Set(ArmyBookAppV2.roster.state.detachmentIds.flatMap(id=>
++          ArmyBookAppV2.payload.bookPresentation.records[id].forceDispositions.map(field=>field.value)));
++        return rows.flatMap(row=>row.forceDispositions.map(field=>field.value)).find(name=>!selected.has(name));
++      });
++      assert(otherDisposition,'A different CSM source-owned Force Disposition supplies the negative control');
++      const csmMismatch=csm.plainText.replace('\n'+csm.disposition+'\n','\n'+otherDisposition+'\n')
++        .replace('Strike Force (2,000 Points)','Incursion (1,000 Points)');
++      assert.notEqual(csmMismatch,csm.plainText);await submit(page,csmMismatch,csm.bindings);
++      assert.equal(await page.locator('[data-roster-header-notice="DETACHMENT_POINTS_OVER_BATTLE_SIZE"]').count(),0,
++        'The CSM source-owned 2 DP selection equals the Incursion table value');
++      assert.equal(await page.locator('[data-roster-header-notice="FORCE_DISPOSITION_NOT_SELECTED"]').count(),1);
++      await page.locator('[data-roster-header-notices]').scrollIntoViewIfNeeded();await shot(page,width,'csm-source-shape');
++      report.checks.push({width,name:'csm-named-source-shape',nativeStatus:'READY',sourceMembershipPositiveAndNegative:true,
++        totalDP:2,tableLimit:2,copyRecords:await guard(page),presentation:await presentationReused(page,'chaos-space-marines')});
++      await open(page,'tau-empire');await submit(page,tau.plainText,tau.bindings);
++      await page.locator('[data-roster-action="open-personal-guide"]').click();
++      const summary=page.locator('[data-roster-summary]');
++      assert.doesNotMatch(await summary.textContent(),/Imported points/);
++      const total=await page.evaluate(()=>{
++        const service=ArmyBookAppV2.roster,native=service.points;
++        return Number.isFinite(native?.totalPoints)?native.totalPoints:service.state.units.reduce((sum,unit)=>sum+(unit.raw?.points??unit.points),0);
++      });
++      assert.match(await summary.textContent(),new RegExp(`${total} / 2000`),'The existing numeric points total and limit remain visible');
++      if(width<600)await page.locator('#navMenu').click();
++      assert(await summary.isVisible());await shot(page,width,'tau-summary');
++      report.checks.push({width,name:'tau-common-summary-label',total,oldCopyAbsent:true,presentation:await presentationReused(page,'tau-empire')});save();
++    }catch(error){await shot(page,width,'failure').catch(()=>{});throw error;}
++    finally{await context.close();}
++  }
++  assert.deepEqual(report.errors,[]);assert.deepEqual(report.missing,[]);report.status='PASS';
++}catch(error){report.status='FAIL';report.failure=error.message;throw error;}
++finally{save();await browser?.close();await new Promise(resolve=>server.close(resolve));}
++console.log(JSON.stringify({status:report.status,checks:report.checks.length,out}));
+diff --git a/v2/lazy-glossary-browser-qa.mjs b/v2/lazy-glossary-browser-qa.mjs
+new file mode 100644
+index 00000000..267cb514
+--- /dev/null
++++ b/v2/lazy-glossary-browser-qa.mjs
+@@ -0,0 +1,95 @@
++/** Exact prose-link parity and first-display boundaries in the real book UI. */
++import fs from 'node:fs';
++import path from 'node:path';
++import http from 'node:http';
++import assert from 'node:assert/strict';
++import {fileURLToPath} from 'node:url';
++import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
++import {armyBooks} from './army-books.mjs';
++const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
++const root=path.resolve(arg('--root')||fileURLToPath(new URL('../',import.meta.url)));
++const base=arg('--base')&&path.resolve(arg('--base'));
++const out=path.resolve(arg('--out')||createQaEvidenceDir('wh-lazy-glossary-'));
++const widths=(arg('--widths')||'390,1440').split(',').map(Number);
++const books=armyBooks.filter(book=>!arg('--book')||book.id===arg('--book'));
++const mutation=arg('--mutation');assert(!mutation||mutation==='eager','Only eager-decoration negative control is supported');
++const roots={head:root,...(base?{base}:{})};fs.mkdirSync(out,{recursive:true});
++const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.html':'text/html','.css':'text/css','.png':'image/png','.svg':'image/svg+xml','.webp':'image/webp'};
++const errors=[],rows=[];
++const server=http.createServer((req,res)=>{const parts=decodeURIComponent(new URL(req.url,'http://local').pathname).split('/').filter(Boolean),source=roots[parts.shift()];if(!source){res.writeHead(204).end();return;}const file=path.resolve(source,parts.join('/'));if(!file.startsWith(source+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));});
++await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
++const frames=page=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
++const snapshot=(page,selector)=>page.locator(selector).evaluateAll(nodes=>nodes.map(node=>({text:node.textContent,cardId:node.closest('[data-card-id]')?.dataset.cardId,factId:node.closest('[data-fact-id]')?.dataset.factId,targetId:node.dataset.targetId,address:new URL(node.href).search+new URL(node.href).hash})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b))));
++async function showEveryCard(page){
++ const changed=await page.locator('main').evaluate(async main=>{
++  const changes=[],trace=[],boundaries=[...main.querySelectorAll('[data-rule-term-state]')];
++  for(const node of boundaries){
++   if(!node.getClientRects().length||node.closest('details:not([open])'))continue;
++   const before=node.getBoundingClientRect(),ownerBefore=ArmyBookAppV2.navigation.state.owner;
++   node.scrollIntoView({block:'center',behavior:'instant'});
++   await new Promise((resolve,reject)=>{const started=performance.now();const ready=()=>{
++    if(node.dataset.ruleTermState==='ready')return resolve();
++    if(performance.now()-started>10000)return reject(new Error('First-show term decoration did not finish: '+(node.dataset.cardId||node.className)+' / '+node.dataset.ruleTermState+' / '+ArmyBookAppV2.navigation.state.owner));
++    requestAnimationFrame(ready);
++   };ready();});
++   await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
++   const after=node.getBoundingClientRect();
++   if(trace.length<5)trace.push({id:node.dataset.cardId,ownerBefore,ownerAfter:ArmyBookAppV2.navigation.state.owner,top:after.top,bottom:after.bottom,state:node.dataset.ruleTermState,links:node.querySelectorAll('.rule-term-link').length,headerBottom:document.querySelector('#appHeader').getBoundingClientRect().bottom});
++   if(Math.abs(before.width-after.width)>0.5||Math.abs(before.height-after.height)>0.5)changes.push({id:node.dataset.cardId,unit:node.matches('.unit-card'),before:{width:before.width,height:before.height},after:{width:after.width,height:after.height}});
++  }
++  return {changes,trace,book:ArmyBookAppV2.payload.book.id,width:innerWidth};
++ });
++ fs.writeFileSync(path.join(out,'reveal-trace-'+changed.book+'-'+changed.width+'.json'),JSON.stringify(changed,null,2));
++ await frames(page);return changed.changes;
++}
++async function contentsTarget(page,id,width){
++ const title=await page.evaluate(id=>ArmyBookAppV2.payload.cards.find(card=>card.id===id).title,id);
++ const before=await page.locator(`main .unit-card[data-card-id="${id}"]`).first().evaluate(node=>({height:node.getBoundingClientRect().height,width:node.getBoundingClientRect().width}));
++ if(width<=760)await page.locator('#navMenu').click();
++ await page.getByRole('searchbox',{name:'Search the army book',exact:true}).fill(title);
++ await page.locator(`.v2-search-result[data-target-id="${id}"]`).click();
++ try{await page.waitForFunction(id=>ArmyBookAppV2.navigation.state.owner==='reader'&&ArmyBookAppV2.navigation.state.active===id,id);}
++ catch(error){
++  const state=await page.evaluate(id=>{const api=ArmyBookAppV2,card=[...document.querySelectorAll('main .unit-card')].find(node=>node.dataset.cardId===id),box=card?.getBoundingClientRect();return {id,address:location.href,scrollY,viewport:{width:innerWidth,height:innerHeight},navigation:{...api.navigation.state},target:box&&{top:box.top,bottom:box.bottom,height:box.height,documentTop:box.top+scrollY},inset:document.querySelector('#appHeader').getBoundingClientRect().bottom+18,ranges:api.navigation.geometry.ranges.map(row=>({id:row.item.id,top:row.top,bottom:row.bottom,measurable:row.measurable}))};},id);
++  fs.writeFileSync(path.join(out,`contents-timeout-${width}.json`),JSON.stringify(state,null,2));await page.screenshot({path:path.join(out,`contents-timeout-${width}.png`),animations:'disabled'});throw error;
++ }
++ await frames(page);
++ const geometry=await page.locator(`main .unit-card[data-card-id="${id}"]`).first().evaluate(node=>{const rect=node.getBoundingClientRect(),header=document.querySelector('#appHeader').getBoundingClientRect();return {top:rect.top,inset:header.bottom+18,height:rect.height,width:rect.width,links:node.querySelectorAll('.rule-term-link').length};});
++ assert(Math.abs(geometry.top-geometry.inset)<=2,'Contents reaches the actual first-shown card after decoration');
++ assert(geometry.links>0,'The destination receives exact term links before Contents settles');
++ await page.screenshot({path:path.join(out,`contents-${id.replace(/[^a-z0-9-]/gi,'_')}-${width}.png`),animations:'disabled'});
++ return {before,after:geometry};
++}
++let browser;
++try{browser=await launchChromium();
++for(const book of books)for(const width of widths){const result={book:book.id,width,views:{}};
++ for(const version of Object.keys(roots)){
++  const context=await browser.newContext({viewport:{width,height:844},serviceWorkers:'block'}),page=await context.newPage();page.setDefaultTimeout(30000);page.on('pageerror',error=>errors.push({book:book.id,width,version,message:error.message}));
++  try{await page.goto(`${origin}/${version}/v2/app.html`);await page.locator(`[data-v2-book="${book.id}"]`).click();await page.waitForFunction(id=>window.ArmyBookAppV2?.payload.book.id===id&&document.querySelector('main .unit-card'),book.id);await frames(page);
++   const id=await page.evaluate(()=>ArmyBookAppV2.payload.cards.find(card=>card.kind==='DATASHEET'&&document.querySelector(`main .unit-card[data-card-id="${card.id}"] .ability p`))?.id);assert.ok(id);
++   let geometry=null,flowChanges=[];
++   if(version==='head'){
++    if(mutation==='eager')await showEveryCard(page);
++    const unshown=await page.locator(`main .unit-card[data-card-id="${id}"] .rule-term-link`).count();
++    assert.equal(unshown,0,'Unshown datasheet prose must remain undecorated at book open');
++    geometry=await contentsTarget(page,id,width);
++   }
++   if(version==='head')flowChanges=await showEveryCard(page);
++   const full=await snapshot(page,'main .rule-term-link');assert(full.length>0,'Rendered book has enrolled prose links');
++   await page.locator(`.v2-library-card[data-target-id="${id}"]`).click();await page.locator('main .v2-current-card').waitFor();await frames(page);
++   const selected=await snapshot(page,'main .rule-term-link');assert(selected.length>0,'First-show selected card has exact prose links');
++   const link=page.locator('main .rule-term-link').first();await link.click();await page.locator('dialog.v2-detail-dialog[open]').waitFor();await frames(page);
++   const dialog=await snapshot(page,'dialog.v2-detail-dialog[open] .rule-term-link');
++   const permalink=page.locator('dialog[open] .v2-permalink');assert.equal(await permalink.count(),1);
++   await permalink.click();await page.locator('dialog.v2-detail-dialog[open]').waitFor({state:'hidden'});await frames(page);
++   const reference=await snapshot(page,'main .rule-term-link');
++   result.views[version]={full,selected,dialog,reference};
++   if(version==='head')result.geometry={target:geometry,flowChanges};
++  }finally{await context.close();}
++ }
++ if(base)for(const view of ['full','selected','dialog','reference'])assert.deepEqual(result.views.head[view],result.views.base[view],`${book.id}/${width}/${view}: exact player link target, text and fact ownership parity`);
++ rows.push(result);fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:'RUNNING',rows,errors},null,2));console.log(JSON.stringify({book:book.id,width,counts:Object.fromEntries(Object.entries(result.views.head).map(([key,value])=>[key,value.length])),status:'PASS'}));
++}
++assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:'PASS',rows,errors},null,2));
++}catch(error){fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:'FAIL',message:error.message,rows,errors},null,2));throw error;}finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
+diff --git a/v2/library-sources-browser-qa.mjs b/v2/library-sources-browser-qa.mjs
+new file mode 100644
+index 00000000..13aa1ecc
+--- /dev/null
++++ b/v2/library-sources-browser-qa.mjs
+@@ -0,0 +1,177 @@
++/** Public Library/book source captions and unchanged native model-base facts. */
++import fs from 'node:fs';
++import path from 'node:path';
++import http from 'node:http';
++import assert from 'node:assert/strict';
++import {fileURLToPath} from 'node:url';
++import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
++import {BOOK_PASSPORT_IDS,readBookPassport} from '../books/shared/tools/book-passport.mjs';
++import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
++
++const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
++const root=path.resolve(arg('--root')||fileURLToPath(new URL('../',import.meta.url)));
++const out=path.resolve(arg('--out')||createQaEvidenceDir('wh-library-sources-browser-'));
++const widths=(arg('--widths')||'390,1440').split(',').map(Number);
++assert(widths.length&&widths.every(width=>Number.isSafeInteger(width)&&width>0));
++const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
++const canonicalCore=read('books/core-rules/content/core-rules.digital-11e.json');
++const captureDate=canonicalCore.meta.captureDate;
++assert.match(captureDate,/^\d{4}-\d{2}-\d{2}$/);
++// Independent English date rendering: this test does not import the presenter.
++const [year,month,day]=captureDate.split('-').map(Number);
++const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
++const expectedLine=release=>`Points: Munitorum Field Manual ${release.version} · Core Rules: ${day} ${months[month-1]} ${year}`;
++const globalLine=expectedLine(read('mfm/current.json'));
++const normalize=value=>String(value).replace(/\s+/g,' ').trim();
++const baseKind=kind=>kind==='MODEL_BASE'||kind==='MODEL_BASE_METADATA';
++// Approved caption expectations, independent of the runtime formatter.
++const baseCaptions=new Map([
++  ['Use model','Use model base'],['⌀Use model','Use model base'],['ØUse model','Use model base'],
++  ['(Use model)','(Use model base)'],['(⌀Use model)','(Use model base)'],['(ØUse model)','(Use model base)']
++]);
++const expectedBase=value=>baseCaptions.get(value)??value;
++const escaped=value=>String(value).replaceAll('\\','\\\\').replaceAll('"','\\"');
++const books=BOOK_PASSPORT_IDS.map(id=>{
++  const passport=readBookPassport(id,{root}),payload=read(`books/${id}/v2/generated/app-presentation.json`);
++  const cards=new Map(payload.cards.map(card=>[card.id,card]));
++  const bases=payload.cards.filter(card=>baseKind(card.kind)),baseIds=new Set(bases.map(card=>card.id));
++  const fields=payload.cards.flatMap(card=>card.fields.filter(field=>baseIds.has(field.source?.entityId)&&
++    (field.source.path==='/text'||/^\/notes\/\d+$/.test(field.source.path))).map(field=>({card,field})));
++  const unitOf=base=>{
++    const seen=new Set();let owner=base;
++    while(owner&&owner.kind!=='DATASHEET'&&!seen.has(owner.id)){seen.add(owner.id);owner=cards.get(owner.parentId);}
++    assert.equal(owner?.kind,'DATASHEET','Every base has an explicit datasheet parent: '+id+' · '+base.id);return owner;
++  };
++  const rows=fields.map(({card,field})=>{
++    const base=cards.get(field.source.entityId),unit=unitOf(base);
++    return {bookId:id,baseId:base.id,baseKind:base.kind,unitId:unit.id,unitTitle:unit.title,
++      presentationCardId:card.id,fieldId:field.id,sourcePath:field.source.path,value:field.value,
++      displayed:expectedBase(field.displayValue??field.value)};
++  });
++  for(const base of bases)assert(rows.some(row=>row.baseId===base.id&&row.sourcePath==='/text'),'Every native model-base text has a retained fact: '+id+' · '+base.id);
++  return {id,title:payload.book.title,line:expectedLine(read(passport.mfm.currentRelease)),mfmPointer:passport.mfm.currentRelease,rows,baseCards:bases.length};
++});
++assert.equal(books.length,9);
++const csm=books.find(book=>book.id==='chaos-space-marines');
++const csmExample=csm.rows.find(row=>row.unitId==='unit-chaos-rhino'&&row.sourcePath==='/text'&&typeof row.value==='string'&&row.value.includes('Use model'));
++assert(csmExample,'The real CSM Rhino source supplies the model-base caption example');
++
++const allowed=new Set(read('tools/pages-runtime-manifest.json').files.map(row=>'/'+row.path));
++const report={status:'PREPARED',root,widths,sourceOwners:{coreCaptureDate:captureDate,coreCorpusFingerprint:canonicalCore.meta.corpusFingerprint},
++  inventory:books.map(({id,title,mfmPointer,baseCards,rows})=>({bookId:id,title,mfmPointer,baseCards,rows})),checks:[],screenshots:[],errors:[],missing:[]};
++fs.mkdirSync(out,{recursive:true});
++const htmlEscape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
++const save=()=>{
++  fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify(report,null,2)+'\n');
++  fs.writeFileSync(path.join(out,'gallery.html'),`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Library sources and model bases</title><style>body{margin:24px;font:16px system-ui;background:#151714;color:#eee}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:20px}figure{margin:0;background:#242923;padding:12px}img{display:block;max-width:100%;height:auto}figcaption{padding:8px 0}a{color:inherit}</style><h1>Library sources and model bases</h1><p>${htmlEscape(report.status)}</p><main>${report.screenshots.map(shot=>`<figure><figcaption>${htmlEscape(shot.width+'px · '+shot.title)}</figcaption><a href="${htmlEscape(shot.file)}"><img loading="lazy" src="${htmlEscape(shot.file)}" alt="${htmlEscape(shot.title)}"></a></figure>`).join('')}</main></html>`);
++};
++save();
++const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json',
++  '.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.webmanifest':'application/manifest+json'};
++const server=http.createServer((request,response)=>{
++  const address=decodeURIComponent(new URL(request.url,'http://local').pathname),file=path.resolve(root,'.'+address);
++  if(address==='/favicon.ico'){response.writeHead(204).end();return;}
++  if(!file.startsWith(root+path.sep)||(!allowed.has(address)&&!isApplicationTestDependency(address))||!fs.existsSync(file)||!fs.statSync(file).isFile()){
++    report.missing.push(address);response.writeHead(404).end();return;
++  }
++  response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));
++});
++await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
++const origin='http://127.0.0.1:'+server.address().port;
++let browser,current={};
++async function ready(page){
++  await page.waitForFunction(()=>Boolean(window.WarhammerAppV2));
++  await page.evaluate(async()=>{await WarhammerAppV2.ready;await document.fonts.ready;});
++  await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].every(link=>Boolean(link.sheet)));
++  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
++}
++async function shot(page,name,title){
++  const file=`${current.width}-${name}.png`;
++  await page.screenshot({path:path.join(out,file),animations:'disabled'});
++  report.screenshots.push({...current,name,title,file,url:page.url()});save();
++}
++async function assertLine(page,line,expected,surface){
++  assert.equal(await line.count(),1,'Exactly one '+surface+' source caption');
++  assert.equal(await line.innerText(),expected,surface+' follows its MFM pointer and actual canonical capture date');
++  await line.scrollIntoViewIfNeeded();assert(await line.isVisible(),surface+' caption is visible');
++  const bounds=await line.boundingBox();assert(bounds&&bounds.x>=-1&&bounds.x+bounds.width<=current.width+1,surface+' caption stays within the viewport');
++  return {text:await line.innerText(),bounds};
++}
++try{
++  report.status='RUNNING';save();browser=await launchChromium();
++  for(const width of widths){
++    current={width};const context=await browser.newContext({viewport:{width,height:width<600?844:1000},serviceWorkers:'block'});
++    context.setDefaultTimeout(30000);const page=await context.newPage();
++    const sourceRequests=[];
++    page.on('request',request=>{const pathname=new URL(request.url()).pathname;
++      if(['/books/shared/application-v2/generated/source-metadata.v1.json','/mfm/current.json',
++        '/books/core-rules/content/core-rules.digital-11e.json'].includes(pathname))sourceRequests.push(pathname);});
++    await page.addInitScript(()=>{window.__sourceMetadataParses=0;const parse=Response.prototype.json;
++      Response.prototype.json=function(...args){if(new URL(this.url,location.href).pathname==='/books/shared/application-v2/generated/source-metadata.v1.json')window.__sourceMetadataParses++;
++        return parse.apply(this,args);};});
++    page.on('pageerror',error=>report.errors.push({...current,message:error.message}));
++    try{
++      await page.goto(origin+'/v2/app.html');await ready(page);
++      const home=page.locator('.v2-library-home .library > [data-v2-sources-line]');
++      const homeResult=await assertLine(page,home,globalLine,'Home');
++      assert.equal(await home.evaluate(node=>node.previousElementSibling?.querySelector('h2')?.textContent),'Library','Home source caption is immediately below Library');
++      await shot(page,'home-sources','Home · source caption');report.checks.push({...current,name:'home-source-caption',...homeResult});
++      for(const book of books){
++        current={width,bookId:book.id};
++        if(!await page.locator('.v2-library-home').count()){
++          await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await ready(page);
++        }
++        await page.locator(`[data-v2-book="${escaped(book.id)}"]`).click();
++        await page.waitForFunction(id=>window.ArmyBookAppV2?.payload.book.id===id,book.id);await ready(page);
++        const footer=page.locator('main [data-v2-sources-line]');
++        const footerResult=await assertLine(page,footer,book.line,book.title);
++        assert(await footer.evaluate(node=>node.previousElementSibling?.classList.contains('v2-library-sections')),'The book caption follows the homepage library sections');
++        await shot(page,book.id+'-sources',book.title+' · homepage source caption');
++        report.checks.push({...current,name:'book-source-caption',mfmPointer:book.mfmPointer,...footerResult});
++
++        const expectedIds=[...new Set(book.rows.map(row=>row.fieldId))];
++        const displayed=await page.locator('main [data-fact-id]').evaluateAll((nodes,ids)=>{
++          const expected=new Set(ids);return nodes.filter(node=>expected.has(node.dataset.factId)).map(node=>({
++            id:node.dataset.factId,value:node.dataset.factValue,text:node.textContent,entityId:node.dataset.entityId,contextId:node.dataset.contextId}));
++        },expectedIds);
++        for(const row of book.rows){
++          const matches=displayed.filter(node=>node.id===row.fieldId);
++          assert(matches.length,'Every source model-base row is rendered: '+book.id+' · '+row.fieldId);
++          for(const found of matches){
++            assert.equal(found.value,JSON.stringify(row.value),'Native model-base data-fact-value remains exact: '+row.fieldId);
++            assert.equal(found.entityId,row.baseId,'Native model-base source identity remains exact: '+row.fieldId);
++            assert.equal(normalize(found.text),normalize(row.displayed),'Only the approved model-base caption changes: '+row.fieldId);
++            if(typeof row.value==='string'&&row.value.includes('Use model')){
++              assert.match(found.text,/Use model base/);assert.doesNotMatch(found.text,/[⌀Ø]/,'The model instruction has no diameter mark');
++            }
++          }
++        }
++        report.checks.push({...current,name:'all-native-model-base-facts',sourceRows:book.rows.length,baseCards:book.baseCards,renderedFacts:displayed.length,
++          modelInstructions:book.rows.filter(row=>typeof row.value==='string'&&row.value.includes('Use model')).length,sourceValuesPreserved:true});
++
++        if(book.id==='chaos-space-marines'){
++          const link=page.locator(`main .v2-library-card[data-target-id="${escaped(csmExample.unitId)}"]`).first();
++          await link.click();await ready(page);
++          const unit=page.locator(`main .unit-card[data-card-id="${escaped(csmExample.unitId)}"]`).first();
++          const fact=unit.locator(`[data-fact-id="${escaped(csmExample.fieldId)}"]`).first();
++          for(const summary of await fact.locator('xpath=ancestor::details[not(@open)]/summary').all())await summary.click();
++          await fact.scrollIntoViewIfNeeded();assert(await fact.isVisible(),'The real CSM model-base caption is readable through its datasheet');
++          assert.equal(await fact.getAttribute('data-fact-value'),JSON.stringify(csmExample.value));
++          assert.match(await fact.innerText(),/Use model base/);assert.doesNotMatch(await fact.innerText(),/[⌀Ø]/);
++          await shot(page,'chaos-space-marines-model-base',csmExample.unitTitle+' · Use model base');
++          report.checks.push({...current,name:'csm-public-datasheet-model-base',unitId:csmExample.unitId,fieldId:csmExample.fieldId,sourceValue:csmExample.value,displayed:await fact.innerText()});
++        }
++        save();
++      }
++      assert.deepEqual(sourceRequests,['/books/shared/application-v2/generated/source-metadata.v1.json'],
++        'Home and all nine books share one small metadata request and never fetch its full source owners');
++      assert.equal(await page.evaluate(()=>window.__sourceMetadataParses),1,'The metadata response is parsed once');
++      report.checks.push({width,name:'one-small-metadata-fetch',requests:sourceRequests,parses:1});
++    }catch(error){await shot(page,'failure-'+(current.bookId||'home'),'Failure evidence').catch(()=>{});throw error;}
++    finally{await context.close();}
++  }
++  assert.deepEqual(report.errors,[],'No browser errors');assert.deepEqual(report.missing,[],'No missing publication dependencies');report.status='PASS';
++}catch(error){report.status='FAIL';report.failure=error.stack;throw error;}
++finally{save();await browser?.close();await new Promise(resolve=>server.close(resolve));}
++console.log(JSON.stringify({status:report.status,books:books.length,widths,checks:report.checks.length,out}));
+diff --git a/v2/new-recruit-plain-header-browser-qa.mjs b/v2/new-recruit-plain-header-browser-qa.mjs
+index 90c4c9a7..6bd6ecdf 100644
+--- a/v2/new-recruit-plain-header-browser-qa.mjs
++++ b/v2/new-recruit-plain-header-browser-qa.mjs
+@@ -95,7 +95,7 @@ try{
+    assert.match(await card.innerText(),/Icon of Despair/,'The selected Icon is visible on Deathshroud Terminators');
+    await card.getByText(/Icon of Despair/).first().scrollIntoViewIfNeeded();
+    await page.screenshot({path:path.join(out,device+'-owner-v37.25-icon.png'),fullPage:false});
+-   results.push({device,status:'PASS',version:'v37.25',units:8,metadata:imported.metadata,iconOfDespair:true,dpWarning:'not implemented, backlog'});
++   results.push({device,status:'PASS',version:'v37.25',units:8,metadata:imported.metadata,iconOfDespair:true,dpWarning:'informational comparison covered by import-notices-browser-qa'});
+    await page.evaluate(()=>ArmyBookAppV2.openRoster());
+    const saved=await page.evaluate(()=>localStorage.getItem('army-book-app-v2:roster:death-guard'));
+    for(const denied of current.rejectionCases){
+diff --git a/v2/rule-popups-browser-qa.mjs b/v2/rule-popups-browser-qa.mjs
+index ef6cc052..5310fd2c 100644
+--- a/v2/rule-popups-browser-qa.mjs
++++ b/v2/rule-popups-browser-qa.mjs
+@@ -35,6 +35,25 @@ async function settle(){await page.waitForFunction(()=>!document.querySelector('
+ async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
+ async function importText(text){await roster();await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();await settle();const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settle();}assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);}
+ async function effective(instanceId){await roster();await openCard(page,page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`));const card=page.locator(`main .unit-card[data-roster-instance-id="${instanceId}"]`).first();await card.waitFor();return card;}
++async function showBookCards(page){
++ await page.waitForFunction(()=>ArmyBookAppV2.navigation.state.owner==='reader');
++ await page.locator('main').evaluate(async main=>{
++  const marked=main.querySelectorAll('[data-rule-term-state]');
++  const boundaries=marked.length?marked:main.querySelectorAll('.unit-card,.v2-book-record,.v1-reference-article,[data-rule-term-title]');
++  for(const node of boundaries){
++   if(!node.getClientRects().length||node.closest('details:not([open])'))continue;
++   node.scrollIntoView({block:'center',behavior:'instant'});
++   if(node.dataset.ruleTermState)await new Promise((resolve,reject)=>{
++    const started=performance.now();const ready=()=>{
++     if(node.dataset.ruleTermState==='ready')return resolve();
++     if(!node.isConnected||performance.now()-started>10000)return reject(new Error('First-show rule links did not finish'));
++     requestAnimationFrame(ready);
++    };ready();
++   });
++   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
++  }
++ });
++}
+ try{
+  browser=await launchChromium();
+  for(const book of books){
+@@ -54,6 +73,7 @@ try{
+     await page.goto(origin+'/v2/app.html');const begin=performance.now();await page.locator(`[data-v2-book="${book.id}"]`).click();
+     await page.waitForFunction(id=>window.ArmyBookAppV2?.payload.book.id===id&&document.querySelector('main .unit-card'),book.id);await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+     timings.push({...current,stage:'book-first-render',elapsedMs:performance.now()-begin});
++    await showBookCards(page);
+     const count=await page.locator('main .rule-term-link').count();links.push({...current,fullBookLinks:count});
+     await check('full-inline-ability-titles-are-not-buttons',async()=>{
+      const found=await page.locator('main .ability').evaluateAll(nodes=>nodes.flatMap(node=>[...node.querySelectorAll('p > a:first-child')].filter(link=>link.textContent.endsWith(':')&&link.nextSibling?.textContent.trim()).map(link=>({text:link.textContent,card:link.closest('[data-card-id]')?.dataset.cardId}))));
+@@ -173,6 +193,7 @@ try{
+        const beforeTerms=await dialog.locator('a.rule-term-link').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId));
+        await dialog.getByRole('link',{name:'Open in Army Book',exact:true}).click();await page.locator('main .v1-contents-pages').waitFor();
+        assert.equal(new URL(page.url()).searchParams.get('roster'),null,'Full Army Book is not a filtered personal view');assert.equal(await page.locator('dialog[open]').count(),0);
++       await showBookCards(page);
+        assert.equal(await page.locator('main .rule-term-link').count(),count,'Full-book term targets are rebuilt after leaving personal scope');
+        assert.equal(await page.evaluate(()=>JSON.stringify(ArmyBookAppV2.roster.snapshot())),before,'Reading source does not alter the physical roster');
+        await page.goBack();await dialog.waitFor();assert.equal(await dialog.getAttribute('data-canonical-id'),'datasheet-deathshroud-terminators:section:1');
+diff --git a/v2/shell-browser-qa.mjs b/v2/shell-browser-qa.mjs
+index 1ce8c191..72f15f67 100644
+--- a/v2/shell-browser-qa.mjs
++++ b/v2/shell-browser-qa.mjs
+@@ -7,7 +7,7 @@ import path from 'node:path';
+ import {fileURLToPath} from 'node:url';
+ import {decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
+ import {armyBooks} from './army-books.mjs';
+-import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
++import {isApplicationTestDependency,allowApplicationTestDependencies} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ 
+ const repo=fileURLToPath(new URL('../',import.meta.url));
+ const requests=[],forbidden=[],errors=[],results=[];
+@@ -22,6 +22,22 @@ const isAllowedResource=address=>registeredHomeResources.has(address)||isApplica
+     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
+     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
+     /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address);
++const startupTestResources=new Map([
++  ['/books/shared/application-v2/source-metadata.mjs','text/javascript'],
++  ['/books/shared/army-book-app-v2/import-notices.mjs','text/javascript'],
++  ['/books/shared/application-v2/generated/source-metadata.v1.json','application/json']
++]);
++const declaredTestResources=new Map();allowApplicationTestDependencies(declaredTestResources);
++for(const [address,mime]of startupTestResources){
++  assert.equal(isApplicationTestDependency(address),true,'The startup resource is an exact shared test dependency: '+address);
++  assert.equal(isAllowedResource(address),true,'The shell QA server must serve the startup resource: '+address);
++  assert.equal(declaredTestResources.get(address),mime,'The startup test resource has the exact MIME type: '+address);
++}
++for(const address of ['/mfm/next.json','/books/core-rules/content/core-rules.candidate-11e.json',
++  '/mfm/current.json','/books/core-rules/content/core-rules.digital-11e.json']){
++  assert.equal(isApplicationTestDependency(address),false,'An undeclared source lookalike is not a shared test dependency: '+address);
++  assert.equal(isAllowedResource(address),false,'The shell QA server must deny an undeclared source lookalike: '+address);
++}
+ assert.equal(isAllowedResource('/books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp'),true);
+ assert.equal(isAllowedResource('/books/emperors-children/assets/emperors-children-cover-480.webp'),true);
+ assert.equal(isAllowedResource('/books/shared/source-refs-v2/source-refs.mjs'),true,'The shared browser source reader is a declared dependency');
+@@ -266,7 +282,8 @@ try{
+     results.push({device,home:true,integratedDestinations:true,booklessRoster:true,import:true,attachment:true,personalGuide:true,
+       physicalReference:true,nativeNewTab:true,directReload:true,retiredAdaptersAbsent:true,backForward:true,lifecycle:true,theme:true,
+       neutralPrimaryNavigation:true,bookContentsPreserved:true,sectionNavigation:true,relatedRules:true,popupViewport:true,longCorePopup:true,
+-      homeCovers:true,lazyLoading:true,resourceNegativeControls:5,overflow:false});
++      homeCovers:true,lazyLoading:true,resourceNegativeControls:5,startupDependencyPositiveControls:3,
++      startupDependencyNegativeControls:4,startupDependencyMimeChecks:3,overflow:false});
+     await context.close();
+   }
+   assert.deepEqual(forbidden,[],'Shell requested a legacy or unexpected resource');

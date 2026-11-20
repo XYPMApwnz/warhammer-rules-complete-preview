@@ -1,0 +1,13 @@
+{"book":"death-guard","width":390,"counts":{"full":464,"selected":1,"dialog":14,"reference":14},"status":"PASS"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at contentsTarget (E:\Warhammer\worktrees\polish-6-v1\v2\lazy-glossary-browser-qa.mjs:31:13)
+    at async file:///E:/Warhammer/worktrees/polish-6-v1/v2/lazy-glossary-browser-qa.mjs:51:14 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.18.0

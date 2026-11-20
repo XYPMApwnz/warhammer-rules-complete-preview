@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+const root='E:/Warhammer/worktrees/polish-6-v1',baseRoot='E:/Warhammer/worktrees/markup-gap-close-v1',out='E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20';
+const list=directory=>JSON.parse(execFileSync(process.execPath,['tools/qa-queue.mjs','pre-ff','--list'],{cwd:directory,encoding:'utf8',env:{...process.env,QA_TMP_ROOT:'E:/Warhammer/qa-tmp/polish-6'}}));
+const base=list(baseRoot),head=list(root);
+const key=(row,directory)=>JSON.stringify([row.command,...row.args].map(value=>value.replaceAll('\\','/').replaceAll(directory,'<ROOT>')));
+const oldKeys=base.map(row=>key(row,baseRoot)),newKeys=head.map(row=>key(row,root)),oldSet=new Set(oldKeys);
+assert.equal(base.length,189);assert.equal(head.length,198);
+assert.equal(JSON.stringify(newKeys.filter(value=>oldSet.has(value))),JSON.stringify(oldKeys),'All existing jobs and their order are retained');
+const added=head.filter(row=>!oldSet.has(key(row,root)));assert.equal(added.length,9);
+const result={status:'PASS',baseJobs:base.length,headJobs:head.length,existingOrderPreserved:true,removed:[],added};
+fs.writeFileSync(out+'/QUEUE_PLAN_FINAL.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

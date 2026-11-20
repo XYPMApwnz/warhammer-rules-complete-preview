@@ -1,0 +1,162 @@
+{
+  "schema": "lazy-glossary-timing/v1",
+  "stage": "baseline",
+  "started": "2026-11-20T11:24:23.623Z",
+  "policy": {
+    "freshContext": true,
+    "width": 390,
+    "height": 844,
+    "serviceWorkers": "block",
+    "network": "unthrottled local static HTTP",
+    "cpu": "unthrottled",
+    "repetitions": 3,
+    "order": "forward; reverse; forward",
+    "parallelHeavyRuns": false,
+    "bookEndpoint": "book click → mounted unit-card + two animation frames (same rule-popups recipe)",
+    "cardEndpoint": "library datasheet click → selected card + two animation frames",
+    "threshold": "final book median <= beforeB median * 1.05; card median <= baseline50"
+  },
+  "roots": {
+    "beforeB": "E:/Warhammer/worktrees/card-gained-rules-v1",
+    "baseline50": "E:/Warhammer/qa-tmp/polish-6/runtime-50"
+  },
+  "rows": [
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "beforeB",
+      "bookMs": 1718.1903000000002,
+      "cardMs": 1005.8969999999999,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "baseline50",
+      "bookMs": 1880.6976999999997,
+      "cardMs": 909.4907000000012,
+      "proseLinksOnBook": 464,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "baseline50",
+      "bookMs": 1812.8636000000006,
+      "cardMs": 907.0745999999999,
+      "proseLinksOnBook": 464,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "beforeB",
+      "bookMs": 1632.002700000001,
+      "cardMs": 919.7965999999997,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "beforeB",
+      "bookMs": 1643.336800000001,
+      "cardMs": 932.945499999998,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "baseline50",
+      "bookMs": 1790.775800000003,
+      "cardMs": 909.9599999999991,
+      "proseLinksOnBook": 464,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "beforeB",
+      "bookMs": 5934.264500000001,
+      "cardMs": 940.8559999999998,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "baseline50",
+      "bookMs": 6075.3038000000015,
+      "cardMs": 932.2759000000005,
+      "proseLinksOnBook": 689,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "baseline50",
+      "bookMs": 5883.4781,
+      "cardMs": 950.6291999999958,
+      "proseLinksOnBook": 689,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "beforeB",
+      "bookMs": 5571.9205,
+      "cardMs": 943.2950999999957,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "beforeB",
+      "bookMs": 5308.596899999997,
+      "cardMs": 974.5602999999974,
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "baseline50",
+      "bookMs": 5683.613799999999,
+      "cardMs": 923.5885000000053,
+      "proseLinksOnBook": 689,
+      "proseLinksOnCard": 3
+    }
+  ],
+  "errors": [],
+  "medians": {
+    "death-guard": {
+      "beforeB": {
+        "bookMs": 1643.336800000001,
+        "cardMs": 932.945499999998,
+        "proseLinksOnBook": 0
+      },
+      "baseline50": {
+        "bookMs": 1812.8636000000006,
+        "cardMs": 909.4907000000012,
+        "proseLinksOnBook": 464
+      }
+    },
+    "space-marines": {
+      "beforeB": {
+        "bookMs": 5571.9205,
+        "cardMs": 943.2950999999957,
+        "proseLinksOnBook": 0
+      },
+      "baseline50": {
+        "bookMs": 5883.4781,
+        "cardMs": 932.2759000000005,
+        "proseLinksOnBook": 689
+      }
+    }
+  },
+  "status": "PASS",
+  "finished": "2026-11-20T11:25:29.598Z"
+}

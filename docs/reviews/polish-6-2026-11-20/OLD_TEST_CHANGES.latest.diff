@@ -1,0 +1,222 @@
+diff --git a/books/shared/application-v2/browser-test-dependencies.mjs b/books/shared/application-v2/browser-test-dependencies.mjs
+index abb5a772..f80f2906 100644
+--- a/books/shared/application-v2/browser-test-dependencies.mjs
++++ b/books/shared/application-v2/browser-test-dependencies.mjs
+@@ -5,6 +5,9 @@ const dependencies=new Map([
+   ['/v2/app.html','text/html'],
+   ['/v2/boot.mjs','text/javascript'],
+   ['/v2/army-books.mjs','text/javascript'],
++  ['/books/shared/application-v2/source-metadata.mjs','text/javascript'],
++  ['/books/shared/army-book-app-v2/import-notices.mjs','text/javascript'],
++  ['/books/shared/application-v2/generated/source-metadata.v1.json','application/json'],
+   ...armyBooks.map(book=>[`/books/${book.id}/book.config.json`,'application/json']),
+   ['/books/shared/keyword-values.mjs','text/javascript'],
+   ['/books/shared/rule-facts.js','text/javascript'],
+diff --git a/tests/book-passport-qa.mjs b/tests/book-passport-qa.mjs
+index 1a9dfbf6..67614240 100644
+--- a/tests/book-passport-qa.mjs
++++ b/tests/book-passport-qa.mjs
+@@ -7,6 +7,7 @@ import {execFileSync} from 'node:child_process';
+ import {createHash} from 'node:crypto';
+ import {BOOK_PASSPORT_IDS,bookPassportSchema,readBookPassport} from '../books/shared/tools/book-passport.mjs';
+ import {generatedRebuildPlan} from '../books/shared/tools/generated-rebuild-plan.mjs';
++import {withoutSourceMetadataStep,SOURCE_METADATA_OUTPUT} from './helpers/source-metadata-plan.mjs';
+ 
+ const root=fileURLToPath(new URL('../',import.meta.url));
+ const baseline=JSON.parse(fs.readFileSync(new URL('./fixtures/book-passport-baseline.json',import.meta.url)));
+@@ -82,8 +83,11 @@ for(const id of BOOK_PASSPORT_IDS){
+  results.push({book:id,status:'PASS',producers:config.passport.build.steps.length,legacyFields:expected.legacyKeys.length});
+ }
+ const tracked=execFileSync('git',['ls-tree','-r','--name-only','-z',baseline.base],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024}).split('\0').filter(Boolean);
++assert(!tracked.includes(SOURCE_METADATA_OUTPUT),'The accepted baseline predates the requested metadata extension');
++tracked.push(SOURCE_METADATA_OUTPUT);
+ const plan=generatedRebuildPlan(tracked,{root});
+-assert.equal(plan.steps.length,baseline.baselinePlan.steps,'Producer count changed');
+-assert.equal(plan.files.length,baseline.baselinePlan.files,'Compared output count changed');
+-assert.equal(sha(JSON.stringify(plan)),baseline.baselinePlan.sha256,'Producer order, arguments, outputs or comparison policy changed from the immutable baseline');
+-console.log(JSON.stringify({status:'PASS',books:results,controls,negativeControls:Object.values(controls).reduce((sum,value)=>sum+value,0),baseline:baseline.base,unchangedPlan:{steps:plan.steps.length,files:plan.files.length,sha256:baseline.baselinePlan.sha256}},null,2));
++const legacyPlan=withoutSourceMetadataStep(plan);
++assert.equal(legacyPlan.steps.length,baseline.baselinePlan.steps,'Producer count changed');
++assert.equal(legacyPlan.files.length,baseline.baselinePlan.files,'Compared output count changed');
++assert.equal(sha(JSON.stringify(legacyPlan)),baseline.baselinePlan.sha256,'Producer order, arguments, outputs or comparison policy changed from the immutable baseline');
++console.log(JSON.stringify({status:'PASS',books:results,controls,negativeControls:Object.values(controls).reduce((sum,value)=>sum+value,0),baseline:baseline.base,unchangedPlan:{steps:legacyPlan.steps.length,files:legacyPlan.files.length,sha256:baseline.baselinePlan.sha256},sourceMetadataExtension:{steps:1,files:1}},null,2));
+diff --git a/tests/book-update-declarations-qa.mjs b/tests/book-update-declarations-qa.mjs
+index 09d46ffc..8ba327ea 100644
+--- a/tests/book-update-declarations-qa.mjs
++++ b/tests/book-update-declarations-qa.mjs
+@@ -7,6 +7,7 @@ import {execFileSync} from 'node:child_process';
+ import {createHash} from 'node:crypto';
+ import {BOOK_PASSPORT_IDS,readBookPassport} from '../books/shared/tools/book-passport.mjs';
+ import {generatedRebuildPlan} from '../books/shared/tools/generated-rebuild-plan.mjs';
++import {withoutSourceMetadataStep} from './helpers/source-metadata-plan.mjs';
+ import {bookUpdateDeclarations,selectBookUpdate,validateUpdateInputs,validateUpdateOperations} from '../books/shared/tools/book-update-declarations.mjs';
+ 
+ const root=fileURLToPath(new URL('../',import.meta.url));
+@@ -14,9 +15,10 @@ const tracked=execFileSync('git',['ls-tree','-r','--name-only','-z','HEAD'],{cwd
+ const baseline=JSON.parse(fs.readFileSync(new URL('./fixtures/book-passport-baseline.json',import.meta.url),'utf8'));
+ const plan=generatedRebuildPlan(tracked,{root});
+ const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+-assert.equal(plan.steps.length,baseline.baselinePlan.steps,'Update metadata must not add or remove gate producers');
+-assert.equal(plan.files.length,baseline.baselinePlan.files,'Update metadata must not change gate coverage');
+-assert.equal(sha(JSON.stringify(plan)),baseline.baselinePlan.sha256,'Update metadata must preserve the exact accepted rebuild plan');
++const legacyPlan=withoutSourceMetadataStep(plan);
++assert.equal(legacyPlan.steps.length,baseline.baselinePlan.steps,'Update metadata must not add or remove gate producers');
++assert.equal(legacyPlan.files.length,baseline.baselinePlan.files,'Update metadata must not change gate coverage');
++assert.equal(sha(JSON.stringify(legacyPlan)),baseline.baselinePlan.sha256,'Update metadata must preserve the exact accepted rebuild plan');
+ 
+ const results=[],mutations=[];
+ for(const id of BOOK_PASSPORT_IDS){
+@@ -105,4 +107,4 @@ assert.throws(()=>selectBookUpdate(declarations),/Choose --book=<id> or --all/);
+ 
+ console.log(JSON.stringify({status:'PASS',books:results,negativeControls:mutations.length,mutations,
+  selection:{dg:dg.steps.length,smBooks:sm.books,allBooks:all.books.length,coreReaderOnCoreChange:core.shared.includes(reader),mfmBooks:mfm.books.length,fallbackReason:fallback.fallbackReason},
+- unchangedGate:{steps:plan.steps.length,files:plan.files.length,sha256:sha(JSON.stringify(plan))}},null,2));
++ unchangedGate:{steps:legacyPlan.steps.length,files:legacyPlan.files.length,sha256:sha(JSON.stringify(legacyPlan))},sourceMetadataExtension:{steps:1,files:1}},null,2));
+diff --git a/tests/startup-precache-qa.mjs b/tests/startup-precache-qa.mjs
+index f60224c3..9f44fe41 100644
+--- a/tests/startup-precache-qa.mjs
++++ b/tests/startup-precache-qa.mjs
+@@ -43,6 +43,19 @@ try{
+   let mutationMessage;
+   assert.throws(()=>assertCovered(graph,mutated),error=>{mutationMessage=error.message;return error.code==='ERR_ASSERTION'&&error.message.includes(critical);},'Removing a required startup resource must fail and identify that file');
+   report.checks.push({name:'removed-startup-resource-is-rejected',status:'PASS',removed:critical,message:mutationMessage});
++  for(const required of ['books/shared/application-v2/source-metadata.mjs','books/shared/army-book-app-v2/import-notices.mjs',
++    'books/shared/application-v2/generated/source-metadata.v1.json']){
++    assert(graph.nodes.some(node=>node.path===required),'The parsed startup graph must reach '+required);
++    const without=cache.urls.filter(url=>decodeURIComponent(new URL(url,'https://startup.invalid/').pathname).slice(1)!==required);
++    assert.equal(without.length,cache.urls.length-1,'Remove exactly the new required resource: '+required);
++    assert.throws(()=>assertCovered(graph,without),error=>error.code==='ERR_ASSERTION'&&error.message.includes(required),
++      'Missing source/notice dependency must fail with its exact filename');
++    report.checks.push({name:'removed-source-notice-startup-resource-is-rejected',status:'PASS',removed:required});
++  }
++  for(const owner of ['mfm/current.json','books/core-rules/content/core-rules.digital-11e.json']){
++    assert(!graph.nodes.some(node=>node.path===owner),'Full metadata source owner must not be fetched at startup: '+owner);
++    assert(!cache.urls.some(url=>new URL(url,'https://startup.invalid/').pathname.slice(1)===owner),'Build-only source owner must not be precached: '+owner);
++  }
+   const bookModule=graph.selectedBookRoots[0].path;
+   const removedBookCode=cache.urls.filter(url=>decodeURIComponent(new URL(url,'https://startup.invalid/').pathname).slice(1)!==bookModule);
+   assert.equal(removedBookCode.length,cache.urls.length-1,'Selected-book code mutation must remove exactly one precache entry');
+diff --git a/v2/card-texts-browser-qa.mjs b/v2/card-texts-browser-qa.mjs
+index 74de3bb1..b4234048 100644
+--- a/v2/card-texts-browser-qa.mjs
++++ b/v2/card-texts-browser-qa.mjs
+@@ -150,8 +150,12 @@ async function headers(width,book){
+  if(!observe){
+   const payload=JSON.parse(fs.readFileSync(path.join(root,'books',book,'v2/generated/app-presentation.json')));
+   const data=payload.book.dataVersions;assert.ok(data,'Source-owned version metadata must be published');
+-  assert.equal(labels.core,'Core rules snapshot: '+data.coreSnapshotDate);
+-  assert.equal(labels.mfm,'MFM points: '+data.mfmVersion);
++  const coreCaptureDate=JSON.parse(fs.readFileSync(path.join(root,'books/core-rules/content/core-rules.digital-11e.json'))).meta.captureDate;
++  const passport=JSON.parse(fs.readFileSync(path.join(root,'books',book,'book.config.json'))).passport;
++  const mfmRelease=JSON.parse(fs.readFileSync(path.join(root,passport.mfm.currentRelease)));
++  assert.equal(labels.core,'Core rules snapshot: '+coreCaptureDate);
++  assert.equal(labels.mfm,'MFM points: '+mfmRelease.version);
++  if(data.coreSnapshotDate!==coreCaptureDate)assert.ok(!labels.core.includes(data.coreSnapshotDate),'The stale generated Core catalog date is absent');
+   assert.ok(labels.official?.startsWith('Book corrections: '));
+   assert.equal(Object.keys(labels).length,3,'Three separate source labels');
+   for(const update of data.officialUpdates){assert.ok(labels.official.includes(update.version));if(update.date)assert.ok(labels.official.includes(update.date));}
+diff --git a/v2/new-recruit-plain-header-browser-qa.mjs b/v2/new-recruit-plain-header-browser-qa.mjs
+index 90c4c9a7..6bd6ecdf 100644
+--- a/v2/new-recruit-plain-header-browser-qa.mjs
++++ b/v2/new-recruit-plain-header-browser-qa.mjs
+@@ -95,7 +95,7 @@ try{
+    assert.match(await card.innerText(),/Icon of Despair/,'The selected Icon is visible on Deathshroud Terminators');
+    await card.getByText(/Icon of Despair/).first().scrollIntoViewIfNeeded();
+    await page.screenshot({path:path.join(out,device+'-owner-v37.25-icon.png'),fullPage:false});
+-   results.push({device,status:'PASS',version:'v37.25',units:8,metadata:imported.metadata,iconOfDespair:true,dpWarning:'not implemented, backlog'});
++   results.push({device,status:'PASS',version:'v37.25',units:8,metadata:imported.metadata,iconOfDespair:true,dpWarning:'informational comparison covered by import-notices-browser-qa'});
+    await page.evaluate(()=>ArmyBookAppV2.openRoster());
+    const saved=await page.evaluate(()=>localStorage.getItem('army-book-app-v2:roster:death-guard'));
+    for(const denied of current.rejectionCases){
+diff --git a/v2/rule-popups-browser-qa.mjs b/v2/rule-popups-browser-qa.mjs
+index ef6cc052..5310fd2c 100644
+--- a/v2/rule-popups-browser-qa.mjs
++++ b/v2/rule-popups-browser-qa.mjs
+@@ -35,6 +35,25 @@ async function settle(){await page.waitForFunction(()=>!document.querySelector('
+ async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
+ async function importText(text){await roster();await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();await settle();const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settle();}assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);}
+ async function effective(instanceId){await roster();await openCard(page,page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`));const card=page.locator(`main .unit-card[data-roster-instance-id="${instanceId}"]`).first();await card.waitFor();return card;}
++async function showBookCards(page){
++ await page.waitForFunction(()=>ArmyBookAppV2.navigation.state.owner==='reader');
++ await page.locator('main').evaluate(async main=>{
++  const marked=main.querySelectorAll('[data-rule-term-state]');
++  const boundaries=marked.length?marked:main.querySelectorAll('.unit-card,.v2-book-record,.v1-reference-article,[data-rule-term-title]');
++  for(const node of boundaries){
++   if(!node.getClientRects().length||node.closest('details:not([open])'))continue;
++   node.scrollIntoView({block:'center',behavior:'instant'});
++   if(node.dataset.ruleTermState)await new Promise((resolve,reject)=>{
++    const started=performance.now();const ready=()=>{
++     if(node.dataset.ruleTermState==='ready')return resolve();
++     if(!node.isConnected||performance.now()-started>10000)return reject(new Error('First-show rule links did not finish'));
++     requestAnimationFrame(ready);
++    };ready();
++   });
++   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
++  }
++ });
++}
+ try{
+  browser=await launchChromium();
+  for(const book of books){
+@@ -54,6 +73,7 @@ try{
+     await page.goto(origin+'/v2/app.html');const begin=performance.now();await page.locator(`[data-v2-book="${book.id}"]`).click();
+     await page.waitForFunction(id=>window.ArmyBookAppV2?.payload.book.id===id&&document.querySelector('main .unit-card'),book.id);await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+     timings.push({...current,stage:'book-first-render',elapsedMs:performance.now()-begin});
++    await showBookCards(page);
+     const count=await page.locator('main .rule-term-link').count();links.push({...current,fullBookLinks:count});
+     await check('full-inline-ability-titles-are-not-buttons',async()=>{
+      const found=await page.locator('main .ability').evaluateAll(nodes=>nodes.flatMap(node=>[...node.querySelectorAll('p > a:first-child')].filter(link=>link.textContent.endsWith(':')&&link.nextSibling?.textContent.trim()).map(link=>({text:link.textContent,card:link.closest('[data-card-id]')?.dataset.cardId}))));
+@@ -173,6 +193,7 @@ try{
+        const beforeTerms=await dialog.locator('a.rule-term-link').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId));
+        await dialog.getByRole('link',{name:'Open in Army Book',exact:true}).click();await page.locator('main .v1-contents-pages').waitFor();
+        assert.equal(new URL(page.url()).searchParams.get('roster'),null,'Full Army Book is not a filtered personal view');assert.equal(await page.locator('dialog[open]').count(),0);
++       await showBookCards(page);
+        assert.equal(await page.locator('main .rule-term-link').count(),count,'Full-book term targets are rebuilt after leaving personal scope');
+        assert.equal(await page.evaluate(()=>JSON.stringify(ArmyBookAppV2.roster.snapshot())),before,'Reading source does not alter the physical roster');
+        await page.goBack();await dialog.waitFor();assert.equal(await dialog.getAttribute('data-canonical-id'),'datasheet-deathshroud-terminators:section:1');
+diff --git a/v2/shell-browser-qa.mjs b/v2/shell-browser-qa.mjs
+index 1ce8c191..72f15f67 100644
+--- a/v2/shell-browser-qa.mjs
++++ b/v2/shell-browser-qa.mjs
+@@ -7,7 +7,7 @@ import path from 'node:path';
+ import {fileURLToPath} from 'node:url';
+ import {decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
+ import {armyBooks} from './army-books.mjs';
+-import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
++import {isApplicationTestDependency,allowApplicationTestDependencies} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+ 
+ const repo=fileURLToPath(new URL('../',import.meta.url));
+ const requests=[],forbidden=[],errors=[],results=[];
+@@ -22,6 +22,22 @@ const isAllowedResource=address=>registeredHomeResources.has(address)||isApplica
+     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
+     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
+     /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address);
++const startupTestResources=new Map([
++  ['/books/shared/application-v2/source-metadata.mjs','text/javascript'],
++  ['/books/shared/army-book-app-v2/import-notices.mjs','text/javascript'],
++  ['/books/shared/application-v2/generated/source-metadata.v1.json','application/json']
++]);
++const declaredTestResources=new Map();allowApplicationTestDependencies(declaredTestResources);
++for(const [address,mime]of startupTestResources){
++  assert.equal(isApplicationTestDependency(address),true,'The startup resource is an exact shared test dependency: '+address);
++  assert.equal(isAllowedResource(address),true,'The shell QA server must serve the startup resource: '+address);
++  assert.equal(declaredTestResources.get(address),mime,'The startup test resource has the exact MIME type: '+address);
++}
++for(const address of ['/mfm/next.json','/books/core-rules/content/core-rules.candidate-11e.json',
++  '/mfm/current.json','/books/core-rules/content/core-rules.digital-11e.json']){
++  assert.equal(isApplicationTestDependency(address),false,'An undeclared source lookalike is not a shared test dependency: '+address);
++  assert.equal(isAllowedResource(address),false,'The shell QA server must deny an undeclared source lookalike: '+address);
++}
+ assert.equal(isAllowedResource('/books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp'),true);
+ assert.equal(isAllowedResource('/books/emperors-children/assets/emperors-children-cover-480.webp'),true);
+ assert.equal(isAllowedResource('/books/shared/source-refs-v2/source-refs.mjs'),true,'The shared browser source reader is a declared dependency');
+@@ -266,7 +282,8 @@ try{
+     results.push({device,home:true,integratedDestinations:true,booklessRoster:true,import:true,attachment:true,personalGuide:true,
+       physicalReference:true,nativeNewTab:true,directReload:true,retiredAdaptersAbsent:true,backForward:true,lifecycle:true,theme:true,
+       neutralPrimaryNavigation:true,bookContentsPreserved:true,sectionNavigation:true,relatedRules:true,popupViewport:true,longCorePopup:true,
+-      homeCovers:true,lazyLoading:true,resourceNegativeControls:5,overflow:false});
++      homeCovers:true,lazyLoading:true,resourceNegativeControls:5,startupDependencyPositiveControls:3,
++      startupDependencyNegativeControls:4,startupDependencyMimeChecks:3,overflow:false});
+     await context.close();
+   }
+   assert.deepEqual(forbidden,[],'Shell requested a legacy or unexpected resource');

@@ -1,0 +1,427 @@
+{
+  "schema": "lazy-glossary-timing/v1",
+  "stage": "corrected",
+  "started": "2026-11-20T17:18:07.960Z",
+  "policy": {
+    "freshContext": true,
+    "width": 390,
+    "height": 844,
+    "serviceWorkers": "block",
+    "network": "unthrottled local static HTTP",
+    "cpu": "unthrottled",
+    "repetitions": 3,
+    "order": "forward; reverse; forward",
+    "parallelHeavyRuns": false,
+    "bookEndpoint": "book click → mounted unit-card + two animation frames (same rule-popups recipe)",
+    "cardEndpoint": "library datasheet click → selected card + two animation frames",
+    "threshold": "final book median <= beforeB median * 1.05; card median <= baseline50",
+    "cardPreparation": "Before the timer, center the target, hover, require stable bounding box and unobstructed center hit-test for three consecutive animation frames.",
+    "correctionReason": "LAZY_CARD_ACTIONABILITY.log proves the earlier card samples included 20/100/100/500ms pre-click retries, instability and sticky-header interception in BOTH revisions. Book endpoint, card endpoint, ordering, repetitions and thresholds are unchanged."
+  },
+  "roots": {
+    "beforeB": "E:/Warhammer/worktrees/card-gained-rules-v1",
+    "baseline50": "E:/Warhammer/qa-tmp/polish-6/runtime-50",
+    "head": "E:/Warhammer/worktrees/polish-6-v1"
+  },
+  "rows": [
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "beforeB",
+      "bookMs": 827.1205,
+      "cardMs": 156.85559999999987,
+      "eventToSelectedMs": 18,
+      "eventToTwoFramesMs": 26.300000000745058,
+      "events": {
+        "event": 2105.199999999255,
+        "selected": 2123.199999999255,
+        "frame1": 2124.199999999255,
+        "frame2": 2131.5
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "baseline50",
+      "bookMs": 875.8559,
+      "cardMs": 111.62870000000021,
+      "eventToSelectedMs": 20,
+      "eventToTwoFramesMs": 29.100000001490116,
+      "events": {
+        "event": 2044.699999999255,
+        "selected": 2064.699999999255,
+        "frame1": 2065.599999997765,
+        "frame2": 2073.800000000745
+      },
+      "proseLinksOnBook": 464,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 1,
+      "version": "head",
+      "bookMs": 558.4798000000001,
+      "cardMs": 104.13909999999942,
+      "eventToSelectedMs": 19.300000000745058,
+      "eventToTwoFramesMs": 23.700000002980232,
+      "events": {
+        "event": 1734.0999999977648,
+        "selected": 1753.3999999985099,
+        "frame1": 1754.300000000745,
+        "frame2": 1757.800000000745
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "head",
+      "bookMs": 551.9056,
+      "cardMs": 103.4893000000011,
+      "eventToSelectedMs": 20.100000001490116,
+      "eventToTwoFramesMs": 24.300000000745058,
+      "events": {
+        "event": 1741.5999999977648,
+        "selected": 1761.699999999255,
+        "frame1": 1762.5,
+        "frame2": 1765.8999999985099
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "baseline50",
+      "bookMs": 863.499600000001,
+      "cardMs": 111.33840000000055,
+      "eventToSelectedMs": 18.300000000745058,
+      "eventToTwoFramesMs": 27.300000000745058,
+      "events": {
+        "event": 2038.8999999985099,
+        "selected": 2057.199999999255,
+        "frame1": 2058.099999997765,
+        "frame2": 2066.199999999255
+      },
+      "proseLinksOnBook": 464,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 2,
+      "version": "beforeB",
+      "bookMs": 787.1077999999998,
+      "cardMs": 111.45629999999983,
+      "eventToSelectedMs": 19.5,
+      "eventToTwoFramesMs": 28.199999999254942,
+      "events": {
+        "event": 2001.3999999985099,
+        "selected": 2020.8999999985099,
+        "frame1": 2021.7999999970198,
+        "frame2": 2029.5999999977648
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "beforeB",
+      "bookMs": 800.4681999999993,
+      "cardMs": 117.89700000000084,
+      "eventToSelectedMs": 18.199999999254942,
+      "eventToTwoFramesMs": 27,
+      "events": {
+        "event": 1993,
+        "selected": 2011.199999999255,
+        "frame1": 2012.1000000014901,
+        "frame2": 2020
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "baseline50",
+      "bookMs": 870.7438999999995,
+      "cardMs": 111.44549999999799,
+      "eventToSelectedMs": 20.300000000745058,
+      "eventToTwoFramesMs": 29.5,
+      "events": {
+        "event": 2054.60000000149,
+        "selected": 2074.900000002235,
+        "frame1": 2075.800000000745,
+        "frame2": 2084.10000000149
+      },
+      "proseLinksOnBook": 464,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "death-guard",
+      "repeat": 3,
+      "version": "head",
+      "bookMs": 566.279300000002,
+      "cardMs": 103.93999999999869,
+      "eventToSelectedMs": 19.5,
+      "eventToTwoFramesMs": 23.800000000745058,
+      "events": {
+        "event": 1738.6000000014901,
+        "selected": 1758.1000000014901,
+        "frame1": 1759.1000000014901,
+        "frame2": 1762.4000000022352
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 5
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "beforeB",
+      "bookMs": 2370.628199999999,
+      "cardMs": 125.77989999999772,
+      "eventToSelectedMs": 24.699999999254942,
+      "eventToTwoFramesMs": 35.5,
+      "events": {
+        "event": 3575.300000000745,
+        "selected": 3600,
+        "frame1": 3600.900000002235,
+        "frame2": 3610.800000000745
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "baseline50",
+      "bookMs": 2485.2127,
+      "cardMs": 125.66139999999723,
+      "eventToSelectedMs": 25.5,
+      "eventToTwoFramesMs": 37.600000001490116,
+      "events": {
+        "event": 3673,
+        "selected": 3698.5,
+        "frame1": 3699.60000000149,
+        "frame2": 3710.60000000149
+      },
+      "proseLinksOnBook": 689,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 1,
+      "version": "head",
+      "bookMs": 1065.204600000001,
+      "cardMs": 111.20040000000154,
+      "eventToSelectedMs": 25.300000000745058,
+      "eventToTwoFramesMs": 30.099999997764826,
+      "events": {
+        "event": 2246,
+        "selected": 2271.300000000745,
+        "frame1": 2272.300000000745,
+        "frame2": 2276.099999997765
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "head",
+      "bookMs": 1083.8642,
+      "cardMs": 111.05320000000211,
+      "eventToSelectedMs": 26.699999999254942,
+      "eventToTwoFramesMs": 31.199999999254942,
+      "events": {
+        "event": 2262.5,
+        "selected": 2289.199999999255,
+        "frame1": 2290,
+        "frame2": 2293.699999999255
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "baseline50",
+      "bookMs": 2439.547699999999,
+      "cardMs": 125.37840000000142,
+      "eventToSelectedMs": 24.699999999254942,
+      "eventToTwoFramesMs": 35.80000000074506,
+      "events": {
+        "event": 3630,
+        "selected": 3654.699999999255,
+        "frame1": 3655.5,
+        "frame2": 3665.800000000745
+      },
+      "proseLinksOnBook": 689,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 2,
+      "version": "beforeB",
+      "bookMs": 2317.6438999999955,
+      "cardMs": 125.53809999999794,
+      "eventToSelectedMs": 24.800000000745058,
+      "eventToTwoFramesMs": 35.600000001490116,
+      "events": {
+        "event": 3528.099999997765,
+        "selected": 3552.89999999851,
+        "frame1": 3553.7999999970198,
+        "frame2": 3563.699999999255
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "beforeB",
+      "bookMs": 2405.1938999999984,
+      "cardMs": 125.9233000000022,
+      "eventToSelectedMs": 25.300000000745058,
+      "eventToTwoFramesMs": 36.5,
+      "events": {
+        "event": 3612.699999999255,
+        "selected": 3638,
+        "frame1": 3638.900000002235,
+        "frame2": 3649.199999999255
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 0
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "baseline50",
+      "bookMs": 2452.1944000000003,
+      "cardMs": 132.94799999999668,
+      "eventToSelectedMs": 26.199999999254942,
+      "eventToTwoFramesMs": 38,
+      "events": {
+        "event": 3673.300000000745,
+        "selected": 3699.5,
+        "frame1": 3700.39999999851,
+        "frame2": 3711.300000000745
+      },
+      "proseLinksOnBook": 689,
+      "proseLinksOnCard": 3
+    },
+    {
+      "lane": "space-marines",
+      "repeat": 3,
+      "version": "head",
+      "bookMs": 1101.2549,
+      "cardMs": 111.22520000000077,
+      "eventToSelectedMs": 25,
+      "eventToTwoFramesMs": 29.300000000745058,
+      "events": {
+        "event": 2271,
+        "selected": 2296,
+        "frame1": 2296.800000000745,
+        "frame2": 2300.300000000745
+      },
+      "proseLinksOnBook": 0,
+      "proseLinksOnCard": 3
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.58",
+  "runtimeHashes": {
+    "beforeB": {
+      "books/shared/army-book-app-v2/runtime.mjs": "470397895010047d047ade5cc8a2674c6018def2dc585d7008901861cd8b1412",
+      "books/shared/army-book-app-v2/navigation-v1.mjs": "b48ceb07f0bdbbd2ac0147989e41933ed721b0addbffd93429938098e4366826",
+      "books/shared/army-book-app-v2/navigation-v1-controller.mjs": "400b84410b3d3ccfe1cd351abdba4314deaf27d19f7ef393ede8680af1d95069",
+      "books/shared/application-v2/runtime.mjs": "4cd3a510ed6adef9d4163db9279fe3b3e3aa85d43f9fdbbdbcfb08d524a1a2f8",
+      "books/shared/application-v2/home.mjs": "33f2db5085333d9cd4babfebf7b0c9752cf532be5fedd29a849efc528b22d7a5"
+    },
+    "baseline50": {
+      "books/shared/army-book-app-v2/runtime.mjs": "d79caf8cf4c682d66de38274aa1f893e0fa52f8ea3d4d038166cba4c2c7f3fc4",
+      "books/shared/army-book-app-v2/rule-term-links.mjs": "93b53e945ce90046c59065b5339a0449407e65d6d651ebb602566583ebe5ed3c",
+      "books/shared/army-book-app-v2/navigation-v1.mjs": "63ba24f1a73492cb95e164d8b0d00f2195adfd4a2384996f1b86cf1a9a1cb3d3",
+      "books/shared/army-book-app-v2/navigation-v1-controller.mjs": "1d7f0d856e59ab527dafb799a77e8fbab552b37e987b6f4a34eb68545d2fdd0a",
+      "books/shared/application-v2/runtime.mjs": "4cd3a510ed6adef9d4163db9279fe3b3e3aa85d43f9fdbbdbcfb08d524a1a2f8",
+      "books/shared/application-v2/home.mjs": "33f2db5085333d9cd4babfebf7b0c9752cf532be5fedd29a849efc528b22d7a5"
+    },
+    "head": {
+      "books/shared/army-book-app-v2/runtime.mjs": "d8bbc51f09d0a50aaae0242b8a564b2236be210a208639196572dcb47b9b70f6",
+      "books/shared/army-book-app-v2/rule-term-links.mjs": "5375b7b18d480ee7f6aabeef0e831c6ff827cf9b4461b3d587823ff4af6d5792",
+      "books/shared/army-book-app-v2/navigation-v1.mjs": "b8c6c2b60452b23a46baaf64da910138ccb8b09bb95f8500640a95dc5bd6fab2",
+      "books/shared/army-book-app-v2/navigation-v1-controller.mjs": "22a8fe82821dda9d9bd1cb0e2637ce00c3d4af813c30872edce549fd2605a039",
+      "books/shared/application-v2/runtime.mjs": "b6e3ff5aa04273010e5dbaa44e4e7fa2a15922d04a71a144efd03c27f148182e",
+      "books/shared/application-v2/home.mjs": "ee4f99d7f1465293d865a1bebf80d9ec43383872ec2690137f0b893ad9a2c993"
+    }
+  },
+  "medians": {
+    "death-guard": {
+      "beforeB": {
+        "bookMs": 800.4681999999993,
+        "cardMs": 117.89700000000084,
+        "eventToSelectedMs": 18.199999999254942,
+        "eventToTwoFramesMs": 27,
+        "proseLinksOnBook": 0
+      },
+      "baseline50": {
+        "bookMs": 870.7438999999995,
+        "cardMs": 111.44549999999799,
+        "eventToSelectedMs": 20,
+        "eventToTwoFramesMs": 29.100000001490116,
+        "proseLinksOnBook": 464
+      },
+      "head": {
+        "bookMs": 558.4798000000001,
+        "cardMs": 103.93999999999869,
+        "eventToSelectedMs": 19.5,
+        "eventToTwoFramesMs": 23.800000000745058,
+        "proseLinksOnBook": 0
+      }
+    },
+    "space-marines": {
+      "beforeB": {
+        "bookMs": 2370.628199999999,
+        "cardMs": 125.77989999999772,
+        "eventToSelectedMs": 24.800000000745058,
+        "eventToTwoFramesMs": 35.600000001490116,
+        "proseLinksOnBook": 0
+      },
+      "baseline50": {
+        "bookMs": 2452.1944000000003,
+        "cardMs": 125.66139999999723,
+        "eventToSelectedMs": 25.5,
+        "eventToTwoFramesMs": 37.600000001490116,
+        "proseLinksOnBook": 689
+      },
+      "head": {
+        "bookMs": 1083.8642,
+        "cardMs": 111.20040000000154,
+        "eventToSelectedMs": 25.300000000745058,
+        "eventToTwoFramesMs": 30.099999997764826,
+        "proseLinksOnBook": 0
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "lane": "death-guard",
+      "bookRatioToBeforeB": 0.6976914260928798,
+      "cardRatioToBaseline50": 0.9326531802540305,
+      "bookPass": true,
+      "cardPass": true
+    },
+    {
+      "lane": "space-marines",
+      "bookRatioToBeforeB": 0.4572054782778676,
+      "cardRatioToBaseline50": 0.8849209064995615,
+      "bookPass": true,
+      "cardPass": true
+    }
+  ],
+  "status": "PASS",
+  "finished": "2026-11-20T17:18:56.667Z"
+}

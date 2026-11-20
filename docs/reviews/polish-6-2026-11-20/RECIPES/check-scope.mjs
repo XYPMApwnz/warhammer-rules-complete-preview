@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {generatedRebuildPlan} from 'file:///E:/Warhammer/worktrees/polish-6-v1/books/shared/tools/generated-rebuild-plan.mjs';
+const root='E:/Warhammer/worktrees/polish-6-v1',baseRoot='E:/Warhammer/worktrees/markup-gap-close-v1',out='E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20';
+const base='50c9a9c89d8e66e0466dbeeabc918ec1d465c87f';
+const git=(cwd,...args)=>execFileSync('git',args,{cwd,encoding:'utf8',maxBuffer:16*1024*1024}).trim();
+assert.equal(git(baseRoot,'rev-parse','HEAD'),base);assert.equal(git(baseRoot,'status','--porcelain'),'');
+const tracked=git(root,'ls-files').split(/\r?\n/),plan=generatedRebuildPlan(tracked,{root});
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const files=plan.files.map(file=>{const before=fs.readFileSync(path.join(baseRoot,file)),after=fs.readFileSync(path.join(root,file));
+ return {file,bytes:after.length,sha256:hash(after),identical:before.equals(after)};});
+assert.equal(files.length,147);assert(files.every(file=>file.identical),'Generated difference is forbidden');
+const changed=git(root,'diff','--name-only',base).split(/\r?\n/).filter(Boolean);
+assert(!changed.some(file=>/^books\/(?!shared\/)/.test(file)),'No book data or producer changes');
+assert(!changed.some(file=>file.startsWith('tools/markup-census')),'The markup registry is immutable in this task');
+const result={status:'PASS',base,head:git(root,'rev-parse','HEAD'),generatedFiles:files.length,identical:files.length,
+ stage:'Direct byte equality; the normal rebuild gate is separately recorded in pre-FF',files};
+fs.writeFileSync(out+'/SCOPE_EQUALITY.json',JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify({status:result.status,generatedFiles:files.length,identical:files.length}));

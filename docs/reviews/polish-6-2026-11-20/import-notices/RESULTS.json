@@ -1,0 +1,154 @@
+{
+  "status": "PASS",
+  "root": "E:\\Warhammer\\worktrees\\polish-6-v1",
+  "widths": [
+    390,
+    1440
+  ],
+  "checks": [
+    {
+      "width": 390,
+      "name": "real-owner-dp",
+      "nativeStatus": "READY",
+      "units": 8,
+      "totalDP": 5,
+      "tableLimit": 3,
+      "anySelectedMembership": true,
+      "copyRecords": 27,
+      "presentation": {
+        "requests": 1,
+        "parses": 1
+      }
+    },
+    {
+      "width": 390,
+      "name": "known-disposition-mismatch",
+      "nativeStatus": "READY",
+      "copyRecords": 27
+    },
+    {
+      "width": 390,
+      "name": "three-line-header",
+      "nativeStatus": "READY",
+      "noGuessedContext": true,
+      "copyRecords": 27
+    },
+    {
+      "width": 390,
+      "name": "csm-named-source-shape",
+      "nativeStatus": "READY",
+      "sourceMembershipPositiveAndNegative": true,
+      "totalDP": 2,
+      "tableLimit": 2,
+      "copyRecords": 19,
+      "presentation": {
+        "requests": 1,
+        "parses": 1
+      }
+    },
+    {
+      "width": 390,
+      "name": "tau-common-summary-label",
+      "total": 100,
+      "oldCopyAbsent": true,
+      "presentation": {
+        "requests": 1,
+        "parses": 1
+      }
+    },
+    {
+      "width": 1440,
+      "name": "real-owner-dp",
+      "nativeStatus": "READY",
+      "units": 8,
+      "totalDP": 5,
+      "tableLimit": 3,
+      "anySelectedMembership": true,
+      "copyRecords": 27,
+      "presentation": {
+        "requests": 1,
+        "parses": 1
+      }
+    },
+    {
+      "width": 1440,
+      "name": "known-disposition-mismatch",
+      "nativeStatus": "READY",
+      "copyRecords": 27
+    },
+    {
+      "width": 1440,
+      "name": "three-line-header",
+      "nativeStatus": "READY",
+      "noGuessedContext": true,
+      "copyRecords": 27
+    },
+    {
+      "width": 1440,
+      "name": "csm-named-source-shape",
+      "nativeStatus": "READY",
+      "sourceMembershipPositiveAndNegative": true,
+      "totalDP": 2,
+      "tableLimit": 2,
+      "copyRecords": 19,
+      "presentation": {
+        "requests": 1,
+        "parses": 1
+      }
+    },
+    {
+      "width": 1440,
+      "name": "tau-common-summary-label",
+      "total": 100,
+      "oldCopyAbsent": true,
+      "presentation": {
+        "requests": 1,
+        "parses": 1
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "width": 390,
+      "name": "death-guard-owner-dp",
+      "file": "390-death-guard-owner-dp.png"
+    },
+    {
+      "width": 390,
+      "name": "death-guard-disposition-note",
+      "file": "390-death-guard-disposition-note.png"
+    },
+    {
+      "width": 390,
+      "name": "csm-source-shape",
+      "file": "390-csm-source-shape.png"
+    },
+    {
+      "width": 390,
+      "name": "tau-summary",
+      "file": "390-tau-summary.png"
+    },
+    {
+      "width": 1440,
+      "name": "death-guard-owner-dp",
+      "file": "1440-death-guard-owner-dp.png"
+    },
+    {
+      "width": 1440,
+      "name": "death-guard-disposition-note",
+      "file": "1440-death-guard-disposition-note.png"
+    },
+    {
+      "width": 1440,
+      "name": "csm-source-shape",
+      "file": "1440-csm-source-shape.png"
+    },
+    {
+      "width": 1440,
+      "name": "tau-summary",
+      "file": "1440-tau-summary.png"
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

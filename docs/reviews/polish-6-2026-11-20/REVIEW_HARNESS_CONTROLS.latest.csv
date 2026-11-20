@@ -1,0 +1,13 @@
+class,path,helperAllowed,shellAllowed,mime,countGroup
+new exact positive,/books/shared/application-v2/source-metadata.mjs,True,True,text/javascript,startupDependencyPositiveControls=3; startupDependencyMimeChecks=3
+new exact positive,/books/shared/army-book-app-v2/import-notices.mjs,True,True,text/javascript,startupDependencyPositiveControls=3; startupDependencyMimeChecks=3
+new exact positive,/books/shared/application-v2/generated/source-metadata.v1.json,True,True,application/json,startupDependencyPositiveControls=3; startupDependencyMimeChecks=3
+new exact negative,/mfm/next.json,False,False,not served,startupDependencyNegativeControls=4
+new exact negative,/books/core-rules/content/core-rules.candidate-11e.json,False,False,not served,startupDependencyNegativeControls=4
+new exact negative,/mfm/current.json,False,False,not served,startupDependencyNegativeControls=4
+new exact negative,/books/core-rules/content/core-rules.digital-11e.json,False,False,not served,startupDependencyNegativeControls=4
+original unchanged negative,/books/chaos-space-marines/assets/chaos-space-marines-cover-800.webp,existing predicate,False,not served,resourceNegativeControls=5 (unchanged)
+original unchanged negative,/books/chaos-space-marines/assets/unknown.webp,existing predicate,False,not served,resourceNegativeControls=5 (unchanged)
+original unchanged negative,/books/chaos-space-marines/scripts/data.js,existing predicate,False,not served,resourceNegativeControls=5 (unchanged)
+original unchanged negative,/books/emperors-children/assets/unknown.webp,existing predicate,False,not served,resourceNegativeControls=5 (unchanged)
+original unchanged negative,/books/tyranids/v2/app.html,existing predicate,False,not served,resourceNegativeControls=5 (unchanged)

@@ -1,0 +1,39 @@
+{
+  "group": "browser-rest",
+  "results": [
+    {
+      "id": "import-notices",
+      "args": [
+        "v2/import-notices-browser-qa.mjs",
+        "--out=E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/import-notices"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 16964,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/browser-rest-import-notices.log"
+    },
+    {
+      "id": "header-existing",
+      "args": [
+        "v2/card-texts-browser-qa.mjs",
+        "--case=headers"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 14057,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/browser-rest-header-existing.log"
+    },
+    {
+      "id": "lazy-link-parity",
+      "args": [
+        "v2/lazy-glossary-browser-qa.mjs",
+        "--base=E:/Warhammer/qa-tmp/polish-6/runtime-50",
+        "--out=E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/lazy-link-parity"
+      ],
+      "status": "FAIL",
+      "exitCode": 1,
+      "elapsedMs": 41862,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/browser-rest-lazy-link-parity.log"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "group": "pure",
+  "results": [
+    {
+      "id": "source-metadata",
+      "args": [
+        "books/shared/application-v2/source-metadata-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 158,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/pure-source-metadata.log"
+    },
+    {
+      "id": "model-base-caption",
+      "args": [
+        "books/shared/army-book-app-v2/model-base-caption-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 64,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/pure-model-base-caption.log"
+    },
+    {
+      "id": "import-notices-all-books",
+      "args": [
+        "books/shared/army-book-app-v2/import-notices-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1329,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/pure-import-notices-all-books.log"
+    },
+    {
+      "id": "term-visibility",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 66,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/pure-term-visibility.log"
+    },
+    {
+      "id": "navigation-geometry",
+      "args": [
+        "books/shared/army-book-app-v2/navigation-geometry-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 145,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/pure-navigation-geometry.log"
+    },
+    {
+      "id": "term-matcher",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-links-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 141,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/pure-term-matcher.log"
+    },
+    {
+      "id": "roster-navigation",
+      "args": [
+        "books/shared/army-book-app-v2/roster-navigation-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 835,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/pure-roster-navigation.log"
+    },
+    {
+      "id": "import-copy",
+      "args": [
+        "books/shared/army-book-app-v2/import-messages-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 72,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/pure-import-copy.log"
+    },
+    {
+      "id": "startup-precache",
+      "args": [
+        "tests/startup-precache-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2526,
+      "log": "E:/Warhammer/qa-evidence/polish-6-v1-2026-11-20/focused/pure-startup-precache.log"
+    }
+  ]
+}

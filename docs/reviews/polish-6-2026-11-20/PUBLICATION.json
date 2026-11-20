@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "feature": "9876164de85f1e35aa2cf070a3eb9de662093980",
+  "evidenceBranch": "codex/polish-6-evidence",
+  "preview": {
+    "status": "RUNNING",
+    "pid": 9344,
+    "sha": "9876164de85f1e35aa2cf070a3eb9de662093980",
+    "root": "E:\\Warhammer\\qa-tmp\\preview-v1\\package-polish-6-9876164d",
+    "started": "2026-11-20T18:40:31.091Z",
+    "http": "http://localhost:8765/",
+    "lan": "http://192.168.1.124:8765/",
+    "https": "https://192.168.1.124:8443/",
+    "stopFile": "E:\\Warhammer\\qa-tmp\\preview-v1\\STOP-polish-6-9876164d",
+    "cacheRevision": "d3117be5ab05b043",
+    "servedContentSha256": "b1d38129d5e6b12ab5ce9a3b47525da33002e0117c6dd24a1f31e0d993bdf1ed",
+    "preffPassed": 198
+  },
+  "packageMatchesExactPreff": true,
+  "checks": [
+    {
+      "url": "http://localhost:8765/",
+      "status": 200
+    },
+    {
+      "url": "http://192.168.1.124:8765/",
+      "status": 200
+    },
+    {
+      "url": "http://192.168.1.124:8765/v2/app.html",
+      "status": 200
+    },
+    {
+      "url": "http://192.168.1.124:8765/books/shared/application-v2/generated/source-metadata.v1.json",
+      "status": 200
+    },
+    {
+      "url": "http://192.168.1.124:8765/books/core-rules/content/core-rules.digital-11e.json",
+      "status": 404
+    },
+    {
+      "url": "http://192.168.1.124:8765/mfm/current.json",
+      "status": 404
+    }
+  ],
+  "sourceRefUnchanged": "50c9a9c89d8e66e0466dbeeabc918ec1d465c87f",
+  "ffPerformed": false
+}

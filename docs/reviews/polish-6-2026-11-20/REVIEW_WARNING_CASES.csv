@@ -1,0 +1,11 @@
+width,case,input,nativeStatus,dpComparison,fdComparison,units,sourceDP,tableDP,bookPresentationRequests,bookPresentationParses,status,evidence
+390,real-owner-dp,DG real owner export v37.25,READY,5 selected source DP vs Strike Force table 3; DP notice shown,Disruption matches one selected Detachment; no FD notice,8,5,3,1,1,PASS,import-notices/RESULTS.json
+390,known-disposition-mismatch,DG recognized Reconnaissance derived header,READY,DP notice remains,Recognized exported label belongs to no selected Detachment; FD notice shown,,,,,,PASS,import-notices/RESULTS.json
+390,three-line-header,DG existing three-line header,READY,No explicit battle-size context; no guessed DP notice,No guessed disposition context,,,,,,PASS,import-notices/RESULTS.json
+390,csm-named-source-shape,CSM actual named source relations,READY,2 selected source DP vs Incursion table 2; no excess notice,Actual membership positive and recognized nonmember negative controls both checked,,2,2,1,1,PASS,import-notices/RESULTS.json
+390,tau-common-summary-label,Tau saved/imported summary,summary-only,Existing total 100 / 2000 retained,Removed Imported points caption only,,,,1,1,PASS,import-notices/RESULTS.json
+1440,real-owner-dp,DG real owner export v37.25,READY,5 selected source DP vs Strike Force table 3; DP notice shown,Disruption matches one selected Detachment; no FD notice,8,5,3,1,1,PASS,import-notices/RESULTS.json
+1440,known-disposition-mismatch,DG recognized Reconnaissance derived header,READY,DP notice remains,Recognized exported label belongs to no selected Detachment; FD notice shown,,,,,,PASS,import-notices/RESULTS.json
+1440,three-line-header,DG existing three-line header,READY,No explicit battle-size context; no guessed DP notice,No guessed disposition context,,,,,,PASS,import-notices/RESULTS.json
+1440,csm-named-source-shape,CSM actual named source relations,READY,2 selected source DP vs Incursion table 2; no excess notice,Actual membership positive and recognized nonmember negative controls both checked,,2,2,1,1,PASS,import-notices/RESULTS.json
+1440,tau-common-summary-label,Tau saved/imported summary,summary-only,Existing total 100 / 2000 retained,Removed Imported points caption only,,,,1,1,PASS,import-notices/RESULTS.json
