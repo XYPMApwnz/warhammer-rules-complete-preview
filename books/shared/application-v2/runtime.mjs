@@ -1,3 +1,4 @@
+import {loadSourceCatalog} from '../source-refs-v2/source-catalog.mjs';
 import {createLifecycle} from '../army-book-app-v2/lifecycle.mjs';
 import {mount} from '../army-book-app-v2/runtime.mjs';
 import {applicationRouteURL,resolveApplicationRoute} from './routes.mjs';
@@ -175,6 +176,9 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
     const registration=registry.get(route.bookId);
     try {
       if(!await transitionAllowed(token))return activeModule;
+      // Source identities are needed by native factories, not by Home/Core/Glossary.
+      await loadSourceCatalog({fetch:view.fetch?.bind(view)});
+      if(!lifecycle.active||token!==generation)return activeModule;
       const presentation=registration.loadPayload();
       const [payload,roster,bookSourceMetadata,coreSourceMetadata]=await Promise.all([presentation,registration.createRoster?.({presentation}),
         sourceMetadata?.book(registration.id).catch(()=>null),sourceMetadata?.core().catch(()=>null)]);

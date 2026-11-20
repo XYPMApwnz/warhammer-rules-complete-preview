@@ -2,7 +2,8 @@
   "name": "warhammer-rules-complete-preview",
   "private": true,
   "devDependencies": {
-    "playwright": "1.61.1"
+    "playwright": "1.61.1",
+    "esbuild": "0.28.2"
   },
   "scripts": {
     "test:polish-6": "node tests/source-metadata-build-qa.mjs && node books/shared/application-v2/source-metadata-qa.mjs && node books/shared/army-book-app-v2/model-base-caption-qa.mjs && node books/shared/army-book-app-v2/import-notices-qa.mjs && node books/shared/army-book-app-v2/rule-term-visibility-qa.mjs && node books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
@@ -148,6 +149,7 @@
     "mfm:update": "node books/shared/tools/mfm-release-cli.mjs update",
     "mfm:activate": "node books/shared/tools/mfm-release-cli.mjs activate",
     "qa:mfm-current": "node tests/mfm-release-history-qa.mjs && node tests/source-enrollment-qa.mjs && node tests/source-ingestion-contract-qa.mjs && node tests/mfm-numeric-ownership-qa.mjs",
-    "book:update": "node books/shared/tools/book-update.mjs"
+    "book:update": "node books/shared/tools/book-update.mjs",
+    "qa:browser-compat": "node tests/browser-compatibility-qa.mjs && node tests/browser-compat-equivalence-qa.mjs && node tests/browser-catalog-loader-qa.mjs && node tests/browser-catalog-cache-qa.mjs"
   }
 }

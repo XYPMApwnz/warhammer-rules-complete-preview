@@ -77,6 +77,10 @@ export function buildStartupGraph(root){
       // Property calls (e.g. view.fetch in a lazy glossary action) remain deferred.
       for(const match of !isBookModule(relative)?text.matchAll(/(?<![\w$.])fetch\s*\(\s*new\s+URL\(\s*["'](\.[^"']+\.json)["']\s*,\s*import\.meta\.url\s*\)/g):[])
         add(relative,match[1],'direct-literal-json-fetch',phase);
+      // The same ordinary transport is awaited by the keyword passport module.
+      // Catalog readiness uses a separate URL and remains a lazy candidate.
+      for(const match of !isBookModule(relative)?text.matchAll(/(?<![\w$.])loadRuntimeJSON\s*\(\s*new\s+URL\(\s*["'](\.[^"']+\.json)["']\s*,\s*import\.meta\.url\s*\)/g):[])
+        add(relative,match[1],'direct-runtime-json-load',phase);
       for(const match of text.matchAll(/new\s+URL\(\s*["'](\.[^"']+)["']\s*,\s*import\.meta\.url\s*\)/g)){
         if(/\.css(?:[?#]|$)/.test(match[1]))add(relative,match[1],'shell-stylesheet',phase);
         else if(/\.json(?:[?#]|$)/.test(match[1]))deferredCandidates.push({from:relative,request:match[1],kind:'literal-data-url-not-an-eager-import'});

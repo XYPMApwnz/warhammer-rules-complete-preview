@@ -9,7 +9,7 @@ const pointer = path => '/' + path.map(p => String(p).replaceAll('~', '~0').repl
 const labelOf = entity => entity.data?.title || entity.data?.name || entity.label || human(entity.kind);
 
 export function normalizeGlossaryQuery(value) {
-  return String(value ?? '').normalize('NFKD').replace(/\p{M}/gu, '')
+  return String(value ?? '').normalize('NFKD').replace(/[\p{M}]/gu, '')
     .toLowerCase().replace(/['’‘]/g, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 }
 

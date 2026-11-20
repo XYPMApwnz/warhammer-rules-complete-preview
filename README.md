@@ -49,6 +49,30 @@ Use Node.js 24 and Python 3.12 with the dependencies declared in `package.json` 
 
 Serve the checkout over HTTP for local use. PWA installation requires HTTPS or localhost, not `file://`. The root page leads to V2; `/v2/app.html` remains the application entrypoint and route base.
 
+### Browser compatibility baseline
+
+The JavaScript/API baseline is **Safari 15.4 (iOS/iPadOS 15.4), Chrome 100 and
+Firefox 102**, or newer. Safari 15.4 supplies the native `structuredClone`,
+`Object.hasOwn`, array `at` and dialog APIs already used by the application
+([Apple release notes](https://developer.apple.com/documentation/safari-release-notes/safari-15_4-release-notes)).
+Installable/offline mode also needs HTTPS or localhost and sufficient browser storage.
+
+`npm run qa:browser-compat` checks every published JavaScript module and inline
+HTML script against Safari 15 / Chrome 100 / Firefox 102 syntax, rejects JSON
+import attributes/assertions, and refuses code that would need transpilation.
+It runs in quick and pre-FF. The publication is served without transpiling it.
+JSON uses the same ordinary fetch/parse cache; Node 24 source tools retain their
+adjacent-file reads. The full source catalog is loaded once before the first
+Army Book or roster, cached offline after use, and migrated only when its
+published SHA matches. Home, Core and global glossary do not download it.
+
+Syntax targeting does not provide API polyfills
+([esbuild target contract](https://esbuild.github.io/api/#target)).
+Existing CSS `:has()` decorations progressively enhance newer engines; this
+baseline does not promise identical styling or physical-device certification.
+Real-browser offline/update QA and target-device review remain separate from
+the static compatibility guard.
+
 Normal builds and checks use committed accepted inputs and must remain network-free. Live source capture/update is separate and needs explicit authorization.
 
 ```powershell
@@ -85,11 +109,11 @@ Use the matching native book or `qa:shared:v2:*` checks listed by `qa:help`, the
 
 ## PWA and offline policy
 
-The existing service worker prepares the V2 shell, required code and shared styles for offline use. The shared source-reference registry and keyword passports are eager startup imports and are included in that package. Large Army Book JSON and both large glossary payloads remain lazy and are cached when opened; installation must not download all nine books.
+The existing service worker prepares the V2 shell, required code, keyword passports and shared styles for offline use. The full source-reference registry remains in the publication but is loaded and cached only when the first Army Book or roster is opened. Large Army Book JSON and both large glossary payloads remain lazy and are cached when opened; installation must not download all nine books.
 
 Changing V2 resources prefer the network and use only compatible cached bytes offline. The publication inventory and cache revision identify the served code/data. Compatible previously cached V2 data, including the exact Core glossary definition file, is copied and SHA-256 verified before obsolete app caches are removed. A failed copy preserves old caches for a later startup retry. No old V1 reader or V1 offline contract is supported.
 
-Updates on a working screen use the existing explicit confirmation button. Before the application starts, a verified prepared worker may be activated automatically if the document has no unfinished input. This also handles a publication newer than the opening HTML, without importing that HTML's application modules before the restart. A session marker limits this to one automatic attempt per publication; a failed startup shows an explicit retry action. Completed markers remain reserved for the session. Another tab's controller change does not reload the current document. The app checks its running version before and after preparing a new view; incompatible results are refused before mounting. Current V2 localStorage rosters and unfinished import drafts are not cleared by an update. The startup dependency graph is checked against mandatory precache; worker integrity checks and offline data migration are unchanged.
+Updates on a working screen use the existing explicit confirmation button. Before the application starts, a verified prepared worker may be activated automatically if the document has no unfinished input. This also handles a publication newer than the opening HTML, without importing that HTML's application modules before the restart. A session marker limits this to one automatic attempt per publication; a failed startup shows an explicit retry action. Completed markers remain reserved for the session. Another tab's controller change does not reload the current document. The app checks its running version before and after preparing a new view; incompatible results are refused before mounting. Current V2 localStorage rosters and unfinished import drafts are not cleared by an update. The startup dependency graph is checked against mandatory precache; worker integrity and SHA-verified migration safeguards are unchanged; migration also retains the exact unchanged lazy source catalog.
 
 Previously opened compatible books can work offline while the browser retains their data. Browser eviction, quota and changed data can limit this. Unit images may be absent offline after an update; no image migration or offline library manager is promised. Safari/iOS behavior needs its own platform evidence. See [MINIMAL_PWA_NOTES](docs/MINIMAL_PWA_NOTES.txt) for the existing implementation boundary and residual risks.
 

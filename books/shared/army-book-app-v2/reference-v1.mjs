@@ -38,7 +38,7 @@ export function createReferencePresenter({el,factValue,anchor,contract,cards,pay
         if(!tables.has(field.table.id))tables.set(field.table.id,[]);tables.get(field.table.id).push(field);
       }
       // Exact duplicate table capture lines are display-only, as in the V1 book.
-      const echoes=new Set([...tables.values()].map(fields=>fields.toSorted((a,b)=>a.table.row-b.table.row||a.table.column-b.table.column).map(field=>String(field.value)).join('')));
+      const echoes=new Set([...tables.values()].map(fields=>[...fields].sort((a,b)=>a.table.row-b.table.row||a.table.column-b.table.column).map(field=>String(field.value)).join('')));
       for(const field of section.fields) {
         if(field.presentation==='table-cell'||field.presentation==='caption'||/\/lines\/\d+\/label$/.test(field.source?.path || ''))continue;
         const paragraph=el('p');
@@ -56,7 +56,7 @@ export function createReferencePresenter({el,factValue,anchor,contract,cards,pay
         const wrap=el('div','reference-table'),table=el('table');
         if(metadata?.columns){const head=el('thead'),row=el('tr');for(const label of metadata.columns)row.append(el('th','',label));head.append(row);table.append(head);}
         const rows=new Map();for(const field of fields){if(!rows.has(field.table.row))rows.set(field.table.row,[]);rows.get(field.table.row).push(field);}
-        const tbody=el('tbody');for(const rowFields of rows.values()){const row=el('tr');for(const field of rowFields.toSorted((a,b)=>a.table.column-b.table.column)){const cell=el('td');cell.append(value('span',field));if(field.visual){const image=el('img');Object.assign(image,field.visual);image.src=field.visual.url;cell.append(image);}row.append(cell);}tbody.append(row);}table.append(tbody);wrap.append(table);body.append(wrap);
+        const tbody=el('tbody');for(const rowFields of rows.values()){const row=el('tr');for(const field of [...rowFields].sort((a,b)=>a.table.column-b.table.column)){const cell=el('td');cell.append(value('span',field));if(field.visual){const image=el('img');Object.assign(image,field.visual);image.src=field.visual.url;cell.append(image);}row.append(cell);}tbody.append(row);}table.append(tbody);wrap.append(table);body.append(wrap);
       }
       linkTerms(body);article.append(body);
     }

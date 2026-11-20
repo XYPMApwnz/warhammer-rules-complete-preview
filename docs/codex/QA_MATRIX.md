@@ -11,6 +11,13 @@ to `--books=tyranids`). Use `node tools/qa-queue.mjs --help` for queue options.
 `npm run qa:pre-ff` runs all nine books, the shared gates,
 the existing browser suite, runtime packaging/determinism and the three source
 gates, plus keyword attribution and the full `glossary:check` producer gate.
+`npm run qa:browser-compat` runs in both queues. It checks the exact publication
+inventory and inline scripts with pinned esbuild syntax targets (Safari 15,
+Chrome 100, Firefox 102), refuses JSON attributes and target lowering, and
+contains injected-attribute/unsupported-syntax negative controls. It also checks
+ordinary JSON read-once/retry behavior, unchanged Node catalog reads, equivalent
+older-browser normalization/order, and exact SHA-verified lazy-catalog migration.
+Runtime/API minima and the distinction from physical-device QA are in README.
 `qa:glossary` starts with strict cross-owner admission and published-reference
 negative controls before the other glossary checks.
 `test:polish-6` checks the small generated source metadata against its owners,

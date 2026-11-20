@@ -145,7 +145,7 @@ async function transferV2Data(activatingWorker){
       const url=new URL(request.url),item=publicationPath(url);
       // Native V2 JSON plus the lazy definition data used by the Core reader.
       // Other JavaScript, V1 and unlisted resources are not carried forward.
-      if(!item||(!/(?:^|\/)v2\/.*\.json$/.test(item)&&item!=='glossary/v2/generated/index.en.js')||!RUNTIME_ASSETS[item])continue;
+      if(!item||(!/(?:^|\/)v2\/.*\.json$/.test(item)&&item!=='glossary/v2/generated/index.en.js'&&item!=='books/shared/source-refs-v2/source-catalog.json')||!RUNTIME_ASSETS[item])continue;
       const response=await source.match(request);
       if(!response)throw new Error('Old cached response disappeared: '+item);
       if(!await matchesPublishedAsset(url,response))continue;

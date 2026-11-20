@@ -63,9 +63,18 @@ try{
   report.checks.push({name:'removed-selected-book-code-is-rejected',status:'PASS',removed:bookModule});
   const forbidden=cache.urls.filter(url=>/\/v2\/generated\/.*\.json(?:[?#]|$)|glossary\/v2\/generated\/.*\.(?:json|js)(?:[?#]|$)/.test(url));
   assert.deepEqual(forbidden,[],'Army Book and large glossary payloads must remain lazy');
-  assert(graph.nodes.some(node=>node.path==='books/shared/source-refs-v2/source-catalog.json'),'The source registry must be present as a genuine static JSON dependency');
+  const sourceCatalog='books/shared/source-refs-v2/source-catalog.json';
+  const assertLazyCatalog=(value,urls)=>{
+    assert(!value.nodes.some(node=>node.path===sourceCatalog),'Full source catalog must not block eager or factory-code startup');
+    assert.equal(value.deferredCandidates.filter(row=>new URL(row.request,'https://startup.invalid/'+row.from).pathname.slice(1)===sourceCatalog).length,1,'One exact lazy source catalog URL must remain published and reachable');
+    assert(!urls.some(url=>new URL(url,'https://startup.invalid/').pathname.slice(1)===sourceCatalog),'Full source catalog must not be mandatory precache');
+  };
+  assertLazyCatalog(graph,cache.urls);
+  assert.throws(()=>assertLazyCatalog({...graph,nodes:[...graph.nodes,{path:sourceCatalog}]},cache.urls),/must not block/);
+  assert.throws(()=>assertLazyCatalog(graph,[...cache.urls,'./'+sourceCatalog]),/must not be mandatory/);
+  report.checks.push({name:'full-source-catalog-is-exactly-one-lazy-published-resource',status:'PASS',negativeControls:2});
   assert.equal(graph.nodes.filter(node=>/^books\/[^/]+\/book\.config\.json$/.test(node.path)).length,9,'The graph must cover every native keyword passport');
-  report.checks.push({name:'nine-passports-and-source-registry-covered-without-eager-book-payloads',status:'PASS'});
+  report.checks.push({name:'nine-passports-covered-without-eager-book-payloads',status:'PASS'});
   report.status='PASS';report.precacheUrls=cache.urls.length;
   console.log('Startup precache PASS '+graph.nodes.length+' graph nodes, '+cache.urls.length+' mandatory URLs; removed-resource mutation rejected');
 }catch(error){report.status='FAIL';report.error=error.stack;console.error(error.stack);process.exitCode=1;}

@@ -1,6 +1,7 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
 import {buildImportBindings} from './roster-import-bindings.mjs';
-import modelNames from './model-name-aliases.json' with {type:'json'};
+import {loadRuntimeJSON} from '../../shared/source-refs-v2/source-catalog.mjs';
+const modelNames=await loadRuntimeJSON(new URL('./model-name-aliases.json',import.meta.url));
 
 /** Book title and the catalogue name in sources/bsdata-chaos-space-marines-11e.json. */
 export const factionIdentityLabels=Object.freeze(['Chaos Space Marines','Chaos - Chaos Space Marines']);

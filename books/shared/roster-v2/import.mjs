@@ -9,7 +9,7 @@ const clone = value => structuredClone(value);
 const equipmentKinds = new Set(['WARGEAR_OPTION', 'WARGEAR_FOOTNOTE', 'DATASHEET_SECTION', 'SUPPLEMENTAL_DATASHEET_RULE', 'UNIT_COMPOSITION']);
 const quantity = value => Number.isSafeInteger(value) && value >= 0;
 
-export const normalizeImportLabel = value => String(value ?? '').normalize('NFKD').replace(/\p{M}/gu,'')
+export const normalizeImportLabel = value => String(value ?? '').normalize('NFKD').replace(/[\p{M}]/gu,'')
   .replace(/[’‘']/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const gearNouns = {knives:'knife',weapons:'weapon',cannons:'cannon',gauntlets:'gauntlet',guns:'gun',pistols:'pistol',launchers:'launcher',
   fists:'fist',scourges:'scourge',spewers:'spewer',spitters:'spitter',blades:'blade',bolters:'bolter',swords:'sword',bells:'bell',
@@ -51,7 +51,7 @@ export async function loadImportHeaderContext(book,moduleURL,read=globalThis.fet
 // names/aliases take precedence; plural collisions remain multiple candidates.
 // A reviewed composition quantity permitting multiple recipients is required;
 // a singular proper name ending in s is not thereby a plural MODEL label.
-const modelNumberLabel = value => normalizeImportLabel(value).replace(/ies$/, 'y').replace(/(?<!s|u|i)s$/, '');
+const modelNumberLabel = value => normalizeImportLabel(value).replace(/ies$/, 'y').replace(/(^|[^sui])s$/, '$1');
 export function importModelLabelCandidates(records,label,labels,quantityFor=record=>record.quantity??record.data?.composition?.quantity) {
   const key=normalizeImportLabel(label),exact=records.filter(record=>labels(record).some(value=>normalizeImportLabel(value)===key));
   if(exact.length||!key)return exact;

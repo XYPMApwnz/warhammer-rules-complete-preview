@@ -1,5 +1,6 @@
 import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
-import modelNames from './model-name-aliases.json' with {type:'json'};
+import {loadRuntimeJSON} from '../../shared/source-refs-v2/source-catalog.mjs';
+const modelNames=await loadRuntimeJSON(new URL('./model-name-aliases.json',import.meta.url));
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
 import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
 
