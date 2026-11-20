@@ -1,0 +1,4155 @@
+{
+  "schema": "browser-compat-readonly-syntax-audit/v1",
+  "base": "9876164de85f1e35aa2cf070a3eb9de662093980",
+  "parser": "Node24bundledAcorn8.16.0",
+  "scope": "all published .js/.mjs; ECMA2022 grammar is not browser/API compatibility certification",
+  "files": 142,
+  "bytes": 24812710,
+  "jsonAttributeDeclarations": 12,
+  "ecma2022Errors": [
+    {
+      "file": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "message": "Unexpected token (2:51)",
+      "line": 2,
+      "column": 51
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-import.mjs",
+      "message": "Unexpected token (3:51)",
+      "line": 3,
+      "column": 51
+    },
+    {
+      "file": "books/shared/roster-v2/keywords.mjs",
+      "message": "Unexpected token (3:54)",
+      "line": 3,
+      "column": 54
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-catalog.mjs",
+      "message": "Unexpected token (2:44)",
+      "line": 2,
+      "column": 44
+    }
+  ],
+  "features": [
+    {
+      "file": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "line": 17,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(snapshot)"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "line": 30,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(reference)"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-import.mjs",
+      "line": 16,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-import.mjs",
+      "line": 47,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(object,key)"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-import.mjs",
+      "line": 51,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(object,key)"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-import.mjs",
+      "line": 83,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>[\n          {rows:row.selections,count:row.quantity},...(row.loadouts||[]).map(loadout=>({rows:loadout.selections,count:loadout.quantity}))])"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-import.mjs",
+      "line": 163,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(raw.modelRows||[]).flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-import.mjs",
+      "line": 163,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-paid-options.mjs",
+      "line": 20,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "bindings.flatMap(row=>[...row.profileIds,...row.equipmentIds])"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-paid-options.mjs",
+      "line": 57,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "rows.flatMap(row=>row.canonicalProfileIds)"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-paid-options.mjs",
+      "line": 67,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "units.flatMap(row=>row.unresolved.map(issue=>({unitInstanceId:row.unitInstanceId,...issue})))"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "line": 55,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(bindings.constraints)"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "line": 67,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(relation)"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "line": 67,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "part.replaceAll('~1','/').replaceAll('~0','~')"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "line": 67,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "part.replaceAll('~1','/')"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-presentation.mjs",
+      "line": 4,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "line": 21,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(projection)"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "line": 22,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(projection.formedUnits)"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "line": 28,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(snapshot)"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 190,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "search.contract.resolve(item.targetId).sections.flatMap(section=>section.fields.map(field=>field.value))"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 203,
+      "kind": "api",
+      "name": "at",
+      "text": "controls.at(-1)"
+    },
+    {
+      "file": "books/core-rules/reader/mount.mjs",
+      "line": 63,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(entry.canonicalReferences||[]).filter(ref=>ref.domain==='CORE'&&\n      (entry.domain==='CORE'?['sourceRuleId','targetRuleId'].includes(ref.relationType):['CORE ABILITIES','Conditi"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-import.mjs",
+      "line": 43,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(object,key)"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-import.mjs",
+      "line": 47,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(object,key)"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-import.mjs",
+      "line": 79,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>[\n          {rows:row.selections,count:row.quantity},...(row.loadouts||[]).map(loadout=>({rows:loadout.selections,count:loadout.quantity}))])"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-paid-options.mjs",
+      "line": 20,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "bindings.flatMap(row=>[...row.profileIds,...row.equipmentIds])"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-paid-options.mjs",
+      "line": 50,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "rows.flatMap(row=>row.canonicalProfileIds)"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-paid-options.mjs",
+      "line": 60,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "units.flatMap(row=>row.unresolved.map(issue=>({unitInstanceId:row.unitInstanceId,...issue})))"
+    },
+    {
+      "file": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "line": 17,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(chapters)"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-attachments.mjs",
+      "line": 15,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "book.mfmImportReferences.leaderEligibilityBindings.flatMap(b=>\n    b.targetUnitIds.map(targetId=>({sourceId:b.sourceUnitId,targetId,role:'LEADER',additionalLeaders:0,sourceIds:[b.s"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-boot.mjs",
+      "line": 34,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "models.flatMap(m=>m.weapons)"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-import.mjs",
+      "line": 20,
+      "kind": "api",
+      "name": "at",
+      "text": "at(current)"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-import.mjs",
+      "line": 20,
+      "kind": "api",
+      "name": "at",
+      "text": "at(current)"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-import.mjs",
+      "line": 20,
+      "kind": "api",
+      "name": "at",
+      "text": "at(original)"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-import.mjs",
+      "line": 72,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selections(unit).filter(s=>s.physicalQuantity>0).flatMap(s=>s.canonicalProfileIds)"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-import.mjs",
+      "line": 97,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "node.args.flatMap(leaves)"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-import.mjs",
+      "line": 127,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selections(unit).filter(s=>s.physicalQuantity>0).flatMap(s=>s.canonicalProfileIds)"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-import.mjs",
+      "line": 135,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selections(unit).flatMap(s=>s.canonicalOptionIds||[])"
+    },
+    {
+      "file": "books/shared/application-v2/source-metadata.mjs",
+      "line": 48,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(metadata.books,id)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "line": 3,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "line": 17,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "cards.flatMap(card=>card.fields.flatMap(field=>(bindings?.fields?.[field.id]||[]).map(binding=>({\n    canonicalId:binding.targetId,parameters:clone(binding.parameters||{}),\n    gro"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "line": 17,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "card.fields.flatMap(field=>(bindings?.fields?.[field.id]||[]).map(binding=>({\n    canonicalId:binding.targetId,parameters:clone(binding.parameters||{}),\n    group:binding.group,lab"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "line": 43,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(legacyOperations,row.operation)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/book-v1.mjs",
+      "line": 31,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "sources.flatMap(source=>[source.sourceId||source.base?.sourceId])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "line": 140,
+      "kind": "api",
+      "name": "at",
+      "text": "at(prefix+'minModels')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "line": 140,
+      "kind": "api",
+      "name": "at",
+      "text": "at(prefix+'maxModels')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "line": 142,
+      "kind": "api",
+      "name": "at",
+      "text": "at(schedule+'/minCopies')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "line": 143,
+      "kind": "api",
+      "name": "at",
+      "text": "at(schedule+'/maxCopies')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "line": 195,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "text.replaceAll(before,after)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "line": 238,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(key).replaceAll('~','~0').replaceAll('/','~1')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "line": 238,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(key).replaceAll('~','~0')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "line": 308,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "profiles.flatMap(profile=>profile.weapons||[])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 31,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "model.entities.filter(entity=>roles[entity.id]==='composition').flatMap(entity=>\n    (entity.data.blocks||[]).flatMap((block,index)=>{\n      if(typeof block.text!=='string')return "
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 32,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(entity.data.blocks||[]).flatMap((block,index)=>{\n      if(typeof block.text!=='string')return [];\n      const spans=[...block.text.matchAll(/^[-•] .+$/gm)].map(match=>({start:matc"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 34,
+      "kind": "api",
+      "name": "matchAll",
+      "text": "block.text.matchAll(/^[-•] .+$/gm)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 40,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(art.presentation)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 86,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(key).replaceAll('~','~0').replaceAll('/','~1')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 86,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(key).replaceAll('~','~0')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 113,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...cards.values()].flatMap(card=>card.fields.map(field=>[field.id,field]))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 132,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(value).replaceAll('~','~0').replaceAll('/','~1')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 132,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(value).replaceAll('~','~0')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 163,
+      "kind": "api",
+      "name": "flat",
+      "text": "[...projectInstanceCards(physicalCards,unit,roster.effective(instanceId)).values()].flat()"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 194,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(change,'targetWeaponSelectionKey')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 194,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(change,'targetWeaponScopeId')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 196,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(change,'targetWeaponScopeId')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 284,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "traces.flatMap(trace=>profiles.filter(profile=>\n            profile.instanceId===trace.targetInstanceId&&profile.id===trace.targetProfileId&&\n            (profile.scopeId??null)==="
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 337,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(labels,pointerKey(f))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 382,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "displayMembers.flatMap(member=>member.fields.filter(candidate=>\n        pointerKey(candidate)==='abilities'&&candidate.value===field.value).flatMap(candidate=>candidate.weaponGrant"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 382,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "member.fields.filter(candidate=>\n        pointerKey(candidate)==='abilities'&&candidate.value===field.value).flatMap(candidate=>candidate.weaponGrantSources||[])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 400,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "targets.flatMap(target=>displayMembers.filter(member=>member.instanceId===target.targetInstanceId&&member.id===target.targetWeaponProfileId&&\n              (member.scopeId??null)=="
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 627,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(proof.dataset,'dismissed')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 658,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "sources.flatMap(source=>source.subject==='MODEL'?[{instanceId:source.targetInstanceId,\n          profileId:source.targetProfileId,scopeId:source.targetCompositionId??null,modelInst"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 699,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "prices.flatMap(price=>price.fields.filter(field=>field.source?.path==='/value'))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 725,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...groups.values()].flatMap(group=>[...group.querySelectorAll('[id]')])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 729,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(paragraph.dataset,'gainedCaption')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 836,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "rows.flatMap(row=>JSON.parse(row.dataset.weaponOccurrences||'[]'))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 916,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(card.rosterConditionalPolicies||[]).flatMap(row=>\n      (cards.get(row.ruleId)?.fields||[]).filter(field=>field.value===row.policy.contextQuote).map(field=>field.id))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 918,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(card.children || []).flatMap(id=>variants?.get(id) || [cards.get(id)])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 919,
+      "kind": "api",
+      "name": "flat",
+      "text": "[...groupedSources.values()].flat()"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 930,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "canonicalSelections.flatMap(binding=>{\n      const selected=children.filter(child=>child.kind==='WEAPON_PROFILE'&&binding.profileIds.includes(child.id));\n      return [...new Set(s"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 1211,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "sharedAnnotations.flatMap(annotation=>annotation.members.filter(member=>member.card===child).map(member=>member.field.id))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 1272,
+      "kind": "api",
+      "name": "at",
+      "text": "binding.profileIds.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 1456,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(selection.sourceReferences||[]).flatMap(reference=>{\n                const owner=cards.get(reference.entityId),effect=owner?.fields.find(field=>field.source?.path===reference.path"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 24,
+      "kind": "api",
+      "name": "at",
+      "text": "blocks.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 48,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "card.fields.filter(field=>/^\\/abilities(?:\\/|$)/.test(path(field)||''))\n    .flatMap(field=>Array.isArray(value(field))?value(field):[value(field)])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 50,
+      "kind": "api",
+      "name": "at",
+      "text": "at('name')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 50,
+      "kind": "api",
+      "name": "at",
+      "text": "at('mode')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 70,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(unit.modelRows||[]).flatMap(row=>[\n      ...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 71,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 145,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "card.fields.flatMap(field=>{\n    const address=path(field);\n    if(!address?.startsWith('/rosterMetrics/'))return [];\n    const metric=address.slice('/rosterMetrics/'.length);\n    "
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 159,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "annotations[0].flatMap(annotation=>{\n    const matches=annotations.map(items=>items.filter(item=>item.identity===annotation.identity));\n    return matches.every(items=>items.length"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 161,
+      "kind": "api",
+      "name": "flat",
+      "text": "matches.flat()"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "line": 6,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(part).replaceAll('~','~0').replaceAll('/','~1')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "line": 6,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(part).replaceAll('~','~0')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "line": 9,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(value,part)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "line": 42,
+      "kind": "api",
+      "name": "at",
+      "text": "sourcePath.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "line": 43,
+      "kind": "api",
+      "name": "at",
+      "text": "at(rule.data,sourcePath)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "line": 9,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(id||'').replaceAll('-',' ')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "line": 35,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "value.flatMap(item=>{\n      if(typeof item==='string')return[item];\n      if(!item||typeof item!=='object')return[];\n      if(item.text)return[item.text];\n      if(Array.isArray(it"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "line": 39,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "item.rows.flatMap(row=>Array.isArray(row)?row:[row.label,...(row.cells||[])])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "line": 455,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "group.items.flatMap(item=>[`CHANGED RULE\\n${item.changedRule}`,`RESULTING EFFECTIVE RULE\\n${text(item.resultingEffectiveRule).replace(/[■▪▫•]/g,'-')}`])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "line": 464,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[body.flavorText,body.ruleText,body.text,body.scoring,body.timing,body.cap,body.objectiveAction].flatMap(value=>Array.isArray(value)?value:[value])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "line": 518,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "relations.filter(relation=>!relation.roleCondition).flatMap(relation=>relation.targetEntryIds||[])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "line": 5,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(value).replaceAll('~','~0').replaceAll('/','~1')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "line": 5,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(value).replaceAll('~','~0')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "line": 56,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(entry.facts.qualifications||[]).flatMap((qualification,index)=>{\n        if('/'+qualification.field.join('/')!==descriptor.path||!qualification.value?.faqId||typeof qualification."
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary.mjs",
+      "line": 6,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(value).replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase()\n  .replaceAll('_', ' ')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary.mjs",
+      "line": 8,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(p).replaceAll('~', '~0').replaceAll('/', '~1')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary.mjs",
+      "line": 8,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(p).replaceAll('~', '~0')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary.mjs",
+      "line": 51,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary.mjs",
+      "line": 53,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/import-notices.mjs",
+      "line": 43,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "Object.values(records).filter(record=>record.kind==='DETACHMENT').flatMap(memberships)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/import-notices.mjs",
+      "line": 47,
+      "kind": "api",
+      "name": "flat",
+      "text": "selectedMemberships.flat()"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "line": 45,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "children.flatMap(node=>groups.get(node.id)||[node.canonicalId])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "line": 23,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(selection)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "line": 54,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(binding)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "line": 68,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(binding)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "line": 76,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(binding)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 6,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 24,
+      "kind": "api",
+      "name": "allSettled",
+      "text": "Promise.allSettled(urls.map(async url=>{const response=await read(url);return response.ok?response.json():null;}))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 64,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(key).replaceAll('~','~0').replaceAll('/','~1')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 64,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(key).replaceAll('~','~0')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 84,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "rule.ruleContract.clauses.flatMap(clause=>(clause.recipients||[])\n    .filter(recipient=>recipient.side==='FRIENDLY'&&recipient.selector)\n    .map(recipient=>JSON.stringify([recipi"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 174,
+      "kind": "api",
+      "name": "at",
+      "text": "chain.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 234,
+      "kind": "api",
+      "name": "at",
+      "text": "chain.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 237,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(key).replaceAll('~','~0').replaceAll('/','~1')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 237,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(key).replaceAll('~','~0')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 283,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "components.flatMap(component=>(component.card.rosterUnitMetrics||[]).map(metric=>metric.key))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 304,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "components.flatMap(component=>component.card.rosterDetachmentTexts||[])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 322,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "state.units.flatMap(unit=>activeOwners\n    ?activeOwners.get(unit.instanceId)||[]:unit.enhancementIds)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 337,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(unit.modelRows||[]).flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 337,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 421,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "card.fields.flatMap(field=> {\n      const path=field.source?.path || '', parts=path.slice(1).split('/');\n      if (!values.has(parts[0])) return [field];\n      const value=values.g"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 439,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(row,'targetWeaponSelectionKey')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 439,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(row,'targetWeaponScopeId')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 441,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(row,'targetWeaponScopeId')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 471,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(card.profileFieldIds||[]).flatMap(id=>[...cards.values()].flatMap(value=>value.fields.filter(field=>field.id===id)))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 471,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...cards.values()].flatMap(value=>value.fields.filter(field=>field.id===id))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 483,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(metricLabels,key)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 544,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 544,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 545,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selections.filter(selection=>selection.physicalQuantity>0).flatMap(selection=>selection.canonicalEquipmentIds)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 547,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>row.selectedUpgradeIds||[])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 633,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "Object.entries(effective.unitMetrics||{}).flatMap(([key,value])=>{\n    assert(['chargeRoll','advanceRoll','detectionRange'].includes(key)&&Number.isSafeInteger(value.modifier),'Uns"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "line": 52,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(card.fields || []).flatMap(field=>field.targetIds || [])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "line": 86,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "sections.flatMap(section=>dependencies(section.card))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "line": 106,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "resolved().sections.flatMap(section=>section.fields.map(field=>field.value))"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "line": 41,
+      "kind": "api",
+      "name": "toSorted",
+      "text": "fields.toSorted((a,b)=>a.table.row-b.table.row||a.table.column-b.table.column)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "line": 59,
+      "kind": "api",
+      "name": "toSorted",
+      "text": "rowFields.toSorted((a,b)=>a.table.column-b.table.column)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 322,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(bindings)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 491,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "key.replace(/([a-z])([A-Z])/g, '$1 $2').replaceAll('_', ' ')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 514,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(record, 'before')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 514,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(record, 'after')"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 744,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "state.units.flatMap(unit=>{\n      const activeIds=new Set(activeEnhancementsByInstance.get(unit.instanceId)||[]);\n      return (unit.enhancementIds||[]).filter(id=>!activeIds.has(i"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "line": 33,
+      "kind": "api",
+      "name": "matchAll",
+      "text": "text.matchAll(pattern)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 38,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(card.fields || []).flatMap(field => field.targetIds || [])"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 53,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(mapping,result.state)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/source-table.mjs",
+      "line": 25,
+      "kind": "api",
+      "name": "toSorted",
+      "text": "rowFields.toSorted((a, b) => a.table.column - b.table.column)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 17,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(node.args||[]).flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 31,
+      "kind": "api",
+      "name": "any",
+      "text": "any(values)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 48,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(link.recipient.conditions||[]).flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 51,
+      "kind": "api",
+      "name": "at",
+      "text": "at(rule.data,path)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 54,
+      "kind": "api",
+      "name": "at",
+      "text": "at(rule.data,path)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 59,
+      "kind": "api",
+      "name": "at",
+      "text": "path.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 64,
+      "kind": "api",
+      "name": "at",
+      "text": "at(rule.data,proof.field)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 99,
+      "kind": "api",
+      "name": "at",
+      "text": "chainFor(rule)?.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 126,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...(recipient.conditions||[]),...(clause.conditions||[])].flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 171,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(role.conditions||[]).flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 202,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "node.args.flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/attachment-service.mjs",
+      "line": 3,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/roster-v2/attachment-service.mjs",
+      "line": 41,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "state.units.flatMap(unit=>{\n        const result=attachmentCheck(book,state,policies,unit.instanceId,bodyguardId);\n        return result.valid?[{instanceId:unit.instanceId,canonica"
+    },
+    {
+      "file": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "line": 91,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(clause,'effectRecipientRoleIds')"
+    },
+    {
+      "file": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "line": 111,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(contract.clauses||[]).flatMap(clause=>{\n      const recipientIds=clauseRecipientRoles(contract,clause);\n      return (clause.roles||[]).filter(role=>explicitlyRequired(role)||reci"
+    },
+    {
+      "file": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "line": 145,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "candidates.flatMap(candidate=>{\n      const context=contextFor(candidate,role.subject);\n      if(!context)return [];\n      const state=evaluateRole(role,[],{...context,roster:{...c"
+    },
+    {
+      "file": "books/shared/roster-v2/condition-binding.mjs",
+      "line": 43,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(inputs)"
+    },
+    {
+      "file": "books/shared/roster-v2/condition-binding.mjs",
+      "line": 78,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(input,'defaultValue')"
+    },
+    {
+      "file": "books/shared/roster-v2/condition-computations.mjs",
+      "line": 19,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>row.selectedUpgradeIds||[])"
+    },
+    {
+      "file": "books/shared/roster-v2/condition-computations.mjs",
+      "line": 28,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "rows.flatMap(row=>row.selectedUpgradeIds||[])"
+    },
+    {
+      "file": "books/shared/roster-v2/condition-context.mjs",
+      "line": 60,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "node.args.flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 11,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(value,k)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 90,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "node.args.flatMap(conditionLeaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 96,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...(role.conditions||[]),...(clause.conditions||[])].flatMap(conditionLeaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 124,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 128,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "fields.flatMap(value=>Array.isArray(value)?value.filter(table=>Array.isArray(table?.rows)):[])"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 141,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 143,
+      "kind": "api",
+      "name": "at",
+      "text": "ref.at(-2)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 145,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(rule.ruleContract?.clauses||[]).flatMap(candidate=>{\n  if(candidate===clause||candidate.effect?.canonicalTableId||candidate.conditionalPolicy||candidate.rosterClassification!=='BA"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 148,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-2)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 148,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-2)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 148,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 149,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-2)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 160,
+      "kind": "api",
+      "name": "at",
+      "text": "chain?.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 162,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 215,
+      "kind": "api",
+      "name": "flat",
+      "text": "parts.flat()"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 5,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 32,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(context.roster || {},'detachmentIds')"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 109,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "p.replaceAll('~1','/').replaceAll('~0','~')"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 109,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "p.replaceAll('~1','/')"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 145,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "p.replaceAll('~1','/').replaceAll('~0','~')"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 145,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "p.replaceAll('~1','/')"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 146,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(text,part)"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 190,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(unit.modelRows || []).flatMap(row => [...(row.selections || []), ...(row.loadouts || []).flatMap(loadout => loadout.selections || [])])"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 190,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(row.loadouts || []).flatMap(loadout => loadout.selections || [])"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 197,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selected\n    .flatMap(selection=>(selection.sourceReferences||[]).map(reference=>JSON.stringify([reference.entityId,reference.path])))"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 199,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selected.flatMap(selection=>[...(selection.canonicalEquipmentIds||[]),...(selection.canonicalProfileIds||[])])"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 227,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(book.rosterAttachmentConstraints||[])\n    .filter(constraint=>state.detachmentIds.includes(constraint.detachmentId)).flatMap(constraint=>constraint.sourceIds)"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 283,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "raw.modelRows.flatMap(row => {\n      const allocated = (row.loadouts || []).reduce((n,item)=>n+item.quantity,0);\n      const groups = [...(row.loadouts || []).map(item=>({kind:'LOA"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 292,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...row.selections.map(selection=>({selection,count:row.quantity})),\n          ...group.selections.map(selection=>({selection,count:group.quantity}))].flatMap(({selection:s,count})"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 303,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "canonical.data.ruleReferenceIds.flatMap(id=>copy(book.rosterReferenceSemantics?.[id]?.abilities || []))"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 307,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "canonical.data.profileIds.flatMap(id => keywordValues(profileBindings.get(id),'intrinsicKeywords'))"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 309,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "profiles.flatMap(profile => requiredKeywordField(profile))"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 312,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(raw.selections || []).flatMap(s => s.physicalQuantity ? s.canonicalProfileIds.map(id => ({modelInstanceId:raw.startingStrength===1?raw.instanceId:null,canonicalProfileId:id,physic"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 328,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "group.memberInstanceIds.flatMap(id=>requiredKeywordField(projection.units.find(u=>u.instanceId===id)))"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 350,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(subject==='MODEL'?[model]:members.flatMap(u=>u.profiles)).flatMap(m=>m.abilities.map(a=>a.name))"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 350,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "members.flatMap(u=>u.profiles)"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "line": 370,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selections(unit).flatMap(selection=>(selection.canonicalOptionIds||[]).map(id=>constraint.optionKeywords[id]).filter(Boolean))"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 11,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 38,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(group?projection.units.filter(member=>group.memberInstanceIds.includes(member.instanceId)):[unit])\n    .flatMap(member=>member.applied.filter(row=>['GRANT_UNIT_KEYWORD','GRANT_MOD"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 39,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "member.applied.filter(row=>['GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD'].includes(row.operation)).flatMap(row=>{\n      const rule=records.get(row.ruleId),clause=rule?.ruleContract?."
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 61,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(unitMetrics,row.field)"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 83,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.profiles.flatMap(model=>model.abilities.filter(ability=>ability.rangePresentation).map(ability=>ability.canonicalId))"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 93,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(rule.ruleContract?.clauses||[]).flatMap(clause=>{\n      const binding=clause.rosterReferenceBinding;if(!binding)return [];\n      const standalone=resolveRecipient(rule,clause,bind"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 96,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(binding,key)"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 111,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 152,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(row,'targetWeaponSelectionKey')"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 152,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(row,'targetWeaponScopeId')"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 154,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(row,'targetWeaponScopeId')"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 166,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(row,'targetWeaponSelectionKey')"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 166,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(row,'targetWeaponScopeId')"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 168,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(row,'targetWeaponScopeId')"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 181,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...new Set([...canonical.data.sectionIds,...canonical.data.ruleReferenceIds,...canonical.data.wargearOptionIds,...(canonical.data.rawFactIds||[]),\n      ...book.entities.filter(e="
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 183,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(book.rosterReferenceSemantics?.[id]?.abilities||[]).flatMap(ability=>ability.canonicalId?[ability.canonicalId]:[])"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 190,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.profiles.flatMap(model=>{\n          const ability=model.abilities.find(ability=>ability.canonicalId===id);\n          if(!ability||model.suppressedAbilityIds?.includes(id))retu"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 196,
+      "kind": "api",
+      "name": "at",
+      "text": "binding.field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 11,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 35,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(reference.parameters,key)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 36,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(ability.parameters,key)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 63,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(clause,'recipients')"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 63,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(clause,'recipientStatus')"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 66,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(effect,'recipientId')"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 66,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(effect,'recipientIds')"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 159,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(effect,key)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 190,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "node.args.flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 198,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "node.args.flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 227,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(state)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 227,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(projection)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 233,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(request,key)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 254,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(parent)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 256,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(selection)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 320,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "result.units.flatMap(unit=>unit.profiles.map(model=>({unit,model})))"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 330,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selected.flatMap(unit=>unit.profiles.map(model=>({unit,model})))"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 339,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.profiles.flatMap(model => requiredKeywordField(model))"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 359,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.profiles.flatMap(model=>requiredKeywordField(model))"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 418,
+      "kind": "api",
+      "name": "at",
+      "text": "target.unit.applied.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 534,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(profile.stats || {},effect.field)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 535,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(profile,effect.field)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 558,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.profiles.flatMap(m=>m.weapons)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 562,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(item,'weaponChoice')"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 570,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(choice,key)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 628,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "keyword.flatMap(item=>targets(item).filter(target=>eligible(item,target)).map(target=>({item,target})))"
+    },
+    {
+      "file": "books/shared/roster-v2/enhancement-bearers.mjs",
+      "line": 7,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(input)"
+    },
+    {
+      "file": "books/shared/roster-v2/import-service.mjs",
+      "line": 8,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/roster-v2/import-service.mjs",
+      "line": 23,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "part.replaceAll('~1','/').replaceAll('~0','~')"
+    },
+    {
+      "file": "books/shared/roster-v2/import-service.mjs",
+      "line": 23,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "part.replaceAll('~1','/')"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 7,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(record, key)"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 8,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 54,
+      "kind": "regex-lookbehind",
+      "text": "/(?<!s|u|i)s$/"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 134,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(groups.get(key)||[]).filter(candidate=>JSON.stringify(candidate.canonicalEquipmentIds)===JSON.stringify(binding.canonicalEquipmentIds)&&\n        JSON.stringify(candidate.canonical"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 143,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...groups].filter(([name])=>plausible(key,[name])).flatMap(([,bindings])=>bindings)"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 175,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(book?.entities||[]).filter(entity=>entity.kind==='DETACHMENT').flatMap(named)"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 177,
+      "kind": "api",
+      "name": "matchAll",
+      "text": "label.matchAll(/,\\s*(?:and\\b\\s*)?|\\s+and\\s+/gi)"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 221,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(raw.choiceLines||[]).flatMap((label,index)=>rawSelections(label,`${id}/choice/${index+1}`,'UNIT',null))"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 244,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "token.replaceAll('~1', '/').replaceAll('~0', '~')"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 244,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "token.replaceAll('~1', '/')"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 245,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(value, part)"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 447,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "modelRows.flatMap(row=>[...row.selections,...row.loadouts.flatMap(loadout=>loadout.selections)])"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 447,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "row.loadouts.flatMap(loadout=>loadout.selections)"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 450,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "rows.flatMap(item=>item.canonicalOptionIds)"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 457,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "optionRows.filter(item=>item.exclusiveGroupId===group).flatMap(item=>item.canonicalOptionIds)"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 460,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "modelRows.flatMap(row=>[...row.selections,...row.loadouts.flatMap(loadout=>loadout.selections)])"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "line": 460,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "row.loadouts.flatMap(loadout=>loadout.selections)"
+    },
+    {
+      "file": "books/shared/roster-v2/model-name-aliases.mjs",
+      "line": 6,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(alias)"
+    },
+    {
+      "file": "books/shared/roster-v2/parser.mjs",
+      "line": 8,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "token.replaceAll(',', '')"
+    },
+    {
+      "file": "books/shared/roster-v2/parser.mjs",
+      "line": 11,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "items.flatMap(item => {\n    const parts = [];\n    let depth = 0;\n    let start = 0;\n    for (let index = 0; index < item.length; index += 1) {\n      if (item[index] === '(') depth "
+    },
+    {
+      "file": "books/shared/roster-v2/physical-choice.mjs",
+      "line": 57,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "rule.ruleContract.clauses.flatMap(clause=>clause.rosterEffects||[])"
+    },
+    {
+      "file": "books/shared/roster-v2/physical-condition-context.mjs",
+      "line": 119,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "choiceRecords.flatMap(selection=>selection.canonicalOptionIds||[])"
+    },
+    {
+      "file": "books/shared/roster-v2/physical-condition-context.mjs",
+      "line": 129,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "model.selections.flatMap(selection=>selection.canonicalOptionIds||[])"
+    },
+    {
+      "file": "books/shared/roster-v2/physical-condition-context.mjs",
+      "line": 150,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(state.initialAttachments)"
+    },
+    {
+      "file": "books/shared/roster-v2/recipient-execution.mjs",
+      "line": 14,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(effect,field)"
+    },
+    {
+      "file": "books/shared/roster-v2/recipient-execution.mjs",
+      "line": 51,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "group.owners.flatMap(owner=>(owner.selections||[]).filter(record=>same(record,selection)).map(()=>owner))"
+    },
+    {
+      "file": "books/shared/roster-v2/recipient-execution.mjs",
+      "line": 73,
+      "kind": "api",
+      "name": "at",
+      "text": "at(root.data,proof.field)"
+    },
+    {
+      "file": "books/shared/roster-v2/recipient-execution.mjs",
+      "line": 73,
+      "kind": "api",
+      "name": "at",
+      "text": "at(root.data,proof.field)"
+    },
+    {
+      "file": "books/shared/roster-v2/recipient-execution.mjs",
+      "line": 80,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(origin,'physicalEquipmentReference')"
+    },
+    {
+      "file": "books/shared/roster-v2/recipient-execution.mjs",
+      "line": 124,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(proof)"
+    },
+    {
+      "file": "books/shared/roster-v2/related.mjs",
+      "line": 20,
+      "kind": "api",
+      "name": "any",
+      "text": "any(roleContexts(unit,role).map(context=>!enhancementBearerEligible(contract,role,context,unit)?'FALSE':evaluateCompatibilityRole(contract,role,context,\n        {evaluateRole,conte"
+    },
+    {
+      "file": "books/shared/roster-v2/related.mjs",
+      "line": 21,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "projection.units.flatMap(candidate=>roleContexts(candidate,primary))"
+    },
+    {
+      "file": "books/shared/roster-v2/related.mjs",
+      "line": 25,
+      "kind": "api",
+      "name": "any",
+      "text": "any(states)"
+    },
+    {
+      "file": "books/shared/roster-v2/runtime.mjs",
+      "line": 9,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/roster-v2/runtime.mjs",
+      "line": 111,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "Object.entries(value).flatMap(([key,child])=>atoms(child,[...path,key]))"
+    },
+    {
+      "file": "books/shared/roster-v2/runtime.mjs",
+      "line": 111,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(p).replaceAll('~','~0').replaceAll('/','~1')"
+    },
+    {
+      "file": "books/shared/roster-v2/runtime.mjs",
+      "line": 111,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "String(p).replaceAll('~','~0')"
+    },
+    {
+      "file": "books/shared/roster-v2/text-roster-facts.mjs",
+      "line": 7,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(node.args||[]).flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/roster-v2/text-roster-facts.mjs",
+      "line": 31,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...(rule.ruleContract.conditions||[]),...(clause.conditions||[]),\n    ...[...(rule.ruleContract.roles||[]),...(clause.roles||[])].flatMap(role=>[role.selector,...(role.conditions|"
+    },
+    {
+      "file": "books/shared/roster-v2/text-roster-facts.mjs",
+      "line": 32,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[...(rule.ruleContract.roles||[]),...(clause.roles||[])].flatMap(role=>[role.selector,...(role.conditions||[])])"
+    },
+    {
+      "file": "books/shared/roster-v2/text-roster-facts.mjs",
+      "line": 44,
+      "kind": "api",
+      "name": "at",
+      "text": "at(rule.data,fact.evidence.field)"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "line": 5,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(value,key)"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/conditions.mjs",
+      "line": 434,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(value,key)"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/conditions.mjs",
+      "line": 525,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(contract?.clauses||[]).flatMap(clause=>clause.roles||[])"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/recipients.mjs",
+      "line": 7,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(value,key)"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/recipients.mjs",
+      "line": 20,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "array(node.args).flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/recipients.mjs",
+      "line": 50,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "rule.ruleContract.clauses.flatMap(item=>array(item.recipients))"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/recipients.mjs",
+      "line": 139,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "array(recipient.conditions).flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/recipients.mjs",
+      "line": 340,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "array(recipient.conditions).flatMap(leaves)"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/schema.mjs",
+      "line": 69,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(args,'equals')"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/schema.mjs",
+      "line": 242,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(predicateTypes,node.predicate)"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/schema.mjs",
+      "line": 249,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(bag,key)"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/schema.mjs",
+      "line": 258,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(context.roster||{},'leading')"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/schema.mjs",
+      "line": 265,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(context.roster||{},'bodyguardId')"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/schema.mjs",
+      "line": 275,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(context.roster||{},'characterModelCount')"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/schema.mjs",
+      "line": 285,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(context.roster||{},a.key)"
+    },
+    {
+      "file": "books/shared/rule-facts.js",
+      "line": 130,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(relation.attachmentGroupConstraint)"
+    },
+    {
+      "file": "books/shared/rule-facts.js",
+      "line": 229,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "scopes(unit).filter(scope=>scope.label==='FACTION KEYWORDS').flatMap(scope=>scope.keywords)"
+    },
+    {
+      "file": "books/shared/rule-facts.js",
+      "line": 239,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "scopes(unit).filter(scope=>scope.label!=='FACTION KEYWORDS').flatMap(scope=>scope.keywords)"
+    },
+    {
+      "file": "books/shared/rule-facts.js",
+      "line": 245,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "(unit.data.modelGroups||[]).flatMap(group=>group.compositionMemberIds)"
+    },
+    {
+      "file": "books/shared/rule-facts.js",
+      "line": 259,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "ids.flatMap(id=>groups.find(group=>group.id===id).keywords)"
+    },
+    {
+      "file": "books/shared/rule-facts.js",
+      "line": 278,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "declarations.filter(row=>row.sourceProfileId===modelId).flatMap(row=>strings(row.keywords,unit,'modelKeywordDeclarations'))"
+    },
+    {
+      "file": "books/shared/rule-facts.js",
+      "line": 287,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "groups.filter(group=>scopeName(group.scope)==='ALL MODELS'||scopeName(group.scope)===scopeName(profile.data.name)).flatMap(group=>group.keywords)"
+    },
+    {
+      "file": "books/shared/rule-facts.js",
+      "line": 294,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "modelIds(unit).flatMap(id=>modelKeywords(unit,id))"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "line": 34,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "line": 52,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(node)"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "line": 116,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "records.filter(value => value.kind === 'STRATAGEM' || value.ruleContract?.kind === 'STRATAGEM').flatMap(value => [value.id, value.ruleId])"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "line": 297,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(item,'ref')"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "line": 352,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(record,slot)"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "line": 353,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(record,field)"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "line": 403,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "Object.keys(value).flatMap(key => {\n        if (metadata.has(key)) { if (inserted) return []; inserted = true; return bindings.$order; }\n        return boundKey(key) ? [] : [key];\n"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "line": 425,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "layouts.flatMap(({ binding, layout }) => layout.type === 'OBJECT' ? layout.entries.filter(([key]) => key === fieldPath).map(([, value]) => ({ binding, layout: value })) : [])"
+    },
+    {
+      "file": "books/space-marines/v2/roster-import.mjs",
+      "line": 16,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(value)"
+    },
+    {
+      "file": "books/space-marines/v2/roster-import.mjs",
+      "line": 47,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(object,key)"
+    },
+    {
+      "file": "books/space-marines/v2/roster-import.mjs",
+      "line": 51,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(object,key)"
+    },
+    {
+      "file": "books/space-marines/v2/roster-import.mjs",
+      "line": 82,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>[\n          {rows:row.selections,count:row.quantity},...(row.loadouts||[]).map(loadout=>({rows:loadout.selections,count:loadout.quantity}))])"
+    },
+    {
+      "file": "books/space-marines/v2/roster-paid-options.mjs",
+      "line": 20,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "bindings.flatMap(row=>[...row.profileIds,...row.equipmentIds])"
+    },
+    {
+      "file": "books/space-marines/v2/roster-paid-options.mjs",
+      "line": 50,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "rows.flatMap(row=>row.canonicalProfileIds)"
+    },
+    {
+      "file": "books/space-marines/v2/roster-paid-options.mjs",
+      "line": 60,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "units.flatMap(row=>row.unresolved.map(issue=>({unitInstanceId:row.unitInstanceId,...issue})))"
+    },
+    {
+      "file": "books/space-marines/v2/roster-runtime.mjs",
+      "line": 26,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "consumed.relationDeclarations.flatMap(declaration=>{\n        const condition=declaration.roleCondition;\n        if(condition){\n          const trigger=declaration.roleConditionProv"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-import.mjs",
+      "line": 43,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(object,key)"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-import.mjs",
+      "line": 47,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(object,key)"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-import.mjs",
+      "line": 65,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>[\n        {selections:row.selections,count:row.quantity},...(row.loadouts||[]).map(loadout=>({selections:loadout.selections,count:loadout.quantity}))])"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-source-choices.mjs",
+      "line": 103,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>row.loadouts||[])"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-source-choices.mjs",
+      "line": 112,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>[\n      {scopeId:`${unit.instanceId}/${row.rowId}/PROFILE/${row.rowId}`,container:row},\n      ...(row.loadouts||[]).map(loadout=>({scopeId:`${unit.insta"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-source-choices.mjs",
+      "line": 140,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "copy.modelRows.flatMap(row=>row.loadouts||[])"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "line": 106,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>row.loadouts||[])"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "line": 113,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(row=>[{scope:`${unit.instanceId}/${row.rowId}/PROFILE/${row.rowId}`,value:row},\n      ...(row.loadouts||[]).map(loadout=>({scope:`${unit.instanceId}/${row.ro"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "line": 121,
+      "kind": "api",
+      "name": "at",
+      "text": "container.selections.at(-1)"
+    },
+    {
+      "file": "books/tyranids/v2/roster-boot.mjs",
+      "line": 43,
+      "kind": "api",
+      "name": "structuredClone",
+      "text": "structuredClone(snapshot)"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 29,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "book.entities.filter(e=>e.kind==='DATASHEET').flatMap(e=>e.data.ruleReferenceIds)"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 50,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "parsed.units.filter(u=>normalizeImportLabel(u.name)===normalizeImportLabel(index.get(compound.ownerId).data.title))\n          .flatMap(u=>[u.wargear,...u.models.flatMap(m=>[m.warge"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 51,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "u.models.flatMap(m=>[m.wargear,...m.loadouts.map(l=>l.wargear)])"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 69,
+      "kind": "api",
+      "name": "hasOwn",
+      "text": "Object.hasOwn(object,key)"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 86,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(r=>[\n          {selections:r.selections,prefix:r.rowId},...r.loadouts.map(l=>({selections:l.selections,prefix:l.loadoutId}))])"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 88,
+      "kind": "api",
+      "name": "flat",
+      "text": "[raw.selections,...raw.modelRows.flatMap(r=>[r.selections,...r.loadouts.map(l=>l.selections)])].flat()"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 88,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "raw.modelRows.flatMap(r=>[r.selections,...r.loadouts.map(l=>l.selections)])"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 130,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "row.loadouts.flatMap(l=>l.selections)"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 153,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selections(unit).filter(s=>s.physicalQuantity>0).flatMap(s=>s.canonicalProfileIds)"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "line": 157,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "selectedPaid.flatMap(s=>s.canonicalProfileIds.filter(id=>paid.some(p=>p.entityId===id)))"
+    },
+    {
+      "file": "books/tyranids/v2/roster-source-choices.mjs",
+      "line": 62,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "unit.modelRows.flatMap(r=>r.loadouts||[])"
+    },
+    {
+      "file": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "line": 29,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "value.flatMap(item=>{\n      if(typeof item==='string')return[item];\n      if(!item||typeof item!=='object')return[];\n      if(item.text)return[item.text];\n      if(Array.isArray(it"
+    },
+    {
+      "file": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "line": 33,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "item.rows.flatMap(row=>Array.isArray(row)?row:[row.label,...(row.cells||[])])"
+    },
+    {
+      "file": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "line": 430,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "group.items.flatMap(item=>[`CHANGED RULE\\n${item.changedRule}`,`RESULTING EFFECTIVE RULE\\n${text(item.resultingEffectiveRule).replace(/[■▪▫•]/g,'-')}`])"
+    },
+    {
+      "file": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "line": 438,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "[body.flavorText,body.ruleText,body.text,body.scoring,body.timing,body.cap,body.objectiveAction].flatMap(value=>Array.isArray(value)?value:[value])"
+    },
+    {
+      "file": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "line": 465,
+      "kind": "api",
+      "name": "replaceAll",
+      "text": "entry.recordType.toLocaleLowerCase().replaceAll('_','-')"
+    },
+    {
+      "file": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "line": 504,
+      "kind": "api",
+      "name": "flatMap",
+      "text": "contextual.flatMap(entry=>[entry.sourceOwner?.canonicalId,...(entry.aliases||[])])"
+    },
+    {
+      "file": "service-worker.js",
+      "line": 55,
+      "kind": "api",
+      "name": "matchAll",
+      "text": "self.clients.matchAll({type:\"window\",includeUncontrolled:true})"
+    }
+  ],
+  "rows": [
+    {
+      "file": "books/adeptus-mechanicus/v2/registration.mjs",
+      "bytes": 931,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "bytes": 3629,
+      "ecma2022": "FAIL",
+      "attributes": [
+        {
+          "line": 2,
+          "text": "with {type:'json'}"
+        }
+      ],
+      "error": {
+        "message": "Unexpected token (2:51)",
+        "line": 2,
+        "column": 51
+      }
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "bytes": 2892,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/blood-angels/v2/registration.mjs",
+      "bytes": 929,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/blood-angels/v2/roster-boot.mjs",
+      "bytes": 685,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/blood-angels/v2/roster-import.mjs",
+      "bytes": 19312,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/blood-angels/v2/roster-paid-options.mjs",
+      "bytes": 6634,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/blood-angels/v2/roster-runtime.mjs",
+      "bytes": 2330,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/blood-angels/v2/rule-contract-schema.mjs",
+      "bytes": 341,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/chaos-space-marines/v2/registration.mjs",
+      "bytes": 888,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "bytes": 5301,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-attachments.mjs",
+      "bytes": 1040,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "bytes": 3589,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-effect-context.mjs",
+      "bytes": 3316,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "bytes": 9898,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-import.mjs",
+      "bytes": 1166,
+      "ecma2022": "FAIL",
+      "attributes": [
+        {
+          "line": 3,
+          "text": "with {type:'json'}"
+        }
+      ],
+      "error": {
+        "message": "Unexpected token (3:51)",
+        "line": 3,
+        "column": 51
+      }
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-presentation.mjs",
+      "bytes": 3236,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "bytes": 3386,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "bytes": 13201,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/core-rules/reader/mount.mjs",
+      "bytes": 12065,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/dark-angels/v2/physical-chapter.mjs",
+      "bytes": 4162,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/dark-angels/v2/registration.mjs",
+      "bytes": 923,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/dark-angels/v2/roster-boot.mjs",
+      "bytes": 675,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/dark-angels/v2/roster-import.mjs",
+      "bytes": 17561,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/dark-angels/v2/roster-paid-options.mjs",
+      "bytes": 5931,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/dark-angels/v2/roster-runtime.mjs",
+      "bytes": 2682,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/dark-angels/v2/rule-contract-declarations.mjs",
+      "bytes": 5077,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "bytes": 1670,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/death-guard/v2/instrument-selections.mjs",
+      "bytes": 3882,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/death-guard/v2/registration.mjs",
+      "bytes": 879,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/death-guard/v2/roster-boot.mjs",
+      "bytes": 3100,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/death-guard/v2/roster-import-bindings.mjs",
+      "bytes": 1685,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/death-guard/v2/rule-contract-schema.mjs",
+      "bytes": 543,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/death-guard/v2/rule-contract-state-fields.mjs",
+      "bytes": 15724,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/emperors-children/v2/registration.mjs",
+      "bytes": 903,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/emperors-children/v2/roster-attachments.mjs",
+      "bytes": 3722,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/emperors-children/v2/roster-boot.mjs",
+      "bytes": 5742,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/emperors-children/v2/roster-equipment-context.mjs",
+      "bytes": 2102,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/emperors-children/v2/roster-import.mjs",
+      "bytes": 17199,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/emperors-children/v2/rule-contract-choice-context.mjs",
+      "bytes": 1083,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "bytes": 875,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+      "bytes": 4188,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/emperors-children/v2/rule-contract-schema.mjs",
+      "bytes": 1118,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/application-v2/glossary.mjs",
+      "bytes": 8016,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/application-v2/home.mjs",
+      "bytes": 7486,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/application-v2/registry.mjs",
+      "bytes": 1307,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/application-v2/routes.mjs",
+      "bytes": 2042,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/application-v2/runtime.mjs",
+      "bytes": 15938,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/application-v2/source-metadata.mjs",
+      "bytes": 3526,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "bytes": 7837,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/book-v1.mjs",
+      "bytes": 14434,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "bytes": 46464,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "bytes": 9038,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "bytes": 133526,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "bytes": 16034,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "bytes": 3105,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "bytes": 788,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "bytes": 48896,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "bytes": 8982,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "bytes": 3269,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary.mjs",
+      "bytes": 10841,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/import-notices.mjs",
+      "bytes": 3609,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "bytes": 2023,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "bytes": 23183,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "bytes": 2571,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "bytes": 18901,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "bytes": 5467,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "bytes": 49535,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/popup-v1.mjs",
+      "bytes": 1634,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "bytes": 10074,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "bytes": 6095,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/related-v1.mjs",
+      "bytes": 4315,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "bytes": 2594,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "bytes": 54082,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/route-context.mjs",
+      "bytes": 4231,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/rule-popup.mjs",
+      "bytes": 5315,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "bytes": 10531,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "bytes": 72254,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/army-book-app-v2/source-table.mjs",
+      "bytes": 1975,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/keyword-values.mjs",
+      "bytes": 462,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/offline-status.js",
+      "bytes": 25058,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "bytes": 18131,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/attachment-service.mjs",
+      "bytes": 3433,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/compatibility-context.mjs",
+      "bytes": 2580,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "bytes": 14002,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/condition-binding.mjs",
+      "bytes": 8164,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/condition-computations.mjs",
+      "bytes": 4089,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/condition-context.mjs",
+      "bytes": 5247,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "bytes": 29957,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "bytes": 32221,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "bytes": 18328,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "bytes": 55043,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/enhancement-bearers.mjs",
+      "bytes": 2336,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/export-faction.mjs",
+      "bytes": 1342,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/import-service.mjs",
+      "bytes": 9900,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "bytes": 37191,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/keyword-scopes.mjs",
+      "bytes": 135,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/keywords.mjs",
+      "bytes": 1163,
+      "ecma2022": "FAIL",
+      "attributes": [
+        {
+          "line": 3,
+          "text": "with {type:'json'}"
+        },
+        {
+          "line": 4,
+          "text": "with {type:'json'}"
+        },
+        {
+          "line": 5,
+          "text": "with {type:'json'}"
+        },
+        {
+          "line": 6,
+          "text": "with {type:'json'}"
+        },
+        {
+          "line": 7,
+          "text": "with {type:'json'}"
+        },
+        {
+          "line": 8,
+          "text": "with {type:'json'}"
+        },
+        {
+          "line": 9,
+          "text": "with {type:'json'}"
+        },
+        {
+          "line": 10,
+          "text": "with {type:'json'}"
+        },
+        {
+          "line": 11,
+          "text": "with {type:'json'}"
+        }
+      ],
+      "error": {
+        "message": "Unexpected token (3:54)",
+        "line": 3,
+        "column": 54
+      }
+    },
+    {
+      "file": "books/shared/roster-v2/model-name-aliases.mjs",
+      "bytes": 1279,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/parser.mjs",
+      "bytes": 15459,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/physical-choice.mjs",
+      "bytes": 13239,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/physical-condition-context.mjs",
+      "bytes": 11987,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/physical-static-model.mjs",
+      "bytes": 4768,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/recipient-execution.mjs",
+      "bytes": 11223,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/related.mjs",
+      "bytes": 2683,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/runtime.mjs",
+      "bytes": 10456,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/singleton-model-import.mjs",
+      "bytes": 2953,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/roster-v2/text-roster-facts.mjs",
+      "bytes": 6254,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "bytes": 8120,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/rule-contract-v2/conditions.mjs",
+      "bytes": 28077,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "bytes": 2559,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/rule-contract-v2/recipients.mjs",
+      "bytes": 36074,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/rule-contract-v2/schema.mjs",
+      "bytes": 23859,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/rule-facts.js",
+      "bytes": 19741,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-catalog.mjs",
+      "bytes": 1313,
+      "ecma2022": "FAIL",
+      "attributes": [
+        {
+          "line": 2,
+          "text": "with {type:'json'}"
+        }
+      ],
+      "error": {
+        "message": "Unexpected token (2:44)",
+        "line": 2,
+        "column": 44
+      }
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "bytes": 39606,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/shared/stratagem-presentation.mjs",
+      "bytes": 2324,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/space-marines/v2/registration.mjs",
+      "bytes": 935,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/space-marines/v2/roster-boot.mjs",
+      "bytes": 758,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/space-marines/v2/roster-import.mjs",
+      "bytes": 17478,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/space-marines/v2/roster-paid-options.mjs",
+      "bytes": 5887,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/space-marines/v2/roster-runtime.mjs",
+      "bytes": 5057,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/space-marines/v2/roster-static-model-bindings.mjs",
+      "bytes": 4210,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/space-marines/v2/rule-contract-schema.mjs",
+      "bytes": 988,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tau-empire/v2/registration.mjs",
+      "bytes": 896,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tau-empire/v2/roster-boot.mjs",
+      "bytes": 7003,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tau-empire/v2/roster-import.mjs",
+      "bytes": 15301,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tau-empire/v2/roster-source-choices.mjs",
+      "bytes": 12270,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "bytes": 10218,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tau-empire/v2/rule-contract-declarations.mjs",
+      "bytes": 20021,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tau-empire/v2/rule-contract-schema.mjs",
+      "bytes": 951,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tyranids/v2/registration.mjs",
+      "bytes": 903,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tyranids/v2/roster-boot.mjs",
+      "bytes": 5594,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "bytes": 20309,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "books/tyranids/v2/roster-source-choices.mjs",
+      "bytes": 7136,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "glossary-return.js",
+      "bytes": 10671,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "glossary/generated/cache-revision.js",
+      "bytes": 74207,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "glossary/v2/generated/index.en.js",
+      "bytes": 23201709,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "bytes": 48543,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "service-worker.js",
+      "bytes": 13071,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "v2/army-books.mjs",
+      "bytes": 1049,
+      "ecma2022": "PASS",
+      "attributes": []
+    },
+    {
+      "file": "v2/boot.mjs",
+      "bytes": 676,
+      "ecma2022": "PASS",
+      "attributes": []
+    }
+  ],
+  "additionalWebApiCandidates": [
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 65,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 85,
+      "text": ".showModal();"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 95,
+      "text": ".inert = value;"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 96,
+      "text": ".inert = value;"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 107,
+      "text": ".inert = mobileDrawer.matches && !next;"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 128,
+      "text": ".showModal();"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 160,
+      "text": ".showModal();"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 172,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 177,
+      "text": ".replaceChildren();}"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 185,
+      "text": ".replaceChildren(...matches.map(item=>{"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 229,
+      "text": "IntersectionObserver(entries=>{"
+    },
+    {
+      "file": "books/shared/application-v2/glossary.mjs",
+      "line": 62,
+      "text": ".replaceChildren(article(id,{popup:true}));"
+    },
+    {
+      "file": "books/shared/application-v2/glossary.mjs",
+      "line": 63,
+      "text": ".showModal();positionV1Popup(dialog,{origin});"
+    },
+    {
+      "file": "books/shared/application-v2/glossary.mjs",
+      "line": 82,
+      "text": ".replaceChildren(toolbar,article(id));document.title=`${cards.get(id).title} · Mega Glossary`;catalog=null;"
+    },
+    {
+      "file": "books/shared/application-v2/glossary.mjs",
+      "line": 84,
+      "text": ".replaceChildren(el('p','v2-not-found','This reference is unavailable. Choose an entry from the Glossary.'),button('Glossary','',()=>navigate(null)));"
+    },
+    {
+      "file": "books/shared/application-v2/glossary.mjs",
+      "line": 89,
+      "text": ".replaceChildren(catalog.node);document.title='Mega Glossary · Warhammer 40,000';"
+    },
+    {
+      "file": "books/shared/application-v2/runtime.mjs",
+      "line": 68,
+      "text": ".replaceChildren(main);return main;"
+    },
+    {
+      "file": "books/shared/application-v2/runtime.mjs",
+      "line": 83,
+      "text": ".replaceChildren(main);"
+    },
+    {
+      "file": "books/shared/application-v2/runtime.mjs",
+      "line": 134,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/application-v2/runtime.mjs",
+      "line": 162,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/application-v2/runtime.mjs",
+      "line": 185,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "line": 211,
+      "text": "ResizeObserver' in view"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "line": 212,
+      "text": "ResizeObserver(lifecycle.guard(entries => {"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "line": 248,
+      "text": ".replaceChildren(...layout.listNodes);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "line": 249,
+      "text": ".replaceChildren(...layout.profileNodes);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "line": 250,
+      "text": ".replaceChildren(...layout.headingNodes);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "line": 251,
+      "text": ".replaceChildren(...layout.originalNodes);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 142,
+      "text": ".replaceChildren();node.classList.add('ds-source-text');"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 466,
+      "text": ".replaceChildren();const label=el('strong','ds-inline-rule-title',text.slice(0,colon+1));label.dataset.targetId=card.id;label.dataset.sourceFieldPath="
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 494,
+      "text": ".replaceChildren();let cursor=0;"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 508,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 526,
+      "text": ".replaceChildren();let offset=0;"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 631,
+      "text": ".replaceChildren();}"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 680,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 695,
+      "text": ".replaceChildren();cost.dataset.rosterPrice='';"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 741,
+      "text": ".replaceChildren(link);if(group&&row.dataset.sourceInstanceId&&row.dataset.sourceInstanceId!==instanceId)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 758,
+      "text": ".replaceChildren(document.createTextNode('+ '),...content);readableProof(note,sources);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 759,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 765,
+      "text": ".replaceChildren();tags.append(wrap);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 782,
+      "text": ".replaceChildren();ability.replaceChildren(wrap);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 782,
+      "text": ".replaceChildren(wrap);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 802,
+      "text": ".replaceChildren(document.createTextNode('+ '),reference);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 812,
+      "text": ".replaceChildren(document.createTextNode('+ '),value);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 813,
+      "text": ".replaceChildren();keyword.replaceChildren(wrap);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 813,
+      "text": ".replaceChildren(wrap);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 822,
+      "text": ".replaceChildren(document.createTextNode('+ '),change);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 897,
+      "text": ".replaceChildren(gainedChip(label,proof,sources));"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 1348,
+      "text": ".replaceChildren(caption);}"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 1405,
+      "text": ".replaceChildren(title);}"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "line": 40,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "line": 28,
+      "text": "ResizeObserver(this.lifecycle.guard(()=>this.scheduleGeometry())));"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "line": 145,
+      "text": ".inert=!interactive;return;}"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "line": 239,
+      "text": ".inert||this.panel.getAttribute('aria-hidden')==='true')return;"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "line": 160,
+      "text": ".inert&&(bridge.tracking?.()??true),"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "line": 192,
+      "text": ".replaceChildren(...originalNodes);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "line": 203,
+      "text": ".replaceChildren(...next.roots.map(entry=>build(entry)));controller.indexNavigationItems();controller.activeButtons=new Set();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "line": 215,
+      "text": ".replaceChildren();controller.indexNavigationItems();controller.activeButtons=new Set();}"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/related-v1.mjs",
+      "line": 29,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 308,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 328,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 335,
+      "text": ".replaceChildren();importResult=null;renderRoster();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 345,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 376,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 553,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 707,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 850,
+      "text": ".replaceChildren(section); return section; }"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 860,
+      "text": ".replaceChildren(); draftArea.replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "line": 860,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "line": 141,
+      "text": "IntersectionObserver;"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 412,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 468,
+      "text": ".replaceChildren(renderRelatedPanel(unitId,instanceId));relatedContent.scrollTop=0;"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 469,
+      "text": ".showModal();relatedBar.lastChild.focus({preventScroll:true});"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 518,
+      "text": ".replaceChildren();bottomShortcuts.replaceChildren();rosterSummary.replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 518,
+      "text": ".replaceChildren();rosterSummary.replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 518,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 570,
+      "text": ".replaceChildren(hero,sections);renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 581,
+      "text": ".replaceChildren(toolbar,selected);renderNavigation();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 592,
+      "text": ".replaceChildren();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 719,
+      "text": ".replaceChildren(toolbar,...(selected.length?selected.map(card=>renderCard(card,{inDialog:true,variants,instanceId:context.instanceId})):"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 750,
+      "text": ".replaceChildren(toolbar,...selected);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 764,
+      "text": ".replaceChildren(toolbar,article);renderNavigation();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 780,
+      "text": ".replaceChildren(catalog.node);"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 813,
+      "text": ".replaceChildren(el('p','v2-not-found','This link has incomplete or invalid context. Open the book or import the roster to continue.'));return;"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 828,
+      "text": ".replaceChildren(el('p','v2-not-found','This destination is not available in this book reader.'));return;"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 837,
+      "text": ".replaceChildren(el('p','v2-not-found','This link belongs to a different book or an unavailable roster unit.'));renderNavigation();return;"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 840,
+      "text": ".replaceChildren(el('p','v2-not-found','Imported roster context is unavailable. Import this roster to continue.'));renderNavigation();return;"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 869,
+      "text": ".replaceChildren(...(focused?[focused]:effectiveCards?.length"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 877,
+      "text": ".showModal();"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "line": 1011,
+      "text": ".replaceChildren(...[...cards.values()].map(card => renderCard({...card, children: []},{sourceEvidence:true})));"
+    }
+  ],
+  "actualMemberAt": [
+    {
+      "file": "books/core-rules/reader/app.js",
+      "line": 203,
+      "kind": "api",
+      "name": "at",
+      "text": "controls.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "line": 1272,
+      "kind": "api",
+      "name": "at",
+      "text": "binding.profileIds.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "line": 24,
+      "kind": "api",
+      "name": "at",
+      "text": "blocks.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "line": 42,
+      "kind": "api",
+      "name": "at",
+      "text": "sourcePath.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 174,
+      "kind": "api",
+      "name": "at",
+      "text": "chain.at(-1)"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "line": 234,
+      "kind": "api",
+      "name": "at",
+      "text": "chain.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 59,
+      "kind": "api",
+      "name": "at",
+      "text": "path.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "line": 99,
+      "kind": "api",
+      "name": "at",
+      "text": "chainFor(rule)?.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 124,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 141,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 143,
+      "kind": "api",
+      "name": "at",
+      "text": "ref.at(-2)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 148,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-2)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 148,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-2)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 148,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 149,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-2)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 160,
+      "kind": "api",
+      "name": "at",
+      "text": "chain?.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "line": 162,
+      "kind": "api",
+      "name": "at",
+      "text": "field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "line": 196,
+      "kind": "api",
+      "name": "at",
+      "text": "binding.field.at(-1)"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "line": 418,
+      "kind": "api",
+      "name": "at",
+      "text": "target.unit.applied.at(-1)"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "line": 121,
+      "kind": "api",
+      "name": "at",
+      "text": "container.selections.at(-1)"
+    }
+  ]
+}

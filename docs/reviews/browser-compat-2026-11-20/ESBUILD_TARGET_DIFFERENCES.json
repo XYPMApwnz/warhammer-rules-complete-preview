@@ -1,0 +1,14 @@
+[
+  {
+    "file": "books/shared/army-book-app-v2/glossary.mjs",
+    "before": "tity.data?.title || entity.data?.name || entity.label || human(entity.kind);\nexport function normalizeGlossaryQuery(value) {\n  return String(value ?? \"\").normalize(\"NFKD\").replace(/\\p{M}/gu, \"\").toLowerCase().replace(/['’‘]/g, \"\").replace(/[^\\p{L}\\p{N}]+/gu, \" \").trim();\n}\nfunction namedPrefix(text) {\n  if (typeof text !== \"string\") return null;\n  const match = text.match(/^([^:\\n]{1,120}):\\s+\\S/);\n  if (!match || !/^[\\p{L}]/u.test(match[1])) return null;\n  if (/^(?:each|ever",
+    "after": "tity.data?.title || entity.data?.name || entity.label || human(entity.kind);\nexport function normalizeGlossaryQuery(value) {\n  return String(value ?? \"\").normalize(\"NFKD\").replace(new RegExp(\"\\\\p{M}\", \"gu\"), \"\").toLowerCase().replace(/['’‘]/g, \"\").replace(/[^\\p{L}\\p{N}]+/gu, \" \").trim();\n}\nfunction namedPrefix(text) {\n  if (typeof text !== \"string\") return null;\n  const match = text.match(/^([^:\\n]{1,120}):\\s+\\S/);\n  if (!match || !/^[\\p{L}]/u.test(match[1])) return null;\n  if (/^(?:each|every|this|that|before|while|if|for|when|after|in|at|until|select|you|change|add|replace)\\b/i.test(match[1])) return null;\n  return match[1].trim();\n}\nfunction entryAliases(entity) {\n  co",
+    "warnings": []
+  },
+  {
+    "file": "books/shared/roster-v2/import.mjs",
+    "before": "COMPOSITION\"]);\nconst quantity = (value) => Number.isSafeInteger(value) && value >= 0;\nexport const normalizeImportLabel = (value) => String(value ?? \"\").normalize(\"NFKD\").replace(/\\p{M}/gu, \"\").replace(/[’‘']/g, \"\").toLowerCase().replace(/[^a-z0-9]+/g, \" \").trim();\nconst gearNouns = {\n  knives: \"knife\",\n  weapons: \"weapon\",\n  cannons: \"cannon\",\n  gauntlets: \"gauntlet\",\n  guns: \"gun\",\n  pistols: \"pistol\",\n  launchers: \"launcher\",\n  fists: \"fist\",\n  scourges: \"scourge\",\n  spew",
+    "after": "COMPOSITION\"]);\nconst quantity = (value) => Number.isSafeInteger(value) && value >= 0;\nexport const normalizeImportLabel = (value) => String(value ?? \"\").normalize(\"NFKD\").replace(new RegExp(\"\\\\p{M}\", \"gu\"), \"\").replace(/[’‘']/g, \"\").toLowerCase().replace(/[^a-z0-9]+/g, \" \").trim();\nconst gearNouns = {\n  knives: \"knife\",\n  weapons: \"weapon\",\n  cannons: \"cannon\",\n  gauntlets: \"gauntlet\",\n  guns: \"gun\",\n  pistols: \"pistol\",\n  launchers: \"launcher\",\n  fists: \"fist\",\n  scourges: \"scourge\",\n  spewers: \"spewer\",\n  spitters: \"spitter\",\n  blades: \"blade\",\n  bolters: \"bolter\",\n  swords: \"sword\",\n  bells: \"bell\",\n  flamers: \"flamer\",\n  autocannons: \"autocannon\",\n  cutters: \"cutter\"",
+    "warnings": []
+  }
+]

@@ -1,0 +1,410 @@
+diff --git a/tests/browser-catalog-cache-qa.mjs b/tests/browser-catalog-cache-qa.mjs
+new file mode 100644
+index 00000000..4a5efd4a
+--- /dev/null
++++ b/tests/browser-catalog-cache-qa.mjs
+@@ -0,0 +1,106 @@
++/** The newly lazy catalog retains the existing exact-body migration boundary. */
++import fs from 'node:fs';
++import vm from 'node:vm';
++import assert from 'node:assert/strict';
++import {createHash,webcrypto} from 'node:crypto';
++
++const source=fs.readFileSync(new URL('../service-worker.js',import.meta.url),'utf8');
++const base='https://example.test/warhammer-rules-complete-preview/';
++const old='warhammer-rules-fe1d435-previous';
++const catalog='books/shared/source-refs-v2/source-catalog.json';
++const body='{"sourceCatalog":"accepted-current-bytes"}\n';
++const asset=value=>({sha256:createHash('sha256').update(value).digest('hex'),bytes:Buffer.byteLength(value)});
++const catalogAsset=asset(body),results=[];
++const test=async(name,check)=>{await check();results.push({name,status:'PASS'});};
++
++// A transport-only cache fixture executes the real worker. It contains no Army
++// facts and does not substitute application catalog or roster behavior.
++function worker({assets={[catalog]:catalogAsset},stores=new Map(),workerSource=source}={}){
++ const listeners={},warnings=[];
++ const behavior={quota:false,corrupt:false,missingRead:false,fetch:async()=>{throw new TypeError('offline');}};
++ const key=request=>new URL(request.url||request,base).href;
++ function cache(name){
++  if(!stores.has(name))stores.set(name,new Map());const values=stores.get(name);
++  return {
++   async match(request){if(behavior.missingRead&&name.endsWith('-data'))return;return values.get(key(request))?.clone();},
++   async put(request,response){
++    if(behavior.quota)throw new DOMException('Injected storage full','QuotaExceededError');
++    values.set(key(request),behavior.corrupt?new Response('CORRUPTED_WRITE'):response.clone());
++   },
++   async keys(){return [...values.keys()].map(url=>new Request(url));}
++  };
++ }
++ const self={WH40K_CACHE_REVISION:'aaaaaaaaaaaaaaaa',WH40K_PRECACHE:[],WH40K_RUNTIME_ASSETS:assets,
++  location:new URL('service-worker.js',base),registration:{active:{}},
++  clients:{claim:async()=>{},matchAll:async()=>[],get:async()=>({postMessage(){}})},skipWaiting:async()=>{},
++  addEventListener:(name,listener)=>{listeners[name]=listener;}};
++ const caches={open:async name=>cache(name),keys:async()=>[...stores.keys()],delete:async name=>stores.delete(name),
++  async match(request){for(const name of stores.keys()){const value=await cache(name).match(request);if(value)return value;}}};
++ const context=vm.createContext({self,caches,URL,URLSearchParams,Request,Response,Promise,Set,Map,Uint8Array,
++  MessageChannel,setTimeout,clearTimeout,crypto:webcrypto,console:{warn:(...args)=>warnings.push(args)},
++  importScripts(){},fetch:request=>behavior.fetch(request)});
++ vm.runInContext(workerSource,context);const current=vm.runInContext('CACHE_NAME',context);
++ self.registration.active={state:'activated',postMessage(message,ports){ports[0].postMessage({cacheName:current});}};
++ return {stores,cache,behavior,warnings,current,
++  async migrate(){let task,result;listeners.message({data:{type:'WH_PWA_MIGRATE_V2_DATA'},
++   ports:[{postMessage:value=>{result=value;}}],waitUntil:value=>{task=value;}});await task;return result;},
++  async request(relative){let task;listeners.fetch({clientId:'catalog-offline',request:new Request(base+relative),
++   respondWith:value=>{task=value;}});return task;}
++ };
++}
++
++async function acceptedCatalog(workerSource=source){
++ const lookalike='books/shared/source-refs-v2/source-catalog.other.json';
++ const shared='books/shared/other-source-metadata.json';
++ const w=worker({workerSource,assets:{[catalog]:catalogAsset,[lookalike]:catalogAsset,[shared]:catalogAsset}});
++ await w.cache(old).put(base+catalog+'?previous=1',new Response(body));
++ await w.cache(old).put(base+lookalike,new Response(body));await w.cache(old).put(base+shared,new Response(body));
++ await w.cache('unrelated-application').put(base+'foreign',new Response('KEEP'));
++ const result=await w.migrate();assert.equal(result.status,'complete');assert.equal(result.transferred,1);
++ assert.equal(w.stores.has(old),false);assert.equal(w.stores.has('unrelated-application'),true);
++ assert.deepEqual([...w.stores.get(w.current+'-data').keys()],[base+catalog]);
++ assert.equal(await(await w.cache(w.current+'-data').match(base+catalog)).text(),body);
++ assert.equal(await w.cache(w.current+'-data').match(base+lookalike),undefined);
++ assert.equal(await w.cache(w.current+'-data').match(base+shared),undefined);
++ assert.equal(await(await w.request(catalog+'?previous=1')).text(),body,'Offline access uses exact compatible migrated bytes');
++}
++await test('only the exact unchanged lazy catalog migrates to a canonical URL and remains offline-readable',()=>acceptedCatalog());
++await test('changed and unlisted catalog bodies cannot migrate or become offline fallbacks',async()=>{
++ for(const [label,assets,value]of [['changed',{[catalog]:catalogAsset},'STALE_CATALOG'],['unlisted',{'unrelated.txt':asset('OTHER')},body]]){
++  const w=worker({assets});await w.cache(old).put(base+catalog,new Response(value));
++  const result=await w.migrate();assert.equal(result.status,'complete',label);assert.equal(result.transferred,0,label);
++  assert.equal(await w.cache(w.current+'-data').match(base+catalog),undefined,label);
++  assert.equal((await w.request(catalog)).status,503,label);
++ }
++});
++await test('quota failure retains every old cache and the next startup retries without another activation',async()=>{
++ const stores=new Map(),w=worker({stores});await w.cache(old).put(base+catalog+'?v=old',new Response(body));
++ await w.cache(old+'-data').put(base+'legacy-book.html',new Response('OLD'));
++ w.behavior.quota=true;assert.equal((await w.migrate()).status,'failed');assert.ok(stores.has(old));assert.ok(stores.has(old+'-data'));
++ const next=worker({stores});assert.equal((await next.migrate()).status,'complete');assert.equal(stores.has(old),false);assert.equal(stores.has(old+'-data'),false);
++ assert.equal(await(await next.request(catalog)).text(),body);
++});
++await test('corrupted destination SHA prevents old-cache deletion and a verified retry recovers',async()=>{
++ const w=worker();await w.cache(old).put(base+catalog,new Response(body));w.behavior.corrupt=true;
++ assert.equal((await w.migrate()).status,'failed');assert.ok(w.stores.has(old));
++ w.behavior.corrupt=false;assert.equal((await w.migrate()).status,'complete');assert.equal(w.stores.has(old),false);
++ assert.equal(await(await w.request(catalog)).text(),body);
++});
++await test('missing destination read-back prevents old-cache deletion',async()=>{
++ const w=worker();await w.cache(old).put(base+catalog,new Response(body));w.behavior.missingRead=true;
++ assert.equal((await w.migrate()).status,'failed');assert.ok(w.stores.has(old));
++ w.behavior.missingRead=false;assert.equal((await w.migrate()).status,'complete');assert.equal(w.stores.has(old),false);
++});
++await test('migration never fetches the lazy catalog and repeats idempotently',async()=>{
++ const w=worker();await w.cache(old).put(base+catalog,new Response(body));
++ w.behavior.fetch=()=>assert.fail('Migration must not fetch a catalog or book');
++ assert.equal((await w.migrate()).transferred,1);assert.equal((await w.migrate()).transferred,0);
++ assert.equal(await(await w.cache(w.current+'-data').match(base+catalog)).text(),body);
++});
++await test('negative control: removing the exact catalog exception rejects the valid migration scenario',async()=>{
++ const token="&&item!=='books/shared/source-refs-v2/source-catalog.json'";
++ assert.equal(source.split(token).length,2,'One exact migration exception is required');
++ await assert.rejects(acceptedCatalog(source.replace(token,'')),{code:'ERR_ASSERTION'});
++});
++console.log(JSON.stringify({status:'PASS',checks:results.length,sourceCatalogPath:catalog,oldTestExpectationsChanged:false,
++ shaGuardsRetained:true,exactPathOnly:true,results}));
+diff --git a/tests/browser-catalog-loader-qa.mjs b/tests/browser-catalog-loader-qa.mjs
+new file mode 100644
+index 00000000..b19282f0
+--- /dev/null
++++ b/tests/browser-catalog-loader-qa.mjs
+@@ -0,0 +1,110 @@
++/** Browser JSON transport stays lazy while Node source validation stays cold. */
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import path from 'node:path';
++import vm from 'node:vm';
++import {fileURLToPath} from 'node:url';
++import {spawnSync} from 'node:child_process';
++import {loadRuntimeJSON,loadSourceCatalog,catalogValue,catalogBinding} from '../books/shared/source-refs-v2/source-catalog.mjs';
++import {createQaTempDir,cleanupQaTempDir,qaTempEnvironment} from './helpers/qa-temp.mjs';
++
++const moduleURL=new URL('../books/shared/source-refs-v2/source-catalog.mjs',import.meta.url);
++const catalogURL=new URL('../books/shared/source-refs-v2/source-catalog.json',import.meta.url);
++const catalogText=fs.readFileSync(catalogURL,'utf8'),expected=JSON.parse(catalogText);
++const materialize=value=>JSON.parse(JSON.stringify(value));
++const expanded=raw=>{
++ const [order,entries]=raw;
++ return {...Object.fromEntries(entries.map(([slot,layout,refs,contexts,fields])=>[slot,{layout,refs,contexts,...(fields?{fields}:{})}])),
++  $schema:'source-refs/v1',$order:order};
++};
++const sampleIds=Object.keys(expected.bindings).filter((_,i,ids)=>i===0||i===Math.floor(ids.length/2)||i===ids.length-1);
++
++if(!process.argv.includes('--browser-worker')){
++ let fetches=0;
++ const failFetch=()=>{fetches++;throw Error('Node file reads must not fetch');};
++ assert.deepEqual(await loadSourceCatalog({fetch:failFetch}),expected);
++ const documents=new Map();
++ for(const table of Object.values(expected.documents))for(const [id,value]of Object.entries(table))documents.set(id,value);
++ for(const [id,value]of documents)assert.deepEqual(catalogValue('documents',id),value);
++ for(const kind of ['layouts','contexts'])for(const [id,value]of Object.entries(expected[kind]))assert.deepEqual(catalogValue(kind,id),value);
++ for(const id of sampleIds){assert.deepEqual(catalogBinding(id),expanded(expected.bindings[id]));assert.equal(catalogBinding(id),catalogBinding(id));}
++ assert.equal(catalogValue('unknown','missing'),undefined);assert.equal(catalogBinding('missing'),undefined);
++ const a=loadRuntimeJSON(catalogURL,{fetch:failFetch}),b=loadRuntimeJSON(catalogURL.href,{fetch:failFetch});
++ assert.equal(a,b);assert.equal(await a,await loadSourceCatalog());assert.equal(fetches,0);
++ const scratch=createQaTempDir('wh-browser-json-node-');let passed=false;
++ try{
++  const file=path.join(scratch,'retry.json'),url=new URL('file:///'+file.replaceAll('\\','/'));
++  await assert.rejects(loadRuntimeJSON(url),/ENOENT/);
++  fs.writeFileSync(file,'{"value":"accepted"}\n');
++  const value=await loadRuntimeJSON(url,{fetch:failFetch});assert.deepEqual(value,{value:'accepted'});
++  assert.equal(await loadRuntimeJSON(url),value);assert.equal(fetches,0);passed=true;
++ }finally{if(passed)cleanupQaTempDir(scratch);}
++ const worker=spawnSync(process.execPath,['--experimental-vm-modules',fileURLToPath(import.meta.url),'--browser-worker'],
++  {encoding:'utf8',env:qaTempEnvironment(),maxBuffer:1024*1024});
++ assert.equal(worker.status,0,worker.stdout+'\n'+worker.stderr);
++ const result=JSON.parse(worker.stdout.trim().split(/\r?\n/).at(-1));assert.equal(result.status,'PASS');
++ console.log(JSON.stringify({status:'PASS',node:{fullCatalogEquality:true,documentIds:documents.size,
++  layouts:Object.keys(expected.layouts).length,contexts:Object.keys(expected.contexts).length,
++  representativeBindings:sampleIds.length,synchronousReadsPreserved:true,fileReadsFetches:fetches,fileFailureRetry:true},browser:result}));
++}else{
++ const source=fs.readFileSync(moduleURL,'utf8'),base='https://runtime.invalid/books/shared/source-refs-v2/source-catalog.mjs';
++ const open=async fetch=>{
++  const context=vm.createContext({URL,fetch});
++  assert.equal(vm.runInContext('typeof process',context),'undefined','The browser branch must not inherit Node globals');
++  const module=new vm.SourceTextModule(source,{context,identifier:base,initializeImportMeta(meta){meta.url=base;}});
++  await module.link(()=>{throw Error('The runtime loader must have no module dependencies');});await module.evaluate();return module.namespace;
++ };
++ let fetches=0,parses=0;
++ const api=await open(async url=>{fetches++;assert.equal(url.href,new URL('./source-catalog.json',base).href);
++  return {ok:true,json(){parses++;return JSON.parse(catalogText);}};});
++ assert.equal(fetches,0,'Importing the browser module must not load the catalog');
++ assert.throws(()=>api.catalogValue('documents','missing'),/Source catalog is not loaded/);
++ assert.throws(()=>api.catalogBinding('missing'),/Source catalog is not loaded/);
++ const p=api.loadSourceCatalog(),q=api.loadSourceCatalog();assert.equal(p,q);
++ const [value]=await Promise.all([p,q,api.loadRuntimeJSON(new URL('./source-catalog.json',base))]);
++ assert.deepEqual(materialize(value),expected);assert.equal(fetches,1);assert.equal(parses,1);
++ for(const id of sampleIds)assert.deepEqual(materialize(api.catalogBinding(id)),expanded(expected.bindings[id]));
++ assert.equal(await api.loadSourceCatalog(),value);assert.equal(fetches,1);assert.equal(parses,1);
++
++ let genericFetches=0,genericParses=0;
++ const generic=await open(async url=>{genericFetches++;assert.equal(url.href,'https://runtime.invalid/config.json');
++  return {ok:true,json(){genericParses++;return {keywords:['INFANTRY']};}};});
++ const first=generic.loadRuntimeJSON('https://runtime.invalid/config.json'),same=generic.loadRuntimeJSON(new URL('https://runtime.invalid/config.json'));
++ assert.equal(first,same);const config=await first;assert.equal(config,await same);assert.equal(genericFetches,1);assert.equal(genericParses,1);
++ await generic.loadRuntimeJSON('https://runtime.invalid/config.json',{fetch(){throw Error('A warm read cannot fetch');}});
++ assert.equal(genericFetches,1);assert.equal(genericParses,1);
++
++ const retries=[];
++ for(const mode of ['network','http','json']){
++  let calls=0,reads=0;
++  const retry=await open(async()=>{
++   calls++;
++   if(mode==='network'&&calls===1)throw Error('Injected network failure');
++   return {ok:!(mode==='http'&&calls===1),json(){reads++;if(mode==='json'&&calls===1)throw new SyntaxError('Injected JSON failure');return {accepted:true};}};
++  });
++  const url='https://runtime.invalid/'+mode+'.json',bad=retry.loadRuntimeJSON(url),shared=retry.loadRuntimeJSON(url);
++  assert.equal(bad,shared);await assert.rejects(bad,mode==='http'?/Runtime JSON unavailable/:/Injected/);
++  assert.equal(calls,1);assert.deepEqual(materialize(await retry.loadRuntimeJSON(url)),{accepted:true});assert.equal(calls,2);
++  assert.equal(reads,mode==='json'?2:1);retries.push({mode,calls,parses:reads});
++ }
++ let attempts=0;
++ const conflict=await open(async()=>({ok:true,json(){attempts++;return attempts===1?
++  {documents:{a:{'documents-same':{document:'first'}},b:{'documents-same':{document:'second'}}},layouts:{},contexts:{},bindings:{}}:JSON.parse(catalogText);}}));
++ await assert.rejects(conflict.loadSourceCatalog(),/Conflicting source document identity/);
++ assert.throws(()=>conflict.catalogValue('documents','documents-same'),/Source catalog is not loaded/,'A failed install publishes no partial catalog');
++ assert.deepEqual(materialize(await conflict.loadSourceCatalog()),expected);assert.equal(attempts,2);
++ let raceCalls=0,rejectFirst;
++ const race=await open(()=>{
++  raceCalls++;if(raceCalls===1)return new Promise((resolve,reject)=>{rejectFirst=reject;});
++  return Promise.resolve({ok:true,json(){return JSON.parse(catalogText);}});
++ });
++ const ready=race.loadSourceCatalog(),rejected=assert.rejects(ready,/Injected retry race/);
++ const recovered=race.loadRuntimeJSON(new URL('./source-catalog.json',base))
++  .catch(()=>race.loadRuntimeJSON(new URL('./source-catalog.json',base)));
++ await Promise.resolve();rejectFirst(new Error('Injected retry race'));
++ await Promise.all([rejected,recovered]);await race.loadSourceCatalog();
++ assert.equal(raceCalls,2,'An old failure cannot evict a newer successful retry');
++ console.log(JSON.stringify({status:'PASS',startupCatalogRequests:0,catalogFetches:fetches,catalogParses:parses,
++  genericFetches,genericParses,concurrentReadsSharePromise:true,failedReadsRetry:retries,conflictingDocumentRetry:true,
++  partialInstallRejected:true,concurrentRetryPreserved:true}));
++}
+diff --git a/tests/browser-compat-equivalence-qa.mjs b/tests/browser-compat-equivalence-qa.mjs
+new file mode 100644
+index 00000000..3906d0e1
+--- /dev/null
++++ b/tests/browser-compat-equivalence-qa.mjs
+@@ -0,0 +1,99 @@
++/** Older-browser substitutions preserve lexical identity and source table order. */
++import assert from 'node:assert/strict';
++import {normalizeImportLabel,importModelLabelCandidates} from '../books/shared/roster-v2/import.mjs';
++import {createReferencePresenter} from '../books/shared/army-book-app-v2/reference-v1.mjs';
++import {renderSourceTable} from '../books/shared/army-book-app-v2/source-table.mjs';
++
++// This is the exact accepted pre-change expression, used only in Node QA.
++const beforeNumber=value=>normalizeImportLabel(value).replace(/ies$/,'y').replace(/(?<!s|u|i)s$/,'');
++const seeds=['','s','ss','us','is','xs','ies','y','Titus','Typhus','Belisarius','Legionaries',
++  'Deathshroud Terminators','Skitarii','Kataphron Breachers','Plague Marines','Pteraxii',
++  'Lictor','GENESTEALERS','Émissaries','Châssis','O’Shovah','T’au','Knight 2','Model-3',
++  ' spaced  labels ','models\nwith\ttabs','I','S','U','x.s','x/s','model’s'];
++for(const first of 'abcdefghijklmnopqrstuvwxyz')for(const last of 'suiy')seeds.push(first+last);
++const candidates=[...new Set(seeds.flatMap(word=>[word,word+'s',word+'ies',word+'y',word.toUpperCase()]))];
++let lexicalCases=0;
++for(const query of candidates){
++  const models=[query,query+'s',query+'ies',query.replace(/s$/,''),'Titus','Typhus','Skitarii'].map((name,index)=>({
++    id:'model-'+index,labels:[name],data:{composition:{quantity:{max:index%3===0?1:2}}}
++  }));
++  // Exclude the exact spelling in this lane so the public API exercises the
++  // plural boundary as well as the separate exact-name priority lane below.
++  for(const records of [models,models.filter(model=>model.labels.every(name=>normalizeImportLabel(name)!==normalizeImportLabel(query)))]){
++    const exact=records.filter(model=>model.labels.some(name=>normalizeImportLabel(name)===normalizeImportLabel(query)));
++    const expected=exact.length||!normalizeImportLabel(query)?exact:records.filter(model=>
++      model.data.composition.quantity.max>1&&model.labels.some(name=>beforeNumber(name)===beforeNumber(query)));
++    assert.deepEqual(importModelLabelCandidates(records,query,model=>model.labels).map(row=>row.id),expected.map(row=>row.id),query);
++    lexicalCases++;
++  }
++}
++for(const [query,name,maximum,match]of[
++  ['Legionaries','Legionary',10,true],['Terminators','Terminator',10,true],['Marines','Marine',10,true],
++  ['Titus','Titu',2,false],['Typhus','Typhu',2,false],['Skitariis','Skitarii',2,false],
++  ['Tituss','Titus',2,false],['Legionaries','Legionary',1,false],['Titus','Titus',1,true],
++  ['s','',2,true],['Us','u',2,false],['Is','i',2,false]
++]){
++  const model={id:'reviewed-model',labels:[name],quantity:{max:maximum}};
++  assert.equal(importModelLabelCandidates([model],query,row=>row.labels).length,match?1:0,query+' / '+name);
++  lexicalCases++;
++}
++
++class Element {
++  constructor(tag,className='',text){this.tag=tag;this.className=className;this.children=[];this.dataset={};this.attributes={};this.text=text;}
++  append(...children){this.children.push(...children);}
++  setAttribute(key,value){this.attributes[key]=String(value);}
++  get classList(){return {add:value=>{this.className=[this.className,value].filter(Boolean).join(' ');}};}
++}
++const el=(...args)=>new Element(...args);
++const descendants=(node,predicate)=>[...(predicate(node)?[node]:[]),...node.children.flatMap(child=>descendants(child,predicate))];
++const allText=node=>[node.text,...node.children.map(allText)].filter(value=>value!==undefined).join('');
++const factValue=(tag,field)=>{const node=el(tag,'',field.displayValue??field.value);node.dataset.factId=field.id;return node;};
++const field=(row,column,value,geometry={})=>Object.freeze({id:`r${row}c${column}`,value,presentation:'table-cell',
++  source:Object.freeze({entityId:'source-table',path:`/rows/${row}/${column}`}),
++  table:Object.freeze({id:'bound-table',row,column,...geometry})});
++const flatFields=Object.freeze([field(2,2,'D'),field(1,2,'C'),field(2,1,'B'),field(1,1,'A')]);
++const geometryFields=Object.freeze([field(2,2,'D'),field(1,2,'C'),field(2,1,'B'),field(1,1,'A',{header:true,rowSpan:2})]);
++const prose=Object.freeze({id:'prose',value:'ACBD\nComplete paragraph.',source:Object.freeze({entityId:'source-table',path:'/text'})});
++function reference(fields){
++  const card={id:'reference',kind:'APPENDIX',title:'Bound table',fields:Object.freeze([...fields,prose])};
++  const presenter=createReferencePresenter({el,factValue,anchor:()=>el('a'),
++    contract:{resolve:()=>({targetId:card.id,title:card.title,category:'Appendix',contextLabel:'Core Rules',
++      sections:[{card,fields:card.fields}],references:[]})},cards:new Map([[card.id,card]]),
++    payload:{bookPresentation:{records:{}}},allowedIds:()=>new Set([card.id])});
++  return presenter.render(card.id);
++}
++
++const column=(a,b)=>a.table.column-b.table.column;
++const rowColumn=(a,b)=>a.table.row-b.table.row||column(a,b);
++let orderingCases=0;
++// toSorted materializes sparse holes as undefined. Array.from/spread followed
++// by sort preserves that property, without mutating the source array.
++for(const fields of [[],[...flatFields],[undefined,...flatFields,undefined],Object.assign(new Array(8),{1:flatFields[0],4:flatFields[1],7:flatFields[2]})]){
++  for(const compare of [column,rowColumn]){
++    const original=fields.slice(),keys=Object.keys(fields),expected=fields.toSorted(compare),actual=[...fields].sort(compare);
++    assert.deepEqual(actual,expected);assert.deepEqual(fields,original);assert.deepEqual(Object.keys(fields),keys);orderingCases++;
++  }
++}
++const before=JSON.stringify({flatFields,geometryFields,prose});
++const descriptor=Object.getOwnPropertyDescriptor(Array.prototype,'toSorted');
++try{
++  Object.defineProperty(Array.prototype,'toSorted',{...descriptor,value:undefined});
++  const flat=reference(flatFields);
++  assert.equal(allText(flat).includes('ACBD'),false,'The exact table echo remains suppressed');
++  assert.equal(allText(flat).includes('Complete paragraph.'),true,'The remaining complete paragraph is unchanged');
++  assert.deepEqual(descendants(flat,node=>node.dataset.factId!==undefined).map(node=>node.dataset.factId),
++    ['prose','r2c1','r2c2','r1c1','r1c2'],'The legacy table keeps row insertion order and sorts each row by source column');
++  const geometric=reference(geometryFields);
++  assert.deepEqual(descendants(geometric,node=>node.dataset.factId!==undefined).map(node=>node.dataset.factId),
++    ['prose','r1c1','r1c2','r2c1','r2c2'],'The explicit source layout sorts source rows and columns');
++  const table=renderSourceTable({el,fields:geometryFields,factValue,metadata:{columns:['First','Second']}});
++  assert.deepEqual(descendants(table,node=>node.dataset.factId!==undefined).map(node=>node.dataset.factId),
++    ['r1c1','r1c2','r2c1','r2c2']);
++  const header=descendants(table,node=>node.rowSpan===2)[0];assert.equal(header.tag,'th');assert.equal(header.scope,'col');
++  assert.deepEqual(descendants(table,node=>node.dataset.rowId!==undefined).map(node=>node.dataset.rowId),['1','2']);
++}finally{Object.defineProperty(Array.prototype,'toSorted',descriptor);}
++assert.equal(JSON.stringify({flatFields,geometryFields,prose}),before,'Rendering does not mutate source facts or field order');
++const bareMark=/\p{M}/u,classMark=/[\p{M}]/u;
++for(let point=0;point<=0x10ffff;point++)assert.equal(bareMark.test(String.fromCodePoint(point)),classMark.test(String.fromCodePoint(point)),'Unicode mark '+point);
++console.log(JSON.stringify({status:'PASS',unicodeCodePoints:0x110000,lexicalCases,orderingCases,renderedSorterCallSites:3,
++  sourceFactsUnchanged:true,oldBrowserSimulation:'Array.prototype.toSorted unavailable',oldTestsChanged:false}));
+diff --git a/tests/browser-compatibility-qa.mjs b/tests/browser-compatibility-qa.mjs
+new file mode 100644
+index 00000000..289abf8a
+--- /dev/null
++++ b/tests/browser-compatibility-qa.mjs
+@@ -0,0 +1,16 @@
++/** A target transform must not silently repair an incompatible publication. */
++import assert from 'node:assert/strict';
++import {fileURLToPath} from 'node:url';
++import {assertBrowserSource,checkBrowserPackage} from '../tools/browser-compatibility.mjs';
++
++const mutations=[
++  ['JSON with',"import data from './data.json' with {type:'json'};",/BROWSER_JSON_ATTRIBUTES/],
++  ['JSON assert',"import data from './data.json' assert {type:'json'};",/BROWSER_JSON_ATTRIBUTES/],
++  ['multiline attributes',"import data from './data.json'\nwith /* marker */ {\n type: 'json' };",/BROWSER_JSON_ATTRIBUTES/],
++  ['unsupported regexp',"const pattern=/(?<!s|u|i)s$/;",/BROWSER_REQUIRES_TRANSFORM/],
++  ['unsupported syntax must not be transpiled',"const value={using:1}; using resource = value;",/BROWSER_REQUIRES_TRANSFORM|BROWSER_SYNTAX/]
++];
++for(const [name,source,error]of mutations)assert.throws(()=>assertBrowserSource(source,'mutation-'+name+'.mjs'),error,name);
++assertBrowserSource("const data={value:1}; export default data;",'supported.mjs');
++const report=checkBrowserPackage(fileURLToPath(new URL('../',import.meta.url)));
++console.log(JSON.stringify({...report,negativeControls:mutations.map(([name])=>name)}));
+diff --git a/tests/helpers/startup-graph.mjs b/tests/helpers/startup-graph.mjs
+index 9f31340a..fcb6b941 100644
+--- a/tests/helpers/startup-graph.mjs
++++ b/tests/helpers/startup-graph.mjs
+@@ -77,6 +77,10 @@ export function buildStartupGraph(root){
+       // Property calls (e.g. view.fetch in a lazy glossary action) remain deferred.
+       for(const match of !isBookModule(relative)?text.matchAll(/(?<![\w$.])fetch\s*\(\s*new\s+URL\(\s*["'](\.[^"']+\.json)["']\s*,\s*import\.meta\.url\s*\)/g):[])
+         add(relative,match[1],'direct-literal-json-fetch',phase);
++      // The same ordinary transport is awaited by the keyword passport module.
++      // Catalog readiness uses a separate URL and remains a lazy candidate.
++      for(const match of !isBookModule(relative)?text.matchAll(/(?<![\w$.])loadRuntimeJSON\s*\(\s*new\s+URL\(\s*["'](\.[^"']+\.json)["']\s*,\s*import\.meta\.url\s*\)/g):[])
++        add(relative,match[1],'direct-runtime-json-load',phase);
+       for(const match of text.matchAll(/new\s+URL\(\s*["'](\.[^"']+)["']\s*,\s*import\.meta\.url\s*\)/g)){
+         if(/\.css(?:[?#]|$)/.test(match[1]))add(relative,match[1],'shell-stylesheet',phase);
+         else if(/\.json(?:[?#]|$)/.test(match[1]))deferredCandidates.push({from:relative,request:match[1],kind:'literal-data-url-not-an-eager-import'});
+diff --git a/tests/startup-precache-qa.mjs b/tests/startup-precache-qa.mjs
+index 9f44fe41..a11c84b1 100644
+--- a/tests/startup-precache-qa.mjs
++++ b/tests/startup-precache-qa.mjs
+@@ -63,9 +63,18 @@ try{
+   report.checks.push({name:'removed-selected-book-code-is-rejected',status:'PASS',removed:bookModule});
+   const forbidden=cache.urls.filter(url=>/\/v2\/generated\/.*\.json(?:[?#]|$)|glossary\/v2\/generated\/.*\.(?:json|js)(?:[?#]|$)/.test(url));
+   assert.deepEqual(forbidden,[],'Army Book and large glossary payloads must remain lazy');
+-  assert(graph.nodes.some(node=>node.path==='books/shared/source-refs-v2/source-catalog.json'),'The source registry must be present as a genuine static JSON dependency');
++  const sourceCatalog='books/shared/source-refs-v2/source-catalog.json';
++  const assertLazyCatalog=(value,urls)=>{
++    assert(!value.nodes.some(node=>node.path===sourceCatalog),'Full source catalog must not block eager or factory-code startup');
++    assert.equal(value.deferredCandidates.filter(row=>new URL(row.request,'https://startup.invalid/'+row.from).pathname.slice(1)===sourceCatalog).length,1,'One exact lazy source catalog URL must remain published and reachable');
++    assert(!urls.some(url=>new URL(url,'https://startup.invalid/').pathname.slice(1)===sourceCatalog),'Full source catalog must not be mandatory precache');
++  };
++  assertLazyCatalog(graph,cache.urls);
++  assert.throws(()=>assertLazyCatalog({...graph,nodes:[...graph.nodes,{path:sourceCatalog}]},cache.urls),/must not block/);
++  assert.throws(()=>assertLazyCatalog(graph,[...cache.urls,'./'+sourceCatalog]),/must not be mandatory/);
++  report.checks.push({name:'full-source-catalog-is-exactly-one-lazy-published-resource',status:'PASS',negativeControls:2});
+   assert.equal(graph.nodes.filter(node=>/^books\/[^/]+\/book\.config\.json$/.test(node.path)).length,9,'The graph must cover every native keyword passport');
+-  report.checks.push({name:'nine-passports-and-source-registry-covered-without-eager-book-payloads',status:'PASS'});
++  report.checks.push({name:'nine-passports-covered-without-eager-book-payloads',status:'PASS'});
+   report.status='PASS';report.precacheUrls=cache.urls.length;
+   console.log('Startup precache PASS '+graph.nodes.length+' graph nodes, '+cache.urls.length+' mandatory URLs; removed-resource mutation rejected');
+ }catch(error){report.status='FAIL';report.error=error.stack;console.error(error.stack);process.exitCode=1;}
+diff --git a/tools/qa-queue.mjs b/tools/qa-queue.mjs
+index e2a9a6b6..c21e5cef 100644
+--- a/tools/qa-queue.mjs
++++ b/tools/qa-queue.mjs
+@@ -41,6 +41,10 @@ function node(file,extra=[]){const id=JSON.stringify([file,...extra]);if(mode===
+ function expand(script){for(const part of script.split(/\s*&&\s*/)){const tokens=part.trim().split(/\s+/);if(tokens[0]==='npm'&&tokens[1]==='run')expand(pkg.scripts[tokens[2]]);else if(tokens[0]==='node'&&tokens[1]==='tests/helpers/run-qa-suite.mjs')for(const entry of tokens.slice(2))entry.startsWith('npm:')?expand(pkg.scripts[entry.slice(4)]):node(entry);else if(tokens[0]==='node')node(tokens[1],tokens.slice(2));else throw Error('Unsupported QA entry: '+part);}}
+ jobs.push({command:'git',args:['diff','--check'],id:'git diff --check'});
+ node('tests/qa-temp-qa.mjs');
++node('tests/browser-compatibility-qa.mjs');
++node('tests/browser-compat-equivalence-qa.mjs');
++node('tests/browser-catalog-loader-qa.mjs');
++node('tests/browser-catalog-cache-qa.mjs');
+ node('tests/book-passport-qa.mjs');
+ node('tests/keyword-access-qa.mjs');
+ node('tools/markup-census.mjs',['--check']);

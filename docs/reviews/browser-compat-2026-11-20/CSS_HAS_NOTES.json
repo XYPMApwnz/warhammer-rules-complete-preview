@@ -1,0 +1,68 @@
+[
+  {
+    "file": "books/core-rules/reader/styles.css",
+    "line": 6,
+    "selector": "html:has(dialog[open]),body:has(dialog[open])",
+    "declarations": "overflow:hidden;overscroll-behavior:none"
+  },
+  {
+    "file": "books/shared/application-v2/home.css",
+    "line": 1,
+    "selector": "/* V1 index.html presentation, scoped to the Home surface. No book theme overrides. */\n[data-v2-shell]:has(.v2-library-home) > .v2-primary-header",
+    "declarations": "background:rgba(13,15,13,.96); border-bottom-color:rgba(216,209,191,.13);"
+  },
+  {
+    "file": "books/shared/army-book-app-v2/datasheet-v1.css",
+    "line": 1,
+    "selector": "@import url(\"../datasheet-system.css\");\n@import url(\"../unit-art.css\");\n\n/* V1's palette belongs to datasheets and datasheet details. The surrounding\n   V2 application keeps its existing navigation and generic-card palette. */\n:where(.unit-card.surface, .v2-detail-dialog:has(.unit-card), .v2-detail-dialog:has(.popup-weapon-profile), .v2-related-dialog)",
+    "declarations": "color-scheme: dark;\n  --ds-ui: Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif;\n  --ds-data: \"SFMono-Regular\", Consolas, \"Liberation Mono\", monospace;\n  --header: 70px;\n  --bg: var(--book-bg, #0d0f0d);\n  --underhive: var(--book-canvas, #121512);\n  --panel: var(--book-panel, #191f1a);\n  --panel-2: var(--book-panel-raised, #252c25);\n  --ink: var(--book-ink, #e2dcc9);\n  --muted: var(--book-muted, #969589);\n  --green: var(--book-accent, #bfd58c);\n  --green-deep: var(--book-accent-deep, #7d9257);\n  --bronze: var(--book-metal, #8d7448);\n  --bronze-bright: var(--book-metal-bright, #c7ae75);\n  --pink: var(--book-signal, #d5488e);\n  --pink-deep: var(--book-signal-deep, #74143f);\n  --faction-gradient: linear-gradient(90deg, var(--book-accent, #c8df7f) 0 72%, var(--book-accent, #c8df7f) 74%, var(--book-signal, #c3167c) 82%, var(--book-signal, #c3167c) 100%);\n  --line: rgba(var(--book-ink-rgb, 216, 209, 191), .14);\n  --soft-line: rgba(var(--book-ink-rgb, 216, 209, 191), .08);\n  /* Composite V1's translucent surface over its original dark substrate,\n     independently of the accepted V2 application background. */\n  --glass: color-mix(in srgb, rgb(var(--book-panel-rgb, 26, 30, 27)) 94%, var(--bg));\n  --shadow: 0 26px 58px rgba(0, 0, 0, .46), 0 0 0 1px rgba(0, 0, 0, .48);\n  --radius: 2px;\n  --body-size: 17px;\n  --data-size: 14px;"
+  },
+  {
+    "file": "books/shared/army-book-app-v2/datasheet-v1.css",
+    "line": 398,
+    "selector": "/* Native V2 detail dialogs use the V1 full-entry surface when their content\n   is a datasheet. Other V2 detail cards keep the generic light treatment. */\n.v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile))",
+    "declarations": "width: min(1120px, calc(100vw - 48px));\n  max-width: min(1120px, calc(100vw - 48px));\n  max-height: calc(100dvh - 64px);\n  overflow: hidden;\n  border: 0;\n  border-top: 4px solid var(--green-deep);\n  border-radius: 0;\n  color: var(--ink);\n  background:\n    radial-gradient(circle at 100% 0, rgba(var(--book-signal-rgb, 213, 72, 142), .12), transparent 320px),\n    radial-gradient(circle at 0 100%, rgba(var(--book-accent-deep-rgb, 125, 146, 87), .12), transparent 360px),\n    var(--panel);\n  box-shadow: 0 40px 120px rgba(0,0,0,.88), 0 0 0 1px rgba(var(--book-metal-bright-rgb, 199, 174, 117), .36);"
+  },
+  {
+    "file": "books/shared/army-book-app-v2/datasheet-v1.css",
+    "line": 417,
+    "selector": ".v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile)) .v2-dialog-bar",
+    "declarations": "border-bottom: 1px solid var(--line);\n  background: rgba(var(--book-void-rgb, 10, 14, 11), .86);\n  color: var(--ink);"
+  },
+  {
+    "file": "books/shared/army-book-app-v2/datasheet-v1.css",
+    "line": 428,
+    "selector": ".v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile)) .v2-dialog-content",
+    "declarations": "padding: clamp(12px, 2vw, 24px);\n  scrollbar-color: var(--green-deep) var(--bg);"
+  },
+  {
+    "file": "books/shared/army-book-app-v2/datasheet-v1.css",
+    "line": 436,
+    "selector": ".v2-detail-dialog:has(.popup-weapon-profile) .v2-dialog-content",
+    "declarations": "padding: 0;"
+  },
+  {
+    "file": "books/shared/army-book-app-v2/datasheet-v1.css",
+    "line": 533,
+    "selector": ".v2-detail-dialog:has(.unit-card)",
+    "declarations": "width: 100%;\n    height: 100%;\n    max-width: none;\n    max-height: none;\n    margin: 0;\n    border: 0;"
+  },
+  {
+    "file": "books/shared/army-book-app-v2/popup-v1.css",
+    "line": 91,
+    "selector": ".popup-actions:has(> :only-child)",
+    "declarations": "grid-template-columns: 1fr;"
+  },
+  {
+    "file": "books/shared/army-book-app-v2/popup-v1.css",
+    "line": 131,
+    "selector": ".term-popup.v2-detail-dialog .v2-dialog-content:has(>.popup-weapon-profile)",
+    "declarations": "padding:0;"
+  },
+  {
+    "file": "books/shared/datasheet-system.css",
+    "line": 663,
+    "selector": "/* Review pass: compact single-cost datasheets and clearer tablet labels. */\n.unit-card.ds-layout .points.ds-cost:has(.ds-cost-cell:only-child)",
+    "declarations": "width:min(100%,310px);min-width:0;justify-self:start"
+  }
+]

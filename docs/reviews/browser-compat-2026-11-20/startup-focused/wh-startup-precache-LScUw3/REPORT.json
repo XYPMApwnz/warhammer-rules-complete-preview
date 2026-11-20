@@ -1,0 +1,93 @@
+{
+  "schema": "v2-startup-precache-qa/v1",
+  "root": "E:\\Warhammer\\worktrees\\browser-compat-v1",
+  "checks": [
+    {
+      "name": "eager-and-selected-book-startup-code-and-resources-are-mandatory",
+      "status": "PASS",
+      "nodes": 162,
+      "edges": 421,
+      "eagerNodes": 86,
+      "selectedBookNodes": 76
+    },
+    {
+      "name": "all-nine-registered-book-factory-code-closures-covered",
+      "status": "PASS",
+      "roots": [
+        {
+          "registration": "books/adeptus-mechanicus/v2/registration.mjs",
+          "path": "books/adeptus-mechanicus/v2/roster-runtime.mjs"
+        },
+        {
+          "registration": "books/blood-angels/v2/registration.mjs",
+          "path": "books/blood-angels/v2/roster-boot.mjs"
+        },
+        {
+          "registration": "books/chaos-space-marines/v2/registration.mjs",
+          "path": "books/chaos-space-marines/v2/roster-boot.mjs"
+        },
+        {
+          "registration": "books/dark-angels/v2/registration.mjs",
+          "path": "books/dark-angels/v2/roster-boot.mjs"
+        },
+        {
+          "registration": "books/death-guard/v2/registration.mjs",
+          "path": "books/death-guard/v2/roster-boot.mjs"
+        },
+        {
+          "registration": "books/emperors-children/v2/registration.mjs",
+          "path": "books/emperors-children/v2/roster-boot.mjs"
+        },
+        {
+          "registration": "books/space-marines/v2/registration.mjs",
+          "path": "books/space-marines/v2/roster-boot.mjs"
+        },
+        {
+          "registration": "books/tau-empire/v2/registration.mjs",
+          "path": "books/tau-empire/v2/roster-boot.mjs"
+        },
+        {
+          "registration": "books/tyranids/v2/registration.mjs",
+          "path": "books/tyranids/v2/roster-boot.mjs"
+        }
+      ]
+    },
+    {
+      "name": "removed-startup-resource-is-rejected",
+      "status": "PASS",
+      "removed": "books/shared/rule-facts.js",
+      "message": "Missing mandatory startup precache: books/shared/rule-facts.js (from books/shared/keyword-values.mjs)\n\n1 !== 0\n"
+    },
+    {
+      "name": "removed-source-notice-startup-resource-is-rejected",
+      "status": "PASS",
+      "removed": "books/shared/application-v2/source-metadata.mjs"
+    },
+    {
+      "name": "removed-source-notice-startup-resource-is-rejected",
+      "status": "PASS",
+      "removed": "books/shared/army-book-app-v2/import-notices.mjs"
+    },
+    {
+      "name": "removed-source-notice-startup-resource-is-rejected",
+      "status": "PASS",
+      "removed": "books/shared/application-v2/generated/source-metadata.v1.json"
+    },
+    {
+      "name": "removed-selected-book-code-is-rejected",
+      "status": "PASS",
+      "removed": "books/adeptus-mechanicus/v2/roster-runtime.mjs"
+    },
+    {
+      "name": "full-source-catalog-is-exactly-one-lazy-published-resource",
+      "status": "PASS",
+      "negativeControls": 2
+    },
+    {
+      "name": "nine-passports-covered-without-eager-book-payloads",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "precacheUrls": 221
+}

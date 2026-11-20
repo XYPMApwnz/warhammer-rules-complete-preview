@@ -1,0 +1,290 @@
+[
+  {
+    "target": "esnext",
+    "source": "export const x=/\\p{M}/gu;",
+    "code": "const x = /\\p{M}/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "esnext",
+    "source": "export const x=/[\\p{M}]/gu;",
+    "code": "const x = /[\\p{M}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "esnext",
+    "source": "export const x=/\\p{Mark}/gu;",
+    "code": "const x = /\\p{Mark}/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "esnext",
+    "source": "export const x=/[\\p{Mark}]/gu;",
+    "code": "const x = /[\\p{Mark}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "esnext",
+    "source": "export const x=/\\p{General_Category=Mark}/gu;",
+    "code": "const x = /\\p{General_Category=Mark}/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "esnext",
+    "source": "export const x=/\\p{L}/gu;",
+    "code": "const x = /\\p{L}/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "esnext",
+    "source": "export const x=/[\\p{L}]/gu;",
+    "code": "const x = /[\\p{L}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "esnext",
+    "source": "export const x=/\\p{N}/gu;",
+    "code": "const x = /\\p{N}/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15",
+    "source": "export const x=/\\p{M}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{M}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15",
+    "source": "export const x=/[\\p{M}]/gu;",
+    "code": "const x = /[\\p{M}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15",
+    "source": "export const x=/\\p{Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15",
+    "source": "export const x=/[\\p{Mark}]/gu;",
+    "code": "const x = /[\\p{Mark}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15",
+    "source": "export const x=/\\p{General_Category=Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{General_Category=Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15",
+    "source": "export const x=/\\p{L}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{L}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15",
+    "source": "export const x=/[\\p{L}]/gu;",
+    "code": "const x = /[\\p{L}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15",
+    "source": "export const x=/\\p{N}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{N}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15.4",
+    "source": "export const x=/\\p{M}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{M}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15.4",
+    "source": "export const x=/[\\p{M}]/gu;",
+    "code": "const x = /[\\p{M}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15.4",
+    "source": "export const x=/\\p{Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15.4",
+    "source": "export const x=/[\\p{Mark}]/gu;",
+    "code": "const x = /[\\p{Mark}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15.4",
+    "source": "export const x=/\\p{General_Category=Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{General_Category=Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15.4",
+    "source": "export const x=/\\p{L}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{L}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15.4",
+    "source": "export const x=/[\\p{L}]/gu;",
+    "code": "const x = /[\\p{L}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari15.4",
+    "source": "export const x=/\\p{N}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{N}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari16",
+    "source": "export const x=/\\p{M}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{M}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari16",
+    "source": "export const x=/[\\p{M}]/gu;",
+    "code": "const x = /[\\p{M}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari16",
+    "source": "export const x=/\\p{Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari16",
+    "source": "export const x=/[\\p{Mark}]/gu;",
+    "code": "const x = /[\\p{Mark}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari16",
+    "source": "export const x=/\\p{General_Category=Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{General_Category=Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari16",
+    "source": "export const x=/\\p{L}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{L}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari16",
+    "source": "export const x=/[\\p{L}]/gu;",
+    "code": "const x = /[\\p{L}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "safari16",
+    "source": "export const x=/\\p{N}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{N}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "chrome100",
+    "source": "export const x=/\\p{M}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{M}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "chrome100",
+    "source": "export const x=/[\\p{M}]/gu;",
+    "code": "const x = /[\\p{M}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "chrome100",
+    "source": "export const x=/\\p{Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "chrome100",
+    "source": "export const x=/[\\p{Mark}]/gu;",
+    "code": "const x = /[\\p{Mark}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "chrome100",
+    "source": "export const x=/\\p{General_Category=Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{General_Category=Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "chrome100",
+    "source": "export const x=/\\p{L}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{L}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "chrome100",
+    "source": "export const x=/[\\p{L}]/gu;",
+    "code": "const x = /[\\p{L}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "chrome100",
+    "source": "export const x=/\\p{N}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{N}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "firefox102",
+    "source": "export const x=/\\p{M}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{M}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "firefox102",
+    "source": "export const x=/[\\p{M}]/gu;",
+    "code": "const x = /[\\p{M}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "firefox102",
+    "source": "export const x=/\\p{Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "firefox102",
+    "source": "export const x=/[\\p{Mark}]/gu;",
+    "code": "const x = /[\\p{Mark}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "firefox102",
+    "source": "export const x=/\\p{General_Category=Mark}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{General_Category=Mark}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "firefox102",
+    "source": "export const x=/\\p{L}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{L}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "firefox102",
+    "source": "export const x=/[\\p{L}]/gu;",
+    "code": "const x = /[\\p{L}]/gu;\nexport {\n  x\n};\n",
+    "warnings": []
+  },
+  {
+    "target": "firefox102",
+    "source": "export const x=/\\p{N}/gu;",
+    "code": "const x = new RegExp(\"\\\\p{N}\", \"gu\");\nexport {\n  x\n};\n",
+    "warnings": []
+  }
+]

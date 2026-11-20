@@ -1,0 +1,38 @@
+{
+  "schema": "scroll-instant-minimum-review/v1",
+  "scope": "Read-only primary-source and existing-code review; no browser/test/production edits during full pre-FF",
+  "finding": "No concrete unsupported instant enum or resulting TypeError found for Safari15.4/Chrome100/Firefox102",
+  "engines": [
+    {
+      "engine": "WebKit beforeSafari15.4",
+      "commit": "06bae94bed02d41c0c4b3a6bc59f1d338b01b3cf",
+      "date": "2020-01-18",
+      "url": "https://raw.githubusercontent.com/WebKit/WebKit/06bae94bed02d41c0c4b3a6bc59f1d338b01b3cf/Source/WebCore/page/ScrollBehavior.idl",
+      "enum": "auto, instant, smooth"
+    },
+    {
+      "engine": "Chrome100.0.4896.60",
+      "url": "https://chromium.googlesource.com/chromium/src/+/100.0.4896.60/third_party/blink/renderer/core/frame/scroll_options.idl?format=TEXT",
+      "enum": "auto, instant, smooth",
+      "transport": "Official Gitiles base64 decoded"
+    },
+    {
+      "engine": "Firefox102release",
+      "url": "https://hg.mozilla.org/releases/mozilla-release/raw-file/FIREFOX_102_0_RELEASE/dom/webidl/Window.webidl",
+      "enum": "auto, instant, smooth"
+    }
+  ],
+  "sources": {
+    "mdnWindow": "https://raw.githubusercontent.com/mdn/browser-compat-data/main/api/Window.json",
+    "mdnElement": "https://raw.githubusercontent.com/mdn/browser-compat-data/main/api/Element.json",
+    "csswg": "https://lists.w3.org/Archives/Public/public-css-archive/2022Sep/0796.html"
+  },
+  "notes": [
+    "The native enum contains instant in exacttarget engine sources or precedingWebKit source.",
+    "MDN BCD behavior-options support: Safari14,Chrome61,Firefox36; enum-specific evidence comes from native IDL.",
+    "auto follows CSS scroll-behavior and can animate; it is not an equivalent replacement for instant when global smooth scrolling exists.",
+    "This is static primary-source evidence, not physical Safari15.4 execution or full API/CSS certification.",
+    "Other observed runtime APIs were already inventoried: Object.hasOwn/structuredClone/Array.at set Safari15.4 floor; toSorted/lookbehind substitutions are separately covered.",
+    "Existing inert/CSS progressive-fallback limits remain documented; no new fatal API beyond those inventories was found in this narrow follow-up."
+  ]
+}

@@ -1,0 +1,201 @@
+[
+  {
+    "file": "books/shared/application-v2/glossary.mjs",
+    "liveRelease": {
+      "exists": true,
+      "count": 1,
+      "hits": [
+        {
+          "line": 41,
+          "text": "main.focus({preventScroll:true});view.scrollTo({top:0,behavior:'instant'});"
+        }
+      ]
+    },
+    "acceptedBase": {
+      "exists": true,
+      "count": 1,
+      "hits": [
+        {
+          "line": 43,
+          "text": "main.focus({preventScroll:true});view.scrollTo({top:0,behavior:'instant'});"
+        }
+      ]
+    }
+  },
+  {
+    "file": "books/shared/application-v2/runtime.mjs",
+    "liveRelease": {
+      "exists": true,
+      "count": 1,
+      "hits": [
+        {
+          "line": 165,
+          "text": "if(!route.module){stopModule();renderHome(route);rememberRenderedLocation();view.scrollTo({top:0,behavior:'instant'});return;}"
+        }
+      ]
+    },
+    "acceptedBase": {
+      "exists": true,
+      "count": 1,
+      "hits": [
+        {
+          "line": 174,
+          "text": "if(!route.module){stopModule();await renderHome(route);if(!lifecycle.active||token!==generation)return;rememberRenderedLocation();view.scrollTo({top:0,behavior:'instant'});return;}"
+        }
+      ]
+    }
+  },
+  {
+    "file": "books/core-rules/reader/mount.mjs",
+    "liveRelease": {
+      "exists": true,
+      "count": 2,
+      "hits": [
+        {
+          "line": 157,
+          "text": "target.scrollIntoView({block:'start',behavior:'instant'});"
+        },
+        {
+          "line": 158,
+          "text": "} else child.scrollTo({top:0,behavior:'instant'});"
+        }
+      ]
+    },
+    "acceptedBase": {
+      "exists": true,
+      "count": 2,
+      "hits": [
+        {
+          "line": 157,
+          "text": "target.scrollIntoView({block:'start',behavior:'instant'});"
+        },
+        {
+          "line": 158,
+          "text": "} else child.scrollTo({top:0,behavior:'instant'});"
+        }
+      ]
+    }
+  },
+  {
+    "file": "books/shared/army-book-app-v2/roster.mjs",
+    "liveRelease": {
+      "exists": true,
+      "count": 2,
+      "hits": [
+        {
+          "line": 322,
+          "text": "rosterArea.scrollIntoView({block: 'start', behavior: 'instant'});"
+        },
+        {
+          "line": 711,
+          "text": "window.scrollTo({top: previousScrollY, behavior: 'instant'});"
+        }
+      ]
+    },
+    "acceptedBase": {
+      "exists": true,
+      "count": 3,
+      "hits": [
+        {
+          "line": 350,
+          "text": "rosterArea.scrollIntoView({block: 'start', behavior: 'instant'});"
+        },
+        {
+          "line": 844,
+          "text": "window.scrollTo({top: previousScrollY, behavior: 'instant'});"
+        },
+        {
+          "line": 847,
+          "text": "window.scrollTo({top:previousScrollY,behavior:'instant'});"
+        }
+      ]
+    }
+  },
+  {
+    "file": "books/shared/army-book-app-v2/runtime.mjs",
+    "liveRelease": {
+      "exists": true,
+      "count": 9,
+      "hits": [
+        {
+          "line": 483,
+          "text": "main.replaceChildren(hero,sections);renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}"
+        },
+        {
+          "line": 495,
+          "text": "if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}"
+        },
+        {
+          "line": 614,
+          "text": "renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}"
+        },
+        {
+          "line": 648,
+          "text": "window.scrollTo({top: 0, behavior: 'instant'});"
+        },
+        {
+          "line": 658,
+          "text": "if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}"
+        },
+        {
+          "line": 677,
+          "text": "window.scrollTo({top: 0, behavior: 'instant'});"
+        },
+        {
+          "line": 695,
+          "text": "window.scrollTo({top: 0, behavior: 'instant'});"
+        },
+        {
+          "line": 747,
+          "text": "} else if(state.armyBookV2.backgroundContents){renderContentsBook(state.armyBookV2.backgroundId);window.scrollTo({top:state.armyBookV2.scrollY||0,behavior:'instant'});"
+        },
+        {
+          "line": 785,
+          "text": "else if(!focus&&!controlledRoute)lifecycle.frame(()=>window.scrollTo({top:state?.armyBookV2?.scrollY||0,behavior:'instant'}));"
+        }
+      ]
+    },
+    "acceptedBase": {
+      "exists": true,
+      "count": 9,
+      "hits": [
+        {
+          "line": 570,
+          "text": "sections.append(stratagems);main.replaceChildren(hero,sections);renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}"
+        },
+        {
+          "line": 582,
+          "text": "if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}"
+        },
+        {
+          "line": 721,
+          "text": "renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}"
+        },
+        {
+          "line": 755,
+          "text": "window.scrollTo({top: 0, behavior: 'instant'});"
+        },
+        {
+          "line": 765,
+          "text": "if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}"
+        },
+        {
+          "line": 784,
+          "text": "window.scrollTo({top: 0, behavior: 'instant'});"
+        },
+        {
+          "line": 802,
+          "text": "window.scrollTo({top: 0, behavior: 'instant'});"
+        },
+        {
+          "line": 856,
+          "text": "} else if(state.armyBookV2.backgroundContents){renderContentsBook(state.armyBookV2.backgroundId);window.scrollTo({top:state.armyBookV2.scrollY||0,behavior:'instant'});"
+        },
+        {
+          "line": 899,
+          "text": "else if(!focus&&!controlledRoute)lifecycle.frame(()=>window.scrollTo({top:state?.armyBookV2?.scrollY||0,behavior:'instant'}));"
+        }
+      ]
+    }
+  }
+]

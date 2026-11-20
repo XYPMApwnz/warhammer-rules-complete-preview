@@ -1,0 +1,61 @@
+{
+  "schema": "empty-roster-probe-control/v1",
+  "version": "accepted baseline9876164d",
+  "status": "PASS",
+  "pageErrors": [
+    {
+      "phase": "intentional bad waitForFunction snapshot predicate",
+      "message": "No roster",
+      "stack": "TypeError: No roster\n    at Object.snapshot (http://127.0.0.1:53201/books/shared/roster-v2/runtime.mjs:146:35)\n    at Object.snapshot (http://127.0.0.1:53201/books/tau-empire/v2/roster-import.mjs:191:28)\n    at Object.snapshot (http://127.0.0.1:53201/books/shared/roster-v2/runtime.mjs:93:26)\n    at eval (eval at predicate (eval at evaluate (:303:30)), <anonymous>:1:26)\n    at predicate (eval at evaluate (:303:30), <anonymous>:7:27)\n    at next (eval at evaluate (:303:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:303:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:305:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    }
+  ],
+  "requestFailures": [],
+  "events": [
+    {
+      "phase": "baseline empty Tau initial navigation",
+      "pageErrors": 0
+    },
+    {
+      "phase": "direct caught empty snapshot API",
+      "pageErrors": 0
+    },
+    {
+      "phase": "intentional bad waitForFunction snapshot predicate",
+      "pageErrors": 1
+    },
+    {
+      "phase": "corrected empty screen predicate",
+      "pageErrors": 1
+    }
+  ],
+  "exactRuntimeEquality": [
+    {
+      "file": "books/shared/roster-v2/runtime.mjs",
+      "sha256": "64268409db2a3e51f21c9a95e742973bbeb6bfc404506f0b443744026059b829",
+      "identical": true
+    },
+    {
+      "file": "books/tau-empire/v2/roster-import.mjs",
+      "sha256": "05d6a1667b5c1fd698d7cb951134336b175dfc9f9baefe11951b018f73e3ca3e",
+      "identical": true
+    }
+  ],
+  "initial": {
+    "book": "tau-empire",
+    "state": null,
+    "saved": null,
+    "unitArticles": 0,
+    "importInput": 1
+  },
+  "caught": {
+    "threw": true,
+    "name": "TypeError",
+    "message": "No roster",
+    "stack": "TypeError: No roster\n    at Object.snapshot (http://127.0.0.1:53201/books/shared/roster-v2/runtime.mjs:146:35)\n    at Object.snapshot (http://127.0.0.1:53201/books/tau-empire/v2/roster-import.mjs:191:28)\n    at Object.snapshot (http://127.0.0.1:53201/books/shared/roster-v2/runtime.mjs:93:26)\n    at eval (eval at evaluate (:303:30), <anonymous>:1:31)\n    at UtilityScript.evaluate (<anonymous>:305:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+  },
+  "badPredicate": {
+    "name": "Error",
+    "message": "page.waitForFunction: TypeError: No roster\n    at Object.snapshot (http://127.0.0.1:53201/books/shared/roster-v2/runtime.mjs:146:35)\n    at Object.snapshot (http://127.0.0.1:53201/books/tau-empire/v2/roster-import.mjs:191:28)\n    at Object.snapshot (http://127.0.0.1:53201/books/shared/roster-v2/runtime.mjs:93:26)\n    at eval (eval at predicate (eval at evaluate (:303:30)), <anonymous>:1:26)\n    at predicate (eval at evaluate (:303:30), <anonymous>:7:27)\n    at next (eval at evaluate (:303:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:303:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:305:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+    "stack": "page.waitForFunction: TypeError: No roster\n    at Object.snapshot (http://127.0.0.1:53201/books/shared/roster-v2/runtime.mjs:146:35)\n    at Object.snapshot (http://127.0.0.1:53201/books/tau-empire/v2/roster-import.mjs:191:28)\n    at Object.snapshot (http://127.0.0.1:53201/books/shared/roster-v2/runtime.mjs:93:26)\n    at eval (eval at predicate (eval at evaluate (:303:30)), <anonymous>:1:26)\n    at predicate (eval at evaluate (:303:30), <anonymous>:7:27)\n    at next (eval at evaluate (:303:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:303:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:305:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at E:\\Warhammer\\qa-evidence\\browser-compat-v1-2026-11-20\\RECIPES\\empty-roster-probe-control.mjs:13:76"
+  }
+}

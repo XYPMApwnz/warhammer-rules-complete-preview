@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "node": {
+    "fullCatalogEquality": true,
+    "documentIds": 522,
+    "layouts": 182,
+    "contexts": 10168,
+    "representativeBindings": 3,
+    "synchronousReadsPreserved": true,
+    "fileReadsFetches": 0,
+    "fileFailureRetry": true
+  },
+  "browser": {
+    "status": "PASS",
+    "startupCatalogRequests": 0,
+    "catalogFetches": 1,
+    "catalogParses": 1,
+    "genericFetches": 1,
+    "genericParses": 1,
+    "concurrentReadsSharePromise": true,
+    "failedReadsRetry": [
+      {
+        "mode": "network",
+        "calls": 2,
+        "parses": 1
+      },
+      {
+        "mode": "http",
+        "calls": 2,
+        "parses": 1
+      },
+      {
+        "mode": "json",
+        "calls": 2,
+        "parses": 2
+      }
+    ],
+    "conflictingDocumentRetry": true,
+    "partialInstallRejected": true,
+    "concurrentRetryPreserved": true
+  }
+}

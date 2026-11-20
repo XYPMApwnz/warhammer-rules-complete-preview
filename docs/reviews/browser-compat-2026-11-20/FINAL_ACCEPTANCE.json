@@ -1,0 +1,47 @@
+{
+  "schema": "browser-compat-final-acceptance/v1",
+  "status": "PASS",
+  "feature": "b0aa1273b907020776dec41ca0466d646e5435e2",
+  "base": "9876164de85f1e35aa2cf070a3eb9de662093980",
+  "preff": {
+    "passed": 202,
+    "failed": 0,
+    "elapsedMs": 8068664,
+    "headAfter": "b0aa1273b907020776dec41ca0466d646e5435e2",
+    "treeAfter": ""
+  },
+  "generated": {
+    "outputs": 148,
+    "steps": 68,
+    "oldOutputsIdentical": 148,
+    "newOutputs": 0
+  },
+  "native": {
+    "rosters": 199,
+    "states": 507,
+    "differences": 0
+  },
+  "census": {
+    "N": 2724,
+    "counts": {
+      "EXECUTED": 812,
+      "RECIPIENTS_ONLY": 1478,
+      "TEXT_ONLY_INTENDED": 263,
+      "GAP": 0,
+      "UNKNOWN": 171
+    }
+  },
+  "syntax": {
+    "files": 142,
+    "inlineScripts": 3,
+    "negativeControls": 5
+  },
+  "publication": {
+    "files": 456,
+    "mandatoryUrls": 221,
+    "contentSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909",
+    "cacheRevision": "d08e23b961b6f507"
+  },
+  "evidenceBranch": "codex/browser-compat-evidence",
+  "cleanup": "After evidence publication; final chat records outcome"
+}

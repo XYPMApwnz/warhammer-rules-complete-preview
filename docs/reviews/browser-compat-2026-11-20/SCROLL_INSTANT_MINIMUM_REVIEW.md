@@ -1,0 +1,11 @@
+# Minimum-engine scroll behavior review
+
+No concrete unsupported instant enum or resulting TypeError was found for the documented Safari15.4 / Chrome100 / Firefox102 minimums. Read-only review only; no production file, test or browser run changed during pre-FF.
+
+WebKit's [2020 ScrollBehavior IDL](https://raw.githubusercontent.com/WebKit/WebKit/06bae94bed02d41c0c4b3a6bc59f1d338b01b3cf/Source/WebCore/page/ScrollBehavior.idl) already contains auto/instant/smooth. The exact [Chrome100 source](https://chromium.googlesource.com/chromium/src/+/100.0.4896.60/third_party/blink/renderer/core/frame/scroll_options.idl?format=TEXT) and [Firefox102 release IDL](https://hg.mozilla.org/releases/mozilla-release/raw-file/FIREFOX_102_0_RELEASE/dom/webidl/Window.webidl) contain the same values. MDN's current [Window BCD](https://raw.githubusercontent.com/mdn/browser-compat-data/main/api/Window.json) and [Element BCD](https://raw.githubusercontent.com/mdn/browser-compat-data/main/api/Element.json) put behavior-options support before these minima (Safari14/Chrome61/Firefox36); native IDL supplies the more precise enum proof.
+
+The [CSSWG2022 discussion](https://lists.w3.org/Archives/Public/public-css-archive/2022Sep/0796.html) explicitly records that instant remained implemented across Gecko, Blink and WebKit after a specification editing mistake removed it from the IDL. Unlike auto, instant bypasses CSS smooth-scroll behavior, so replacing it with auto would not preserve behavior on a globally smooth page. No such replacement is recommended.
+
+SCROLL_INSTANT_SOURCE_AUDIT.json records16 explicit instant behavior literals across five accepted-base files;15 were already present in live release1fd0b279. They were not introduced by the browser-compat changes.
+
+The existing API inventory remains the boundary: Safari15.4 APIs Object.hasOwn/structuredClone/Array.at are documented; the older lookbehind and toSorted limitations were fixed with equivalence proof. Existing inert fallback and CSS :has/dynamic-style degradation are separate, documented limits. This follow-up found no additional concrete fatal API to justify changing the frozen SHA. It is not a claim of exhaustive physical-device/browser or pixel-identical CSS certification.

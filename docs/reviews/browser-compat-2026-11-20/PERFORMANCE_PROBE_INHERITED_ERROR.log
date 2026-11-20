@@ -1,0 +1,16 @@
+{"phase":"sizes","version":"base","files":456,"packageRawBytes":282979450,"mandatoryUrls":222,"mandatoryRawBytes":11666371,"mandatoryGzipBytes":2847258}
+{"phase":"sizes","version":"head","files":456,"packageRawBytes":282982284,"mandatoryUrls":221,"mandatoryRawBytes":5139186,"mandatoryGzipBytes":2153544}
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   {
++     label: 'roster-sm/head/3',
++     message: 'No roster',
++     type: 'pageerror'
++   }
++ ]
+- []
+
+    at noErrors (file:///E:/Warhammer/qa-evidence/browser-compat-v1-2026-11-20/RECIPES/runtime-performance.mjs:95:28)
+    at file:///E:/Warhammer/qa-evidence/browser-compat-v1-2026-11-20/RECIPES/runtime-performance.mjs:193:62

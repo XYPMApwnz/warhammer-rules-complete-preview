@@ -1,0 +1,33 @@
+{"phase":"sizes","version":"base","files":456,"packageRawBytes":282979450,"mandatoryUrls":6,"mandatoryRawBytes":32377,"mandatoryGzipBytes":10109}
+{"phase":"sizes","version":"head","files":456,"packageRawBytes":282982284,"mandatoryUrls":6,"mandatoryRawBytes":32377,"mandatoryGzipBytes":10110}
+{"lane":"home","version":"base","repeat":1,"elapsedMs":493.9360000000015,"requests":82,"bodyBytes":8202346,"catalogGets":1}
+{"lane":"home","version":"head","repeat":1,"elapsedMs":485.58230000000185,"requests":81,"bodyBytes":1674951,"catalogGets":0}
+{"lane":"home","version":"head","repeat":2,"elapsedMs":510.2551999999996,"requests":81,"bodyBytes":1674951,"catalogGets":0}
+{"lane":"home","version":"base","repeat":2,"elapsedMs":502.11079999999856,"requests":82,"bodyBytes":8202346,"catalogGets":1}
+{"lane":"home","version":"base","repeat":3,"elapsedMs":634.1887000000024,"requests":82,"bodyBytes":8202346,"catalogGets":1}
+{"lane":"home","version":"head","repeat":3,"elapsedMs":505.14930000000095,"requests":81,"bodyBytes":1674951,"catalogGets":0}
+{"lane":"roster-dg","version":"base","repeat":1,"elapsedMs":870.4670000000006,"requests":112,"bodyBytes":18972770,"catalogGets":1}
+{"lane":"roster-dg","version":"head","repeat":1,"elapsedMs":896.393,"requests":112,"bodyBytes":18975236,"catalogGets":1}
+{"lane":"roster-dg","version":"head","repeat":2,"elapsedMs":899.2471000000005,"requests":112,"bodyBytes":18975236,"catalogGets":1}
+{"lane":"roster-dg","version":"base","repeat":2,"elapsedMs":860.0123000000021,"requests":112,"bodyBytes":18972770,"catalogGets":1}
+{"lane":"roster-dg","version":"base","repeat":3,"elapsedMs":817.7183000000005,"requests":112,"bodyBytes":18972770,"catalogGets":1}
+{"lane":"roster-dg","version":"head","repeat":3,"elapsedMs":885.5541999999987,"requests":112,"bodyBytes":18975236,"catalogGets":1}
+{"lane":"roster-sm","version":"base","repeat":1,"elapsedMs":1338.9955999999984,"requests":115,"bodyBytes":45164758,"catalogGets":1}
+{"lane":"roster-sm","version":"head","repeat":1,"elapsedMs":1413.8458000000028,"requests":115,"bodyBytes":45167224,"catalogGets":1}
+{"lane":"roster-sm","version":"head","repeat":2,"elapsedMs":1441.002999999997,"requests":115,"bodyBytes":45167224,"catalogGets":1}
+{"lane":"roster-sm","version":"base","repeat":2,"elapsedMs":1379.4504000000015,"requests":115,"bodyBytes":45164758,"catalogGets":1}
+{"lane":"roster-sm","version":"base","repeat":3,"elapsedMs":1394.9881999999998,"requests":115,"bodyBytes":45164758,"catalogGets":1}
+{"lane":"roster-sm","version":"head","repeat":3,"elapsedMs":1401.9040999999997,"requests":115,"bodyBytes":45167224,"catalogGets":1}
+page.waitForFunction: TypeError: No roster
+    at Object.snapshot (http://127.0.0.1:57220/head/books/shared/roster-v2/runtime.mjs:146:35)
+    at Object.snapshot (http://127.0.0.1:57220/head/books/tau-empire/v2/roster-import.mjs:191:28)
+    at Object.snapshot (http://127.0.0.1:57220/head/books/shared/roster-v2/runtime.mjs:93:26)
+    at eval (eval at predicate (eval at evaluate (:303:30)), <anonymous>:3:66)
+    at predicate (eval at evaluate (:303:30), <anonymous>:7:27)
+    at next (eval at evaluate (:303:30), <anonymous>:29:33)
+    at eval (eval at evaluate (:303:30), <anonymous>:42:13)
+    at UtilityScript.evaluate (<anonymous>:305:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at rosterReady (E:\Warhammer\qa-evidence\browser-compat-v1-2026-11-20\RECIPES\runtime-performance.mjs:111:14)
+    at async probeMemoryCache (E:\Warhammer\qa-evidence\browser-compat-v1-2026-11-20\RECIPES\runtime-performance.mjs:164:88)
+    at async file:///E:/Warhammer/qa-evidence/browser-compat-v1-2026-11-20/RECIPES/runtime-performance.mjs:195:83

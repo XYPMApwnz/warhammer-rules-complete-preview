@@ -1,0 +1,246 @@
+{
+  "schema": "browser-source-catalog-published-closure-inventory/v1",
+  "method": "Conservative exact content-ID union over every published book generated JSON; expand all raw binding tuple layout/context references. Includes any textual exact IDs, so an upper bound on semantically reachable entries.",
+  "catalog": {
+    "file": "books/shared/source-refs-v2/source-catalog.json",
+    "rawBytes": 6530013,
+    "gzipBytes": 719107,
+    "counts": {
+      "documents": 562,
+      "uniqueDocuments": 522,
+      "layouts": 182,
+      "contexts": 10168,
+      "bindings": 19286
+    },
+    "sections": [
+      "documents",
+      "layouts",
+      "contexts",
+      "bindings"
+    ]
+  },
+  "projection": {
+    "rawBytes": 6414207,
+    "gzipBytes": 703885,
+    "counts": {
+      "documents": 517,
+      "uniqueDocuments": 477,
+      "layouts": 179,
+      "contexts": 10083,
+      "bindings": 19027
+    },
+    "retainedByteRatio": 0.9822655789506085
+  },
+  "publishedInputs": [
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+      "inputBytes": 7645420,
+      "directIDs": {
+        "documents": 16,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 120
+      }
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/effective.json",
+      "inputBytes": 2071698,
+      "directIDs": {
+        "documents": 46,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 13
+      }
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "inputBytes": 4669035,
+      "directIDs": {
+        "documents": 53,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 27
+      }
+    },
+    {
+      "file": "books/blood-angels/v2/generated/app-presentation.json",
+      "inputBytes": 19417812,
+      "directIDs": {
+        "documents": 11,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 1754
+      }
+    },
+    {
+      "file": "books/blood-angels/v2/generated/roster-import.json",
+      "inputBytes": 5901206,
+      "directIDs": {
+        "documents": 10,
+        "layouts": 1,
+        "contexts": 0,
+        "bindings": 2256
+      }
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/app-presentation.json",
+      "inputBytes": 19600722,
+      "directIDs": {
+        "documents": 64,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 3683
+      }
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/roster-import.json",
+      "inputBytes": 3063451,
+      "directIDs": {
+        "documents": 115,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 2338
+      }
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "inputBytes": 7827249,
+      "directIDs": {
+        "documents": 115,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 2626
+      }
+    },
+    {
+      "file": "books/dark-angels/v2/generated/app-presentation.json",
+      "inputBytes": 19763042,
+      "directIDs": {
+        "documents": 11,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 1775
+      }
+    },
+    {
+      "file": "books/dark-angels/v2/generated/roster-import.json",
+      "inputBytes": 6104188,
+      "directIDs": {
+        "documents": 10,
+        "layouts": 1,
+        "contexts": 0,
+        "bindings": 2349
+      }
+    },
+    {
+      "file": "books/death-guard/v2/generated/app-presentation.json",
+      "inputBytes": 6112063,
+      "directIDs": {
+        "documents": 28,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 172
+      }
+    },
+    {
+      "file": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "inputBytes": 2295405,
+      "directIDs": {
+        "documents": 47,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 530
+      }
+    },
+    {
+      "file": "books/emperors-children/v2/generated/app-presentation.json",
+      "inputBytes": 5437377,
+      "directIDs": {
+        "documents": 34,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 163
+      }
+    },
+    {
+      "file": "books/emperors-children/v2/generated/roster-attachments.json",
+      "inputBytes": 3507434,
+      "directIDs": {
+        "documents": 33,
+        "layouts": 8,
+        "contexts": 10,
+        "bindings": 94
+      }
+    },
+    {
+      "file": "books/emperors-children/v2/generated/roster-import.json",
+      "inputBytes": 2166207,
+      "directIDs": {
+        "documents": 31,
+        "layouts": 1,
+        "contexts": 0,
+        "bindings": 43
+      }
+    },
+    {
+      "file": "books/space-marines/v2/generated/app-presentation.json",
+      "inputBytes": 23277245,
+      "directIDs": {
+        "documents": 12,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 1858
+      }
+    },
+    {
+      "file": "books/space-marines/v2/generated/roster-import.json",
+      "inputBytes": 6799242,
+      "directIDs": {
+        "documents": 9,
+        "layouts": 4,
+        "contexts": 10,
+        "bindings": 2355
+      }
+    },
+    {
+      "file": "books/tau-empire/v2/generated/app-presentation.json",
+      "inputBytes": 7092004,
+      "directIDs": {
+        "documents": 50,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 876
+      }
+    },
+    {
+      "file": "books/tau-empire/v2/generated/roster-import.json",
+      "inputBytes": 3543842,
+      "directIDs": {
+        "documents": 93,
+        "layouts": 2,
+        "contexts": 19,
+        "bindings": 1765
+      }
+    },
+    {
+      "file": "books/tyranids/v2/generated/app-presentation.json",
+      "inputBytes": 8747921,
+      "directIDs": {
+        "documents": 60,
+        "layouts": 0,
+        "contexts": 0,
+        "bindings": 886
+      }
+    },
+    {
+      "file": "books/tyranids/v2/generated/roster-runtime.json",
+      "inputBytes": 3064045,
+      "directIDs": {
+        "documents": 111,
+        "layouts": 6,
+        "contexts": 162,
+        "bindings": 1386
+      }
+    }
+  ]
+}

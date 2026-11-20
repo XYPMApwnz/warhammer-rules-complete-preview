@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "feature": "b0aa1273b907020776dec41ca0466d646e5435e2",
+  "verifiedAt": "2026-11-20T22:54:17.0754591Z",
+  "preview": {
+    "status": "RUNNING",
+    "pid": 4068,
+    "sha": "b0aa1273b907020776dec41ca0466d646e5435e2",
+    "root": "E:\\Warhammer\\qa-tmp\\preview-v1\\package-browser-compat-b0aa1273",
+    "started": "2026-11-20T22:54:16.565Z",
+    "http": "http://localhost:8765/",
+    "lan": "http://192.168.1.124:8765/",
+    "https": "https://192.168.1.124:8443/",
+    "stopFile": "E:\\Warhammer\\qa-tmp\\preview-v1\\STOP-browser-compat-b0aa1273",
+    "cacheRevision": "d08e23b961b6f507",
+    "servedContentSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909",
+    "preffPassed": 202
+  },
+  "packageMatchesExactPreff": true,
+  "manifestSha256": "615a0834ea9032a19ae163acc4dd4454dc847fb574110849a0eb5a6ec4f1805c",
+  "http": {
+    "status": 200,
+    "url": "http://192.168.1.124:8765/"
+  },
+  "listeners": [
+    {
+      "LocalAddress": "0.0.0.0",
+      "LocalPort": 8765,
+      "OwningProcess": 4068
+    },
+    {
+      "LocalAddress": "0.0.0.0",
+      "LocalPort": 8443,
+      "OwningProcess": 4068
+    }
+  ],
+  "remoteSource": "9876164de85f1e35aa2cf070a3eb9de662093980",
+  "fastForwardPerformed": false,
+  "networkOrTlsChanged": false
+}

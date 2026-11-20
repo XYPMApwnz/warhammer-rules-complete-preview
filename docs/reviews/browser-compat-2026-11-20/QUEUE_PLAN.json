@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "baseJobs": 198,
+  "headJobs": 202,
+  "allExistingOrderRetained": true,
+  "added": [
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser-compatibility-qa.mjs"
+      ],
+      "id": "tests/browser-compatibility-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser-compat-equivalence-qa.mjs"
+      ],
+      "id": "tests/browser-compat-equivalence-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser-catalog-loader-qa.mjs"
+      ],
+      "id": "tests/browser-catalog-loader-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser-catalog-cache-qa.mjs"
+      ],
+      "id": "tests/browser-catalog-cache-qa.mjs"
+    }
+  ],
+  "removed": []
+}
