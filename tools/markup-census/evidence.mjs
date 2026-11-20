@@ -55,6 +55,43 @@ function recipientFixture(document,{evidence,row,canonicalId}){
   nonempty(record.canonical.text)&&typeof record.expectedAttached==='boolean';
 }
 
+/** A reviewed owner-only boundary closes annotation debt without inventing a
+ * recipient fixture. Exact source/clause fingerprints still come from the
+ * current decision; the original debt baseline and recipient witnesses remain.
+ */
+function ownerOnlyReview(document,{evidence,row,canonicalId}){
+ const reason='battlefield-dependent; owner-only (owner decision 2026-11-20)';
+ const clarification='Unit/model abilities are owner-only; army and detachment rules remain available to eligible units of the selected army/detachment (owner clarification 2026-11-20).';
+ const scopeFor=kind=>['ARMY_RULE','DETACHMENT_RULE'].includes(kind)?'ARMY_ELIGIBLE_RECIPIENTS':'OWNER_ONLY';
+ const exactKeys=(value,keys)=>value&&typeof value==='object'&&!Array.isArray(value)&&
+  Object.keys(value).length===keys.length&&keys.every(key=>Object.hasOwn(value,key));
+ if(!exactKeys(document,['schema','decisionDate','authority','reason','sourceReview','records','scopeClarification'])||
+  document.schema!=='markup-owner-only-review/v1'||document.decisionDate!=='2026-11-20'||
+  document.authority!=='owner'||document.reason!==reason||document.scopeClarification!==clarification||
+  document.sourceReview!=='a594b2b19b0e654c774b33f7a3ca417a8b76790a:docs/reviews/markup-gate-2026-11-20/remaining-45-gaps.csv'||
+  !Array.isArray(document.records)||!document.records.length||evidence.identity!==row.id)return false;
+ const keys=new Set();
+ for(const record of document.records){
+  if(!exactKeys(record,['book','id','sourceEntityId','sourceFields','sourceFingerprint','category','reason','ownerOnly','decisionDate','clauseIds','kind','presentationScope'])||
+   !nonempty(record.book)||!nonempty(record.id)||!nonempty(record.sourceEntityId)||
+   !Array.isArray(record.sourceFields)||!record.sourceFields.length||!record.sourceFields.every(sourcePath)||
+   !/^[a-f0-9]{64}$/.test(record.sourceFingerprint)||record.category!=='TEXT_ONLY_INTENDED'||
+   !['ARMY_RULE','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','ABILITY','WARGEAR_ABILITY','CORE_ABILITY'].includes(record.kind)||
+   record.presentationScope!==scopeFor(record.kind)||record.ownerOnly!==(record.presentationScope==='OWNER_ONLY')||
+   record.reason!==reason||record.decisionDate!=='2026-11-20'||
+   !Array.isArray(record.clauseIds)||record.clauseIds.some(id=>!nonempty(id))||
+   new Set(record.clauseIds).size!==record.clauseIds.length)return false;
+  const key=record.book+'\0'+record.id;if(keys.has(key))return false;keys.add(key);
+ }
+ const matches=document.records.filter(record=>record.book===row.book&&record.id===row.id);
+ if(matches.length!==1)return false;
+ const record=matches[0];
+ return row.category==='TEXT_ONLY_INTENDED'&&row.reason===reason&&record.kind===row.kind&&
+  record.presentationScope===row.presentationScope&&record.sourceEntityId===canonicalId&&
+  record.sourceFingerprint===row.sourceFingerprint&&JSON.stringify(record.sourceFields)===JSON.stringify(row.sourceFields)&&
+  JSON.stringify(record.clauseIds)===JSON.stringify(row.clauseIds);
+}
+
 /** Unknown evidence formats deliberately fail closed; add a reviewed adapter
  * rather than treating arbitrary files containing an identity as fixtures.
  */
@@ -87,7 +124,10 @@ export function verifyMarkupEvidence({root,evidence,row}={}){
    return exactLiteral(text,canonicalId)&&/\bassert(?:\s*\(|\.)/.test(text);
   }
   if(path.extname(file)!=='.json')return false;
-  return recipientFixture(JSON.parse(text),{evidence,row,canonicalId});
+  const document=JSON.parse(text);
+  return document?.schema==='markup-owner-only-review/v1'
+   ?ownerOnlyReview(document,{evidence,row,canonicalId})
+   :recipientFixture(document,{evidence,row,canonicalId});
  }catch{
   return false;
  }

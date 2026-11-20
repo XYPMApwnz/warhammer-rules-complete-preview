@@ -1,0 +1,383 @@
+/** Exact source-bound owner-only decision and actual-consumer mutation controls. */
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {execFileSync} from 'node:child_process';
+import {collectNativeInventory,inventoryFingerprint} from '../tools/markup-census/native-inventory.mjs';
+import {checkMarkup,decisionKey,coverageProof} from '../tools/markup-census/check.mjs';
+import {probeConditionComputers} from '../tools/markup-census/computers.mjs';
+import {OWNER_ONLY_REASON,OWNER_ONLY_CONSUMERS,ownerOnlyRuleDiagnostics,ownerOnlyConsumerEvidence,ownerOnlyViolations,potentiallyForeignAttached,isArmyOwnedKind,reviewedPresentationScope,needsOwnerOnlyIsolation} from '../tools/markup-census/owner-only.mjs';
+import {verifyMarkupEvidence} from '../tools/markup-census/evidence.mjs';
+import {projectAttachedRuleTexts} from '../books/shared/roster-v2/attached-rule-text.mjs';
+import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
+import {createQaTempDir,cleanupQaTempDir} from './helpers/qa-temp.mjs';
+
+const root=fileURLToPath(new URL('../',import.meta.url)),dir=path.join(root,'tools/markup-census');
+const read=name=>JSON.parse(fs.readFileSync(path.join(dir,name+'.v1.json'),'utf8'));
+const started=performance.now(),review=read('owner-only-review');
+// Exact identities are the dated review scope, not a frozen future HEAD census.
+// Keep literals source-linked so unrelated tests cannot certify debt closure.
+const REVIEW_IDENTITIES=[
+ [
+  "adeptus-mechanicus",
+  "datasheet-archaeopter-fusilave:section:1#/blocks/0/text",
+  "datasheet-archaeopter-fusilave:section:1"
+ ],
+ [
+  "adeptus-mechanicus",
+  "datasheet-belisarius-cawl:section:4#/blocks/0/text",
+  "datasheet-belisarius-cawl:section:4"
+ ],
+ [
+  "adeptus-mechanicus",
+  "datasheet-onager-dunecrawler:section:1#/blocks/0/text",
+  "datasheet-onager-dunecrawler:section:1"
+ ],
+ [
+  "adeptus-mechanicus",
+  "datasheet-pteraxii-sterylizors:section:1#/blocks/0/text",
+  "datasheet-pteraxii-sterylizors:section:1"
+ ],
+ [
+  "adeptus-mechanicus",
+  "datasheet-skitarii-marshal:section:1#/blocks/1/text",
+  "datasheet-skitarii-marshal:section:1"
+ ],
+ [
+  "adeptus-mechanicus",
+  "datasheet-skorpius-dunerider:section:1#/blocks/1/text",
+  "datasheet-skorpius-dunerider:section:1"
+ ],
+ [
+  "adeptus-mechanicus",
+  "detachment-cohort-cybernetica:enhancement:3",
+  "detachment-cohort-cybernetica:enhancement:3"
+ ],
+ [
+  "adeptus-mechanicus",
+  "detachment-data-psalm-conclave:rule#component/panegyric-procession",
+  "detachment-data-psalm-conclave:rule"
+ ],
+ [
+  "death-guard",
+  "army-rule-nurgles-gift:afflicted#/text",
+  "army-rule-nurgles-gift:afflicted"
+ ],
+ [
+  "death-guard",
+  "army-rule-nurgles-gift:contagion-range#/text",
+  "army-rule-nurgles-gift:contagion-range"
+ ],
+ [
+  "death-guard",
+  "army-rule-nurgles-gift:rattlejoint-ague#/text",
+  "army-rule-nurgles-gift:rattlejoint-ague"
+ ],
+ [
+  "death-guard",
+  "army-rule-nurgles-gift:scabrous-soulrot#/text",
+  "army-rule-nurgles-gift:scabrous-soulrot"
+ ],
+ [
+  "death-guard",
+  "army-rule-nurgles-gift:skullsquirm-blight#/text",
+  "army-rule-nurgles-gift:skullsquirm-blight"
+ ],
+ [
+  "death-guard",
+  "datasheet-chaos-land-raider:section:1#/blocks/0/text",
+  "datasheet-chaos-land-raider:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-chaos-predator-annihilator:section:1#/blocks/0/text",
+  "datasheet-chaos-predator-annihilator:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-chaos-predator-destructor:section:1#/blocks/0/text",
+  "datasheet-chaos-predator-destructor:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-chaos-rhino:section:1#/blocks/0/text",
+  "datasheet-chaos-rhino:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-chaos-spawn:section:1#/blocks/0/text",
+  "datasheet-chaos-spawn:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-daemon-prince-of-nurgle-with-wings:section:1#/blocks/0/text",
+  "datasheet-daemon-prince-of-nurgle-with-wings:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-daemon-prince-of-nurgle-with-wings:section:1#/blocks/1/text",
+  "datasheet-daemon-prince-of-nurgle-with-wings:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-daemon-prince-of-nurgle:section:1#/blocks/2/text",
+  "datasheet-daemon-prince-of-nurgle:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-defiler:section:1#/blocks/1/text",
+  "datasheet-defiler:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:1#/blocks/0/text",
+  "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-foul-blightspawn:section:1#/blocks/1/text",
+  "datasheet-foul-blightspawn:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-great-unclean-one:raw-dsAbility:1",
+  "datasheet-great-unclean-one:raw-dsAbility:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-great-unclean-one:section:1#/blocks/0/text",
+  "datasheet-great-unclean-one:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-great-unclean-one:section:1#/blocks/1/text",
+  "datasheet-great-unclean-one:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-icon-bearer:section:1#/blocks/1/text",
+  "datasheet-icon-bearer:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-lord-of-virulence:section:1#/blocks/1/text",
+  "datasheet-lord-of-virulence:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-malignant-plaguecaster:section:1#/blocks/1/text",
+  "datasheet-malignant-plaguecaster:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-miasmic-malignifier:section:2#/blocks/0/text",
+  "datasheet-miasmic-malignifier:section:2"
+ ],
+ [
+  "death-guard",
+  "datasheet-miasmic-malignifier:section:2#/blocks/1/text",
+  "datasheet-miasmic-malignifier:section:2"
+ ],
+ [
+  "death-guard",
+  "datasheet-miasmic-malignifier:section:2#/blocks/2/text",
+  "datasheet-miasmic-malignifier:section:2"
+ ],
+ [
+  "death-guard",
+  "datasheet-mortarion:section:1#/blocks/0/text",
+  "datasheet-mortarion:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-mortarion:section:1#/blocks/1/text",
+  "datasheet-mortarion:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-mortarion:section:1#/blocks/2/text",
+  "datasheet-mortarion:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-mortarion:section:3#/blocks/1/text",
+  "datasheet-mortarion:section:3"
+ ],
+ [
+  "death-guard",
+  "datasheet-nurglings:section:1#/blocks/0/text",
+  "datasheet-nurglings:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-plague-drones:section:1#/blocks/0/text",
+  "datasheet-plague-drones:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-plagueburst-crawler:section:1#/blocks/0/text",
+  "datasheet-plagueburst-crawler:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-rotigus:section:1#/blocks/0/text",
+  "datasheet-rotigus:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-rotigus:section:1#/blocks/1/text",
+  "datasheet-rotigus:section:1"
+ ],
+ [
+  "death-guard",
+  "datasheet-typhus:section:1#/blocks/1/text",
+  "datasheet-typhus:section:1"
+ ],
+ [
+  "death-guard",
+  "detachment-contagion-engines:enhancement:1",
+  "detachment-contagion-engines:enhancement:1"
+ ],
+ [
+  "death-guard",
+  "detachment-tallyband-summoners:enhancement:4",
+  "detachment-tallyband-summoners:enhancement:4"
+ ]
+];
+const order=rows=>rows.map(row=>Array.isArray(row)?row:[row.book,row.id,row.sourceEntityId]).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b),'en'));
+const accepted=JSON.parse(execFileSync('git',['show','9efbd95f67c5e65bc62b477e36acf9d710ff4784:tools/markup-census/decisions.v1.json'],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024}));
+assert.deepEqual(order(REVIEW_IDENTITIES),order(accepted.records.filter(row=>row.category==='GAP')),'The approved exact 45 source identities come from the accepted source ledger');
+assert.equal(REVIEW_IDENTITIES.length,45);
+assert.deepEqual(order(review.records),order(REVIEW_IDENTITIES),'Review neither omits nor adds a debt item');
+assert.equal(review.reason,OWNER_ONLY_REASON);assert.equal(review.decisionDate,'2026-11-20');assert.equal(review.authority,'owner');
+const inventory=await collectNativeInventory({root}),registry=read('decisions'),baseline=read('debt-baseline'),debt=read('debt'),closures=read('closures'),retirements=read('retirements');
+const computerAvailability=await probeConditionComputers({inventory,root});
+const verifyEvidence=(evidence,row)=>verifyMarkupEvidence({root,evidence,row});
+const input={inventory,registry,baseline,debt,closures,retirements,computerAvailability,verifyEvidence};
+const result=checkMarkup(input);assert.equal(result.counts.GAP,0);
+assert.deepEqual(inventory.ownerOnlyConsumers,OWNER_ONLY_CONSUMERS,'Actual presentation function and private admission helper are reviewed');
+const records=new Map(registry.records.map(row=>[decisionKey(row),row]));
+for(const item of review.records){
+ const decision=records.get(decisionKey(item)),native=inventory.rows.find(row=>decisionKey(row)===decisionKey(item));assert(decision&&native);
+ assert.equal(decision.category,'TEXT_ONLY_INTENDED');assert.equal(decision.reason,OWNER_ONLY_REASON);assert.equal(item.ownerOnly,!isArmyOwnedKind(native.kind));
+ assert.equal(item.kind,native.kind);assert.equal(item.presentationScope,reviewedPresentationScope(native.kind));
+ assert.equal(decision.presentationScope,item.presentationScope);
+ assert.equal(item.sourceFingerprint,native.sourceFingerprint);assert.equal(item.sourceFingerprint,decision.sourceFingerprint);
+ assert.deepEqual(item.sourceFields,decision.sourceFields);assert.deepEqual(item.clauseIds,decision.proof.clauseIds);
+ if(needsOwnerOnlyIsolation(decision))assert.deepEqual(ownerOnlyViolations(native,inventory),[],'No admitted foreign route: '+item.book+' / '+item.id);
+ assert(verifyEvidence({kind:'fixture',path:'tools/markup-census/owner-only-review.v1.json',identity:item.id},
+  {...item,clauseIds:decision.proof.clauseIds}),'Exact source review fixture: '+item.id);
+}
+// Army/Detachment rules are owned by the army; their eligible roster units
+// remain recipients under the explicit scope clarification, not a name waiver.
+const panegyric=inventory.rows.find(row=>row.book==='adeptus-mechanicus'&&row.id==='detachment-data-psalm-conclave:rule#component/panegyric-procession');assert(panegyric);
+const panegyricDecision=records.get(decisionKey(panegyric));
+assert.equal(panegyric.kind,'DETACHMENT_RULE');assert.equal(panegyricDecision.presentationScope,'ARMY_ELIGIBLE_RECIPIENTS');
+assert.equal(needsOwnerOnlyIsolation(panegyricDecision),false);
+assert(ownerOnlyViolations(panegyric,inventory).some(message=>message.includes('shared source field /text')),'Existing complete F1 source remains intentionally allowed for this army-owned rule');
+for(const kind of ['ARMY_RULE','DETACHMENT_RULE']){
+ assert.equal(reviewedPresentationScope(kind),'ARMY_ELIGIBLE_RECIPIENTS');
+ assert.equal(needsOwnerOnlyIsolation({kind,reason:OWNER_ONLY_REASON,presentationScope:'ARMY_ELIGIBLE_RECIPIENTS'}),false);
+}
+for(const kind of ['ABILITY','WARGEAR_ABILITY','CORE_ABILITY','ENHANCEMENT']){
+ assert.equal(reviewedPresentationScope(kind),'OWNER_ONLY');
+ assert.equal(needsOwnerOnlyIsolation({kind,reason:OWNER_ONLY_REASON,presentationScope:'OWNER_ONLY'}),true);
+}
+const controls=[];
+const reject=(name,code,overrides)=>{
+ assert.throws(()=>checkMarkup({...input,...overrides}),error=>error.message.includes('Markup census '+code+':'),name);
+ controls.push({name,code,status:'DETECTED'});
+};
+const first=inventory.rows.find(row=>decisionKey(row)===decisionKey(review.records[0]));
+const index=registry.records.findIndex(row=>decisionKey(row)===decisionKey(first));
+const invalidCategory={...registry,records:[...registry.records]};invalidCategory.records[index]={...invalidCategory.records[index],category:'RECIPIENTS_ONLY'};
+reject('owner-only cannot be relabelled recipients-only','OWNER_ONLY_CATEGORY',{registry:invalidCategory});
+const registryChange=mutate=>{
+ const changed={...registry,records:[...registry.records]},entry=structuredClone(changed.records[index]);changed.records[index]=entry;mutate(entry);return changed;
+};
+reject('physical ability cannot forge army recipient scope','OWNER_ONLY_SCOPE',{registry:registryChange(row=>{row.presentationScope='ARMY_ELIGIBLE_RECIPIENTS';})});
+reject('reviewed presentation scope cannot disappear','OWNER_ONLY_SCOPE',{registry:registryChange(row=>{delete row.presentationScope;})});
+reject('forged army kind cannot bypass the actual native ability kind','IDENTITY_CHANGED',{registry:registryChange(row=>{row.kind='ARMY_RULE';row.presentationScope='ARMY_ELIGIBLE_RECIPIENTS';})});
+const armyIndex=registry.records.findIndex(row=>decisionKey(row)===decisionKey(panegyric));
+const invalidArmy={...registry,records:[...registry.records]};invalidArmy.records[armyIndex]={...invalidArmy.records[armyIndex],presentationScope:'OWNER_ONLY'};
+reject('army-owned rule cannot silently lose its clarified recipient scope','OWNER_ONLY_SCOPE',{registry:invalidArmy});
+
+const withoutDiagnostic={...first};delete withoutDiagnostic.ownerOnlyDiagnostics;
+reject('missing native diagnostic is not assumed owner-only','OWNER_ONLY_RECIPIENT',{inventory:{...inventory,rows:inventory.rows.map(row=>row===first?withoutDiagnostic:row)}});
+// A partial reviewed rule has two recorded but currently rejected ROLE links.
+// They lack every necessary ATTACHED origin/source binding; no text propagates.
+const tome=inventory.rows.find(row=>row.book==='death-guard'&&row.id==='detachment-tallyband-summoners:enhancement:4');assert(tome);
+assert.equal(tome.presentationChannels.length,2);
+assert(tome.ownerOnlyDiagnostics.links.every(link=>link.channel.consumer==='ATTACHED'&&!potentiallyForeignAttached(link,tome.ownerOnlyDiagnostics,tome)));
+const nativeDocument=parseProducerJSON(fs.readFileSync(path.join(root,tome.nativeInput),'utf8'));
+const nativeEntity=(nativeDocument.book||nativeDocument).entities.find(entity=>entity.id===tome.sourceEntityId);assert(nativeEntity);
+const mutation=mutate=>{
+ const entity=structuredClone(nativeEntity);mutate(entity);
+ const clauses=entity.ruleContract.clauses.filter(clause=>tome.clauseIds.includes(clause.id));
+ const diagnostic=ownerOnlyRuleDiagnostics(entity,clauses),changed={...tome,ownerOnlyDiagnostics:diagnostic,
+  presentationChannels:diagnostic.links.map(link=>link.channel),bindingFingerprint:inventoryFingerprint(entity.ruleContract),
+  capabilityFingerprint:inventoryFingerprint(diagnostic)};
+ const revised={...registry,records:[...registry.records]},i=revised.records.findIndex(row=>decisionKey(row)===decisionKey(tome));
+ revised.records[i]={...revised.records[i],proof:coverageProof(changed,computerAvailability)};
+ return {registry:revised,inventory:{...inventory,rows:inventory.rows.map(row=>row===tome?changed:row)}};
+};
+reject('real canonical UNIT FORMED recipient admitted even after proof refresh','OWNER_ONLY_RECIPIENT',mutation(entity=>{
+ const clause=entity.ruleContract.clauses.find(clause=>clause.id==='test-modifier');
+ clause.roles.find(role=>role.id==='affected-unit').binding='SOURCE_UNIT';
+ clause.recipients.find(recipient=>recipient.roleId==='affected-unit').from='SOURCE_UNIT';
+}));
+reject('actual source-model radius admission added to canonical clause','OWNER_ONLY_RECIPIENT',mutation(entity=>{
+ const node=entity.ruleContract.clauses.find(clause=>clause.id==='test-modifier').conditions.find(node=>node.arguments.key==='withinTwelveOfBearer');
+ Object.assign(node.arguments,{from:'SOURCE_MODEL',ruleId:entity.id,inches:12});
+}));
+const target={...tome,relatedRuleRows:[...tome.relatedRuleRows,{unitId:'unit-plague-marines',ruleId:tome.sourceEntityId,state:'TRUE',roles:[{roleId:'affected-unit',subject:'UNIT',state:'TRUE'}]}]};
+reject('foreign related-target route cannot inherit owner-only review','OWNER_ONLY_RECIPIENT',{inventory:{...inventory,rows:inventory.rows.map(row=>row===tome?target:row)}});
+const f1=structuredClone(tome);f1.presentationChannels[0].consumer='F1';f1.ownerOnlyDiagnostics.links[0].channel.consumer='F1';
+reject('new F1 recipient path requires review','OWNER_ONLY_RECIPIENT',{inventory:{...inventory,rows:inventory.rows.map(row=>row===tome?f1:row)}});
+const policy=structuredClone(tome);policy.presentationChannels[0].path='POLICY';policy.presentationChannels[0].recipient.from='ROSTER_UNITS';
+policy.ownerOnlyDiagnostics.links[0].channel=structuredClone(policy.presentationChannels[0]);
+reject('separate roster conditional-policy consumer is also guarded','OWNER_ONLY_RECIPIENT',{inventory:{...inventory,rows:inventory.rows.map(row=>row===tome?policy:row)}});
+const declaration=structuredClone(tome);declaration.presentationChannels[0].path='DECLARATION_EFFECT';
+declaration.ownerOnlyDiagnostics.links[0].channel=structuredClone(declaration.presentationChannels[0]);
+reject('additional declaration effect cannot hide behind dormant ROLE admission','OWNER_ONLY_RECIPIENT',{inventory:{...inventory,rows:inventory.rows.map(row=>row===tome?declaration:row)}});
+// Normal physical owner text/eligibility is permitted. SOURCE_UNIT PHYSICAL
+// never admits text onto another attached component in the actual consumer.
+const own=structuredClone(tome);for(const link of own.ownerOnlyDiagnostics.links)link.channel.recipient.from='SOURCE_UNIT',link.channel.recipient.scope='PHYSICAL';
+own.presentationChannels=own.ownerOnlyDiagnostics.links.map(link=>link.channel);
+assert.deepEqual(ownerOnlyViolations(own),[],'Physical source text is not a foreign grant');
+assert.deepEqual(ownerOnlyViolations({...first,relatedRuleRows:[{unitId:first.ownerId,state:'TRUE',roles:[]}]}),[],'Canonical owner reference remains available');
+const executed={...first,effects:[{operation:'MODIFY_CHARACTERISTIC',operationSupported:true}]};
+reject('text-only review does not authorize executable leakage','OWNER_ONLY_RECIPIENT',{inventory:{...inventory,rows:inventory.rows.map(row=>row===first?executed:row)}});
+const source=projectAttachedRuleTexts.toString();assert.equal(source.split('const eligible=').length-1,1);
+const changedFunction=new Function('return '+source.replace('const eligible=','const eligible=true||'))();
+reject('actual consumer necessary admission gate changes','OWNER_ONLY_CONSUMER_CHANGED',{inventory:{...inventory,ownerOnlyConsumers:ownerOnlyConsumerEvidence({attachedProjector:changedFunction})}});
+const attachedSource=fs.readFileSync(path.join(root,'books/shared/roster-v2/attached-rule-text.mjs'),'utf8');
+assert.equal([...attachedSource.matchAll(/^const leaves=node=>.*;$/gm)].length,1);
+reject('actual private leaves helper changes','OWNER_ONLY_CONSUMER_CHANGED',{inventory:{...inventory,ownerOnlyConsumers:ownerOnlyConsumerEvidence({attachedSource:attachedSource.replace('const leaves=node=>','const leaves=node=>[]&&')})}});
+reject('missing or ambiguous private helper fails closed','OWNER_ONLY_CONSUMER_CHANGED',{inventory:{...inventory,ownerOnlyConsumers:ownerOnlyConsumerEvidence({attachedSource:attachedSource+'\nconst leaves=node=>[];\n'})}});
+// Schema poisons use the same exact source review without editing working files.
+const arena=createQaTempDir('markup-owner-only-review-');
+try{
+ const item=review.records[0],context={...item};
+ for(const [name,mutate]of [
+  ['wrong decision date',document=>{document.records[0].decisionDate='2026-11-19';}],
+  ['stale source fingerprint',document=>{document.records[0].sourceFingerprint='0'.repeat(64);}],
+  ['wrong exact source field',document=>{document.records[0].sourceFields=[['not-the-source-field']];}],
+  ['wrong exact clause set',document=>{document.records[0].clauseIds=['not-the-source-clause'];}],
+  ['wrong canonical source identity',document=>{document.records[0].sourceEntityId='wrong-source';}],
+  ['duplicate reviewed identity',document=>{document.records.push(structuredClone(document.records[0]));}],
+  ['owner-only false for a physical ability',document=>{document.records[0].ownerOnly=false;}],
+  ['forged fixture presentation scope',document=>{document.records[0].presentationScope='ARMY_ELIGIBLE_RECIPIENTS';}],
+  ['forged fixture army kind',document=>{document.records[0].kind='ARMY_RULE';document.records[0].presentationScope='ARMY_ELIGIBLE_RECIPIENTS';document.records[0].ownerOnly=false;}],
+  ['missing fixture scope clarification',document=>{delete document.scopeClarification;}],
+  ['wrong decision authority',document=>{document.authority='unreviewed';}],
+  ['missing reviewed source manifest',document=>{delete document.sourceReview;}]
+ ]){
+  const document=structuredClone(review);mutate(document);fs.writeFileSync(path.join(arena,'review.json'),JSON.stringify(document));
+  assert.equal(verifyMarkupEvidence({root:arena,row:context,evidence:{kind:'fixture',path:'review.json',identity:item.id}}),false,name);
+  controls.push({name,code:'MISSING_CLOSURE_EVIDENCE',status:'DETECTED'});
+ }
+}finally{cleanupQaTempDir(arena);}
+console.log(JSON.stringify({status:'PASS',reviewedRules:review.records.length,N:result.N,counts:result.counts,
+ physicalOwnerOnlyRules:review.records.filter(row=>row.presentationScope==='OWNER_ONLY').length,armyOwnedRules:review.records.filter(row=>row.presentationScope==='ARMY_ELIGIBLE_RECIPIENTS').length,dormantTomeLinks:tome.presentationChannels.length,consumerProofs:inventory.ownerOnlyConsumers,controls,elapsedMs:Math.round(performance.now()-started)}));

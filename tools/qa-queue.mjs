@@ -46,6 +46,7 @@ node('tests/keyword-access-qa.mjs');
 node('tools/markup-census.mjs',['--check']);
 node('tests/markup-census-qa.mjs');
 node('tests/markup-evidence-qa.mjs');
+node('tests/markup-owner-only-qa.mjs');
 node('books/death-guard/v2/insectile-recipient-qa.mjs');
 node('v2/executable-detachment-source-qa.mjs');
 node('books/shared/army-book-app-v2/plain-header-explanation-qa.mjs');

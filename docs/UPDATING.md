@@ -137,6 +137,21 @@ unless you explicitly run `mfm:update` without saved input.
    before the final pre-FF run and independent review. There is deliberately
    no automatic decision-refresh option.
 
+The owner decision of 2026-11-20 closes the 45 explicitly reviewed battlefield-
+dependent GAPs as `TEXT_ONLY_INTENDED`. Its clarification limits owner-only
+presentation to unit/model abilities and personal upgrades. Army and Detachment
+rules belong to the army and remain visible at eligible units of the selected
+army/Detachment, including Panegyric Procession. The exact source kind determines
+the reviewed `presentationScope`; an ability cannot evade the guard by claiming
+army ownership. `owner-only-review.v1.json` pins each exact source
+and clause set; the historical debt baseline is retained. These closures have
+source-bound decision fixtures and the owner-only regression test, rather than
+claiming a newly implemented effect. Do not apply this category automatically to
+other rules or remove their current presentation in an update. A foreign-recipient
+route for a unit/model owner-only decision fails the census and requires owner
+review. Existing transferred texts in the separate recipient audit are unchanged
+and await the owner's review; this closure does not silently repair them.
+
 ## What the command selects
 
 `--book=<id>` runs the declared book chain and its declared dependants. `--all`

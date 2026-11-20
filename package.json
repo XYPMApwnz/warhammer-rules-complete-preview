@@ -7,6 +7,7 @@
   "scripts": {
     "markup:census": "node tools/markup-census.mjs",
     "test:markup-census": "node tests/markup-census-qa.mjs",
+    "test:markup-owner-only": "node tests/markup-owner-only-qa.mjs",
     "test:markup-insectile": "node books/death-guard/v2/insectile-recipient-qa.mjs && node v2/markup-insectile-browser-qa.mjs",
     "core:build": "node books/core-rules/reader/build.mjs",
     "source:check": "node books/shared/tools/source-freshness.mjs && node tests/source-enrollment-qa.mjs && node tests/source-ingestion-contract-qa.mjs && node tests/sm-authenticated-bsdata-argument-binding-qa.mjs",

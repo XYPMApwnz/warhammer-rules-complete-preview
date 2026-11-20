@@ -25,6 +25,14 @@ categories, stale sources, new debt, an actual removed roster computer, source
 field loss and the retirement/closure boundaries in both queues. The focused
 Insectile Murmuration native parity check runs in both queues; its existing O-1
 browser witness at 390/1440 runs once in pre-FF via `markup-insectile-browser-qa`.
+`test:markup-owner-only` checks the exact source-bound owner decision of
+2026-11-20 and rejects a consumed foreign-recipient route, stale review evidence
+or a changed admission consumer. It runs once in each queue. Dormant declarations
+are distinguished from paths the application can actually display; they are not
+permission to add a new recipient later without review.
+The dated scope clarification exempts actual ARMY_RULE/DETACHMENT_RULE sources
+from the foreign-recipient prohibition. Their eligible army/Detachment units keep
+the existing text; source kind and reviewed scope are checked exactly.
 `test:pwa-update` includes both working-screen manual updates and the initial
 bootstrap auto-update regression (`test:pwa-bootstrap`), with once-per-version
 failure recovery, saved-state retention, prepared offline startup and offline reopening controls.

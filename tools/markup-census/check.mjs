@@ -1,5 +1,6 @@
 /** Reviewed decisions certify current native source/binding evidence, never own facts. */
 import {inventoryFingerprint} from './native-inventory.mjs';
+import {hasOwnerOnlyReason,needsOwnerOnlyIsolation,reviewedPresentationScope,OWNER_ONLY_REASON,ownerOnlyViolations,OWNER_ONLY_CONSUMERS} from './owner-only.mjs';
 
 export const CATEGORIES=Object.freeze(['EXECUTED','RECIPIENTS_ONLY','TEXT_ONLY_INTENDED','GAP','UNKNOWN']);
 export const KINDS=Object.freeze(['ARMY_RULE','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','ABILITY','WARGEAR_ABILITY','CORE_ABILITY']);
@@ -74,12 +75,15 @@ export function validateRegistry(registry){
  requireValue(nonempty(registry.sourceReview),'INVALID_SCHEMA',null,'source review is required');
  const records=index(registry.records,'decisions');
  for(const row of records.values()){
-  keysOnly(row,['book','id','sourceEntityId','kind','sourceFields','sourceFingerprint','category','reason','evidence','partial','proof'],row,'decision');
+  keysOnly(row,['book','id','sourceEntityId','kind','sourceFields','sourceFingerprint','category','reason','evidence','partial','proof','presentationScope'],row,'decision');
   requireValue(KINDS.includes(row.kind),'INVALID_SCHEMA',row,'unknown kind '+row.kind);
   requireValue(CATEGORIES.includes(row.category),'UNCLASSIFIED',row,'one exact reviewed category is required');
   requireValue(nonempty(row.sourceEntityId)&&Array.isArray(row.sourceFields),'INVALID_SCHEMA',row,'canonical owner and source fields required');
   requireValue(digest(row.sourceFingerprint),'INVALID_SCHEMA',row,'sourceFingerprint must be SHA-256');
   requireValue(nonempty(row.reason),'INVALID_SCHEMA',row,'reviewed reason is required');
+  if(hasOwnerOnlyReason(row))requireValue(row.category==='TEXT_ONLY_INTENDED','OWNER_ONLY_CATEGORY',row,'owner-only decisions must remain explicitly text-only');
+  if(row.reason===OWNER_ONLY_REASON)requireValue(row.presentationScope===reviewedPresentationScope(row.kind),'OWNER_ONLY_SCOPE',row,'the reviewed scope must match the exact native kind: '+reviewedPresentationScope(row.kind));
+  else requireValue(!Object.hasOwn(row,'presentationScope'),'OWNER_ONLY_SCOPE',row,'presentationScope requires the exact reviewed owner decision');
   requireValue(Array.isArray(row.evidence)&&row.evidence.length&&row.evidence.every(nonempty),'INVALID_SCHEMA',row,'review evidence is required');
   requireValue(typeof row.partial==='boolean','INVALID_SCHEMA',row,'partial must be explicit');
   requireValue(row.proof&&digest(row.proof.bindingFingerprint),'INVALID_SCHEMA',row,'native binding proof is required');
@@ -111,7 +115,7 @@ export function validateDebt({baseline,debt,closures,decisions,verifyEvidence=()
   requireValue(decision&&!['GAP','UNKNOWN'].includes(decision.category)&&row.category===decision.category,'INVALID_CLOSURE',row,'closure must establish resolved coverage');
   requireValue(Array.isArray(row.evidence)&&row.evidence.length>=2,'MISSING_CLOSURE_EVIDENCE',row,'a test and source-backed fixture are required');
   requireValue(row.evidence.some(e=>e.kind==='test')&&row.evidence.some(e=>e.kind==='fixture'),'MISSING_CLOSURE_EVIDENCE',row,'both test and fixture evidence are required');
-  for(const evidence of row.evidence)requireValue(verifyEvidence(evidence,{...row,sourceEntityId:decision.sourceEntityId,clauseIds:decision.proof.clauseIds}),'MISSING_CLOSURE_EVIDENCE',row,'missing or unrelated closure evidence '+evidence.path);
+  for(const evidence of row.evidence)requireValue(verifyEvidence(evidence,{...row,sourceEntityId:decision.sourceEntityId,sourceFields:decision.sourceFields,sourceFingerprint:decision.sourceFingerprint,clauseIds:decision.proof.clauseIds,kind:decision.kind,presentationScope:decision.presentationScope}),'MISSING_CLOSURE_EVIDENCE',row,'missing or unrelated closure evidence '+evidence.path);
  }
  for(const [key,row]of decisions)if(['GAP','UNKNOWN'].includes(row.category))
   requireValue(active.has(key),'NEW_DEBT',row,'GAP/UNKNOWN is outside the exact active debt list');
@@ -150,6 +154,12 @@ export function checkMarkup({inventory,registry,baseline,debt,closures,retiremen
    requireValue(present?.present&&present.type!=='undefined','SOURCE_FIELD_LOSS',row,'accepted source field is missing: /'+field.join('/'));
   }
   requireValue(decision.sourceFingerprint===row.sourceFingerprint,'STALE_DECISION',row,'source fingerprint changed; review the exact source before deciding again');
+  if(needsOwnerOnlyIsolation(decision)){
+   requireValue(same(inventory.ownerOnlyConsumers,OWNER_ONLY_CONSUMERS),'OWNER_ONLY_CONSUMER_CHANGED',row,
+    'the attached presentation implementation changed; review owner-only admission before accepting its proof');
+   const violations=ownerOnlyViolations(row,inventory);
+   requireValue(!violations.length,'OWNER_ONLY_RECIPIENT',row,'owner-only source has an unproved or foreign presentation path: '+violations.join('; '));
+  }
   requireValue((row.effects||[]).every(effect=>effect.operationSupported),'EXECUTION_MISSING',row,'declared native effect operation has no supported interpreter operation');
   if(decision.category==='EXECUTED'){
    requireValue(hasExecution(row),'EXECUTION_MISSING',row,'no supported native operation, ability, selected weapon or enforced permission');
@@ -181,7 +191,7 @@ export function checkMarkup({inventory,registry,baseline,debt,closures,retiremen
  return {schema:'markup-census-report/v1',status:'PASS',N:current.size,counts,partial:[...current.keys()].filter(key=>decisions.get(key).partial).length,
   resolved:{count:resolved,total:current.size,percent:current.size?100*resolved/current.size:0},debt:debtResult,retired:retired.size,summary,
   rows:inventory.rows.map(row=>({book:row.book,id:row.id,name:row.name,kind:row.kind,category:decisions.get(decisionKey(row)).category,
-   reason:decisions.get(decisionKey(row)).reason,partial:decisions.get(decisionKey(row)).partial,sourceFingerprint:row.sourceFingerprint,
+   reason:decisions.get(decisionKey(row)).reason,...(decisions.get(decisionKey(row)).presentationScope?{presentationScope:decisions.get(decisionKey(row)).presentationScope}:{}),partial:decisions.get(decisionKey(row)).partial,sourceFingerprint:row.sourceFingerprint,
    bindingFingerprint:row.bindingFingerprint,sourceEntityId:row.sourceEntityId,sourceFields:row.sourceFields,nativeFactory:row.nativeFactory})),
   inputFingerprint:inventoryFingerprint(inventory.inputs),inputs:inventory.inputs};
 }
