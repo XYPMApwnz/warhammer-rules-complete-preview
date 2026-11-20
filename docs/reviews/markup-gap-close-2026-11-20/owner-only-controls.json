@@ -1,0 +1,162 @@
+{
+  "status": "PASS",
+  "reviewedRules": 45,
+  "N": 2724,
+  "counts": {
+    "EXECUTED": 812,
+    "RECIPIENTS_ONLY": 1478,
+    "TEXT_ONLY_INTENDED": 263,
+    "GAP": 0,
+    "UNKNOWN": 171
+  },
+  "physicalOwnerOnlyRules": 39,
+  "armyOwnedRules": 6,
+  "dormantTomeLinks": 2,
+  "consumerProofs": {
+    "attachedProjector": "379dc4cacdf36fb6ee14f211feea4330f5448421a48093e770d1e146dfb9d67c",
+    "attachedLeaves": "88bc603db13f3641ee5bc852f2b579f03dd847414a252a34025ce53d6ce1bc74"
+  },
+  "controls": [
+    {
+      "name": "owner-only cannot be relabelled recipients-only",
+      "code": "OWNER_ONLY_CATEGORY",
+      "status": "DETECTED"
+    },
+    {
+      "name": "physical ability cannot forge army recipient scope",
+      "code": "OWNER_ONLY_SCOPE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "reviewed presentation scope cannot disappear",
+      "code": "OWNER_ONLY_SCOPE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "forged army kind cannot bypass the actual native ability kind",
+      "code": "IDENTITY_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "name": "army-owned rule cannot silently lose its clarified recipient scope",
+      "code": "OWNER_ONLY_SCOPE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "missing native diagnostic is not assumed owner-only",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "name": "real canonical UNIT FORMED recipient admitted even after proof refresh",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "name": "actual source-model radius admission added to canonical clause",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "name": "foreign related-target route cannot inherit owner-only review",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "name": "new F1 recipient path requires review",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "name": "separate roster conditional-policy consumer is also guarded",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "name": "additional declaration effect cannot hide behind dormant ROLE admission",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "name": "text-only review does not authorize executable leakage",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "name": "actual consumer necessary admission gate changes",
+      "code": "OWNER_ONLY_CONSUMER_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "name": "actual private leaves helper changes",
+      "code": "OWNER_ONLY_CONSUMER_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "name": "missing or ambiguous private helper fails closed",
+      "code": "OWNER_ONLY_CONSUMER_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "name": "wrong decision date",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "stale source fingerprint",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "wrong exact source field",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "wrong exact clause set",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "wrong canonical source identity",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "duplicate reviewed identity",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "owner-only false for a physical ability",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "forged fixture presentation scope",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "forged fixture army kind",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "missing fixture scope clarification",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "wrong decision authority",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "name": "missing reviewed source manifest",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    }
+  ],
+  "elapsedMs": 8222
+}

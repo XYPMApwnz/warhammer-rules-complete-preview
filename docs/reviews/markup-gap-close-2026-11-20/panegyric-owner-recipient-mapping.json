@@ -1,0 +1,346 @@
+{
+  "canonicalEntityId": "detachment-data-psalm-conclave:rule",
+  "entityParentId": "detachment-data-psalm-conclave",
+  "contractOwnerId": "detachment-data-psalm-conclave",
+  "contractDetachmentId": "detachment-data-psalm-conclave",
+  "assignment": null,
+  "globalRoles": [
+    {
+      "id": "beneficiary",
+      "subject": "UNIT",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "CULT MECHANICUS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "CULT MECHANICUS"
+        }
+      },
+      "conditions": [],
+      "purpose": "EFFECT_RECIPIENT"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "benediction-selection",
+      "rosterClassification": "BATTLE_ONLY",
+      "recipientStatus": "RECORDED",
+      "f1RecipientIds": [
+        "benediction-selection::recipient/role/1"
+      ],
+      "roles": [
+        {
+          "id": "beneficiary",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CULT MECHANICUS"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "CULT MECHANICUS"
+            }
+          },
+          "conditions": [],
+          "purpose": "EFFECT_RECIPIENT"
+        }
+      ],
+      "recipients": [
+        {
+          "id": "benediction-selection::recipient/role/1",
+          "who": "UNIT",
+          "roleId": "beneficiary",
+          "side": "FRIENDLY",
+          "purpose": "EFFECT_RECIPIENT",
+          "conditions": [],
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CULT MECHANICUS"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "CULT MECHANICUS"
+            }
+          },
+          "textKind": "CONDITIONAL"
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "atStartOfFirstBattleRound",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "At the start of the first battle round"
+          },
+          "roleId": "beneficiary"
+        }
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ]
+    },
+    {
+      "id": "panegyric-procession",
+      "rosterClassification": "BATTLE_ONLY",
+      "recipientStatus": "NOT_RECORDED",
+      "f1RecipientIds": null,
+      "roles": [
+        {
+          "id": "cult-mechanicus-model",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CULT MECHANICUS"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "CULT MECHANICUS"
+            }
+          },
+          "conditions": [],
+          "purpose": "TRIGGER_ACTOR"
+        },
+        {
+          "id": "attack-target",
+          "subject": "UNIT",
+          "allegiance": "ENEMY",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "targets a unit"
+            }
+          },
+          "conditions": [],
+          "purpose": "TARGET",
+          "binding": "ATTACK_TARGET",
+          "actorRoleId": "cult-mechanicus-model"
+        }
+      ],
+      "recipients": [],
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "MODEL",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "panegyricProcessionActive",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Panegyric Procession"
+          },
+          "roleId": "cult-mechanicus-model"
+        },
+        {
+          "predicate": "FIELD",
+          "subject": "MODEL",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "attackType",
+            "equals": "RANGED"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "makes a ranged attack"
+          },
+          "roleId": "cult-mechanicus-model"
+        },
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "withinHalfWeaponRange",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "within half range"
+          },
+          "roleId": "attack-target"
+        }
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ]
+    },
+    {
+      "id": "citation-in-savagery",
+      "rosterClassification": "BATTLE_ONLY",
+      "recipientStatus": "RECORDED",
+      "f1RecipientIds": null,
+      "roles": [
+        {
+          "id": "beneficiary",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CULT MECHANICUS"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "CULT MECHANICUS"
+            }
+          },
+          "conditions": [],
+          "purpose": "ANCHOR"
+        },
+        {
+          "id": "fighting-unit-model",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "models in that unit"
+            }
+          },
+          "conditions": [],
+          "purpose": "EFFECT_RECIPIENT",
+          "binding": "SOURCE_UNIT_MODELS",
+          "sourceRoleId": "beneficiary"
+        }
+      ],
+      "recipients": [
+        {
+          "id": "citation-in-savagery::recipient/role/1",
+          "who": "MODEL",
+          "roleId": "fighting-unit-model",
+          "side": "FRIENDLY",
+          "from": "SOURCE_UNIT_MODELS",
+          "purpose": "EFFECT_RECIPIENT",
+          "sourceRoleId": "beneficiary",
+          "conditions": [],
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "models in that unit"
+            }
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "citationInSavageryActive",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Citation in Savagery"
+          },
+          "roleId": "beneficiary"
+        },
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToFight",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "is selected to fight"
+          },
+          "roleId": "beneficiary"
+        },
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "madeChargeMoveThisTurn",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "made a Charge move this turn"
+          },
+          "roleId": "beneficiary"
+        }
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ]
+    }
+  ]
+}
