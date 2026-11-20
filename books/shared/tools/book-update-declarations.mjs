@@ -8,6 +8,9 @@ const input=(kind,value)=>({kind,value});
 const coreInputs=[input('prefix','books/core-rules/content/'),input('path','books/core-rules/tools/verify_pdf_parity.mjs'),input('prefix','books/core-rules/sources/')];
 // These are the existing shared producers, not a second producer chain.
 const sharedInputs={
+ 'books/shared/tools/build-source-metadata.mjs':[input('path','books/shared/tools/build-source-metadata.mjs'),
+  input('path','books/core-rules/content/core-rules.digital-11e.json'),input('prefix','mfm/'),
+  ...BOOK_PASSPORT_IDS.map(id=>input('path',`books/${id}/book.config.json`))],
  'books/core-rules/tools/build_waha_core_corpus.py':[input('prefix','books/core-rules/sources/'),input('prefix','books/core-rules/tools/')],
  'books/core-rules/tools/build_core_candidate.py':[input('stepOutputs','books/core-rules/tools/build_waha_core_corpus.py'),input('prefix','books/core-rules/tools/'),input('prefix','books/core-rules/tests/fixtures/'),input('prefix','books/core-rules/sources/core-importer-baselines/')],
  'books/core-rules/tools/publish_core_candidate.py':[input('stepOutputs','books/core-rules/tools/build_core_candidate.py'),input('prefix','books/core-rules/tools/')],

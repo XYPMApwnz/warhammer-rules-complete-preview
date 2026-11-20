@@ -3121,15 +3121,6 @@
       ]
     },
     {
-      "path": "books/core-rules/content/core-rules.digital-11e.json",
-      "reasons": [
-        {
-          "kind": "native-v2-reviewed-runtime",
-          "detail": "accepted Core capture metadata and battle-size table for source labels and informational import notices"
-        }
-      ]
-    },
-    {
       "path": "books/core-rules/reader/actions.html",
       "reasons": [
         {
@@ -7765,6 +7756,15 @@
       ]
     },
     {
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime",
+          "detail": "small generated MFM/Core source metadata and battle-size table; full source owners remain build-only inputs"
+        }
+      ],
+      "path": "books/shared/application-v2/generated/source-metadata.v1.json"
+    },
+    {
       "path": "books/shared/application-v2/glossary.css",
       "reasons": [
         {
@@ -11255,15 +11255,6 @@
         {
           "kind": "html-href",
           "from": "books/orks/reader.html"
-        }
-      ]
-    },
-    {
-      "path": "mfm/current.json",
-      "reasons": [
-        {
-          "kind": "native-v2-reviewed-runtime",
-          "detail": "authoritative current points version for source labels"
         }
       ]
     },

@@ -7,6 +7,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {BOOK_PASSPORT_IDS,bookPassportSchema,readBookPassport} from '../books/shared/tools/book-passport.mjs';
 import {generatedRebuildPlan} from '../books/shared/tools/generated-rebuild-plan.mjs';
+import {withoutSourceMetadataStep,SOURCE_METADATA_OUTPUT} from './helpers/source-metadata-plan.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const baseline=JSON.parse(fs.readFileSync(new URL('./fixtures/book-passport-baseline.json',import.meta.url)));
@@ -82,8 +83,11 @@ for(const id of BOOK_PASSPORT_IDS){
  results.push({book:id,status:'PASS',producers:config.passport.build.steps.length,legacyFields:expected.legacyKeys.length});
 }
 const tracked=execFileSync('git',['ls-tree','-r','--name-only','-z',baseline.base],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024}).split('\0').filter(Boolean);
+assert(!tracked.includes(SOURCE_METADATA_OUTPUT),'The accepted baseline predates the requested metadata extension');
+tracked.push(SOURCE_METADATA_OUTPUT);
 const plan=generatedRebuildPlan(tracked,{root});
-assert.equal(plan.steps.length,baseline.baselinePlan.steps,'Producer count changed');
-assert.equal(plan.files.length,baseline.baselinePlan.files,'Compared output count changed');
-assert.equal(sha(JSON.stringify(plan)),baseline.baselinePlan.sha256,'Producer order, arguments, outputs or comparison policy changed from the immutable baseline');
-console.log(JSON.stringify({status:'PASS',books:results,controls,negativeControls:Object.values(controls).reduce((sum,value)=>sum+value,0),baseline:baseline.base,unchangedPlan:{steps:plan.steps.length,files:plan.files.length,sha256:baseline.baselinePlan.sha256}},null,2));
+const legacyPlan=withoutSourceMetadataStep(plan);
+assert.equal(legacyPlan.steps.length,baseline.baselinePlan.steps,'Producer count changed');
+assert.equal(legacyPlan.files.length,baseline.baselinePlan.files,'Compared output count changed');
+assert.equal(sha(JSON.stringify(legacyPlan)),baseline.baselinePlan.sha256,'Producer order, arguments, outputs or comparison policy changed from the immutable baseline');
+console.log(JSON.stringify({status:'PASS',books:results,controls,negativeControls:Object.values(controls).reduce((sum,value)=>sum+value,0),baseline:baseline.base,unchangedPlan:{steps:legacyPlan.steps.length,files:legacyPlan.files.length,sha256:baseline.baselinePlan.sha256},sourceMetadataExtension:{steps:1,files:1}},null,2));

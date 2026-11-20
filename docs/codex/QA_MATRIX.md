@@ -13,14 +13,18 @@ the existing browser suite, runtime packaging/determinism and the three source
 gates, plus keyword attribution and the full `glossary:check` producer gate.
 `qa:glossary` starts with strict cross-owner admission and published-reference
 negative controls before the other glossary checks.
-`test:polish-6` checks live source versions, model-base captions, informational
+`test:polish-6` checks the small generated source metadata against its owners,
+one-fetch loading without JSON import attributes, model-base captions, informational
 import comparisons, first-show glossary decoration and exact per-pass navigation
 lookup equivalence in quick and pre-FF.
 `test:polish-6-browser` covers live Library/book sources, native model-base facts,
 the real owner export, Force Disposition notices,
 unchanged import/saved state, Tau totals and nine-book first-show link/navigation
 guards at390/1440; it runs sequentially once in pre-FF. The startup graph also
-rejects omission of each new source/notice module and its canonical data input.
+rejects omission of each new source/notice module and the small metadata input.
+`node books/shared/tools/build-source-metadata.mjs --check` checks this derived
+file independently; the normal generated gate rebuilds it from Core, MFM and
+the nine passports. Full Core/MFM owner JSON remains outside the runtime package.
 Both queues run sequentially, deduplicate leaf
 commands and retain every exit status and log even after a failure. The final
 exit code remains nonzero if any check failed; historical failures are not PASS.

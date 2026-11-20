@@ -1,44 +1,25 @@
-/** Small runtime projection of the accepted source owners. No rule execution. */
-import currentMfm from '../../../mfm/current.json' with {type:'json'};
-import coreCanonical from '../../core-rules/content/core-rules.digital-11e.json' with {type:'json'};
+/** Small disposable metadata projection; accepted sources remain build inputs. */
+const text=value=>typeof value==='string'&&value.trim()===value&&value.length>0;
+const isoDate=value=>typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&
+  Number.isFinite(Date.parse(value+'T00:00:00Z'))&&new Date(value+'T00:00:00Z').toISOString().slice(0,10)===value;
 
-const defaultRootURL=new URL('../../../',import.meta.url);
-const currentMfmPath='mfm/current.json',corePath='books/core-rules/content/core-rules.digital-11e.json';
-const preloadedOwners=new Map([[currentMfmPath,currentMfm],[corePath,coreCanonical]]);
-const text=value=>typeof value==='string'&&value.trim();
-const isoDate=value=>{
-  if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;
-  const parsed=new Date(`${value}T00:00:00Z`);
-  return Number.isFinite(parsed.valueOf())&&parsed.toISOString().slice(0,10)===value;
-};
-
-export function projectCoreBattleSizes(rule) {
-  if(rule?.code!=='25.03')throw new TypeError('Core battle size source unavailable');
-  const tables=(rule.content||[]).filter(block=>block.type==='comparison-table'&&block.columns?.[0]==='BATTLE SIZE');
-  if(tables.length!==1)throw new TypeError('Core battle size table unavailable');
-  const table=tables[0],points=table.columns.indexOf('Points Total')-1,detachments=table.columns.indexOf('Detachment Points (DP)')-1;
-  if(points<0||detachments<0||!Array.isArray(table.rows)||!table.rows.length)throw new TypeError('Core battle size columns unavailable');
-  const positive=value=>typeof value==='string'&&/^\d+$/.test(value)&&Number.isSafeInteger(Number(value))&&Number(value)>0;
-  const rows=table.rows.map(row=>{
-    if(!text(row.label)||!positive(row.cells?.[points])||!positive(row.cells?.[detachments]))throw new TypeError('Core battle size row unavailable');
-    return Object.freeze({label:row.label,pointsLimit:Number(row.cells[points]),detachmentPoints:Number(row.cells[detachments])});
-  });
-  if(new Set(rows.map(row=>row.label)).size!==rows.length)throw new TypeError('Duplicate Core battle size row');
-  return Object.freeze(rows);
-}
-
-export function projectCoreSourceMetadata(core) {
-  const {captureDate,corpusFingerprint}=core?.meta||{};
-  if(!isoDate(captureDate)||!text(corpusFingerprint))throw new TypeError('Core source metadata unavailable');
-  const rule=core.records?.find(record=>record.code==='25.03');
-  return Object.freeze({captureDate,corpusFingerprint,
-    battleSizes:projectCoreBattleSizes(rule),battleSizeRule:{code:rule.code,content:structuredClone(rule.content)}});
-}
-
-export function projectSourcesMetadata(release,core) {
-  if(!text(release?.version))throw new TypeError('Points source metadata unavailable');
-  if(!isoDate(core?.captureDate)||!text(core?.corpusFingerprint))throw new TypeError('Core source metadata unavailable');
-  return Object.freeze({mfmVersion:release.version,coreCaptureDate:core.captureDate,coreCorpusFingerprint:core.corpusFingerprint});
+function validateMetadata(value){
+  const fail=()=>{throw new TypeError('Source metadata unavailable or invalid');};
+  if(value?.schema!=='application-source-metadata/v1'||!text(value.mfm?.version)||
+    !isoDate(value.core?.captureDate)||!/^[a-f\d]{64}$/i.test(value.core?.corpusFingerprint)||
+    !Array.isArray(value.core.battleSizes)||!value.core.battleSizes.length||
+    !value.books||typeof value.books!=='object'||Array.isArray(value.books))fail();
+  const labels=new Set();
+  for(const row of value.core.battleSizes){
+    if(!row||!text(row.label)||labels.has(row.label)||!Number.isSafeInteger(row.pointsLimit)||row.pointsLimit<=0||
+      !Number.isSafeInteger(row.detachmentPoints)||row.detachmentPoints<=0)fail();
+    labels.add(row.label);Object.freeze(row);
+  }
+  const entries=Object.entries(value.books);
+  if(!entries.length||entries.some(([id,book])=>!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)||!text(book?.mfmVersion)))fail();
+  Object.freeze(value.core.battleSizes);Object.freeze(value.core);
+  for(const [,book]of entries)Object.freeze(book);
+  Object.freeze(value.books);Object.freeze(value.mfm);return Object.freeze(value);
 }
 
 export function formatSourcesLine(metadata) {
@@ -48,53 +29,27 @@ export function formatSourcesLine(metadata) {
   return `Points: Munitorum Field Manual ${metadata.mfmVersion} · Core Rules: ${date}`;
 }
 
-/** JSON module owners are parsed once by the module loader. An explicit reader
- * selects independent inputs for isolated consumers and source-mutation QA. */
-export function createSourceMetadataLoader(options={}) {
-  const {fetch:read=globalThis.fetch,rootURL=defaultRootURL,readPassport}=options;
-  const usePreloadedOwners=!Object.hasOwn(options,'fetch');
-  const root=new URL(rootURL),pending=new Map();
-  const repositoryURL=path=>{
-    if(typeof path!=='string'||!path||path.includes('\\')||path.split('/').some(part=>!part||part==='.'||part==='..')||!/^(?:books|mfm)\//.test(path))
-      throw new TypeError('Invalid source metadata path');
-    return new URL(path,root);
-  };
-  function cached(key,load) {
-    if(!pending.has(key)){
-      const request=Promise.resolve().then(load).catch(error=>{pending.delete(key);throw error;});
-      pending.set(key,request);
-    }
-    return pending.get(key);
-  }
-  async function json(path) {
-    if(usePreloadedOwners&&preloadedOwners.has(path))return preloadedOwners.get(path);
-    const response=await read(repositoryURL(path));
+/** One normal fetch/parse shared by Home, all books and import notes. A failed
+ * read is retryable. This module imports no JSON and reads no full rule corpus. */
+export function createSourceMetadataLoader({fetch=globalThis.fetch}={}) {
+  let pending;
+  const data=()=>pending ||= Promise.resolve().then(async()=>{
+    const response=await fetch(new URL('./generated/source-metadata.v1.json',import.meta.url));
     if(!response.ok)throw new TypeError('Source metadata unavailable');
-    return response.json();
-  }
-  const release=path=>cached(path,async()=>{
-    const value=await json(path);
-    if(value.schema!=='current-mfm-release/v1'||!text(value.version))throw new TypeError('Points source metadata unavailable');
-    return {version:value.version};
+    return validateMetadata(await response.json());
+  }).catch(error=>{pending=undefined;throw error;});
+  const project=(metadata,version)=>Object.freeze({mfmVersion:version,
+    coreCaptureDate:metadata.core.captureDate,coreCorpusFingerprint:metadata.core.corpusFingerprint});
+  return Object.freeze({
+    global:async()=>{const metadata=await data();return project(metadata,metadata.mfm.version);},
+    core:async()=>{const metadata=await data();return metadata.core;},
+    book:async id=>{
+      if(typeof id!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id))throw new TypeError('Invalid source metadata book');
+      const metadata=await data(),book=Object.hasOwn(metadata.books,id)&&metadata.books[id];
+      if(!book)throw new TypeError('Source metadata unavailable for book '+id);
+      return project(metadata,book.mfmVersion);
+    }
   });
-  const core=()=>cached('core',async()=>projectCoreSourceMetadata(await json(corePath)));
-  const global=async()=>{
-    const [points,metadata]=await Promise.all([release(currentMfmPath),core()]);
-    return projectSourcesMetadata(points,metadata);
-  };
-  const book=async(bookId)=>{
-    if(typeof bookId!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(bookId))throw new TypeError('Invalid source metadata book');
-    const path=await cached(`passport:${bookId}`,async()=>{
-      const config=readPassport?null:await json(`books/${bookId}/book.config.json`);
-      const passport=readPassport?await readPassport(bookId):config?.passport;
-      if(config&&config.id!==bookId||passport?.schema!=='army-book-passport/v1')throw new TypeError('Wrong source metadata passport');
-      const selected=passport.mfm?.currentRelease;
-      repositoryURL(selected);return selected;
-    });
-    const [points,metadata]=await Promise.all([release(path),core()]);
-    return projectSourcesMetadata(points,metadata);
-  };
-  return Object.freeze({core,global,book});
 }
 
 export function createSourcesLine(document,metadata,{className='v2-sources-line'}={}) {

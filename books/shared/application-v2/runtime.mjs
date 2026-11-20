@@ -5,7 +5,6 @@ import {createHomePresenter,createHomeBranding} from './home.mjs';
 import {mountGlobalGlossary} from './glossary.mjs';
 import {loadDetachmentPresentationSources} from '../army-book-app-v2/personal.mjs';
 import {createSourceMetadataLoader,createSourcesLine} from './source-metadata.mjs';
-import {getBookPassport} from '../roster-v2/keywords.mjs';
 
 /** Top-level destinations only. ArmyBookApp retains all book/roster/reference logic. */
 export function createApplication(document,{registry,entryURL=new URL('../../../v2/app.html',import.meta.url).href,root=document.body}={}) {
@@ -17,8 +16,7 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   const header=el('header','v2-primary-header');
   const brand=createHomeBranding(document,applicationRouteURL(entryURL,{destination:'HOME'}));
   const home=createHomePresenter({document,registry,entryURL});
-  const sourceMetadata=typeof view.fetch==='function'?createSourceMetadataLoader({
-    rootURL:new URL('../../../',import.meta.url),readPassport:getBookPassport}):null;
+  const sourceMetadata=typeof view.fetch==='function'?createSourceMetadataLoader({fetch:view.fetch.bind(view)}):null;
   let homeSourceMetadata=null;
   const primary=el('nav','v2-primary-nav');primary.dataset.v2PrimaryNav='';primary.setAttribute('aria-label','Application navigation');
   const moduleRoot=el('div','v2-module-root');moduleRoot.dataset.v2MountRoot='';

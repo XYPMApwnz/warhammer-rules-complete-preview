@@ -1,0 +1,51 @@
+{
+  "schema": "application-source-metadata/v1",
+  "mfm": {
+    "version": "v1.6"
+  },
+  "core": {
+    "captureDate": "2026-11-11",
+    "corpusFingerprint": "2E39280BEB3D0C92F87F4F3DB231CA3BC40192C12575AF998E5D2A2DB684C14A",
+    "battleSizes": [
+      {
+        "label": "INCURSION",
+        "pointsLimit": 1000,
+        "detachmentPoints": 2
+      },
+      {
+        "label": "STRIKE FORCE",
+        "pointsLimit": 2000,
+        "detachmentPoints": 3
+      }
+    ]
+  },
+  "books": {
+    "adeptus-mechanicus": {
+      "mfmVersion": "v1.6"
+    },
+    "blood-angels": {
+      "mfmVersion": "v1.6"
+    },
+    "chaos-space-marines": {
+      "mfmVersion": "v1.6"
+    },
+    "dark-angels": {
+      "mfmVersion": "v1.6"
+    },
+    "death-guard": {
+      "mfmVersion": "v1.6"
+    },
+    "emperors-children": {
+      "mfmVersion": "v1.6"
+    },
+    "space-marines": {
+      "mfmVersion": "v1.6"
+    },
+    "tau-empire": {
+      "mfmVersion": "v1.6"
+    },
+    "tyranids": {
+      "mfmVersion": "v1.6"
+    }
+  }
+}

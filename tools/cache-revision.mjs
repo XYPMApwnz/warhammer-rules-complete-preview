@@ -79,7 +79,7 @@ function minimalPrecache(root,paths){
   // dependency-graph test rejects omissions from this small additional set.
   for(const relative of [
     'books/shared/rule-facts.js','books/shared/source-refs-v2/source-catalog.json',
-    'mfm/current.json','books/core-rules/content/core-rules.digital-11e.json',
+    'books/shared/application-v2/generated/source-metadata.v1.json',
     'books/space-marines/book.config.json','books/blood-angels/book.config.json',
     'books/dark-angels/book.config.json','books/adeptus-mechanicus/book.config.json',
     'books/chaos-space-marines/book.config.json','books/death-guard/book.config.json',

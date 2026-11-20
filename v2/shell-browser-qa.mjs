@@ -7,7 +7,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 import {armyBooks} from './army-books.mjs';
-import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+import {isApplicationTestDependency,allowApplicationTestDependencies} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const requests=[],forbidden=[],errors=[],results=[];
@@ -22,6 +22,22 @@ const isAllowedResource=address=>registeredHomeResources.has(address)||isApplica
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
     /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address);
+const startupTestResources=new Map([
+  ['/books/shared/application-v2/source-metadata.mjs','text/javascript'],
+  ['/books/shared/army-book-app-v2/import-notices.mjs','text/javascript'],
+  ['/books/shared/application-v2/generated/source-metadata.v1.json','application/json']
+]);
+const declaredTestResources=new Map();allowApplicationTestDependencies(declaredTestResources);
+for(const [address,mime]of startupTestResources){
+  assert.equal(isApplicationTestDependency(address),true,'The startup resource is an exact shared test dependency: '+address);
+  assert.equal(isAllowedResource(address),true,'The shell QA server must serve the startup resource: '+address);
+  assert.equal(declaredTestResources.get(address),mime,'The startup test resource has the exact MIME type: '+address);
+}
+for(const address of ['/mfm/next.json','/books/core-rules/content/core-rules.candidate-11e.json',
+  '/mfm/current.json','/books/core-rules/content/core-rules.digital-11e.json']){
+  assert.equal(isApplicationTestDependency(address),false,'An undeclared source lookalike is not a shared test dependency: '+address);
+  assert.equal(isAllowedResource(address),false,'The shell QA server must deny an undeclared source lookalike: '+address);
+}
 assert.equal(isAllowedResource('/books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp'),true);
 assert.equal(isAllowedResource('/books/emperors-children/assets/emperors-children-cover-480.webp'),true);
 assert.equal(isAllowedResource('/books/shared/source-refs-v2/source-refs.mjs'),true,'The shared browser source reader is a declared dependency');
@@ -266,7 +282,8 @@ try{
     results.push({device,home:true,integratedDestinations:true,booklessRoster:true,import:true,attachment:true,personalGuide:true,
       physicalReference:true,nativeNewTab:true,directReload:true,retiredAdaptersAbsent:true,backForward:true,lifecycle:true,theme:true,
       neutralPrimaryNavigation:true,bookContentsPreserved:true,sectionNavigation:true,relatedRules:true,popupViewport:true,longCorePopup:true,
-      homeCovers:true,lazyLoading:true,resourceNegativeControls:5,overflow:false});
+      homeCovers:true,lazyLoading:true,resourceNegativeControls:5,startupDependencyPositiveControls:3,
+      startupDependencyNegativeControls:4,startupDependencyMimeChecks:3,overflow:false});
     await context.close();
   }
   assert.deepEqual(forbidden,[],'Shell requested a legacy or unexpected resource');

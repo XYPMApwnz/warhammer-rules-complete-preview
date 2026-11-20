@@ -5,7 +5,7 @@ import {parse} from '../roster-v2/parser.mjs';
 import {lexicalDraft} from '../roster-v2/import.mjs';
 import {importRosterNotices} from './import-notices.mjs';
 import {importNoticeCopy} from './cosmetics.mjs';
-import {projectCoreBattleSizes} from '../application-v2/source-metadata.mjs';
+import {projectCoreBattleSizes} from '../tools/build-source-metadata.mjs';
 import {assertPlayerImportCopy} from '../../../tests/helpers/import-copy-assertions.mjs';
 
 const read=file=>JSON.parse(fs.readFileSync(new URL(file,import.meta.url),'utf8'));

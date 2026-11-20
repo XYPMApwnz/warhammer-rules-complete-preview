@@ -7,6 +7,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {BOOK_PASSPORT_IDS,readBookPassport} from '../books/shared/tools/book-passport.mjs';
 import {generatedRebuildPlan} from '../books/shared/tools/generated-rebuild-plan.mjs';
+import {withoutSourceMetadataStep} from './helpers/source-metadata-plan.mjs';
 import {bookUpdateDeclarations,selectBookUpdate,validateUpdateInputs,validateUpdateOperations} from '../books/shared/tools/book-update-declarations.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
@@ -14,9 +15,10 @@ const tracked=execFileSync('git',['ls-tree','-r','--name-only','-z','HEAD'],{cwd
 const baseline=JSON.parse(fs.readFileSync(new URL('./fixtures/book-passport-baseline.json',import.meta.url),'utf8'));
 const plan=generatedRebuildPlan(tracked,{root});
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
-assert.equal(plan.steps.length,baseline.baselinePlan.steps,'Update metadata must not add or remove gate producers');
-assert.equal(plan.files.length,baseline.baselinePlan.files,'Update metadata must not change gate coverage');
-assert.equal(sha(JSON.stringify(plan)),baseline.baselinePlan.sha256,'Update metadata must preserve the exact accepted rebuild plan');
+const legacyPlan=withoutSourceMetadataStep(plan);
+assert.equal(legacyPlan.steps.length,baseline.baselinePlan.steps,'Update metadata must not add or remove gate producers');
+assert.equal(legacyPlan.files.length,baseline.baselinePlan.files,'Update metadata must not change gate coverage');
+assert.equal(sha(JSON.stringify(legacyPlan)),baseline.baselinePlan.sha256,'Update metadata must preserve the exact accepted rebuild plan');
 
 const results=[],mutations=[];
 for(const id of BOOK_PASSPORT_IDS){
@@ -105,4 +107,4 @@ assert.throws(()=>selectBookUpdate(declarations),/Choose --book=<id> or --all/);
 
 console.log(JSON.stringify({status:'PASS',books:results,negativeControls:mutations.length,mutations,
  selection:{dg:dg.steps.length,smBooks:sm.books,allBooks:all.books.length,coreReaderOnCoreChange:core.shared.includes(reader),mfmBooks:mfm.books.length,fallbackReason:fallback.fallbackReason},
- unchangedGate:{steps:plan.steps.length,files:plan.files.length,sha256:sha(JSON.stringify(plan))}},null,2));
+ unchangedGate:{steps:legacyPlan.steps.length,files:legacyPlan.files.length,sha256:sha(JSON.stringify(legacyPlan))},sourceMetadataExtension:{steps:1,files:1}},null,2));

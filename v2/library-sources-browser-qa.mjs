@@ -103,6 +103,13 @@ try{
   for(const width of widths){
     current={width};const context=await browser.newContext({viewport:{width,height:width<600?844:1000},serviceWorkers:'block'});
     context.setDefaultTimeout(30000);const page=await context.newPage();
+    const sourceRequests=[];
+    page.on('request',request=>{const pathname=new URL(request.url()).pathname;
+      if(['/books/shared/application-v2/generated/source-metadata.v1.json','/mfm/current.json',
+        '/books/core-rules/content/core-rules.digital-11e.json'].includes(pathname))sourceRequests.push(pathname);});
+    await page.addInitScript(()=>{window.__sourceMetadataParses=0;const parse=Response.prototype.json;
+      Response.prototype.json=function(...args){if(new URL(this.url,location.href).pathname==='/books/shared/application-v2/generated/source-metadata.v1.json')window.__sourceMetadataParses++;
+        return parse.apply(this,args);};});
     page.on('pageerror',error=>report.errors.push({...current,message:error.message}));
     try{
       await page.goto(origin+'/v2/app.html');await ready(page);
@@ -157,6 +164,10 @@ try{
         }
         save();
       }
+      assert.deepEqual(sourceRequests,['/books/shared/application-v2/generated/source-metadata.v1.json'],
+        'Home and all nine books share one small metadata request and never fetch its full source owners');
+      assert.equal(await page.evaluate(()=>window.__sourceMetadataParses),1,'The metadata response is parsed once');
+      report.checks.push({width,name:'one-small-metadata-fetch',requests:sourceRequests,parses:1});
     }catch(error){await shot(page,'failure-'+(current.bookId||'home'),'Failure evidence').catch(()=>{});throw error;}
     finally{await context.close();}
   }

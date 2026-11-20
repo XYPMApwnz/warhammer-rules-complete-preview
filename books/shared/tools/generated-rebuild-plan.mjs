@@ -27,6 +27,8 @@ export function generatedRebuildPlan(tracked,{root}={}) {
   for(const phase of ['model-aliases','retained-source'])for(const passport of passports)
     for(const entry of passport.build.postBuildSteps)if(entry.phase===phase)steps.push(entry.step);
   const external=(book,producer,outputs,args=[],extra={})=>steps.push({book,producer,outputs,args,runtime:'node',...extra});
+  external('source-metadata','books/shared/tools/build-source-metadata.mjs',
+    ['books/shared/application-v2/generated/source-metadata.v1.json']);
   external('core','books/core-rules/reader/build.mjs',tracked.filter(file=>/^books\/core-rules\/reader\/[^/]+\.html$/.test(file)||file==='books/core-rules/reader/search-index.json'));
   external('glossary','glossary/v2/tools/build-glossary-v2.mjs',['glossary/v2/generated/index.en.json','glossary/v2/generated/index.en.js']);
   external('core','books/core-rules/tests/core-waha-player-visible-reference-census-qa.mjs',
