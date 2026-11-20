@@ -39,6 +39,8 @@ Read the root and nearest scoped `AGENTS.md`, then use `REPO_MAP.md` and `QA_MAT
 - **Starting scope:** clean release candidate and explicit release checklist.
 - **Read first:** current HEAD, outstanding debt, publication/cache state, release command definitions.
 - **Normal QA:** `qa:release`, then explicitly authorized cache/deploy steps.
+- **Candidate boundary:** create `git commit-tree` from the reviewed source tree with current release as its only parent; push only to a new review branch. Do not move release or dispatch Pages while preparing a candidate.
+- **Publication authority:** after Claude PASS for the exact candidate and the owner's manual check, Codex performs the ordinary fast-forward of `unified-v2-release` only after separate explicit owner authorization for that exact SHA. Follow [the full release and rollback checklist](../../tools/PAGES_RUNTIME_RELEASE.md#source-review-and-release-authorization); candidate permission is not release permission.
 - **Expand when:** a failure provides a concrete owner and reproduction.
 - **Do not run:** release actions from a local repair session.
 
