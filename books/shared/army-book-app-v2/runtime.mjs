@@ -16,8 +16,10 @@ import {createBookPresenter} from './book-v1.mjs';
 import {createV1RelatedPanel} from './related-v1.mjs';
 import {positionV1Popup} from './popup-v1.mjs';
 import {createRulePopupPresenter,focusedRuleField,ruleFieldPath} from './rule-popup.mjs';
-import {createRuleTermLinker} from './rule-term-links.mjs';
+import {createRuleTermLinker,createVisibleRuleTermLinks,onlyRuleTermDecorations} from './rule-term-links.mjs';
 import {rosterUnitNames} from './roster-labels.mjs';
+import {modelBaseCaption} from './cosmetics.mjs';
+import {createSourcesLine} from '../application-v2/source-metadata.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
 const rosterRoute = 'view-roster';
 const personalRoute = 'view-roster-guide';
@@ -186,6 +188,7 @@ export function mount(document, payload, options = {}) {
     openPersonalGuide, showInstance: openInstance, routeURL, lifecycle,
     titleForId: id => cards.get(id)?.title,
     presentationCards:cards,
+    bookPresentation:payload.bookPresentation,battleSizes:options.coreBattleSizes||[],
     importLimitations: payload.rulePresentationLimitations?.importLimitations || []
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state, options.roster.projection);
@@ -193,20 +196,26 @@ export function mount(document, payload, options = {}) {
   let termEpoch=0,termScopeEpoch=-1,termTargets;
   const availableTermTargets=()=>{if(termScopeEpoch!==termEpoch){termTargets=references.availableTargets(scopedIds());termScopeEpoch=termEpoch;}return termTargets;};
   const termLinker=createRuleTermLinker({document,cards,index:payload.glossary,anchor,availableTargets:availableTermTargets});
-  const rulePopups=createRulePopupPresenter({document,cards,payload,el,factValue,anchor,linkTerms:node=>termLinker.link(node)});
+  termLinker.prepare();
+  const visibleTermLinks=createVisibleRuleTermLinks({document,cards,linker:termLinker,lifecycle,onLayout:()=>contents?.controller.scheduleGeometry(),
+    canReveal:()=>contents?.controller.state.owner!=='controller',viewportTop:()=>header.getBoundingClientRect().bottom});
+  let deferBookTerms=false;
+  const linkTerms=node=>deferBookTerms?visibleTermLinks.defer(node):termLinker.link(node);
+  const rulePopups=createRulePopupPresenter({document,cards,payload,el,factValue,anchor,linkTerms});
   const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL:options.assetBaseURL,
-    linkTerms:node=>termLinker.link(node),
+    linkTerms,
     renderCanonicalRule:card=>bookPresenter.accepts(card)||card.kind==='STRUCTURED_RULE_TABLE'
       ?bookPresenter.render(card,{inline:true}):renderCard(card,{depth:1}),
     related:renderRelatedRules,roster:options.roster,presentationRuleSources:options.presentationRuleSources,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
-  const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon,linkTerms:node=>termLinker.link(node)});
+  const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon,linkTerms});
   const referencePresenter=createReferencePresenter({el,factValue,anchor,contract:references,cards,payload,allowedIds:scopedIds,
-    renderWeapon:datasheets.renderWeapon,renderProfile:datasheets.renderProfile,linkTerms:node=>termLinker.link(node)});
+    renderWeapon:datasheets.renderWeapon,renderProfile:datasheets.renderProfile,linkTerms});
   let popupPresentation=null;
 
   function factValue(tag, field) {
-    const value = el(tag, 'v2-field-value', field.displayValue === undefined ? exactValue(field.value) : String(field.displayValue));
+    const shown=field.displayValue === undefined ? exactValue(field.value) : String(field.displayValue);
+    const value = el(tag, 'v2-field-value', ['MODEL_BASE','MODEL_BASE_METADATA'].includes(cards.get(field.source?.entityId)?.kind)?modelBaseCaption(shown):shown);
     value.dataset.factId = field.id;
     value.dataset.factValue = JSON.stringify(field.value);
     if (field.runtimeDerived) value.dataset.rosterDerived = 'true';
@@ -525,7 +534,6 @@ export function mount(document, payload, options = {}) {
       if(nativePoints?.status==='UNRESOLVED')rosterSummary.append(el('p','','Points unresolved'));
       else if(Number.isFinite(total)){
         rosterSummary.append(el('p','',limit?`${total} / ${limit}`:`${total} pts`));
-        if(!nativePoints)rosterSummary.append(el('small','','Imported points'));
       }
       if(state.warlordInstanceId)rosterSummary.append(el('p','','Warlord: '+names.get(state.warlordInstanceId)));
     }
@@ -596,7 +604,8 @@ export function mount(document, payload, options = {}) {
       meta.append(badge);
     }
     // Separate source dates: a snapshot, a points release, and book corrections.
-    const versions=payload.book.dataVersions;
+    const versions=payload.book.dataVersions&&{...payload.book.dataVersions,
+      ...(options.sourceMetadata?{coreSnapshotDate:options.sourceMetadata.coreCaptureDate,mfmVersion:options.sourceMetadata.mfmVersion}:{})};
     if(versions){
       const updates=versions.officialUpdates.map(update=>update.date?`${update.version} · ${update.date}`:update.version).join('; ')||'None recorded';
       for(const [key,label,value] of [['core','Core rules snapshot',versions.coreSnapshotDate],['mfm','MFM points',versions.mfmVersion],['official','Book corrections',updates]]){
@@ -625,9 +634,13 @@ export function mount(document, payload, options = {}) {
       sections.append(section);
     }
     main.append(sections);
+    if(options.sourceMetadata)main.append(createSourcesLine(document,options.sourceMetadata));
+    else if(options.sourceMetadataUnavailable)main.append(el('p','v2-sources-line','Source information unavailable. Reload to try again.'));
   }
 
   function renderContentsBook(id=null) {
+    visibleTermLinks.reset();deferBookTerms=true;
+    try {
     selectedView=personalMode?'PERSONAL':'READER';selectedId=cards.has(id)?id:null;selectedInstanceId=null;glossaryQuery='';
     personalMode?renderPersonalHome():renderLibrary();
     const pages=el('div','v1-contents-pages'),model=projectContents(payload,personalMode?options.roster.state:null,personalMode?personalBook():null);
@@ -669,10 +682,13 @@ export function mount(document, payload, options = {}) {
       pages.append(section);
     }
     main.append(pages);
+    const destination=id&&[...pages.querySelectorAll('[data-card-id]')].find(card=>card.dataset.cardId===id);
+    visibleTermLinks.mount(pages,destination);
     // Complete presentation reflow before the unchanged V1 controller measures
     // destinations; deferred column balancing must not move a captured target.
     flushDatasheetLayouts(pages);
     if(cards.has(id))[...pages.querySelectorAll('[data-card-id]')].find(card=>card.dataset.cardId===id)?.classList.add('v2-current-card');renderNavigation();
+    } finally {deferBookTerms=false;}
   }
 
   function physicalProfileProjection(id,instanceId) {
@@ -804,6 +820,7 @@ export function mount(document, payload, options = {}) {
     const key = JSON.stringify([context,id, detail, referenceView, state?.armyBookV2?.detailReference, state?.armyBookV2?.glossaryCategory, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
     if (routeKey === key) return;
     routeKey = key;
+    visibleTermLinks.reset();
     if(contents?.controller.state.owner==='controller')contents.controller.cancelTransition();
     toggleDrawer(false);
     if(['HOME','CORE_RULES'].includes(context.destination)) {
@@ -987,6 +1004,7 @@ export function mount(document, payload, options = {}) {
   lifecycle.listen(window,'popstate', () => route());
   lifecycle.listen(window,'hashchange', () => route());
   function renderAllForQA() {
+    visibleTermLinks.reset();
     if (dialog.open) dialog.close();
     document.body.classList.remove('v2-detail-open');
     // Dedicated source-evidence surface, never a normal player datasheet.
@@ -1007,13 +1025,13 @@ export function mount(document, payload, options = {}) {
     settled:id=>{if(hashId()===id)window.history.replaceState({...window.history.state,armyBookV2:{...window.history.state?.armyBookV2,scrollY:window.scrollY}},'',window.location.href);}
   },{lifecycle});
   lifecycle.listen(navStyles,'load',()=>{contents.controller.refreshGeometry();if(!personalMode&&main.querySelector('.v1-contents-pages')&&hashId()&&contents.isTarget(hashId()))contents.restore(hashId(),window.history.state?.armyBookV2?.scrollY);});
-  lifecycle.observe(new window.MutationObserver(lifecycle.guard(()=>{
+  lifecycle.observe(new window.MutationObserver(lifecycle.guard(records=>{
     const state=options.roster?.state;
     const signature=JSON.stringify(state?[state.rosterId,state.detachmentIds,state.warlordInstanceId,
       state.units.map(unit=>[unit.instanceId,unit.canonicalUnitId,unit.enhancementIds,unit.startingStrength,
         (unit.modelRows||[]).map(row=>[row.canonicalProfileId,row.quantity])]),state.attachments]:null);
     if(signature!==lastRosterNavigation){lastRosterNavigation=signature;renderNavigation();}
-    contents.controller.scheduleGeometry();
+    if(!onlyRuleTermDecorations(records))contents.controller.scheduleGeometry();
   }))).observe(main,{childList:true,subtree:true});
   let lastRosterNavigation=null;
   const safe=callback=>lifecycle.guard(callback);

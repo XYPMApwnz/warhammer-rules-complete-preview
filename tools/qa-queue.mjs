@@ -47,6 +47,7 @@ node('tools/markup-census.mjs',['--check']);
 node('tests/markup-census-qa.mjs');
 node('tests/markup-evidence-qa.mjs');
 node('tests/markup-owner-only-qa.mjs');
+expand(pkg.scripts['test:polish-6']);
 node('books/death-guard/v2/insectile-recipient-qa.mjs');
 node('v2/executable-detachment-source-qa.mjs');
 node('books/shared/army-book-app-v2/plain-header-explanation-qa.mjs');
@@ -103,6 +104,7 @@ if(mode==='pre-ff'){
  node('v2/roster-navigation-browser-qa.mjs');
  node('v2/import-messages-browser-qa.mjs');
  node('v2/markup-insectile-browser-qa.mjs');
+ expand(pkg.scripts['test:polish-6-browser']);
  // Each fixture is admitted once by the existing recipient browser runner.
  node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json']);
  node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json']);

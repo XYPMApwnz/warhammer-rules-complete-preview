@@ -1,4 +1,5 @@
 import {applicationRouteURL} from './routes.mjs';
+import {createSourcesLine} from './source-metadata.mjs';
 
 const asset=name=>new URL(`../../../assets/${name}`,import.meta.url).href;
 const compare=(a,b)=>(a.order??100)-(b.order??100)||a.title.localeCompare(b.title,'en');
@@ -64,7 +65,7 @@ export function createHomePresenter({document,registry,entryURL}) {
     for(const book of shelf.books)row.append(bookCard(book,book.route||{destination:'ARMY_BOOK',bookId:book.id,registryId:book.id}));
     section.append(heading,row);return section;
   }
-  function render(route) {
+  function render(route,{sourceMetadata}={}) {
     const booksOnly=route.sectionId==='army-books',main=el('main','v2-library-home');main.tabIndex=-1;
     document.title=booksOnly?'Army Books · Warhammer 40,000':'Warhammer 40,000 Rules Library';
     const hero=el('section','hero');hero.append(el('p','eyebrow','Library // 11th Edition'));
@@ -73,6 +74,7 @@ export function createHomePresenter({document,registry,entryURL}) {
     hero.append(title,el('p','hero-copy','A unified reference for Core Rules, Army Books, shared terminology and roster-specific game guides.'));
     const library=el('section','library');library.setAttribute('aria-labelledby','home-library-title');
     const header=el('div','section-head'),libraryTitle=el('h2','','Library');libraryTitle.id='home-library-title';header.append(libraryTitle);library.append(header);
+    if(sourceMetadata)library.append(createSourcesLine(document,sourceMetadata));
     const shelves=el('div','library-shelves');
     if(!booksOnly)shelves.append(shelfNode({id:'rules-tools',title:'Rules & Tools',subtitle:'Core reference and army builder',books:tools}));
     for(const shelf of groupHomeBooks(registry.entries))shelves.append(shelfNode(shelf));library.append(shelves);

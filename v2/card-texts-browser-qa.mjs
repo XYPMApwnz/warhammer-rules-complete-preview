@@ -150,8 +150,12 @@ async function headers(width,book){
  if(!observe){
   const payload=JSON.parse(fs.readFileSync(path.join(root,'books',book,'v2/generated/app-presentation.json')));
   const data=payload.book.dataVersions;assert.ok(data,'Source-owned version metadata must be published');
-  assert.equal(labels.core,'Core rules snapshot: '+data.coreSnapshotDate);
-  assert.equal(labels.mfm,'MFM points: '+data.mfmVersion);
+  const coreCaptureDate=JSON.parse(fs.readFileSync(path.join(root,'books/core-rules/content/core-rules.digital-11e.json'))).meta.captureDate;
+  const passport=JSON.parse(fs.readFileSync(path.join(root,'books',book,'book.config.json'))).passport;
+  const mfmRelease=JSON.parse(fs.readFileSync(path.join(root,passport.mfm.currentRelease)));
+  assert.equal(labels.core,'Core rules snapshot: '+coreCaptureDate);
+  assert.equal(labels.mfm,'MFM points: '+mfmRelease.version);
+  if(data.coreSnapshotDate!==coreCaptureDate)assert.ok(!labels.core.includes(data.coreSnapshotDate),'The stale generated Core catalog date is absent');
   assert.ok(labels.official?.startsWith('Book corrections: '));
   assert.equal(Object.keys(labels).length,3,'Three separate source labels');
   for(const update of data.officialUpdates){assert.ok(labels.official.includes(update.version));if(update.date)assert.ok(labels.official.includes(update.date));}

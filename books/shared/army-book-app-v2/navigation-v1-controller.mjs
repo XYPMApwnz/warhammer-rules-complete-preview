@@ -251,6 +251,8 @@ export class NavigationController{
     }
     refreshGeometry(){
       if(this.destroyed)return;
+      try {
+      this.adapter.beforeGeometry?.();
       const scrollY=window.scrollY;
       this.geometry.headerBottom=this.header.getBoundingClientRect().bottom;
       document.documentElement.style.setProperty('--app-header-bottom',`${Math.max(0,this.geometry.headerBottom)}px`);
@@ -261,6 +263,7 @@ export class NavigationController{
         return{item,top:scrollY+rect.top-leadingMargin,bottom:scrollY+rect.bottom,measurable:rect.width>0||rect.height>0};
       }).filter(Boolean);
       this.readViewport();
+      } finally {this.adapter.afterGeometry?.();}
     }
     descendsFrom(item,ancestor){
       for(let node=this.parentNode(item.node);node;node=this.parentNode(node))if(node===ancestor.node)return true;

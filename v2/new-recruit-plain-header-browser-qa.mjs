@@ -95,7 +95,7 @@ try{
    assert.match(await card.innerText(),/Icon of Despair/,'The selected Icon is visible on Deathshroud Terminators');
    await card.getByText(/Icon of Despair/).first().scrollIntoViewIfNeeded();
    await page.screenshot({path:path.join(out,device+'-owner-v37.25-icon.png'),fullPage:false});
-   results.push({device,status:'PASS',version:'v37.25',units:8,metadata:imported.metadata,iconOfDespair:true,dpWarning:'not implemented, backlog'});
+   results.push({device,status:'PASS',version:'v37.25',units:8,metadata:imported.metadata,iconOfDespair:true,dpWarning:'informational comparison covered by import-notices-browser-qa'});
    await page.evaluate(()=>ArmyBookAppV2.openRoster());
    const saved=await page.evaluate(()=>localStorage.getItem('army-book-app-v2:roster:death-guard'));
    for(const denied of current.rejectionCases){

@@ -3121,6 +3121,15 @@
       ]
     },
     {
+      "path": "books/core-rules/content/core-rules.digital-11e.json",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime",
+          "detail": "accepted Core capture metadata and battle-size table for source labels and informational import notices"
+        }
+      ]
+    },
+    {
       "path": "books/core-rules/reader/actions.html",
       "reasons": [
         {
@@ -7852,6 +7861,15 @@
       ]
     },
     {
+      "path": "books/shared/application-v2/source-metadata.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime",
+          "detail": "data-derived Home and selected Army Book source versions; shared Core battle-size projection"
+        }
+      ]
+    },
+    {
       "path": "books/shared/army-book-app-v2/ability-presentation.mjs",
       "reasons": [
         {
@@ -8026,6 +8044,15 @@
         {
           "kind": "module-import",
           "from": "books/shared/army-book-app-v2/runtime.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/army-book-app-v2/import-notices.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime",
+          "detail": "informational roster import comparisons; no native import or game-state changes"
         }
       ]
     },
@@ -11228,6 +11255,15 @@
         {
           "kind": "html-href",
           "from": "books/orks/reader.html"
+        }
+      ]
+    },
+    {
+      "path": "mfm/current.json",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime",
+          "detail": "authoritative current points version for source labels"
         }
       ]
     },

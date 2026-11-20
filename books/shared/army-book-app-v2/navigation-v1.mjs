@@ -111,12 +111,35 @@ export function projectContents(payload,state=null,personal=null){
   return {nodes,groups,roots,scope:'FULL'};
 }
 
+/** A geometry pass resolves many repeated targets against one current DOM.
+ * Keep the original first-match order and heading/physical/canonical priority.
+ * The caller discards this lookup as soon as that single pass finishes.
+ */
+export function createContentsSectionLookup(main,model) {
+  const headings=new Map(),instances=new Map(),cards=new Map();
+  const first=(map,key,node)=>{if(key!==undefined&&!map.has(key))map.set(key,node);};
+  for(const node of main.querySelectorAll('[data-contents-target],[data-roster-instance-id],[data-card-id]')){
+    first(headings,node.dataset.contentsTarget,node);
+    first(instances,node.dataset.rosterInstanceId,node);
+    first(cards,node.dataset.cardId,node);
+  }
+  const start=main.querySelector('.v2-hero')||main;
+  return id=>{
+    if(id==='start')return start;
+    const heading=headings.get(id);if(heading)return heading;
+    const node=model.nodes.get(id);
+    if(node?.instanceId)return instances.get(node.instanceId)||null;
+    return cards.get(model.groups.get(id)?.[0]||node?.canonicalId||id)||null;
+  };
+}
+
 export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifecycle}={}){
   const originalNodes=[...elements.tree.childNodes],originalScope=elements.tree.getAttribute('data-scope');
   let destroyed=false,removeParentCleanup;
   const make=(tag,className,text)=>{const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;};
-  let model={nodes:new Map(),groups:new Map(),roots:[]},signature='',controller;
+  let model={nodes:new Map(),groups:new Map(),roots:[]},signature='',controller,geometrySection=null;
   const section=id=>{
+    if(geometrySection)return geometrySection(id);
     if(id==='start')return elements.main.querySelector('.v2-hero')||elements.main;
     const heading=[...elements.main.querySelectorAll('[data-contents-target]')].find(node=>node.dataset.contentsTarget===id);if(heading)return heading;
     const node=model.nodes.get(id);
@@ -130,6 +153,8 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
   };
   const highlighter=new Highlighter({view:document.defaultView||window});
   controller=new NavigationController({elements,highlighter,section,resolve,
+    beforeGeometry:()=>{geometrySection=createContentsSectionLookup(elements.main,model);},
+    afterGeometry:()=>{geometrySection=null;},
     kind:id=>model.nodes.get(id)?.children.length?'branch':'target',
     itemId:id=>{const seen=new Set();while(id&&!model.nodes.has(id)&&!seen.has(id)){seen.add(id);id=bridge.parentId?.(id);}return id;},
     tracking:()=>!document.querySelector('dialog[open]')&&!elements.main.inert&&(bridge.tracking?.()??true),

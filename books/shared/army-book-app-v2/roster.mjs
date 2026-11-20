@@ -2,6 +2,7 @@ import {createLifecycle} from './lifecycle.mjs';
 import {playerImportCopy,warlordDisplay,incompleteExportCopy,plainHeaderImportExplanation,rosterBasePoints,importMessages,importLabel,importChoiceOptions,importErrorCopy,importNoticeCopy,importNeedCopy} from './cosmetics.mjs';
 import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 import {rosterUnitNames} from './roster-labels.mjs';
+import {importRosterNotices} from './import-notices.mjs';
 /** Display the service's existing uncertainty; never calculate or complete costs. */
 export function renderRosterPointsStatus(document,{service,instanceId=null,titleForId=()=>null}) {
   const points=service?.points;
@@ -53,7 +54,7 @@ export function importLimitationForNeed(need,limitations=[]){
 }
 
 /** Optional roster view. The injected service owns every identity, fact and effect. */
-export function createRosterPanel(document, {service, bookId, bookTitle='this Army Book', open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle,importLimitations=[],presentationCards=new Map()}) {
+export function createRosterPanel(document, {service, bookId, bookTitle='this Army Book', open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle,importLimitations=[],presentationCards=new Map(),bookPresentation,battleSizes=[]}) {
   if (!service || !Array.isArray(service.catalog)) throw new TypeError('A canonical roster service is required.');
   for (const method of ['draft', 'import', 'load', 'snapshot', 'effective', 'related', 'candidates', 'attach', 'detach']) {
     if (typeof service[method] !== 'function') throw new TypeError(`Roster service requires ${method}().`);
@@ -713,6 +714,18 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
     const summary = el('section', 'v2-card v2-roster-pane');
     summary.append(el('h2', '', importMessages["your-roster"]), el('p', 'v2-roster-hint', importNoticeCopy.rosterSummary(state.units.length)));
     summary.append(warlordSelection(state,names));
+    const headerNotices=importRosterNotices({metadata:state.rosterId===importedRosterId?importedMetadata:null,
+      state,bookPresentation,cards:presentationCards,battleSizes});
+    if(headerNotices.length){
+      const warning=el('section','v2-roster-points-warning'),list=el('ul','v2-roster-list');
+      warning.dataset.rosterHeaderNotices='';warning.setAttribute('role','status');
+      warning.append(el('h3','',importNoticeCopy.headerNotes));
+      headerNotices.forEach(notice=>{
+        const item=el('li','',importNoticeCopy[notice.kind==='DETACHMENT_POINTS_OVER_BATTLE_SIZE'?'detachmentPoints':'forceDisposition'](notice));
+        item.dataset.rosterHeaderNotice=notice.kind;list.append(item);
+      });
+      warning.append(list);summary.append(warning);
+    }
     if(importLimitations.some(row=>row.message.includes('Stormlance remains a source conflict.'))&&
       state.detachmentIds.includes('detachment-sm-53f689af321a4813')){
       const notice=el('p','v2-roster-hint',importNoticeCopy.stormlance);notice.dataset.rosterScopedLimitation='stormlance';summary.append(notice);

@@ -35,6 +35,25 @@ async function settle(){await page.waitForFunction(()=>!document.querySelector('
 async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await page.locator('[data-roster-view]').waitFor();}
 async function importText(text){await roster();await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);await page.locator('[data-roster-action="review-import"]').click();await settle();const replace=page.locator('[data-roster-action="confirm-replace-roster"]');if(await replace.isVisible()){await replace.click();await settle();}assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);}
 async function effective(instanceId){await roster();await openCard(page,page.locator(`.v2-roster-instance[data-roster-instance-id="${instanceId}"]`));const card=page.locator(`main .unit-card[data-roster-instance-id="${instanceId}"]`).first();await card.waitFor();return card;}
+async function showBookCards(page){
+ await page.waitForFunction(()=>ArmyBookAppV2.navigation.state.owner==='reader');
+ await page.locator('main').evaluate(async main=>{
+  const marked=main.querySelectorAll('[data-rule-term-state]');
+  const boundaries=marked.length?marked:main.querySelectorAll('.unit-card,.v2-book-record,.v1-reference-article,[data-rule-term-title]');
+  for(const node of boundaries){
+   if(!node.getClientRects().length||node.closest('details:not([open])'))continue;
+   node.scrollIntoView({block:'center',behavior:'instant'});
+   if(node.dataset.ruleTermState)await new Promise((resolve,reject)=>{
+    const started=performance.now();const ready=()=>{
+     if(node.dataset.ruleTermState==='ready')return resolve();
+     if(!node.isConnected||performance.now()-started>10000)return reject(new Error('First-show rule links did not finish'));
+     requestAnimationFrame(ready);
+    };ready();
+   });
+   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  }
+ });
+}
 try{
  browser=await launchChromium();
  for(const book of books){
@@ -54,6 +73,7 @@ try{
     await page.goto(origin+'/v2/app.html');const begin=performance.now();await page.locator(`[data-v2-book="${book.id}"]`).click();
     await page.waitForFunction(id=>window.ArmyBookAppV2?.payload.book.id===id&&document.querySelector('main .unit-card'),book.id);await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
     timings.push({...current,stage:'book-first-render',elapsedMs:performance.now()-begin});
+    await showBookCards(page);
     const count=await page.locator('main .rule-term-link').count();links.push({...current,fullBookLinks:count});
     await check('full-inline-ability-titles-are-not-buttons',async()=>{
      const found=await page.locator('main .ability').evaluateAll(nodes=>nodes.flatMap(node=>[...node.querySelectorAll('p > a:first-child')].filter(link=>link.textContent.endsWith(':')&&link.nextSibling?.textContent.trim()).map(link=>({text:link.textContent,card:link.closest('[data-card-id]')?.dataset.cardId}))));
@@ -173,6 +193,7 @@ try{
        const beforeTerms=await dialog.locator('a.rule-term-link').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId));
        await dialog.getByRole('link',{name:'Open in Army Book',exact:true}).click();await page.locator('main .v1-contents-pages').waitFor();
        assert.equal(new URL(page.url()).searchParams.get('roster'),null,'Full Army Book is not a filtered personal view');assert.equal(await page.locator('dialog[open]').count(),0);
+       await showBookCards(page);
        assert.equal(await page.locator('main .rule-term-link').count(),count,'Full-book term targets are rebuilt after leaving personal scope');
        assert.equal(await page.evaluate(()=>JSON.stringify(ArmyBookAppV2.roster.snapshot())),before,'Reading source does not alter the physical roster');
        await page.goBack();await dialog.waitFor();assert.equal(await dialog.getAttribute('data-canonical-id'),'datasheet-deathshroud-terminators:section:1');

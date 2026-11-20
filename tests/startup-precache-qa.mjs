@@ -43,6 +43,15 @@ try{
   let mutationMessage;
   assert.throws(()=>assertCovered(graph,mutated),error=>{mutationMessage=error.message;return error.code==='ERR_ASSERTION'&&error.message.includes(critical);},'Removing a required startup resource must fail and identify that file');
   report.checks.push({name:'removed-startup-resource-is-rejected',status:'PASS',removed:critical,message:mutationMessage});
+  for(const required of ['books/shared/application-v2/source-metadata.mjs','books/shared/army-book-app-v2/import-notices.mjs',
+    'mfm/current.json','books/core-rules/content/core-rules.digital-11e.json']){
+    assert(graph.nodes.some(node=>node.path===required),'The parsed startup graph must reach '+required);
+    const without=cache.urls.filter(url=>decodeURIComponent(new URL(url,'https://startup.invalid/').pathname).slice(1)!==required);
+    assert.equal(without.length,cache.urls.length-1,'Remove exactly the new required resource: '+required);
+    assert.throws(()=>assertCovered(graph,without),error=>error.code==='ERR_ASSERTION'&&error.message.includes(required),
+      'Missing source/notice dependency must fail with its exact filename');
+    report.checks.push({name:'removed-source-notice-startup-resource-is-rejected',status:'PASS',removed:required});
+  }
   const bookModule=graph.selectedBookRoots[0].path;
   const removedBookCode=cache.urls.filter(url=>decodeURIComponent(new URL(url,'https://startup.invalid/').pathname).slice(1)!==bookModule);
   assert.equal(removedBookCode.length,cache.urls.length-1,'Selected-book code mutation must remove exactly one precache entry');

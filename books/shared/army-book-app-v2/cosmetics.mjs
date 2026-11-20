@@ -1,5 +1,9 @@
 /** Display-only formatting. Accepted fields and roster state stay untouched. */
 import {rosterUnitNames} from './roster-labels.mjs';
+/** MODEL_BASE caption only; retained source fields keep their original value. */
+export function modelBaseCaption(value){
+  return typeof value==='string'?value.replace(/(^|[(:]\s*)(?:[⌀Ø]\s*)?Use model(?=\s*\)|$)/g,'$1Use model base'):value;
+}
 /** Approved import/Attachment Setup copy. This never changes native results. */
 export const importMessages=Object.freeze({
   "points-heading": "Points total unavailable",
@@ -250,6 +254,9 @@ export const incompleteExportCopy=Object.freeze({
 
 /** Human labels are a projection of existing identities, never import aliases. */
 export const importNoticeCopy=Object.freeze({
+  headerNotes:'Check imported Detachments',
+  detachmentPoints:({total,limit,battleSize})=>`The selected Detachments total ${total} DP. The ${battleSize} table allows ${limit} DP. Review your Detachments and the Core Rules before playing.`,
+  forceDisposition:({disposition})=>`The exported Force Disposition, ${disposition}, is not listed for any selected Detachment. Check the Force Disposition and Detachments in New Recruit.`,
   details:'Details',
   general:importMessages['limitations-heading'],
   unsupported:importMessages['unsupported-mechanics-general'],
