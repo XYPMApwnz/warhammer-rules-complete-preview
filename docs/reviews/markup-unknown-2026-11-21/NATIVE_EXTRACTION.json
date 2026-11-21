@@ -1,0 +1,1205 @@
+{
+  "status": "PASS",
+  "source": "Actual collectNativeInventory, producer JSON decoder and the same SM-family template constructors; no builders or writes to checkout",
+  "N": 171,
+  "sourceFingerprintsMatched": true,
+  "sourceFieldFingerprintsMatched": true,
+  "inputs": [
+    {
+      "path": "books/adeptus-mechanicus/book.config.json",
+      "sha256": "8ae1fd6b8078ec15cb47b06233dc0d298178936d3b9023b76a0fead7171cbf0e",
+      "bytes": 8967,
+      "roles": [
+        "passport"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/contract-datasheet-army-declarations.json",
+      "sha256": "3f4268d171995c62e1e2a97fad1b6dc10df48b1b7c7caec5540625d6c62859c2",
+      "bytes": 668829,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/contract-enhancement-detachment-declarations.json",
+      "sha256": "458758ec1f4c23b7acd9859efc302e418b831f2cf7a6439c63d4e1ad3de57f31",
+      "bytes": 455875,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/contract-stratagem-declarations.json",
+      "sha256": "7b33e55857e67e962d2b3fcaccd859efa7f469bc6c4b344703f20de04c9adc66",
+      "bytes": 529199,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+      "sha256": "dc33f2b22a6dafe7081498338fb663f503e096d3ee5ae8fffd75174a756820cd",
+      "bytes": 7645420,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "sha256": "34bbb76ee1dbfe0d0580a443ed9e8722d06b3a785c8d0cc8dcb8440b4500a71f",
+      "bytes": 4669035,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/recipient-enrollment-qa.json",
+      "sha256": "90c75e11986faec364001acd30fb98932c7db148d82b828a07b865f797e2f2a8",
+      "bytes": 126220,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/roster-import-aliases.json",
+      "sha256": "aeaf568be0a247046f9b78749d9d605bbaf9f63d707dc5596d07ef6ffa882de1",
+      "bytes": 973,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "sha256": "873f26b3e99b25f6b62e806fb21657c682c1ba3d0fbd5355b74d65eac3e7f6c7",
+      "bytes": 3732,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "sha256": "2db57365224e9dcb282013cc31edf119f8ba7d165702b267ce2dccc70a8c62cd",
+      "bytes": 2892,
+      "roles": [
+        "browser-entry",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/rule-contract-schema.mjs",
+      "sha256": "20b22d1ee20ced31d0cc28bb936e1b958c68bfca216b4cd71b9e8921a4ce03c5",
+      "bytes": 1228,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/blood-angels/book.config.json",
+      "sha256": "267d909379e4b9322e69301ae853dc52f43cb1f5349d5cf0d019d60feae4430b",
+      "bytes": 18551,
+      "roles": [
+        "passport"
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/generated/app-presentation.json",
+      "sha256": "1e746c0ad1fb929d94726627edfee5603d8ffad149f21714516924ec25f30562",
+      "bytes": 19417812,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/generated/roster-import.json",
+      "sha256": "5bc8e4f61377aae1f955fbe4b9f97bd1872b9765ef8508412e8eec19cfc22c7c",
+      "bytes": 5901206,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/roster-boot.mjs",
+      "sha256": "d51243390dde9b8cd35544b9aa007559ca8853903640db69eaf4692c15edc926",
+      "bytes": 685,
+      "roles": [
+        "browser-entry",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/roster-import.mjs",
+      "sha256": "84035502e7fae20cd80f3810b6dc7e48eb92bf0522db26dc1b3fb1f4d34f3b9d",
+      "bytes": 19312,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/roster-paid-options.mjs",
+      "sha256": "1ea7177f75bcfc15a8164d12c2740d4a16aa8afb00e1ce88abc15fbb2be69eb5",
+      "bytes": 6634,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/roster-runtime.mjs",
+      "sha256": "18ea0b018c76b177409c4d39b96832682ececb6b76b7719c99be0a9655d5034c",
+      "bytes": 2330,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/rule-clause-review.json",
+      "sha256": "85904d95bdd4db3c77d36f26307939a42b3e09529d4168ac54b1af4b2d998652",
+      "bytes": 437113,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/rule-contract-schema.mjs",
+      "sha256": "752b1038e38af9d073ef5e3c10cb3cd7607b9722d066b63343bbd08188fb56fd",
+      "bytes": 341,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/book.config.json",
+      "sha256": "e2d381279d4594b72695c13354a9ad27ecf753a94c944ef3d47a58bfcb29be59",
+      "bytes": 10333,
+      "roles": [
+        "passport"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/contract-construction-declarations.json",
+      "sha256": "ae6ff038fc760d36193711ff74fa773723e5e5490bdc7637fa2f058366247b06",
+      "bytes": 299628,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/contract-datasheet-army-declarations.json",
+      "sha256": "d245f2ea608d2b69636144241658f260984bd55696131f8c2a0d8c8fd03ebb6e",
+      "bytes": 1012798,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/contract-enhancement-detachment-declarations.json",
+      "sha256": "ae1add439facb1598f28c727c191da922c34b5a9dff271210b9af8beb234dbdb",
+      "bytes": 1144860,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/contract-stratagem-declarations.json",
+      "sha256": "2716337d7d50be2bd953ccf6bf23559bf6ceaaa101af913b09d2ff7ca876b25f",
+      "bytes": 1128367,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/app-presentation.json",
+      "sha256": "1b07f29014b3f1c69dd09dc6d8aab82541a1cc05a651af738f815bfe6a1b2608",
+      "bytes": 19600722,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-import.json",
+      "sha256": "aa1fbea270271a0b36b7bc032ab97ccbfd383ddc21dbbaff3fb373e7495fb163",
+      "bytes": 3063451,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "sha256": "669e89f73e341f3f789d4d1cd5969c20a6ea79b9a9b394044c05a214e2a877c1",
+      "bytes": 7827249,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-attachment-bindings.json",
+      "sha256": "3dd5578ec5b5cce1f89a4a407cab2c99baab41254d86236059a5958137aecc2b",
+      "bytes": 3676,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "sha256": "4ecdf18696639ddf1aad890bc446e43e10f7e5ae5123c115a70b10f61461327c",
+      "bytes": 5301,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-attachments.mjs",
+      "sha256": "7080aab6e666a6fc0a85b1556fb83197fe790bb97369ff4164e86797efba1771",
+      "bytes": 1040,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "sha256": "87daaf5593361edbdcd36a960ee798c36d0475894d21059352c51db4a4af768d",
+      "bytes": 3589,
+      "roles": [
+        "browser-entry",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-effect-context.mjs",
+      "sha256": "0d66c7af6ef3c2600ff6c4fb5ce422dea18a4627686ed89825d97cfd090d22fc",
+      "bytes": 3316,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "sha256": "c7e8889b469de9540780f4b1c6334621586f4ef7d2e90a01ae40e3fb547459bd",
+      "bytes": 9898,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-import.mjs",
+      "sha256": "135762589df1eea97b8bec344ef65c971f50defa1aafbcd444d89f7ea21d8344",
+      "bytes": 1269,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-presentation.mjs",
+      "sha256": "61fa93029c1324c13a2d5bbaa40c4fd7edc9b022a58f79b2f33b715dafb3c561",
+      "bytes": 3236,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "sha256": "e7fcddfe45ca7bd9af1adaeac7eec01674bb8f637ba20adf2e518709d71fe127",
+      "bytes": 3386,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/rule-contract-build.mjs",
+      "sha256": "f478fd76d77f3cc7ae6fe9ae895b187b1a44da484ebda883d864ba379626e3b1",
+      "bytes": 10748,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/rule-contract-context.mjs",
+      "sha256": "eb9ba2a8048889e53c4d897448a6c6c719f8eeb48ae3caa2df2391ab5c592e3c",
+      "bytes": 4923,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/dark-angels/book.config.json",
+      "sha256": "62ec05a4e0ac0108f689d60a439fd5e47af5dcd2018664c93ee1675a42b9afb9",
+      "bytes": 23740,
+      "roles": [
+        "passport"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/generated/app-presentation.json",
+      "sha256": "99452c651bdba62aa7ec5a2af7217afab863dc6f70957c990d08c0e77e4dbd95",
+      "bytes": 19763042,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/generated/roster-import.json",
+      "sha256": "1ff00df1eff718df1c846daa35fabbc1628b116a7abc0c595e5df2c4f24113f8",
+      "bytes": 6104188,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/physical-chapter.mjs",
+      "sha256": "3cd365237848568383f84184c8d0d3f4009da334b7776d3141d134148bbb910f",
+      "bytes": 4162,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/roster-boot.mjs",
+      "sha256": "167b8c8cba87f8b44d30fe7ffc4519fe161b07655120388a3e9e7b02d7ddc351",
+      "bytes": 675,
+      "roles": [
+        "browser-entry",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/roster-import.mjs",
+      "sha256": "70a7e8d021b967b1240880d92950f7b9e6a6cb304925350d41bcc46d378caa84",
+      "bytes": 17561,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/roster-paid-options.mjs",
+      "sha256": "922cc91a402aafebac65023687b8904ad65cd03a32b8c4738719de76b82c7da7",
+      "bytes": 5931,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/roster-runtime.mjs",
+      "sha256": "dcb07d8082e0b8cf2c49a3d61cec3dee622d9a23ed021a1bfdd587de3a4ff9a5",
+      "bytes": 2682,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/rule-clause-review.json",
+      "sha256": "841a6ada2460393cad5d63024959510d997468a85f72af0ce2510ccf8a3d22ac",
+      "bytes": 390703,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/rule-contract-declarations.mjs",
+      "sha256": "74c11f7bf00e9ce7ca57ab228c39b9dbaf2cd06a72dc03cca454fd7e361527bb",
+      "bytes": 5077,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "sha256": "7ef1c9e2acfb244b85e734c9c762823ccf3de0f3a96933bf0bae6e32752e3890",
+      "bytes": 1670,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/death-guard/book.config.json",
+      "sha256": "7e7116a996ec226612faed971baca82b7231fc86871d61cb5b81532b31059985",
+      "bytes": 8275,
+      "roles": [
+        "passport"
+      ]
+    },
+    {
+      "path": "books/death-guard/v2/generated/app-presentation.json",
+      "sha256": "0d55e16b1c501fb19ea3e74d8f3100bea81071b35f70a07e43d2c3bd694b984f",
+      "bytes": 6112063,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "sha256": "1579bd3784e47ab6b343ed99496d5255db593fc81aadaaa0eaa65e59962045ad",
+      "bytes": 2295405,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/death-guard/v2/instrument-selections.mjs",
+      "sha256": "49c98f41061c9df1948613d19f38892d7f12361b177f2fe3371fc488edcee8b3",
+      "bytes": 3882,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/death-guard/v2/recipient-enrollment-qa.json",
+      "sha256": "5513bb0f88581ad22fc7e3f73c80a946c0eaca219b26625eaa6b1666a7811b9c",
+      "bytes": 148548,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/death-guard/v2/roster-boot.mjs",
+      "sha256": "2d5f58090793cd9c51ff2f6227f5f1044b0b8f6e389f681425f85e0b9fcbc7bc",
+      "bytes": 3100,
+      "roles": [
+        "browser-entry",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/death-guard/v2/roster-import-bindings.mjs",
+      "sha256": "8d1ecba6fafd9f6500d83e57429005b3bf39caa180c430d6afd3d817fe3dfcb2",
+      "bytes": 1685,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/death-guard/v2/rule-contract-schema.mjs",
+      "sha256": "e2d78cb82ba0734ab83935801df8befde97f291dab242503ced0fc2c47ada143",
+      "bytes": 543,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/death-guard/v2/rule-contract-state-fields.mjs",
+      "sha256": "bc60bdd819fccd229d0bf198f8b0a833a4491f1a253ca16ebe6ad2bd33c3e100",
+      "bytes": 15724,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/emperors-children/book.config.json",
+      "sha256": "8654b3be548e82f6f1e7f37578e40a48ab7d1ba4daa026b0d72ba16bfb26cbc9",
+      "bytes": 11844,
+      "roles": [
+        "passport"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/generated/app-presentation.json",
+      "sha256": "4521fe8ee9dc49bbfd590f7d3eb1f2c9158b91e88bd38944df89e703d17aca17",
+      "bytes": 5437377,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/generated/roster-attachments.json",
+      "sha256": "98d57d16064844dce02c678cd75fd6f80afff245126e64d98c0e279ca89ab0d7",
+      "bytes": 3507434,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/roster-attachments.mjs",
+      "sha256": "67f09bb77701aa261ea9fda5d761b36800e0cc75cc073b6501bfd2fe7c96336e",
+      "bytes": 3722,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/roster-boot.mjs",
+      "sha256": "38d212a14feae7d6fa57005ae7782f605cc680a03850563eccffdcaa037cf4da",
+      "bytes": 5742,
+      "roles": [
+        "browser-entry",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/roster-equipment-context.mjs",
+      "sha256": "94e0637b96424d2087231c0f28f59f5628af0180c34005f272864427e7551f96",
+      "bytes": 2102,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/roster-import.mjs",
+      "sha256": "404c9b00ef8873f5c70510850581d5d765a74fbc3e7690e4928a4ac4e3eb4b55",
+      "bytes": 17199,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/rule-contract-choice-context.mjs",
+      "sha256": "7d0bdb548382ced1ff755a224a82645ab159a46813d463ba44e6fd687bb41602",
+      "bytes": 1083,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "sha256": "9a779179db0695f5612d98d2f0af457cefb5375449e4a0af9fb3b60c603fa711",
+      "bytes": 875,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+      "sha256": "15606f87e278adae304540c6e9bc30a3d2e5c52fa0e29668e42cfd797fc226ff",
+      "bytes": 4188,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/rule-contract-schema.mjs",
+      "sha256": "f2e43d36193b49325b60c5c847fbf8bf317fdb4c22fc291c04538422af81ebb0",
+      "bytes": 1118,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/emperors-children/v2/text-rule-review.json",
+      "sha256": "a0619861b401d9e24e07fb8e0a537b382088a52497687fa32386b61a05b24318",
+      "bytes": 97207,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/shared/keyword-values.mjs",
+      "sha256": "00f25c852b3abfb27c803d54b8bcedf27fb30cf008036fb7ca0327fc10810fbf",
+      "bytes": 462,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/official-updates-v1/apply.mjs",
+      "sha256": "aa79dfdb3bf51c87e981d25fd0dee73862a9c38d70be3af1c448557176544127",
+      "bytes": 20988,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/official-updates-v1/book.mjs",
+      "sha256": "c368a8a468d93deebde9893611d639c484f9291afd7daa9d2a65e858c7f22bf5",
+      "bytes": 1822,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/official-updates-v1/effect-review-policy.mjs",
+      "sha256": "258ffe9ac0e3d5fc6b78a4a7ad32e1a6fe344ee26f575a73bb443a9a73f0e2d2",
+      "bytes": 1162,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/official-updates-v1/effect-review.mjs",
+      "sha256": "87c046dabb13f8ed65ab0f94d93254f2043aeb2eb59dd1f1369ff6e7b9f0e925",
+      "bytes": 3142,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/attached-rule-text.mjs",
+      "sha256": "7eb487f94d4ca4916a14b2165cbe2cc8cbeb651dedeeedda40c0a5a3f69d09ba",
+      "bytes": 18131,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/attachment-service.mjs",
+      "sha256": "325f24db73e57d4a655e4f185c475a67c48289f545981fa54ba85af3a09b019e",
+      "bytes": 3433,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/compatibility-context.mjs",
+      "sha256": "83857cd0d7730aa6add42f9d5fb0e701f51726a6862db44bbf0ffcbb14bc3677",
+      "bytes": 2580,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "sha256": "c51bdd59c068c6b2861f5bb2a4b3bfaefa13a26bf11e863e21c2f7714e3c88c2",
+      "bytes": 14002,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/condition-binding.mjs",
+      "sha256": "adc35502c3a2eb5f8ee2363f4713bbd4a56c930b4a4fbb48e5ca4624a87ebff6",
+      "bytes": 8164,
+      "roles": [
+        "consumer",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/condition-computations.mjs",
+      "sha256": "a95500735777cc2ad737e0869ca9a06212bb265f03e8fff0efb432f99516de44",
+      "bytes": 4089,
+      "roles": [
+        "consumer",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/condition-context.mjs",
+      "sha256": "69553042f8ec919b67ea8363d601b9b60176e82fa9e8278aaed57504beceff96",
+      "bytes": 5247,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/conditional-policy.mjs",
+      "sha256": "0b2ab41d151943c1b0ceaf05ff2f45ebc6ebc10bfdde9b47e33d1b7996a34f07",
+      "bytes": 29957,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/context.mjs",
+      "sha256": "2e13da19c73e0f583b13ea6657e4ad9d62183edd3870c580eaa3dc59e93a7ac7",
+      "bytes": 32221,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/effective-instance.mjs",
+      "sha256": "db99895a8e082778bd9095291bae8dc4e62c6ffc6c3e89bea137651086b2e898",
+      "bytes": 18328,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/effects.mjs",
+      "sha256": "6c645732df7245399dbbacd0f8282408356769d90d82709aeb38ddc12b18e3fa",
+      "bytes": 55043,
+      "roles": [
+        "consumer",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/enhancement-bearers.mjs",
+      "sha256": "486b89950276226621caeb2c9268fcf59eff3398fc4311445ded69a67241de5a",
+      "bytes": 2336,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/export-faction.mjs",
+      "sha256": "753c0bfbab124e245bcdc3417e660ab9ad7bea3af1ebd0c1bafb15f210083cb0",
+      "bytes": 1342,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/import-service.mjs",
+      "sha256": "1eed3bb20cf0f139b2247b136c7444c7fab906226c5640483db8784d37b2601d",
+      "bytes": 9900,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/import.mjs",
+      "sha256": "3015ea235643564a9a5ffcb3fea85c7c7978933e0301b785ae73adc62838c37e",
+      "bytes": 37195,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/keywords.mjs",
+      "sha256": "10be31278d40aaa8ad7da570b5f0ed53e44cd99d04f630a4ec7ea15386d7bd91",
+      "bytes": 1333,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/model-name-aliases.mjs",
+      "sha256": "782ec8fa271b7921ed75903eb11cbbec1e901d48b1568ee2aba68557e84a240e",
+      "bytes": 1279,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/parser.mjs",
+      "sha256": "9221e95f32e755e3e87baa53d8c7e3ab8dfb9a1236d41937a00d78264745fce6",
+      "bytes": 15459,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/physical-choice.mjs",
+      "sha256": "25a53ef662c04d3fc35218efc6aceb1f2943f9a903aa076b2ed82cc1383d1882",
+      "bytes": 13239,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/physical-condition-context.mjs",
+      "sha256": "88bdbdd39f200c3254b28269e9c74bf98c29b51629f93ce073fe6ebed2dcea8d",
+      "bytes": 11987,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/physical-static-model.mjs",
+      "sha256": "1df03f088649ef591d6b281fe88473a7b819191a94a80b35cedc9e712462cc39",
+      "bytes": 4768,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/recipient-execution.mjs",
+      "sha256": "dd80ea53b711ddeb35369c6d123a77a1dcf80953430b2b7d05f468e919abab78",
+      "bytes": 11223,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/related.mjs",
+      "sha256": "f3c1827140f4485e485786bd207357d78e10f2e86ec3be4f4b3112bb42923b30",
+      "bytes": 2683,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/runtime.mjs",
+      "sha256": "64268409db2a3e51f21c9a95e742973bbeb6bfc404506f0b443744026059b829",
+      "bytes": 10456,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/singleton-model-import.mjs",
+      "sha256": "76a18809a0a0a031bb4c4e370007feaaacf8c44fc8e734fc2b64295e0124a696",
+      "bytes": 2953,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/text-roster-facts.mjs",
+      "sha256": "a99ceed85c2d4d669117fd44c42b85985f1d646b74bd023c7c32b7554fe800a4",
+      "bytes": 6254,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/bindings.mjs",
+      "sha256": "08b02074642e4ed416ab01b295d5b2fcb87055bdc17828ef995abf96020e79f8",
+      "bytes": 8584,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/compatibility.mjs",
+      "sha256": "536f4b7fadb9ed486f597d4b2e6f1da5d147b6caef00290123147af5ee558919",
+      "bytes": 15236,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "sha256": "e6ec19f4e7be7c9630947ace044f5bcb7cf435d4f86d971410d23db3fa2dbb24",
+      "bytes": 8120,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/conditions.mjs",
+      "sha256": "60f876fca2f91c1eef8819645b8a0dabc5960543fd6c53ea5fc897e87ea8e829",
+      "bytes": 28077,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "sha256": "01913e924d33f6a65bfab1be876bb13dfaf339018ff7626fd8637977dfb1c6b7",
+      "bytes": 2559,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/recipients.mjs",
+      "sha256": "2e97abd326f717bbffb1842b6dc4598bb8d89cc0d5084fbe991343be4a6c95ca",
+      "bytes": 36074,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/reviewed-text-recipients.mjs",
+      "sha256": "b031d6ef16b794b8f75d2c9a4de778bd485e7ad5cd2bb959efdb32c72c9fbe98",
+      "bytes": 2791,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/schema.mjs",
+      "sha256": "4919a42c198a1bf3aa3707e233936d296b761e7f14b734ec7020237e6e6f83c3",
+      "bytes": 23859,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/rule-facts.js",
+      "sha256": "625ace571caf77093110077eafbddb4b22e9e4b0f7a8da0683318e82092db950",
+      "bytes": 19741,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/producer-io.mjs",
+      "sha256": "d55cb154c93705e7d655acafc6c322dca21595f2dd5125c30a9a7471e20fa34f",
+      "bytes": 1583,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.json",
+      "sha256": "599f5bf8f9f08d53a7396d5b1bcd23a945262b3acc0b54d018dae5dfc274ffbe",
+      "bytes": 6530013,
+      "roles": [
+        "current-registry"
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.mjs",
+      "sha256": "c77b6203e5027a23f6d5c510626d536e8645c775b10149b764f61fa7a6724d41",
+      "bytes": 3467,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-refs.mjs",
+      "sha256": "6dfae66e205029154cf6ea21efa04485d74e14b954b99bbf387ad402714e719a",
+      "bytes": 39606,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-registry.mjs",
+      "sha256": "fd7a300884ec48a3814941cf7a2b0513eca96c12d9afd4c48fac9149252374cf",
+      "bytes": 3830,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-serialization.mjs",
+      "sha256": "4c1a0d5600fe22154b863dd46a1c6883ef14827653413b6c51c96620d161c620",
+      "bytes": 3781,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/shared/tools/book-passport.mjs",
+      "sha256": "0d5cbac0738b532294859cc397627b003397918389c78c9307722c6c507b07fe",
+      "bytes": 9235,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/space-marines/book.config.json",
+      "sha256": "a0ae7b12060e32bb49dc8702483351fe69aaca5a328cbd1f7edb66a28bf2da04",
+      "bytes": 19335,
+      "roles": [
+        "passport"
+      ]
+    },
+    {
+      "path": "books/space-marines/v2/generated/app-presentation.json",
+      "sha256": "bd92ba82e9eedb3f08e2383f76f5b8d0cba215173c1e33b02cdbc1f078c54684",
+      "bytes": 23277245,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/space-marines/v2/generated/roster-import.json",
+      "sha256": "d982e0f3208405742fc604475abdd7b283cbc6e2bed2a0b8db279179902e8822",
+      "bytes": 6799242,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/space-marines/v2/roster-boot.mjs",
+      "sha256": "d82c6c52ea598b22e941e0614f72f20647aa20c8daecb6a29e76bbe4dc56a542",
+      "bytes": 758,
+      "roles": [
+        "browser-entry",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/space-marines/v2/roster-import.mjs",
+      "sha256": "3f00af3dbeac07a607a71ac449a488e0ff2cce0ddddf40ca79d9e39669ae84bf",
+      "bytes": 17478,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/space-marines/v2/roster-paid-options.mjs",
+      "sha256": "445abc532d75b6c65d350b1f3526a419515954116eb570341c112f5a92984fe6",
+      "bytes": 5887,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/space-marines/v2/roster-runtime.mjs",
+      "sha256": "9dc6b9cde08069dc44efb04491cdd4a6a38586e07f63586ab8620e455f42bf70",
+      "bytes": 5057,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/space-marines/v2/rule-clause-review.json",
+      "sha256": "22991c4c988329cc5d7fc0a49a8cfa9f44d1fb917e8e201a786b5845e93bfef4",
+      "bytes": 3832197,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/space-marines/v2/rule-contract-schema.mjs",
+      "sha256": "66155eaacb8763194230014e6fcb92a523edffad4ce49f5345c506bf29866d7d",
+      "bytes": 988,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/space-marines/v2/static-gameplay-review.json",
+      "sha256": "2b51db91ebd075af757f56a619a76db769ee4c7992931b121de404742a930837",
+      "bytes": 247575,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/tau-empire/book.config.json",
+      "sha256": "8ecbe9c0c3e64609791df8644d9037d7e80a2869b804b1fdcd6f8b6427c6cde4",
+      "bytes": 9296,
+      "roles": [
+        "passport"
+      ]
+    },
+    {
+      "path": "books/tau-empire/v2/generated/app-presentation.json",
+      "sha256": "b52333406633071ac5ddc069aecd67dee199930c35a3470397e4ffae7e8319af",
+      "bytes": 7092004,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/tau-empire/v2/generated/roster-import.json",
+      "sha256": "d0e49306d90f11756310d493b48f3496fd48f4857f948a765c5c6bb3d5fcccae",
+      "bytes": 3543842,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/tau-empire/v2/roster-boot.mjs",
+      "sha256": "5000eb085c537cb78d3e37809fc712d663288cc013c97b2807d3222263cf1c79",
+      "bytes": 7003,
+      "roles": [
+        "browser-entry",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/tau-empire/v2/roster-import.mjs",
+      "sha256": "05d6a1667b5c1fd698d7cb951134336b175dfc9f9baefe11951b018f73e3ca3e",
+      "bytes": 15301,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/tau-empire/v2/roster-source-choices.mjs",
+      "sha256": "a2bf8194521018757cd1fe2601c95b681658bb8f3f48eefb8e821bfbe5de6933",
+      "bytes": 12270,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "sha256": "b52a013cf2d57577c03a1457c530975397803e1c63f1821e157c55750f09e193",
+      "bytes": 10218,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/tau-empire/v2/rule-clause-review.json",
+      "sha256": "972a7b5f7c2103f99f4b8d8e403c1692ce44c2220a8166032dccd137872e8530",
+      "bytes": 1432628,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "books/tau-empire/v2/rule-contract-declarations.mjs",
+      "sha256": "86eafc3b2c5685e054b3e81ef8631ca553faab01fe80a97db7b7566f6cedc1b5",
+      "bytes": 20021,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/tau-empire/v2/rule-contract-schema.mjs",
+      "sha256": "b18eee8ad2a5ec896192a01ef197961b1c2d602ea754ab91506dc7bf97e6ed7f",
+      "bytes": 951,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/tyranids/book.config.json",
+      "sha256": "5c058a6d3c9796f4bf4d9cdc8aba26c80769108794fef44d65270ba5c595c464",
+      "bytes": 8120,
+      "roles": [
+        "passport"
+      ]
+    },
+    {
+      "path": "books/tyranids/v2/generated/app-presentation.json",
+      "sha256": "397d7df75ac5c9fe4987749c1af5d64835c7bfbbaf9c6cf180d52acfbf65f9da",
+      "bytes": 8747921,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/tyranids/v2/generated/roster-runtime.json",
+      "sha256": "59224d618c45ca6dfd5ff45294071c53d4bc06c69b6ec0a5784880c846d4c881",
+      "bytes": 3064045,
+      "roles": [
+        "native-input"
+      ]
+    },
+    {
+      "path": "books/tyranids/v2/roster-boot.mjs",
+      "sha256": "64974e85656272e86195be13383555896b7310fd96a2c0aeef051d449b181836",
+      "bytes": 5594,
+      "roles": [
+        "browser-entry",
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/tyranids/v2/roster-import.mjs",
+      "sha256": "aa205ccaa08abac2a34adb15ffdf46b69e68878f5f9c6b083372bb4d64f40b80",
+      "bytes": 20309,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/tyranids/v2/roster-source-choices.mjs",
+      "sha256": "ec9cb19347f091b362a901fe84fbc83259cc35fbb3c73e25322cbe2487370217",
+      "bytes": 7136,
+      "roles": [
+        "native-module"
+      ]
+    },
+    {
+      "path": "books/tyranids/v2/text-rule-review.json",
+      "sha256": "bd6e99bc2c3844e3e8f1fb6b3edda79c1fe864f272733b4786a7e50e8dfeb7d2",
+      "bytes": 146237,
+      "roles": [
+        "review"
+      ]
+    },
+    {
+      "path": "mfm/current.json",
+      "sha256": "b6afd642faa3ee2990375895ff2d88c0528720d400048277d8daddbaeb208d77",
+      "bytes": 2132,
+      "roles": [
+        "current-registry"
+      ]
+    },
+    {
+      "path": "package.json",
+      "sha256": "e237b27209ba0f683877d53dffff06fc13581da28c061bfbc7111c4286bbc904",
+      "bytes": 24946,
+      "roles": [
+        "current-registry"
+      ]
+    }
+  ],
+  "counts": {
+    "blood-angels": 47,
+    "chaos-space-marines": 1,
+    "dark-angels": 52,
+    "death-guard": 1,
+    "space-marines": 68,
+    "tyranids": 2
+  }
+}
