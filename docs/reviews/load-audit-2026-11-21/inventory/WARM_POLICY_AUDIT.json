@@ -1,0 +1,627 @@
+{
+  "schema": "load-audit-warm-policy-calibration/v1",
+  "status": "ANALYSIS_ONLY_NOT_MAIN_MEDIANS",
+  "pilot": "E:/Warhammer/qa-evidence/load-audit-v1-2026-11-21/pilot/local-unlimited-home-1-warm.json",
+  "pilotExcludedFromFinalTimings": true,
+  "sourcePredicate": "function mutableV2(url){\n  return /\\.(?:mjs|css|json)$/.test(url.pathname)||url.pathname.includes('/v2/')||url.pathname.includes('/books/core-rules/reader/')||url.pathname.endsWith('/books/shared/offline-status.js');\n}",
+  "policyCaveat": "Static branch selection is not a claim of actual warm network traffic: Chromium renderer resource-cache hits can avoid another worker fetch. Use observed servedFromCache and wire/server evidence.",
+  "codeBridgeExample": {
+    "path": "books/shared/rule-facts.js",
+    "policy": "Cache-first if fetch reaches service worker"
+  },
+  "cachedModuleResources": 53,
+  "allModuleResourcesServedFromCache": true,
+  "modules": [
+    {
+      "path": "v2/boot.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.056884765625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/application-v2/registry.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.031982421875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/application-v2/runtime.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.029052734375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "v2/army-books.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.031005859375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02587890625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02294921875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/runtime.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02392578125,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/application-v2/routes.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02490234375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/application-v2/home.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.030029296875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/application-v2/glossary.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02587890625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/personal.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02490234375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/application-v2/source-metadata.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.028076171875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/death-guard/v2/registration.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02294921875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/registration.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.01904296875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/chaos-space-marines/v2/registration.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02197265625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/emperors-children/v2/registration.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/tyranids/v2/registration.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02197265625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/tau-empire/v2/registration.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02294921875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/space-marines/v2/registration.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02490234375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/dark-angels/v2/registration.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/blood-angels/v2/registration.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02490234375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-refs.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02490234375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/glossary.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02197265625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/route-context.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02197265625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02001953125,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/roster.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02392578125,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02490234375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02490234375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/book-v1.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02294921875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/related-v1.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02392578125,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/popup-v1.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02294921875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/rule-popup.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02490234375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02490234375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02294921875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.027099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02392578125,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/keyword-values.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02294921875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/roster-v2/context.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02197265625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/source-table.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02294921875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/import-notices.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.037109375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02392578125,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02392578125,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02197265625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.027099609375,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02392578125,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/roster-v2/compatibility-context.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02294921875,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/roster-v2/keywords.mjs",
+      "servedFromCache": true,
+      "fromServiceWorker": true,
+      "fromDiskCache": false,
+      "durationMs": 0.02197265625,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    }
+  ],
+  "cdpNetworkRequests": [
+    {
+      "path": "v2/app.html",
+      "actor": "service-worker",
+      "compressedBodyBytes": 831,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/offline-status.js",
+      "actor": "service-worker",
+      "compressedBodyBytes": 6847,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/styles/offline-status.css",
+      "actor": "service-worker",
+      "compressedBodyBytes": 1645,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/space-marines/book.config.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 3113,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/blood-angels/book.config.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 3157,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/dark-angels/book.config.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 3782,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/adeptus-mechanicus/book.config.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 2025,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/chaos-space-marines/book.config.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 2213,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/death-guard/book.config.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 1848,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/tau-empire/book.config.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 2394,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/tyranids/book.config.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 2094,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "books/emperors-children/book.config.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 2744,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "path": "/favicon.ico",
+      "actor": "service-worker",
+      "compressedBodyBytes": 0,
+      "status": 204,
+      "policy": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "path": "books/shared/application-v2/generated/source-metadata.v1.json",
+      "actor": "service-worker",
+      "compressedBodyBytes": 405,
+      "status": 200,
+      "policy": "Network-first/no-store if fetch reaches service worker"
+    }
+  ],
+  "rawHttpServerRows": [
+    {
+      "path": "v2/app.html",
+      "bodyBytes": 831,
+      "status": 200
+    },
+    {
+      "path": "books/shared/offline-status.js",
+      "bodyBytes": 6847,
+      "status": 200
+    },
+    {
+      "path": "books/shared/styles/offline-status.css",
+      "bodyBytes": 1645,
+      "status": 200
+    },
+    {
+      "path": "service-worker.js",
+      "bodyBytes": 0,
+      "status": 304
+    },
+    {
+      "path": "books/space-marines/book.config.json",
+      "bodyBytes": 3113,
+      "status": 200
+    },
+    {
+      "path": "books/blood-angels/book.config.json",
+      "bodyBytes": 3157,
+      "status": 200
+    },
+    {
+      "path": "books/dark-angels/book.config.json",
+      "bodyBytes": 3782,
+      "status": 200
+    },
+    {
+      "path": "books/adeptus-mechanicus/book.config.json",
+      "bodyBytes": 2025,
+      "status": 200
+    },
+    {
+      "path": "books/chaos-space-marines/book.config.json",
+      "bodyBytes": 2213,
+      "status": 200
+    },
+    {
+      "path": "books/death-guard/book.config.json",
+      "bodyBytes": 1848,
+      "status": 200
+    },
+    {
+      "path": "books/tau-empire/book.config.json",
+      "bodyBytes": 2394,
+      "status": 200
+    },
+    {
+      "path": "books/tyranids/book.config.json",
+      "bodyBytes": 2094,
+      "status": 200
+    },
+    {
+      "path": "books/emperors-children/book.config.json",
+      "bodyBytes": 2744,
+      "status": 200
+    },
+    {
+      "path": "/favicon.ico",
+      "bodyBytes": 0,
+      "status": 204
+    },
+    {
+      "path": "glossary/generated/cache-revision.js",
+      "bodyBytes": 0,
+      "status": 304
+    },
+    {
+      "path": "books/shared/application-v2/generated/source-metadata.v1.json",
+      "bodyBytes": 405,
+      "status": 200
+    }
+  ],
+  "untrackedByOldWorkerTargetExamples": [
+    "service-worker.js browser-owned update check",
+    "glossary/generated/cache-revision.js import/update check"
+  ],
+  "conclusion": "All .mjs are network-first by the SW predicate, but all 53 actual eager warm module resource requests in this excluded pilot were servedFromCache and produced no new inner worker network request. Never count their copied response timing/header metadata as proof of a new transfer. Nine normal fetch() passport JSON reads still reached the network."
+}

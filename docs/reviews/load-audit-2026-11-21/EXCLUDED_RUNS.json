@@ -1,0 +1,17 @@
+{
+  "schema": "load-audit-excluded-development-observations/v1",
+  "primaryFolder": "accepted-matrix",
+  "replacementFolder": "measurements-local-dg-corrected",
+  "acceptedCalibrationFolder": "calibration-accepted",
+  "excluded": [
+    {"folder":"pilot","reason":"Initial transport prototype: limited receive buffer reduced Fast-4G throughput and the unlimited branch still paced TLS fragments. Instrument calibration only."},
+    {"folder":"pilot-v2","reason":"Observer/accounting validation only; not three-repetition performance data. Validated CDP/body and NetLog counts, including browser-owned SW checks."},
+    {"folder":"pilot-import","reason":"Single flow/selector validation and discovery of real Slow-4G background-duration requirements; not a median series."},
+    {"folder":"pilot-v3","reason":"Small-request calibration identified artificial per-fragment timer latency. Not primary performance data."},
+    {"folder":"pilot-v4","reason":"Fair-turn fragment draining fixed, but Windows timer compensation not final. Not primary performance data."},
+    {"folder":"calibration-final","reason":"Final calibration preparation; Fast RTT was still above the accepted target and was corrected before the primary series."},
+    {"folder":"measurements","reason":"Incomplete initial series stopped by its recorded owned driver PID. Excluded in full because the final transport calibration and 300-second background-settlement window were not yet in place. No production source/site change."},
+    {"folder":"measurements-v2","scope":{"origin":"local","scenario":"dg-book","rows":18},"reason":"All local DG-book rows explicitly replaced after the dedicated audit origin's Node HTTP/2 default 10 MiB queued-session-memory budget rejected constrained-link PNG streams with RST_STREAM ENHANCE_YOUR_CALM. Only the observation origin maxSessionMemory changed to128; app bytes/shaper/preview unchanged. Other126 original observations retained; no live rows removed."}
+  ],
+  "rule":"Never pool these observations with the primary three-repetition medians. The historical-method control, if present, is reported separately. Raw browser profiles and private roster exports are not published."
+}

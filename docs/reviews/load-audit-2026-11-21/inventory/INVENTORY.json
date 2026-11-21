@@ -1,0 +1,2735 @@
+{
+  "schema": "load-audit-static-inventory/v1",
+  "source": "8579a7a77c7f5e8dad291afc11b27aab3cd9d73a",
+  "runtimeFiles": 456,
+  "totalRuntimeBytes": 282837773,
+  "precacheUrls": 221,
+  "precacheUniqueFiles": 219,
+  "precacheUrlBytes": 5139186,
+  "precacheUniqueBytes": 5113769,
+  "precacheUniqueGzipBytes": 2148305,
+  "groups": [
+    {
+      "group": "HTML / manifest / other",
+      "urls": 4,
+      "uniqueFiles": 3,
+      "urlBytes": 3043,
+      "uniqueBytes": 2684,
+      "urlGzipBytes": 1626,
+      "uniqueGzipBytes": 1381
+    },
+    {
+      "group": "Images",
+      "urls": 18,
+      "uniqueFiles": 18,
+      "urlBytes": 1291845,
+      "uniqueBytes": 1291845,
+      "urlGzipBytes": 1282170,
+      "uniqueGzipBytes": 1282170
+    },
+    {
+      "group": "Book passport JSON",
+      "urls": 9,
+      "uniqueFiles": 9,
+      "urlBytes": 118461,
+      "uniqueBytes": 118461,
+      "urlGzipBytes": 23370,
+      "uniqueGzipBytes": 23370
+    },
+    {
+      "group": "JS",
+      "urls": 137,
+      "uniqueFiles": 136,
+      "urlBytes": 1477800,
+      "uniqueBytes": 1452742,
+      "urlGzipBytes": 435234,
+      "uniqueGzipBytes": 428387
+    },
+    {
+      "group": "CSS",
+      "urls": 20,
+      "uniqueFiles": 20,
+      "urlBytes": 153663,
+      "uniqueBytes": 153663,
+      "urlGzipBytes": 40199,
+      "uniqueGzipBytes": 40199
+    },
+    {
+      "group": "Core reader",
+      "urls": 31,
+      "uniqueFiles": 31,
+      "urlBytes": 2044828,
+      "uniqueBytes": 2044828,
+      "urlGzipBytes": 359012,
+      "uniqueGzipBytes": 359012
+    },
+    {
+      "group": "Small source metadata JSON",
+      "urls": 1,
+      "uniqueFiles": 1,
+      "urlBytes": 1003,
+      "uniqueBytes": 1003,
+      "urlGzipBytes": 405,
+      "uniqueGzipBytes": 405
+    },
+    {
+      "group": "Glossary runtime helper JS",
+      "urls": 1,
+      "uniqueFiles": 1,
+      "urlBytes": 48543,
+      "uniqueBytes": 48543,
+      "urlGzipBytes": 13381,
+      "uniqueGzipBytes": 13381
+    }
+  ],
+  "eagerHomeModuleCount": 54,
+  "eagerHomeModuleBytes": 729534,
+  "nonHomeMandatoryUrls": 137,
+  "nonHomeMandatoryUrlBytes": 3371973,
+  "homeCovers": [
+    {
+      "book": "death-guard",
+      "path": "assets/death-guard-cover-480.webp",
+      "loading": "eager default; decoding async"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "path": "assets/adeptus-mechanicus-cover-480.webp",
+      "loading": "eager default; decoding async"
+    },
+    {
+      "book": "chaos-space-marines",
+      "path": "books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp",
+      "loading": "eager default; decoding async"
+    },
+    {
+      "book": "emperors-children",
+      "path": "books/emperors-children/assets/emperors-children-cover-480.webp",
+      "loading": "eager default; decoding async"
+    },
+    {
+      "book": "tyranids",
+      "path": "assets/tyranids-cover-480.webp",
+      "loading": "eager default; decoding async"
+    },
+    {
+      "book": "tau-empire",
+      "path": "books/tau-empire/assets/tau-empire-cover-800.webp",
+      "loading": "eager default; decoding async"
+    },
+    {
+      "book": "space-marines",
+      "path": "books/space-marines/assets/space-marines-cover-480.webp",
+      "loading": "eager default; decoding async"
+    },
+    {
+      "book": "dark-angels",
+      "path": "books/dark-angels/assets/dark-angels-cover-480.webp",
+      "loading": "eager default; decoding async"
+    },
+    {
+      "book": "blood-angels",
+      "path": "books/blood-angels/assets/blood-angels-cover-480.webp",
+      "loading": "eager default; decoding async"
+    }
+  ],
+  "bookBackgrounds": [
+    {
+      "book": "death-guard",
+      "path": "assets/death-guard-cover.jpg",
+      "exists": true,
+      "bytes": 473320,
+      "loading": "CSS background on selected book library hero, no native lazy attribute"
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "path": "books/adeptus-mechanicus/assets/mechanicus-cover-800.webp",
+      "exists": true,
+      "bytes": 128270,
+      "loading": "CSS background on selected book library hero, no native lazy attribute"
+    },
+    {
+      "book": "chaos-space-marines",
+      "path": "books/chaos-space-marines/assets/chaos-space-marines-cover-800.webp",
+      "exists": true,
+      "bytes": 150756,
+      "loading": "CSS background on selected book library hero, no native lazy attribute"
+    },
+    {
+      "book": "emperors-children",
+      "path": "books/emperors-children/assets/emperors-children-cover-800.webp",
+      "exists": true,
+      "bytes": 209438,
+      "loading": "CSS background on selected book library hero, no native lazy attribute"
+    },
+    {
+      "book": "tyranids",
+      "path": "assets/tyranids-cover-800.webp",
+      "exists": true,
+      "bytes": 116998,
+      "loading": "CSS background on selected book library hero, no native lazy attribute"
+    },
+    {
+      "book": "tau-empire",
+      "path": "books/tau-empire/assets/tau-empire-cover-800.webp",
+      "exists": true,
+      "bytes": 119340,
+      "loading": "CSS background on selected book library hero, no native lazy attribute"
+    },
+    {
+      "book": "space-marines",
+      "path": "books/space-marines/assets/space-marines-cover-800.webp",
+      "exists": true,
+      "bytes": 160098,
+      "loading": "CSS background on selected book library hero, no native lazy attribute"
+    },
+    {
+      "book": "dark-angels",
+      "path": "books/dark-angels/assets/dark-angels-cover-800.webp",
+      "exists": true,
+      "bytes": 149822,
+      "loading": "CSS background on selected book library hero, no native lazy attribute"
+    },
+    {
+      "book": "blood-angels",
+      "path": "books/blood-angels/assets/blood-angels-cover-800.webp",
+      "exists": true,
+      "bytes": 143962,
+      "loading": "CSS background on selected book library hero, no native lazy attribute"
+    }
+  ],
+  "corpora": [
+    {
+      "path": "glossary/v2/generated/index.en.json",
+      "bytes": 31169662,
+      "gzipBytes": 1941463,
+      "mandatory": false
+    },
+    {
+      "path": "glossary/v2/generated/index.en.js",
+      "bytes": 23201709,
+      "gzipBytes": 1672023,
+      "mandatory": false
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.json",
+      "bytes": 6530013,
+      "gzipBytes": 719107,
+      "mandatory": false
+    }
+  ],
+  "top30": [
+    {
+      "path": "glossary/v2/generated/index.en.json",
+      "bytes": 31169662,
+      "group": "Glossary / revision metadata",
+      "gzipBytes": 1941463
+    },
+    {
+      "path": "books/space-marines/v2/generated/app-presentation.json",
+      "bytes": 23277245,
+      "group": "Book generated JSON",
+      "gzipBytes": 1227141
+    },
+    {
+      "path": "glossary/v2/generated/index.en.js",
+      "bytes": 23201709,
+      "group": "Glossary / revision metadata",
+      "gzipBytes": 1672023
+    },
+    {
+      "path": "books/dark-angels/v2/generated/app-presentation.json",
+      "bytes": 19763042,
+      "group": "Book generated JSON",
+      "gzipBytes": 1078852
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/app-presentation.json",
+      "bytes": 19600722,
+      "group": "Book generated JSON",
+      "gzipBytes": 886745
+    },
+    {
+      "path": "books/blood-angels/v2/generated/app-presentation.json",
+      "bytes": 19417812,
+      "group": "Book generated JSON",
+      "gzipBytes": 1060977
+    },
+    {
+      "path": "books/tyranids/v2/generated/app-presentation.json",
+      "bytes": 8747921,
+      "group": "Book generated JSON",
+      "gzipBytes": 439714
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "bytes": 7827249,
+      "group": "Book generated JSON",
+      "gzipBytes": 577566
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+      "bytes": 7645420,
+      "group": "Book generated JSON",
+      "gzipBytes": 397698
+    },
+    {
+      "path": "books/tau-empire/v2/generated/app-presentation.json",
+      "bytes": 7092004,
+      "group": "Book generated JSON",
+      "gzipBytes": 406128
+    },
+    {
+      "path": "books/space-marines/v2/generated/roster-import.json",
+      "bytes": 6799242,
+      "group": "Book generated JSON",
+      "gzipBytes": 482112
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.json",
+      "bytes": 6530013,
+      "group": "HTML / manifest / other",
+      "gzipBytes": 719107
+    },
+    {
+      "path": "books/death-guard/v2/generated/app-presentation.json",
+      "bytes": 6112063,
+      "group": "Book generated JSON",
+      "gzipBytes": 336228
+    },
+    {
+      "path": "books/dark-angels/v2/generated/roster-import.json",
+      "bytes": 6104188,
+      "group": "Book generated JSON",
+      "gzipBytes": 451788
+    },
+    {
+      "path": "books/blood-angels/v2/generated/roster-import.json",
+      "bytes": 5901206,
+      "group": "Book generated JSON",
+      "gzipBytes": 435695
+    },
+    {
+      "path": "books/emperors-children/v2/generated/app-presentation.json",
+      "bytes": 5437377,
+      "group": "Book generated JSON",
+      "gzipBytes": 331425
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "bytes": 4669035,
+      "group": "Book generated JSON",
+      "gzipBytes": 249877
+    },
+    {
+      "path": "books/tau-empire/v2/generated/roster-import.json",
+      "bytes": 3543842,
+      "group": "Book generated JSON",
+      "gzipBytes": 251271
+    },
+    {
+      "path": "books/emperors-children/v2/generated/roster-attachments.json",
+      "bytes": 3507434,
+      "group": "Book generated JSON",
+      "gzipBytes": 212956
+    },
+    {
+      "path": "books/tyranids/v2/generated/roster-runtime.json",
+      "bytes": 3064045,
+      "group": "Book generated JSON",
+      "gzipBytes": 221882
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-import.json",
+      "bytes": 3063451,
+      "group": "Book generated JSON",
+      "gzipBytes": 303432
+    },
+    {
+      "path": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "bytes": 2295405,
+      "group": "Book generated JSON",
+      "gzipBytes": 161932
+    },
+    {
+      "path": "books/emperors-children/v2/generated/roster-import.json",
+      "bytes": 2166207,
+      "group": "Book generated JSON",
+      "gzipBytes": 136264
+    },
+    {
+      "path": "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json",
+      "bytes": 2131716,
+      "group": "Core reader",
+      "gzipBytes": 243058
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/effective.json",
+      "bytes": 2071698,
+      "group": "Book generated JSON",
+      "gzipBytes": 116542
+    },
+    {
+      "path": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+      "bytes": 1467795,
+      "group": "Core reader",
+      "gzipBytes": 164703
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plague-marines.png",
+      "bytes": 1147370,
+      "group": "Images",
+      "gzipBytes": 1146742
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/great-unclean-one.png",
+      "bytes": 971569,
+      "group": "Images",
+      "gzipBytes": 970557
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/blightlord-terminators.png",
+      "bytes": 960040,
+      "group": "Images",
+      "gzipBytes": 956587
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/rotigus.png",
+      "bytes": 896776,
+      "group": "Images",
+      "gzipBytes": 895922
+    }
+  ],
+  "mandatory": [
+    {
+      "url": "./",
+      "path": "index.html",
+      "group": "HTML / manifest / other",
+      "bytes": 359,
+      "gzipBytes": 245,
+      "eagerHomeModule": false,
+      "purpose": "Home / bootstrap shell",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/adeptus-mechanicus-cover-480.webp",
+      "path": "assets/adeptus-mechanicus-cover-480.webp",
+      "group": "Images",
+      "bytes": 52998,
+      "gzipBytes": 53036,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/apple-touch-icon.png",
+      "path": "assets/apple-touch-icon.png",
+      "group": "Images",
+      "bytes": 9134,
+      "gzipBytes": 8843,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/core-rules-cover-480.webp",
+      "path": "assets/core-rules-cover-480.webp",
+      "group": "Images",
+      "bytes": 53074,
+      "gzipBytes": 53112,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/core-rules-cover-fallback.jpg",
+      "path": "assets/core-rules-cover-fallback.jpg",
+      "group": "Images",
+      "bytes": 185826,
+      "gzipBytes": 185755,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/death-guard-cover-480.webp",
+      "path": "assets/death-guard-cover-480.webp",
+      "group": "Images",
+      "bytes": 32960,
+      "gzipBytes": 32993,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/games-workshop-logo.png",
+      "path": "assets/games-workshop-logo.png",
+      "group": "Images",
+      "bytes": 53556,
+      "gzipBytes": 49264,
+      "eagerHomeModule": false,
+      "purpose": "Home header image; does not intrinsically block interaction",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/icon-192.png",
+      "path": "assets/icon-192.png",
+      "group": "Images",
+      "bytes": 9631,
+      "gzipBytes": 9343,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/icon-512.png",
+      "path": "assets/icon-512.png",
+      "group": "Images",
+      "bytes": 54730,
+      "gzipBytes": 52394,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/icon-maskable-512.png",
+      "path": "assets/icon-maskable-512.png",
+      "group": "Images",
+      "bytes": 39165,
+      "gzipBytes": 37098,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/tyranids-cover-480.webp",
+      "path": "assets/tyranids-cover-480.webp",
+      "group": "Images",
+      "bytes": 54430,
+      "gzipBytes": 54468,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/tyranids-cover-fallback.jpg",
+      "path": "assets/tyranids-cover-fallback.jpg",
+      "group": "Images",
+      "bytes": 197170,
+      "gzipBytes": 197215,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./assets/warhammer-40000-logo-optimized.png",
+      "path": "assets/warhammer-40000-logo-optimized.png",
+      "group": "Images",
+      "bytes": 63522,
+      "gzipBytes": 63560,
+      "eagerHomeModule": false,
+      "purpose": "Home header image; does not intrinsically block interaction",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./books/adeptus-mechanicus/assets/mechanicus-logo.png",
+      "path": "books/adeptus-mechanicus/assets/mechanicus-logo.png",
+      "group": "Images",
+      "bytes": 132575,
+      "gzipBytes": 131805,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./books/adeptus-mechanicus/book.config.json",
+      "path": "books/adeptus-mechanicus/book.config.json",
+      "group": "Book passport JSON",
+      "bytes": 8967,
+      "gzipBytes": 2025,
+      "eagerHomeModule": false,
+      "purpose": "Eager Home input through keywords.mjs top-level await of all nine passports",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/adeptus-mechanicus/v2/registration.mjs",
+      "path": "books/adeptus-mechanicus/v2/registration.mjs",
+      "group": "JS",
+      "bytes": 931,
+      "gzipBytes": 507,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/adeptus-mechanicus/v2/roster-import.mjs",
+      "path": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "group": "JS",
+      "bytes": 3732,
+      "gzipBytes": 1553,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "path": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "group": "JS",
+      "bytes": 2892,
+      "gzipBytes": 1097,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/adeptus-mechanicus/v2/theme.css",
+      "path": "books/adeptus-mechanicus/v2/theme.css",
+      "group": "CSS",
+      "bytes": 1329,
+      "gzipBytes": 653,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/blood-angels/assets/blood-angels-cover-480.webp",
+      "path": "books/blood-angels/assets/blood-angels-cover-480.webp",
+      "group": "Images",
+      "bytes": 61496,
+      "gzipBytes": 61534,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./books/blood-angels/book.config.json",
+      "path": "books/blood-angels/book.config.json",
+      "group": "Book passport JSON",
+      "bytes": 18551,
+      "gzipBytes": 3157,
+      "eagerHomeModule": false,
+      "purpose": "Eager Home input through keywords.mjs top-level await of all nine passports",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/blood-angels/v2/registration.mjs",
+      "path": "books/blood-angels/v2/registration.mjs",
+      "group": "JS",
+      "bytes": 929,
+      "gzipBytes": 501,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/blood-angels/v2/roster-boot.mjs",
+      "path": "books/blood-angels/v2/roster-boot.mjs",
+      "group": "JS",
+      "bytes": 685,
+      "gzipBytes": 359,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/blood-angels/v2/roster-import.mjs",
+      "path": "books/blood-angels/v2/roster-import.mjs",
+      "group": "JS",
+      "bytes": 19312,
+      "gzipBytes": 5932,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/blood-angels/v2/roster-paid-options.mjs",
+      "path": "books/blood-angels/v2/roster-paid-options.mjs",
+      "group": "JS",
+      "bytes": 6634,
+      "gzipBytes": 2258,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/blood-angels/v2/roster-runtime.mjs",
+      "path": "books/blood-angels/v2/roster-runtime.mjs",
+      "group": "JS",
+      "bytes": 2330,
+      "gzipBytes": 925,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/blood-angels/v2/rule-contract-schema.mjs",
+      "path": "books/blood-angels/v2/rule-contract-schema.mjs",
+      "group": "JS",
+      "bytes": 341,
+      "gzipBytes": 238,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/blood-angels/v2/theme.css",
+      "path": "books/blood-angels/v2/theme.css",
+      "group": "CSS",
+      "bytes": 998,
+      "gzipBytes": 467,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp",
+      "path": "books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp",
+      "group": "Images",
+      "bytes": 59770,
+      "gzipBytes": 59808,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/book.config.json",
+      "path": "books/chaos-space-marines/book.config.json",
+      "group": "Book passport JSON",
+      "bytes": 10333,
+      "gzipBytes": 2213,
+      "eagerHomeModule": false,
+      "purpose": "Eager Home input through keywords.mjs top-level await of all nine passports",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/registration.mjs",
+      "path": "books/chaos-space-marines/v2/registration.mjs",
+      "group": "JS",
+      "bytes": 888,
+      "gzipBytes": 498,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "path": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "group": "JS",
+      "bytes": 5301,
+      "gzipBytes": 1841,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/roster-attachments.mjs",
+      "path": "books/chaos-space-marines/v2/roster-attachments.mjs",
+      "group": "JS",
+      "bytes": 1040,
+      "gzipBytes": 479,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/roster-boot.mjs",
+      "path": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "group": "JS",
+      "bytes": 3589,
+      "gzipBytes": 1206,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/roster-effect-context.mjs",
+      "path": "books/chaos-space-marines/v2/roster-effect-context.mjs",
+      "group": "JS",
+      "bytes": 3316,
+      "gzipBytes": 1227,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "path": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "group": "JS",
+      "bytes": 9898,
+      "gzipBytes": 3556,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/roster-import.mjs",
+      "path": "books/chaos-space-marines/v2/roster-import.mjs",
+      "group": "JS",
+      "bytes": 1269,
+      "gzipBytes": 641,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/roster-presentation.mjs",
+      "path": "books/chaos-space-marines/v2/roster-presentation.mjs",
+      "group": "JS",
+      "bytes": 3236,
+      "gzipBytes": 1327,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/roster-runtime.mjs",
+      "path": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "group": "JS",
+      "bytes": 3386,
+      "gzipBytes": 1148,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/chaos-space-marines/v2/theme.css",
+      "path": "books/chaos-space-marines/v2/theme.css",
+      "group": "CSS",
+      "bytes": 1130,
+      "gzipBytes": 517,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/actions.html",
+      "path": "books/core-rules/reader/actions.html",
+      "group": "Core reader",
+      "bytes": 22073,
+      "gzipBytes": 5184,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/aircraft.html",
+      "path": "books/core-rules/reader/aircraft.html",
+      "group": "Core reader",
+      "bytes": 18214,
+      "gzipBytes": 5145,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/app.js?v=18",
+      "path": "books/core-rules/reader/app.js",
+      "group": "Core reader",
+      "bytes": 13201,
+      "gzipBytes": 3918,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/attached-units.html",
+      "path": "books/core-rules/reader/attached-units.html",
+      "group": "Core reader",
+      "bytes": 44939,
+      "gzipBytes": 7348,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/attack-sequence.html",
+      "path": "books/core-rules/reader/attack-sequence.html",
+      "group": "Core reader",
+      "bytes": 92872,
+      "gzipBytes": 13491,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/battle-round-overview.html",
+      "path": "books/core-rules/reader/battle-round-overview.html",
+      "group": "Core reader",
+      "bytes": 15099,
+      "gzipBytes": 4280,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/charge-phase.html",
+      "path": "books/core-rules/reader/charge-phase.html",
+      "group": "Core reader",
+      "bytes": 52562,
+      "gzipBytes": 9222,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/command-phase.html",
+      "path": "books/core-rules/reader/command-phase.html",
+      "group": "Core reader",
+      "bytes": 30632,
+      "gzipBytes": 7397,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/core-abilities.html",
+      "path": "books/core-rules/reader/core-abilities.html",
+      "group": "Core reader",
+      "bytes": 189703,
+      "gzipBytes": 29085,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/core-concepts.html",
+      "path": "books/core-rules/reader/core-concepts.html",
+      "group": "Core reader",
+      "bytes": 98069,
+      "gzipBytes": 18295,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/datasheets.html",
+      "path": "books/core-rules/reader/datasheets.html",
+      "group": "Core reader",
+      "bytes": 100482,
+      "gzipBytes": 14272,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/fight-phase.html",
+      "path": "books/core-rules/reader/fight-phase.html",
+      "group": "Core reader",
+      "bytes": 87741,
+      "gzipBytes": 11636,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/flying-surging.html",
+      "path": "books/core-rules/reader/flying-surging.html",
+      "group": "Core reader",
+      "bytes": 33268,
+      "gzipBytes": 7209,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/index.html",
+      "path": "books/core-rules/reader/index.html",
+      "group": "Core reader",
+      "bytes": 284302,
+      "gzipBytes": 37820,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/introduction.html",
+      "path": "books/core-rules/reader/introduction.html",
+      "group": "Core reader",
+      "bytes": 9827,
+      "gzipBytes": 3674,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/making-attacks.html",
+      "path": "books/core-rules/reader/making-attacks.html",
+      "group": "Core reader",
+      "bytes": 68545,
+      "gzipBytes": 12986,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/monsters-vehicles.html",
+      "path": "books/core-rules/reader/monsters-vehicles.html",
+      "group": "Core reader",
+      "bytes": 36306,
+      "gzipBytes": 6155,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/mount.mjs",
+      "path": "books/core-rules/reader/mount.mjs",
+      "group": "Core reader",
+      "bytes": 12065,
+      "gzipBytes": 3938,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/movement-phase.html",
+      "path": "books/core-rules/reader/movement-phase.html",
+      "group": "Core reader",
+      "bytes": 62367,
+      "gzipBytes": 10372,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/moving.html",
+      "path": "books/core-rules/reader/moving.html",
+      "group": "Core reader",
+      "bytes": 76014,
+      "gzipBytes": 13500,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/muster-armies.html",
+      "path": "books/core-rules/reader/muster-armies.html",
+      "group": "Core reader",
+      "bytes": 32066,
+      "gzipBytes": 5820,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/objectives.html",
+      "path": "books/core-rules/reader/objectives.html",
+      "group": "Core reader",
+      "bytes": 36904,
+      "gzipBytes": 6319,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/other-concepts.html",
+      "path": "books/core-rules/reader/other-concepts.html",
+      "group": "Core reader",
+      "bytes": 44626,
+      "gzipBytes": 5766,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/other-rules-abilities.html",
+      "path": "books/core-rules/reader/other-rules-abilities.html",
+      "group": "Core reader",
+      "bytes": 11697,
+      "gzipBytes": 3720,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/search-index.json",
+      "path": "books/core-rules/reader/search-index.json",
+      "group": "Core reader",
+      "bytes": 235076,
+      "gzipBytes": 57616,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/shooting-phase.html",
+      "path": "books/core-rules/reader/shooting-phase.html",
+      "group": "Core reader",
+      "bytes": 58706,
+      "gzipBytes": 8102,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/stratagems.html",
+      "path": "books/core-rules/reader/stratagems.html",
+      "group": "Core reader",
+      "bytes": 75550,
+      "gzipBytes": 14116,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/strategic-reserves.html",
+      "path": "books/core-rules/reader/strategic-reserves.html",
+      "group": "Core reader",
+      "bytes": 36323,
+      "gzipBytes": 6840,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/styles.css?v=16",
+      "path": "books/core-rules/reader/styles.css",
+      "group": "Core reader",
+      "bytes": 21777,
+      "gzipBytes": 5220,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/terrain.html",
+      "path": "books/core-rules/reader/terrain.html",
+      "group": "Core reader",
+      "bytes": 69394,
+      "gzipBytes": 10380,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/core-rules/reader/transports.html",
+      "path": "books/core-rules/reader/transports.html",
+      "group": "Core reader",
+      "bytes": 74428,
+      "gzipBytes": 10186,
+      "eagerHomeModule": false,
+      "purpose": "Core-only function; can be fetched after Home display, but current mandatory inventory gates fresh Home on it",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/assets/dark-angels-cover-480.webp",
+      "path": "books/dark-angels/assets/dark-angels-cover-480.webp",
+      "group": "Images",
+      "bytes": 71096,
+      "gzipBytes": 71139,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/book.config.json",
+      "path": "books/dark-angels/book.config.json",
+      "group": "Book passport JSON",
+      "bytes": 23740,
+      "gzipBytes": 3782,
+      "eagerHomeModule": false,
+      "purpose": "Eager Home input through keywords.mjs top-level await of all nine passports",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/v2/physical-chapter.mjs",
+      "path": "books/dark-angels/v2/physical-chapter.mjs",
+      "group": "JS",
+      "bytes": 4162,
+      "gzipBytes": 1590,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/v2/registration.mjs",
+      "path": "books/dark-angels/v2/registration.mjs",
+      "group": "JS",
+      "bytes": 923,
+      "gzipBytes": 502,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/v2/roster-boot.mjs",
+      "path": "books/dark-angels/v2/roster-boot.mjs",
+      "group": "JS",
+      "bytes": 675,
+      "gzipBytes": 356,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/v2/roster-import.mjs",
+      "path": "books/dark-angels/v2/roster-import.mjs",
+      "group": "JS",
+      "bytes": 17561,
+      "gzipBytes": 5431,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/v2/roster-paid-options.mjs",
+      "path": "books/dark-angels/v2/roster-paid-options.mjs",
+      "group": "JS",
+      "bytes": 5931,
+      "gzipBytes": 2100,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/v2/roster-runtime.mjs",
+      "path": "books/dark-angels/v2/roster-runtime.mjs",
+      "group": "JS",
+      "bytes": 2682,
+      "gzipBytes": 1070,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/v2/rule-contract-declarations.mjs",
+      "path": "books/dark-angels/v2/rule-contract-declarations.mjs",
+      "group": "JS",
+      "bytes": 5077,
+      "gzipBytes": 2051,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/v2/rule-contract-schema.mjs",
+      "path": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "group": "JS",
+      "bytes": 1670,
+      "gzipBytes": 744,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/dark-angels/v2/theme.css",
+      "path": "books/dark-angels/v2/theme.css",
+      "group": "CSS",
+      "bytes": 997,
+      "gzipBytes": 463,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/death-guard/book.config.json",
+      "path": "books/death-guard/book.config.json",
+      "group": "Book passport JSON",
+      "bytes": 8275,
+      "gzipBytes": 1848,
+      "eagerHomeModule": false,
+      "purpose": "Eager Home input through keywords.mjs top-level await of all nine passports",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/death-guard/v2/instrument-selections.mjs",
+      "path": "books/death-guard/v2/instrument-selections.mjs",
+      "group": "JS",
+      "bytes": 3882,
+      "gzipBytes": 1472,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/death-guard/v2/registration.mjs",
+      "path": "books/death-guard/v2/registration.mjs",
+      "group": "JS",
+      "bytes": 879,
+      "gzipBytes": 512,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/death-guard/v2/roster-boot.mjs",
+      "path": "books/death-guard/v2/roster-boot.mjs",
+      "group": "JS",
+      "bytes": 3100,
+      "gzipBytes": 1180,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/death-guard/v2/roster-import-bindings.mjs",
+      "path": "books/death-guard/v2/roster-import-bindings.mjs",
+      "group": "JS",
+      "bytes": 1685,
+      "gzipBytes": 810,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/death-guard/v2/rule-contract-schema.mjs",
+      "path": "books/death-guard/v2/rule-contract-schema.mjs",
+      "group": "JS",
+      "bytes": 543,
+      "gzipBytes": 317,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/death-guard/v2/rule-contract-state-fields.mjs",
+      "path": "books/death-guard/v2/rule-contract-state-fields.mjs",
+      "group": "JS",
+      "bytes": 15724,
+      "gzipBytes": 2000,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/assets/emperors-children-cover-480.webp",
+      "path": "books/emperors-children/assets/emperors-children-cover-480.webp",
+      "group": "Images",
+      "bytes": 90072,
+      "gzipBytes": 90120,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/book.config.json",
+      "path": "books/emperors-children/book.config.json",
+      "group": "Book passport JSON",
+      "bytes": 11844,
+      "gzipBytes": 2744,
+      "eagerHomeModule": false,
+      "purpose": "Eager Home input through keywords.mjs top-level await of all nine passports",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/registration.mjs",
+      "path": "books/emperors-children/v2/registration.mjs",
+      "group": "JS",
+      "bytes": 903,
+      "gzipBytes": 499,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/roster-attachments.mjs",
+      "path": "books/emperors-children/v2/roster-attachments.mjs",
+      "group": "JS",
+      "bytes": 3722,
+      "gzipBytes": 1367,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/roster-boot.mjs",
+      "path": "books/emperors-children/v2/roster-boot.mjs",
+      "group": "JS",
+      "bytes": 5742,
+      "gzipBytes": 2190,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/roster-equipment-context.mjs",
+      "path": "books/emperors-children/v2/roster-equipment-context.mjs",
+      "group": "JS",
+      "bytes": 2102,
+      "gzipBytes": 844,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/roster-import.mjs",
+      "path": "books/emperors-children/v2/roster-import.mjs",
+      "group": "JS",
+      "bytes": 17199,
+      "gzipBytes": 5443,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/rule-contract-choice-context.mjs",
+      "path": "books/emperors-children/v2/rule-contract-choice-context.mjs",
+      "group": "JS",
+      "bytes": 1083,
+      "gzipBytes": 560,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "path": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "group": "JS",
+      "bytes": 875,
+      "gzipBytes": 485,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+      "path": "books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+      "group": "JS",
+      "bytes": 4188,
+      "gzipBytes": 1287,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/rule-contract-schema.mjs",
+      "path": "books/emperors-children/v2/rule-contract-schema.mjs",
+      "group": "JS",
+      "bytes": 1118,
+      "gzipBytes": 486,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/emperors-children/v2/theme.css",
+      "path": "books/emperors-children/v2/theme.css",
+      "group": "CSS",
+      "bytes": 1077,
+      "gzipBytes": 498,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/generated/source-metadata.v1.json",
+      "path": "books/shared/application-v2/generated/source-metadata.v1.json",
+      "group": "Small source metadata JSON",
+      "bytes": 1003,
+      "gzipBytes": 405,
+      "eagerHomeModule": false,
+      "purpose": "Home source line, fetched after Home DOM insertion but awaited before completeBootstrap",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/glossary.css",
+      "path": "books/shared/application-v2/glossary.css",
+      "group": "CSS",
+      "bytes": 3031,
+      "gzipBytes": 954,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/glossary.mjs",
+      "path": "books/shared/application-v2/glossary.mjs",
+      "group": "JS",
+      "bytes": 8016,
+      "gzipBytes": 2747,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/home.css",
+      "path": "books/shared/application-v2/home.css",
+      "group": "CSS",
+      "bytes": 5991,
+      "gzipBytes": 1931,
+      "eagerHomeModule": false,
+      "purpose": "Home / bootstrap shell",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/home.mjs",
+      "path": "books/shared/application-v2/home.mjs",
+      "group": "JS",
+      "bytes": 7486,
+      "gzipBytes": 2798,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/registry.mjs",
+      "path": "books/shared/application-v2/registry.mjs",
+      "group": "JS",
+      "bytes": 1307,
+      "gzipBytes": 584,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/routes.mjs",
+      "path": "books/shared/application-v2/routes.mjs",
+      "group": "JS",
+      "bytes": 2042,
+      "gzipBytes": 901,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/runtime.mjs",
+      "path": "books/shared/application-v2/runtime.mjs",
+      "group": "JS",
+      "bytes": 16227,
+      "gzipBytes": 4702,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/shell.css",
+      "path": "books/shared/application-v2/shell.css",
+      "group": "CSS",
+      "bytes": 6079,
+      "gzipBytes": 1724,
+      "eagerHomeModule": false,
+      "purpose": "Home / bootstrap shell",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/application-v2/source-metadata.mjs",
+      "path": "books/shared/application-v2/source-metadata.mjs",
+      "group": "JS",
+      "bytes": 3526,
+      "gzipBytes": 1441,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/ability-presentation.mjs",
+      "path": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "group": "JS",
+      "bytes": 7837,
+      "gzipBytes": 2589,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/book-v1.css",
+      "path": "books/shared/army-book-app-v2/book-v1.css",
+      "group": "CSS",
+      "bytes": 22047,
+      "gzipBytes": 5384,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/book-v1.mjs",
+      "path": "books/shared/army-book-app-v2/book-v1.mjs",
+      "group": "JS",
+      "bytes": 14434,
+      "gzipBytes": 4491,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/cosmetics.mjs",
+      "path": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "group": "JS",
+      "bytes": 46464,
+      "gzipBytes": 10863,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "path": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "group": "JS",
+      "bytes": 9038,
+      "gzipBytes": 2709,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/datasheet-v1.css",
+      "path": "books/shared/army-book-app-v2/datasheet-v1.css",
+      "group": "CSS",
+      "bytes": 27618,
+      "gzipBytes": 6219,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "path": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "group": "JS",
+      "bytes": 133526,
+      "gzipBytes": 33700,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "path": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "group": "JS",
+      "bytes": 16034,
+      "gzipBytes": 5283,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/equipment-reference.mjs",
+      "path": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "group": "JS",
+      "bytes": 3105,
+      "gzipBytes": 1221,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "path": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "group": "JS",
+      "bytes": 788,
+      "gzipBytes": 422,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "path": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "group": "JS",
+      "bytes": 48896,
+      "gzipBytes": 13769,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/global-glossary.mjs",
+      "path": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "group": "JS",
+      "bytes": 8982,
+      "gzipBytes": 2912,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/glossary-v1.mjs",
+      "path": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "group": "JS",
+      "bytes": 3269,
+      "gzipBytes": 1227,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/glossary.mjs",
+      "path": "books/shared/army-book-app-v2/glossary.mjs",
+      "group": "JS",
+      "bytes": 10843,
+      "gzipBytes": 3560,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/import-notices.mjs",
+      "path": "books/shared/army-book-app-v2/import-notices.mjs",
+      "group": "JS",
+      "bytes": 3609,
+      "gzipBytes": 1569,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/lifecycle.mjs",
+      "path": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "group": "JS",
+      "bytes": 2023,
+      "gzipBytes": 743,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "path": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "group": "JS",
+      "bytes": 23183,
+      "gzipBytes": 5731,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "path": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "group": "JS",
+      "bytes": 2571,
+      "gzipBytes": 931,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/navigation-v1.css",
+      "path": "books/shared/army-book-app-v2/navigation-v1.css",
+      "group": "CSS",
+      "bytes": 13769,
+      "gzipBytes": 3406,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/navigation-v1.mjs",
+      "path": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "group": "JS",
+      "bytes": 18901,
+      "gzipBytes": 5927,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "path": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "group": "JS",
+      "bytes": 5467,
+      "gzipBytes": 1708,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/personal.mjs",
+      "path": "books/shared/army-book-app-v2/personal.mjs",
+      "group": "JS",
+      "bytes": 49535,
+      "gzipBytes": 13516,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/popup-v1.css",
+      "path": "books/shared/army-book-app-v2/popup-v1.css",
+      "group": "CSS",
+      "bytes": 12394,
+      "gzipBytes": 3383,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/popup-v1.mjs",
+      "path": "books/shared/army-book-app-v2/popup-v1.mjs",
+      "group": "JS",
+      "bytes": 1634,
+      "gzipBytes": 645,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/reference-contract.mjs",
+      "path": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "group": "JS",
+      "bytes": 10074,
+      "gzipBytes": 3565,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/reference-v1.css",
+      "path": "books/shared/army-book-app-v2/reference-v1.css",
+      "group": "CSS",
+      "bytes": 3337,
+      "gzipBytes": 970,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/reference-v1.mjs",
+      "path": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "group": "JS",
+      "bytes": 6097,
+      "gzipBytes": 2286,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/related-v1.mjs",
+      "path": "books/shared/army-book-app-v2/related-v1.mjs",
+      "group": "JS",
+      "bytes": 4315,
+      "gzipBytes": 1568,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/roster-labels.mjs",
+      "path": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "group": "JS",
+      "bytes": 2594,
+      "gzipBytes": 1126,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/roster.mjs",
+      "path": "books/shared/army-book-app-v2/roster.mjs",
+      "group": "JS",
+      "bytes": 54082,
+      "gzipBytes": 14010,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/route-context.mjs",
+      "path": "books/shared/army-book-app-v2/route-context.mjs",
+      "group": "JS",
+      "bytes": 4231,
+      "gzipBytes": 1385,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/rule-popup.mjs",
+      "path": "books/shared/army-book-app-v2/rule-popup.mjs",
+      "group": "JS",
+      "bytes": 5315,
+      "gzipBytes": 2004,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/rule-term-links.mjs",
+      "path": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "group": "JS",
+      "bytes": 10531,
+      "gzipBytes": 3904,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/runtime.mjs",
+      "path": "books/shared/army-book-app-v2/runtime.mjs",
+      "group": "JS",
+      "bytes": 72254,
+      "gzipBytes": 18757,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/source-table.mjs",
+      "path": "books/shared/army-book-app-v2/source-table.mjs",
+      "group": "JS",
+      "bytes": 1976,
+      "gzipBytes": 840,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/army-book-app-v2/styles.css",
+      "path": "books/shared/army-book-app-v2/styles.css",
+      "group": "CSS",
+      "bytes": 21198,
+      "gzipBytes": 5289,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/datasheet-system.css",
+      "path": "books/shared/datasheet-system.css",
+      "group": "CSS",
+      "bytes": 22590,
+      "gzipBytes": 4430,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/keyword-values.mjs",
+      "path": "books/shared/keyword-values.mjs",
+      "group": "JS",
+      "bytes": 462,
+      "gzipBytes": 286,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/offline-status.js?v=4",
+      "path": "books/shared/offline-status.js",
+      "group": "JS",
+      "bytes": 25058,
+      "gzipBytes": 6847,
+      "eagerHomeModule": false,
+      "purpose": "Home / bootstrap shell",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/offline-status.js?wh-pwa=d08e23b961b6f507",
+      "path": "books/shared/offline-status.js",
+      "group": "JS",
+      "bytes": 25058,
+      "gzipBytes": 6847,
+      "eagerHomeModule": false,
+      "purpose": "Home / bootstrap shell",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/attached-rule-text.mjs",
+      "path": "books/shared/roster-v2/attached-rule-text.mjs",
+      "group": "JS",
+      "bytes": 18131,
+      "gzipBytes": 5419,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/attachment-service.mjs",
+      "path": "books/shared/roster-v2/attachment-service.mjs",
+      "group": "JS",
+      "bytes": 3433,
+      "gzipBytes": 1289,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/compatibility-context.mjs",
+      "path": "books/shared/roster-v2/compatibility-context.mjs",
+      "group": "JS",
+      "bytes": 2580,
+      "gzipBytes": 1209,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/compatibility-feasibility.mjs",
+      "path": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "group": "JS",
+      "bytes": 14002,
+      "gzipBytes": 4239,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/condition-binding.mjs",
+      "path": "books/shared/roster-v2/condition-binding.mjs",
+      "group": "JS",
+      "bytes": 8164,
+      "gzipBytes": 2753,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/condition-computations.mjs",
+      "path": "books/shared/roster-v2/condition-computations.mjs",
+      "group": "JS",
+      "bytes": 4089,
+      "gzipBytes": 1607,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/condition-context.mjs",
+      "path": "books/shared/roster-v2/condition-context.mjs",
+      "group": "JS",
+      "bytes": 5247,
+      "gzipBytes": 1903,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/conditional-policy.mjs",
+      "path": "books/shared/roster-v2/conditional-policy.mjs",
+      "group": "JS",
+      "bytes": 29957,
+      "gzipBytes": 8436,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/context.mjs",
+      "path": "books/shared/roster-v2/context.mjs",
+      "group": "JS",
+      "bytes": 32221,
+      "gzipBytes": 8779,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/effective-instance.mjs",
+      "path": "books/shared/roster-v2/effective-instance.mjs",
+      "group": "JS",
+      "bytes": 18328,
+      "gzipBytes": 5006,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/effects.mjs",
+      "path": "books/shared/roster-v2/effects.mjs",
+      "group": "JS",
+      "bytes": 55043,
+      "gzipBytes": 13284,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/enhancement-bearers.mjs",
+      "path": "books/shared/roster-v2/enhancement-bearers.mjs",
+      "group": "JS",
+      "bytes": 2336,
+      "gzipBytes": 1000,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/export-faction.mjs",
+      "path": "books/shared/roster-v2/export-faction.mjs",
+      "group": "JS",
+      "bytes": 1342,
+      "gzipBytes": 677,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/import-service.mjs",
+      "path": "books/shared/roster-v2/import-service.mjs",
+      "group": "JS",
+      "bytes": 9900,
+      "gzipBytes": 3206,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/import.mjs",
+      "path": "books/shared/roster-v2/import.mjs",
+      "group": "JS",
+      "bytes": 37195,
+      "gzipBytes": 11152,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/keyword-scopes.mjs",
+      "path": "books/shared/roster-v2/keyword-scopes.mjs",
+      "group": "JS",
+      "bytes": 135,
+      "gzipBytes": 130,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/keywords.mjs",
+      "path": "books/shared/roster-v2/keywords.mjs",
+      "group": "JS",
+      "bytes": 1333,
+      "gzipBytes": 490,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/model-name-aliases.mjs",
+      "path": "books/shared/roster-v2/model-name-aliases.mjs",
+      "group": "JS",
+      "bytes": 1279,
+      "gzipBytes": 624,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/parser.mjs",
+      "path": "books/shared/roster-v2/parser.mjs",
+      "group": "JS",
+      "bytes": 15459,
+      "gzipBytes": 4610,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/physical-choice.mjs",
+      "path": "books/shared/roster-v2/physical-choice.mjs",
+      "group": "JS",
+      "bytes": 13239,
+      "gzipBytes": 3780,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/physical-condition-context.mjs",
+      "path": "books/shared/roster-v2/physical-condition-context.mjs",
+      "group": "JS",
+      "bytes": 11987,
+      "gzipBytes": 3737,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/physical-static-model.mjs",
+      "path": "books/shared/roster-v2/physical-static-model.mjs",
+      "group": "JS",
+      "bytes": 4768,
+      "gzipBytes": 1741,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/recipient-execution.mjs",
+      "path": "books/shared/roster-v2/recipient-execution.mjs",
+      "group": "JS",
+      "bytes": 11223,
+      "gzipBytes": 3642,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/related.mjs",
+      "path": "books/shared/roster-v2/related.mjs",
+      "group": "JS",
+      "bytes": 2683,
+      "gzipBytes": 1071,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/runtime.mjs",
+      "path": "books/shared/roster-v2/runtime.mjs",
+      "group": "JS",
+      "bytes": 10456,
+      "gzipBytes": 3563,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/singleton-model-import.mjs",
+      "path": "books/shared/roster-v2/singleton-model-import.mjs",
+      "group": "JS",
+      "bytes": 2953,
+      "gzipBytes": 1182,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/roster-v2/text-roster-facts.mjs",
+      "path": "books/shared/roster-v2/text-roster-facts.mjs",
+      "group": "JS",
+      "bytes": 6254,
+      "gzipBytes": 2222,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/rule-contract-v2/conditions-build.mjs",
+      "path": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "group": "JS",
+      "bytes": 8120,
+      "gzipBytes": 2512,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/rule-contract-v2/conditions.mjs",
+      "path": "books/shared/rule-contract-v2/conditions.mjs",
+      "group": "JS",
+      "bytes": 28077,
+      "gzipBytes": 7696,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "path": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "group": "JS",
+      "bytes": 2559,
+      "gzipBytes": 954,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/rule-contract-v2/recipients.mjs",
+      "path": "books/shared/rule-contract-v2/recipients.mjs",
+      "group": "JS",
+      "bytes": 36074,
+      "gzipBytes": 8645,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/rule-contract-v2/schema.mjs",
+      "path": "books/shared/rule-contract-v2/schema.mjs",
+      "group": "JS",
+      "bytes": 23859,
+      "gzipBytes": 6413,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/rule-facts.js",
+      "path": "books/shared/rule-facts.js",
+      "group": "JS",
+      "bytes": 19741,
+      "gzipBytes": 5390,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/source-refs-v2/source-catalog.mjs",
+      "path": "books/shared/source-refs-v2/source-catalog.mjs",
+      "group": "JS",
+      "bytes": 3467,
+      "gzipBytes": 1366,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/source-refs-v2/source-refs.mjs",
+      "path": "books/shared/source-refs-v2/source-refs.mjs",
+      "group": "JS",
+      "bytes": 39606,
+      "gzipBytes": 10254,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/stratagem-presentation.mjs",
+      "path": "books/shared/stratagem-presentation.mjs",
+      "group": "JS",
+      "bytes": 2324,
+      "gzipBytes": 973,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/styles/offline-status.css",
+      "path": "books/shared/styles/offline-status.css",
+      "group": "CSS",
+      "bytes": 4276,
+      "gzipBytes": 1645,
+      "eagerHomeModule": false,
+      "purpose": "Home / bootstrap shell",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/shared/unit-art.css",
+      "path": "books/shared/unit-art.css",
+      "group": "CSS",
+      "bytes": 2643,
+      "gzipBytes": 804,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/assets/space-marines-cover-480.webp",
+      "path": "books/space-marines/assets/space-marines-cover-480.webp",
+      "group": "Images",
+      "bytes": 70640,
+      "gzipBytes": 70683,
+      "eagerHomeModule": false,
+      "purpose": "Home shelf cover; no native loading=lazy, typically below first viewport",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/book.config.json",
+      "path": "books/space-marines/book.config.json",
+      "group": "Book passport JSON",
+      "bytes": 19335,
+      "gzipBytes": 3113,
+      "eagerHomeModule": false,
+      "purpose": "Eager Home input through keywords.mjs top-level await of all nine passports",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/v2/registration.mjs",
+      "path": "books/space-marines/v2/registration.mjs",
+      "group": "JS",
+      "bytes": 935,
+      "gzipBytes": 506,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/v2/roster-boot.mjs",
+      "path": "books/space-marines/v2/roster-boot.mjs",
+      "group": "JS",
+      "bytes": 758,
+      "gzipBytes": 404,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/v2/roster-import.mjs",
+      "path": "books/space-marines/v2/roster-import.mjs",
+      "group": "JS",
+      "bytes": 17478,
+      "gzipBytes": 5428,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/v2/roster-paid-options.mjs",
+      "path": "books/space-marines/v2/roster-paid-options.mjs",
+      "group": "JS",
+      "bytes": 5887,
+      "gzipBytes": 2068,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/v2/roster-runtime.mjs",
+      "path": "books/space-marines/v2/roster-runtime.mjs",
+      "group": "JS",
+      "bytes": 5057,
+      "gzipBytes": 1820,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/v2/roster-static-model-bindings.mjs",
+      "path": "books/space-marines/v2/roster-static-model-bindings.mjs",
+      "group": "JS",
+      "bytes": 4210,
+      "gzipBytes": 1910,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/v2/rule-contract-schema.mjs",
+      "path": "books/space-marines/v2/rule-contract-schema.mjs",
+      "group": "JS",
+      "bytes": 988,
+      "gzipBytes": 428,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/space-marines/v2/theme.css",
+      "path": "books/space-marines/v2/theme.css",
+      "group": "CSS",
+      "bytes": 1045,
+      "gzipBytes": 483,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tau-empire/book.config.json",
+      "path": "books/tau-empire/book.config.json",
+      "group": "Book passport JSON",
+      "bytes": 9296,
+      "gzipBytes": 2394,
+      "eagerHomeModule": false,
+      "purpose": "Eager Home input through keywords.mjs top-level await of all nine passports",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tau-empire/v2/registration.mjs",
+      "path": "books/tau-empire/v2/registration.mjs",
+      "group": "JS",
+      "bytes": 896,
+      "gzipBytes": 505,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tau-empire/v2/roster-boot.mjs",
+      "path": "books/tau-empire/v2/roster-boot.mjs",
+      "group": "JS",
+      "bytes": 7003,
+      "gzipBytes": 2417,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tau-empire/v2/roster-import.mjs",
+      "path": "books/tau-empire/v2/roster-import.mjs",
+      "group": "JS",
+      "bytes": 15301,
+      "gzipBytes": 4652,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tau-empire/v2/roster-source-choices.mjs",
+      "path": "books/tau-empire/v2/roster-source-choices.mjs",
+      "group": "JS",
+      "bytes": 12270,
+      "gzipBytes": 3852,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tau-empire/v2/roster-weapon-choices.mjs",
+      "path": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "group": "JS",
+      "bytes": 10218,
+      "gzipBytes": 3149,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tau-empire/v2/rule-contract-declarations.mjs",
+      "path": "books/tau-empire/v2/rule-contract-declarations.mjs",
+      "group": "JS",
+      "bytes": 20021,
+      "gzipBytes": 2928,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tau-empire/v2/rule-contract-schema.mjs",
+      "path": "books/tau-empire/v2/rule-contract-schema.mjs",
+      "group": "JS",
+      "bytes": 951,
+      "gzipBytes": 425,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tau-empire/v2/theme.css",
+      "path": "books/tau-empire/v2/theme.css",
+      "group": "CSS",
+      "bytes": 1046,
+      "gzipBytes": 492,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tyranids/book.config.json",
+      "path": "books/tyranids/book.config.json",
+      "group": "Book passport JSON",
+      "bytes": 8120,
+      "gzipBytes": 2094,
+      "eagerHomeModule": false,
+      "purpose": "Eager Home input through keywords.mjs top-level await of all nine passports",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tyranids/v2/registration.mjs",
+      "path": "books/tyranids/v2/registration.mjs",
+      "group": "JS",
+      "bytes": 903,
+      "gzipBytes": 498,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tyranids/v2/roster-boot.mjs",
+      "path": "books/tyranids/v2/roster-boot.mjs",
+      "group": "JS",
+      "bytes": 5594,
+      "gzipBytes": 2092,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tyranids/v2/roster-import.mjs",
+      "path": "books/tyranids/v2/roster-import.mjs",
+      "group": "JS",
+      "bytes": 20309,
+      "gzipBytes": 5984,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tyranids/v2/roster-source-choices.mjs",
+      "path": "books/tyranids/v2/roster-source-choices.mjs",
+      "group": "JS",
+      "bytes": 7136,
+      "gzipBytes": 2501,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book factory / roster code; not an eager static Home import",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./books/tyranids/v2/theme.css",
+      "path": "books/tyranids/v2/theme.css",
+      "group": "CSS",
+      "bytes": 1068,
+      "gzipBytes": 487,
+      "eagerHomeModule": false,
+      "purpose": "Selected-book style; not required for neutral Home rendering",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./glossary-return.js?v=5",
+      "path": "glossary-return.js",
+      "group": "JS",
+      "bytes": 10671,
+      "gzipBytes": 3319,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./glossary/v2/runtime/glossary-v2-runtime.js?v=1",
+      "path": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "group": "Glossary runtime helper JS",
+      "bytes": 48543,
+      "gzipBytes": 13381,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./index.html",
+      "path": "index.html",
+      "group": "HTML / manifest / other",
+      "bytes": 359,
+      "gzipBytes": 245,
+      "eagerHomeModule": false,
+      "purpose": "Home / bootstrap shell",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./manifest.webmanifest",
+      "path": "manifest.webmanifest",
+      "group": "HTML / manifest / other",
+      "bytes": 730,
+      "gzipBytes": 305,
+      "eagerHomeModule": false,
+      "purpose": "Offline / install support or later view; not necessary to paint neutral Home",
+      "swPolicyWhenReached": "Cache-first if fetch reaches service worker"
+    },
+    {
+      "url": "./v2/app.html",
+      "path": "v2/app.html",
+      "group": "HTML / manifest / other",
+      "bytes": 1595,
+      "gzipBytes": 831,
+      "eagerHomeModule": false,
+      "purpose": "Home / bootstrap shell",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./v2/army-books.mjs",
+      "path": "v2/army-books.mjs",
+      "group": "JS",
+      "bytes": 1049,
+      "gzipBytes": 337,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    },
+    {
+      "url": "./v2/boot.mjs",
+      "path": "v2/boot.mjs",
+      "group": "JS",
+      "bytes": 676,
+      "gzipBytes": 354,
+      "eagerHomeModule": true,
+      "purpose": "Current Home eager static-import closure; many functions are book/roster-only and can be split only after dependency review",
+      "swPolicyWhenReached": "Network-first/no-store if fetch reaches service worker"
+    }
+  ],
+  "allImageBytes": 30329786,
+  "allCoreBytes": 21611522,
+  "largestImages": [
+    {
+      "path": "books/death-guard/assets/unit-images/plague-marines.png",
+      "bytes": 1147370,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/great-unclean-one.png",
+      "bytes": 971569,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/blightlord-terminators.png",
+      "bytes": 960040,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/rotigus.png",
+      "bytes": 896776,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/deathshroud-terminators.png",
+      "bytes": 867808,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/defiler.png",
+      "bytes": 811654,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/lord-of-virulence.png",
+      "bytes": 798837,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+      "bytes": 794274,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/mortarion.png",
+      "bytes": 773150,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/poxwalkers.png",
+      "bytes": 772906,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/beasts-of-nurgle.png",
+      "bytes": 772468,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+      "bytes": 751762,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/myphitic-blight-hauler.png",
+      "bytes": 728571,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/tallyman.png",
+      "bytes": 715708,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/foetid-bloat-drone.png",
+      "bytes": 679428,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/typhus.png",
+      "bytes": 662245,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/icon-bearer.png",
+      "bytes": 660473,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plague-surgeon.png",
+      "bytes": 653959,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/foul-blightspawn.png",
+      "bytes": 645541,
+      "group": "Images"
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/chaos-spawn.png",
+      "bytes": 644396,
+      "group": "Images"
+    }
+  ],
+  "cacheInventorySource": "Actual packaged glossary/generated/cache-revision.js; exact URL equality checked against pure source packaging calculation",
+  "cacheRevision": "d08e23b961b6f507",
+  "gzipMethod": "zlib gzip level6 offline estimate; not observed HTTP Content-Encoding or Pages wire bytes",
+  "moduleParse": "Node vm.SourceTextModule.dependencySpecifiers, no evaluation/network/test/build",
+  "package": {
+    "root": "E:/Warhammer/qa-tmp/load-audit/package",
+    "contentSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909",
+    "cacheRevision": "d08e23b961b6f507",
+    "runtimeFiles": 456,
+    "bytesIncludingManifest": 282982284,
+    "stampedFilesDifferentFromSource": [
+      "v2/app.html",
+      "glossary/generated/cache-revision.js"
+    ]
+  },
+  "cachePolicyNote": "Static branch selection is not a claim of actual warm network traffic: Chromium renderer resource-cache hits can avoid another worker fetch. Use observed servedFromCache and wire/server evidence."
+}

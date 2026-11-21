@@ -1,0 +1,589 @@
+{
+  "source": "8579a7a77c7f5e8dad291afc11b27aab3cd9d73a",
+  "accepted": 144,
+  "acceptedProfiles": 72,
+  "retainedOriginal": 126,
+  "replacedOriginal": 18,
+  "replacementRows": 18,
+  "originalFolder": "measurements-v2",
+  "correctionFolder": "measurements-local-dg-corrected",
+  "reason": "Audit-only Node HTTP/2 session queued-body memory budget rejected PNG streams; fix the dedicated measurement origin, not the app/preview. Explicitly replace all local DG-book groups and retain originals as excluded.",
+  "observations": [
+    {
+      "id": "local-unlimited-home-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-home-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-dg-book-1-cold",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-unlimited-dg-book-1-warm",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-unlimited-sm-book-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-sm-book-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-dg-roster-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-dg-roster-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-home-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-home-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-dg-book-2-cold",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-unlimited-dg-book-2-warm",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-unlimited-sm-book-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-sm-book-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-dg-roster-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-dg-roster-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-home-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-home-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-dg-book-3-cold",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-unlimited-dg-book-3-warm",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-unlimited-sm-book-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-sm-book-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-dg-roster-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-unlimited-dg-roster-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-home-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-home-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-dg-book-1-cold",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-fast4g-dg-book-1-warm",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-fast4g-sm-book-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-sm-book-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-dg-roster-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-dg-roster-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-home-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-home-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-dg-book-2-cold",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-fast4g-dg-book-2-warm",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-fast4g-sm-book-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-sm-book-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-dg-roster-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-dg-roster-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-home-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-home-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-dg-book-3-cold",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-fast4g-dg-book-3-warm",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-fast4g-sm-book-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-sm-book-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-dg-roster-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-fast4g-dg-roster-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-home-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-home-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-dg-book-1-cold",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-slow4g-dg-book-1-warm",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-slow4g-sm-book-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-sm-book-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-dg-roster-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-dg-roster-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-home-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-home-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-dg-book-2-cold",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-slow4g-dg-book-2-warm",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-slow4g-sm-book-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-sm-book-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-dg-roster-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-dg-roster-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-home-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-home-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-dg-book-3-cold",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-slow4g-dg-book-3-warm",
+      "folder": "measurements-local-dg-corrected"
+    },
+    {
+      "id": "local-slow4g-sm-book-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-sm-book-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-dg-roster-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "local-slow4g-dg-roster-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-home-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-home-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-book-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-book-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-sm-book-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-sm-book-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-roster-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-roster-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-home-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-home-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-book-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-book-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-sm-book-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-sm-book-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-roster-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-roster-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-home-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-home-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-book-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-book-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-sm-book-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-sm-book-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-roster-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-unlimited-dg-roster-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-home-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-home-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-book-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-book-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-sm-book-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-sm-book-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-roster-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-roster-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-home-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-home-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-book-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-book-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-sm-book-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-sm-book-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-roster-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-roster-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-home-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-home-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-book-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-book-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-sm-book-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-sm-book-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-roster-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-fast4g-dg-roster-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-home-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-home-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-book-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-book-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-sm-book-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-sm-book-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-roster-1-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-roster-1-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-home-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-home-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-book-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-book-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-sm-book-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-sm-book-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-roster-2-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-roster-2-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-home-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-home-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-book-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-book-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-sm-book-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-sm-book-3-warm",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-roster-3-cold",
+      "folder": "measurements-v2"
+    },
+    {
+      "id": "live-slow4g-dg-roster-3-warm",
+      "folder": "measurements-v2"
+    }
+  ]
+}

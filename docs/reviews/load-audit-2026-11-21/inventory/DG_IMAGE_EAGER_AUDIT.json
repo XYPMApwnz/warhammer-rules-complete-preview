@@ -1,0 +1,280 @@
+{
+  "measurement": "../measurements/local-unlimited-dg-book-1-cold.json",
+  "scope": "One actual main-matrix repetition, not a median; no browser work performed by inventory audit.",
+  "readyMs": 1922,
+  "totalMs": 2681,
+  "total": {
+    "logicalRequests": 509,
+    "networkRequests": 367,
+    "compressedBodyBytes": 26769039,
+    "decodedBodyBytes": 46858738,
+    "completedNetworkRequests": 367,
+    "cacheOrSWResponses": 142,
+    "failedNetworkRequests": 0
+  },
+  "images": {
+    "pageRequests": 32,
+    "networkRequests": 32,
+    "compressedBodyBytes": 22245156,
+    "decodedBodyBytes": 22245156,
+    "firstPageStartMs": 1001.19189453125,
+    "lastPageStartMs": 1042.718017578125,
+    "lastPageEndMs": 1533.64892578125
+  },
+  "initiatorStack": {
+    "type": "script",
+    "stack": [
+      {
+        "url": "https://127.0.0.1:54316/warhammer-rules-complete-preview/books/shared/army-book-app-v2/datasheet-v1.mjs",
+        "line": 959,
+        "column": 33
+      },
+      {
+        "url": "https://127.0.0.1:54316/warhammer-rules-complete-preview/books/shared/army-book-app-v2/runtime.mjs",
+        "line": 344,
+        "column": 31
+      },
+      {
+        "url": "https://127.0.0.1:54316/warhammer-rules-complete-preview/books/shared/army-book-app-v2/runtime.mjs",
+        "line": 650,
+        "column": 17
+      },
+      {
+        "url": "https://127.0.0.1:54316/warhammer-rules-complete-preview/books/shared/army-book-app-v2/runtime.mjs",
+        "line": 675,
+        "column": 172
+      },
+      {
+        "url": "https://127.0.0.1:54316/warhammer-rules-complete-preview/books/shared/army-book-app-v2/runtime.mjs",
+        "line": 734,
+        "column": 40
+      }
+    ]
+  },
+  "requests": [
+    {
+      "path": "books/death-guard/assets/unit-images/plague-marines.png",
+      "actor": "service-worker",
+      "startMs": 1021.740966796875,
+      "endMs": 1058.571044921875,
+      "compressedBodyBytes": 1147370
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/great-unclean-one.png",
+      "actor": "service-worker",
+      "startMs": 1012.347900390625,
+      "endMs": 1036.531005859375,
+      "compressedBodyBytes": 971569
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/blightlord-terminators.png",
+      "actor": "service-worker",
+      "startMs": 1024.634033203125,
+      "endMs": 1086.5849609375,
+      "compressedBodyBytes": 960040
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/rotigus.png",
+      "actor": "service-worker",
+      "startMs": 1005.053955078125,
+      "endMs": 1013.06396484375,
+      "compressedBodyBytes": 896776
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/deathshroud-terminators.png",
+      "actor": "service-worker",
+      "startMs": 1026.31494140625,
+      "endMs": 1089.012939453125,
+      "compressedBodyBytes": 867808
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/defiler.png",
+      "actor": "service-worker",
+      "startMs": 1032.919921875,
+      "endMs": 1139.119873046875,
+      "compressedBodyBytes": 811654
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/lord-of-virulence.png",
+      "actor": "service-worker",
+      "startMs": 1016.134033203125,
+      "endMs": 1042.7490234375,
+      "compressedBodyBytes": 798837
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+      "actor": "service-worker",
+      "startMs": 1038.85009765625,
+      "endMs": 1136.31103515625,
+      "compressedBodyBytes": 794274
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/mortarion.png",
+      "actor": "service-worker",
+      "startMs": 1001.863037109375,
+      "endMs": 1006.942138671875,
+      "compressedBodyBytes": 773150
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/poxwalkers.png",
+      "actor": "service-worker",
+      "startMs": 1027.337158203125,
+      "endMs": 1086.9501953125,
+      "compressedBodyBytes": 772906
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/beasts-of-nurgle.png",
+      "actor": "service-worker",
+      "startMs": 1028.078125,
+      "endMs": 1087.213134765625,
+      "compressedBodyBytes": 772468
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+      "actor": "service-worker",
+      "startMs": 1041.43603515625,
+      "endMs": 1136.715087890625,
+      "compressedBodyBytes": 751762
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/myphitic-blight-hauler.png",
+      "actor": "service-worker",
+      "startMs": 1037.9150390625,
+      "endMs": 1136.096923828125,
+      "compressedBodyBytes": 728571
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/tallyman.png",
+      "actor": "service-worker",
+      "startMs": 1020.68798828125,
+      "endMs": 1057.657958984375,
+      "compressedBodyBytes": 715708
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/foetid-bloat-drone.png",
+      "actor": "service-worker",
+      "startMs": 1034.8271484375,
+      "endMs": 1135.759033203125,
+      "compressedBodyBytes": 679428
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/typhus.png",
+      "actor": "service-worker",
+      "startMs": 1006.491943359375,
+      "endMs": 1018.466064453125,
+      "compressedBodyBytes": 662245
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/icon-bearer.png",
+      "actor": "service-worker",
+      "startMs": 1014.343994140625,
+      "endMs": 1037.64111328125,
+      "compressedBodyBytes": 660473
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plague-surgeon.png",
+      "actor": "service-worker",
+      "startMs": 1020.086181640625,
+      "endMs": 1057.576171875,
+      "compressedBodyBytes": 653959
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/foul-blightspawn.png",
+      "actor": "service-worker",
+      "startMs": 1012.14794921875,
+      "endMs": 1024.81884765625,
+      "compressedBodyBytes": 645541
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/chaos-spawn.png",
+      "actor": "service-worker",
+      "startMs": 1028.7509765625,
+      "endMs": 1135.30908203125,
+      "compressedBodyBytes": 644396
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/biologus-putrifier.png",
+      "actor": "service-worker",
+      "startMs": 1007.52197265625,
+      "endMs": 1018.89794921875,
+      "compressedBodyBytes": 632537
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plaguebearers.png",
+      "actor": "service-worker",
+      "startMs": 1023.982177734375,
+      "endMs": 1057.752197265625,
+      "compressedBodyBytes": 616287
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/nurglings.png",
+      "actor": "service-worker",
+      "startMs": 1043.179931640625,
+      "endMs": 1136.9619140625,
+      "compressedBodyBytes": 590907
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plague-drones.png",
+      "actor": "service-worker",
+      "startMs": 1042.162841796875,
+      "endMs": 1136.8427734375,
+      "compressedBodyBytes": 590092
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/lord-of-poxes.png",
+      "actor": "service-worker",
+      "startMs": 1015.1630859375,
+      "endMs": 1036.760986328125,
+      "compressedBodyBytes": 580908
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/chaos-predator-annihilator.png",
+      "actor": "service-worker",
+      "startMs": 1030.531982421875,
+      "endMs": 1135.6220703125,
+      "compressedBodyBytes": 579583
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/chaos-land-raider.png",
+      "actor": "service-worker",
+      "startMs": 1029.408935546875,
+      "endMs": 1135.488037109375,
+      "compressedBodyBytes": 573293
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/chaos-rhino.png",
+      "actor": "service-worker",
+      "startMs": 1040.422119140625,
+      "endMs": 1136.461181640625,
+      "compressedBodyBytes": 558909
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/noxious-blightbringer.png",
+      "actor": "service-worker",
+      "startMs": 1018.666015625,
+      "endMs": 1057.489990234375,
+      "compressedBodyBytes": 543775
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/helbrute.png",
+      "actor": "service-worker",
+      "startMs": 1036.22705078125,
+      "endMs": 1135.880126953125,
+      "compressedBodyBytes": 532278
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/lord-of-contagion.png",
+      "actor": "service-worker",
+      "startMs": 1014.556884765625,
+      "endMs": 1036.6728515625,
+      "compressedBodyBytes": 417156
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/malignant-plaguecaster.png",
+      "actor": "service-worker",
+      "startMs": 1017.119873046875,
+      "endMs": 1057.367919921875,
+      "compressedBodyBytes": 320496
+    }
+  ]
+}

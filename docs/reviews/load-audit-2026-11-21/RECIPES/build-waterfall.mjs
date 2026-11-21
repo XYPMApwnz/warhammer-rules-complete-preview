@@ -1,0 +1,20 @@
+/** Offline evidence viewer; not a production site file. */
+import fs from 'node:fs';
+const OUT='E:/Warhammer/qa-evidence/load-audit-v1-2026-11-21';
+const rows=JSON.parse(fs.readFileSync(OUT+'/tables/WATERFALLS.json'));
+const data=JSON.stringify(rows).replaceAll('<','\\u003c');
+fs.writeFileSync(OUT+'/WATERFALL.html',`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Load audit — offline waterfalls</title>
+<style>body{font:15px system-ui;max-width:1600px;margin:24px auto;padding:0 16px;color:#172435;background:#f7f9fc}h1{font-size:25px}select,button{font:inherit;padding:8px;margin:4px}table{border-collapse:collapse;width:100%;font-size:12px;background:white}td,th{padding:7px;border-bottom:1px solid #ddd;text-align:left}td:first-child{max-width:430px;overflow-wrap:anywhere}.lane{position:relative;height:18px;min-width:240px;background:#f1f4fa}.bar{position:absolute;top:3px;height:12px;background:#2777b6;min-width:1px}.mark{position:absolute;top:0;bottom:0;border-left:2px solid #d74832}.muted{color:#536171}code{font-size:12px}button[aria-pressed=true]{background:#143d64;color:white}.scroll{overflow:auto}</style>
+<h1>Load audit: actual HTTP waterfalls</h1><p>Chromium, 390 px. All 144 accepted observations; three repetitions per origin/network/scenario/cache. This file works offline.</p>
+<p class="muted">Blue = request start to completion. Red = interactive readiness. Request duration includes queueing and origin response; body bytes exclude HTTP/TLS headers. Cache/SW wrapper responses are excluded. A long image bar does not mean the UI explicitly waits for that image. The two top-20 lists overlap and are not additive.</p>
+<label>Observation <select id="pick"></select></label><button id="bytes" aria-pressed="true">Top 20 by bytes</button><button id="duration" aria-pressed="false">Top 20 by duration</button><p id="metrics"></p><div class="scroll"><table><thead><tr><th>Path</th><th>Body KiB (encoded / decoded)</th><th>Start / end ms</th><th>Timeline</th><th>HTTP / initiator</th></tr></thead><tbody id="body"></tbody></table></div>
+<p class="muted">Full chronological request tables are in tables/requests.csv. Read the report for calibration, critical-path analysis and limitations.</p><script type="application/json" id="data">${data}</script><script>
+const rows=JSON.parse(document.querySelector('#data').textContent),pick=document.querySelector('#pick');let order='byBytes';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+for(const row of rows){const option=document.createElement('option');option.value=row.id;option.textContent=row.id;pick.append(option);}
+const seconds=value=>value===null?'N/A':(value/1000).toFixed(2)+' s';
+function draw(){const row=rows.find(x=>x.id===pick.value),list=row[order],max=Math.max(row.readyMs,...list.map(x=>x.finishedMs));document.querySelector('#metrics').textContent='FCP '+seconds(row.fcpMs)+' · interactive '+seconds(row.readyMs)+' · offline '+seconds(row.offlineReadyMs)+' (0 = already installed) · observation '+seconds(row.totalMs);
+ document.querySelector('#body').innerHTML=list.map(x=>'<tr><td><code>'+esc(x.path)+'</code></td><td>'+(x.encodedBytes/1024).toFixed(1)+' / '+(x.decodedBytes/1024).toFixed(1)+'</td><td>'+x.startedMs+' / '+x.finishedMs+'</td><td><div class="lane"><i class="bar" style="left:'+Math.max(0,x.startedMs/max*100)+'%;width:'+Math.max(.1,(x.finishedMs-x.startedMs)/max*100)+'%"></i><i class="mark" style="left:'+row.readyMs/max*100+'%"></i></div></td><td>'+x.status+' '+esc(x.protocol)+'<br>'+esc(x.actor)+'<br>'+esc(x.initiatorFile)+'</td></tr>').join('');}
+pick.addEventListener('change',draw);for(const [id,key]of[['bytes','byBytes'],['duration','byDuration']])document.querySelector('#'+id).onclick=()=>{order=key;for(const button of document.querySelectorAll('button'))button.setAttribute('aria-pressed',String(button.id===id));draw();};draw();
+</script></html>`);
+console.log('Created offline WATERFALL.html for '+rows.length+' observations');

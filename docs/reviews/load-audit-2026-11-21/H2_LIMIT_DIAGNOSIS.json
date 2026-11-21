@@ -1,0 +1,424 @@
+{
+  "schema": "load-audit-local-origin-correction/v1",
+  "finding": "Original constrained local DG-book streams hit audit Node origin queued-session memory limit; no corresponding live Pages failures.",
+  "officialDocumentation": "https://nodejs.org/api/http2.html#http2createsecureserveroptions-onrequesthandler",
+  "defaultMiB": 10,
+  "correctedAuditOriginMiB": 128,
+  "runtimeBytesChanged": false,
+  "shaperChanged": false,
+  "ownerPreviewChanged": false,
+  "excludedCases": [
+    {
+      "id": "local-fast4g-dg-book-1-cold",
+      "failedWorkerStreams": 7,
+      "failedPaths": [
+        "books/death-guard/assets/unit-images/helbrute.png",
+        "books/death-guard/assets/unit-images/myphitic-blight-hauler.png",
+        "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+        "books/death-guard/assets/unit-images/chaos-rhino.png",
+        "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+        "books/death-guard/assets/unit-images/plague-drones.png",
+        "books/death-guard/assets/unit-images/nurglings.png"
+      ],
+      "actualHeaderSends": 367,
+      "originHandlerRequests": 360,
+      "resets": [
+        {
+          "timeMs": 32719,
+          "stream": "72:715",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/helbrute.png"
+        },
+        {
+          "timeMs": 32719,
+          "stream": "72:717",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/myphitic-blight-hauler.png"
+        },
+        {
+          "timeMs": 32719,
+          "stream": "72:719",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plagueburst-crawler.png"
+        },
+        {
+          "timeMs": 32719,
+          "stream": "72:721",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/chaos-rhino.png"
+        },
+        {
+          "timeMs": 32719,
+          "stream": "72:723",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/miasmic-malignifier.png"
+        },
+        {
+          "timeMs": 32719,
+          "stream": "72:725",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plague-drones.png"
+        },
+        {
+          "timeMs": 32720,
+          "stream": "72:727",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/nurglings.png"
+        }
+      ]
+    },
+    {
+      "id": "local-fast4g-dg-book-2-cold",
+      "failedWorkerStreams": 8,
+      "failedPaths": [
+        "books/death-guard/assets/unit-images/foetid-bloat-drone.png",
+        "books/death-guard/assets/unit-images/helbrute.png",
+        "books/death-guard/assets/unit-images/myphitic-blight-hauler.png",
+        "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+        "books/death-guard/assets/unit-images/chaos-rhino.png",
+        "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+        "books/death-guard/assets/unit-images/plague-drones.png",
+        "books/death-guard/assets/unit-images/nurglings.png"
+      ],
+      "actualHeaderSends": 367,
+      "originHandlerRequests": 359,
+      "resets": [
+        {
+          "timeMs": 32358,
+          "stream": "72:713",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/foetid-bloat-drone.png"
+        },
+        {
+          "timeMs": 32358,
+          "stream": "72:715",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/helbrute.png"
+        },
+        {
+          "timeMs": 32358,
+          "stream": "72:717",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/myphitic-blight-hauler.png"
+        },
+        {
+          "timeMs": 32358,
+          "stream": "72:719",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plagueburst-crawler.png"
+        },
+        {
+          "timeMs": 32358,
+          "stream": "72:721",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/chaos-rhino.png"
+        },
+        {
+          "timeMs": 32358,
+          "stream": "72:723",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/miasmic-malignifier.png"
+        },
+        {
+          "timeMs": 32358,
+          "stream": "72:725",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plague-drones.png"
+        },
+        {
+          "timeMs": 32358,
+          "stream": "72:727",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/nurglings.png"
+        }
+      ]
+    },
+    {
+      "id": "local-fast4g-dg-book-3-cold",
+      "failedWorkerStreams": 8,
+      "failedPaths": [
+        "books/death-guard/assets/unit-images/foetid-bloat-drone.png",
+        "books/death-guard/assets/unit-images/helbrute.png",
+        "books/death-guard/assets/unit-images/myphitic-blight-hauler.png",
+        "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+        "books/death-guard/assets/unit-images/chaos-rhino.png",
+        "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+        "books/death-guard/assets/unit-images/plague-drones.png",
+        "books/death-guard/assets/unit-images/nurglings.png"
+      ],
+      "actualHeaderSends": 367,
+      "originHandlerRequests": 359,
+      "resets": [
+        {
+          "timeMs": 32428,
+          "stream": "72:713",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/foetid-bloat-drone.png"
+        },
+        {
+          "timeMs": 32428,
+          "stream": "72:715",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/helbrute.png"
+        },
+        {
+          "timeMs": 32428,
+          "stream": "72:717",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/myphitic-blight-hauler.png"
+        },
+        {
+          "timeMs": 32428,
+          "stream": "72:719",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plagueburst-crawler.png"
+        },
+        {
+          "timeMs": 32428,
+          "stream": "72:721",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/chaos-rhino.png"
+        },
+        {
+          "timeMs": 32428,
+          "stream": "72:723",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/miasmic-malignifier.png"
+        },
+        {
+          "timeMs": 32428,
+          "stream": "72:725",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plague-drones.png"
+        },
+        {
+          "timeMs": 32428,
+          "stream": "72:727",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/nurglings.png"
+        }
+      ]
+    },
+    {
+      "id": "local-slow4g-dg-book-1-cold",
+      "failedWorkerStreams": 8,
+      "failedPaths": [
+        "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+        "books/death-guard/assets/unit-images/chaos-rhino.png",
+        "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+        "books/death-guard/assets/unit-images/plague-drones.png",
+        "books/death-guard/assets/unit-images/nurglings.png",
+        "books/shared/datasheet-system.css",
+        "books/shared/unit-art.css",
+        "assets/death-guard-cover.jpg"
+      ],
+      "actualHeaderSends": 367,
+      "originHandlerRequests": 359,
+      "resets": [
+        {
+          "timeMs": 83601,
+          "stream": "72:719",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plagueburst-crawler.png"
+        },
+        {
+          "timeMs": 83601,
+          "stream": "72:721",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/chaos-rhino.png"
+        },
+        {
+          "timeMs": 83601,
+          "stream": "72:723",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/miasmic-malignifier.png"
+        },
+        {
+          "timeMs": 83601,
+          "stream": "72:725",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plague-drones.png"
+        },
+        {
+          "timeMs": 83601,
+          "stream": "72:727",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/nurglings.png"
+        },
+        {
+          "timeMs": 83601,
+          "stream": "72:729",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/shared/datasheet-system.css"
+        },
+        {
+          "timeMs": 83601,
+          "stream": "72:731",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/shared/unit-art.css"
+        },
+        {
+          "timeMs": 83601,
+          "stream": "72:733",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "assets/death-guard-cover.jpg"
+        }
+      ]
+    },
+    {
+      "id": "local-slow4g-dg-book-2-cold",
+      "failedWorkerStreams": 9,
+      "failedPaths": [
+        "books/death-guard/assets/unit-images/myphitic-blight-hauler.png",
+        "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+        "books/death-guard/assets/unit-images/chaos-rhino.png",
+        "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+        "books/death-guard/assets/unit-images/plague-drones.png",
+        "books/death-guard/assets/unit-images/nurglings.png",
+        "books/shared/datasheet-system.css",
+        "books/shared/unit-art.css",
+        "assets/death-guard-cover.jpg"
+      ],
+      "actualHeaderSends": 367,
+      "originHandlerRequests": 358,
+      "resets": [
+        {
+          "timeMs": 79986,
+          "stream": "72:717",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/myphitic-blight-hauler.png"
+        },
+        {
+          "timeMs": 79986,
+          "stream": "72:719",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plagueburst-crawler.png"
+        },
+        {
+          "timeMs": 79986,
+          "stream": "72:721",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/chaos-rhino.png"
+        },
+        {
+          "timeMs": 79986,
+          "stream": "72:723",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/miasmic-malignifier.png"
+        },
+        {
+          "timeMs": 79986,
+          "stream": "72:725",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plague-drones.png"
+        },
+        {
+          "timeMs": 79986,
+          "stream": "72:727",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/nurglings.png"
+        },
+        {
+          "timeMs": 79986,
+          "stream": "72:729",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/shared/datasheet-system.css"
+        },
+        {
+          "timeMs": 79986,
+          "stream": "72:731",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/shared/unit-art.css"
+        },
+        {
+          "timeMs": 79987,
+          "stream": "72:733",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "assets/death-guard-cover.jpg"
+        }
+      ]
+    },
+    {
+      "id": "local-slow4g-dg-book-3-cold",
+      "failedWorkerStreams": 10,
+      "failedPaths": [
+        "books/death-guard/assets/unit-images/helbrute.png",
+        "books/death-guard/assets/unit-images/myphitic-blight-hauler.png",
+        "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+        "books/death-guard/assets/unit-images/chaos-rhino.png",
+        "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+        "books/death-guard/assets/unit-images/plague-drones.png",
+        "books/death-guard/assets/unit-images/nurglings.png",
+        "books/shared/datasheet-system.css",
+        "books/shared/unit-art.css",
+        "assets/death-guard-cover.jpg"
+      ],
+      "actualHeaderSends": 367,
+      "originHandlerRequests": 357,
+      "resets": [
+        {
+          "timeMs": 77531,
+          "stream": "72:715",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/helbrute.png"
+        },
+        {
+          "timeMs": 77532,
+          "stream": "72:717",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/myphitic-blight-hauler.png"
+        },
+        {
+          "timeMs": 77532,
+          "stream": "72:719",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plagueburst-crawler.png"
+        },
+        {
+          "timeMs": 77532,
+          "stream": "72:721",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/chaos-rhino.png"
+        },
+        {
+          "timeMs": 77532,
+          "stream": "72:723",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/miasmic-malignifier.png"
+        },
+        {
+          "timeMs": 77532,
+          "stream": "72:725",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/plague-drones.png"
+        },
+        {
+          "timeMs": 77532,
+          "stream": "72:727",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/death-guard/assets/unit-images/nurglings.png"
+        },
+        {
+          "timeMs": 77532,
+          "stream": "72:729",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/shared/datasheet-system.css"
+        },
+        {
+          "timeMs": 77532,
+          "stream": "72:731",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "books/shared/unit-art.css"
+        },
+        {
+          "timeMs": 77532,
+          "stream": "72:733",
+          "error": "11 (ENHANCE_YOUR_CALM)",
+          "path": "assets/death-guard-cover.jpg"
+        }
+      ]
+    }
+  ],
+  "replacedRows": 18,
+  "correctedWorkerFailures": []
+}

@@ -1,0 +1,561 @@
+{
+  "root": "v2/boot.mjs",
+  "nodes": [
+    "books/adeptus-mechanicus/v2/registration.mjs",
+    "books/blood-angels/v2/registration.mjs",
+    "books/chaos-space-marines/v2/registration.mjs",
+    "books/dark-angels/v2/registration.mjs",
+    "books/death-guard/v2/registration.mjs",
+    "books/emperors-children/v2/registration.mjs",
+    "books/shared/application-v2/glossary.mjs",
+    "books/shared/application-v2/home.mjs",
+    "books/shared/application-v2/registry.mjs",
+    "books/shared/application-v2/routes.mjs",
+    "books/shared/application-v2/runtime.mjs",
+    "books/shared/application-v2/source-metadata.mjs",
+    "books/shared/army-book-app-v2/ability-presentation.mjs",
+    "books/shared/army-book-app-v2/book-v1.mjs",
+    "books/shared/army-book-app-v2/cosmetics.mjs",
+    "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+    "books/shared/army-book-app-v2/datasheet-v1.mjs",
+    "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+    "books/shared/army-book-app-v2/equipment-reference.mjs",
+    "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+    "books/shared/army-book-app-v2/global-glossary-content.mjs",
+    "books/shared/army-book-app-v2/global-glossary.mjs",
+    "books/shared/army-book-app-v2/glossary-v1.mjs",
+    "books/shared/army-book-app-v2/glossary.mjs",
+    "books/shared/army-book-app-v2/import-notices.mjs",
+    "books/shared/army-book-app-v2/lifecycle.mjs",
+    "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+    "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+    "books/shared/army-book-app-v2/navigation-v1.mjs",
+    "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+    "books/shared/army-book-app-v2/personal.mjs",
+    "books/shared/army-book-app-v2/popup-v1.mjs",
+    "books/shared/army-book-app-v2/reference-contract.mjs",
+    "books/shared/army-book-app-v2/reference-v1.mjs",
+    "books/shared/army-book-app-v2/related-v1.mjs",
+    "books/shared/army-book-app-v2/roster-labels.mjs",
+    "books/shared/army-book-app-v2/roster.mjs",
+    "books/shared/army-book-app-v2/route-context.mjs",
+    "books/shared/army-book-app-v2/rule-popup.mjs",
+    "books/shared/army-book-app-v2/rule-term-links.mjs",
+    "books/shared/army-book-app-v2/runtime.mjs",
+    "books/shared/army-book-app-v2/source-table.mjs",
+    "books/shared/keyword-values.mjs",
+    "books/shared/roster-v2/compatibility-context.mjs",
+    "books/shared/roster-v2/context.mjs",
+    "books/shared/roster-v2/keywords.mjs",
+    "books/shared/rule-facts.js",
+    "books/shared/source-refs-v2/source-catalog.mjs",
+    "books/shared/source-refs-v2/source-refs.mjs",
+    "books/space-marines/v2/registration.mjs",
+    "books/tau-empire/v2/registration.mjs",
+    "books/tyranids/v2/registration.mjs",
+    "v2/army-books.mjs",
+    "v2/boot.mjs"
+  ],
+  "edges": [
+    {
+      "from": "v2/boot.mjs",
+      "to": "books/shared/application-v2/registry.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/boot.mjs",
+      "to": "books/shared/application-v2/runtime.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/runtime.mjs",
+      "to": "books/shared/source-refs-v2/source-catalog.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/runtime.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/source-refs-v2/source-refs.mjs",
+      "to": "books/shared/source-refs-v2/source-catalog.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/glossary.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/glossary.mjs",
+      "to": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "to": "books/shared/army-book-app-v2/glossary.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/route-context.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "to": "books/shared/army-book-app-v2/source-table.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/roster.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/roster.mjs",
+      "to": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/roster.mjs",
+      "to": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "to": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/roster.mjs",
+      "to": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/roster.mjs",
+      "to": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/roster.mjs",
+      "to": "books/shared/army-book-app-v2/import-notices.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/personal.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/personal.mjs",
+      "to": "books/shared/keyword-values.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/keyword-values.mjs",
+      "to": "books/shared/rule-facts.js",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/personal.mjs",
+      "to": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/personal.mjs",
+      "to": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/personal.mjs",
+      "to": "books/shared/roster-v2/context.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/roster-v2/context.mjs",
+      "to": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/roster-v2/context.mjs",
+      "to": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/roster-v2/compatibility-context.mjs",
+      "to": "books/shared/roster-v2/keywords.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/roster-v2/keywords.mjs",
+      "to": "books/shared/source-refs-v2/source-catalog.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/roster-v2/keywords.mjs",
+      "to": "books/shared/keyword-values.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/roster-v2/context.mjs",
+      "to": "books/shared/roster-v2/keywords.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "to": "books/shared/army-book-app-v2/personal.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "to": "books/shared/keyword-values.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "to": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "to": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "to": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "to": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "to": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "to": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/keyword-values.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/army-book-app-v2/rule-popup.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "to": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/army-book-app-v2/roster.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "to": "books/shared/army-book-app-v2/personal.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "to": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/book-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/book-v1.mjs",
+      "to": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/book-v1.mjs",
+      "to": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/book-v1.mjs",
+      "to": "books/shared/army-book-app-v2/source-table.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/related-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/popup-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/rule-popup.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/runtime.mjs",
+      "to": "books/shared/application-v2/source-metadata.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/runtime.mjs",
+      "to": "books/shared/application-v2/routes.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/routes.mjs",
+      "to": "books/shared/army-book-app-v2/route-context.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/runtime.mjs",
+      "to": "books/shared/application-v2/home.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/home.mjs",
+      "to": "books/shared/application-v2/routes.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/home.mjs",
+      "to": "books/shared/application-v2/source-metadata.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/runtime.mjs",
+      "to": "books/shared/application-v2/glossary.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/glossary.mjs",
+      "to": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/glossary.mjs",
+      "to": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "to": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "to": "books/shared/keyword-values.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "to": "books/shared/army-book-app-v2/glossary.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/glossary.mjs",
+      "to": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/glossary.mjs",
+      "to": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/glossary.mjs",
+      "to": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/glossary.mjs",
+      "to": "books/shared/army-book-app-v2/route-context.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/glossary.mjs",
+      "to": "books/shared/army-book-app-v2/popup-v1.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/glossary.mjs",
+      "to": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/runtime.mjs",
+      "to": "books/shared/army-book-app-v2/personal.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "books/shared/application-v2/runtime.mjs",
+      "to": "books/shared/application-v2/source-metadata.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/boot.mjs",
+      "to": "v2/army-books.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/army-books.mjs",
+      "to": "books/death-guard/v2/registration.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/army-books.mjs",
+      "to": "books/adeptus-mechanicus/v2/registration.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/army-books.mjs",
+      "to": "books/chaos-space-marines/v2/registration.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/army-books.mjs",
+      "to": "books/emperors-children/v2/registration.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/army-books.mjs",
+      "to": "books/tyranids/v2/registration.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/army-books.mjs",
+      "to": "books/tau-empire/v2/registration.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/army-books.mjs",
+      "to": "books/space-marines/v2/registration.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/army-books.mjs",
+      "to": "books/dark-angels/v2/registration.mjs",
+      "kind": "static-import"
+    },
+    {
+      "from": "v2/army-books.mjs",
+      "to": "books/blood-angels/v2/registration.mjs",
+      "kind": "static-import"
+    }
+  ]
+}

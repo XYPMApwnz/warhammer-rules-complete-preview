@@ -1,0 +1,128 @@
+{
+  "networks": {
+    "unlimited": {
+      "bitsPerSecond": 0,
+      "rttMs": 0,
+      "upDelayMs": 0,
+      "downDelayMs": 0
+    },
+    "fast4g": {
+      "bitsPerSecond": 9000000,
+      "rttMs": 170,
+      "upDelayMs": 85,
+      "downDelayMs": 70
+    },
+    "slow4g": {
+      "bitsPerSecond": 1600000,
+      "rttMs": 150,
+      "upDelayMs": 75,
+      "downDelayMs": 75
+    }
+  },
+  "status": "COMPLETE",
+  "calibrations": [
+    {
+      "network": "fast4g",
+      "status": "PASS",
+      "shortFetchMs": [
+        165.20000000298023,
+        170.5,
+        170.3999999910593,
+        170.29999999701977,
+        170.80000001192093
+      ],
+      "shortMedianMs": 170.3999999910593,
+      "decoded": [
+        6530013,
+        6530013
+      ],
+      "elapsedMs": 1477,
+      "downstreamTlsBytes": 1441167,
+      "wireOnlyIdealMs": 1281.0373333333334,
+      "rows": [
+        {
+          "actor": "service-worker",
+          "compressed": 719107,
+          "decoded": 6530013,
+          "source": "complete Content-Length (encoded HTTP body)",
+          "headers": {
+            "cache-control": "public, max-age=600",
+            "content-encoding": "gzip",
+            "etag": "\"599f5bf8f9f08d53a7396d5b1bcd23a945262b3acc0b54d018dae5dfc274ffbe-gzip\"",
+            "content-length": "719107",
+            "date": "Sat, 21 Nov 2026 11:12:37 GMT",
+            "content-type": "application/json; charset=utf-8",
+            "vary": "Accept-Encoding"
+          }
+        },
+        {
+          "actor": "page",
+          "compressed": 719107,
+          "decoded": 6530013,
+          "source": "complete Content-Length (encoded HTTP body)",
+          "headers": {
+            "cache-control": "public, max-age=600",
+            "content-encoding": "gzip",
+            "etag": "\"599f5bf8f9f08d53a7396d5b1bcd23a945262b3acc0b54d018dae5dfc274ffbe-gzip\"",
+            "content-length": "719107",
+            "date": "Sat, 21 Nov 2026 11:12:37 GMT",
+            "content-type": "application/json; charset=utf-8",
+            "vary": "Accept-Encoding"
+          }
+        }
+      ]
+    },
+    {
+      "network": "slow4g",
+      "status": "PASS",
+      "shortFetchMs": [
+        165.80000001192093,
+        154.69999998807907,
+        154.80000001192093,
+        155.09999999403954,
+        155.29999999701977
+      ],
+      "shortMedianMs": 155.09999999403954,
+      "decoded": [
+        6530013,
+        6530013
+      ],
+      "elapsedMs": 7391,
+      "downstreamTlsBytes": 1441167,
+      "wireOnlyIdealMs": 7205.835,
+      "rows": [
+        {
+          "actor": "page",
+          "compressed": 719107,
+          "decoded": 6530013,
+          "source": "complete Content-Length (encoded HTTP body)",
+          "headers": {
+            "cache-control": "public, max-age=600",
+            "content-encoding": "gzip",
+            "etag": "\"599f5bf8f9f08d53a7396d5b1bcd23a945262b3acc0b54d018dae5dfc274ffbe-gzip\"",
+            "content-length": "719107",
+            "date": "Sat, 21 Nov 2026 11:12:40 GMT",
+            "content-type": "application/json; charset=utf-8",
+            "vary": "Accept-Encoding"
+          }
+        },
+        {
+          "actor": "service-worker",
+          "compressed": 719107,
+          "decoded": 6530013,
+          "source": "complete Content-Length (encoded HTTP body)",
+          "headers": {
+            "cache-control": "public, max-age=600",
+            "content-encoding": "gzip",
+            "etag": "\"599f5bf8f9f08d53a7396d5b1bcd23a945262b3acc0b54d018dae5dfc274ffbe-gzip\"",
+            "content-length": "719107",
+            "date": "Sat, 21 Nov 2026 11:12:40 GMT",
+            "content-type": "application/json; charset=utf-8",
+            "vary": "Accept-Encoding"
+          }
+        }
+      ]
+    }
+  ],
+  "source": "8579a7a77c7f5e8dad291afc11b27aab3cd9d73a"
+}

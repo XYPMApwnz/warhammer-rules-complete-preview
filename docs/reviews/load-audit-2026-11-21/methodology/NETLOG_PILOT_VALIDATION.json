@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "origin": "local",
+      "profile": "profile-local-unlimited-home-1-dAsWjP",
+      "cache": "cold",
+      "status": "PASS",
+      "actualNetworkRequests": 296,
+      "encodedBodyBytes": 2737161,
+      "decodedBodyBytes": 6451996,
+      "contentLengthMatches": 296,
+      "contentLengthMismatches": 0,
+      "cdpBodyMatches": true,
+      "cdpRequestCountMatches": true,
+      "additionalBrowserOwned304Requests": 0,
+      "localServerMatches": true,
+      "devtoolsRequestIdsFound": 0
+    },
+    {
+      "origin": "local",
+      "profile": "profile-local-unlimited-home-1-dAsWjP",
+      "cache": "warm",
+      "status": "PASS",
+      "actualNetworkRequests": 14,
+      "encodedBodyBytes": 33098,
+      "decodedBodyBytes": 150393,
+      "contentLengthMatches": 14,
+      "contentLengthMismatches": 0,
+      "cdpBodyMatches": true,
+      "cdpRequestCountMatches": true,
+      "additionalBrowserOwned304Requests": 0,
+      "localServerMatches": true,
+      "devtoolsRequestIdsFound": 0
+    },
+    {
+      "origin": "live",
+      "profile": "profile-live-unlimited-home-1-EPmhQ1",
+      "cache": "cold",
+      "status": "PASS",
+      "actualNetworkRequests": 296,
+      "encodedBodyBytes": 2756413,
+      "decodedBodyBytes": 6461111,
+      "contentLengthMatches": 296,
+      "contentLengthMismatches": 0,
+      "cdpBodyMatches": true,
+      "cdpRequestCountMatches": true,
+      "additionalBrowserOwned304Requests": 0,
+      "localServerMatches": false,
+      "devtoolsRequestIdsFound": 0
+    },
+    {
+      "origin": "live",
+      "profile": "profile-live-unlimited-home-1-EPmhQ1",
+      "cache": "warm",
+      "status": "PASS",
+      "actualNetworkRequests": 15,
+      "encodedBodyBytes": 33554,
+      "decodedBodyBytes": 150393,
+      "contentLengthMatches": 15,
+      "contentLengthMismatches": 0,
+      "cdpBodyMatches": true,
+      "cdpRequestCountMatches": false,
+      "additionalBrowserOwned304Requests": 2,
+      "localServerMatches": false,
+      "devtoolsRequestIdsFound": 0
+    }
+  ],
+  "method": "Completed pilot files only, no new browser or network run."
+}
