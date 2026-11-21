@@ -1,3 +1,5 @@
+// The isolated guard child allocates no temporary files and imports no repository helper.
+const {assertQaTempPath,cleanupQaTempDir,createQaTempDir}=process.argv.includes('--isolated-mutant')?{}:await import('../../../tests/helpers/qa-temp.mjs');
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -5,6 +7,7 @@ import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {enhancementOwnerFixture} from './enhancement-owner-fixture.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 import {rangeId as id} from './ability-range-fixture.mjs';
 import {createRosterRuntime} from './runtime.mjs';
 import {buildAttachmentFeasibility} from './compatibility-feasibility.mjs';
@@ -58,7 +61,7 @@ check('removal and restoration preserve exact owned effect and deterministic reb
   const f=enhancementOwnerFixture();f.assign();const r=verify(f),before=r.effective('a'),snapshot=r.snapshot();
   snapshot.units[0].enhancementIds=[];snapshot.units[0].enhancementAssignments=[];r.load(snapshot);assert.equal(wounds(r),'3');
   r.load(f.state);assert.deepEqual(r.effective('a'),before);
-  const restored=createRosterRuntime(f.book,f.api);restored.load(JSON.parse(JSON.stringify(r.snapshot())));
+  const restored=createRosterRuntime(compileRecipientFixture(f.book,f.api,{validateContracts:false}),f.api);restored.load(JSON.parse(JSON.stringify(r.snapshot())));
   assert.deepEqual(restored.projection,r.projection);
 });
 check('multiple independently owned Enhancements bind separate MODEL profiles in one physical unit',()=>{
@@ -108,7 +111,8 @@ check('same canonical profile in separate physical groups requires and respects 
 check('unknown MODEL owner eligibility stays conditional without selecting a bearer',()=>{
   const f=enhancementOwnerFixture();f.rule.ruleContract.assignment.selector={predicate:'FIELD',subject:'MODEL',
     contextLevel:'BATTLE',arguments:{key:'eligibleNow',equals:true},evidence:clone(f.effect.evidence)};
-  const r=createRosterRuntime(f.book,createRuleContractSchema({stateFields:{eligibleNow:{contextLevel:'BATTLE',valueType:'boolean'}}}));
+  const evaluator=createRuleContractSchema({stateFields:{eligibleNow:{contextLevel:'BATTLE',valueType:'boolean'}}});
+  const r=createRosterRuntime(compileRecipientFixture(f.book,evaluator,{validateContracts:false}),evaluator);
   r.load(f.state);const result=r.projection.units[0];assert.equal(result.applied.length,0);
   assert.ok(result.conditional.some(row=>row.state==='UNKNOWN'));
 });
@@ -145,7 +149,7 @@ check('G1 global Army Rule dispatch remains unresolved while existing Detachment
   f.rule.kind='DETACHMENT_RULE';const active=f.runtime();assert.equal(wounds(active),'4');assert.equal(wounds(active,'b'),'4');
 });
 check('runtime mutation broadening exact bearer binding is killed by focused QA',()=>{
-  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'model-owner-mutation-'));
+  const temporary=createQaTempDir('model-owner-mutation-');
   try {
     const root=path.dirname(fileURLToPath(import.meta.url));
     for(const directory of ['roster-v2','rule-contract-v2'])
@@ -153,11 +157,11 @@ check('runtime mutation broadening exact bearer binding is killed by focused QA'
     const target=path.join(temporary,'roster-v2','effects.mjs'),source=fs.readFileSync(target,'utf8');
     const exact='return [{unit:source,model:ownerModel}];';assert.ok(source.includes(exact));
     fs.writeFileSync(target,source.replace(exact,'return source.profiles.map(model=>({unit:source,model}));'));
-    const mutant=spawnSync(process.execPath,[path.join(temporary,'roster-v2','enhancement-owner-qa.mjs')],{encoding:'utf8',timeout:10000});
+    const mutant=spawnSync(process.execPath,[path.join(temporary,'roster-v2','enhancement-owner-qa.mjs'),'--isolated-mutant'],{encoding:'utf8',timeout:10000});
     assert.notEqual(mutant.status,0);assert.match(mutant.stderr,/Sibling must retain base Wounds/);
   } finally {
-    assert.equal(path.dirname(fs.realpathSync(temporary)),fs.realpathSync(os.tmpdir()));
-    fs.rmSync(temporary,{recursive:true,force:true});
+    assert.ok(assertQaTempPath(temporary));
+    cleanupQaTempDir(temporary);
   }
 });
 console.log(JSON.stringify({status:'PASS',checks:checks.length,names:checks,armyFactualReads:0,mutationRejected:true}));

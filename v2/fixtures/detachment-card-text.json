@@ -1,0 +1,494 @@
+{
+  "schema": "o3-detachment-card-text-fixtures/v1",
+  "baseline": "985a1da4a842741ab0005d8d0388bc5b6aa70724",
+  "note": "Literal source expectations; physical snapshots exercise recipients directly. Texts are derived synthetic browser inputs, not real exports. Group quantities do not assert army construction legality.",
+  "cases": [
+    {
+      "detachmentId": "detachment-sm-bad922ba6ae84f44",
+      "ruleId": "detachment-rule-sm-3a97ffd48f0f4bf6",
+      "clauseId": "detachment-rule-sm-3a97ffd48f0f4bf6#text:20-147",
+      "quote": "Friendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range.",
+      "subject": "UNIT",
+      "textKind": "CONDITIONAL",
+      "units": [
+        {
+          "instanceId": "right",
+          "unitId": "unit-sm-59162946fee84360",
+          "profileId": "model-sm-767e354c54c84193",
+          "quantity": 5,
+          "expectText": true
+        },
+        {
+          "instanceId": "wrong",
+          "unitId": "unit-sm-9e163be8d4bb42c1",
+          "profileId": "model-sm-0fcf83855af74d94",
+          "quantity": 5,
+          "expectText": false
+        }
+      ],
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Tacticus Firestorm Force\n5x Intercessor Squad (80 pts)\n• 5x Intercessor: 5 with Bolt pistol, Bolt rifle, Close combat weapon\n5x Terminator Squad (170 pts)\n• 5x Terminator: 5 with Storm bolter, Power fist",
+      "id": "space-marines/tacticus",
+      "bookId": "space-marines",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT_AND_DERIVED_NOT_REAL_EXPORT"
+    },
+    {
+      "detachmentId": "detachment-sm-bad922ba6ae84f44",
+      "ruleId": "detachment-rule-sm-3a97ffd48f0f4bf6",
+      "clauseId": "detachment-rule-sm-3a97ffd48f0f4bf6#text:20-147",
+      "quote": "Friendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range.",
+      "subject": "UNIT",
+      "textKind": "CONDITIONAL",
+      "units": [
+        {
+          "instanceId": "right",
+          "unitId": "unit-sm-59162946fee84360",
+          "profileId": "model-sm-767e354c54c84193",
+          "quantity": 5,
+          "expectText": true
+        },
+        {
+          "instanceId": "wrong",
+          "unitId": "unit-sm-9e163be8d4bb42c1",
+          "profileId": "model-sm-0fcf83855af74d94",
+          "quantity": 5,
+          "expectText": false
+        }
+      ],
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Tacticus Firestorm Force\n5x Intercessor Squad (80 pts)\n• 5x Intercessor: 5 with Bolt pistol, Bolt rifle, Close combat weapon\n5x Terminator Squad (170 pts)\n• 5x Terminator: 5 with Storm bolter, Power fist",
+      "id": "blood-angels/tacticus",
+      "bookId": "blood-angels",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT_AND_DERIVED_NOT_REAL_EXPORT"
+    },
+    {
+      "detachmentId": "detachment-sm-bad922ba6ae84f44",
+      "ruleId": "detachment-rule-sm-3a97ffd48f0f4bf6",
+      "clauseId": "detachment-rule-sm-3a97ffd48f0f4bf6#text:20-147",
+      "quote": "Friendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range.",
+      "subject": "UNIT",
+      "textKind": "CONDITIONAL",
+      "units": [
+        {
+          "instanceId": "right",
+          "unitId": "unit-sm-59162946fee84360",
+          "profileId": "model-sm-767e354c54c84193",
+          "quantity": 5,
+          "expectText": true
+        },
+        {
+          "instanceId": "wrong",
+          "unitId": "unit-sm-9e163be8d4bb42c1",
+          "profileId": "model-sm-0fcf83855af74d94",
+          "quantity": 5,
+          "expectText": false
+        }
+      ],
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Tacticus Firestorm Force\n5x Intercessor Squad (80 pts)\n• 5x Intercessor: 5 with Bolt pistol, Bolt rifle, Close combat weapon\n5x Terminator Squad (170 pts)\n• 5x Terminator: 5 with Storm bolter, Power fist",
+      "id": "dark-angels/tacticus",
+      "bookId": "dark-angels",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT_AND_DERIVED_NOT_REAL_EXPORT"
+    },
+    {
+      "id": "tau-empire/kauyon",
+      "bookId": "tau-empire",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT_AND_DERIVED_NOT_REAL_EXPORT",
+      "detachmentId": "detachment-kauyon",
+      "ruleId": "detachment-kauyon:rule",
+      "clauseId": "detachment-kauyon:rule#battle-clause-1",
+      "quote": "During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability.",
+      "subject": "MODEL",
+      "textKind": "CONDITIONAL",
+      "attachment": {
+        "leader": "fireblade",
+        "bodyguard": "strike"
+      },
+      "units": [
+        {
+          "instanceId": "fireblade",
+          "unitId": "unit-cadre-fireblade",
+          "profileId": "datasheet-cadre-fireblade:profile:1",
+          "quantity": 1,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-row-1",
+              "canonicalProfileId": "datasheet-cadre-fireblade:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-cadre-fireblade:composition:1"
+            }
+          ],
+          "expectAfterDetach": true
+        },
+        {
+          "instanceId": "strike",
+          "unitId": "unit-strike-team",
+          "profileId": "datasheet-strike-team:profile:1",
+          "quantity": 10,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-shasui",
+              "canonicalProfileId": "datasheet-strike-team:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-strike-team:composition:1"
+            },
+            {
+              "rowId": "physical-warriors",
+              "canonicalProfileId": "datasheet-strike-team:profile:1",
+              "quantity": 9,
+              "compositionMemberId": "datasheet-strike-team:composition:2"
+            }
+          ],
+          "expectAfterDetach": true
+        }
+      ],
+      "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\nChar1: 1x Cadre Fireblade (50 pts): Close combat weapon, Fireblade pulse rifle\n10x Strike Team (75 pts)\n• 10x Fire Warrior: 10 with Close combat weapon, Pulse pistol, Pulse rifle"
+    },
+    {
+      "id": "tyranids/crusher",
+      "bookId": "tyranids",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT_AND_DERIVED_NOT_REAL_EXPORT",
+      "detachmentId": "detachment-crusher-stampede",
+      "ruleId": "detachment-crusher-stampede:rule",
+      "clauseId": "text-coverage:/text",
+      "quote": "Each time a TYRANIDS MONSTER model from your army makes an attack, add 1 to the Hit roll if that model’s unit is below its Starting Strength, and add 1 to the Wound roll as well if that model’s unit is Below Half-strength.",
+      "subject": "UNIT",
+      "textKind": "CONDITIONAL",
+      "units": [
+        {
+          "instanceId": "right",
+          "unitId": "unit-trygon",
+          "profileId": "datasheet-trygon:profile:1",
+          "quantity": 1,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-trygon:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-trygon:section:2:member:1"
+            }
+          ]
+        },
+        {
+          "instanceId": "wrong",
+          "unitId": "unit-genestealers",
+          "profileId": "datasheet-genestealers:profile:1",
+          "quantity": 5,
+          "expectText": false,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-genestealers:profile:1",
+              "quantity": 5,
+              "compositionMemberId": "datasheet-genestealers:section:2:member:1"
+            }
+          ]
+        }
+      ],
+      "text": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Crusher Stampede\n1x Trygon (140 pts): Bio-electric pulse, Trygon scything talons\n5x Genestealers (75 pts)\n• 5x Genestealers: 5 with Genestealer claws and talons"
+    },
+    {
+      "id": "emperors-children/elegant",
+      "bookId": "emperors-children",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT_AND_DERIVED_NOT_REAL_EXPORT",
+      "detachmentId": "detachment-elegant-brutes",
+      "ruleId": "detachment-elegant-brutes:rule",
+      "clauseId": "text-coverage:/text",
+      "quote": "When a friendly EMPEROR’S CHILDREN TERMINATOR unit is set up, that unit has +1 to charge rolls until the end of the turn.",
+      "subject": "UNIT",
+      "textKind": "CONDITIONAL",
+      "units": [
+        {
+          "instanceId": "right",
+          "unitId": "unit-chaos-terminators",
+          "profileId": "datasheet-chaos-terminators:profile:1",
+          "quantity": 5,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-chaos-terminators:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-chaos-terminators:section:2:member:1"
+            },
+            {
+              "rowId": "physical-composition-2",
+              "canonicalProfileId": "datasheet-chaos-terminators:profile:1",
+              "quantity": 4,
+              "compositionMemberId": "datasheet-chaos-terminators:section:2:member:2"
+            }
+          ]
+        },
+        {
+          "instanceId": "wrong",
+          "unitId": "unit-infractors",
+          "profileId": "datasheet-infractors:profile:1",
+          "quantity": 5,
+          "expectText": false,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-infractors:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-infractors:section:2:member:1"
+            },
+            {
+              "rowId": "physical-composition-2",
+              "canonicalProfileId": "datasheet-infractors:profile:1",
+              "quantity": 4,
+              "compositionMemberId": "datasheet-infractors:section:2:member:2"
+            }
+          ]
+        }
+      ],
+      "text": "+ FACTION KEYWORD: Emperor’s Children\n+ DETACHMENT: Elegant Brutes\n5x Chaos Terminators (180 pts)\n• 5x Chaos Terminator: 5 with Accursed weapon, Combi-bolter\n5x Infractors (85 pts)\n• 4x Infractor: 4 with Bolt pistol, Duelling sabre\n• 1x Obsessionist: Power sword, Plasma pistol"
+    },
+    {
+      "id": "death-guard/flyblown",
+      "bookId": "death-guard",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT_AND_DERIVED_NOT_REAL_EXPORT",
+      "detachmentId": "detachment-flyblown-host",
+      "ruleId": "detachment-flyblown-host:rule",
+      "clauseId": "selected-infiltrators",
+      "quote": "In the Declare Battle Formations step, you can select up to two friendly PLAGUE MARINES units. Those units have Infiltrators.",
+      "subject": "UNIT",
+      "textKind": "ELIGIBLE_FOR_SELECTION",
+      "units": [
+        {
+          "instanceId": "right",
+          "unitId": "unit-plague-marines",
+          "profileId": "datasheet-plague-marines:profile:default",
+          "quantity": 5,
+          "expectText": true
+        },
+        {
+          "instanceId": "wrong",
+          "unitId": "unit-poxwalkers",
+          "profileId": "datasheet-poxwalkers:profile:default",
+          "quantity": 10,
+          "expectText": false
+        }
+      ],
+      "text": "+ FACTION KEYWORD: Death Guard\n+ DETACHMENT: Flyblown Host\n5x Plague Marines (90 pts)\n• 5x Plague Marine: 5 with Boltgun, Plague knives\n10x Poxwalkers (60 pts)\n• 10x Poxwalker: 10 with Improvised weapon"
+    },
+    {
+      "id": "tau-empire/auxiliary-localised",
+      "bookId": "tau-empire",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT",
+      "detachmentId": "detachment-auxiliary-cadre",
+      "ruleId": "detachment-auxiliary-cadre:rule",
+      "clauseId": "detachment-auxiliary-cadre:rule#localised-stealth-projectors",
+      "quote": "Friendly GHOSTKEEL BATTLESUIT/STEALTH BATTLESUITS units have the following ability: Localised Stealth Projectors (Aura): When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden.",
+      "subject": "UNIT",
+      "textKind": "ABILITY_PRESENT",
+      "units": [
+        {
+          "instanceId": "ghostkeel",
+          "unitId": "unit-ghostkeel-battlesuit",
+          "profileId": "datasheet-ghostkeel-battlesuit:profile:1",
+          "quantity": 1,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-ghostkeel-battlesuit:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-ghostkeel-battlesuit:composition:1"
+            }
+          ]
+        },
+        {
+          "instanceId": "stealth",
+          "unitId": "unit-stealth-battlesuits",
+          "profileId": "datasheet-stealth-battlesuits:profile:1",
+          "quantity": 5,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-stealth-battlesuits:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-stealth-battlesuits:composition:1"
+            },
+            {
+              "rowId": "physical-composition-2",
+              "canonicalProfileId": "datasheet-stealth-battlesuits:profile:1",
+              "quantity": 4,
+              "compositionMemberId": "datasheet-stealth-battlesuits:composition:2"
+            }
+          ]
+        },
+        {
+          "instanceId": "wrong",
+          "unitId": "unit-strike-team",
+          "profileId": "datasheet-strike-team:profile:1",
+          "quantity": 10,
+          "expectText": false,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-strike-team:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-strike-team:composition:1"
+            },
+            {
+              "rowId": "physical-composition-2",
+              "canonicalProfileId": "datasheet-strike-team:profile:1",
+              "quantity": 9,
+              "compositionMemberId": "datasheet-strike-team:composition:2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tau-empire/advanced-acquisition",
+      "bookId": "tau-empire",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT",
+      "detachmentId": "detachment-advanced-acquisition-cadre",
+      "ruleId": "detachment-advanced-acquisition-cadre:rule",
+      "clauseId": "detachment-advanced-acquisition-cadre:rule#conditional-complete",
+      "quote": "In your Shooting phase, when a friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit is selected to shoot, those ranged attacks do not prevent your unit from being hidden.",
+      "subject": "UNIT",
+      "textKind": "CONDITIONAL",
+      "units": [
+        {
+          "instanceId": "pathfinders",
+          "unitId": "unit-pathfinder-team",
+          "profileId": "datasheet-pathfinder-team:profile:1",
+          "quantity": 10,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-pathfinder-team:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-pathfinder-team:composition:1"
+            },
+            {
+              "rowId": "physical-composition-2",
+              "canonicalProfileId": "datasheet-pathfinder-team:profile:1",
+              "quantity": 9,
+              "compositionMemberId": "datasheet-pathfinder-team:composition:2"
+            }
+          ]
+        },
+        {
+          "instanceId": "stealth",
+          "unitId": "unit-stealth-battlesuits",
+          "profileId": "datasheet-stealth-battlesuits:profile:1",
+          "quantity": 5,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-stealth-battlesuits:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-stealth-battlesuits:composition:1"
+            },
+            {
+              "rowId": "physical-composition-2",
+              "canonicalProfileId": "datasheet-stealth-battlesuits:profile:1",
+              "quantity": 4,
+              "compositionMemberId": "datasheet-stealth-battlesuits:composition:2"
+            }
+          ]
+        },
+        {
+          "instanceId": "wrong",
+          "unitId": "unit-strike-team",
+          "profileId": "datasheet-strike-team:profile:1",
+          "quantity": 10,
+          "expectText": false,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-strike-team:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-strike-team:composition:1"
+            },
+            {
+              "rowId": "physical-composition-2",
+              "canonicalProfileId": "datasheet-strike-team:profile:1",
+              "quantity": 9,
+              "compositionMemberId": "datasheet-strike-team:composition:2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tyranids/crusher-attached-guard",
+      "bookId": "tyranids",
+      "fixtureKind": "CONSTRUCTED_PHYSICAL_SNAPSHOT",
+      "detachmentId": "detachment-crusher-stampede",
+      "ruleId": "detachment-crusher-stampede:rule",
+      "clauseId": "text-coverage:/text",
+      "quote": "In addition, while a TYRANIDS MONSTER unit from your army (excluding Battle-shocked units) is at its Starting Strength, add 2 to the Objective Control characteristic of models in that unit.",
+      "subject": "UNIT",
+      "textKind": "CONDITIONAL",
+      "attachment": {
+        "leader": "hive",
+        "bodyguard": "guard"
+      },
+      "units": [
+        {
+          "instanceId": "hive",
+          "unitId": "unit-hive-tyrant",
+          "profileId": "datasheet-hive-tyrant:profile:1",
+          "quantity": 1,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-hive-tyrant:profile:1",
+              "quantity": 1,
+              "compositionMemberId": "datasheet-hive-tyrant:section:2:member:1"
+            }
+          ],
+          "expectAfterDetach": true
+        },
+        {
+          "instanceId": "guard",
+          "unitId": "unit-tyrant-guard",
+          "profileId": "datasheet-tyrant-guard:profile:1",
+          "quantity": 3,
+          "expectText": true,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-tyrant-guard:profile:1",
+              "quantity": 3,
+              "compositionMemberId": "datasheet-tyrant-guard:section:2:member:1"
+            }
+          ],
+          "expectAfterDetach": false
+        },
+        {
+          "instanceId": "independent-guard",
+          "unitId": "unit-tyrant-guard",
+          "profileId": "datasheet-tyrant-guard:profile:1",
+          "quantity": 3,
+          "expectText": false,
+          "browserModelRows": [
+            {
+              "rowId": "physical-composition-1",
+              "canonicalProfileId": "datasheet-tyrant-guard:profile:1",
+              "quantity": 3,
+              "compositionMemberId": "datasheet-tyrant-guard:section:2:member:1"
+            }
+          ],
+          "expectAfterDetach": false
+        }
+      ]
+    }
+  ],
+  "executableExclusions": [
+    {
+      "bookId": "death-guard",
+      "ruleId": "detachment-paragons-of-putrescence:rule",
+      "clauseId": "contagion-range",
+      "reason": "Already ROSTER_EXECUTABLE; owner explicitly excludes new text enrollment for executable clauses."
+    }
+  ]
+}

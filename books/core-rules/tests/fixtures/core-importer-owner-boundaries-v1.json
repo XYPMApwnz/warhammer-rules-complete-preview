@@ -1,0 +1,39 @@
+{
+  "schema": "core-importer-explicit-owner-boundaries/v1",
+  "baselineHead": "7b15dc36425ac577b6928837ec9983409972e278",
+  "reason": "Repeated printed09.07.01 codes do not merge distinct canonical source owners; an owned fragment cannot contain another declared owner heading.",
+  "records": [
+    {
+      "id": "core-rule-09-07-01-desperate-escape",
+      "sourceUnitId": "waha-core-rule-09-07-01",
+      "anchor": "Desperate-Escape",
+      "forbiddenOwnerAnchors": [
+        "Desperate-Escape-Test",
+        "Selecting-Modes"
+      ],
+      "forbiddenSourceSentences": [
+        {
+          "id": "core-rule-09-02-02-selecting-modes",
+          "text": "Modes are mutually exclusive, and you must assess each one in the order presented.",
+          "normalizedSHA256": "d3e6a1b6ffa9f8e44577c630af4f0819894cfe28c48452c01ae6caf893432fc4"
+        }
+      ]
+    },
+    {
+      "id": "core-rule-09-07-01-desperate-escape-test",
+      "sourceUnitId": "waha-core-rule-09-07-01",
+      "anchor": "Desperate-Escape-Test",
+      "forbiddenOwnerAnchors": [
+        "Desperate-Escape",
+        "Selecting-Modes"
+      ],
+      "forbiddenSourceSentences": [
+        {
+          "id": "core-rule-09-02-02-selecting-modes",
+          "text": "Modes are mutually exclusive, and you must assess each one in the order presented.",
+          "normalizedSHA256": "d3e6a1b6ffa9f8e44577c630af4f0819894cfe28c48452c01ae6caf893432fc4"
+        }
+      ]
+    }
+  ]
+}

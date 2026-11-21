@@ -323,13 +323,24 @@
       "physicalAssignment": "UNIT without fabricated MODEL bearer",
       "executableBindingChangeAuthorizedByThisEvidence": false,
       "globalAliasesAdded": false
-    }
-  ],
-  "unresolved": [
+    },
     {
-      "canonicalId": "composition-sm-11f249c8e3af4b85",
-      "status": "NOT_PROVEN",
-      "candidateModelProfileId": "model-sm-1e6ba64c42ba4d79",
+      "id": "sm-o3-reviewed-composition-sm-11f249c8e3af4b85",
+      "type": "SOURCE_CORROBORATED_COMPOSITION_PROFILE_BINDING",
+      "status": "SOURCE_CONFIRMED",
+      "canonicalOwnerId": "unit-sm-c7226873c51d43c0",
+      "compositionId": "composition-sm-11f249c8e3af4b85",
+      "modelProfileId": "model-sm-1e6ba64c42ba4d79",
+      "sourceRole": "NAMED_PSYKER",
+      "old": {
+        "profileBindingStatus": "NOT_PROVEN",
+        "modelProfileId": null
+      },
+      "new": {
+        "profileBindingStatus": "SOURCE_CONFIRMED",
+        "modelProfileId": "model-sm-1e6ba64c42ba4d79"
+      },
+      "reviewBasis": "Within the same six named Wardens, saved BSData identifies fixed-one Dainal Kornelius as the unique PSYKER carrying Astropathic Blast and Force Stave. Accepted Waha independently assigns that exact loadout to Kornelius and the unique named PSYKER declaration to canonical profile Dainal Komelius. The named BSData statline corroborates the join; spelling similarity, record order and stat equality alone are not identity proof. Factual source names and bytes stay unchanged.",
       "sourceProof": [
         {
           "canonicalId": "composition-sm-11f249c8e3af4b85",
@@ -383,8 +394,39 @@
           "selectedTextSha256": "059302F09D2CB85A3ED576C18B0614284E82113189F974B6D03BD4DF5661AE5F"
         }
       ],
-      "reason": "Accepted composition and loadout text spell Dainal Kornelius; accepted profile and named PSYKER declaration spell Dainal Komelius. One remaining unmatched member/profile and similar spelling do not independently prove a source identity correction. No applicable amendment in accepted official PDF repairs this naming discrepancy.",
-      "safePhysicalBehavior": "Preserve the source composition/member text and quantity. A provided canonical MODEL_PROFILE can be displayed as that profile, but do not infer it from the unresolved composition name, invent a global alias or apply model-specific loadout/keyword effects through the unproved join. Ask for explicit profile binding or leave affected physical import NEEDS_BINDINGS/NOT_PROVEN."
+      "context": {
+        "unitId": "unit-sm-c7226873c51d43c0",
+        "compositionId": "composition-sm-11f249c8e3af4b85",
+        "modelProfileId": "model-sm-1e6ba64c42ba4d79",
+        "unitTitle": "Wardens of Ultramar",
+        "compositionLabel": "Dainal Kornelius",
+        "profileLabel": "Dainal Komelius",
+        "uniqueNamedKeyword": "PSYKER",
+        "fixedQuantity": 1,
+        "sourceLoadout": "Dainal Kornelius is equipped with: 1 Astropathic Blast; 1 Force Stave.",
+        "statsAreCorroborationNotIdentityKey": true
+      },
+      "corroboration": {
+        "document": "books/space-marines/sources/bsdata-space-marines-11e.json",
+        "sha256": "2C3427A887B90BEBD652A37CC5FC0DEAAB4DE000D15AE1E73EDAF024AE0D4163",
+        "repository": "https://github.com/BSData/wh40k-11e",
+        "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+        "documentIndex": 2,
+        "duplicateDocumentIndex": 9,
+        "duplicateIsNotIndependentEvidence": true,
+        "sourceFile": "Imperium - Ultramarines.json",
+        "sourceFileSha256": "46737F8D6DE3A962B1EB2623133416EE2C33DD7C532B93DF999ED67B7F5048A0",
+        "unitPointer": "/documents/2/data/catalogue/sharedSelectionEntries/15",
+        "unitId": "b793-b77e-9e49-d397",
+        "modelPointer": "/documents/2/data/catalogue/sharedSelectionEntries/15/selectionEntries/4",
+        "modelId": "cc2c-abb5-1cb7-d195",
+        "profilePointer": "/documents/2/data/catalogue/sharedSelectionEntries/15/profiles/1",
+        "profileId": "fec7-5099-b5b8-9760",
+        "profileName": "Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha"
+      },
+      "preserveSourceLabels": true,
+      "globalAliasesAdded": false
     }
-  ]
+  ],
+  "unresolved": []
 }

@@ -8,7 +8,8 @@
     "manifest.webmanifest"
   ],
   "publicSourceDownloads": [
-    "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json"
+    "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+    "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json"
   ],
   "files": [
     {
@@ -1122,10 +1123,11 @@
       ]
     },
     {
-      "path": "books/adeptus-mechanicus/generated/compatible-rules.json",
+      "path": "books/adeptus-mechanicus/book.config.json",
       "reasons": [
         {
-          "kind": "existing-offline-precache"
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -1154,6 +1156,15 @@
       "reasons": [
         {
           "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/model-name-aliases.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/adeptus-mechanicus/v2/roster-import.mjs"
         }
       ]
     },
@@ -1266,10 +1277,11 @@
       ]
     },
     {
-      "path": "books/blood-angels/generated/compatible-rules.json",
+      "path": "books/blood-angels/book.config.json",
       "reasons": [
         {
-          "kind": "existing-offline-precache"
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -1469,10 +1481,11 @@
       ]
     },
     {
-      "path": "books/chaos-space-marines/generated/compatible-rules.json",
+      "path": "books/chaos-space-marines/book.config.json",
       "reasons": [
         {
-          "kind": "existing-offline-precache"
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -1505,6 +1518,15 @@
       "reasons": [
         {
           "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/model-name-aliases.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/chaos-space-marines/v2/roster-import-bindings.mjs"
         }
       ]
     },
@@ -6598,6 +6620,14 @@
       ]
     },
     {
+      "path": "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json",
+      "reasons": [
+        {
+          "kind": "existing-public-source-download"
+        }
+      ]
+    },
+    {
       "path": "books/dark-angels/assets/dark-angels-cover-480.webp",
       "reasons": [
         {
@@ -6646,6 +6676,15 @@
         {
           "kind": "script-asset-literal",
           "from": "service-worker.js"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -7373,10 +7412,11 @@
       ]
     },
     {
-      "path": "books/death-guard/generated/compatible-rules.json",
+      "path": "books/death-guard/book.config.json",
       "reasons": [
         {
-          "kind": "existing-offline-precache"
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -7543,10 +7583,11 @@
       ]
     },
     {
-      "path": "books/emperors-children/generated/compatible-rules.json",
+      "path": "books/emperors-children/book.config.json",
       "reasons": [
         {
-          "kind": "existing-offline-precache"
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -7715,6 +7756,15 @@
       ]
     },
     {
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime",
+          "detail": "small generated MFM/Core source metadata and battle-size table; full source owners remain build-only inputs"
+        }
+      ],
+      "path": "books/shared/application-v2/generated/source-metadata.v1.json"
+    },
+    {
       "path": "books/shared/application-v2/glossary.css",
       "reasons": [
         {
@@ -7811,6 +7861,15 @@
       ]
     },
     {
+      "path": "books/shared/application-v2/source-metadata.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime",
+          "detail": "data-derived Home and selected Army Book source versions; shared Core battle-size projection"
+        }
+      ]
+    },
+    {
       "path": "books/shared/army-book-app-v2/ability-presentation.mjs",
       "reasons": [
         {
@@ -7839,6 +7898,23 @@
         {
           "kind": "module-import",
           "from": "books/shared/army-book-app-v2/runtime.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/roster.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/datasheet-v1.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/book-v1.mjs"
         }
       ]
     },
@@ -7880,6 +7956,15 @@
         {
           "kind": "native-v2-reviewed-runtime"
         },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/datasheet-v1.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "reasons": [
         {
           "kind": "module-import",
           "from": "books/shared/army-book-app-v2/datasheet-v1.mjs"
@@ -7959,6 +8044,15 @@
         {
           "kind": "module-import",
           "from": "books/shared/army-book-app-v2/runtime.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/army-book-app-v2/import-notices.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime",
+          "detail": "informational roster import comparisons; no native import or game-state changes"
         }
       ]
     },
@@ -8167,6 +8261,38 @@
       ]
     },
     {
+      "path": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/runtime.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/navigation-v1.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/personal.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/datasheet-v1.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/roster.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/cosmetics.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/army-book-app-v2/roster.mjs",
       "reasons": [
         {
@@ -8211,6 +8337,24 @@
       ]
     },
     {
+      "path": "books/shared/army-book-app-v2/rule-popup.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/runtime.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/runtime.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/army-book-app-v2/runtime.mjs",
       "reasons": [
         {
@@ -8243,14 +8387,6 @@
       "reasons": [
         {
           "kind": "native-v2-reviewed-runtime"
-        }
-      ]
-    },
-    {
-      "path": "books/shared/compatible-rules-matrix.mjs",
-      "reasons": [
-        {
-          "kind": "existing-offline-precache"
         }
       ]
     },
@@ -8310,6 +8446,15 @@
       ]
     },
     {
+      "path": "books/shared/keyword-values.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/offline-status.js",
       "reasons": [
         {
@@ -8358,6 +8503,15 @@
         {
           "kind": "html-src",
           "from": "books/orks/reader.html"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/attached-rule-text.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/shared/roster-v2/effective-instance.mjs"
         }
       ]
     },
@@ -8430,6 +8584,40 @@
         {
           "kind": "module-import",
           "from": "books/tau-empire/v2/roster-source-choices.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/condition-binding.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/adeptus-mechanicus/v2/roster-runtime.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/death-guard/v2/roster-boot.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/condition-computations.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/condition-binding.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/condition-context.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/condition-context.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
         }
       ]
     },
@@ -8615,6 +8803,38 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/export-faction.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/tau-empire/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/tyranids/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/emperors-children/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/space-marines/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/dark-angels/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/blood-angels/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/roster-v2/import-service.mjs",
       "reasons": [
         {
@@ -8687,6 +8907,33 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/keyword-scopes.mjs",
+      "reasons": [
+        {
+          "kind": "compatibility-api",
+          "detail": "Retained keywordScopesForUnit export delegates to the common keyword access."
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/keywords.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/context.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/model-name-aliases.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/chaos-space-marines/v2/roster-import-bindings.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/roster-v2/parser.mjs",
       "reasons": [
         {
@@ -8707,6 +8954,47 @@
         {
           "kind": "module-import",
           "from": "books/tyranids/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/physical-choice.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "canonical-recipient-contract"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/physical-condition-context.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/physical-static-model.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "canonical-recipient-contract"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/recipient-execution.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "canonical-recipient-contract"
         }
       ]
     },
@@ -8779,6 +9067,69 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/singleton-model-import.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/import-service.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/tau-empire/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/text-roster-facts.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/shared/roster-v2/attached-rule-text.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/conditions.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "canonical-recipient-contract"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/recipients.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "canonical-recipient-contract"
+        }
+      ]
+    },
+    {
       "path": "books/shared/rule-contract-v2/schema.mjs",
       "reasons": [
         {
@@ -8819,6 +9170,50 @@
         {
           "kind": "module-import",
           "from": "books/tyranids/v2/roster-source-choices.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/rule-facts.js",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/keyword-values.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.json",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/source-refs-v2/source-catalog.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/source-refs-v2/source-refs.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-refs.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "shared-source-reference-reader"
         }
       ]
     },
@@ -8972,10 +9367,11 @@
       ]
     },
     {
-      "path": "books/space-marines/generated/compatible-rules.json",
+      "path": "books/space-marines/book.config.json",
       "reasons": [
         {
-          "kind": "existing-offline-precache"
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -9135,10 +9531,11 @@
       ]
     },
     {
-      "path": "books/tau-empire/generated/compatible-rules.json",
+      "path": "books/tau-empire/book.config.json",
       "reasons": [
         {
-          "kind": "existing-offline-precache"
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -9279,10 +9676,11 @@
       ]
     },
     {
-      "path": "books/tyranids/generated/compatible-rules.json",
+      "path": "books/tyranids/book.config.json",
       "reasons": [
         {
-          "kind": "existing-offline-precache"
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },

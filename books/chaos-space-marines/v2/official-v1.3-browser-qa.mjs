@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Real production bytes and UI actions; static transport is not live hosting. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,7 +8,7 @@ import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.CSM_V13_SCREENSHOTS||'E:/Warhammer/qa-artifacts/csm-v13-implementation/browser';
+const out=process.env.CSM_V13_SCREENSHOTS||createQaEvidenceDir('official-v1.3-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const origin='http://csm-v13.test';
 const text=`+ FACTION KEYWORD: Chaos - Chaos Space Marines
@@ -21,7 +23,7 @@ Char1: 1x Chaos Lord (95 pts): Warlord, Plasma pistol, Astartes chainblade, Mark
 • 4x Havoc: Havoc lascannon, Close combat weapon`;
 const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.html':'text/html','.css':'text/css',
   '.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.woff2':'font/woff2'};
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const results=[];
 async function scenario(device,viewport){
   const errors=[],missing=[],steps=[];

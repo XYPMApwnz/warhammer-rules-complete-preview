@@ -1,0 +1,1426 @@
+[
+  {
+    "ruleId": "detachment-rule-sm-07f085c819ea4835",
+    "clauseId": "detachment-rule-sm-07f085c819ea4835#text:19-89",
+    "field": [
+      "text"
+    ],
+    "quote": "You can select the devastator doctrine one additional time per battle.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army-wide extra doctrine availability; no UNIT recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-35102c2d34334220",
+    "clauseId": "detachment-rule-sm-35102c2d34334220#text:17-85",
+    "field": [
+      "text"
+    ],
+    "quote": "You can select the tactical doctrine one additional time per battle.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army-wide extra doctrine availability; no UNIT recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-3a97ffd48f0f4bf6",
+    "clauseId": "detachment-rule-sm-3a97ffd48f0f4bf6#text:20-147",
+    "field": [
+      "text"
+    ],
+    "quote": "Friendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "TACTICUS"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Codex Fire-patterns\nFriendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-6e133b8acd6b4550",
+    "clauseId": "detachment-rule-sm-6e133b8acd6b4550#text:19-166",
+    "field": [
+      "text"
+    ],
+    "quote": "At the end of your Movement phase, if a friendly PHOBOS unit is hidden, that unit’s attacks can re-roll wound rolls of 1 until the end of the turn.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "PHOBOS"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Vanguard Ambushers\nAt the end of your Movement phase, if a friendly PHOBOS unit is hidden, that unit’s attacks can re-roll wound rolls of 1 until the end of the turn."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-7727c18388b04995",
+    "clauseId": "detachment-rule-sm-7727c18388b04995#text:15-87",
+    "field": [
+      "text"
+    ],
+    "quote": "- You can select the devastator doctrine one additional time per battle.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army-wide extra doctrine availability; no UNIT recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-7727c18388b04995",
+    "clauseId": "detachment-rule-sm-7727c18388b04995#text:88-179",
+    "field": [
+      "text"
+    ],
+    "quote": "- Friendly ADEPTUS ASTARTES units’ ranged attacks that target a unit within 12\", have +1 S.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Vulkan's Quest\n- You can select the devastator doctrine one additional time per battle.\n- Friendly ADEPTUS ASTARTES units’ ranged attacks that target a unit within 12\", have +1 S.\nIf your army includes a VULKAN HE’STAN unit, friendly INFERNUS SQUAD units have the following:\n- When this unit is selected to make an advance/fall-back move, that advance/fall-back move does not prevent this unit from being eligible to start an action.\n- When this unit starts an action, that action does not prevent this unit from being eligible to shoot.\nRestrictions: Your army can include SALAMANDERS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-7727c18388b04995",
+    "clauseId": "detachment-rule-sm-7727c18388b04995#text:538-671",
+    "field": [
+      "text"
+    ],
+    "quote": "Restrictions: Your army can include SALAMANDERS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army composition restriction, not a UNIT effect recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-7d8f03f2d5be4ae6",
+    "clauseId": "detachment-rule-sm-7d8f03f2d5be4ae6#text:22-112",
+    "field": [
+      "text"
+    ],
+    "quote": "- You can select the assault doctrine or tactical doctrine one additional time per battle.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army-wide extra doctrine availability; no UNIT recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-7d8f03f2d5be4ae6",
+    "clauseId": "detachment-rule-sm-7d8f03f2d5be4ae6#text:113-188",
+    "field": [
+      "text"
+    ],
+    "quote": "- Friendly ADEPTUS ASTARTES MOUNTED/SPEEDER units have +1 to advance rolls.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ALL",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "ADEPTUS ASTARTES"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Storm-swift Onslaught\n- You can select the assault doctrine or tactical doctrine one additional time per battle.\n- Friendly ADEPTUS ASTARTES MOUNTED/SPEEDER units have +1 to advance rolls.\nFriendly SUBODEN KHAN units have the following ability:\nWrath of the First Khan: At the end of the Fight phase, if this unit was eligible to fight this phase, you can use this ability. If you do:\n- If this unit is unengaged, this unit can make a normal move.\n- Or: If this unit is engaged, this unit can make a fall-back move.\nRestrictions: Your army can include WHITE SCARS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        },
+        {
+          "op": "ANY",
+          "args": [
+            {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "arguments": {
+                "keyword": "MOUNTED"
+              },
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Storm-swift Onslaught\n- You can select the assault doctrine or tactical doctrine one additional time per battle.\n- Friendly ADEPTUS ASTARTES MOUNTED/SPEEDER units have +1 to advance rolls.\nFriendly SUBODEN KHAN units have the following ability:\nWrath of the First Khan: At the end of the Fight phase, if this unit was eligible to fight this phase, you can use this ability. If you do:\n- If this unit is unengaged, this unit can make a normal move.\n- Or: If this unit is engaged, this unit can make a fall-back move.\nRestrictions: Your army can include WHITE SCARS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+              }
+            },
+            {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "arguments": {
+                "keyword": "SPEEDER"
+              },
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Storm-swift Onslaught\n- You can select the assault doctrine or tactical doctrine one additional time per battle.\n- Friendly ADEPTUS ASTARTES MOUNTED/SPEEDER units have +1 to advance rolls.\nFriendly SUBODEN KHAN units have the following ability:\nWrath of the First Khan: At the end of the Fight phase, if this unit was eligible to fight this phase, you can use this ability. If you do:\n- If this unit is unengaged, this unit can make a normal move.\n- Or: If this unit is engaged, this unit can make a fall-back move.\nRestrictions: Your army can include WHITE SCARS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-7d8f03f2d5be4ae6",
+    "clauseId": "detachment-rule-sm-7d8f03f2d5be4ae6#text:189-244",
+    "field": [
+      "text"
+    ],
+    "quote": "Friendly SUBODEN KHAN units have the following ability:",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_ID",
+      "subject": "UNIT",
+      "arguments": {
+        "id": "unit-sm-70b477e461b5487a"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Storm-swift Onslaught\n- You can select the assault doctrine or tactical doctrine one additional time per battle.\n- Friendly ADEPTUS ASTARTES MOUNTED/SPEEDER units have +1 to advance rolls.\nFriendly SUBODEN KHAN units have the following ability:\nWrath of the First Khan: At the end of the Fight phase, if this unit was eligible to fight this phase, you can use this ability. If you do:\n- If this unit is unengaged, this unit can make a normal move.\n- Or: If this unit is engaged, this unit can make a fall-back move.\nRestrictions: Your army can include WHITE SCARS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-7d8f03f2d5be4ae6",
+    "clauseId": "detachment-rule-sm-7d8f03f2d5be4ae6#text:516-649",
+    "field": [
+      "text"
+    ],
+    "quote": "Restrictions: Your army can include WHITE SCARS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army composition restriction, not a UNIT effect recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-8381795466754812",
+    "clauseId": "detachment-rule-sm-8381795466754812#text:25-110",
+    "field": [
+      "text"
+    ],
+    "quote": "Friendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ALL",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "ADEPTUS ASTARTES"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+          }
+        },
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "VEHICLE"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+          }
+        },
+        {
+          "op": "NOT",
+          "args": [
+            {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "arguments": {
+                "keyword": "WALKER"
+              },
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-8381795466754812",
+    "clauseId": "detachment-rule-sm-8381795466754812#text:111-134",
+    "field": [
+      "text"
+    ],
+    "quote": "- Re-roll one hit roll.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ALL",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "ADEPTUS ASTARTES"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+          }
+        },
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "VEHICLE"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+          }
+        },
+        {
+          "op": "NOT",
+          "args": [
+            {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "arguments": {
+                "keyword": "WALKER"
+              },
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-8381795466754812",
+    "clauseId": "detachment-rule-sm-8381795466754812#text:135-160",
+    "field": [
+      "text"
+    ],
+    "quote": "- Re-roll one wound roll.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ALL",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "ADEPTUS ASTARTES"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+          }
+        },
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "VEHICLE"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+          }
+        },
+        {
+          "op": "NOT",
+          "args": [
+            {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "arguments": {
+                "keyword": "WALKER"
+              },
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-8aba3398dfe14b66",
+    "clauseId": "detachment-rule-sm-8aba3398dfe14b66#text:20-153",
+    "field": [
+      "text"
+    ],
+    "quote": "In your Shooting phase, when a friendly ADEPTUS ASTARTES TRANSPORT unit has shot, you can select one enemy unit hit by those attacks.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Enemy target selection/assailed state; friendly TRANSPORT is the actor, not the effect recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-8aba3398dfe14b66",
+    "clauseId": "detachment-rule-sm-8aba3398dfe14b66#text:154-208",
+    "field": [
+      "text"
+    ],
+    "quote": "That enemy unit is assailed until the end of the turn:",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Enemy target selection/assailed state; friendly TRANSPORT is the actor, not the effect recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-8aba3398dfe14b66",
+    "clauseId": "detachment-rule-sm-8aba3398dfe14b66#text:209-351",
+    "field": [
+      "text"
+    ],
+    "quote": "- While a unit is assailed, when an ADEPTUS ASTARTES unit that disembarked this turn targets that unit, those attacks have [Sustained Hits 1].",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Combined Deployment\nIn your Shooting phase, when a friendly ADEPTUS ASTARTES TRANSPORT unit has shot, you can select one enemy unit hit by those attacks. That enemy unit is assailed until the end of the turn:\n- While a unit is assailed, when an ADEPTUS ASTARTES unit that disembarked this turn targets that unit, those attacks have [Sustained Hits 1]."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-93a70d72216b4f0c",
+    "clauseId": "detachment-rule-sm-93a70d72216b4f0c#text:20-171",
+    "field": [
+      "text"
+    ],
+    "quote": "While a friendly GRAVIS unit is within range of an objective, attacks that target that unit with a S greater than that unit’s T have -1 to wound rolls.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "GRAVIS"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Indomitable Defence\nWhile a friendly GRAVIS unit is within range of an objective, attacks that target that unit with a S greater than that unit’s T have -1 to wound rolls."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-9684d98e8f664479",
+    "clauseId": "detachment-rule-sm-9684d98e8f664479#text:17-83",
+    "field": [
+      "text"
+    ],
+    "quote": "You can select one combat doctrine one additional time per battle.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army-wide extra doctrine availability; no UNIT recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-b0de270f61aa47ac",
+    "clauseId": "detachment-rule-sm-b0de270f61aa47ac#text:121-176",
+    "field": [
+      "text"
+    ],
+    "quote": "Friendly AETHON SHAAN units have the following ability:",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army-level CP discount or its named-ability introduction; no result received by UNIT."
+  },
+  {
+    "ruleId": "detachment-rule-sm-b236a3b5c1f34cdd",
+    "clauseId": "detachment-rule-sm-b236a3b5c1f34cdd#text:17-133",
+    "field": [
+      "text"
+    ],
+    "quote": "- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-b236a3b5c1f34cdd",
+    "clauseId": "detachment-rule-sm-b236a3b5c1f34cdd#text:134-216",
+    "field": [
+      "text"
+    ],
+    "quote": "- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-b236a3b5c1f34cdd",
+    "clauseId": "detachment-rule-sm-b236a3b5c1f34cdd#text:217-254",
+    "field": [
+      "text"
+    ],
+    "quote": "- That unit is within a terrain area.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-b236a3b5c1f34cdd",
+    "clauseId": "detachment-rule-sm-b236a3b5c1f34cdd#text:255-292",
+    "field": [
+      "text"
+    ],
+    "quote": "- That unit was not set up this turn.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-b236a3b5c1f34cdd",
+    "clauseId": "detachment-rule-sm-b236a3b5c1f34cdd#text:293-346",
+    "field": [
+      "text"
+    ],
+    "quote": "- No model in that unit moved more than 3\" this turn.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-b236a3b5c1f34cdd",
+    "clauseId": "detachment-rule-sm-b236a3b5c1f34cdd#text:347-420",
+    "field": [
+      "text"
+    ],
+    "quote": "- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ANY",
+      "args": [
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-ad36b4f4c8f14a97"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        },
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-9f9c66dce3814cc5"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-b236a3b5c1f34cdd",
+    "clauseId": "detachment-rule-sm-b236a3b5c1f34cdd#text:493-595",
+    "field": [
+      "text"
+    ],
+    "quote": "DARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ANY",
+      "args": [
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-ad36b4f4c8f14a97"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        },
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-9f9c66dce3814cc5"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-b236a3b5c1f34cdd",
+    "clauseId": "detachment-rule-sm-b236a3b5c1f34cdd#text:596-732",
+    "field": [
+      "text"
+    ],
+    "quote": "Restrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army composition restriction, not a UNIT effect recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-bded7031de204fd4",
+    "clauseId": "detachment-rule-sm-bded7031de204fd4#text:19-90",
+    "field": [
+      "text"
+    ],
+    "quote": "Friendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ALL",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "ADEPTUS ASTARTES"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Enduring Vengeance\nFriendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1."
+          }
+        },
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "DREADNOUGHT"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Enduring Vengeance\nFriendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-bff921aaeb624b43",
+    "clauseId": "detachment-rule-sm-bff921aaeb624b43#text:21-71",
+    "field": [
+      "text"
+    ],
+    "quote": "Friendly TACTICUS units can re-roll advance rolls.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "TACTICUS"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Wrath of the Chapter\nFriendly TACTICUS units can re-roll advance rolls."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-c3bc7e5bc3614044",
+    "clauseId": "detachment-rule-sm-c3bc7e5bc3614044#text:0-117",
+    "field": [
+      "text"
+    ],
+    "quote": "Unparalleled Tactician: (Once per battle round, per army) When you use the Into Darkness stratagem, that use is -1CP.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army-level CP discount or its named-ability introduction; no result received by UNIT."
+  },
+  {
+    "ruleId": "detachment-rule-sm-d1b9f7be1db34a49",
+    "clauseId": "detachment-rule-sm-d1b9f7be1db34a49#text:17-97",
+    "field": [
+      "text"
+    ],
+    "quote": "In a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "GRAVIS"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Walking Fortress\nIn a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:\n- Do not have [Heavy].\n- Have +1 to hit rolls."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-d1b9f7be1db34a49",
+    "clauseId": "detachment-rule-sm-d1b9f7be1db34a49#text:98-120",
+    "field": [
+      "text"
+    ],
+    "quote": "- Do not have [Heavy].",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "GRAVIS"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Walking Fortress\nIn a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:\n- Do not have [Heavy].\n- Have +1 to hit rolls."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-d1b9f7be1db34a49",
+    "clauseId": "detachment-rule-sm-d1b9f7be1db34a49#text:121-144",
+    "field": [
+      "text"
+    ],
+    "quote": "- Have +1 to hit rolls.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "GRAVIS"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Walking Fortress\nIn a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:\n- Do not have [Heavy].\n- Have +1 to hit rolls."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e16b0f9b19fd4c33",
+    "clauseId": "detachment-rule-sm-e16b0f9b19fd4c33#text:16-83",
+    "field": [
+      "text"
+    ],
+    "quote": "You can select the assault doctrine one additional time per battle.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army-wide extra doctrine availability; no UNIT recipient."
+  },
+  {
+    "ruleId": "detachment-rule-sm-e17a6e4c352748be",
+    "clauseId": "detachment-rule-sm-e17a6e4c352748be#text:0-128",
+    "field": [
+      "text"
+    ],
+    "quote": "Wrath of the First Khan: At the end of the Fight phase, if this unit was eligible to fight this phase, you can use this ability.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text. Nested ability is explicitly bestowed on the named UNIT by its accepted parent rule.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_ID",
+      "subject": "UNIT",
+      "arguments": {
+        "id": "unit-sm-70b477e461b5487a"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "otherEntityId": "detachment-rule-sm-7d8f03f2d5be4ae6",
+        "field": [
+          "text"
+        ],
+        "quote": "Storm-swift Onslaught\n- You can select the assault doctrine or tactical doctrine one additional time per battle.\n- Friendly ADEPTUS ASTARTES MOUNTED/SPEEDER units have +1 to advance rolls.\nFriendly SUBODEN KHAN units have the following ability:\nWrath of the First Khan: At the end of the Fight phase, if this unit was eligible to fight this phase, you can use this ability. If you do:\n- If this unit is unengaged, this unit can make a normal move.\n- Or: If this unit is engaged, this unit can make a fall-back move.\nRestrictions: Your army can include WHITE SCARS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e17a6e4c352748be",
+    "clauseId": "detachment-rule-sm-e17a6e4c352748be#text:140-202",
+    "field": [
+      "text"
+    ],
+    "quote": "- If this unit is unengaged, this unit can make a normal move.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text. Nested ability is explicitly bestowed on the named UNIT by its accepted parent rule.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_ID",
+      "subject": "UNIT",
+      "arguments": {
+        "id": "unit-sm-70b477e461b5487a"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "otherEntityId": "detachment-rule-sm-7d8f03f2d5be4ae6",
+        "field": [
+          "text"
+        ],
+        "quote": "Storm-swift Onslaught\n- You can select the assault doctrine or tactical doctrine one additional time per battle.\n- Friendly ADEPTUS ASTARTES MOUNTED/SPEEDER units have +1 to advance rolls.\nFriendly SUBODEN KHAN units have the following ability:\nWrath of the First Khan: At the end of the Fight phase, if this unit was eligible to fight this phase, you can use this ability. If you do:\n- If this unit is unengaged, this unit can make a normal move.\n- Or: If this unit is engaged, this unit can make a fall-back move.\nRestrictions: Your army can include WHITE SCARS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e17a6e4c352748be",
+    "clauseId": "detachment-rule-sm-e17a6e4c352748be#text:203-270",
+    "field": [
+      "text"
+    ],
+    "quote": "- Or: If this unit is engaged, this unit can make a fall-back move.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text. Nested ability is explicitly bestowed on the named UNIT by its accepted parent rule.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_ID",
+      "subject": "UNIT",
+      "arguments": {
+        "id": "unit-sm-70b477e461b5487a"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "otherEntityId": "detachment-rule-sm-7d8f03f2d5be4ae6",
+        "field": [
+          "text"
+        ],
+        "quote": "Storm-swift Onslaught\n- You can select the assault doctrine or tactical doctrine one additional time per battle.\n- Friendly ADEPTUS ASTARTES MOUNTED/SPEEDER units have +1 to advance rolls.\nFriendly SUBODEN KHAN units have the following ability:\nWrath of the First Khan: At the end of the Fight phase, if this unit was eligible to fight this phase, you can use this ability. If you do:\n- If this unit is unengaged, this unit can make a normal move.\n- Or: If this unit is engaged, this unit can make a fall-back move.\nRestrictions: Your army can include WHITE SCARS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e4f5a8554ea34964",
+    "clauseId": "detachment-rule-sm-e4f5a8554ea34964#text:15-156",
+    "field": [
+      "text"
+    ],
+    "quote": "Each time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Armoured Wrath\nEach time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:\n- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:\n- Re-roll one hit roll.\n- Re-roll one wound roll.\n- Re-roll one damage roll.\n- Otherwise you can:\n- Re-roll one hit roll.\n- Or: Re-roll one wound roll.\n- Or: Re-roll one damage roll."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e4f5a8554ea34964",
+    "clauseId": "detachment-rule-sm-e4f5a8554ea34964#text:157-243",
+    "field": [
+      "text"
+    ],
+    "quote": "- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Armoured Wrath\nEach time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:\n- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:\n- Re-roll one hit roll.\n- Re-roll one wound roll.\n- Re-roll one damage roll.\n- Otherwise you can:\n- Re-roll one hit roll.\n- Or: Re-roll one wound roll.\n- Or: Re-roll one damage roll."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e4f5a8554ea34964",
+    "clauseId": "detachment-rule-sm-e4f5a8554ea34964#text:244-267",
+    "field": [
+      "text"
+    ],
+    "quote": "- Re-roll one hit roll.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Armoured Wrath\nEach time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:\n- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:\n- Re-roll one hit roll.\n- Re-roll one wound roll.\n- Re-roll one damage roll.\n- Otherwise you can:\n- Re-roll one hit roll.\n- Or: Re-roll one wound roll.\n- Or: Re-roll one damage roll."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e4f5a8554ea34964",
+    "clauseId": "detachment-rule-sm-e4f5a8554ea34964#text:268-293",
+    "field": [
+      "text"
+    ],
+    "quote": "- Re-roll one wound roll.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Armoured Wrath\nEach time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:\n- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:\n- Re-roll one hit roll.\n- Re-roll one wound roll.\n- Re-roll one damage roll.\n- Otherwise you can:\n- Re-roll one hit roll.\n- Or: Re-roll one wound roll.\n- Or: Re-roll one damage roll."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e4f5a8554ea34964",
+    "clauseId": "detachment-rule-sm-e4f5a8554ea34964#text:294-320",
+    "field": [
+      "text"
+    ],
+    "quote": "- Re-roll one damage roll.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Armoured Wrath\nEach time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:\n- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:\n- Re-roll one hit roll.\n- Re-roll one wound roll.\n- Re-roll one damage roll.\n- Otherwise you can:\n- Re-roll one hit roll.\n- Or: Re-roll one wound roll.\n- Or: Re-roll one damage roll."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e4f5a8554ea34964",
+    "clauseId": "detachment-rule-sm-e4f5a8554ea34964#text:321-341",
+    "field": [
+      "text"
+    ],
+    "quote": "- Otherwise you can:",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Armoured Wrath\nEach time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:\n- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:\n- Re-roll one hit roll.\n- Re-roll one wound roll.\n- Re-roll one damage roll.\n- Otherwise you can:\n- Re-roll one hit roll.\n- Or: Re-roll one wound roll.\n- Or: Re-roll one damage roll."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e4f5a8554ea34964",
+    "clauseId": "detachment-rule-sm-e4f5a8554ea34964#text:342-365",
+    "field": [
+      "text"
+    ],
+    "quote": "- Re-roll one hit roll.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Armoured Wrath\nEach time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:\n- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:\n- Re-roll one hit roll.\n- Re-roll one wound roll.\n- Re-roll one damage roll.\n- Otherwise you can:\n- Re-roll one hit roll.\n- Or: Re-roll one wound roll.\n- Or: Re-roll one damage roll."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e4f5a8554ea34964",
+    "clauseId": "detachment-rule-sm-e4f5a8554ea34964#text:366-395",
+    "field": [
+      "text"
+    ],
+    "quote": "- Or: Re-roll one wound roll.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Armoured Wrath\nEach time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:\n- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:\n- Re-roll one hit roll.\n- Re-roll one wound roll.\n- Re-roll one damage roll.\n- Otherwise you can:\n- Re-roll one hit roll.\n- Or: Re-roll one wound roll.\n- Or: Re-roll one damage roll."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-e4f5a8554ea34964",
+    "clauseId": "detachment-rule-sm-e4f5a8554ea34964#text:396-426",
+    "field": [
+      "text"
+    ],
+    "quote": "- Or: Re-roll one damage roll.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "ADEPTUS ASTARTES"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Armoured Wrath\nEach time a friendly ADEPTUS ASTARTES unit is selected to shoot or selected to fight apply one of the following when resolving those attacks:\n- If that unit is within 6\" of a friendly CANNOK VAR/IRON FATHER FEIRROS unit you can:\n- Re-roll one hit roll.\n- Re-roll one wound roll.\n- Re-roll one damage roll.\n- Otherwise you can:\n- Re-roll one hit roll.\n- Or: Re-roll one wound roll.\n- Or: Re-roll one damage roll."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-edbabd93d57843fd",
+    "clauseId": "detachment-rule-sm-edbabd93d57843fd#text:0-71",
+    "field": [
+      "text"
+    ],
+    "quote": "Defensive Mastery: At the start of each phase, this unit is entrenched.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text. Nested ability is explicitly bestowed on the named UNIT by its accepted parent rule.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ANY",
+      "args": [
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-ad36b4f4c8f14a97"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "otherEntityId": "detachment-rule-sm-b236a3b5c1f34cdd",
+            "field": [
+              "text"
+            ],
+            "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        },
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-9f9c66dce3814cc5"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "otherEntityId": "detachment-rule-sm-b236a3b5c1f34cdd",
+            "field": [
+              "text"
+            ],
+            "quote": "Adaptive Defence\n- While a friendly ADEPTUS ASTARTES unit is within a terrain area, that unit’s attacks can re-roll wound rolls of 1.\n- Friendly ADEPTUS ASTARTES units are entrenched while all of the following apply:\n- That unit is within a terrain area.\n- That unit was not set up this turn.\n- No model in that unit moved more than 3\" this turn.\n- Friendly DARNATH LYSANDER/TOR GARADON units have the following ability:\nDefensive Mastery: At the start of each phase, this unit is entrenched.\nDARNATH LYSANDER’s/TOR GARADON’s unit is always entrenched, regardless of the conditions listed above.\nRestrictions: Your army can include IMPERIAL FISTS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-f3f6dd9bf1b24f66",
+    "clauseId": "detachment-rule-sm-f3f6dd9bf1b24f66#text:15-67",
+    "field": [
+      "text"
+    ],
+    "quote": "When a friendly PHOBOS or SCOUT SQUAD unit has shot:",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ANY",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "PHOBOS"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+          }
+        },
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-3815e40077e44702"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-f3f6dd9bf1b24f66",
+    "clauseId": "detachment-rule-sm-f3f6dd9bf1b24f66#text:68-127",
+    "field": [
+      "text"
+    ],
+    "quote": "- Those attacks do not prevent that unit from being hidden.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ANY",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "PHOBOS"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+          }
+        },
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-3815e40077e44702"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-f3f6dd9bf1b24f66",
+    "clauseId": "detachment-rule-sm-f3f6dd9bf1b24f66#text:128-180",
+    "field": [
+      "text"
+    ],
+    "quote": "- Or: That unit can make a normal move of up to D6\".",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ANY",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "PHOBOS"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+          }
+        },
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-3815e40077e44702"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-f3f6dd9bf1b24f66",
+    "clauseId": "detachment-rule-sm-f3f6dd9bf1b24f66#text:181-253",
+    "field": [
+      "text"
+    ],
+    "quote": "That unit is not eligible to declare a charge until the end of the turn.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ANY",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "PHOBOS"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+          }
+        },
+        {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "arguments": {
+            "id": "unit-sm-3815e40077e44702"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-sm-fde58708196e49d6",
+    "clauseId": "detachment-rule-sm-fde58708196e49d6#text:19-174",
+    "field": [
+      "text"
+    ],
+    "quote": "If your army includes a MARNEUS CALGAR unit, you can select the assault doctrine/devastator doctrine/tactical doctrine each one additional time per battle.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army-wide extra doctrine availability; no UNIT recipient."
+  }
+]

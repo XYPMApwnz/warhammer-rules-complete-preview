@@ -1,3 +1,8 @@
+import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
+import {validateBookTextRosterFacts} from '../../shared/roster-v2/text-roster-facts.mjs';
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {compileConditionSchema} from '../../shared/rule-contract-v2/conditions-build.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -11,7 +16,7 @@ import {summarizeCompatibility} from '../../shared/rule-contract-v2/compatibilit
 export const directory=path.dirname(fileURLToPath(import.meta.url));
 export const declarationFiles=['contract-datasheet-army-declarations.json',
   'contract-enhancement-detachment-declarations.json','contract-stratagem-declarations.json'];
-export const readJson=name=>JSON.parse(fs.readFileSync(path.join(directory,name),'utf8'));
+export const readJson=name=>parseProducerJSON(fs.readFileSync(path.join(directory,name),'utf8'));
 
 /** Build-time lowering of a book-owned canonical UNIT membership relationship.
  * The existing UNIT_ID language encodes its denotation; no unit/rule answers
@@ -67,6 +72,7 @@ export function ownerInventory(book) {
 
 /** Build only: source interpretation is explicit book-owned typed declarations. */
 export function buildAdMechContracts({book=readJson('generated/effective.json'),inputs=declarationFiles.map(readJson)}={}) {
+  book=prepareSourceProducer(book);
   const index=new Map(book.entities.map(entity=>[entity.id,entity]));
   assert.equal(index.size,book.entities.length,'Duplicate canonical identity');
   const declarations=mergeContractDeclarations(inputs.map(input=>new Map(Object.entries(input.declarations))));
@@ -99,8 +105,12 @@ export function buildAdMechContracts({book=readJson('generated/effective.json'),
     validateContractBinding({entity,bookId:book.bookId,schema:'rule-contract/v2',declaration,
       currentness:entity.ruleContract.currentness},entity.ruleContract);
   }
-  const valid=schema.evaluator.validateContracts(result);
+  const valid=schema.evaluator.validateContractDeclarations(result);
   assert.equal(valid.rules,owners.length-blockedIds.size,'Owner accounting mismatch');
+  assertBookOfficialEffectReviews(result);
+  validateBookTextRosterFacts(result);
+  finalizeRecipientBook(result);
+  schema.evaluator.validateContracts(result);
   return {book:result,schema,declarations,inventory,blocked,blockedIds};
 }
 
@@ -123,14 +133,14 @@ export function artifacts(built,compiled) {
     blocked:built.blocked};
   return {'rule-contracts':{schema:'adeptus-mechanicus-rule-contract-overlay/v2',authority:'DISPOSABLE_PROJECTION',
     factualInput:'generated/effective.json',contracts:Object.fromEntries(contracts.map(entity=>[entity.id,entity.ruleContract])),
-    registry:{stateFields:built.schema.stateFields,modelAbilities:built.schema.modelAbilities}},
+    registry:{...compileConditionSchema(built.schema.stateFields,{book:built.book}),modelAbilities:built.schema.modelAbilities}},
     'rule-contract-compatibility':{schema:'adeptus-mechanicus-compatibility/v2',...compiled.projection},'rule-contract-census':census};
 }
 
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const built=buildAdMechContracts(),compiled=compileAdMechContracts(built),outputs=artifacts(built,compiled);
   for(const [name,value]of Object.entries(outputs)) {
-    const text=JSON.stringify(value,null,2)+'\n',file=path.join(directory,'generated',name+'.json');
+    const text=serializeSourceJSON(value),file=path.join(directory,'generated',name+'.json');
     if(process.argv.includes('--check'))assert.equal(fs.readFileSync(file,'utf8'),text,'Disposable projection drift: '+name);
     else fs.writeFileSync(file,text);
   }

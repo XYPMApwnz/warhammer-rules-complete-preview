@@ -1,0 +1,2684 @@
+{
+  "schema": "roster-navigation-saved-v2/v1",
+  "baseCommit": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+  "description": "Unmodified snapshots captured through the public roster service on the accepted c477d20 base; explicit UI attachments only.",
+  "books": [
+    {
+      "bookId": "death-guard",
+      "fixture": "owner-v37.25-derived-attachments",
+      "snapshot": {
+        "schema": "roster-v2/roster",
+        "rosterId": "import-519303c7da5b96af",
+        "bookId": "death-guard",
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-shamblerot-vectorium"
+          },
+          {
+            "instanceId": "detachment/2",
+            "canonicalDetachmentId": "detachment-virulent-vectorium"
+          }
+        ],
+        "detachmentIds": [
+          "detachment-shamblerot-vectorium",
+          "detachment-virulent-vectorium"
+        ],
+        "warlordInstanceId": null,
+        "units": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-biologus-putrifier",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-biologus-putrifier:profile:default",
+                "quantity": 1,
+                "presentationLabel": "Biologus Putrifier",
+                "selections": [],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [
+              {
+                "selectionKey": "parsed-unit-1/unit/selection/1",
+                "canonicalProfileIds": [
+                  "datasheet-biologus-putrifier:weapon:1"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              },
+              {
+                "selectionKey": "parsed-unit-1/unit/selection/2",
+                "canonicalProfileIds": [
+                  "datasheet-biologus-putrifier:weapon:2"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              },
+              {
+                "selectionKey": "parsed-unit-1/unit/selection/3",
+                "canonicalProfileIds": [
+                  "datasheet-biologus-putrifier:weapon:3"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              }
+            ],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Biologus Putrifier",
+              "quantity": 1,
+              "points": 60,
+              "sourceRef": "Char1"
+            }
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-lord-of-contagion",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-lord-of-contagion:profile:default",
+                "quantity": 1,
+                "presentationLabel": "Lord of Contagion",
+                "selections": [],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [
+              {
+                "selectionKey": "parsed-unit-2/unit/selection/1",
+                "canonicalProfileIds": [
+                  "datasheet-lord-of-contagion:weapon:1",
+                  "datasheet-lord-of-contagion:weapon:2"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              }
+            ],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Lord of Contagion",
+              "quantity": 1,
+              "points": 110,
+              "sourceRef": "Char2"
+            }
+          },
+          {
+            "instanceId": "parsed-unit-3",
+            "canonicalUnitId": "unit-malignant-plaguecaster",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-3/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-malignant-plaguecaster:profile:default",
+                "quantity": 1,
+                "presentationLabel": "Malignant Plaguecaster",
+                "selections": [],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [
+              {
+                "selectionKey": "parsed-unit-3/unit/selection/1",
+                "canonicalProfileIds": [
+                  "datasheet-malignant-plaguecaster:weapon:1"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              },
+              {
+                "selectionKey": "parsed-unit-3/unit/selection/2",
+                "canonicalProfileIds": [
+                  "datasheet-malignant-plaguecaster:weapon:4"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              },
+              {
+                "selectionKey": "parsed-unit-3/unit/selection/3",
+                "canonicalProfileIds": [
+                  "datasheet-malignant-plaguecaster:weapon:2",
+                  "datasheet-malignant-plaguecaster:weapon:3"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              }
+            ],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Malignant Plaguecaster",
+              "quantity": 1,
+              "points": 60,
+              "sourceRef": "Char3"
+            }
+          },
+          {
+            "instanceId": "parsed-unit-4",
+            "canonicalUnitId": "unit-noxious-blightbringer",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-4/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-noxious-blightbringer:profile:default",
+                "quantity": 1,
+                "presentationLabel": "Noxious Blightbringer",
+                "selections": [],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [
+              {
+                "selectionKey": "parsed-unit-4/unit/selection/1",
+                "canonicalProfileIds": [
+                  "datasheet-noxious-blightbringer:weapon:3"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              },
+              {
+                "selectionKey": "parsed-unit-4/unit/selection/2",
+                "canonicalProfileIds": [
+                  "datasheet-noxious-blightbringer:weapon:1",
+                  "datasheet-noxious-blightbringer:weapon:2"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              }
+            ],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Noxious Blightbringer",
+              "quantity": 1,
+              "points": 50,
+              "sourceRef": "Char4"
+            }
+          },
+          {
+            "instanceId": "parsed-unit-5",
+            "canonicalUnitId": "unit-plague-marines",
+            "startingStrength": 5,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-5/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-plague-marines:profile:default",
+                "quantity": 1,
+                "presentationLabel": "Plague Champion",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-5/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-plague-marines:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-5/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-plague-marines:weapon:13"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-5/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-plague-marines:profile:default",
+                "quantity": 4,
+                "presentationLabel": "Plague Marine",
+                "selections": [],
+                "loadouts": [
+                  {
+                    "loadoutId": "parsed-unit-5/model-row/2/loadout/1",
+                    "quantity": 4,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-5/model-row/2/loadout/1/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:2"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 4,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 4,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      },
+                      {
+                        "selectionKey": "parsed-unit-5/model-row/2/loadout/1/selection/2",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:13"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 4,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 4,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Plague Marines",
+              "quantity": 5,
+              "points": 90,
+              "sourceRef": ""
+            }
+          },
+          {
+            "instanceId": "parsed-unit-6",
+            "canonicalUnitId": "unit-plague-marines",
+            "startingStrength": 10,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-6/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-plague-marines:profile:default",
+                "quantity": 9,
+                "presentationLabel": "Plague Marine",
+                "selections": [],
+                "loadouts": [
+                  {
+                    "loadoutId": "parsed-unit-6/model-row/1/loadout/1",
+                    "quantity": 1,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/1/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:13"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      },
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/1/selection/2",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:6"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "loadoutId": "parsed-unit-6/model-row/1/loadout/2",
+                    "quantity": 1,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/2/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:1"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      },
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/2/selection/2",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:13"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "loadoutId": "parsed-unit-6/model-row/1/loadout/3",
+                    "quantity": 2,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/3/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:12"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 2,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 2,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      },
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/3/selection/2",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:13"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 2,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 2,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "loadoutId": "parsed-unit-6/model-row/1/loadout/4",
+                    "quantity": 2,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/4/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:11"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 2,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 2,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      },
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/4/selection/2",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:13"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 2,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 2,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "loadoutId": "parsed-unit-6/model-row/1/loadout/5",
+                    "quantity": 1,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/5/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:4"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      },
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/5/selection/2",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:13"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "loadoutId": "parsed-unit-6/model-row/1/loadout/6",
+                    "quantity": 1,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/6/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:5"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      },
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/6/selection/2",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:13"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "loadoutId": "parsed-unit-6/model-row/1/loadout/7",
+                    "quantity": 1,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/7/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:13"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      },
+                      {
+                        "selectionKey": "parsed-unit-6/model-row/1/loadout/7/selection/2",
+                        "canonicalProfileIds": [
+                          "datasheet-plague-marines:weapon:7",
+                          "datasheet-plague-marines:weapon:8"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 1,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 1,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "rowId": "parsed-unit-6/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-plague-marines:profile:default",
+                "quantity": 1,
+                "presentationLabel": "Plague Champion",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-6/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-plague-marines:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-6/model-row/2/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-plague-marines:weapon:13"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Plague Marines",
+              "quantity": 10,
+              "points": 175,
+              "sourceRef": ""
+            }
+          },
+          {
+            "instanceId": "parsed-unit-7",
+            "canonicalUnitId": "unit-poxwalkers",
+            "startingStrength": 10,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-7/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-poxwalkers:profile:default",
+                "quantity": 10,
+                "presentationLabel": "Poxwalkers",
+                "selections": [],
+                "loadouts": [
+                  {
+                    "loadoutId": "parsed-unit-7/aggregate/loadout/1",
+                    "quantity": 10,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-7/aggregate/loadout/1/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-poxwalkers:weapon:1"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 10,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 10,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Poxwalkers",
+              "quantity": 10,
+              "points": 65,
+              "sourceRef": ""
+            }
+          },
+          {
+            "instanceId": "parsed-unit-8",
+            "canonicalUnitId": "unit-deathshroud-terminators",
+            "startingStrength": 3,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-8/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-deathshroud-terminators:profile:default",
+                "quantity": 1,
+                "presentationLabel": "Deathshroud Terminator Champion",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-8/model-row/1/selection/1",
+                    "canonicalProfileIds": [],
+                    "canonicalEquipmentIds": [
+                      "datasheet-deathshroud-terminators:wargear:2"
+                    ],
+                    "canonicalFieldPaths": {
+                      "datasheet-deathshroud-terminators:wargear:2": [
+                        "/text"
+                      ]
+                    },
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "sourceReferences": [
+                      {
+                        "entityId": "datasheet-deathshroud-terminators:section:1",
+                        "path": "/blocks/2/text"
+                      },
+                      {
+                        "entityId": "datasheet-deathshroud-terminators:wargear:2",
+                        "path": "/text",
+                        "bookId": "death-guard",
+                        "caption": {
+                          "start": 48,
+                          "end": 63
+                        }
+                      }
+                    ],
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-8/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-deathshroud-terminators:weapon:2",
+                      "datasheet-deathshroud-terminators:weapon:3"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-8/model-row/1/selection/3",
+                    "canonicalProfileIds": [
+                      "datasheet-deathshroud-terminators:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 2,
+                    "perModelQuantity": 2,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 2,
+                      "explicitSelectedQuantity": true
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-8/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-deathshroud-terminators:profile:default",
+                "quantity": 2,
+                "presentationLabel": "Deathshroud Terminator",
+                "selections": [],
+                "loadouts": [
+                  {
+                    "loadoutId": "parsed-unit-8/model-row/2/loadout/1",
+                    "quantity": 2,
+                    "selections": [
+                      {
+                        "selectionKey": "parsed-unit-8/model-row/2/loadout/1/selection/1",
+                        "canonicalProfileIds": [
+                          "datasheet-deathshroud-terminators:weapon:2",
+                          "datasheet-deathshroud-terminators:weapon:3"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 2,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 2,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      },
+                      {
+                        "selectionKey": "parsed-unit-8/model-row/2/loadout/1/selection/2",
+                        "canonicalProfileIds": [
+                          "datasheet-deathshroud-terminators:weapon:1"
+                        ],
+                        "canonicalEquipmentIds": [],
+                        "canonicalFieldPaths": {},
+                        "physicalQuantity": 2,
+                        "perModelQuantity": 1,
+                        "quantityEvidence": {
+                          "scope": "LOADOUT",
+                          "modelQuantity": 2,
+                          "selectedQuantity": 1,
+                          "explicitSelectedQuantity": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Deathshroud Terminators",
+              "quantity": 3,
+              "points": 150,
+              "sourceRef": ""
+            }
+          }
+        ],
+        "attachments": [
+          {
+            "leaderInstanceId": "parsed-unit-1",
+            "bodyguardInstanceId": "parsed-unit-6",
+            "role": "SUPPORT_EXCEPTION"
+          },
+          {
+            "leaderInstanceId": "parsed-unit-2",
+            "bodyguardInstanceId": "parsed-unit-8",
+            "role": "LEADER"
+          }
+        ]
+      }
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "fixture": "input-0045",
+      "snapshot": {
+        "schema": "roster-v2/roster",
+        "rosterId": "import-e51e065c228d89a9",
+        "bookId": "adeptus-mechanicus",
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-haloscreed-battle-clade"
+          }
+        ],
+        "detachmentIds": [
+          "detachment-haloscreed-battle-clade"
+        ],
+        "warlordInstanceId": null,
+        "units": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-cybernetica-datasmith",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-cybernetica-datasmith:profile:default",
+                "quantity": 1,
+                "presentationLabel": "Cybernetica Datasmith",
+                "selections": [],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [
+              "detachment-haloscreed-battle-clade:enhancement:1"
+            ],
+            "raw": {
+              "name": "Cybernetica Datasmith",
+              "quantity": 1,
+              "points": 0,
+              "sourceRef": ""
+            }
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-kastelan-robots",
+            "startingStrength": 2,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-kastelan-robots:profile:default",
+                "quantity": 2,
+                "presentationLabel": "Kastelan Robots",
+                "selections": [],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Kastelan Robots",
+              "quantity": 2,
+              "points": 0,
+              "sourceRef": ""
+            }
+          },
+          {
+            "instanceId": "parsed-unit-3",
+            "canonicalUnitId": "unit-kastelan-robots",
+            "startingStrength": 2,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-3/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-kastelan-robots:profile:default",
+                "quantity": 2,
+                "presentationLabel": "Kastelan Robots",
+                "selections": [],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Kastelan Robots",
+              "quantity": 2,
+              "points": 0,
+              "sourceRef": ""
+            }
+          }
+        ],
+        "attachments": [
+          {
+            "leaderInstanceId": "parsed-unit-1",
+            "bodyguardInstanceId": "parsed-unit-2",
+            "role": "SUPPORT"
+          }
+        ]
+      }
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "fixture": "input-0120",
+      "snapshot": {
+        "schema": "roster-v2/roster",
+        "rosterId": "import-57d520b79acbbc2b",
+        "bookId": "chaos-space-marines",
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-chaos-cult"
+          }
+        ],
+        "detachmentIds": [
+          "detachment-chaos-cult"
+        ],
+        "warlordInstanceId": null,
+        "units": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-dark-apostle",
+            "startingStrength": 3,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-dark-apostle:section:2:member:1",
+                "quantity": 1,
+                "presentationLabel": "Dark Apostle",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-1/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-1/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-1/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-dark-apostle:section:2:member:2",
+                "quantity": 2,
+                "presentationLabel": "Dark Disciples",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-1/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:3"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 2,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 2,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [
+              "detachment-chaos-cult:enhancement:4"
+            ],
+            "raw": {
+              "name": "Dark Apostle",
+              "quantity": 3,
+              "points": 70,
+              "sourceRef": ""
+            }
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-dark-apostle",
+            "startingStrength": 3,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-dark-apostle:section:2:member:1",
+                "quantity": 1,
+                "presentationLabel": "Dark Apostle",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-2/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-2/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-2/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-dark-apostle:section:2:member:2",
+                "quantity": 2,
+                "presentationLabel": "Dark Disciples",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-2/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:3"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 2,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 2,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Dark Apostle",
+              "quantity": 3,
+              "points": 70,
+              "sourceRef": ""
+            }
+          },
+          {
+            "instanceId": "parsed-unit-3",
+            "canonicalUnitId": "unit-accursed-cultists",
+            "startingStrength": 8,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-3/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-accursed-cultists:section:2:member:1",
+                "quantity": 3,
+                "presentationLabel": "Torments",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-accursed-cultists:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 3,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 3,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-3/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-accursed-cultists:section:2:member:2",
+                "quantity": 5,
+                "presentationLabel": "Mutants",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-accursed-cultists:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 5,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 5,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Accursed Cultists",
+              "quantity": 8,
+              "points": 90,
+              "sourceRef": ""
+            }
+          },
+          {
+            "instanceId": "parsed-unit-4",
+            "canonicalUnitId": "unit-accursed-cultists",
+            "startingStrength": 8,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-4/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-accursed-cultists:section:2:member:1",
+                "quantity": 3,
+                "presentationLabel": "Torments",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-accursed-cultists:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 3,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 3,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-4/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-accursed-cultists:section:2:member:2",
+                "quantity": 5,
+                "presentationLabel": "Mutants",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-accursed-cultists:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 5,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 5,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Accursed Cultists",
+              "quantity": 8,
+              "points": 90,
+              "sourceRef": ""
+            }
+          }
+        ],
+        "attachments": [
+          {
+            "leaderInstanceId": "parsed-unit-1",
+            "bodyguardInstanceId": "parsed-unit-3",
+            "role": "LEADER"
+          }
+        ]
+      }
+    },
+    {
+      "bookId": "emperors-children",
+      "fixture": "input-0421",
+      "snapshot": {
+        "schema": "roster-v2/roster",
+        "rosterId": "import-8355d0265f1d7375",
+        "bookId": "emperors-children",
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-elegant-brutes"
+          }
+        ],
+        "detachmentIds": [
+          "detachment-elegant-brutes"
+        ],
+        "warlordInstanceId": null,
+        "units": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-lord-kakophonist",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-lord-kakophonist:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Lord Kakophonist",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-lord-kakophonist:section:2:member:1"
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [
+              {
+                "selectionKey": "parsed-unit-1/unit/selection/1",
+                "canonicalProfileIds": [
+                  "datasheet-lord-kakophonist:weapon:1"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              },
+              {
+                "selectionKey": "parsed-unit-1/unit/selection/2",
+                "canonicalProfileIds": [
+                  "datasheet-lord-kakophonist:weapon:3"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              }
+            ],
+            "enhancementIds": [
+              "detachment-elegant-brutes:enhancement:1"
+            ],
+            "raw": {
+              "name": "Lord Kakophonist",
+              "quantity": 1,
+              "points": 70,
+              "sourceRef": "Char1"
+            },
+            "mfmUnitRecordId": "mfm-unit-points-5600c9b172c6c51a",
+            "mfmEnhancementRecordIds": [
+              "mfm-enhancement-dacef9222772aee6"
+            ],
+            "mfmPaidUpgradeRecordIds": [],
+            "enhancementAssignments": [
+              {
+                "enhancementId": "detachment-elegant-brutes:enhancement:1",
+                "modelScopeId": "parsed-unit-1/parsed-unit-1/aggregate/PROFILE/parsed-unit-1/aggregate"
+              }
+            ]
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-lord-kakophonist",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "datasheet-lord-kakophonist:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Lord Kakophonist",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-lord-kakophonist:section:2:member:1"
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [
+              {
+                "selectionKey": "parsed-unit-2/unit/selection/1",
+                "canonicalProfileIds": [
+                  "datasheet-lord-kakophonist:weapon:1"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              },
+              {
+                "selectionKey": "parsed-unit-2/unit/selection/2",
+                "canonicalProfileIds": [
+                  "datasheet-lord-kakophonist:weapon:3"
+                ],
+                "canonicalEquipmentIds": [],
+                "canonicalFieldPaths": {},
+                "physicalQuantity": 1,
+                "perModelQuantity": null,
+                "quantityEvidence": {
+                  "scope": "UNIT",
+                  "modelQuantity": null,
+                  "selectedQuantity": 1,
+                  "explicitSelectedQuantity": false
+                }
+              }
+            ],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Lord Kakophonist",
+              "quantity": 1,
+              "points": 70,
+              "sourceRef": "Char2"
+            },
+            "mfmUnitRecordId": "mfm-unit-points-5600c9b172c6c51a",
+            "mfmEnhancementRecordIds": [],
+            "mfmPaidUpgradeRecordIds": [],
+            "enhancementAssignments": []
+          },
+          {
+            "instanceId": "parsed-unit-3",
+            "canonicalUnitId": "unit-noise-marines",
+            "startingStrength": 6,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-3/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-noise-marines:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Disharmonist",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:4"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:5"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-noise-marines:section:2:member:1"
+              },
+              {
+                "rowId": "parsed-unit-3/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-noise-marines:profile:1",
+                "quantity": 4,
+                "presentationLabel": "Noise Marine w/ sonic blaster",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:4"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/2/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:5"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-noise-marines:section:2:member:2"
+              },
+              {
+                "rowId": "parsed-unit-3/model-row/3",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-noise-marines:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Noise Marine w/ blastmaster",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/3/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:1",
+                      "datasheet-noise-marines:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/3/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:5"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-noise-marines:section:2:member:2"
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Noise Marines",
+              "quantity": 6,
+              "points": 160,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-dfb0c25d8d6bbf7c",
+            "mfmEnhancementRecordIds": [],
+            "mfmPaidUpgradeRecordIds": [],
+            "enhancementAssignments": []
+          },
+          {
+            "instanceId": "parsed-unit-4",
+            "canonicalUnitId": "unit-noise-marines",
+            "startingStrength": 6,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-4/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-noise-marines:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Disharmonist",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:4"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:5"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-noise-marines:section:2:member:1"
+              },
+              {
+                "rowId": "parsed-unit-4/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-noise-marines:profile:1",
+                "quantity": 4,
+                "presentationLabel": "Noise Marine w/ sonic blaster",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:4"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/2/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:5"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-noise-marines:section:2:member:2"
+              },
+              {
+                "rowId": "parsed-unit-4/model-row/3",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-noise-marines:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Noise Marine w/ blastmaster",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/3/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:1",
+                      "datasheet-noise-marines:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/3/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-noise-marines:weapon:5"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-noise-marines:section:2:member:2"
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Noise Marines",
+              "quantity": 6,
+              "points": 160,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-dfb0c25d8d6bbf7c",
+            "mfmEnhancementRecordIds": [],
+            "mfmPaidUpgradeRecordIds": [],
+            "enhancementAssignments": []
+          }
+        ],
+        "attachments": [
+          {
+            "leaderInstanceId": "parsed-unit-1",
+            "bodyguardInstanceId": "parsed-unit-3",
+            "role": "LEADER"
+          }
+        ],
+        "importEvidence": {
+          "faction": "Chaos - Emperor's Children",
+          "detachment": "Elegant Brutes",
+          "detachments": [
+            {
+              "label": "Elegant Brutes",
+              "name": "Elegant Brutes",
+              "rule": "",
+              "disposition": "—"
+            }
+          ],
+          "disposition": "—",
+          "declared": 0,
+          "battleSize": "—",
+          "pointsLimit": null,
+          "unitLineTotal": 460
+        },
+        "mfmDetachmentRecordIds": [
+          "mfm-detachment-5b619a99165f35cb"
+        ]
+      }
+    },
+    {
+      "bookId": "space-marines",
+      "fixture": "additional-0012",
+      "snapshot": {
+        "schema": "roster-v2/roster",
+        "rosterId": "import-fdea8cb7a5d5a4fd",
+        "bookId": "space-marines",
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-sm-8f297dd604a24b1c"
+          }
+        ],
+        "detachmentIds": [
+          "detachment-sm-8f297dd604a24b1c"
+        ],
+        "warlordInstanceId": null,
+        "units": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-sm-bc9aa3cbedb2415c",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "model-sm-68dfa445ba8842bb",
+                "quantity": 1,
+                "presentationLabel": "Captain in Gravis Armour",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "composition-sm-842abf76e5194b2a",
+                "sourceRuleReferenceIds": [
+                  "reference-sm-691e51b26cf541b6",
+                  "reference-sm-9b55dd5dfee34602",
+                  "reference-sm-d11b3ea1e4294012"
+                ]
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [
+              "enhancement-sm-07e95c69297b4d6f"
+            ],
+            "raw": {
+              "name": "Captain in Gravis Armour",
+              "quantity": 1,
+              "points": 0,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-c2488301c70584cc",
+            "mfmEnhancementRecordIds": [
+              "mfm-enhancement-8ed6e1a7c8bc2d0d"
+            ],
+            "enhancementAssignments": [
+              {
+                "enhancementId": "enhancement-sm-07e95c69297b4d6f",
+                "modelScopeId": "parsed-unit-1/parsed-unit-1/aggregate/PROFILE/parsed-unit-1/aggregate"
+              }
+            ]
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-sm-984b95cebb2f47d9",
+            "startingStrength": 5,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "model-sm-cbb67795cccc4c9c",
+                "quantity": 1,
+                "presentationLabel": "Heavy Intercessor Sergeant",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "composition-sm-4962e334e8cf48d4",
+                "sourceRuleReferenceIds": [
+                  "reference-sm-4d801df19b0c4284"
+                ]
+              },
+              {
+                "rowId": "parsed-unit-2/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "model-sm-84a9ed1d75af4b31",
+                "quantity": 4,
+                "presentationLabel": "Heavy Intercessor",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "composition-sm-0e753cda68e446a5",
+                "sourceRuleReferenceIds": [
+                  "reference-sm-4d801df19b0c4284"
+                ]
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Heavy Intercessor Squad",
+              "quantity": 5,
+              "points": 0,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-3417e994d6c94a1e",
+            "mfmEnhancementRecordIds": [],
+            "enhancementAssignments": []
+          }
+        ],
+        "attachments": [
+          {
+            "leaderInstanceId": "parsed-unit-1",
+            "bodyguardInstanceId": "parsed-unit-2",
+            "role": "LEADER"
+          }
+        ],
+        "importEvidence": {
+          "faction": "Space Marines",
+          "detachment": "Gravis Linebreaker Force",
+          "detachments": [
+            {
+              "label": "Gravis Linebreaker Force",
+              "name": "Gravis Linebreaker Force",
+              "rule": "",
+              "disposition": "—"
+            }
+          ],
+          "disposition": "—",
+          "declared": 2000,
+          "battleSize": "—",
+          "pointsLimit": null,
+          "unitLineTotal": 0,
+          "plainHeader": {
+            "listName": "Cosmetic fixture",
+            "detachmentPoints": 1
+          }
+        },
+        "mfmDetachmentRecordIds": [
+          "mfm-detachment-9e982dc68851f132"
+        ]
+      }
+    },
+    {
+      "bookId": "blood-angels",
+      "fixture": "additional-0010",
+      "snapshot": {
+        "schema": "roster-v2/roster",
+        "rosterId": "import-cf4424cc60a1866a",
+        "bookId": "blood-angels",
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-sm-8f297dd604a24b1c"
+          }
+        ],
+        "detachmentIds": [
+          "detachment-sm-8f297dd604a24b1c"
+        ],
+        "warlordInstanceId": null,
+        "units": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-sm-bc9aa3cbedb2415c",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "model-sm-68dfa445ba8842bb",
+                "quantity": 1,
+                "presentationLabel": "Captain in Gravis Armour",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "composition-sm-842abf76e5194b2a",
+                "sourceRuleReferenceIds": [
+                  "reference-sm-691e51b26cf541b6",
+                  "reference-sm-9b55dd5dfee34602",
+                  "reference-sm-d11b3ea1e4294012"
+                ]
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [
+              "enhancement-sm-07e95c69297b4d6f"
+            ],
+            "raw": {
+              "name": "Captain in Gravis Armour",
+              "quantity": 1,
+              "points": 0,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-c2488301c70584cc",
+            "mfmEnhancementRecordIds": [
+              "mfm-enhancement-8ed6e1a7c8bc2d0d"
+            ],
+            "enhancementAssignments": [
+              {
+                "enhancementId": "enhancement-sm-07e95c69297b4d6f",
+                "modelScopeId": "parsed-unit-1/parsed-unit-1/aggregate/PROFILE/parsed-unit-1/aggregate"
+              }
+            ]
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-sm-984b95cebb2f47d9",
+            "startingStrength": 5,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "model-sm-cbb67795cccc4c9c",
+                "quantity": 1,
+                "presentationLabel": "Heavy Intercessor Sergeant",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "composition-sm-4962e334e8cf48d4",
+                "sourceRuleReferenceIds": [
+                  "reference-sm-4d801df19b0c4284"
+                ]
+              },
+              {
+                "rowId": "parsed-unit-2/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "model-sm-84a9ed1d75af4b31",
+                "quantity": 4,
+                "presentationLabel": "Heavy Intercessor",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "composition-sm-0e753cda68e446a5",
+                "sourceRuleReferenceIds": [
+                  "reference-sm-4d801df19b0c4284"
+                ]
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Heavy Intercessor Squad",
+              "quantity": 5,
+              "points": 0,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-3417e994d6c94a1e",
+            "mfmEnhancementRecordIds": [],
+            "enhancementAssignments": []
+          }
+        ],
+        "attachments": [
+          {
+            "leaderInstanceId": "parsed-unit-1",
+            "bodyguardInstanceId": "parsed-unit-2",
+            "role": "LEADER"
+          }
+        ],
+        "importEvidence": {
+          "faction": "Blood Angels",
+          "detachment": "Gravis Linebreaker Force",
+          "detachments": [
+            {
+              "label": "Gravis Linebreaker Force",
+              "name": "Gravis Linebreaker Force",
+              "rule": "",
+              "disposition": "—"
+            }
+          ],
+          "disposition": "—",
+          "declared": 2000,
+          "battleSize": "—",
+          "pointsLimit": null,
+          "unitLineTotal": 0,
+          "plainHeader": {
+            "listName": "Cosmetic fixture",
+            "detachmentPoints": 1
+          }
+        },
+        "mfmDetachmentRecordIds": [
+          "mfm-detachment-9e982dc68851f132"
+        ]
+      }
+    },
+    {
+      "bookId": "dark-angels",
+      "fixture": "additional-0011",
+      "snapshot": {
+        "schema": "roster-v2/roster",
+        "rosterId": "import-313c4c5d03a6edcc",
+        "bookId": "dark-angels",
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-sm-8f297dd604a24b1c"
+          }
+        ],
+        "detachmentIds": [
+          "detachment-sm-8f297dd604a24b1c"
+        ],
+        "warlordInstanceId": null,
+        "units": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-sm-bc9aa3cbedb2415c",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/aggregate",
+                "compositionScope": "UNIT",
+                "canonicalProfileId": "model-sm-68dfa445ba8842bb",
+                "quantity": 1,
+                "presentationLabel": "Captain in Gravis Armour",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "composition-sm-842abf76e5194b2a",
+                "sourceRuleReferenceIds": [
+                  "reference-sm-691e51b26cf541b6",
+                  "reference-sm-9b55dd5dfee34602",
+                  "reference-sm-d11b3ea1e4294012"
+                ]
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [
+              "enhancement-sm-07e95c69297b4d6f"
+            ],
+            "raw": {
+              "name": "Captain in Gravis Armour",
+              "quantity": 1,
+              "points": 0,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-c2488301c70584cc",
+            "mfmEnhancementRecordIds": [
+              "mfm-enhancement-8ed6e1a7c8bc2d0d"
+            ],
+            "enhancementAssignments": [
+              {
+                "enhancementId": "enhancement-sm-07e95c69297b4d6f",
+                "modelScopeId": "parsed-unit-1/parsed-unit-1/aggregate/PROFILE/parsed-unit-1/aggregate"
+              }
+            ]
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-sm-984b95cebb2f47d9",
+            "startingStrength": 5,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "model-sm-cbb67795cccc4c9c",
+                "quantity": 1,
+                "presentationLabel": "Heavy Intercessor Sergeant",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "composition-sm-4962e334e8cf48d4",
+                "sourceRuleReferenceIds": [
+                  "reference-sm-4d801df19b0c4284"
+                ]
+              },
+              {
+                "rowId": "parsed-unit-2/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "model-sm-84a9ed1d75af4b31",
+                "quantity": 4,
+                "presentationLabel": "Heavy Intercessor",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "composition-sm-0e753cda68e446a5",
+                "sourceRuleReferenceIds": [
+                  "reference-sm-4d801df19b0c4284"
+                ]
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Heavy Intercessor Squad",
+              "quantity": 5,
+              "points": 0,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-3417e994d6c94a1e",
+            "mfmEnhancementRecordIds": [],
+            "enhancementAssignments": []
+          }
+        ],
+        "attachments": [
+          {
+            "leaderInstanceId": "parsed-unit-1",
+            "bodyguardInstanceId": "parsed-unit-2",
+            "role": "LEADER"
+          }
+        ],
+        "importEvidence": {
+          "faction": "Dark Angels",
+          "detachment": "Gravis Linebreaker Force",
+          "detachments": [
+            {
+              "label": "Gravis Linebreaker Force",
+              "name": "Gravis Linebreaker Force",
+              "rule": "",
+              "disposition": "—"
+            }
+          ],
+          "disposition": "—",
+          "declared": 2000,
+          "battleSize": "—",
+          "pointsLimit": null,
+          "unitLineTotal": 0,
+          "plainHeader": {
+            "listName": "Cosmetic fixture",
+            "detachmentPoints": 1
+          }
+        },
+        "mfmDetachmentRecordIds": [
+          "mfm-detachment-9e982dc68851f132"
+        ]
+      }
+    },
+    {
+      "bookId": "tau-empire",
+      "fixture": "csm-tau-gaps-v1:tau:18",
+      "snapshot": {
+        "schema": "roster-v2/roster",
+        "rosterId": "import-73e82bf999dce524",
+        "bookId": "tau-empire",
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-kauyon"
+          }
+        ],
+        "detachmentIds": [
+          "detachment-kauyon"
+        ],
+        "warlordInstanceId": null,
+        "units": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-cadre-fireblade",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-cadre-fireblade:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Cadre Fireblade",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-cadre-fireblade:composition:1",
+                "sourceRuleReferenceIds": [
+                  "datasheet-cadre-fireblade:rule-reference:1",
+                  "datasheet-cadre-fireblade:rule-reference:2"
+                ]
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [
+              "detachment-kauyon:enhancement:1"
+            ],
+            "raw": {
+              "name": "Cadre Fireblade",
+              "quantity": 1,
+              "points": 0,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-31b59785718f8d6d",
+            "mfmEnhancementRecordIds": [
+              "mfm-enhancement-084023a5b221c577"
+            ],
+            "enhancementAssignments": [
+              {
+                "enhancementId": "detachment-kauyon:enhancement:1",
+                "modelScopeId": "parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1"
+              }
+            ]
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-strike-team",
+            "startingStrength": 10,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-strike-team:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Fire Warrior Shas’ui",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-strike-team:composition:1",
+                "sourceRuleReferenceIds": [
+                  "datasheet-strike-team:rule-reference:1"
+                ]
+              },
+              {
+                "rowId": "parsed-unit-2/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-strike-team:profile:1",
+                "quantity": 9,
+                "presentationLabel": "Fire Warriors",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-strike-team:composition:2",
+                "sourceRuleReferenceIds": [
+                  "datasheet-strike-team:rule-reference:1"
+                ]
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Strike Team",
+              "quantity": 10,
+              "points": 0,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-dae0ddb847391f9f",
+            "mfmEnhancementRecordIds": [],
+            "enhancementAssignments": []
+          },
+          {
+            "instanceId": "parsed-unit-3",
+            "canonicalUnitId": "unit-strike-team",
+            "startingStrength": 10,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-3/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-strike-team:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Fire Warrior Shas’ui",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-strike-team:composition:1",
+                "sourceRuleReferenceIds": [
+                  "datasheet-strike-team:rule-reference:1"
+                ]
+              },
+              {
+                "rowId": "parsed-unit-3/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-strike-team:profile:1",
+                "quantity": 9,
+                "presentationLabel": "Fire Warriors",
+                "selections": [],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-strike-team:composition:2",
+                "sourceRuleReferenceIds": [
+                  "datasheet-strike-team:rule-reference:1"
+                ]
+              }
+            ],
+            "equipmentContextKnown": false,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Strike Team",
+              "quantity": 10,
+              "points": 0,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-dae0ddb847391f9f",
+            "mfmEnhancementRecordIds": [],
+            "enhancementAssignments": []
+          }
+        ],
+        "attachments": [
+          {
+            "leaderInstanceId": "parsed-unit-1",
+            "bodyguardInstanceId": "parsed-unit-2",
+            "role": "LEADER"
+          }
+        ],
+        "importEvidence": {
+          "faction": "T’au Empire",
+          "detachment": "Kauyon",
+          "detachments": [
+            {
+              "label": "Kauyon",
+              "name": "Kauyon",
+              "rule": "",
+              "disposition": "—"
+            }
+          ],
+          "disposition": "—",
+          "declared": 0,
+          "battleSize": "—",
+          "pointsLimit": null,
+          "unitLineTotal": 0
+        },
+        "mfmDetachmentRecordIds": [
+          "mfm-detachment-080d66df4d052d51"
+        ]
+      }
+    },
+    {
+      "bookId": "tyranids",
+      "fixture": "unit-no-scope:vicious-insight",
+      "snapshot": {
+        "schema": "roster-v2/roster",
+        "rosterId": "import-5fb8949775f4dbc1",
+        "bookId": "tyranids",
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-invasion-fleet"
+          }
+        ],
+        "detachmentIds": [
+          "detachment-invasion-fleet"
+        ],
+        "warlordInstanceId": null,
+        "units": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-broodlord",
+            "startingStrength": 1,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-broodlord:profile:1",
+                "quantity": 1,
+                "presentationLabel": "Broodlord",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-1/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-broodlord:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-broodlord:section:2:member:1",
+                "sourceRuleReferenceIds": [
+                  "datasheet-broodlord:rule-reference:1",
+                  "datasheet-broodlord:rule-reference:2",
+                  "datasheet-broodlord:rule-reference:3",
+                  "datasheet-broodlord:rule-reference:4"
+                ]
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Broodlord",
+              "quantity": 1,
+              "points": 80,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-54238a3bd166336b",
+            "mfmEnhancementRecordIds": [],
+            "mfmPaidUpgradeRecordIds": [],
+            "enhancementAssignments": []
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-genestealers",
+            "startingStrength": 5,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-genestealers:profile:1",
+                "quantity": 5,
+                "presentationLabel": "Genestealers",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-2/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-genestealers:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 5,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 5,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-genestealers:section:2:member:1",
+                "sourceRuleReferenceIds": [
+                  "datasheet-genestealers:rule-reference:1",
+                  "datasheet-genestealers:rule-reference:2"
+                ]
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Genestealers",
+              "quantity": 5,
+              "points": 75,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-b494db76f7a93fc6",
+            "mfmEnhancementRecordIds": [],
+            "mfmPaidUpgradeRecordIds": [],
+            "enhancementAssignments": []
+          },
+          {
+            "instanceId": "parsed-unit-3",
+            "canonicalUnitId": "unit-genestealers",
+            "startingStrength": 5,
+            "warlord": null,
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-3/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-genestealers:profile:1",
+                "quantity": 5,
+                "presentationLabel": "Genestealers",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-genestealers:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 5,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 5,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": [],
+                "compositionMemberId": "datasheet-genestealers:section:2:member:1",
+                "sourceRuleReferenceIds": [
+                  "datasheet-genestealers:rule-reference:1",
+                  "datasheet-genestealers:rule-reference:2"
+                ]
+              }
+            ],
+            "equipmentContextKnown": true,
+            "selections": [],
+            "enhancementIds": [],
+            "raw": {
+              "name": "Genestealers",
+              "quantity": 5,
+              "points": 75,
+              "sourceRef": ""
+            },
+            "mfmUnitRecordId": "mfm-unit-points-b494db76f7a93fc6",
+            "mfmEnhancementRecordIds": [],
+            "mfmPaidUpgradeRecordIds": [],
+            "enhancementAssignments": []
+          }
+        ],
+        "attachments": [
+          {
+            "leaderInstanceId": "parsed-unit-1",
+            "bodyguardInstanceId": "parsed-unit-2",
+            "role": "LEADER"
+          }
+        ],
+        "importEvidence": {
+          "faction": "Tyranids",
+          "detachment": "Invasion Fleet",
+          "detachments": [
+            {
+              "label": "Invasion Fleet",
+              "name": "Invasion Fleet",
+              "rule": "",
+              "disposition": "—"
+            }
+          ],
+          "disposition": "—",
+          "declared": 0,
+          "battleSize": "—",
+          "pointsLimit": null,
+          "unitLineTotal": 230
+        },
+        "mfmDetachmentRecordIds": [
+          "mfm-detachment-9e48327b304dba7e"
+        ]
+      }
+    }
+  ]
+}

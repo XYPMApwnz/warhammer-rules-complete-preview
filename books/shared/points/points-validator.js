@@ -119,7 +119,7 @@
     return typeof name==='string'?name.replace(/\s+[-–—]\s+\d+\s*pts?\s*$/i,'').trim():'';
   };
   const list=value=>Array.isArray(value)?value:[];
-  const keywords=unit=>new Set((unit?.keywords||[]).map(keyword));
+  const keywords=unit=>new Set((root.WHRuleFacts.keywordAccess.keywordField(unit)||[]).map(keyword));
   const grantedKeywords=(faction,detachment,unit)=>faction==='death guard'&&normalize(detachment)==='contagion engines'&&['unit-foetid-bloat-drone','unit-foetid-bloat-drone-with-heavy-blight-launcher','unit-helbrute','unit-myphitic-blight-hauler'].includes(unit?.unitId)?['CONTAGION ENGINE']:[];
   const ownerMatches=(enhancement,unit,faction,additionalKeywords=[],leadingUnitIds=[])=>{
     if(!enhancement.owner||!unit)return false;

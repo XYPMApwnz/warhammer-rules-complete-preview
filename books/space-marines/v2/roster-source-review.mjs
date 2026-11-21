@@ -1,5 +1,7 @@
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
+import {validateWardensSourceCorrection} from './wardens-source-review.mjs';
 /** Reviewed source joins for physical import. The factual owner stays unchanged.
- * These four explicit corrections are not aliases, new sources or gameplay rules.
+ * Explicit corrections are not aliases, new sources or gameplay rules.
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -12,7 +14,7 @@ const modelPairs=[
  ['composition-sm-dc1b983be26846bf','model-sm-eaba389795c342e3','ORDINARY_VETERAN']
 ];
 const scopeIds=['enhancement-sm-1599eafe5bab4e91','enhancement-sm-32c4e009e6c84003'];
-const vanguard='unit-sm-74c53544aa694147',dainal='composition-sm-11f249c8e3af4b85';
+const vanguard='unit-sm-74c53544aa694147';
 const sectionIds=['section-sm-d342cadab9a64c24','section-sm-c6194f07927c474c'];
 const norm=value=>String(value).replace(/\s+/gu,' ').trim();
 const sameSet=(actual,expected,label)=>assert.deepEqual([...actual].sort(),[...expected].sort(),label);
@@ -22,7 +24,7 @@ const ordered=value=>Array.isArray(value)?value.map(ordered):value&&typeof value
 export function validateSpaceMarinesRosterCorrections(review,{facts=read('./generated/effective.json')}={}){
  const before=JSON.stringify(facts),index=new Map(facts.entities.map(e=>[e.id,e]));
  assert.equal(review.schema,'space-marines-v2-reviewed-roster-source-corrections/v1');
- assert.equal(review.corrections.length,4,'Unreviewed physical source correction');
+ assert.equal(review.corrections.length,5,'Unreviewed physical source correction');
  const addresses=read('./source-bindings.json').recordAddresses;
  const enrollment=read('./sources/enrollment.json').artifacts;
  const rawSeen=new Set();
@@ -33,7 +35,7 @@ export function validateSpaceMarinesRosterCorrections(review,{facts=read('./gene
   assert.equal(row.sourceEntityId,entity.sourceEntityId,'Source occurrence changed');
   assert.equal(row.kind,entity.kind,'Source kind changed');
   assert.equal(row.parentId,entity.parentId,'Source parent changed');
-  assert.deepEqual(row.source,entity.provenance,'Source provenance changed');
+  assert.deepEqual(row.source,sourceSnapshot(entity, {book:facts}),'Source provenance changed');
   const accepted=enrollment.find(a=>a.path===row.source.document);
   assert.ok(accepted,'Unaccepted source document');assert.equal(accepted.sha256,row.source.sha256,'Source SHA changed');
   if(!rawSeen.has(accepted.path)){
@@ -54,9 +56,12 @@ export function validateSpaceMarinesRosterCorrections(review,{facts=read('./gene
  }
  const mappings=review.corrections.filter(r=>r.type==='SOURCE_CONTEXTUAL_COMPOSITION_PROFILE_BINDING');
  const scopes=review.corrections.filter(r=>r.type==='SOURCE_REVIEWED_PHYSICAL_ASSIGNMENT_SCOPE');
+ const corroborated=review.corrections.filter(r=>r.type==='SOURCE_CORROBORATED_COMPOSITION_PROFILE_BINDING');
+ assert.equal(corroborated.length,1,'Wardens must have one exact corroborated binding');
+ assert.equal(mappings.length+scopes.length+corroborated.length,review.corrections.length,'Unknown source correction type');
  sameSet(mappings.map(r=>r.compositionId),modelPairs.map(r=>r[0]),'Composition correction coverage changed');
  sameSet(scopes.map(r=>r.canonicalId),scopeIds,'Scope correction coverage changed');
- assert.equal(new Set(review.corrections.map(r=>r.id)).size,4,'Duplicate reviewed correction');
+ assert.equal(new Set(review.corrections.map(r=>r.id)).size,5,'Duplicate reviewed correction');
  const modelMappings=mappings.map(row=>{
   const expected=modelPairs.find(r=>r[0]===row.compositionId),[memberId,profileId,role]=expected;
   assert.equal(row.id,'sm-stage4c-reviewed-'+memberId);assert.equal(row.status,'SOURCE_CONFIRMED');
@@ -76,7 +81,7 @@ export function validateSpaceMarinesRosterCorrections(review,{facts=read('./gene
   sameSet(row.sourceProof.map(p=>p.canonicalId),[memberId,profileId,...sectionIds],'Source proof coverage changed');
   row.sourceProof.forEach(proof);
   const context=row.context;assert.equal(context.unitSourceId,owner.sourceEntityId);
-  assert.equal(context.unitPointer,owner.provenance.pointer);assert.equal(context.unitHeader,owner.data.title);
+  assert.equal(context.unitPointer,sourceSnapshot(owner, {book:facts}).pointer);assert.equal(context.unitHeader,owner.data.title);
   assert.equal(context.profileCount,2);sameSet(context.profileRoleSet,['SERGEANT','ORDINARY_VETERAN'],'Role context changed');
   sameSet(context.compositionMemberIds,owner.data.compositionMemberIds,'Composition context changed');
   assert.equal(context.statsAreCorroborationNotIdentityKey,true);
@@ -89,7 +94,7 @@ export function validateSpaceMarinesRosterCorrections(review,{facts=read('./gene
   assert.equal(profile.data.name,physicalRole);assert.equal(member.data.name,physicalRole+' with Jump Pack');
   return {memberId,profileId,evidence:[{entityId:memberId,path:['text']},{entityId:profileId,path:['name']},
    {entityId:vanguard,path:['title']},...sectionIds.map(entityId=>({entityId,path:['text']}))],
-   provenance:{...structuredClone(member.provenance),reviewId:row.id,reviewType:row.type}};
+   provenance:{...structuredClone(sourceSnapshot(member, {book:facts})),reviewId:row.id,reviewType:row.type}};
  });
  const scopeCorrections=scopes.map(row=>{
   const entity=proof(row.sourceProof),id=entity.id;
@@ -104,16 +109,12 @@ export function validateSpaceMarinesRosterCorrections(review,{facts=read('./gene
   assert.ok(row.sourceProof.selectedSourceText.includes('ADEPTUS ASTARTES unit only.'),'Reviewed source UNIT requirement missing');
   assert.equal(row.globalAliasesAdded,false);assert.equal(row.executableBindingChangeAuthorizedByThisEvidence,false);
   return {entityId:id,previousScope:'MODEL',scope:'UNIT',evidence:[{entityId:id,path:['text']},
-   {entityId:id,path:['eligibilityText']}],provenance:{...structuredClone(entity.provenance),reviewId:row.id,reviewType:row.type}};
+   {entityId:id,path:['eligibilityText']}],provenance:{...structuredClone(sourceSnapshot(entity, {book:facts})),reviewId:row.id,reviewType:row.type}};
  });
- assert.equal(review.unresolved.length,1);const unresolved=review.unresolved[0];
- assert.equal(unresolved.canonicalId,dainal);assert.equal(unresolved.status,'NOT_PROVEN','Dainal cannot be silently resolved');
- assert.equal(unresolved.candidateModelProfileId,'model-sm-1e6ba64c42ba4d79');unresolved.sourceProof.forEach(proof);
- const sourceMember=index.get(dainal),candidate=index.get(unresolved.candidateModelProfileId);
- assert.equal(sourceMember.data.name,'Dainal Kornelius');assert.equal(sourceMember.data.profileBindingStatus,'NOT_PROVEN');
- assert.equal(sourceMember.data.modelProfileId,null);assert.equal(candidate.data.name,'Dainal Komelius');
+ const wardens=validateWardensSourceCorrection(corroborated[0],{facts,index,proof});
+ assert.deepEqual(review.unresolved,[],'Unexpected unresolved source correction');
  assert.equal(JSON.stringify(facts),before,'Source review mutated factual owner');
- return {review:structuredClone(review),modelMappings,scopeCorrections};
+ return {review:structuredClone(review),modelMappings:[...modelMappings,wardens],scopeCorrections};
 }
 
 export function readSpaceMarinesRosterCorrections({facts=read('./generated/effective.json')}={}){

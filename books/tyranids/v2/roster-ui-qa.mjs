@@ -1,8 +1,12 @@
+import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {buildTyranidsContracts} from './rule-contract-build.mjs';
 import {createTyranidsBrowserRoster,createBrowserRoster} from './roster-boot.mjs';
+import {setTyranidsSourceChoice} from './roster-source-choices.mjs';
+import {findConditionValue} from '../../shared/rule-contract-v2/conditions.mjs';
 import {resolveImportedPoints} from './roster-points.mjs';
 import {prepareRosterPresentationCards,projectInstanceCards,projectPersonalBook,projectFormedUnitCards} from '../../shared/army-book-app-v2/personal.mjs';
 import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effect-expectations-qa.mjs';
@@ -47,8 +51,14 @@ for(const rule of book.entities.filter(entity=>['ENHANCEMENT','STRATAGEM'].inclu
 const mutant=service.snapshot();mutant.units[0].modelRows[0].sourceRuleReferenceIds=['datasheet-psychophage:rule-reference:2'];
 assert.throws(()=>createTyranidsBrowserRoster(book).load(mutant));
 assert.throws(()=>createTyranidsBrowserRoster({...book,bookId:'foreign'}));
+const payload=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url)));
+const fetchInputs=new Map([
+  [new URL('./generated/roster-runtime.json',import.meta.url).href,book],
+  [new URL('./generated/app-presentation.json',import.meta.url).href,payload]
+]);
 const loaded=await createBrowserRoster({fetch:async url=>{
-  assert.ok(url.pathname.endsWith('/generated/roster-runtime.json'));return {ok:true,json:async()=>book};}});
+  assert.ok(fetchInputs.has(url.href),'Unexpected Tyranids input URL: '+url.href);
+  return {ok:true,json:async()=>fetchInputs.get(url.href)};}});
 assert.equal(loaded.import(text).status,'READY');
 // Production Effective/Guide projection preserves UNIT inventory while leaving
 // unknown MODEL weapon ownership empty, independently for repeated units.
@@ -56,7 +66,6 @@ const aggregate=createTyranidsBrowserRoster(book),aggregateText='+ DETACHMENT: I
   '10x Termagants (60 pts): 10x Fleshborer, 10x Chitinous claws and teeth\n'+
   '10x Termagants (60 pts): 10x Termagant spinefists, 10x Chitinous claws and teeth\n';
 assert.equal(aggregate.import(aggregateText).status,'READY');
-const payload=JSON.parse(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url)));
 const cards=prepareRosterPresentationCards(new Map(payload.cards.map(card=>[card.id,card])),payload.rosterPresentation);
 for(const [n,expected]of [[0,['datasheet-termagants:weapon:1','datasheet-termagants:weapon:7']],
   [1,['datasheet-termagants:weapon:6','datasheet-termagants:weapon:7']]]){
@@ -73,7 +82,7 @@ assert.equal(JSON.stringify(book),before,'Presentation adapter must not mutate c
 
 // Independent accepted source -> explicit physical decision -> executor ->
 // actual production Effective/Guide projector. No invented NR choice token.
-export const trygonChoiceExpectation=JSON.parse(fs.readFileSync(new URL('./source-choice-expectations.json',import.meta.url))).cases[0];
+export const trygonChoiceExpectation=parseSourceFixtureJSON(fs.readFileSync(new URL('./source-choice-expectations.json',import.meta.url))).cases[0];
 const ce=trygonChoiceExpectation,ruleId=ce.source.canonicalId,optionId=ce.selection.selectedOptionId;
 const rawSource=fs.readFileSync(new URL('../../../'+ce.source.document,import.meta.url));
 assert.equal(createHash('sha256').update(rawSource).digest('hex').toUpperCase(),ce.source.sha256);
@@ -91,7 +100,7 @@ assert.ok(selected.projection.units.slice(0,2).every(u=>!u.keywords.includes('CH
 assert.equal(selected.sourceChoices('parsed-unit-3').length,0);
 function verifyChoice(s,candidate=book,{presentationLost=false}={}) {
   const entity=candidate.entities.find(e=>e.id===ruleId),fact=book.entities.find(e=>e.id===ruleId);
-  assert.equal(entity.parentId,ce.source.ownerId);assert.equal(entity.data.text,ce.source.quote);assert.deepEqual(entity.provenance,fact.provenance);
+  assert.equal(entity.parentId,ce.source.ownerId);assert.equal(entity.data.text,ce.source.quote);assert.deepEqual(sourceSnapshot(entity),sourceSnapshot(fact));
   const effect=entity.ruleContract?.clauses.find(c=>c.id===ce.expectedClauseId)?.rosterEffects[0];assert.ok(effect,'Choice binding required');
   assert.equal(effect.conditions.find(c=>c.binding==='TARGET').predicate.args.find(p=>p.predicate==='FIELD').arguments.equals,optionId,'Explicit selection gate');
   const state=s.snapshot(),u=state.units[0],v=s.effective(u.instanceId),other=s.projection.units[1];
@@ -109,11 +118,22 @@ function verifyChoice(s,candidate=book,{presentationLost=false}={}) {
   assert.equal(cards.get(ruleId).fields.find(f=>f.source.path==='/text').value,ce.source.quote,'Full Guide source text');
   const decision=u.modelRows[0].selections.find(row=>row.canonicalOptionIds?.includes(optionId));
   assert.equal(decision.sourceModelScopeId,v.profiles[0].scopeId);assert.equal(decision.sourceChoiceReference.entityId,ruleId);
-  assert.deepEqual(decision.sourceProvenance,entity.provenance);
+  assert.deepEqual(sourceSnapshot(decision,{slot:'sourceProvenance'}),sourceSnapshot(entity));
   assert.ok(v.applied.filter(a=>a.ruleId===ruleId).every(a=>a.targetInstanceId===u.instanceId));
 }
 selected.setSourceChoice('parsed-unit-1',ruleId,optionId);verifyChoice(selected);
 const selectedSnapshot=selected.snapshot(),selectedProjection=selected.projection;
+// A source-valid new choice reaches the late attachment validator. Failure
+// must restore both the physical state and its enriched condition context.
+const selectedContext=selected.context('parsed-unit-1','UNIT');
+assert.equal(findConditionValue(selectedContext.roster,{key:'selectedSourceChoice',ruleId}).value,optionId);
+const lateFailure=setTyranidsSourceChoice(book,selectedSnapshot,'parsed-unit-1',ruleId,null);
+lateFailure.attachments=[{leaderInstanceId:'parsed-unit-1',bodyguardInstanceId:'parsed-unit-2',role:'LEADER'}];
+assert.throws(()=>selected.load(lateFailure),/attachment|Leader|leader/i);
+assert.deepEqual(selected.snapshot(),selectedSnapshot,'Late failure restores physical roster');
+assert.deepEqual(selected.projection,selectedProjection,'Late failure restores execution projection');
+assert.deepEqual(selected.context('parsed-unit-1','UNIT'),selectedContext,'Late failure restores enriched context');
+console.log('Tyranids late-load rollback and enriched context: PASS');
 const modelFacts=unit=>unit.profiles.map(p=>({profile:p.profile,keywords:p.keywords,abilities:p.abilities,weapons:p.weapons.map(w=>w.data)}));
 assert.deepEqual(modelFacts(selectedProjection.units[0]),modelFacts(choiceBaseline.units[0]),'UNIT choice does not change MODEL or weapon facts');
 assert.deepEqual(selectedProjection.units[1],choiceBaseline.units[1],'Independent Trygon unchanged');
@@ -143,7 +163,7 @@ for(const [name,mutate]of [
   ['missing-field',s=>{delete s.units[0].selectedSourceChoiceIds;}],
   ['wrong-option',s=>{s.units[0].selectedSourceChoiceIds=['unknown-choice'];}],
   ['wrong-model',s=>{s.units[0].modelRows[0].selections.at(-1).sourceModelScopeId=s.units[1].instanceId;}],
-  ['wrong-provenance',s=>{s.units[0].modelRows[0].selections.at(-1).sourceProvenance.sourceId='foreign';}],
+  ['wrong-provenance',s=>{sourceFixture(s.units[0].modelRows[0].selections.at(-1)).sourceProvenance.sourceId='foreign';}],
   ['duplicate-choice',s=>{s.units[0].modelRows[0].selections.push(structuredClone(s.units[0].modelRows[0].selections.at(-1)));}],
   ['foreign-recipient',s=>{s.units[2].selectedSourceChoiceIds=s.units[0].selectedSourceChoiceIds;s.units[2].modelRows[0].selections.push(s.units[0].modelRows[0].selections.pop());delete s.units[0].selectedSourceChoiceIds;}]
 ]) {const s=structuredClone(selectedSnapshot);mutate(s);assert.throws(()=>selected.load(s),name);assert.deepEqual(selected.snapshot(),selectedSnapshot,'Invalid load preserves previous roster');choiceNegatives.push(name);}

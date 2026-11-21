@@ -1,9 +1,15 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
 import {buildImportBindings} from './roster-import-bindings.mjs';
+import {loadRuntimeJSON} from '../../shared/source-refs-v2/source-catalog.mjs';
+const modelNames=await loadRuntimeJSON(new URL('./model-name-aliases.json',import.meta.url));
+
+/** Book title and the catalogue name in sources/bsdata-chaos-space-marines-11e.json. */
+export const factionIdentityLabels=Object.freeze(['Chaos Space Marines','Chaos - Chaos Space Marines']);
 
 /** Import foundation only. Attachment/effect/guide services are not connected. */
 export function createCSMRosterImport(book) {
-  return createRosterImportService(book,buildImportBindings(book));
+  return createRosterImportService(book,{...buildImportBindings(book,{modelNames}),factionIdentityLabels,
+    factionDisplayName:factionIdentityLabels[0],gateAllFactionHeaders:true,allowNormalizedEmptyFaction:true});
 }
 
 /** Browser/Node consumer entry, using the same import-only service as other books. */

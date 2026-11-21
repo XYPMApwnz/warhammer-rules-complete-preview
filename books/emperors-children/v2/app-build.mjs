@@ -1,3 +1,7 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
+import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
+import {createECRuleSchema} from './rule-contract-schema.mjs';
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Disposable EC presentation. Existing effective facts and central MFM own all values. */
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import {buildECRosterAttachmentBook} from './roster-attachment-build.mjs';
@@ -6,6 +10,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {buildECContracts} from './rule-contract-build.mjs';
 import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {projectBookPresentation} from '../../shared/army-book-app-v2/book-v1-projection.mjs';
 import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
@@ -13,7 +18,7 @@ import {buildGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 
 const clone=structuredClone;
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 // Exact accepted reference labels bind existing owners, never resolve by similarity.
 const references={
   'Thrill Seekers':['army-rule-thrill-seekers','ARMY RULES',{}],
@@ -42,12 +47,13 @@ const visible={
 };
 
 export function buildApp(built=buildECContracts(),{coreCatalog=createEffectiveCoreCatalog()}={}) {
+  built={...built,book:prepareSourceProducer(built.book)};
   const original=JSON.stringify(built.book),facts=read('./generated/effective.json');
   const mfm=consumeMfm(facts.entities),records=new Map();
   const own=id=>{if(!records.has(id)){const record=resolveOwnedFact(id);records.set(id,record);for(const child of [...record.qualifierIds||[],...record.enhancementCostIds||[]])own(child);}return records.get(id);};
   for(const part of ['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings','leaderEligibilityBindings','qualifierBindings'])for(const binding of mfm[part])own(binding.mfmRecordId);
   const model={...clone(built.book),currentness:{currentness:'CURRENT',lastReconciledSource:'Official EC Faction Pack v1.3 · 30 September 2026'},
-    mfm:{...clone(mfm),source:{label:'v1.6'},relations:[],eligibilityEvidenceBindings:[]}};
+    mfm:{...clone(mfm),source:{label:getCurrentMfmSource('emperors-children').version},relations:[],eligibilityEvidenceBindings:[]}};
   for(const entity of model.entities){
     if(['FAQ','ERRATA'].includes(entity.kind))entity.kind='SOURCE_ERRATUM';
     if(entity.kind==='DETACHMENT'){
@@ -55,7 +61,7 @@ export function buildApp(built=buildECContracts(),{coreCatalog=createEffectiveCo
       entity.data.ruleId=entity.data.ruleIds[0];
     }
   }
-  const payload=projectArmyBook(model,records,{title:"Emperor’s Children",edition:'11th Edition'}),cards=new Map(payload.cards.map(card=>[card.id,card]));
+  const payload=prepareSourceProducer(projectArmyBook(model,records,{title:"Emperor’s Children",edition:'11th Edition'})),cards=new Map(payload.cards.map(card=>[card.id,card]));
   for(const entity of model.entities){
     const card=cards.get(entity.id),paths=new Set(visible[card.kind]||[]);
     card.provenance=clone(entity.provenance);card.fieldProvenance=clone(entity.fieldProvenance||{});
@@ -105,7 +111,7 @@ export function buildApp(built=buildECContracts(),{coreCatalog=createEffectiveCo
     unitId:binding.scopeOwnerId,itemId,optionIds:binding.optionSourceIds||[],costRecordId:binding.mfmRecordId})));
   payload.datasheetPresentation=buildDatasheetPresentation(model,{units:{}},{bindings:{optionCosts},records});
   Object.assign(payload.datasheetPresentation,{rosterEffectSummary:false,rosterKeywordLabel:'Keywords',basePlacement:'composition',compactPointsLabels:true});
-  const glossary=buildGlossary({model,coreCatalog});
+  const glossary=prepareSourceProducer(buildGlossary({model,coreCatalog}));
   payload.cards.push(...glossary.coreCards);payload.glossary=glossary.index;
   const projected=new Map(payload.cards.map(card=>[card.id,card])),fields={};
   for(const entity of model.entities.filter(entity=>entity.kind==='RULE_REFERENCE')){
@@ -116,7 +122,7 @@ export function buildApp(built=buildECContracts(),{coreCatalog=createEffectiveCo
     fields[field.id]=[{start:0,end:field.value.length,targetId,group,parameters,...(targetId==='core-feel-no-pain'?{legacyValue:true}:{})}];
   }
   payload.datasheetPresentation.referenceBindings={schema:'army-book-app-v2/datasheet-reference-bindings/v1',fields};
-  payload.bookPresentation=projectBookPresentation(model,records);
+  payload.bookPresentation=prepareSourceProducer(projectBookPresentation(model,records));
   for(const entity of model.entities.filter(entity=>entity.data.referenceBindings)){
     const card=cards.get(entity.id);
     card.links=entity.data.referenceBindings.map(binding=>{
@@ -133,19 +139,17 @@ export function buildApp(built=buildECContracts(),{coreCatalog=createEffectiveCo
   payload.ruleContractIds=built.book.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id);
   // A book view lacks physical assignments and battle context. Unbound rules
   // remain visible as conditional, never as a fabricated compatible result.
-  const conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
-  payload.relatedRules={schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',
-    contextPolicy:{roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',
-    rows:model.entities.filter(entity=>entity.kind==='DATASHEET').flatMap(unit=>model.entities.filter(entity=>['ENHANCEMENT','STRATAGEM'].includes(entity.kind)).map(rule=>({
-      unitId:unit.id,ruleId:rule.id,kind:rule.kind,detachmentId:rule.parentId,...clone(conditional),selectedDetachment:clone(conditional)})))};
+  payload.relatedRules=buildUnboundBookRelatedRules(buildECRosterAttachmentBook().book,createECRuleSchema(),{
+    unitIds:model.entities.filter(e=>e.kind==='DATASHEET').map(e=>e.id),
+    ruleIds:model.entities.filter(e=>['ENHANCEMENT','STRATAGEM'].includes(e.kind)).map(e=>e.id)});
   payload.sourceEnrollment=clone(facts.sources);
   payload.attachmentAdjudications=clone(built.book.rosterAttachmentAdjudications);
   assert.equal(JSON.stringify(built.book),original,'Presentation changed its factual/contract owner');
-  return payload;
+  return finalizeSourceOutput(appendLibraryDataVersions(payload));
 }
 export function writeApp({check=false}={}) {
   assertBookSourceReview('emperors-children',{executionBook:buildECRosterAttachmentBook().book});
-  const payload=buildApp(),bytes=JSON.stringify(payload,null,2)+'\n',file=new URL('./generated/app-presentation.json',import.meta.url);
+  const payload=buildApp(),bytes=serializeSourceJSON(payload),file=new URL('./generated/app-presentation.json',import.meta.url);
   if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale EC presentation');else fs.writeFileSync(file,bytes);
   return payload;
 }

@@ -2,8 +2,12 @@
 import copy
 import json
 import shutil
-import tempfile
+import sys
 from pathlib import Path
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]/'tests/helpers'))
+from qa_temp import create_qa_temp_dir, qa_tmp_root
 from build import ROOT, SOURCE, build, read, verify_sources
 
 
@@ -13,18 +17,32 @@ def main():
     enrollment = read(here/'sources/enrollment.json')
     checks = []
     # Temporary files remain outside the repository; no current worktree bytes change.
-    temporary_root = (ROOT.parent/'qa-artifacts').resolve()
-    temporary_root.mkdir(exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix='ec-source-only-', dir=temporary_root) as directory:
+    temporary_root = qa_tmp_root()
+    with create_qa_temp_dir('ec-source-only-') as directory:
         isolated = Path(directory).resolve()
         if isolated == Path(isolated.anchor) or isolated.parent != temporary_root or not isolated.name.startswith('ec-source-only-'):
             raise ValueError('Unsafe temporary isolation path')
         for artifact in enrollment['artifacts']:
             target = isolated/artifact['path']; target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT/artifact['path'], target)
-        for name in ['identity-bindings.json', 'model-bindings.json', 'official-bindings.json', 'mfm-bindings.json', 'sources/enrollment.json', 'sources/source-census.json']:
+        for name in ['identity-bindings.json', 'model-bindings.json', 'official-updates.json', 'mfm-bindings.json', 'sources/enrollment.json', 'sources/source-census.json']:
             target = isolated/'books/emperors-children/v2'/name; target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(here/name, target)
+        # Shared executable code and validated passport routing are dependencies,
+        # not additional factual owners. Keep generated/legacy facts excluded.
+        config_path = 'books/emperors-children/book.config.json'
+        config = read(ROOT/config_path)
+        passport = config['passport']
+        code_inputs = ['package.json', config_path,
+                       'books/shared/tools/book-passport.mjs',
+                       'books/shared/official-updates-v1/book.mjs',
+                       'books/shared/official-updates-v1/apply.mjs']
+        code_inputs += [step['producer'] for step in passport['build']['steps']]
+        code_inputs += [row['step']['producer'] for row in passport['build']['postBuildSteps']]
+        code_inputs += [pin['reviewArtifact'] for pin in passport['update']['metadataPins']]
+        for relative in code_inputs:
+            target = isolated/relative; target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT/relative, target)
         assert not (isolated/'books/emperors-children/content').exists()
         assert not (isolated/'books/emperors-children/v2/generated').exists()
         assert not (isolated/'books/emperors-children/sources/emperors-children-effect-contracts.v1.json').exists()
@@ -59,7 +77,7 @@ def main():
         rejects('duplicate canonical identity', 'books/emperors-children/v2/identity-bindings.json', json_change(lambda value: value['bindings'].append(copy.deepcopy(value['bindings'][0]))))
         rejects('wrong source owner', 'books/emperors-children/v2/identity-bindings.json', json_change(lambda value: value['bindings'][1].update(ownerSourceId='datasheet-noise-marines')))
         rejects('MODEL recipient changed to Bodyguard', 'books/emperors-children/v2/model-bindings.json', json_change(lambda value: value['ruleScopeBindings'][0].update(compositionMemberSourceIds=['datasheet-tormentors:section:2:member:1'], modelProfileSourceIds=['datasheet-tormentors:profile:1'])))
-        rejects('official correction wrong canonical target', 'books/emperors-children/v2/official-bindings.json', json_change(lambda value: value['occurrences'][0]['patches'][0].update(targetId='detachment-carnival-of-excess:rule')))
+        rejects('official correction wrong canonical target', 'books/emperors-children/v2/official-updates.json', json_change(lambda value: value['entries'][0]['target'].update(id='detachment-carnival-of-excess:rule')))
         assert build(isolated) == baseline, 'Temporary mutation restoration changed the foundation'
     print(json.dumps({'status': 'PASS', 'checks': checks, 'repositorySourcesChanged': False, 'legacyOrGeneratedFactualInputs': 0}))
 

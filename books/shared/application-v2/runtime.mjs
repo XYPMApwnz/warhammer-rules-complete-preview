@@ -1,8 +1,11 @@
+import {loadSourceCatalog} from '../source-refs-v2/source-catalog.mjs';
 import {createLifecycle} from '../army-book-app-v2/lifecycle.mjs';
 import {mount} from '../army-book-app-v2/runtime.mjs';
 import {applicationRouteURL,resolveApplicationRoute} from './routes.mjs';
 import {createHomePresenter,createHomeBranding} from './home.mjs';
 import {mountGlobalGlossary} from './glossary.mjs';
+import {loadDetachmentPresentationSources} from '../army-book-app-v2/personal.mjs';
+import {createSourceMetadataLoader,createSourcesLine} from './source-metadata.mjs';
 
 /** Top-level destinations only. ArmyBookApp retains all book/roster/reference logic. */
 export function createApplication(document,{registry,entryURL=new URL('../../../v2/app.html',import.meta.url).href,root=document.body}={}) {
@@ -14,6 +17,8 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   const header=el('header','v2-primary-header');
   const brand=createHomeBranding(document,applicationRouteURL(entryURL,{destination:'HOME'}));
   const home=createHomePresenter({document,registry,entryURL});
+  const sourceMetadata=typeof view.fetch==='function'?createSourceMetadataLoader({fetch:view.fetch.bind(view)}):null;
+  let homeSourceMetadata=null;
   const primary=el('nav','v2-primary-nav');primary.dataset.v2PrimaryNav='';primary.setAttribute('aria-label','Application navigation');
   const moduleRoot=el('div','v2-module-root');moduleRoot.dataset.v2MountRoot='';
   const style=el('link');style.rel='stylesheet';style.href=new URL('./shell.css',import.meta.url).href;document.head.append(style);
@@ -74,9 +79,14 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
       {destination:roster?'ROSTER':'ARMY_BOOK',bookId:book.id,registryId:book.id},book.id));
     parent.append(grid);
   }
-  function renderHome(route) {
+  async function renderHome(route) {
     if(route.destination==='ROSTER') {bookChoices(page('Roster','Choose an Army Book to import your New Recruit roster.'),{roster:true});return;}
-    moduleRoot.replaceChildren(home.render(route));
+    const main=home.render(route,{sourceMetadata:homeSourceMetadata});moduleRoot.replaceChildren(main);
+    if(homeSourceMetadata||!sourceMetadata)return;
+    let line;
+    try{homeSourceMetadata=await sourceMetadata.global();line=createSourcesLine(document,homeSourceMetadata);}
+    catch{line=el('p','v2-sources-line','Source information unavailable. Reload to try again.');line.dataset.v2SourcesUnavailable='';}
+    if(lifecycle.active&&main.isConnected&&!main.querySelector('[data-v2-sources-line]'))main.querySelector('.library > .section-head')?.after(line);
   }
   async function dispatch(event) {
     if(!lifecycle.active)return;
@@ -162,16 +172,23 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
     }
     if(route.module&&activeBookId===route.bookId&&activeModule){++generation;rememberRenderedLocation();return activeModule;}
     const token=++generation;
-    if(!route.module){stopModule();renderHome(route);rememberRenderedLocation();view.scrollTo({top:0,behavior:'instant'});return;}
+    if(!route.module){stopModule();await renderHome(route);if(!lifecycle.active||token!==generation)return;rememberRenderedLocation();view.scrollTo({top:0,behavior:'instant'});return;}
     const registration=registry.get(route.bookId);
     try {
       if(!await transitionAllowed(token))return activeModule;
-      const [payload,roster]=await Promise.all([registration.loadPayload(),registration.createRoster?.()]);
+      // Source identities are needed by native factories, not by Home/Core/Glossary.
+      await loadSourceCatalog({fetch:view.fetch?.bind(view)});
+      if(!lifecycle.active||token!==generation)return activeModule;
+      const presentation=registration.loadPayload();
+      const [payload,roster,bookSourceMetadata,coreSourceMetadata]=await Promise.all([presentation,registration.createRoster?.({presentation}),
+        sourceMetadata?.book(registration.id).catch(()=>null),sourceMetadata?.core().catch(()=>null)]);
+      const presentationRuleSources=roster?await loadDetachmentPresentationSources({payload,assetBaseURL:registration.assetBaseURL,fetch:view.fetch?.bind(view)}):new Map();
       if(!await transitionAllowed(token,startedOnline))return activeModule;
       if(payload.book?.id!==registration.id)throw new TypeError('Book registry identity mismatch');
       stopModule();
       moduleRoot.replaceChildren();
-      activeModule=mount(document,payload,{root:moduleRoot,roster,styles:registration.styles,assetBaseURL:registration.assetBaseURL});
+      activeModule=mount(document,payload,{root:moduleRoot,roster,presentationRuleSources,styles:registration.styles,assetBaseURL:registration.assetBaseURL,
+        sourceMetadata:bookSourceMetadata,sourceMetadataUnavailable:Boolean(sourceMetadata&&!bookSourceMetadata),coreBattleSizes:coreSourceMetadata?.battleSizes||[]});
       activeBookId=registration.id;
       rememberRenderedLocation();
       await activeModule.rosterPanel?.ready;

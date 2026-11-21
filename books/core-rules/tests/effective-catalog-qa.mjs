@@ -18,11 +18,11 @@ const catalog=createEffectiveCoreCatalog({root:contentRoot});
 
 assert.equal(catalog.schema,'wh40k-effective-core-catalog/v1');
 assert.equal(catalog.mainRules.length,base.records.length,'effective main partition must cover every accepted base rule');
-assert.equal(catalog.errata.length,9,'effective errata partition must preserve seven Waha units plus two stronger GW-only identities');
-assert.equal(catalog.faqs.length,71,'effective FAQ partition must preserve 66 Waha units plus five stronger GW records');
+assert.equal(catalog.errata.length,10,'effective errata partition must preserve eight Waha units plus two stronger GW-only identities');
+assert.equal(catalog.faqs.length,78,'effective FAQ partition must preserve 73 Waha units plus five stronger GW records');
 assert.equal(catalog.universalUpdates.length,current.universalRulesUpdates.length,'effective URU partition must preserve every accepted update identity');
-assert.equal(catalog.sourceMappings.length,353,'every effective Waha source unit must have an explicit canonical mapping');
-assert.equal(catalog.wahaCorpusFingerprint,'7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F');
+assert.equal(catalog.sourceMappings.length,368,'every effective Waha source unit must have an explicit canonical mapping');
+assert.equal(catalog.wahaCorpusFingerprint,'2E39280BEB3D0C92F87F4F3DB231CA3BC40192C12575AF998E5D2A2DB684C14A');
 assert.equal(catalog.records.length,new Set(catalog.records.map(record=>record.id)).size,'effective Core IDs must be unique');
 validateEffectiveCoreCatalog(catalog);
 
@@ -54,11 +54,11 @@ for(const mapping of catalog.sourceMappings){
   assert(mapping.canonicalIds.length>0,`${mapping.sourceEffectiveId}: source unit has no canonical owner`);
   for(const id of mapping.canonicalIds)assert(catalog.getById(id),`${mapping.sourceEffectiveId}: unknown canonical owner ${id}`);
 }
-assert.equal(catalog.getByCode('18.07').sourceStructure.text.includes('AFTER MOVING'),true,'known Waha 18.07 anomaly must be preserved verbatim as operational source content');
+assert.equal(catalog.getByCode('18.07').sourceStructure.text.includes('AFTER MOVING'),true,'fresh Waha 18.07 After Moving sequence must be retained as operational source content');
 
 const duplicateOwnerBase=structuredClone(base);
 duplicateOwnerBase.records.find(record=>record.code==='01.02.03').text+='\n'+current.ruleOverrides.find(update=>update.code==='01.02.03').previousLine;
-assert.throws(()=>createEffectiveCoreCatalog({root:contentRoot,base:duplicateOwnerBase}),/(?:Duplicate official semantic owner|Ambiguous or missing official override anchor)/,'duplicated base/current semantics must fail closed');
+assert.throws(()=>createEffectiveCoreCatalog({root:contentRoot,base:duplicateOwnerBase}),/(?:Duplicate official semantic owner|Conflicting duplicate official semantic owner|Ambiguous or missing official override anchor)/,'duplicated base/current semantics must fail closed');
 
 const mainMutation=structuredClone(base);
 mainMutation.records.find(record=>record.code==='02.01').text+='\nSYNTHETIC MAIN PROPAGATION';
@@ -66,7 +66,10 @@ assert.match(createEffectiveCoreCatalog({root:contentRoot,base:mainMutation}).ge
 
 const overrideMutation=structuredClone(current);
 overrideMutation.ruleOverrides.find(update=>update.code==='01.02.03').currentLine+=' SYNTHETIC OVERRIDE PROPAGATION';
-assert.match(createEffectiveCoreCatalog({root:contentRoot,currentOfficial:overrideMutation}).getByCode('01.02.03').semanticContent,/SYNTHETIC OVERRIDE PROPAGATION/);
+const overrideBase=structuredClone(base);
+const declaredRevival=current.ruleOverrides.find(update=>update.code==='01.02.03');
+overrideBase.records.find(record=>record.code==='01.02.03').text=overrideBase.records.find(record=>record.code==='01.02.03').text.replace(declaredRevival.currentLine,declaredRevival.previousLine);
+assert.match(createEffectiveCoreCatalog({root:contentRoot,base:overrideBase,currentOfficial:overrideMutation}).getByCode('01.02.03').semanticContent,/SYNTHETIC OVERRIDE PROPAGATION/);
 
 const faqMutation=structuredClone(coreSource);
 faqMutation.faqs[0].answer+=' SYNTHETIC FAQ PROPAGATION';

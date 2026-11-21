@@ -1,3 +1,4 @@
+import {prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {buildGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 
 // Book-owned source-occurrence bindings. Labels remain canonical source facts;
@@ -44,7 +45,7 @@ const referenceParameters=Object.freeze({
  */
 export function buildPresentationReferences({model,cards,coreCatalog}) {
   if(!Array.isArray(model?.entities)||!Array.isArray(cards))throw new TypeError('Missing canonical presentation inputs');
-  const {coreCards,coreFactManifest,index}=buildGlossary({model,coreCatalog});
+  const {coreCards,coreFactManifest,index}=prepareSourceProducer(buildGlossary({model,coreCatalog}));
   const targets=new Map([...cards,...coreCards].map(card=>[card.id,card]));
   if(targets.size!==cards.length+coreCards.length)throw new Error('Duplicate canonical presentation identity');
   const fields={},entries={},seen=new Set();

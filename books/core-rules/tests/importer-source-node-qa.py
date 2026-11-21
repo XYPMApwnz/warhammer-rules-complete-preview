@@ -6,10 +6,11 @@ import io
 import json
 from pathlib import Path
 import sys
-import tempfile
 import unittest
 
 sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]/'tests/helpers'))
+from qa_temp import create_qa_temp_dir
 spec = importlib.util.spec_from_file_location(
     "core_importer", Path(__file__).resolve().parents[1] / "tools" / "import_wahapedia_11e.py"
 )
@@ -22,7 +23,7 @@ class SourceNodeIdentityGuard(unittest.TestCase):
     second = '<h3 id="Synthetic-Trigger">Synthetic trigger 13.02.01</h3><p>Conditional body.</p>'
 
     def import_records(self, fragments):
-        with tempfile.TemporaryDirectory(prefix="core-importer-source-node-") as directory:
+        with create_qa_temp_dir("core-importer-source-node-") as directory:
             source = Path(directory) / "source.html"
             output = Path(directory) / "output.json"
             source.write_text('<html><body>' + ''.join(fragments) + '</body></html>', encoding="utf-8")

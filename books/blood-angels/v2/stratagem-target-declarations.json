@@ -1,0 +1,741 @@
+[
+  {
+    "ruleId": "stratagem-ba-0092ea51d02f44369b6c",
+    "title": "INSTANT OF GRACE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-ba-0801161ed85e4233a6f3",
+    "title": "RAGE-FUELLED RESPONSE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That DEATH COMPANY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "DEATH COMPANY"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That DEATH COMPANY unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That DEATH COMPANY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That DEATH COMPANY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-ba-128d5a759fda4857bb70",
+    "title": "BLINDING BLURS OF VENGEANCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That SANGUINARY GUARD unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_ID",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "id": "unit-ba-5981fb6513b9436487f0"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That SANGUINARY GUARD unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That SANGUINARY GUARD unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That SANGUINARY GUARD unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-ba-2ae63b1c8da04a4a993f",
+    "title": "DEATH BEGETS VENGEANCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That enemy unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "ENEMY",
+      "selector": {
+        "predicate": "FIELD",
+        "subject": "UNIT",
+        "contextLevel": "BATTLE",
+        "arguments": {
+          "key": "battleConditionSatisfied",
+          "equals": true
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That enemy unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That enemy unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That enemy unit."
+      }
+    },
+    "reviewNote": "FALLBACK: enemy-only TARGET; no friendly-unit card is a proven target. Keep the requested CONDITIONAL fallback."
+  },
+  {
+    "ruleId": "stratagem-ba-4867f01da4154fdd86ad",
+    "title": "INEXORABLE VALOUR",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That SANGUINARY GUARD unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_ID",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "id": "unit-ba-5981fb6513b9436487f0"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That SANGUINARY GUARD unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That SANGUINARY GUARD unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That SANGUINARY GUARD unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-ba-4f0221041cb6437dbbfd",
+    "title": "STRIKE NOW FOR GLORY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-ba-99d5e441c2c84a5ea1c3",
+    "title": "NO BARRIER TO RETRIBUTION",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That DEATH COMPANY DREADNOUGHT unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DEATH COMPANY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That DEATH COMPANY DREADNOUGHT unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DREADNOUGHT"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That DEATH COMPANY DREADNOUGHT unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That DEATH COMPANY DREADNOUGHT unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That DEATH COMPANY DREADNOUGHT unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-ba-aad243ed03d34d61b84b",
+    "title": "JUDGEMENT OF THE GOLDEN HOST",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That SANGUINARY GUARD unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_ID",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "id": "unit-ba-5981fb6513b9436487f0"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That SANGUINARY GUARD unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That SANGUINARY GUARD unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That SANGUINARY GUARD unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-ba-ab678911cce14a2b8eb2",
+    "title": "MEASURED STRATEGIST",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES CHARACTER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES CHARACTER unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CHARACTER"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES CHARACTER unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES CHARACTER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES CHARACTER unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-ba-e3949b0e4fd545219bb0",
+    "title": "UNTO THE BURNING SKIES",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "ADEPTUS ASTARTES"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "JUMP PACK"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+                }
+              }
+            ]
+          },
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-ba-4ea9a8226a61470fa157"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+      }
+    },
+    "reviewNote": "THE SANGUINOR is an exact canonical named UNIT, not an accepted keyword. Static eligibility is that UNIT OR ADEPTUS ASTARTES JUMP PACK; unengaged remains battle context."
+  },
+  {
+    "ruleId": "stratagem-ba-e5b411516bb14ce38841",
+    "title": "FOCUSED FURY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-ba-f8a3f68c418a48679f2b",
+    "title": "IN THE SHADOW OF GREAT WINGS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES CHARACTER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES CHARACTER unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CHARACTER"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES CHARACTER unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES CHARACTER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES CHARACTER unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  }
+]

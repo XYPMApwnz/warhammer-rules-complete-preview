@@ -4,10 +4,12 @@ The accepted repository files and expected values are never edited. Mutation
 success means the existing producer rejects the corrupted enrollment/source.
 """
 from __future__ import annotations
-import copy, hashlib, importlib.util, json, shutil, sys, tempfile
+import copy, hashlib, importlib.util, json, shutil, sys
 from pathlib import Path
 
 sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]/'tests/helpers'))
+from qa_temp import create_qa_temp_dir
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 read = lambda p:json.loads(p.read_text(encoding='utf8'))
@@ -44,7 +46,7 @@ def main():
         damaged = copy.deepcopy(original['base'])
         change(damaged)
         rejected(name, lambda d=damaged:producer.validate(d))
-    with tempfile.TemporaryDirectory(prefix='ba-stage2a-source-mutations-') as name:
+    with create_qa_temp_dir('ba-stage2a-source-mutations-') as name:
         temp_root = Path(name)
         destination = temp_root/'books/blood-angels/v2'
         shutil.copytree(HERE,destination,ignore=shutil.ignore_patterns('__pycache__'))

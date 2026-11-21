@@ -1,13 +1,16 @@
+import {keywordField} from '../keyword-values.mjs';
 /** V2 identity/DOM adapter for the actual V1 Contents interaction core. */
 import {NavigationController} from './navigation-v1-controller.mjs';
 import {Highlighter} from './navigation-v1-targets.mjs';
+import {getSourceContext} from '../source-refs-v2/source-refs.mjs';
+import {coreStratagemCards} from './roster-labels.mjs';
 
 const categories=[['EPIC HERO','Epic Heroes'],['CHARACTER','Characters'],['BATTLELINE','Battleline'],
   ['DEDICATED TRANSPORT','Dedicated Transports'],['FORTIFICATION','Fortifications'],['INFANTRY','Infantry'],
   ['BEAST','Beasts'],['VEHICLE','Vehicles'],['MONSTER','Monsters'],['MOUNTED','Mounted'],['SWARM','Swarms']];
 const list=value=>Array.isArray(value)?value:[];
-const currentRelation=relation=>relation?.certainty==='current'&&relation?.provenance?.kind==='explicit-roster-attachment';
-const keywordsFor=unit=>new Set(list(unit?.intrinsicKeywords).map(value=>String(value).trim().toUpperCase()));
+const currentRelation=relation=>relation?.certainty==='current'&&getSourceContext(relation).kind==='explicit-roster-attachment';
+const keywordsFor=unit=>new Set(list(keywordField(unit, "intrinsicKeywords")).map(value=>String(value).trim().toUpperCase()));
 // Actual V1 presentation ordering; its inputs below are adapted solely from V2.
   function physicalRosterOrder(game,catalog){
     const catalogOrder=new Map(list(catalog.units).map((unit,index)=>[unit.id,index])),catalogById=new Map(list(catalog.units).map(unit=>[unit.id,unit]));
@@ -27,8 +30,7 @@ const keywordsFor=unit=>new Set(list(unit?.intrinsicKeywords).map(value=>String(
     units.filter(unit=>unit.isCharacter&&!unit.isEpic&&unattached(unit)).sort(compare).forEach(emit);
     components.filter(component=>!component.epic).sort((a,b)=>componentOrder(a)-componentOrder(b)).forEach(emitComponent);
     units.sort(compare).forEach(emit);
-    const copies=new Map();for(const unit of units.sort((a,b)=>a.physicalOrder-b.physicalOrder)){if(!copies.has(unit.targetId))copies.set(unit.targetId,[]);copies.get(unit.targetId).push(unit.instanceId);}
-    return result.map(unit=>{const peers=copies.get(unit.targetId)||[],ordinal=peers.indexOf(unit.instanceId)+1;return{...unit,label:peers.length>1?`${unit.title} #${ordinal}`:unit.title,navigationAttachment:attachmentByInstance.get(unit.instanceId)||null};});
+    return result.map(unit=>({...unit,navigationAttachment:attachmentByInstance.get(unit.instanceId)||null}));
   }
 
 
@@ -58,7 +60,7 @@ export function projectContents(payload,state=null,personal=null){
     check(state?.units?.length&&state.detachmentIds?.length,'Imported roster context unavailable.');
     const selected=[...new Set(state.detachmentIds)];
     check(selected.every(id=>record(id).kind==='DETACHMENT'),'Unresolved selected Detachment.');
-    const physical=new Map(personal.instances.map(entry=>[entry.instanceId,leaf(entry.id,entry.title,entry.instanceId)]));
+    const physical=new Map(personal.instances.map(entry=>[entry.instanceId,{...leaf(entry.id,entry.title,entry.instanceId),warlord:state.warlordInstanceId===entry.instanceId}]));
     check(physical.size===state.units.length&&state.units.every(unit=>physical.has(unit.instanceId)),'Missing physical Contents identity.');
     const membership=new Map(),edges=new Map();
     for(const edge of state.attachments||[]){
@@ -76,12 +78,18 @@ export function projectContents(payload,state=null,personal=null){
       const bodyguard=membership.get(id)||(edges.has(id)?id:null);
       if(bodyguard){
         check(!membership.has(bodyguard),'Cyclic Contents attachment.');
-        const members=[...edges.get(bodyguard).map(leader=>({...emit(leader),attachmentRole:'leader'})),{...emit(bodyguard),attachmentRole:'bodyguard'}];
+        const attached=edges.get(bodyguard).map(id=>({id,edge:state.attachments.find(edge=>edge.leaderInstanceId===id)}));
+        attached.sort((a,b)=>Number(['SUPPORT','SUPPORT_EXCEPTION'].includes(a.edge.role))-Number(['SUPPORT','SUPPORT_EXCEPTION'].includes(b.edge.role)));
+        const members=[{...emit(bodyguard),attachmentRole:'bodyguard'},...attached.map(({id,edge})=>({...emit(id),attachmentRole:['SUPPORT','SUPPORT_EXCEPTION'].includes(edge.role)?'support':'leader'}))];
         physicalNodes.push({attachmentGroup:bodyguard,members});
       }else physicalNodes.push(emit(id));
     }
     check(emitted.size===physical.size,'Unaccounted physical Contents entry.');
-    return {nodes,groups,roots:[branch('nav:army-rules','Army Rule',army),branch('nav:detachments','Detachments',selected.map(detachment)),...physicalNodes],scope:'ROSTER'};
+    const strata=selected.map(id=>branch('nav:stratagems:'+id,record(id).title,
+      (record(id).children||[]).filter(child=>record(child).kind==='STRATAGEM').map(id=>leaf(id))));
+    strata.push(branch('nav:core-stratagems','Core Stratagems',coreStratagemCards(cards).map(card=>leaf(card.id))));
+    return {nodes,groups,roots:[branch('nav:army-rules','Army Rule',army),branch('nav:detachments','Detachments',selected.map(detachment)),
+      branch('nav:stratagems','Stratagems',strata),branch('nav:units','Units',physicalNodes,personal.instances.map(entry=>entry.route))],scope:'ROSTER'};
   }
   const roots=[branch('start','Start',[],[])];
   if(army.length)roots.push(branch('nav:army-rules','Army Rule',army));
@@ -103,12 +111,35 @@ export function projectContents(payload,state=null,personal=null){
   return {nodes,groups,roots,scope:'FULL'};
 }
 
+/** A geometry pass resolves many repeated targets against one current DOM.
+ * Keep the original first-match order and heading/physical/canonical priority.
+ * The caller discards this lookup as soon as that single pass finishes.
+ */
+export function createContentsSectionLookup(main,model) {
+  const headings=new Map(),instances=new Map(),cards=new Map();
+  const first=(map,key,node)=>{if(key!==undefined&&!map.has(key))map.set(key,node);};
+  for(const node of main.querySelectorAll('[data-contents-target],[data-roster-instance-id],[data-card-id]')){
+    first(headings,node.dataset.contentsTarget,node);
+    first(instances,node.dataset.rosterInstanceId,node);
+    first(cards,node.dataset.cardId,node);
+  }
+  const start=main.querySelector('.v2-hero')||main;
+  return id=>{
+    if(id==='start')return start;
+    const heading=headings.get(id);if(heading)return heading;
+    const node=model.nodes.get(id);
+    if(node?.instanceId)return instances.get(node.instanceId)||null;
+    return cards.get(model.groups.get(id)?.[0]||node?.canonicalId||id)||null;
+  };
+}
+
 export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifecycle}={}){
   const originalNodes=[...elements.tree.childNodes],originalScope=elements.tree.getAttribute('data-scope');
   let destroyed=false,removeParentCleanup;
   const make=(tag,className,text)=>{const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;};
-  let model={nodes:new Map(),groups:new Map(),roots:[]},signature='',controller;
+  let model={nodes:new Map(),groups:new Map(),roots:[]},signature='',controller,geometrySection=null;
   const section=id=>{
+    if(geometrySection)return geometrySection(id);
     if(id==='start')return elements.main.querySelector('.v2-hero')||elements.main;
     const heading=[...elements.main.querySelectorAll('[data-contents-target]')].find(node=>node.dataset.contentsTarget===id);if(heading)return heading;
     const node=model.nodes.get(id);
@@ -122,6 +153,8 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
   };
   const highlighter=new Highlighter({view:document.defaultView||window});
   controller=new NavigationController({elements,highlighter,section,resolve,
+    beforeGeometry:()=>{geometrySection=createContentsSectionLookup(elements.main,model);},
+    afterGeometry:()=>{geometrySection=null;},
     kind:id=>model.nodes.get(id)?.children.length?'branch':'target',
     itemId:id=>{const seen=new Set();while(id&&!model.nodes.has(id)&&!seen.has(id)){seen.add(id);id=bridge.parentId?.(id);}return id;},
     tracking:()=>!document.querySelector('dialog[open]')&&!elements.main.inert&&(bridge.tracking?.()??true),
@@ -136,11 +169,13 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
   });
   const build=(entry,depth=1)=>{
     if(entry.attachmentGroup){
-      const group=make('li','roster-attachment-group'),members=make('ul','roster-attachment-members');group.dataset.rosterAttachmentGroup=entry.attachmentGroup;
-      entry.members.forEach(member=>{const node=build(member,1);node.dataset.rosterAttachmentGroup=entry.attachmentGroup;node.dataset.rosterAttachmentRole=member.attachmentRole;members.append(node);});group.append(members);return group;
+      const group=make('li','roster-attachment-group'),members=make('ul','toc-branch roster-attachment-members');group.dataset.rosterAttachmentGroup=entry.attachmentGroup;
+      entry.members.forEach(member=>{const node=build(member,depth);node.dataset.rosterAttachmentGroup=entry.attachmentGroup;node.dataset.rosterAttachmentRole=member.attachmentRole;members.append(node);});group.append(members);return group;
     }
     const node=make('li');node.dataset.navId=entry.id;node.dataset.navDepth=String(depth);
     const row=make('div','toc-row'+(entry.children.length?'':' no-toggle')),label=make('button','toc-label',entry.label);label.type='button';
+    if(entry.attachmentRole&&entry.attachmentRole!=='bodyguard')label.prepend(make('span','roster-member-arrow','↳ '));
+    if(entry.warlord){const crown=make('span','roster-warlord',' ♛');crown.setAttribute('role','img');crown.setAttribute('aria-label','Warlord');label.append(crown);}
     label.dataset.navTarget=entry.id;label.dataset.targetId=entry.id;if(entry.searchResult)label.classList.add('v2-search-result');
     if(entry.canonicalId)label.dataset.canonicalId=entry.canonicalId;
     if(entry.instanceId){label.dataset.rosterInstance=entry.instanceId;label.dataset.rosterNavInstanceId=entry.instanceId;}
@@ -167,6 +202,9 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
         const open=new Set([...elements.tree.querySelectorAll('[data-nav-id]')].filter(node=>node.querySelector(':scope > .toc-branch')?.hidden===false).map(node=>node.dataset.navId));
         signature=nextSignature;elements.tree.replaceChildren(...next.roots.map(entry=>build(entry)));controller.indexNavigationItems();controller.activeButtons=new Set();
         for(const item of controller.items)if(open.has(item.node.dataset.navId))controller.openBranch(item.node);
+        if(next.scope==='ROSTER'){
+          const units=controller.itemFor('nav:units');if(units)controller.openBranch(units.node);
+        }
       }
       elements.tree.dataset.scope=next.scope;
       if(id&&controller.itemFor(id))controller.activate(id,{instanceId:controller.itemFor(id).instanceId,keepVisible:!controller.mobile||controller.state.drawer});

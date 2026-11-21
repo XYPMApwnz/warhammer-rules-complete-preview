@@ -1,6 +1,6 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
@@ -11,8 +11,7 @@ const directory=path.dirname(fileURLToPath(import.meta.url));
 let census;
 export function staticStratagemSourceCensus() {
   if (!census) {
-    const bundled=path.join(os.homedir(),'.cache','codex-runtimes','codex-primary-runtime','dependencies','python','python.exe');
-    const python=process.env.PYTHON||(fs.existsSync(bundled)?bundled:'python3');
+    const python=resolveQaPython();
     census=JSON.parse(execFileSync(python,['-X','utf8',path.join(directory,'stratagem-static-source-qa.py')],{encoding:'utf8'}));
   }
   return census;

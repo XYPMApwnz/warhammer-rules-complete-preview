@@ -1,0 +1,169 @@
+[
+  {
+    "ruleId": "detachment-rule-da-40ccb5dde8fa45a89798",
+    "clauseId": "review/detachment-rule-da-40ccb5dde8fa45a89798/text/17:145",
+    "field": [
+      "text"
+    ],
+    "quote": "Attacks that target friendly ADEPTUS ASTARTES INFANTRY/MOUNTED units with a S greater than that unit’s T have -1 to wound rolls.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ALL",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "ADEPTUS ASTARTES"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Dutiful Tenacity\nAttacks that target friendly ADEPTUS ASTARTES INFANTRY/MOUNTED units with a S greater than that unit’s T have -1 to wound rolls.\nRestrictions: Your army can include DARK ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        },
+        {
+          "op": "ANY",
+          "args": [
+            {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "arguments": {
+                "keyword": "INFANTRY"
+              },
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Dutiful Tenacity\nAttacks that target friendly ADEPTUS ASTARTES INFANTRY/MOUNTED units with a S greater than that unit’s T have -1 to wound rolls.\nRestrictions: Your army can include DARK ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+              }
+            },
+            {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "arguments": {
+                "keyword": "MOUNTED"
+              },
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Dutiful Tenacity\nAttacks that target friendly ADEPTUS ASTARTES INFANTRY/MOUNTED units with a S greater than that unit’s T have -1 to wound rolls.\nRestrictions: Your army can include DARK ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-da-40ccb5dde8fa45a89798",
+    "clauseId": "review/detachment-rule-da-40ccb5dde8fa45a89798/text/146:279",
+    "field": [
+      "text"
+    ],
+    "quote": "Restrictions: Your army can include DARK ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army composition restriction, not a UNIT effect recipient."
+  },
+  {
+    "ruleId": "detachment-rule-da-6a259c00bc9f4bf498ee",
+    "clauseId": "review/detachment-rule-da-6a259c00bc9f4bf498ee/text/137:270",
+    "field": [
+      "text"
+    ],
+    "quote": "Restrictions: Your army can include DARK ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army composition restriction, not a UNIT effect recipient."
+  },
+  {
+    "ruleId": "detachment-rule-da-e82b128e971543ed97fc",
+    "clauseId": "review/detachment-rule-da-e82b128e971543ed97fc/text/13:61",
+    "field": [
+      "text"
+    ],
+    "quote": "In your Command phase, you can use this ability.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Selects/marks an objective; no UNIT recipient in this setup clause."
+  },
+  {
+    "ruleId": "detachment-rule-da-e82b128e971543ed97fc",
+    "clauseId": "review/detachment-rule-da-e82b128e971543ed97fc/text/62:94",
+    "field": [
+      "text"
+    ],
+    "quote": "If you do, select one objective.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Selects/marks an objective; no UNIT recipient in this setup clause."
+  },
+  {
+    "ruleId": "detachment-rule-da-e82b128e971543ed97fc",
+    "clauseId": "review/detachment-rule-da-e82b128e971543ed97fc/text/95:164",
+    "field": [
+      "text"
+    ],
+    "quote": "That objective is your vowed objective until your next Command phase.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Selects/marks an objective; no UNIT recipient in this setup clause."
+  },
+  {
+    "ruleId": "detachment-rule-da-e82b128e971543ed97fc",
+    "clauseId": "review/detachment-rule-da-e82b128e971543ed97fc/text/165:296",
+    "field": [
+      "text"
+    ],
+    "quote": "- Friendly DEATHWING INFANTRY unit’s attacks that target an enemy unit within range of your vowed objective have +1 to wound rolls.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "op": "ALL",
+      "args": [
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "DEATHWING"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Vowed Target\nIn your Command phase, you can use this ability. If you do, select one objective. That objective is your vowed objective until your next Command phase.\n- Friendly DEATHWING INFANTRY unit’s attacks that target an enemy unit within range of your vowed objective have +1 to wound rolls.\nRestrictions: Your army can include DARK ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        },
+        {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "arguments": {
+            "keyword": "INFANTRY"
+          },
+          "contextLevel": "STATIC",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Vowed Target\nIn your Command phase, you can use this ability. If you do, select one objective. That objective is your vowed objective until your next Command phase.\n- Friendly DEATHWING INFANTRY unit’s attacks that target an enemy unit within range of your vowed objective have +1 to wound rolls.\nRestrictions: Your army can include DARK ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ruleId": "detachment-rule-da-e82b128e971543ed97fc",
+    "clauseId": "review/detachment-rule-da-e82b128e971543ed97fc/text/297:430",
+    "field": [
+      "text"
+    ],
+    "quote": "Restrictions: Your army can include DARK ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army composition restriction, not a UNIT effect recipient."
+  }
+]

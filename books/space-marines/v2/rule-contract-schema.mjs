@@ -1,7 +1,8 @@
 /** Existing typed V2 applicability vocabulary; no Space Marines operations. */
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {createRosterConditionBinding} from '../../shared/roster-v2/condition-binding.mjs';
 
-export function createSpaceMarinesRuleSchema({bindContext=context=>context}={}){
+export function createSpaceMarinesRuleSchema({book,state,conditionInputs=[]}={}){
   const schema=createRuleContractSchema({stateFields:{
     attached:{contextLevel:'ROSTER',valueType:'boolean'},
     equipmentRequirementSatisfied:{contextLevel:'ROSTER',valueType:'boolean'},
@@ -11,7 +12,5 @@ export function createSpaceMarinesRuleSchema({bindContext=context=>context}={}){
     smPermanentAssaultSource:{contextLevel:'ROSTER',valueType:'boolean'},
     battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'}
   }});
-  return {...schema,
-    evaluatePredicate:(predicate,context)=>schema.evaluatePredicate(predicate,bindContext(context,predicate)),
-    evaluateRole:(role,conditions,context)=>schema.evaluateRole(role,conditions,bindContext(context))};
+  return createRosterConditionBinding({book,state,schema,inputs:conditionInputs});
 }

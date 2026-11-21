@@ -1,11 +1,12 @@
 /** Shared canonical roster compatibility view. No rule execution or inferred battle state. */
 import {evaluateRequiredRecipients,includeRecipientFeasibility,evaluateCompatibilityRole} from './compatibility-feasibility.mjs';
-import {enhancementOwnerContext} from './compatibility-context.mjs';
+import {enhancementOwnerContext,enhancementBearerEligible,epicHeroUnitIds,enhancementEligibilityState} from './compatibility-context.mjs';
 const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 export function projectRosterRelated({book,state,projection,context,evaluateRole,publicResult},instanceId,detachmentId=null) {
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   if (detachmentId && records.get(detachmentId)?.kind!=='DETACHMENT') throw new TypeError('Unresolved filter Detachment');
   const unit = projection.units.find(u=>u.instanceId===instanceId);if (!unit) throw new TypeError('Unresolved physical related context');
+  const epicOwner=epicHeroUnitIds(book).has(unit.canonicalUnitId);
   const rows = [];
   for (const rule of book.entities.filter(e=>['STRATAGEM','ENHANCEMENT'].includes(e.ruleContract?.kind))) {
     const contract=rule.ruleContract;
@@ -16,12 +17,12 @@ export function projectRosterRelated({book,state,projection,context,evaluateRole
       candidate.profiles.map(m=>context(candidate.instanceId,'MODEL',m.scopeId)):
       [context(candidate.instanceId,role.subject)]).filter(Boolean).map(context=>enhancementOwnerContext(contract,context));
     const states=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{
-      return any(roleContexts(unit,role).map(context=>evaluateCompatibilityRole(contract,role,context,
+      return any(roleContexts(unit,role).map(context=>!enhancementBearerEligible(contract,role,context,unit)?'FALSE':evaluateCompatibilityRole(contract,role,context,
         {evaluateRole,contextsForRole:primary=>projection.units.flatMap(candidate=>roleContexts(candidate,primary))})));
     });
     const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units,
       {book,evaluateRole,sourceInstanceId:instanceId,contextFor:(candidate,subject)=>context(candidate.instanceId,subject)});
-    const result=includeRecipientFeasibility(any(states),recipient);
+    const result=enhancementEligibilityState(contract.kind,epicOwner,includeRecipientFeasibility(any(states),recipient));
     if (result==='INVALID') throw new TypeError('Invalid roster-aware rule: '+rule.id);
     rows.push({unitId:unit.canonicalUnitId,instanceId,ruleId:rule.id,detachmentId:contract.detachmentId,kind:contract.kind,state:result,applicability:publicResult[result]});
   }

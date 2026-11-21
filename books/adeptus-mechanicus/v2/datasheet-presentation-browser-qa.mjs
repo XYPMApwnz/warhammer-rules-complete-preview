@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -9,7 +11,7 @@ import {fileURLToPath} from 'node:url';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const baseline='022790fe28a2ef474655ab9a27e8ace1b9800728';
-const out=process.env.ARMY_APP_V2_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'datasheet-presentation-'));
+const out=process.env.ARMY_APP_V2_SCREENSHOTS||createQaEvidenceDir('datasheet-presentation-');
 fs.mkdirSync(out,{recursive:true});
 const originals=new Map(['books/shared/army-book-app-v2/datasheet-v1.mjs','books/shared/army-book-app-v2/datasheet-v1.css']
   .map(name=>[name,execFileSync('git',['show',`${baseline}:${name}`],{cwd:repo,maxBuffer:2e6})]));
@@ -28,7 +30,7 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
 const require=createRequire(import.meta.url),{chromium}=require('playwright'),{PNG}=require('pngjs');
-const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
 const ready=async page=>{
   await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);
   await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);

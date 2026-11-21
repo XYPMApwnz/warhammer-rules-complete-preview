@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -6,7 +7,7 @@ import {calculateCacheRevision,writeCacheRevision,verifyCacheRevision} from '../
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
 
-const temp=fs.mkdtempSync(path.join(os.tmpdir(),'wh-cache-portability-'));
+const temp=createQaTempDir('wh-cache-portability-');
 const asset=path.join(temp,'asset.js');
 const binary=path.join(temp,'image.bin');
 const worker=path.join(temp,'service-worker.js');
@@ -93,7 +94,7 @@ try{
   writeCacheRevision({root:native});
   assert.equal(fs.readFileSync(path.join(native,'glossary/generated/cache-revision.js'),'utf8'),afterEolArtifact,'raw fingerprint/stamping regeneration is not byte deterministic');
 }finally{
-  fs.rmSync(temp,{recursive:true,force:true});
+  cleanupQaTempDir(temp);
 }
 
 console.log('Cache revision portability QA passed: EOL portability, native module/CSS/JSON invalidation, lazy large data, raw integrity hashes and idempotent V2 stamps.');

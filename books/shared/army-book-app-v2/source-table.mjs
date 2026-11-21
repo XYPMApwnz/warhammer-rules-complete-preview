@@ -22,7 +22,7 @@ export function renderSourceTable({el, fields, factValue, metadata, className = 
   const body = el('tbody');
   for (const [rowId, rowFields] of [...rows].sort(([a], [b]) => a - b)) {
     const row = el('tr');row.dataset.rowId = String(rowId);
-    for (const field of rowFields.toSorted((a, b) => a.table.column - b.table.column)) {
+    for (const field of [...rowFields].sort((a, b) => a.table.column - b.table.column)) {
       const cell = el(field.table.header ? 'th' : 'td');
       for (const [key, property] of [['rowSpan', 'rowSpan'], ['columnSpan', 'colSpan']]) {
         const span = field.table[key];

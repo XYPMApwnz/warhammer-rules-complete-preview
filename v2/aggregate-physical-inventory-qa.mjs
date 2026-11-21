@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
 /** Known physical UNIT inventory is independent of unknown MODEL ownership.
  * Constructed New Recruit text; source-backed identities, no army legality QA. */
 import assert from 'node:assert/strict';
@@ -15,7 +16,7 @@ import {selections,predicateContext} from '../books/shared/roster-v2/context.mjs
 import {enhancementOwnerContext} from '../books/shared/roster-v2/compatibility-context.mjs';
 import {evaluatePredicate} from '../books/death-guard/v2/rule-contract-schema.mjs';
 import {parseSourceHtml,sourceNode,sourceNodeText} from '../books/death-guard/v2/raw-source.mjs';
-const read=path=>JSON.parse(fs.readFileSync(new URL('../'+path,import.meta.url)));
+const read=path=>parseSourceFixtureJSON(fs.readFileSync(new URL('../'+path,import.meta.url)));
 const sourceText=path=>{const raw=fs.readFileSync(new URL('../'+path,import.meta.url),'utf8');return sourceNodeText(raw,parseSourceHtml(raw)).replace(/\s+/g,' ').toLowerCase();};
 const gear=(id,name,quantity=1)=>({id,name,quantity});
 export const aggregateInventoryCases=[

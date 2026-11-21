@@ -8,4 +8,4 @@ const schema=createRuleContractSchema({
   contractSchema:'death-guard-rule-contract/v2'
 });
 export const {subjects,levels,publicResult,predicateTypes,
-  validatePredicate,validateContracts,evaluatePredicate,evaluateRole}=schema;
+  validatePredicate,validateContracts,validateContractDeclarations,evaluatePredicate,evaluateRole}=schema;

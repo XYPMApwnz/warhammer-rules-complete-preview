@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Independent accepted-source obligations. Production declarations do not
  * create the expected inventory, values, recipients or mutation oracles. */
 import assert from 'node:assert/strict';
@@ -11,7 +13,10 @@ import {createTyranidsRuleSchema} from './rule-contract-build.mjs';
 import {projectFormedUnitCards,prepareRosterPresentationCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
 import {collectAbilityReferences,projectAbilityPresentation} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effect-expectations-qa.mjs';
-const read=f=>JSON.parse(fs.readFileSync(new URL(f,import.meta.url),'utf8')),clone=structuredClone;
+import {resolveExecutionEffect} from '../../shared/roster-v2/recipient-execution.mjs';
+import {compileBookRecipients,recipientDeclarationView,resolveRecipient} from '../../shared/rule-contract-v2/recipients.mjs';
+import {producerDetachmentTextDeclaration} from '../../shared/roster-v2/conditional-policy.mjs';
+const read=f=>parseSourceFixtureJSON(fs.readFileSync(new URL(f,import.meta.url),'utf8')),clone=structuredClone;
 export const sevenEffectsExpectations=read('./seven-effects-source-expectations.json').cases;
 const book=read('./generated/roster-runtime.json'),facts=read('./generated/effective.json'),payload=read('./generated/app-presentation.json');
 const cards=prepareRosterPresentationCards(new Map(payload.cards.map(c=>[c.id,c])),payload.rosterPresentation),root=new URL('../../../',import.meta.url);
@@ -19,33 +24,36 @@ const sorted=values=>[...new Set(values)].sort(),normal=s=>s.replace(/\s+/g,''),
 const sourceRecords=new Map(facts.entities.map(e=>[e.id,e])),mutations=[],scenarios=[],negativeControls=[];
 const relevant=(e,x)=>e.expectedOperations.some(op=>x.operation===op.operation&&x.field===op.field);
 const effects=(b,e)=>b.entities.find(x=>x.id===e.source.canonicalId).ruleContract?.clauses.flatMap(c=>c.rosterEffects||[]).filter(x=>relevant(e,x))||[];
+const compile=b=>compileBookRecipients(b,{f1Declaration:producerDetachmentTextDeclaration});
+const effectRecords=(b,e)=>{const rule=b.entities.find(x=>x.id===e.source.canonicalId);return (rule.ruleContract?.clauses||[])
+ .flatMap(clause=>(clause.rosterEffects||[]).filter(effect=>relevant(e,effect)).map(effect=>({rule,clause,effect})));};
 function sourceCheck(e,b=book){
  const s=e.source,raw=fs.readFileSync(new URL(s.document,root));assert.equal(sha(raw),s.sha256,'Accepted source SHA');
  const visible=raw.toString('utf8').replace(/<[^>]*>/g,' ').replaceAll('&nbsp;',' ').replaceAll('&amp;','&');
  for(const clause of s.rawClauses||[s.quote])assert.ok(normal(visible).includes(normal(clause)),`RAW SOURCE CLAUSE: ${e.id}: ${clause}`);
  const entity=b.entities.find(x=>x.id===s.canonicalId);assert.equal(entity.parentId,s.ownerId,'SOURCE OWNER');
  assert.equal(s.field.reduce((v,k)=>v?.[k],entity.data),s.quote,'SOURCE EXACT TEXT');
- assert.deepEqual(entity.provenance,sourceRecords.get(s.canonicalId).provenance,'SOURCE PROVENANCE');
- assert.equal(entity.provenance.document,s.document);assert.equal(entity.provenance.sha256,s.sha256);
- assert.ok(entity.provenance.pointer&&entity.provenance.corpusSha256);
- const card=cards.get(s.canonicalId);assert.deepEqual(card.provenance,entity.provenance,'Presentation source provenance');
+ assert.deepEqual(sourceSnapshot(entity),sourceSnapshot(sourceRecords.get(s.canonicalId)),'SOURCE PROVENANCE');
+ assert.equal(sourceSnapshot(entity).document,s.document);assert.equal(sourceSnapshot(entity).sha256,s.sha256);
+ assert.ok(sourceSnapshot(entity).pointer&&sourceSnapshot(entity).corpusSha256);
+ const card=cards.get(s.canonicalId);assert.deepEqual(sourceSnapshot(card),sourceSnapshot(entity),'Presentation source provenance');
  assert.ok(card.fields.some(f=>f.value===s.quote)||s.field[0]==='blocks'&&card.fields.some(f=>f.value===s.quote),'Presentation full source text');
 }
 function bindingCheck(e,b=book){
- const entity=b.entities.find(x=>x.id===e.source.canonicalId),actual=effects(b,e);
+ const entity=b.entities.find(x=>x.id===e.source.canonicalId),actual=effectRecords(b,e).map(({rule,clause,effect})=>resolveExecutionEffect(rule,clause,effect));
  assert.ok(entity.ruleContract,'EXECUTABLE BINDING REQUIRED');assert.equal(entity.ruleContract.ownerId,e.source.ownerId,'CONTRACT OWNER');
  assert.equal(actual.length,e.expectedOperations.length,'EXACT EXECUTABLE EFFECT INVENTORY');
  for(const expected of e.expectedOperations){
   const matched=actual.filter(x=>x.operation===expected.operation&&x.field===expected.field&&(!expected.keyword||x.keyword===expected.keyword));
   assert.equal(matched.length,1,'EXACT EXECUTABLE OPERATION');
   for(const [k,v]of Object.entries(expected))assert.deepEqual(matched[0][k],v,'SOURCE TYPED OPERATION '+k);
-  assert.equal(matched[0].provenance.canonicalRuleId,e.source.canonicalId);assert.equal(matched[0].provenance.canonicalOwnerId,e.source.ownerId);
-  assert.deepEqual(matched[0].provenance.sourceEvidence,entity.provenance);
+  assert.equal(sourceSnapshot(matched[0]).canonicalRuleId,e.source.canonicalId);assert.equal(sourceSnapshot(matched[0]).canonicalOwnerId,e.source.ownerId);
+  assert.deepEqual(sourceSnapshot(matched[0]).sourceEvidence,sourceSnapshot(entity));
  }
  if(e.declarativeClause){assert.ok(entity.ruleContract.clauses.some(c=>c.rosterClassification==='BATTLE_ONLY'&&c.sourceText.includes(e.declarativeClause)&&!c.rosterEffects.length),'Wound reroll must remain separate declarative clause');}
 }
 function removeEffects(b,e){for(const c of b.entities.find(x=>x.id===e.source.canonicalId).ruleContract.clauses){c.rosterEffects=(c.rosterEffects||[]).filter(x=>!relevant(e,x));if(!c.rosterEffects.length&&c.rosterClassification==='ROSTER_EXECUTABLE')c.rosterClassification='DISPLAY_ONLY';}}
-function without(e){const b=clone(book);removeEffects(b,e);return b;}
+function without(e){const b=recipientDeclarationView(book);removeEffects(b,e);return compile(b);}
 const baseBooks=new Map(sevenEffectsExpectations.map(e=>[e.id,without(e)]));
 function service(e,b=book,state=null){const s=createTyranidsBrowserRoster(b);if(state)s.load(clone(state));else assert.equal(s.import(sevenEffectFixtures[e.fixture].text).status,'READY');return s;}
 const cleanAbility=a=>({canonicalId:a.canonicalId||null,name:a.canonicalId?null:a.name||null,value:a.value??null,parameters:a.parameters||{}});
@@ -90,7 +98,6 @@ function expected(e,s){const state=s.snapshot(),base=service(e,baseBooks.get(e.i
  return {rows,base,ids};
 }
 function expectedPresentation(e,s,expectedRows){return expectedRows.map(u=>{
- const group=s.effective(u.id).formedUnit,groupIds=group?.memberInstanceIds||[u.id];
  const abilities=[];
  if(e.abilityId){
   const unitAbility=u.abilities.find(a=>a.canonicalId===e.abilityId);
@@ -100,12 +107,19 @@ function expectedPresentation(e,s,expectedRows){return expectedRows.map(u=>{
  }
  return {id:u.id,profiles:u.profiles.map(p=>({id:p.id,scope:p.scope,stats:p.stats})),
   weapons:u.weapons.map(w=>({id:w.id,scope:w.scope,strength:w.data.strength,ap:w.data.ap})),
-  keywords:sorted(expectedRows.filter(x=>groupIds.includes(x.id)).flatMap(x=>x.keywords)),abilityRows:abilities};
+  keywords:sorted(u.keywords),abilityRows:abilities};
 });}
 function verify(e,s,{candidate=book,active=true,observation=null}={}){
  sourceCheck(e,candidate);bindingCheck(e,candidate);
  const expectedResult=expected(e,s),observed={runtime:runtimeRows(s),presentation:presentationRows(s,e)},wanted={runtime:expectedResult.rows,presentation:expectedPresentation(e,s,expectedResult.rows)};
  assert.deepEqual(observation||observed,wanted,'SOURCE -> EXECUTOR -> PRESENTATION '+e.id);
+ // The formed union remains an execution context. Only each component's own
+ // source-derived keyword bag belongs on that component's physical card.
+ for(const unit of expectedResult.rows){
+  const view=s.effective(unit.id),members=view.formedUnit?.memberInstanceIds||[unit.id];
+  assert.deepEqual(sorted(view.keywords),sorted(expectedResult.rows.filter(row=>members.includes(row.id)).flatMap(row=>row.keywords)),'FORMED keyword context unchanged');
+  assert.deepEqual(sorted(view.physicalKeywords),unit.keywords,'Physical keyword snapshot preserves every source-derived grant');
+ }
  const applied=s.projection.units.flatMap(u=>u.applied).filter(a=>a.ruleId===e.source.canonicalId&&e.expectedOperations.some(op=>op.operation===a.operation&&(op.field===undefined||op.field===a.field)));
  if(active){assert.ok(applied.length,'EXECUTOR RESULT REQUIRED');
   const expectedOperation=clone(e.expectedOperations[0]);if(e.id==='tyr-leader-keywords')delete expectedOperation.keyword;
@@ -168,7 +182,7 @@ for(const [id,leader,body,invalidIndex]of [
 
 // Mutants remain disposable inputs/observations. Expected source values stay
 // fixed; failures must come from source/operation/result comparisons.
-function rejected(e,name,mutate){const b=clone(book);mutate(b);let s;
+function rejected(e,name,mutate){const input=clone(book),b=mutate(input)||input;let s;
  if(name==='wrong-source-owner'){
   assert.throws(()=>sourceCheck(e,b),/SOURCE OWNER/,'Independent source owner comparator missed mutation');
   mutations.push({id:e.id,mutation:name});return;
@@ -178,12 +192,13 @@ function rejected(e,name,mutate){const b=clone(book);mutate(b);let s;
  mutations.push({id:e.id,mutation:name});
 }
 for(const e of sevenEffectsExpectations){
- rejected(e,'deleted-executable-binding',b=>{const count=b.entities.filter(x=>x.ruleContract).length;removeEffects(b,e);assert.equal(b.entities.filter(x=>x.ruleContract).length,count);});
+ rejected(e,'deleted-executable-binding',b=>{const count=b.entities.filter(x=>x.ruleContract).length,declaration=recipientDeclarationView(b);removeEffects(declaration,e);assert.equal(declaration.entities.filter(x=>x.ruleContract).length,count);return compile(declaration);});
  rejected(e,'wrong-value-or-canonical-ability',b=>{const x=effects(b,e)[0];if(x.value!==undefined)x.value+=1;else if(x.ability?.value!==undefined)x.ability.value=4;else if(x.ability)x.ability.canonicalId=e.abilityId==='core-stealth'?'core-deep-strike':'core-stealth';else x.keyword='TYRANIDS';});
  rejected(e,'wrong-source-owner',b=>{b.entities.find(x=>x.id===e.source.canonicalId).parentId='unit-psychophage';});
  const badContract=clone(book);badContract.entities.find(x=>x.id===e.source.canonicalId).ruleContract.ownerId='unit-psychophage';
  assert.throws(()=>bindingCheck(e,badContract),/CONTRACT OWNER/);mutations.push({id:e.id,mutation:'wrong-contract-owner'});
- rejected(e,'wrong-recipient',b=>{for(const x of effects(b,e))x.conditions.push({binding:'TARGET',predicate:{predicate:x.targetSubject==='MODEL'?'MODEL_ID':'UNIT_ID',subject:x.targetSubject,contextLevel:'STATIC',arguments:{id:x.targetSubject==='MODEL'?'datasheet-psychophage:profile:1':'unit-psychophage'},evidence:clone(x.evidence)}});});
+ rejected(e,'wrong-recipient',b=>{for(const {rule,clause,effect}of effectRecords(b,e)){const subject=resolveRecipient(rule,clause,effect.recipientId).who;
+  effect.conditions.push({binding:'TARGET',predicate:{predicate:subject==='MODEL'?'MODEL_ID':'UNIT_ID',subject,contextLevel:'STATIC',arguments:{id:subject==='MODEL'?'datasheet-psychophage:profile:1':'unit-psychophage'},evidence:clone(effect.evidence)}});}});
  rejected(e,'wrong-activation-gate',b=>{const rule=b.entities.find(x=>x.id===e.source.canonicalId).ruleContract;
   if(e.id==='tyr-guardian')for(const x of effects(b,e))x.conditions.push({binding:'SOURCE',predicate:{predicate:'LEADING',subject:'UNIT',contextLevel:'ROSTER',arguments:{value:true},evidence:clone(x.evidence)}});
   else rule.detachmentId='detachment-crusher-stampede';});
@@ -195,6 +210,16 @@ for(const e of sevenEffectsExpectations){
  else {const w=row.weapons.find(w=>e.id==='tyr-power'?w.id===e.psychicProfileId:true);w.ap=baseline.find(u=>u.id===affected).weapons.find(x=>x.id===w.id&&x.scope===w.scope).data.ap;}
  assert.throws(()=>verify(e,s,{observation:mutated}),/SOURCE -> EXECUTOR -> PRESENTATION/,'Missing presentation escaped comparator');
  mutations.push({id:e.id,mutation:'missing-production-presentation-result'});
+ const foreign=result.wanted.presentation.find(row=>{
+  const members=s.effective(row.id).formedUnit?.memberInstanceIds||[];
+  return result.wanted.runtime.some(other=>members.includes(other.id)&&other.keywords.some(keyword=>!row.keywords.includes(keyword)));
+ });
+ if(foreign){
+  const leaked=clone(result.observed),members=s.effective(foreign.id).formedUnit.memberInstanceIds;
+  leaked.presentation.find(row=>row.id===foreign.id).keywords=sorted(result.wanted.runtime.filter(row=>members.includes(row.id)).flatMap(row=>row.keywords));
+  assert.throws(()=>verify(e,s,{observation:leaked}),/SOURCE -> EXECUTOR -> PRESENTATION/,'Foreign component keywords escaped the physical-card comparator');
+  mutations.push({id:e.id,mutation:'foreign-component-keywords-on-physical-card'});
+ }
 }
 export const sevenEffectsGuardResult={status:'PASS',obligations:7,scenarios,mutations:mutations.length,mutationResults:mutations,
  negativeControls,

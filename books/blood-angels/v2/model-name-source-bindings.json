@@ -1,0 +1,27 @@
+{
+  "schema": "new-recruit-model-source-joins/v1",
+  "joins": [
+    {
+      "sourceId": "27ea-4039-2794-db20",
+      "sourceName": "Death Company Marine",
+      "canonicalId": "model-ba-52f3903a140343a39fbe",
+      "evidence": {
+        "entityId": "composition-ba-b2e49c4fa8ee4bbfa01c",
+        "path": "/name"
+      },
+      "canonicalName": "Death Company Marines with Jump Packs",
+      "review": "Source model/group and canonical composition identify the same physical member; no profile statistics or equipment are transferred."
+    },
+    {
+      "sourceId": "b23e-8c93-e120-a322",
+      "sourceName": "Death Company Marine w/ alternate weapons",
+      "canonicalId": "model-ba-52f3903a140343a39fbe",
+      "evidence": {
+        "entityId": "composition-ba-b2e49c4fa8ee4bbfa01c",
+        "path": "/name"
+      },
+      "canonicalName": "Death Company Marines with Jump Packs",
+      "review": "Source model/group and canonical composition identify the same physical member; no profile statistics or equipment are transferred."
+    }
+  ]
+}

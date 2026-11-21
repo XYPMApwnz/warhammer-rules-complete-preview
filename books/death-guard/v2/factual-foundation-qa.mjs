@@ -1,5 +1,5 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -11,8 +11,7 @@ import {assertSourceTableFacts,enumerateSourceTableFacts,runTableFactMutations,r
 
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const ledger=JSON.parse(fs.readFileSync(path.join(directory,'foundation-closure.json'),'utf8'));
-const bundled=path.join(os.homedir(),'.cache','codex-runtimes','codex-primary-runtime','dependencies','python','python.exe');
-const python=process.env.PYTHON || (fs.existsSync(bundled)?bundled:'python3');
+const python=resolveQaPython();
 const source=JSON.parse(execFileSync(python,['-X','utf8',path.join(directory,'foundation-source-qa.py')],{encoding:'utf8'}));
 
 export function assertFoundationFacts(model) {

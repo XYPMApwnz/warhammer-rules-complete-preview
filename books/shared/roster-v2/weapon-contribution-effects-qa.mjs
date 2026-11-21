@@ -1,13 +1,15 @@
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Independent synthetic guards: canonical weapon contributions are references,
  * never imported equipment ownership or a second weapon-fact catalog. */
 import assert from 'node:assert/strict';
 import {pathToFileURL} from 'node:url';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments} from './context.mjs';
-import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {executeRosterEffects} from './effects.mjs';
 import {createRosterRuntime} from './runtime.mjs';
 import {buildAttachmentFeasibility} from './compatibility-feasibility.mjs';
 import {projectInstanceCards} from '../army-book-app-v2/personal.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 
 const clone=value=>structuredClone(value),id=name=>'synthetic-contribution:'+name;
 const evidence={field:['text'],quote:'Reviewed synthetic bearer contribution evidence.'};
@@ -37,7 +39,7 @@ export function fixture({mixed=false,quantity=1}={}) {
   const ownerRole={id:'owner',subject:'MODEL',allegiance:'FRIENDLY',selector:atom('MODEL_ID','MODEL',{id:id('eligible')}),conditions:[]};
   const enhancement={id:id('gift'),parentId:id('detachment'),kind:'ENHANCEMENT',provenance:{sourceId:id('source')},
     data:{title:'Synthetic bearer gift',text:evidence.quote,weaponIds:[id('gift-weapon')]}};
-  enhancement.ruleContract={schema:'rule-contract/v2',ruleId:enhancement.id,ownerId:enhancement.parentId,sourceId:enhancement.provenance.sourceId,
+  enhancement.ruleContract={schema:'rule-contract/v2',ruleId:enhancement.id,ownerId:enhancement.parentId,sourceId:sourceSnapshot(enhancement).sourceId,
     kind:'ENHANCEMENT',executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',detachmentId:id('detachment'),roles:[ownerRole],conditions:[],
     assignment:{ownerRoleId:'owner',selector:clone(ownerRole.selector)},sourceFields:[['text']],
     clauses:[{id:'gift/clause',roles:[],conditions:[],sourceFields:[['text']],rosterClassification:'ROSTER_EXECUTABLE',rosterEffects:[effect]}]};
@@ -61,8 +63,8 @@ export function fixture({mixed=false,quantity=1}={}) {
 }
 function execute(book,state) {
   const beforeBook=clone(book),beforeState=clone(state);
-  evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),evaluator);
+  const canonical=compileRecipientFixture(book,evaluator);
+  const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),evaluator);
   assert.deepEqual(book,beforeBook,'Contribution mutated canonical facts');assert.deepEqual(state,beforeState,'Contribution rewrote imported ownership');
   return result;
 }
@@ -155,7 +157,7 @@ check('repeat rebuild and snapshot roundtrip reproduce identical projection',()=
   const {book,state}=fixture();assert.deepEqual(execute(book,state),execute(book,JSON.parse(JSON.stringify(state))));
 });
 check('roster runtime effective cards retain canonical weapon and exact scope bindings',()=>{
-  const {book,state}=fixture(),runtime=createRosterRuntime(book,{parse:()=>{throw new Error('Parsing is not used');},...evaluator});
+  const {book,state}=fixture(),runtime=createRosterRuntime(compileRecipientFixture(book,evaluator),{parse:()=>{throw new Error('Parsing is not used');},...evaluator});
   runtime.load(state);const effective=runtime.effective('owner-a'),weapons=effective.weapons.filter(weapon=>weapon.id===id('gift-weapon'));
   assert.equal(weapons.length,1);assert.equal(weapons[0].ownerInstanceId,'owner-a');assert(weapons[0].scopeId);
   const cards=cardsFor(book),variants=projectInstanceCards(cards,getUnit(state),effective),root=variants.get(id('bearer'))[0];
@@ -163,7 +165,7 @@ check('roster runtime effective cards retain canonical weapon and exact scope bi
   const card=variants.get(id('gift-weapon'))[0];assert.equal(card.id,id('gift-weapon'));assert.equal(card.instanceId,'owner-a');assert.equal(card.scopeId,weapons[0].scopeId);
   assert.equal(card.fields.find(field=>field.source.path==='/strength').value,'6');
   assert(!projectInstanceCards(cards,getUnit(state,'owner-b'),runtime.effective('owner-b')).get(id('bearer'))[0].children.includes(id('gift-weapon')));
-  const roundtrip=createRosterRuntime(book,{parse:()=>null,...evaluator});roundtrip.load(runtime.snapshot());assert.deepEqual(roundtrip.projection,runtime.projection);
+  const roundtrip=createRosterRuntime(compileRecipientFixture(book,evaluator),{parse:()=>null,...evaluator});roundtrip.load(runtime.snapshot());assert.deepEqual(roundtrip.projection,runtime.projection);
 });
 for(const [name,mutate] of [
   ['unresolved canonical ID',f=>{f.effect.weaponProfileId=id('missing');}],

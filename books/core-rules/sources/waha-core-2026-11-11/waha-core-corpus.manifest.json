@@ -1,0 +1,88 @@
+{
+  "schema": "waha-11e-core-corpus-manifest/v1",
+  "captureDate": "2026-11-11",
+  "sources": [
+    {
+      "id": "core",
+      "url": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/",
+      "rawBytes": 783183,
+      "rawSha256": "9343EDEA5BC2C536DA0E4CF19AACDCA875108B61D1D4BF30CA8D5A9F2AC9D695"
+    },
+    {
+      "id": "appendix",
+      "url": "https://wahapedia.ru/wh40k11ed/the-rules/rules-appendix/",
+      "rawBytes": 361411,
+      "rawSha256": "9DE62D73CA6CEEDA040B3F6CC0607CDDFCBCAFC3C760599C51F3214E9BC92BBF"
+    }
+  ],
+  "counts": {
+    "core": {
+      "numbered": 185,
+      "faq": 73,
+      "errata": 7,
+      "uru": 0,
+      "total": 265,
+      "gameplayListItems": 329,
+      "seeAlsoItems": 153,
+      "tables": 87,
+      "tableRows": 187,
+      "faqTableRows": 146,
+      "notes": 29,
+      "examples": 15,
+      "referenceOccurrences": 900
+    },
+    "appendix": {
+      "numbered": 108,
+      "faq": 0,
+      "errata": 1,
+      "uru": 5,
+      "total": 114,
+      "gameplayListItems": 111,
+      "seeAlsoItems": 0,
+      "tables": 2,
+      "tableRows": 6,
+      "faqTableRows": 0,
+      "notes": 1,
+      "examples": 13,
+      "referenceOccurrences": 204
+    },
+    "effective": {
+      "numbered": 282,
+      "faq": 73,
+      "errata": 8,
+      "uru": 5,
+      "total": 368,
+      "numberedOverlap": 11
+    }
+  },
+  "identityMapFile": "source-identities.v1.json",
+  "identityMapSha256": "B32C614E0E1DB245A8F593F75186D1C69014ED12459DC76FD2F45127CCF5690A",
+  "sourceBoundaryMapFile": "source-boundaries.v1.json",
+  "sourceBoundaryMapSha256": "C94328B67C27D1E0A24940A01C7F82E0549A99E4300E69720E7EE427D278E60C",
+  "numberedOverlapCodes": [
+    "06.01.01",
+    "06.03.01",
+    "09.05.01",
+    "13.09.01",
+    "13.11.01",
+    "14.01.01",
+    "14.02.01",
+    "18.02.01",
+    "20.01.02",
+    "24.28.01",
+    "24.37.01"
+  ],
+  "corpusFingerprint": "2E39280BEB3D0C92F87F4F3DB231CA3BC40192C12575AF998E5D2A2DB684C14A",
+  "corpusFile": "waha-core-corpus.v1.json",
+  "corpusFileSha256": "DCCCB02C5DA68F0AF500EDAAAB7FDCDBB6F9D5060D0F2A7B0075A6685D579B4E",
+  "unresolvedReferences": [
+    {
+      "page": "core",
+      "kind": "href",
+      "label": "[DEVASTATING WOUNDS]",
+      "rawTarget": "/wh40k11ed/the-rules/core-rules/#Assault-",
+      "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Assault-",
+      "internalCore": true
+    }
+  ]
+}

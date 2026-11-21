@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Real application bytes through the existing static-byte browser transport.
  * This is UI acceptance, not live-hosting certification. */
 import assert from 'node:assert/strict';
@@ -9,7 +10,7 @@ import {equipmentCaptionRoster as text,equipmentCaptionCases as cases} from './e
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url)),origin='http://dg-equipment-caption.test';
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const errors=[],missing=[],results=[];
 const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.html':'text/html','.css':'text/css',
   '.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.jpg':'image/jpeg','.woff2':'font/woff2'};

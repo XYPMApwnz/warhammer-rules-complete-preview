@@ -8,5 +8,5 @@ export const registration=Object.freeze({
   styles:[new URL('./theme.css',import.meta.url).href],routeAliases:[],
   async loadPayload(){const response=await fetch(new URL('./generated/app-presentation.json',import.meta.url));
     if(!response.ok)throw new Error('EC V2 presentation unavailable');return response.json();},
-  async createRoster(){return (await import('./roster-boot.mjs')).createBrowserRoster();}
+  async createRoster(options){return (await import('./roster-boot.mjs')).createBrowserRoster(options);}
 });

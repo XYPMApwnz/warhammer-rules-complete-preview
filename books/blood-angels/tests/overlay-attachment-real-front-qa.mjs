@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -7,9 +9,9 @@ import {fileURLToPath} from 'node:url';
 import {chromium} from 'playwright';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..'),mime={'.css':'text/css','.html':'text/html','.js':'text/javascript','.json':'application/json','.mjs':'text/javascript','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png'};
-const screenshotDir=path.join(os.tmpdir(),'ba-overlay-real-front');fs.mkdirSync(screenshotDir,{recursive:true});
+const screenshotDir=createQaEvidenceDir('overlay-real-front-');fs.mkdirSync(screenshotDir,{recursive:true});
 const server=http.createServer((request,response)=>{const requested=decodeURIComponent(new URL(request.url,'http://localhost').pathname),file=path.resolve(root,`.${requested==='/'?'/index.html':requested}`);if(requested==='/favicon.ico'){response.writeHead(204).end();return;}if(!file.startsWith(root)||!fs.existsSync(file)||!fs.statSync(file).isFile()){response.writeHead(404).end('Not found');return;}response.setHeader('content-type',mime[path.extname(file)]||'application/octet-stream');fs.createReadStream(file).pipe(response);});
-await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const base=`http://127.0.0.1:${server.address().port}`,browser=await chromium.launch({channel:'chrome',headless:true});
+await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const base=`http://127.0.0.1:${server.address().port}`,browser=await launchQaBrowser(chromium,{channel:'chrome',headless:true});
 const waitRoster=(page,instance)=>page.waitForFunction(id=>window.WH_ARMY_ROSTER_GAME_PROJECTION?.status==='ready'&&document.querySelector(`.unit-card.roster-game-view[data-roster-instance="${CSS.escape(id)}"]`),instance);
 const save=async(page,text)=>{await page.goto(`${base}/roster-guides/index.html`);await page.evaluate(()=>localStorage.removeItem('wh40k-rosters-v1'));await page.reload();await page.locator('#roster-input').fill(text);await page.locator('#roster-form button[type="submit"]').click();await page.waitForFunction(()=>JSON.parse(localStorage.getItem('wh40k-rosters-v1')||'[]').length===1);return page.evaluate(()=>JSON.parse(localStorage.getItem('wh40k-rosters-v1'))[0].id);};
 const attach=async(page,id,body,leader)=>{await page.goto(`${base}/roster-guides/index.html`);await page.locator(`[data-edit-attachments="${id}"]`).click();const select=page.locator(`select[data-attachment-bodyguard="${body}"]`);await select.waitFor();await select.selectOption(leader);await page.waitForFunction(({id,body,leader})=>JSON.parse(localStorage.getItem('wh40k-rosters-v1')).find(item=>item.id===id)?.attachments?.[body]?.includes(leader),{id,body,leader});};

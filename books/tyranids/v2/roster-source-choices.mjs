@@ -1,5 +1,7 @@
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {createRosterConditionBinding} from '../../shared/roster-v2/condition-binding.mjs';
+import {getRecordedSourceIdentity,sameSourceEvidence,copySourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
 export const surpriseRuleId='detachment-subterranean-assault:rule';
 export const trygonCharacterOptionId=surpriseRuleId+'::choice::trygon-character';
@@ -13,12 +15,12 @@ export const trygonChoiceQuote='In the Muster Armies step, you can select up to 
  * canonical option/physical selection snapshot already used by other books. */
 export function addTyranidsSourceChoices(book) {
   const rule=book.entities.find(e=>e.id===surpriseRuleId);
-  assert(rule?.kind==='DETACHMENT_RULE'&&rule.data.text.includes(trygonChoiceQuote)&&rule.provenance?.sourceId,
+  assert(rule?.kind==='DETACHMENT_RULE'&&rule.data.text.includes(trygonChoiceQuote)&&getRecordedSourceIdentity(rule,{book}),
     'Unconfirmed Surprise Assault source choice');
   const option={id:trygonCharacterOptionId,kind:'UPGRADE_OPTION',parentId:rule.id,
     authority:'SOURCE_BACKED_SELECTION_BINDING',
     data:{selectionRuleId:rule.id,unitId:'unit-trygon',modelProfileIds:['datasheet-trygon:profile:1'],
-      text:'CHARACTER',timing:'MUSTER_ARMIES'},provenance:clone(rule.provenance)};
+      text:'CHARACTER',timing:'MUSTER_ARMIES'},...copySourceEvidence(rule,{book})};
   assert(!book.entities.some(e=>e.id===option.id),'Duplicate source choice');
   book.entities.push(option);book.rosterSelectionOptions=[option];
 }
@@ -28,7 +30,7 @@ export function addTyranidsSourceChoices(book) {
 export function validateTyranidsSourceChoices(book,state) {
   const option=book.entities.find(e=>e.id===trygonCharacterOptionId),rule=book.entities.find(e=>e.id===surpriseRuleId);
   assert(option?.parentId===rule?.id&&option?.data.unitId==='unit-trygon'&&
-    JSON.stringify(option.provenance)===JSON.stringify(rule.provenance),'Unbound source choice');
+    sameSourceEvidence(option,rule,{book}),'Unbound source choice');
   const physical=formRoster(book,state);
   for(const unit of state.units) {
     const ids=unit[selectionField]===undefined?[]:unit[selectionField],decisions=selections(unit).filter(s=>
@@ -46,7 +48,7 @@ export function validateTyranidsSourceChoices(book,state) {
       s.selectionField===selectionField&&s.selectionCardinality==='MANY'&&s.canonicalOptionIds.length===1&&
       s.canonicalProfileIds.length===0&&s.canonicalEquipmentIds.length===0&&
       JSON.stringify(s.sourceChoiceReference)===JSON.stringify({bookId:book.bookId,entityId:rule.id,path:'/text'})&&
-      JSON.stringify(s.sourceProvenance)===JSON.stringify(rule.provenance),'Invalid physical source choice evidence');
+      sameSourceEvidence(s,rule,{book,slot:'sourceProvenance',otherSlot:'provenance'}),'Invalid physical source choice evidence');
   }
   return state;
 }
@@ -68,26 +70,28 @@ export function setTyranidsSourceChoice(book,snapshot,instanceId,ruleId,optionId
     unit.modelRows[0].selections.push({selectionKey:'source-choice/'+ruleId,canonicalProfileIds:[],canonicalEquipmentIds:[],
       canonicalOptionIds:[optionId],selectionField,selectionCardinality:'MANY',physicalQuantity:1,perModelQuantity:1,
       sourceModelScopeId:model.scopeId,sourceChoiceReference:{bookId:book.bookId,entityId:ruleId,path:'/text'},
-      sourceProvenance:clone(rule.provenance)});
+      ...copySourceEvidence(rule,{book,targetSlot:'sourceProvenance'})});
   }
   return validateTyranidsSourceChoices(book,state);
 }
 
 /** One verified decision supplies a scalar FIELD to the existing evaluator.
  * Absence means no selection; Enhancement, SYNAPSE and names are irrelevant. */
-export function tyranidsSourceChoiceContext(book,state) {
+const sourceChoiceInput=()=>({key:'selectedSourceChoice',arguments:{ruleId:surpriseRuleId},selectionField,defaultValue:''});
+export function tyranidsSourceChoiceInputs(book,state) {
   validateTyranidsSourceChoices(book,state);
-  const chosen=new Map(state.units.map(u=>[u.instanceId,u[selectionField]?.[0]||'']));
-  return context=>context?{...context,roster:{...context.roster,[trygonChoiceField]:chosen.get(context.instanceId)||''}}:context;
+  return [sourceChoiceInput()];
 }
 
-export function createTyranidsRuleSchema({bindContext=context=>context}={}) {
+export function tyranidsSourceChoiceContext(book,state) {
+  return createTyranidsRuleSchema({book,state,inputs:tyranidsSourceChoiceInputs(book,state)}).bindContext;
+}
+
+export function createTyranidsRuleSchema({book,state,inputs=[sourceChoiceInput()]}={}) {
   const kernel=createRuleContractSchema({stateFields:{attached:{contextLevel:'ROSTER',valueType:'boolean'},
     battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'},
     [trygonChoiceField]:{contextLevel:'ROSTER',valueType:'string'}}});
-  const bind=context=>bindContext(context?{...context,roster:{[trygonChoiceField]:'',...context.roster}}:context);
-  return {...kernel,evaluatePredicate:(node,context)=>kernel.evaluatePredicate(node,bind(context)),
-    evaluateRole:(role,conditions,context)=>kernel.evaluateRole(role,conditions,bind(context))};
+  return createRosterConditionBinding({book,state,schema:kernel,inputs});
 }
 
 /** Same exact export namespace and physical input permit retaining a player's

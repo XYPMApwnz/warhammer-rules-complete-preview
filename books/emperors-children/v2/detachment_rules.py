@@ -63,7 +63,18 @@ def read_named_rules(root, corpus):
     if {(row['owner'], row['anchor']) for row in oracle} != set(declared) or len(oracle) != len(declared):
         raise ValueError('Missing/duplicate raw named rule occurrence')
     addition = binding['officialAddition']
-    official = json.loads((here/'official-bindings.json').read_text(encoding='utf-8'))
+    passport = json.loads((root/'books/emperors-children/book.config.json').read_text(encoding='utf-8'))['passport']
+    common = json.loads((root/passport['official']['input']).read_text(encoding='utf-8'))
+    enrollment = json.loads((here/'sources/enrollment.json').read_text(encoding='utf-8'))
+    sources = [entry['source'] for entry in common['entries']
+               if entry['source']['id'] == enrollment['currentOfficialSource']]
+    if not sources:
+        raise ValueError('Official named rule source identity missing')
+    source = sources[0]
+    if any(any(item[key] != source[key] for key in ['document', 'sha256', 'effectiveFrom']) for item in sources):
+        raise ValueError('Ambiguous official named rule source identity')
+    official = {'sourceId': source['id'], 'sourceDocument': source['document'],
+                'sourceSha256': source['sha256'], 'effectiveFrom': source['effectiveFrom']}
     document = root/official['sourceDocument']
     if sha(document.read_bytes()) != official['sourceSha256']:
         raise ValueError('Official named rule PDF integrity mismatch')

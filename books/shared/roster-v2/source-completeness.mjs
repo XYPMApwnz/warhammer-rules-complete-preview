@@ -5,6 +5,9 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {armyBooks} from '../../../v2/army-books.mjs';
+import {resolveExecutionEffect} from './recipient-execution.mjs';
+import {sourceDeclarationView} from '../source-refs-v2/source-refs.mjs';
+import {readBookPassport} from '../tools/book-passport.mjs';
 
 const root=fileURLToPath(new URL('../../../',import.meta.url));
 const reviewPath='books/shared/roster-v2/source-completeness-review.json';
@@ -17,7 +20,7 @@ const fail=(code,detail)=>{throw new Error(code+': '+detail);};
 const requireValue=(condition,code,detail)=>{if(!condition)fail(code,detail);};
 const classifications=new Set(['EXECUTABLE_REQUIRED','BATTLE_DEPENDENT','CAPABILITY_MISSING','SOURCE_AMBIGUOUS','UNVERIFIED','NOT_AN_EFFECT']);
 const historicalCensus=read('books/shared/roster-v2/source-effect-coverage-baseline.json');
-export const canonicalBlockFingerprint=entity=>reviewFingerprint(entity);
+export const canonicalBlockFingerprint=entity=>reviewFingerprint(sourceDeclarationView(entity));
 const provenanceSourceIds=provenance=>{
   const ids=new Set(),visit=value=>{
     if(Array.isArray(value))value.forEach(visit);
@@ -32,7 +35,8 @@ const provenanceSourceIds=provenance=>{
 /** Enrollment plus actual enrolled/provenance artifacts, not stored SHA claims.
  * No captures, baseline refreshes, source edits or network requests occur here. */
 export function captureSourceReview(bookId,facts=read(`books/${bookId}/v2/generated/effective.json`)) {
-  const enrollmentPath=`books/${bookId}/v2/sources/${bookId==='death-guard'?'source-enrollment':'enrollment'}.json`;
+  facts=sourceDeclarationView(facts);
+  const enrollmentPath=readBookPassport(bookId,{root}).sources.enrollment;
   const enrollment=read(enrollmentPath),files=new Set([enrollmentPath]);
   const visit=value=>{
     if(typeof value==='string'&&/^(?:books|mfm|roster-guides)\//.test(value)){
@@ -54,12 +58,12 @@ export function loadIndependentExpectations(review=read(reviewPath)) {
   }
   return result;
 }
-export function loadSourceCompletenessInputs({bookIds=armyBooks.map(book=>book.id)}={}) {
+export function loadSourceCompletenessInputs({bookIds=armyBooks.map(book=>book.id),executionBooks={}}={}) {
   const review=read(reviewPath),books=bookIds.map(bookId=>{
     requireValue(review.books[bookId],'UNREVIEWED_ARMY_BOOK',bookId);
     const facts=read(`books/${bookId}/v2/generated/effective.json`);
-    const runtimeFile=bookId==='death-guard'?'rule-contract-effective':bookId==='emperors-children'?'roster-attachments':bookId==='tau-empire'?'roster-import':'roster-runtime';
-    return {bookId,facts,executionBook:read(`books/${bookId}/v2/generated/${runtimeFile}.json`),sourceReview:captureSourceReview(bookId,facts)};
+    const runtimeArtifact=readBookPassport(bookId,{root}).runtime.executionArtifact;
+    return {bookId,facts,executionBook:executionBooks[bookId]||read(runtimeArtifact),sourceReview:captureSourceReview(bookId,facts)};
   });
   return {review,books,expectations:loadIndependentExpectations(review),registeredBookIds:armyBooks.map(book=>book.id)};
 }
@@ -79,7 +83,8 @@ function assertExecutable(clause,expectation,book) {
     const candidates=clauses.flatMap(item=>(item.rosterEffects||[]).filter(effect=>effect.operation===expected.operation&&effect.field===expected.field&&
       (expected.keyword===undefined||effect.keyword===expected.keyword)).map(effect=>({item,effect})));
     requireValue(candidates.length,'EXECUTABLE_MISSING',clause.id+' '+expected.operation);
-    for(const {item,effect}of candidates){
+    for(const {item,effect:declaration}of candidates){
+      const effect=resolveExecutionEffect(entity,item,declaration);
       requireValue(item.rosterClassification==='ROSTER_EXECUTABLE','EXECUTABLE_MISSING',clause.id+' non-executable clause');
       for(const [key,value]of Object.entries(expected))requireValue(stableJson(effect[key])===stableJson(value),'INDEPENDENT_EFFECT_MISMATCH',clause.id+' '+key);
       requireValue(['MODEL','UNIT'].includes(effect.targetSubject)&&typeof effect.targetBinding==='string','RECIPIENT_MISSING',clause.id);
@@ -107,11 +112,12 @@ export function assertSourceCompletenessGate({review,books,expectations,register
   const statuses={},allClauses=[],seenClauses=new Set(),bookIds=new Set(books.map(book=>book.bookId));
   let blockCount=0;
   for(const input of books){
+    const facts=sourceDeclarationView(input.facts);
     const reviewed=review.books[input.bookId];requireValue(reviewed,'UNREVIEWED_ARMY_BOOK',input.bookId);
     requireValue(stableJson(reviewed.sourceReview)===stableJson(input.sourceReview),'UNREVIEWED_SOURCE_REVISION',input.bookId);
     const blocks=new Map(reviewed.blocks.map(block=>[block.canonicalId,block])),current=new Set();
     requireValue(blocks.size===reviewed.blocks.length,'DUPLICATE_SOURCE_BLOCK',input.bookId);
-    for(const entity of input.facts.entities){
+    for(const entity of facts.entities){
       requireValue(!current.has(entity.id),'DUPLICATE_SOURCE_BLOCK',input.bookId+'/'+entity.id);current.add(entity.id);
       const block=blocks.get(entity.id);requireValue(block,'UNREVIEWED_SOURCE_RULE',input.bookId+'/'+entity.id);
       requireValue(block.kind===entity.kind&&block.owner===(entity.parentId??entity.ownerId??null),
@@ -196,7 +202,6 @@ export function assertSourceCompletenessGate({review,books,expectations,register
     semanticCompleteness:'NOT_PROVEN',historicalEvidence:'Retained, not automatically promoted to current semantic PASS'};
 }
 export function assertBookSourceReview(bookId,{executionBook}={}) {
-  const inputs=loadSourceCompletenessInputs({bookIds:[bookId]});
-  if(executionBook)inputs.books[0].executionBook=executionBook;
+  const inputs=loadSourceCompletenessInputs({bookIds:[bookId],executionBooks:{[bookId]:executionBook}});
   return assertSourceCompletenessGate({...inputs,checkAllRegistrations:false});
 }

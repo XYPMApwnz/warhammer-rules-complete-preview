@@ -1,10 +1,12 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Selected options remain roster state/Keywords, never empty physical inventory. */
 import fs from 'node:fs';import path from 'node:path';import os from 'node:os';import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';import {createRequire} from 'node:module';import {execFileSync} from 'node:child_process';
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url)),origin='http://csm-player.test';
-const rootOut=process.env.CSM_BLANK_INVENTORY_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'csm-inventory-'));
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const rootOut=process.env.CSM_BLANK_INVENTORY_SCREENSHOTS||createQaEvidenceDir('csm-inventory-');
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const baselineBytes=execFileSync('git',['show','6e6be74824deb64fd1a32762e9bc3f9b4ac68278:books/shared/army-book-app-v2/effective-datasheet-presentation.mjs'],{cwd:repo});
 const results=[];
 async function scenario(device,viewport){

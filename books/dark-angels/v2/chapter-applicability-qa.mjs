@@ -42,7 +42,7 @@ const assertGrant=(runtime,id,keyword,expected)=>{
   assert.equal(proof.armyApplicability.member.instanceId,id);
   assert.equal(proof.armyApplicability.physicalAnchors[0].instanceId,'da-source');
   assert.deepEqual(index.get(unit.canonicalUnitId).data.factionKeywords,['ADEPTUS ASTARTES']);
-  assert.equal(runtime.context(id,'MODEL',unit.profiles[0].scopeId,{daArmyMembershipProven:true}).roster.daArmyMembershipProven,undefined);
+  assert.equal(runtime.context(id,'MODEL',unit.profiles[0].scopeId,{reviewedArmyMembershipProven:true}).roster.reviewedArmyMembershipProven,undefined);
  }
 };
 for(const condition of conditions)check(condition.recipient.canonicalId+'/source-positive-and-negative',()=>{
@@ -50,7 +50,7 @@ for(const condition of conditions)check(condition.recipient.canonicalId+'/source
  const base=roster([physical('recipient-a',id),physical('recipient-b',id),physical('ordinary',ordinary)]);
  runtime.load(base);for(const instance of ['recipient-a','recipient-b'])assertGrant(runtime,instance,keyword,false);
  const claimed=clone(base);claimed.importEvidence={faction:'DARK ANGELS'};
- for(const unit of claimed.units)Object.assign(unit,{chapter:'DARK ANGELS',chapterConfirmed:true,daArmyMembershipProven:true});
+ for(const unit of claimed.units)Object.assign(unit,{chapter:'DARK ANGELS',chapterConfirmed:true,reviewedArmyMembershipProven:true});
  runtime.load(claimed);for(const instance of ['recipient-a','recipient-b'])assertGrant(runtime,instance,keyword,false);
  const proven=clone(base);proven.units.push(physical('da-source',anchor));runtime.load(proven);
  for(const instance of ['recipient-a','recipient-b']){
@@ -63,8 +63,8 @@ for(const condition of conditions)check(condition.recipient.canonicalId+'/source
  const before=runtime.projection;runtime.recompute();assert.deepEqual(runtime.projection,before);
  runtime.load(JSON.parse(JSON.stringify(runtime.snapshot())));assert.deepEqual(runtime.projection,before);
  const schema=createDarkAngelsRuleSchema({book,state:base});
- const forged=runtime.context('recipient-a','UNIT',undefined,{daArmyMembershipProven:true});
- const predicate={predicate:'FIELD',subject:'UNIT',arguments:{key:'daArmyMembershipProven',equals:true},contextLevel:'ROSTER'};
+ const forged=runtime.context('recipient-a','UNIT',undefined,{reviewedArmyMembershipProven:true});
+ const predicate={predicate:'FIELD',subject:'UNIT',arguments:{key:'reviewedArmyMembershipProven',equals:true},contextLevel:'ROSTER'};
  assert.equal(schema.evaluatePredicate(predicate,forged),'FALSE','Caller FIELD bypassed physical evidence');
  runtime.load(base);for(const instance of ['recipient-a','recipient-b'])assertGrant(runtime,instance,keyword,false);
  evidence.push({canonicalId:id,keyword,sourceClause:condition.eligibilityEvidence,ruleSource:condition.rule,
@@ -130,7 +130,7 @@ check('mutation-controls-remove-guard-and-broaden-scope-are-detected',()=>{
  const source=built.book.entities.find(row=>row.id==='army-rule-da-c944806a43ff4c999f9e');
  const ungated=clone(book),contract=ungated.entities.find(row=>row.id===source.id).ruleContract;
  for(const clause of contract.clauses)for(const effect of clause.rosterEffects)
-  effect.conditions=effect.conditions.filter(condition=>condition.predicate.arguments?.key!=='daArmyMembershipProven');
+  effect.conditions=effect.conditions.filter(condition=>condition.predicate.arguments?.key!=='reviewedArmyMembershipProven');
  const runtime=createDarkAngelsRosterRuntime({...built,book:ungated});runtime.load(roster([physical('eligible',out)]));
  assert.throws(()=>assertGrant(runtime,'eligible','RAVENWING',false),/eligible\/RAVENWING/);
  const wrong=clone(book);wrong.entities.find(row=>row.id===source.id).ruleContract.clauses[0].rosterEffects[0].targetBinding='SOURCE_UNIT';

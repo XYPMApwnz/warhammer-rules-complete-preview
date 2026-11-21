@@ -9,5 +9,5 @@ export const registration=Object.freeze({
   routeAliases:[],
   async loadPayload(){const response=await fetch(new URL('./generated/app-presentation.json',import.meta.url));
     if(!response.ok)throw new Error('CSM V2 presentation unavailable');return response.json();},
-  async createRoster(){return (await import('./roster-boot.mjs')).createBrowserRoster();}
+  async createRoster(options){return (await import('./roster-boot.mjs')).createBrowserRoster(options);}
 });

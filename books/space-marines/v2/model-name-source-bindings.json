@@ -1,0 +1,71 @@
+{
+  "schema": "new-recruit-model-source-joins/v1",
+  "joins": [
+    {
+      "sourceId": "c3d5-605c-2976-9ee1",
+      "sourceName": "Assault Terminator Sergeant",
+      "canonicalId": "model-sm-9229dcfcb0d4472d",
+      "evidence": {
+        "entityId": "composition-sm-6aa3e15d57c74a56",
+        "path": "/name"
+      },
+      "canonicalName": "Terminator Sergeant",
+      "review": "Source model/group and canonical composition identify the same physical member; no profile statistics or equipment are transferred."
+    },
+    {
+      "sourceId": "a5d5-538c-a88f-e7ea",
+      "sourceName": "Assault Intercessors with Jump Pack",
+      "canonicalId": "model-sm-83f995776bf94667",
+      "evidence": {
+        "entityId": "composition-sm-c856cfb2f2ec4ea4",
+        "path": "/name"
+      },
+      "canonicalName": "Assault Intercessor with Jump Pack",
+      "review": "Source model/group and canonical composition identify the same physical member; no profile statistics or equipment are transferred."
+    },
+    {
+      "sourceId": "971f-f659-e4b7-e127",
+      "sourceName": "Assault Intercessors with Jump Pack w/ Plasma Pistol",
+      "canonicalId": "model-sm-83f995776bf94667",
+      "evidence": {
+        "entityId": "composition-sm-c856cfb2f2ec4ea4",
+        "path": "/name"
+      },
+      "canonicalName": "Assault Intercessor with Jump Pack",
+      "review": "Source model/group and canonical composition identify the same physical member; no profile statistics or equipment are transferred."
+    },
+    {
+      "sourceId": "5ca1-8654-298a-b29f",
+      "sourceName": "Vanguard Veterans with Jump Packs",
+      "canonicalId": "model-sm-eaba389795c342e3",
+      "evidence": {
+        "entityId": "composition-sm-dc1b983be26846bf",
+        "path": "/name"
+      },
+      "canonicalName": "Vanguard Veteran with Jump Pack",
+      "review": "The source unit independently identifies the ordinary MODEL member; its Sergeant is a separate entry. Equipment variants retain their one physical composition identity, without transferring statistics or selecting equipment."
+    },
+    {
+      "sourceId": "f5e2-f383-5061-9393",
+      "sourceName": "Assault Terminator w/ Thunder Hammer & Storm Shield",
+      "canonicalId": "model-sm-41730e5a9b8540d9",
+      "evidence": {
+        "entityId": "composition-sm-f76bb6d2249e48bf",
+        "path": "/name"
+      },
+      "canonicalName": "Terminator",
+      "review": "The source unit independently identifies the ordinary MODEL member; its Sergeant is a separate entry. Equipment variants retain their one physical composition identity, without transferring statistics or selecting equipment."
+    },
+    {
+      "sourceId": "c435-bd14-2d69-1c38",
+      "sourceName": "Assault Terminator w/ Twin Lightning Claws",
+      "canonicalId": "model-sm-41730e5a9b8540d9",
+      "evidence": {
+        "entityId": "composition-sm-f76bb6d2249e48bf",
+        "path": "/name"
+      },
+      "canonicalName": "Terminator",
+      "review": "The source unit independently identifies the ordinary MODEL member; its Sergeant is a separate entry. Equipment variants retain their one physical composition identity, without transferring statistics or selecting equipment."
+    }
+  ]
+}

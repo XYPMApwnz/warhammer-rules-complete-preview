@@ -1,3 +1,7 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
+import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
+import {createDarkAngelsRuleSchema} from './rule-contract-schema.mjs';
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Application metadata over the existing native mixed-owner projection. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -6,7 +10,7 @@ import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 import {buildDarkAngelsImportBook} from './roster-import-build.mjs';
 import {appendDetachmentReferencePresentation} from './detachment-reference-build.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
-const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const clone=structuredClone,read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 export function assertDarkAngelsAppSourceReview(executionBook=buildDarkAngelsImportBook()){
   const facts=read('./generated/effective.json');
   return assertSourceCompletenessGate({review:read('./app-source-review.json'),books:[
@@ -14,15 +18,12 @@ export function assertDarkAngelsAppSourceReview(executionBook=buildDarkAngelsImp
   ],expectations:[],registeredBookIds:[],checkAllRegistrations:false});
 }
 export function buildApp(){
-  const payload=buildGameplayPresentation(),conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
+  const payload=prepareSourceProducer(buildGameplayPresentation());
   payload.bookPresentation.coverImage='../assets/dark-angels-cover-800.webp';
   // Related cards preserve their source-owned Detachment, never guessed eligibility.
-  payload.relatedRules={schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',
-    contextPolicy:{roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',
-    rows:payload.cards.filter(card=>card.kind==='DATASHEET').flatMap(unit=>
-      payload.cards.filter(card=>['ENHANCEMENT','STRATAGEM'].includes(card.kind)).map(rule=>({
-        unitId:unit.id,ruleId:rule.id,kind:rule.kind,detachmentId:rule.parentId,
-        ...clone(conditional),selectedDetachment:clone(conditional)})))};
+  payload.relatedRules=buildUnboundBookRelatedRules(buildDarkAngelsImportBook(),createDarkAngelsRuleSchema(),{
+    unitIds:payload.cards.filter(card=>card.kind==='DATASHEET').map(card=>card.id),
+    ruleIds:payload.cards.filter(card=>['ENHANCEMENT','STRATAGEM'].includes(card.kind)).map(card=>card.id)});
   payload.sourceCompleteness=assertDarkAngelsAppSourceReview();
   payload.rulePresentationLimitations={...payload.rulePresentationLimitations,
     scope:'STAGE_4A_NATIVE_MIXED_OWNER_APPLICATION',runtime:'EXISTING_PHYSICAL_IMPORT_AND_TYPED_EFFECTS',
@@ -38,10 +39,10 @@ export function buildApp(){
       ownerId:'dark-angels',title:'Source and import limitations',
       message:'Ten MFM reference-only relations remain inactive. This importer has constructed-input coverage; an authentic Dark Angels New Recruit export has not been verified.'
     }]};
-  return appendDetachmentReferencePresentation(payload);
+  return finalizeSourceOutput(appendLibraryDataVersions(appendDetachmentReferencePresentation(payload)));
 }
 export function writeApp({check=false}={}){
-  const payload=buildApp(),file=new URL('./generated/app-presentation.json',import.meta.url),bytes=JSON.stringify(payload,null,2)+'\n';
+  const payload=buildApp(),file=new URL('./generated/app-presentation.json',import.meta.url),bytes=serializeSourceJSON(payload);
   if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale Dark Angels app presentation');else fs.writeFileSync(file,bytes);
   return payload;
 }

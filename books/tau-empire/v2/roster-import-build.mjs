@@ -1,3 +1,7 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
+import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -6,23 +10,24 @@ import {buildTauContracts,createTauRuleSchema} from './rule-contract-build.mjs';
 import {enhancementEligibility} from './rule-contract-declarations.mjs';
 import {consumeMfm} from './mfm-boundary.mjs';
 import {addTauSourceChoices,tauStudentRuleId} from './roster-source-choices.mjs';
-import {addTauPrototypeChoices} from './roster-weapon-choices.mjs';
+import {addTauPrototypeChoices,addTauPrototypeOperations} from './roster-weapon-choices.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
-import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
+import {copySourceEvidence,sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 import {bindCanonicalContract,bindDeclarationClauses,inspectDeclarationEvidence} from '../../shared/rule-contract-v2/bindings.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const copy=structuredClone;
 const at=(value,path)=>path.slice(1).split('/').reduce((item,key)=>item?.[key],value);
 
 /** Disposable import/runtime view; canonical entities remain the factual owners.
  * No selection legality or inferred default weapon is introduced here. */
 export function buildTauImportBook(){
-  const {book}=buildTauContracts(),source=read('./roster-import-source-bindings.json');
+  const {book}=buildTauContracts({recipientStage:'DECLARATION'}),source=read('./roster-import-source-bindings.json');
   const index=new Map(book.entities.map(e=>[e.id,e]));
   const bytes=fs.readFileSync(new URL('../../../'+source.exportSource.document,import.meta.url));
   assert.equal(createHash('sha256').update(bytes).digest('hex').toUpperCase(),source.exportSource.sha256);
-  const vocabulary=JSON.parse(bytes);
+  const vocabulary=parseProducerJSON(bytes);
   for(const binding of [...source.unitAliases,...source.compositionAliases,...source.weaponAliases])
     for(const proof of binding.exportEvidence||[]){
       const item=at(vocabulary,proof.path);assert.equal(item?.id,proof.entryId);assert.equal(item.name,proof.label);
@@ -53,7 +58,8 @@ export function buildTauImportBook(){
     assert.ok(text.toLowerCase().includes(weapon.data.name.toLowerCase()),'Provided drone weapon missing in accepted source block');
     const unit=index.get(binding.ownerId);if(!unit.data.weaponIds.includes(id))unit.data.weaponIds.push(id);
   }
-  book.importBindings={schema:'tau-empire-v2/import-bindings/v1',identityAliases,compositions,
+  appendModelNameAliases(identityAliases,modelNames,compositions);
+  book.importBindings={schema:'tau-empire-v2/import-bindings/v1',factionIdentityLabels:['T’au Empire',vocabulary.documents[0].data.catalogue.name],identityAliases,compositions,
     weaponSelections:[...copy(source.weaponSelections),...copy(source.weaponAliases)],equipmentSelections,enhancements,
     nativeReferenceBindings:book.entities.filter(e=>e.kind==='RULE_REFERENCE').map(e=>({id:e.id,ownerId:e.parentId,
       label:e.data.label,recipient:copy(e.data.recipient),provenance:copy(e.provenance)})),
@@ -106,7 +112,13 @@ export function buildTauImportBook(){
     contract.canonicalRuleReferences.push(shield.id);
     contract.clauses.push({id:'shield-drone-physical-model',roles:copy(contract.clauses[0].roles),conditions:[],
       sourceFields:[['text']],evidence:{field:['text'],quote:local.data.text},sourceText:shieldQuote,
-      rosterClassification:'DISPLAY_ONLY',rosterClassificationNote:{reason:'Requires a proven physical MODEL scope and per-model equipment quantity'},rosterEffects:[]});
+      rosterClassification:'ROSTER_EXECUTABLE',rosterClassificationNote:{reason:'Requires a proven physical MODEL scope and per-model equipment quantity'},
+      rosterEffects:[{id:'shield-drone-physical-model/wounds',operation:'MODIFY_STAT',field:'W',mode:'ADD',value:1,
+        targetBinding:'SOURCE_UNIT_MODELS',targetSubject:'MODEL',lifetime:'WHILE_EQUIPPED',conditions:[],
+        physicalSelection:{kind:'MODEL_EQUIPMENT_QUANTITY',equipmentId:shield.id,clauseIdPrefix:'::shield-model/',effectIdSuffix:'/wounds'},
+        sourceFields:[['text']],evidence:{field:['text'],quote:local.data.text},referencedRuleId:shield.id,sourceRuleEvidence,
+        ...copySourceEvidence({provenance:{canonicalRuleId:shield.id,canonicalOwnerId:shield.parentId||book.bookId,
+          canonicalClauseId:'drone-shield-drone#wounds',sourceEvidence:sourceSnapshot(shield,{book})}},{book})}]});
   }
   // The platform's selected item is an option, whereas its characteristic
   // declaration is an ordinary ability (not a wargear-ability inventory row).
@@ -123,6 +135,7 @@ export function buildTauImportBook(){
   }
   addTauSourceChoices(book);
   addTauPrototypeChoices(book);
+  addTauPrototypeOperations(book);
   // Lower only the independently validated physical recipient choice. The
   // existing executor performs the grant; the source decision stores no result.
   const rule=index.get(tauStudentRuleId),clause=rule.ruleContract.clauses.find(c=>c.sourceText===rule.data.text);
@@ -133,18 +146,30 @@ export function buildTauImportBook(){
   clause.rosterClassificationNote={reason:'Validated physical source/recipient pairs are lowered at the T’au runtime boundary; no battle simulation',
     sourceChoice:tauStudentRuleId};
   clause.rosterEffects=[];
+  // A single source-owned operation addresses saved physical pairs at execution;
+  // the canonical display clause and its identity remain unchanged.
+  rule.ruleContract.clauses.push({...copy(clause),id:clause.id+'::physical-choice',rosterClassification:'ROSTER_EXECUTABLE',
+    rosterEffects:[{id:clause.id+'::physical-choice/deep-strike',operation:'GRANT_ABILITY',
+      ability:{canonicalId:'core-deep-strike',parameters:{}},targetBinding:'ROSTER_UNITS',targetSubject:'UNIT',unitScope:'PHYSICAL',
+      conditions:[],sourceFields:[['text']],evidence:{field:['text'],quote:rule.data.text},lifetime:'WHILE_ASSIGNED',
+      physicalChoice:{kind:'UNIT_RECIPIENTS',selectionField:'selectedTauSourceChoiceIds',selectionKey:'source-choice/'+rule.id,
+        optionId:rule.id+'::choice::physical-recipients',canonicalClauseId:clause.id,clauseIdPrefix:'::physical-pair/',effectIdSuffix:'/deep-strike'},
+      ...copySourceEvidence({provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:clause.id,
+        sourceEvidence:sourceSnapshot(rule,{book})}},{book})}]});
   book.importReadiness={stage:4,status:'PARTIAL',frontendVerified:false,realNewRecruitExportTested:false,
     remainingBlockers:['EXACT_DUPLICATE_WEAPON_OCCURRENCE'],
     unprovenExportFormats:['DIRECT_GENERIC_WEAPON_ONLY_IMPORT'],markerOccurrenceCount:markerBindings.length,
     prototypePhysicalWeapon:'EXISTING_SCOPE_AND_SELECTION_QUANTITY_ONE_ONLY',
     shieldOccurrenceCount:shieldBindings.length,shieldPhysicalModel:'CONFIRMED_SCOPE_AND_PER_MODEL_QUANTITY_ONLY',
     student:'PHYSICAL_SOURCE_RECIPIENT_PAIR_LOWERING',krootBodyguard:'BOOK_BOUNDARY_STARTING_STRENGTH_GATE'};
-  const schema=createTauRuleSchema();schema.validateContracts(book);
+  const schema=createTauRuleSchema();
+  schema.validateContractDeclarations(book);validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
+  finalizeRecipientBook(book);schema.validateContracts(book);
   validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   return book;
 }
 if(process.argv[1]&&fileURLToPath(import.meta.url)===fs.realpathSync(process.argv[1])){
-  const target=new URL('./generated/roster-import.json',import.meta.url),bytes=JSON.stringify(buildTauImportBook(),null,2)+'\n';
+  const target=new URL('./generated/roster-import.json',import.meta.url),bytes=serializeSourceJSON(buildTauImportBook());
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(target,'utf8'),bytes,'Stale T’au import view');
   else fs.writeFileSync(target,bytes);
   console.log('T’au import view: PASS (43 datasheets; physical/runtime blockers explicitly retained)');

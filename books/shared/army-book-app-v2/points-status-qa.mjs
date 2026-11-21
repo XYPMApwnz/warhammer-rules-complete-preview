@@ -18,9 +18,11 @@ const points={status:'UNRESOLVED',totalPoints:null,knownPoints:123,
 const service={state,get points(){return points;}},titleForId=id=>id==='unit-a'?'Repeated unit':null;
 const render=instanceId=>renderRosterPointsStatus(document,{service,instanceId,titleForId});
 const before=structuredClone({state,points}),roster=render();
-assert.match(roster.textContent,/Points unresolved/);assert.match(roster.textContent,/Points cannot be calculated reliably/);
-assert.match(roster.textContent,/Repeated unit #1/);assert.match(roster.textContent,/Paid option: Equipment A/);
-assert.match(roster.textContent,/paid equipment selection is unknown/);
+assert.match(roster.textContent,/Points total unavailable/);assert.match(roster.textContent,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);
+assert.doesNotMatch(roster.textContent,/Points unresolved|Points cannot be calculated reliably/);
+assert.match(roster.textContent,/Repeated unit #1/);assert.match(roster.textContent,/Paid equipment: Equipment A/);
+assert.match(roster.textContent,/The export does not identify the paid equipment selected\. Include equipment in your New Recruit export and import it again\./);
+assert.doesNotMatch(roster.textContent,/Paid option:|paid equipment selection is unknown/);
 assert.equal(roster.attributes.role,'status');
 assert.ok(!roster.textContent.includes('123'),'Known partial subtotal is not displayed as a total');
 const row=all(roster).find(node=>node.dataset.rosterPointsOptionId==='cost-a');
@@ -30,18 +32,18 @@ assert.match(render('first').textContent,/Repeated unit #1/);
 assert.deepEqual({state,points},before,'Presentation must not mutate service state or result');
 
 points.unresolved=[{unitInstanceId:'first',selectionKey:'first-equipment',reason:'UNRESOLVED_PHYSICAL_QUANTITY'}];
-assert.match(render().textContent,/quantity is unknown/);
+assert.match(render().textContent,/The export does not identify the equipment quantity\. Include quantities in your New Recruit export and import it again\./);assert.doesNotMatch(render().textContent,/quantity is unknown/);
 assert.equal(all(render()).find(node=>node.dataset.rosterPointsOptionId)?.dataset.rosterPointsOptionId,'cost-a','Exact physical selection proof attributes the option');
 points.unresolved=[{unitInstanceId:'first',reason:'MFM_COMPOSITION_TIER_NOT_PROVEN'}];
-assert.match(render().textContent,/unit size or copy tier/);
+assert.match(render().textContent,/This unit's size or number of copies has no verified points cost\. Check the current points document before using the total\./);assert.doesNotMatch(render().textContent,/unit size or copy tier/);
 assert.ok(!all(render()).some(node=>node.dataset.rosterPointsOptionId),'No option is invented for an unrelated tier failure');
 points.unresolved=[{reason:'OTHER_REASON',message:'Required source information is missing.'}];
-assert.match(render().textContent,/Required source information is missing/);
+assert.match(render().textContent,/The points total could not be verified\. Check the highlighted unit against the current points document\./);assert.doesNotMatch(render().textContent,/Required source information is missing/);
 assert.ok(!all(render()).some(node=>node.dataset.rosterPointsUnitId),'No UNIT is invented for an unscoped issue');
 points.unresolved=[];
-assert.match(render().textContent,/Points unresolved/,'Unknown reason still shows the computed unresolved status');
+assert.match(render().textContent,/Points total unavailable/,'Unknown reason still shows the computed unresolved status');
 assert.match(renderRosterPointsStatus(document,{service:{points:{status:'UNRESOLVED'}} ,instanceId:'first'}).textContent,
-  /Points unresolved/,'Missing per-unit details do not hide a proven roster-wide uncertainty');
+  /Points total unavailable/,'Missing per-unit details do not hide a proven roster-wide uncertainty');
 
 points.status='RESOLVED';points.totalPoints=168;
 assert.equal(render(),null,'A resolved result has no false warning, even if no MODEL bearer was needed for its UNIT quantity');
@@ -49,6 +51,6 @@ points.totalPoints=0;assert.equal(render(),null,'A real resolved zero is not tre
 assert.equal(renderRosterPointsStatus(document,{service:{state}}),null,'Other services need not implement points');
 assert.equal(renderRosterPointsStatus(document,{service:{state,points:null}}),null,'An unloaded service has no warning');
 points.status='UNRESOLVED';points.totalPoints=null;points.unresolved=before.points.unresolved;
-assert.match(render('first').textContent,/paid equipment selection is unknown/,'Fresh render reads the current computed result');
+assert.match(render('first').textContent,/The export does not identify the paid equipment selected\. Include equipment in your New Recruit export and import it again\./,'Fresh render reads the current computed result');assert.doesNotMatch(render('first').textContent,/paid equipment selection is unknown/);
 console.log(JSON.stringify({status:'PASS',unknownPaid:true,unknownQuantity:true,scopedPhysicalCopies:true,
   exactOptionAttribution:true,noInventedOwner:true,noPartialTotal:true,resolvedAndAbsentService:true,liveResult:true,mutatesService:false}));

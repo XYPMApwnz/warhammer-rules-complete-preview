@@ -1,0 +1,80 @@
+{
+  "schema": "card-texts-qa/v1",
+  "base": "feea3583775b69db1f9c42943cca3e5dc43630e5",
+  "cases": [
+    {
+      "id": "p2-network-override",
+      "bookId": "adeptus-mechanicus",
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Tech-priest Dominus (0 pts)\n9x Servitor Battleclade (0 pts)\n• 1x Servitor Underseer\n• 2x Gun Servitor\n• 6x Combat Servitor\n9x Servitor Battleclade (0 pts)\n• 1x Servitor Underseer\n• 2x Gun Servitor\n• 6x Combat Servitor",
+      "sourceFixture": "books/adeptus-mechanicus/v2/recipient-enrollment-qa.json browserCases recipient-gaps-v1:03",
+      "provenance": "DERIVED_FROM_EXISTING_QA_FIXTURE",
+      "attach": {
+        "leader": "parsed-unit-1",
+        "bodyguard": "parsed-unit-2"
+      },
+      "ruleId": "datasheet-servitor-battleclade:section:1"
+    },
+    {
+      "id": "p2-malign-sacrifice",
+      "bookId": "chaos-space-marines",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n3x Dark Apostle (0 pts)\n• 1x Dark Apostle\n• 2x Dark Disciples\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n",
+      "sourceFixture": "v2/fixtures/csm-tau-recipient-gaps-v1-browser.json csm-tau-gaps-v1:csm:02",
+      "provenance": "DERIVED_FROM_EXISTING_QA_FIXTURE",
+      "attach": {
+        "leader": "parsed-unit-1",
+        "bodyguard": "parsed-unit-2"
+      },
+      "ruleId": "datasheet-dark-apostle:section:1:block:2:text"
+    },
+    {
+      "id": "p2-brutal-example",
+      "bookId": "chaos-space-marines",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n2x Traitor Enforcer (0 pts)\n• 1x Traitor Enforcer\n• 1x Traitor Ogryn\n10x Traitor Guardsmen Squad (0 pts)\n• 1x Traitor Sergeant\n• 9x Traitor Guardsmen\n10x Traitor Guardsmen Squad (0 pts)\n• 1x Traitor Sergeant\n• 9x Traitor Guardsmen\n",
+      "sourceFixture": "v2/fixtures/csm-tau-recipient-gaps-v1-browser.json csm-tau-gaps-v1:csm:04",
+      "provenance": "DERIVED_FROM_EXISTING_QA_FIXTURE",
+      "attach": {
+        "leader": "parsed-unit-1",
+        "bodyguard": "parsed-unit-2"
+      },
+      "ruleId": "datasheet-traitor-enforcer:section:1:block:0:text"
+    },
+    {
+      "id": "p2-sorrowsyphon",
+      "bookId": "death-guard",
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Shamblerot Vectorium\n1x Malignant Plaguecaster (0 pts): Bolt pistol, Corrupted staff, Plague Wind\nEnhancement: Sorrowsyphon\n20x Poxwalkers (0 pts)\n20x Poxwalkers (0 pts)",
+      "sourceFixture": "books/death-guard/v2/recipient-enrollment-qa.json browserCases recipient-gaps-v1:18; selected canonical Plaguecaster weapons added for Damage preservation control",
+      "provenance": "DERIVED_FROM_EXISTING_QA_FIXTURE",
+      "attach": {
+        "leader": "parsed-unit-1",
+        "bodyguard": "parsed-unit-2"
+      },
+      "ruleId": "detachment-shamblerot-vectorium:enhancement:3"
+    },
+    {
+      "id": "p43-lion-candidate",
+      "bookId": "dark-angels",
+      "text": "+ FACTION KEYWORD: dark-angels\n+ DETACHMENT: Wrath of the Rock\n1x Librarian (0 pts): Bolt pistol, Force weapon, Smite\n1x Lion El’jonson (0 pts)\n1x Librarian in Terminator Armour (0 pts)\n1x Librarian in Phobos Armour (0 pts)",
+      "sourceFixture": "exact constructed mk(da-psychic-aura) from v2/card-display-2-browser-qa.mjs:36",
+      "provenance": "DERIVED_FROM_EXISTING_QA_FIXTURE"
+    },
+    {
+      "id": "electro-infusion",
+      "bookId": "adeptus-mechanicus",
+      "provenance": "CONSTRUCTED_FROM_CANONICAL_DATASHEETS",
+      "sourceFixture": "Canonical Tech-priest Dominus and Fulgurite Electro-Priests; not an authentic export",
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Data-Psalm Conclave\n1x Tech-priest Dominus (0 pts)\n5x Fulgurite Electro-Priests (0 pts)\n5x Fulgurite Electro-Priests (0 pts)",
+      "attach": {
+        "leader": "parsed-unit-1",
+        "bodyguard": "parsed-unit-2"
+      },
+      "ruleId": "datasheet-fulgurite-electro-priests:section:1"
+    },
+    {
+      "id": "titus-wargear",
+      "bookId": "space-marines",
+      "provenance": "DERIVED_FROM_EXISTING_QA_FIXTURE",
+      "sourceFixture": "DERIVED from existing Titus fixture plus explicit source composition; not a real export",
+      "text": "Epic Hero regression (2000 Points)\n\nSpace Marines\nGladius Task Force (1 Detachment Point)\n\nChar1: 1x Captain Titus (90 pts): Bolt pistol, Master-crafted bolter, Master-crafted chainsword\n\n\n5x Assault Intercessor Squad (0 pts)\n• 1x Assault Intercessor Sergeant\n• 4x Assault Intercessor\n"
+    }
+  ]
+}

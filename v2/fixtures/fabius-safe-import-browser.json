@@ -1,0 +1,48 @@
+{
+  "schema": "fabius-safe-import-browser/v1",
+  "scope": "Existing fixture inputs and explicitly derived header controls; not authentic new exports.",
+  "cases": [
+    {
+      "id": "p26-explicit-no-weapons",
+      "bookId": "tau-empire",
+      "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit: 1x Battlesuit Support System\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+      "provenance": "v2/fixtures/csm-tau-recipient-gaps-v1-browser.json csm-tau-gaps-v1:tau:04"
+    },
+    {
+      "id": "p30-foreign-header-adeptus-mechanicus",
+      "bookId": "adeptus-mechanicus",
+      "text": "Derived header regression (20000 Points)\n\nXenos - T'au Empire\nHaloscreed Battle Clade (1 Detachment Point)\n\nChar1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\nChar2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\n9x Servitor Battleclade (110 pts)\n• 1x Servitor Underseer: Mechanicus pistol, Dataspikes\n• 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw\n• 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon",
+      "provenance": "DERIVED from existing plain-header fixture; faction label only changed, own-book units retained"
+    },
+    {
+      "id": "p30-foreign-header-death-guard",
+      "bookId": "death-guard",
+      "text": "Unnamed list (950 Points)\n\nXenos - T'au Empire\nContagion Engines and Paragons of Putrescence (2 Detachment Points)\n\nChar1: 1x Biologus Putrifier (60 pts): Hyper blight grenades, Injector pistol, Plague knives\nChar2: 1x Lord of Contagion (110 pts): Warlord, Manreaper\nChar3: 1x Malignant Plaguecaster (60 pts): Bolt pistol, Corrupted staff, Plague Wind\n\n10x Plague Marines (175 pts)\n• 9x Plague Marine\n    2 with Plague knives, Plague spewer\n    4 with Heavy plague weapon, Plague knives\n    1 with Plague belcher, Plague knives\n    2 with Plague knives, Plasma gun\n• 1x Plague Champion: Boltgun, Plague knives\n\n1x Chaos Rhino (75 pts): Armoured tracks, Combi-bolter\n3x Deathshroud Terminators (150 pts)\n• 1x Deathshroud Terminator Champion: Icon of Despair, Manreaper, 2x Plaguespurt gauntlet\n• 2x Deathshroud Terminator: 2 with Manreaper, Plaguespurt gauntlet\n1x Foetid Bloat-drone (100 pts): Plague probe, Fleshmower\n1x Foetid Bloat-drone with heavy blight launcher (125 pts): Heavy blight launcher, Plague probe\n1x Myphitic Blight-hauler (95 pts): Bile spurt, Gnashing maw, Missile launcher, Multi-melta\n\nCreated with newrecruit.eu v37.15\n",
+      "provenance": "DERIVED from existing plain-header fixture; faction label only changed, own-book units retained"
+    },
+    {
+      "id": "p30-foreign-header-chaos-space-marines",
+      "bookId": "chaos-space-marines",
+      "text": "Derived header regression (20000 Points)\n\nXenos - T'au Empire\nVeterans of the Long War (1 Detachment Point)\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n1x Chaos Lord (95 pts)\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n\nCreated with newrecruit.eu",
+      "provenance": "DERIVED from existing plain-header fixture; faction label only changed, own-book units retained"
+    },
+    {
+      "id": "p26-compact-no-model-rows",
+      "bookId": "tau-empire",
+      "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n3x Crisis Fireknife Battlesuits (0 pts)\n3x Crisis Fireknife Battlesuits (0 pts)\n",
+      "provenance": "DERIVED by removing MODEL rows from existing source fixture"
+    },
+    {
+      "id": "p20-fabius-initial",
+      "bookId": "chaos-space-marines",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n2x Fabius Bile (0 pts)\n• 1x Fabius Bile: Xyclos Needler, Chirurgeon, Rod of Torment\n• 1x Surgeon Acolyte: Surgeon Acolyte’s tools\n5x Legionaries (0 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon",
+      "provenance": "DERIVED from existing roster-imported-effect-fixtures.mjs selectedWeapons and roster-effect-fixture canonical witness; ordinary UI attach omits initial history"
+    },
+    {
+      "id": "ec-initial-formation",
+      "bookId": "emperors-children",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Court of the Phoenician\n+ WARLORD: Char1: Lord Exultant\nChar1: 1x Lord Exultant (95 pts): Bolt pistol, Plasma pistol, Phoenix power spear, Close combat weapon\nEnhancement: Exalted Patron (+15 pts)\n5x Infractors (95 pts)\n• 1x Obsessionist: Bolt pistol, Power sword\n• 4x Infractor: Bolt pistol, Duelling sabre\nCreated with newrecruit.eu\n",
+      "provenance": "books/emperors-children/v2/roster-import-fixtures.json:character-bodyguard"
+    }
+  ]
+}

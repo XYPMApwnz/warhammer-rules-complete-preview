@@ -59,7 +59,7 @@
       listNode.prepend(article);
     }
   }
-  function applyEffectiveKeywords(card,gameUnit){const section=partEnding(card,'-keywords'),host=section?.querySelector('.keyword-list');if(!host)return;const effective=unique(gameUnit.effective?.keywords),keys=new Set(effective.map(value=>String(value).toLowerCase()));for(const tag of host.children)tag.hidden=!keys.has(tag.textContent.trim().toLowerCase());for(const keyword of effective)if(![...host.children].some(tag=>tag.textContent.trim().toLowerCase()===String(keyword).toLowerCase()))host.append(element('span','roster-derived-keyword',keyword));}
+  function applyEffectiveKeywords(card,gameUnit){const section=partEnding(card,'-keywords'),host=section?.querySelector('.keyword-list');if(!host)return;const effective=unique(root.WHRuleFacts.keywordAccess.keywordField(gameUnit.effective)),keys=new Set(effective.map(value=>String(value).toLowerCase()));for(const tag of host.children)tag.hidden=!keys.has(tag.textContent.trim().toLowerCase());for(const keyword of effective)if(![...host.children].some(tag=>tag.textContent.trim().toLowerCase()===String(keyword).toLowerCase()))host.append(element('span','roster-derived-keyword',keyword));}
   function applyEffectiveState(card,gameUnit,projection){applyEffectiveStats(card,gameUnit,projection);applyEffectiveWeapons(card,gameUnit,projection);applyEffectiveAbilities(card,gameUnit,projection);applyEffectiveKeywords(card,gameUnit);}
   function replaceCost(card,gameUnit){
     const points=gameUnit.selection.points,models=gameUnit.selection.modelCount;
@@ -126,7 +126,7 @@
   }
   function emphasizeKeywords(card,gameUnit){
     const section=partEnding(card,'-keywords');if(!section)return;section.dataset.rosterGameEffective='true';const heading=section.querySelector(':scope > h4');if(heading)heading.textContent='Keywords';
-    const profile=gameUnit.rosterState.keywordProfile||{},added=unique([...list(profile.added),...list(gameUnit.effects).filter(effect=>effect.component==='keyword'&&effect.operation!=='remove').map(effect=>effect.targetId)]),removed=unique([...list(profile.removed),...list(gameUnit.effects).filter(effect=>effect.component==='keyword'&&effect.operation==='remove').map(effect=>effect.targetId)]);
+    const profile=root.WHRuleFacts.keywordAccess.requiredKeywordField(gameUnit.rosterState, "keywordProfile")||{},added=unique([...list(root.WHRuleFacts.keywordAccess.requiredKeywordField(profile, "added")),...list(gameUnit.effects).filter(effect=>effect.component==='keyword'&&effect.operation!=='remove').map(effect=>effect.targetId)]),removed=unique([...list(root.WHRuleFacts.keywordAccess.requiredKeywordField(profile, "removed")),...list(gameUnit.effects).filter(effect=>effect.component==='keyword'&&effect.operation==='remove').map(effect=>effect.targetId)]);
     if(!added.length&&!removed.length)return;const changes=element('div','roster-game-keyword-changes');for(const value of added)changes.append(element('span','roster-game-added',`+ ${value}`));for(const value of removed)changes.append(element('span','roster-game-removed',`− ${value}`));section.append(changes);
   }
   function syncNavigation(card){

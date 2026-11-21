@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
+import {inspect,isDeepStrictEqual} from 'node:util';
 import {buildRuleContractV2,compileCompatibility} from './rule-contract-build.mjs';
 import {buildRelatedRules,armyBookContext} from './related-rules-build.mjs';
 import * as evaluator from './rule-contract-schema.mjs';
@@ -59,10 +60,115 @@ for(const rule of rules) {
 const index=buildRelatedRules(book),compatibility=compileCompatibility(book);
 const baseline=JSON.parse(execFileSync('git',['show','c89bb144f30b70fe6d44fb0ce764d2710fcf3ea4:books/death-guard/v2/generated/related-rules-v2.json'],{encoding:'utf8',maxBuffer:20e6}));
 const pmRules=rules.filter(r=>/^PLAGUE MARINES unit only\./.test(r.text));assert.equal(pmRules.length,2);
+// Exact owner-approved Core 25.04 corrections, independently enumerated before test edits.
+const epicHeroEnhancementPairs = [
+  [
+    "unit-mortarion",
+    "detachment-mortarions-hammer:enhancement:1"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-mortarions-hammer:enhancement:3"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-tallyband-summoners:enhancement:1"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-tallyband-summoners:enhancement:2"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-virulent-vectorium:enhancement:1"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-virulent-vectorium:enhancement:2"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-virulent-vectorium:enhancement:3"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-virulent-vectorium:enhancement:4"
+  ],
+  [
+    "unit-typhus",
+    "detachment-death-lords-chosen:enhancement:1"
+  ],
+  [
+    "unit-typhus",
+    "detachment-death-lords-chosen:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-death-lords-chosen:enhancement:3"
+  ],
+  [
+    "unit-typhus",
+    "detachment-death-lords-chosen:enhancement:4"
+  ],
+  [
+    "unit-typhus",
+    "detachment-mortarions-hammer:enhancement:1"
+  ],
+  [
+    "unit-typhus",
+    "detachment-mortarions-hammer:enhancement:3"
+  ],
+  [
+    "unit-typhus",
+    "detachment-paragons-of-putrescence:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-shamblerot-vectorium:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-shamblerot-vectorium:enhancement:4"
+  ],
+  [
+    "unit-typhus",
+    "detachment-tallyband-summoners:enhancement:1"
+  ],
+  [
+    "unit-typhus",
+    "detachment-tallyband-summoners:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-virulent-vectorium:enhancement:1"
+  ],
+  [
+    "unit-typhus",
+    "detachment-virulent-vectorium:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-virulent-vectorium:enhancement:3"
+  ],
+  [
+    "unit-typhus",
+    "detachment-virulent-vectorium:enhancement:4"
+  ]
+];
+const epicPairs=new Set(epicHeroEnhancementPairs.map(pair=>pair.join("\0"))),epicChanged=[];
 const changed=[];
 for(const previous of baseline.rows) {
   const current=index.rows.find(r=>r.ruleId===previous.ruleId&&r.unitId===previous.unitId);
   if(JSON.stringify(current)!==JSON.stringify(previous)) {
+    const pair=[current.unitId,current.ruleId];
+    if(epicPairs.has(pair.join("\0"))){
+      assert.equal(previous.kind,"ENHANCEMENT");
+      assert(sheets.find(sheet=>unitId(sheet)===current.unitId).keywords.includes("EPIC HERO"));
+      assert(["MATCH","CONDITIONAL"].includes(previous.applicability));
+      assert.deepEqual(current,{...previous,state:"FALSE",applicability:"NO_MATCH",
+        selectedDetachment:{...previous.selectedDetachment,state:"FALSE",applicability:"NO_MATCH"}});
+      epicChanged.push(pair);continue;
+    }
     assert(pmRules.some(r=>r.sourceId===current.ruleId));
     assert(!sheets.find(s=>unitId(s)===current.unitId).keywords.includes('PLAGUE MARINES'));
     assert.equal(current.applicability,'NO_MATCH');assert.equal(current.selectedDetachment.applicability,'NO_MATCH');changed.push(current);
@@ -71,6 +177,7 @@ for(const previous of baseline.rows) {
 const sourcePm=source.datasheets.find(s=>s.keywords.includes('PLAGUE MARINES'));
 const sourcePmLeaders=book.rosterAttachmentPolicies.filter(p=>p.targetId===unitId(sourcePm));
 assert.equal(changed.length,pmRules.length*sourcePmLeaders.length);
+assert.deepEqual(epicChanged.sort(),structuredClone(epicHeroEnhancementPairs).sort(),"Only the exact 23 approved Epic pairs changed");
 assert.equal(index.summary.allDetachments.INVALID+index.summary.selectedDetachment.INVALID,0);
 assert(compatibility.rows.every(r=>r.state!=='INVALID'));
 // The new owner scope must not alter a UNIT-target Stratagem context (AH-04).
@@ -145,6 +252,29 @@ all.load(fixture);scan(all);
 for(const policy of book.rosterAttachmentPolicies){all.attach(policy.sourceId+'/1',policy.targetId+'/1');scan(all);all.detach(policy.sourceId+'/1');}
 // Source and effect definitions are immutable: eligibility is a consumer fix.
 const baselineBook=JSON.parse(execFileSync('git',['show','c89bb144f30b70fe6d44fb0ce764d2710fcf3ea4:books/death-guard/v2/generated/rule-contract-effective.json'],{encoding:'utf8',maxBuffer:30e6}));
-assert.deepEqual(book,baselineBook);assert.deepEqual(buildRelatedRules(book),index);
+// Keep the historical equality requirement, but never ask node:assert to
+// format a diff of the entire book. Store only the first 20 bounded values.
+function historicalDifferences(actual,expected) {
+  let count=0;const first=[];
+  const value=(item,present)=>present?inspect(item,{depth:0,maxArrayLength:3,maxStringLength:160,breakLength:Infinity,compact:true}):'<missing>';
+  function visit(a,b,at,hasA=true,hasB=true) {
+    if(hasA===hasB&&Object.is(a,b))return;
+    const objects=hasA&&hasB&&a!==null&&b!==null&&typeof a==='object'&&typeof b==='object'&&Array.isArray(a)===Array.isArray(b);
+    if(objects){
+      for(const key of new Set([...Object.keys(a),...Object.keys(b)]))
+        visit(a[key],b[key],at+'/'+key.replaceAll('~','~0').replaceAll('/','~1'),Object.hasOwn(a,key),Object.hasOwn(b,key));
+      return;
+    }
+    count++;
+    if(first.length<20)first.push({path:at||'/',historical:value(b,hasB),current:value(a,hasA)});
+  }
+  visit(actual,expected,'');return {count,first};
+}
+if(!isDeepStrictEqual(book,baselineBook)){
+  const differences=historicalDifferences(book,baselineBook);
+  console.error('DG_OWNER_MEMORY '+JSON.stringify({...process.memoryUsage(),maxRssBytes:process.resourceUsage().maxRSS*1024}));
+  throw Error('book differs from historical c89bb144: '+differences.count+' differences, first: '+JSON.stringify(differences.first));
+}
+assert.deepEqual(buildRelatedRules(book),index);
 console.log(JSON.stringify({status:'PASS',enhancementsScanned:rules.length,modelOwners:rules.filter(r=>specs.get(r.sourceId).subject==='MODEL').length,unitOwners:rules.filter(r=>specs.get(r.sourceId).subject==='UNIT').length,
   ownerCases,relationsFixed:changed.length,characterOwner:'NO_MATCH',plagueMarinesOwner:'EXPECTED',formedKeywordLeakage:0,ownerInstanceLeakage:0,ah04:'UNCHANGED',invalid:0,unresolved:0}));

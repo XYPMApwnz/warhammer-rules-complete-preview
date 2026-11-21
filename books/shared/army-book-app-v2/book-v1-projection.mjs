@@ -2,6 +2,7 @@
  * Existing presentation fields retain their IDs, values and factual owner.
  * This module selects layout and canonical relationships; it interprets no rules.
  */
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 
 const supportedKinds = new Set([
@@ -33,8 +34,8 @@ export function projectBookPresentation(model, ownedRecords) {
     const record = records[entity.id] = {
       id: entity.id, kind: entity.kind, parentId: entity.parentId,
       contextId: entity.parentId || entity.id, source: {entityId: entity.id},
-      provenance: clone(entity.provenance || {}),
-      fieldProvenance: clone(entity.fieldProvenance || {}),
+      provenance:sourceSnapshot(entity,{book:model})||{},
+      fieldProvenance:sourceSnapshot(entity,{book:model,slot:'fieldProvenance'})||{},
       tables: []
     };
     if (Array.isArray(entity.data.table)) record.tables.push({
@@ -66,7 +67,7 @@ export function projectBookPresentation(model, ownedRecords) {
       record.pointRecordId = owned.id;
       record.qualifierRecordIds = clone(owned.qualifierIds || []);
       for (const id of record.qualifierRecordIds) if (!ownedRecords.has(id)) throw new Error(`Unresolved MFM qualifier: ${id}`);
-      record.mfmProvenance = clone(owned.provenance);
+      record.mfmProvenance=sourceSnapshot(owned,{book:model});
       if (entity.kind === 'ENHANCEMENT') record.pointsFieldId = `${owned.id}::/value`;
       else {
         record.detachmentPoints = ownedField(entity, owned, '/detachmentPoints', 'Detachment Points', owned.detachmentPoints);

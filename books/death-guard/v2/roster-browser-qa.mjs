@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import {allowApplicationTestDependencies} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -73,9 +75,9 @@ const server=http.createServer((request,response)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
-const evidence=process.env.ARMY_APP_V2_SCREENSHOTS || fs.mkdtempSync(path.join(os.tmpdir(),'dg-roster-browser-v2-'));
+const evidence=process.env.ARMY_APP_V2_SCREENSHOTS || createQaEvidenceDir('dg-roster-browser-v2-');
 fs.mkdirSync(evidence,{recursive:true});
-const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
 let activePage,activeStep='startup';
 const digest=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const descendants=id=>{
@@ -284,7 +286,7 @@ try {
     const backup=path.join(evidence,device+'-roster-backup.json');await download.saveAs(backup);assert.deepEqual(JSON.parse(fs.readFileSync(backup,'utf8')),durable.state);
     assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('army-book-app-v2:roster:death-guard'))),durable.state);
     await detach(ids.lord);assert.equal(modelFnp((await snapshot(page)).effective[ids.lord]).length,0);
-    await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles(backup);await settled(page);assert.deepEqual(await snapshot(page),durable,'Backup did not restore the same typed state/effects');await effectiveParity();
+    assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles(backup);await settled(page);assert.deepEqual(await snapshot(page),durable,'Backup did not restore the same typed state/effects');await effectiveParity();
     await page.locator('[data-roster-action="reload-saved"]').click();await settled(page);assert.deepEqual(await snapshot(page),durable,'Saved reload differs from restored backup');
     await page.reload();await ready(page);await page.waitForSelector('main [data-roster-view]');assert.deepEqual(await snapshot(page),durable,'Local storage restore changed deterministic effects');reloadChecks++;await effectiveParity();
     const after=await readerCensus('reader-after-roster');assert.deepEqual(after,before,'Roster mutated canonical Reader facts');

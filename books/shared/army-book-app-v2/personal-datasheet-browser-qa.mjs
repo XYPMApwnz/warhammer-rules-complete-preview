@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Real-browser Personal Guide invariants; normal datasheets remain byte-identical. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -14,7 +16,7 @@ const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const baselineHead=process.env.PERSONAL_DATASHEET_BASELINE_HEAD||'d087cfbadab574f55a7e525c03303a18adb7ef6b';
 const syntheticOnly=process.argv.includes('--synthetic-only');
 const equipmentCaptionsOnly=process.argv.includes('--equipment-captions-only');
-const out=process.env.ARMY_APP_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/effective-datasheet-presentation-d087';
+const out=process.env.ARMY_APP_V2_SCREENSHOTS||createQaEvidenceDir('personal-datasheet-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const read=file=>JSON.parse(fs.readFileSync(path.join(repo,file),'utf8'));
 const payloads=new Map([['death-guard',buildDg()],['adeptus-mechanicus',buildAm()]]);
@@ -36,7 +38,7 @@ const origin=`http://127.0.0.1:${server.address().port}`;
 const {chromium}=createRequire(import.meta.url)('playwright');
 const installedChrome='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installedChrome)?installedChrome:undefined);
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
 const errors=[],normalComparisons=[],personalResults=[],syntheticResults=[];
 const priority=new Set(['unit-lord-of-contagion','unit-deathshroud-terminators','unit-great-unclean-one','unit-helbrute','unit-servitor-battleclade','unit-tech-priest-dominus','unit-skitarii-rangers','unit-sicarian-infiltrators']);
 const wait=async page=>{await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
@@ -194,7 +196,7 @@ const amCompositionImport=`+ DETACHMENT: Rad-Zone Corps
 • 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw
 • 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw`;
 async function imported(page,text){
-  await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
   await page.locator('[data-roster-action="review-import"]').click();
   await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state?.units?.[0]?.instanceId==='parsed-unit-1');
   return page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
@@ -361,14 +363,14 @@ async function equipmentCaptionControls() {
     for(const c of cases) {
       await page.goto(origin+'/v2/app.html');await page.getByRole('link',{name:'Roster',exact:true}).click();
       await page.locator(`main a[data-v2-book="${c.book}"]`).click();await ready();
-      await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+      await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
       await page.getByRole('button',{name:'Import roster',exact:true}).click();
       await page.waitForFunction(()=>ArmyBookAppV2.roster.state?.units.length===2);await ready();
       const before=await page.evaluate(()=>ArmyBookAppV2.roster.snapshot());
       assert.deepEqual(before.units.map(unit=>unit.canonicalUnitId),[c.unit,c.unit]);
       for(const [ordinal,unit]of before.units.entries())for(const view of ['effective','guide']) {
         await roster();
-        if(view==='effective')await page.locator(`[data-roster-instance-id="${unit.instanceId}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
+        if(view==='effective')await openCard(page,page.locator(`[data-roster-instance-id="${unit.instanceId}"]`));
         else {await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
           await page.locator(`main a[data-target-id="roster-unit/${unit.instanceId}"]`).click();}
         await ready();
@@ -501,3 +503,15 @@ try{
   const report={status:'PASS',baselineHead,normalComparisons,personalResults,syntheticResults,pageErrors:errors,screenshots:out};
   fs.writeFileSync(path.join(out,equipmentCaptionsOnly?'equipment-caption-browser-report.json':syntheticOnly?'personal-datasheet-synthetic-browser-report.json':'personal-datasheet-browser-report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

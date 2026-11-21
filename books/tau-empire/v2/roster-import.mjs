@@ -1,11 +1,16 @@
+import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
+import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
+import {resolveSingletonCompositionMember} from '../../shared/roster-v2/singleton-model-import.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,changeAttachment} from '../../shared/roster-v2/context.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {createTauRuleSchema} from './rule-contract-schema.mjs';
 import {validateTauSourceChoices,validateTauAttachmentSourceConditions,setTauStudentChoice,
-  tauSourceChoiceContext,preserveTauSourceChoices,bindTauStudentPairs,bindTauShieldModels} from './roster-source-choices.mjs';
-import {validateTauPrototypeChoices,setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver} from './roster-weapon-choices.mjs';
+  tauSourceChoiceInputs,preserveTauSourceChoices} from './roster-source-choices.mjs';
+import {validateTauPrototypeChoices,setTauPrototypeChoice} from './roster-weapon-choices.mjs';
+import {sameSourceEvidence,copySourceEvidence,mergeSourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
 const copy=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
@@ -13,8 +18,9 @@ const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
 /** T’au physical bindings around the existing parser/resolver. No legality
  * caps, weapon replacements, default loadouts or guessed MODEL bearers. */
 export function createTauRosterImport(input){
-  const book=copy(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
+  const book=cloneSourceBook(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e])),epicOwners=epicHeroUnitIds(book);
   requireValue(book.bookId==='tau-empire'&&metadata?.schema==='tau-empire-v2/import-bindings/v1','Invalid T’au import domain');
+  const acceptsFaction=createExportFactionCheck(metadata);
   for(const binding of metadata.compositions){
     const source=index.get(binding.id);
     requireValue(source?.parentId===binding.ownerId&&source.data.modelProfileId===binding.profileId&&
@@ -25,7 +31,8 @@ export function createTauRosterImport(input){
     requireValue(source?.kind==='ENHANCEMENT'&&source.parentId===binding.detachmentId&&
       source.data.scope===binding.scope&&source.data.eligibilityText===binding.eligibilityText,'Foreign Enhancement source');
   }
-  const shared=()=>createRosterImportService(book,metadata);
+  let sharedImport;
+  const shared=()=>sharedImport??=createRosterImportService(book,metadata);
   // Construct once up front: malformed source mappings are rejected before any
   // input can reach READY. Later attempts use isolated shared import state.
   shared();let saved=null;
@@ -36,9 +43,17 @@ export function createTauRosterImport(input){
       if(Object.hasOwn(object,key)&&!same(object[key],value))error('CONFLICTING_SOURCE_BINDING',key,'Stored physical/source binding changed');
       else object[key]=copy(value);
     };
+    const checkedSource=(object,key,source)=>{
+      if((Object.hasOwn(object,key)||object.sourceBindings?.[key])&&!sameSourceEvidence(object,source,{book,slot:key,otherSlot:'provenance'}))
+        error('CONFLICTING_SOURCE_BINDING',key,'Stored physical/source binding changed');
+      else {
+        const prior=Object.keys(object.sourceBindings||{}).filter(slot=>!slot.startsWith('$')).map(slot=>copySourceEvidence(object,{book,slot}));
+        delete object[key];Object.assign(object,mergeSourceEvidence(...prior,copySourceEvidence(source,{book,targetSlot:key})));
+      }
+    };
     if(draft){
       state.importEvidence=copy(draft.metadata);
-      if(draft.metadata.faction&&draft.metadata.faction!=='—'&&normalizeImportLabel(draft.metadata.faction)!==normalizeImportLabel('T’au Empire'))
+      if(!acceptsFaction(draft.metadata.faction))
         error('FOREIGN_FACTION_EXPORT','faction','Export names a different faction');
     }
     if(bindings.modelBearers!==undefined&&(!bindings.modelBearers||Array.isArray(bindings.modelBearers)||typeof bindings.modelBearers!=='object'))
@@ -60,9 +75,13 @@ export function createTauRosterImport(input){
         }
       for(const row of unit.modelRows){
         const rawRow=raw?.modelRows.find(item=>item.key===row.rowId);
-        const matches=draft?(raw.modelRows.length?members.filter(member=>member.labels.some(label=>
+        let matches=draft?(raw.modelRows.length?members.filter(member=>member.labels.some(label=>
           normalizeImportLabel(label)===normalizeImportLabel(rawRow?.name))):members.filter(member=>member.profileId===row.canonicalProfileId)):
           members.filter(member=>member.id===row.compositionMemberId);
+        if(draft&&!raw.modelRows.length&&matches.length>1){
+          const proven=resolveSingletonCompositionMember(unit,row,members);
+          if(proven)matches=[proven];
+        }
         if(matches.length!==1){needs.push({kind:'COMPOSITION_MEMBER',key:row.rowId,candidateIds:matches.map(m=>m.id)});continue;}
         const member=matches[0];checked(row,'compositionMemberId',member.id);
         if(row.canonicalProfileId!==member.profileId)error('WRONG_MODEL_PROFILE',row.rowId,'Source composition/profile differ');
@@ -84,7 +103,7 @@ export function createTauRosterImport(input){
           error('WRONG_PROVIDED_WEAPON',selection.selectionKey,'Equipment does not provide this canonical weapon');
         else selection.canonicalProfileIds=copy(provided);
         checked(selection,'sourceEquipmentIdentity',binding.genericEquipmentId||binding.canonicalEquipmentIds[0]);
-        checked(selection,'sourceEquipmentProvenance',index.get(binding.genericEquipmentId||binding.canonicalEquipmentIds[0]).provenance);
+        checkedSource(selection,'sourceEquipmentProvenance',index.get(binding.genericEquipmentId||binding.canonicalEquipmentIds[0]));
       }
       const mfm=book.mfmImportReferences.partitions;
       checked(unit,'mfmUnitRecordId',mfm.unitBindings.find(row=>row.entityId===unit.canonicalUnitId)?.mfmRecordId);
@@ -100,6 +119,7 @@ export function createTauRosterImport(input){
         else if(!old)unit.enhancementAssignments.push({enhancementId:id,modelScopeId:scope});
       }
       for(const id of unit.enhancementIds){
+        if(epicOwners.has(unit.canonicalUnitId))continue;
         const binding=metadata.enhancements.find(row=>row.id===id);
         if(!binding){error('UNKNOWN_ENHANCEMENT',id,'Missing source-owned Enhancement');continue;}
         const eligible=binding.eligibility;
@@ -132,7 +152,13 @@ export function createTauRosterImport(input){
     }catch(e){error('INVALID_PHYSICAL_STATE','roster',e.message);}
     return {state,needs,errors};
   }
+  function validate(snapshot){
+    const checked=bind(validateRoster(book,snapshot,book.rosterAttachmentPolicies));
+    requireValue(!checked.errors.length&&!checked.needs.length,JSON.stringify({errors:checked.errors,needs:checked.needs}));
+    return checked.state;
+  }
   return {get state(){return saved?copy(saved):null;},draft:text=>shared().draft(text),
+    validate,
     import(text,bindings={}){
       const unknown=Object.keys(bindings).filter(key=>!['units','profiles','detachments','detachmentId','selections','enhancements','modelBearers'].includes(key));
       if(unknown.length)return {status:'INVALID',roster:null,needsBindings:[],errors:unknown.map(key=>({code:'UNSUPPORTED_SOURCE_BINDING',key,
@@ -148,26 +174,20 @@ export function createTauRosterImport(input){
         needsBindings:[...result.needsBindings,...checked.needs],errors:[...result.errors,...checked.errors],legality:'NOT_ASSESSED'};
     },
     load(snapshot){
-      const checked=bind(validateRoster(book,snapshot,book.rosterAttachmentPolicies));
-      requireValue(!checked.errors.length&&!checked.needs.length,JSON.stringify({errors:checked.errors,needs:checked.needs}));
-      saved=checked.state;return copy(saved);
+      saved=validate(snapshot);return copy(saved);
     },snapshot(){requireValue(saved,'No imported T’au roster');return copy(saved);}};
 }
 
 /** Existing runtime owns execution and projection. This book boundary validates
  * physical source decisions before loading, so a rejected edit is atomic. */
 export function createTauRosterRuntime(book){
-  let runtime=createRosterRuntime(book,createTauRuleSchema());
+  const schema=createTauRuleSchema();schema.validateContracts(book);
+  const runtime=createRosterRuntime(book,{...schema,conditionInputs:tauSourceChoiceInputs(book)});
   const imports=createTauRosterImport(book);
   const service={get catalog(){return runtime.catalog;},get state(){return runtime.state;},get projection(){return runtime.projection;},
     load(value){
       // Import validation also proves saved physical/source identity bindings.
-      const candidate=imports.load(value),boundBook=bindTauShieldModels(bindTauPrototypeChoices(bindTauStudentPairs(book,candidate),candidate),candidate);
-      const schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(boundBook,candidate)});
-      schema.validateContracts(boundBook);
-      const next=createRosterRuntime(boundBook,{...schema,resolveWeaponSelection:tauWeaponSelectionResolver(boundBook,candidate),
-        resolveWeaponPartitions:tauWeaponPartitionResolver(boundBook,candidate)});
-      const verified=next.load(candidate);runtime=next;return verified;
+      return runtime.load(imports.validate(value));
     },snapshot:()=>runtime.snapshot(),effective:id=>runtime.effective(id),related:(...args)=>runtime.related(...args),
     context:(...args)=>runtime.context(...args),
     attach:(leader,target)=>service.load(changeAttachment(book,runtime.snapshot(),book.rosterAttachmentPolicies,'ATTACH',leader,target)),

@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 /** Accepted-source oracle -> native text import -> shared executor -> production
  * personal cards. Threshold is a passive attack rule, never a BS/WS change. */
 import assert from 'node:assert/strict';
@@ -10,9 +11,11 @@ import {createCSMBrowserRoster} from './roster-boot.mjs';
 import {physical,fixtureState,assignBearer} from './roster-effect-fixture.mjs';
 import {prepareRosterPresentationCards,projectInstanceCards} from '../../shared/army-book-app-v2/personal.mjs';
 import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effect-expectations-qa.mjs';
+import {compileBookRecipients,recipientDeclarationView,resolveRecipient} from '../../shared/rule-contract-v2/recipients.mjs';
+import {producerDetachmentTextDeclaration} from '../../shared/roster-v2/conditional-policy.mjs';
 
 const clone=structuredClone,ruleId='detachment-cult-of-the-arkifane:enhancement:3';
-export const criticalHitThresholdExpectation=JSON.parse(fs.readFileSync(new URL('./critical-hit-source-expectations.json',import.meta.url),'utf8')).cases[0];
+export const criticalHitThresholdExpectation=parseSourceFixtureJSON(fs.readFileSync(new URL('./critical-hit-source-expectations.json',import.meta.url),'utf8')).cases[0];
 const source=fs.readFileSync(new URL('../sources/waha-11e-current-2026-09-29/chaos-space-marines.html',import.meta.url));
 assert.equal(createHash('sha256').update(source).digest('hex'),'54e028296c063629f43e82a9aba26943568dee3ae819e36620f72dec47529c4e');
 const raw=source.toString('utf8').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/\s+/g,' ');
@@ -20,8 +23,8 @@ const accepted=criticalHitThresholdExpectation.source.quote;
 assert.ok(raw.includes(accepted),'Independent accepted source restriction/threshold changed');
 const expectedThreshold=Number(accepted.match(/unmodified Hit roll of (\d)\+/)[1]);
 const book=buildCSMRosterRuntimeBook(),importBook=buildCSMImportBook();
-const bindings=JSON.parse(fs.readFileSync(new URL('./roster-attachment-bindings.json',import.meta.url),'utf8'));
-const payload=JSON.parse(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));
+const bindings=parseSourceFixtureJSON(fs.readFileSync(new URL('./roster-attachment-bindings.json',import.meta.url),'utf8'));
+const payload=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));
 const cards=prepareRosterPresentationCards(new Map(payload.cards.map(card=>[card.id,card])),payload.rosterPresentation);
 const fixture=buildImportedEffectFixtures(book).find(row=>row.owner===ruleId);
 assert.ok(fixture,'Reviewed source has no executable import fixture');
@@ -101,14 +104,17 @@ function run(inputBook=book) {
 export const criticalHitThresholdGuardResult={id:criticalHitThresholdExpectation.id,status:'PASS',...run()};
 const mutations=[];
 for(const mutation of ['missing-binding','wrong-value','wrong-recipient','wrong-owner','wrong-gate']) {
-  const changed=clone(book),rule=changed.entities.find(entity=>entity.id===ruleId),clause=rule.ruleContract.clauses.find(clause=>clause.id==='battle-clause-1');
+  const changed=mutation==='missing-binding'?recipientDeclarationView(book):clone(book),rule=changed.entities.find(entity=>entity.id===ruleId),clause=rule.ruleContract.clauses.find(clause=>clause.id==='battle-clause-1');
   const effect=clause.rosterEffects[0];
   if(mutation==='missing-binding'){clause.rosterEffects=[];clause.rosterClassification='DISPLAY_ONLY';}
   if(mutation==='wrong-value')effect.value=4;
-  if(mutation==='wrong-recipient')effect.targetBinding='SOURCE_UNIT_MODELS';
+  if(mutation==='wrong-recipient')resolveRecipient(rule,clause,effect.recipientId).from='SOURCE_UNIT_MODELS';
   if(mutation==='wrong-owner')rule.ruleContract.assignment.selector={predicate:'MODEL_ID',subject:'MODEL',contextLevel:'STATIC',arguments:{id:'datasheet-dark-apostle:section:2:member:2'},evidence:effect.evidence};
   if(mutation==='wrong-gate')effect.conditions.push({binding:'SOURCE',predicate:{op:'NOT',args:[{predicate:'ALWAYS',subject:'MODEL',contextLevel:'STATIC',arguments:{},evidence:effect.evidence}]}});
-  assert.throws(()=>run(changed),undefined,mutation+' escaped accepted-source oracle');mutations.push(mutation);
+  // Dropping an effect also drops its now-unused recipient declaration at the
+  // producer boundary; the gameplay oracle still sees the missing effect.
+  const candidate=mutation==='missing-binding'?compileBookRecipients(changed,{f1Declaration:producerDetachmentTextDeclaration}):changed;
+  assert.throws(()=>run(candidate),undefined,mutation+' escaped accepted-source oracle');mutations.push(mutation);
 }
 assert.equal(JSON.stringify(book),before);assert.equal(JSON.stringify(importBook),factsBefore);
 console.log(JSON.stringify({status:'PASS',...criticalHitThresholdGuardResult,mutationsRejected:mutations,realNewRecruitExportTested:false}));

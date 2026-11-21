@@ -2,6 +2,7 @@
  * Addresses/values stay with their factual owner. Layout aliases never evaluate
  * selectors, grant keywords or compute effective gameplay state.
  */
+import {keywordScopesForUnit,profileKeywordScopeIds,keywordScopeGroups,requiredKeywordField} from '../roster-v2/keywords.mjs';
 export function normalizeProfilePresentation(model,payload) {
   const entities=new Map(model.entities.map(entity=>[entity.id,entity]));
   const cards=new Map(payload.cards.map(card=>[card.id,card]));
@@ -23,16 +24,16 @@ export function normalizeProfilePresentation(model,payload) {
         field.presentationPath='/INSV';view.profileFieldIds=[field.id];
       }
     }
-    if(unit.data.keywordScopesId) {
-      const scope=entities.get(unit.data.keywordScopesId),scopeCard=cards.get(scope?.id);
-      if(scope?.kind!=='KEYWORD_SCOPES'||scope.parentId!==unit.id)throw new TypeError('Invalid canonical keyword scope');
+    const scope=keywordScopesForUnit(unit,entities);
+    if(scope) {
+      const scopeCard=cards.get(scope.id);
       card.keywordGroups=[];let keywordIndex=0;
-      scope.data.scopes.forEach((group,index)=>{
+      keywordScopeGroups(scope).forEach((group,index)=>{
         const label=scopeCard.fields.find(field=>field.source.path===`/scopes/${index}/label`);
         const fields=scopeCard.fields.filter(field=>field.source.path.startsWith(`/scopes/${index}/keywords/`));
         if(!label)throw new TypeError('Missing keyword scope label');
-        card.keywordGroups.push({scopeId:group.id,
-          profileIds:unit.data.profileIds.filter(id=>entities.get(id).data.keywordScopeIds?.includes(group.id)),
+        requiredKeywordField(card, "keywordGroups").push({scopeId:group.id,
+          profileIds:unit.data.profileIds.filter(id=>profileKeywordScopeIds(entities.get(id))?.includes(group.id)),
           labelFieldId:label.id,fieldIds:fields.map(field=>field.id)});
         // Navigation consumes intrinsic UNIT presentation categories; MODEL
         // predicates continue to use their separate canonical scope bindings.

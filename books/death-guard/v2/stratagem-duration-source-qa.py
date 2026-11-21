@@ -30,6 +30,7 @@ def flow(node):
 def census():
     reviewed = json.loads((HERE / 'stratagem-duration-source-expectations.json').read_text('utf8'))
     enrollment = json.loads((HERE / 'sources/source-enrollment.json').read_text('utf8'))
+    official_updates = json.loads((HERE / 'official-updates.json').read_text('utf8'))
     source_path = 'books/death-guard/v2/sources/accepted-waha-pages/death-guard.html'
     raw = (ROOT / source_path).read_bytes()
     digest = hashlib.sha256(raw).hexdigest().upper()
@@ -62,8 +63,8 @@ def census():
             assert normalize(boundary[0]) in normalize(expected['sourceScopeQuote'])
             assert expected['bindings'], 'Source lifetime has no reviewed recipient'
             assert all(binding in row['operations'] for binding in expected['bindings'])
-        for operation in enrollment['overlayOperations']:
-            if operation.get('targetId') != row['sourceId'] or operation['field'] != ['lines']:
+        for operation in official_updates['entries']:
+            if operation['target'].get('id') != row['sourceId'] or operation['target']['field'] != ['lines']:
                 continue
             proof = operation['provenance']
             key = (proof['documentPath'], proof['page'])

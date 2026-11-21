@@ -1,7 +1,10 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
+import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,predicateContext} from '../../shared/roster-v2/context.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {getRecordedSourceIdentity,sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 const clone=structuredClone,bladeId='detachment-carnival-of-excess:enhancement:3';
 const reject=(ok,message)=>{if(!ok)throw new TypeError(message);};
 
@@ -12,7 +15,7 @@ export function withECImportBindings(book,importBook) {
   const records=new Map(book.entities.map(e=>[e.id,e])),source=new Map(importBook.entities.map(e=>[e.id,e]));
   for(const binding of importBook.importBindings.equipmentSelections)for(const proof of binding.evidence){
     const current=records.get(proof.entityId),original=source.get(proof.entityId);
-    reject(current?.parentId===binding.ownerId&&current.provenance?.sourceId===original?.provenance?.sourceId,'Foreign equipment binding owner');
+    reject(current?.parentId===binding.ownerId&&getRecordedSourceIdentity(current,{book})===getRecordedSourceIdentity(original,{book:importBook}),'Foreign equipment binding owner');
     const at=e=>proof.path.slice(1).split('/').reduce((v,k)=>v?.[k],e?.data);
     reject(typeof at(current)==='string'&&at(current)===at(original),'Stale import equipment evidence');
   }
@@ -23,15 +26,16 @@ export function withECImportBindings(book,importBook) {
  * Explicit modelBearers/weaponChoices are binding API inputs, not invented
  * New Recruit export lines. Missing decisions are never inferred from loadout. */
 export function createECRosterImport(book) {
-  const metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
+  const metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e])),epicOwners=epicHeroUnitIds(book);
   reject(book.bookId==='emperors-children'&&metadata?.schema==='ec-v2/import-bindings/v1','Invalid EC import input');
+  const acceptsFaction=createExportFactionCheck(metadata);
   const base=()=>createRosterImportService(book,metadata),schema=createRuleContractSchema();let saved=null;
   function bind(roster,{draft,bindings={}}={}) {
     const state=clone(roster),needs=[],errors=[];
     const need=(kind,key,rawLabel,candidates=[])=>needs.push({kind,key,rawLabel,candidateIds:candidates});
     const error=(code,key,message)=>errors.push({code,key,message});
     if(draft){state.importEvidence=clone(draft.metadata);
-      if(draft.metadata.faction&&draft.metadata.faction!=='—'&&!['emperors children','chaos emperors children'].includes(normalizeImportLabel(draft.metadata.faction)))
+      if(!acceptsFaction(draft.metadata.faction))
         error('FOREIGN_FACTION_EXPORT','faction','Export identifies another army');}
     const detachmentRecords=state.detachmentIds.map(id=>book.mfmImportReferences.detachmentBindings.find(b=>b.entityId===id)?.mfmRecordId);
     if(state.mfmDetachmentRecordIds&&JSON.stringify(state.mfmDetachmentRecordIds)!==JSON.stringify(detachmentRecords))error('FOREIGN_MFM_OWNER','detachments','Wrong central Detachment references');
@@ -74,6 +78,7 @@ export function createECRosterImport(book) {
       unit.enhancementAssignments??=[];
       const physical=formRoster(book,state).units.find(u=>u.instanceId===unit.instanceId);
       for(const enhancementId of unit.enhancementIds){
+        if(epicOwners.has(unit.canonicalUnitId))continue;
         const binding=metadata.enhancements.find(e=>e.id===enhancementId);reject(binding,'Unbound EC Enhancement');
         if(binding.scope==='UNIT'){
           if(unit.canonicalUnitId!==binding.unitId)error('WRONG_UPGRADE_UNIT',unit.instanceId,'UNIT Upgrade belongs to '+binding.unitId);
@@ -124,7 +129,7 @@ export function createECRosterImport(book) {
         if(equipmentOwners.has('datasheet-keeper-of-secrets:section:1'))choices.add('aegis');
         if(choices.size>1)error('EXCLUSIVE_AEGIS_REPLACEMENT',unit.instanceId,'Keeper can select only one of living whip, ritual knife or shining aegis');
       }
-      if(unit.enhancementIds.includes(bladeId)){
+      if(unit.enhancementIds.includes(bladeId)&&!epicOwners.has(unit.canonicalUnitId)){
         const supplied=bindings.weaponChoices?.[unit.instanceId];
         const optionId=supplied||(unit.selectedUpgradeIds||[])[0],option=metadata.weaponChoices.find(o=>o.id===optionId);
         const decisions=selections(unit).flatMap(s=>s.canonicalOptionIds||[]);
@@ -153,7 +158,7 @@ export function createECRosterImport(book) {
               (loadout?.selections||row.selections).push(record);}
           }
         }
-      }else if(bindings.weaponChoices?.[unit.instanceId]||unit.selectedUpgradeIds?.length)error('UNASSIGNED_WEAPON_CHOICE',unit.instanceId,'Possessed Blade is not assigned');
+      }else if((!epicOwners.has(unit.canonicalUnitId)||!unit.enhancementIds.includes(bladeId))&&(bindings.weaponChoices?.[unit.instanceId]||unit.selectedUpgradeIds?.length))error('UNASSIGNED_WEAPON_CHOICE',unit.instanceId,'Possessed Blade is not assigned');
       if(Object.keys(unit).some(k=>/^selected[A-Z]\w*Ids?$/.test(k)&&k!=='selectedUpgradeIds'))error('UNKNOWN_CANONICAL_OPTION',unit.instanceId,'Unknown EC option state');
     }
     if(!needs.length&&!errors.length){try{validateRoster(book,state,[]);}catch(e){error('INVALID_CANONICAL_STATE','roster',e.message);}}
@@ -167,7 +172,7 @@ export function createECRosterImport(book) {
       if(status==='READY')saved=bound.state;
       return {...result,status,roster:status==='READY'?clone(bound.state):null,
         ...(status==='READY'?{}:{candidateRoster:clone(bound.state)}),needsBindings:[...result.needsBindings,...bound.needs],errors:[...result.errors,...bound.errors],
-        legality:'NOT_ASSESSED',mfmSourceVersion:'v1.6',
+        legality:'NOT_ASSESSED',mfmSourceVersion:sourceSnapshot(book.mfmImportReferences.unitBindings[0],{book}).sourceVersion,
         unresolvedEquipmentScopes:bound.state.units.filter(u=>!u.equipmentContextKnown).map(u=>u.instanceId)};
     },load(snapshot){reject(snapshot?.attachments?.length===0,'Import-only snapshot cannot contain attachments');
       const checked=validateRoster(book,snapshot,[]),bound=bind(checked);reject(!bound.needs.length&&!bound.errors.length,JSON.stringify({needs:bound.needs,errors:bound.errors}));saved=bound.state;return clone(saved);},

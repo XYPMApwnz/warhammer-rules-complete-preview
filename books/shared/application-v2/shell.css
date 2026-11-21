@@ -49,3 +49,6 @@ body.v2-application.v2-v1-navigation [data-v2-shell] #tocPanel { top:calc(var(--
   /* Clip card decoration without creating a scroll ancestor for sticky section tabs. */
   body.v2-application [data-v2-shell] .unit-card.surface { overflow:clip; }
 }
+
+/* Source versions remain readable without competing with the library headings. */
+[data-v2-shell] .v2-sources-line { margin:10px 0 20px; color:var(--muted,#a8adb5); font-size:13px; line-height:1.5; }

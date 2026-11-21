@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot,sourceDeclarationView} from '../books/shared/source-refs-v2/source-refs.mjs';
 /** Seven independently reviewed source obligations, exercised through the real
  * book adapters and shared executor/presentation. No expected set is derived
  * from production contracts. This is focused QA, not 397-requirement parity. */
@@ -11,11 +13,14 @@ import {createAdMechRosterRuntime} from '../books/adeptus-mechanicus/v2/roster-r
 import {createCSMBrowserRoster} from '../books/chaos-space-marines/v2/roster-boot.mjs';
 import {createECBrowserRoster} from '../books/emperors-children/v2/roster-boot.mjs';
 import {prepareRosterPresentationCards,projectFormedUnitCards} from '../books/shared/army-book-app-v2/personal.mjs';
+import {resolveRecipient,recipientDeclarationView,compileBookRecipients} from '../books/shared/rule-contract-v2/recipients.mjs';
+import {producerDetachmentTextDeclaration} from '../books/shared/roster-v2/conditional-policy.mjs';
 
-const root=new URL('../',import.meta.url),read=path=>JSON.parse(fs.readFileSync(new URL(path,root),'utf8'));
+const root=new URL('../',import.meta.url),read=path=>parseSourceFixtureJSON(fs.readFileSync(new URL(path,root),'utf8'));
 const expectations=read('books/shared/roster-v2/charge-source-expectations.json');
 const ledger=read('books/shared/roster-v2/source-effect-coverage-baseline.json');
 const clone=structuredClone,results=[],mutations=[];
+const compile=book=>compileBookRecipients(book,{f1Declaration:producerDetachmentTextDeclaration});
 assert.equal(expectations.sourceAuditCsvSha256,ledger.auditCsvSha256);
 assert.equal(expectations.cases.length,7);
 const adapters=new Map();
@@ -27,8 +32,8 @@ for(const bookId of new Set(expectations.cases.map(e=>e.bookId))){
   const create={'death-guard':createDGRosterRuntime,'adeptus-mechanicus':createAdMechRosterRuntime,'chaos-space-marines':createCSMBrowserRoster,'emperors-children':createECBrowserRoster}[bookId];
   adapters.set(bookId,{book,cards,make:(candidate=book)=>create(candidate,...extra)});
 }
-const characteristics=service=>service.projection.units.map(unit=>({id:unit.instanceId,
-  profiles:unit.profiles.map(model=>({id:model.canonicalProfileId,profile:model.profile,weapons:model.weapons})),weapons:unit.weapons}));
+const characteristics=service=>sourceDeclarationView(service.projection.units.map(unit=>({id:unit.instanceId,
+  profiles:unit.profiles.map(model=>({id:model.canonicalProfileId,profile:model.profile,weapons:model.weapons})),weapons:unit.weapons})));
 function observe(service,cards,expectation){
   return service.projection.units.map(unit=>{
     const view=projectFormedUnitCards(cards,service,unit.instanceId);
@@ -39,7 +44,7 @@ function observe(service,cards,expectation){
         source:a.sourceInstanceId,target:a.targetInstanceId,model:a.targetModelInstanceId,after:a.after})),
       presentation:metrics.map(m=>({key:m.key,label:m.label,value:m.value.modifier,display:m.displayValue,
         scope:m.unitScope,recipients:[...m.recipientInstanceIds].sort(),sources:[...new Set(m.sources.map(s=>s.ruleId))],
-        sourceInstances:[...new Set(m.sources.map(s=>s.sourceInstanceId))],provenance:m.sources.every(s=>Object.keys(s.provenance).length>0)}))};
+        sourceInstances:[...new Set(m.sources.map(s=>s.sourceInstanceId))],provenance:m.sources.every(s=>Object.keys(sourceSnapshot(s)).length>0)}))};
   });
 }
 function expected(service,fixture,expectation,enabled){
@@ -79,10 +84,12 @@ for(const expectation of expectations.cases){
   if(fixture.bodyguard)service.attach(fixture.source,fixture.bodyguard);
   verify(service,adapter,fixture,expectation,fixture.enabled);
   const enabled=service.snapshot();
-  const withoutCharge=clone(adapter.book);
+  // Recompile the disposable producer declaration after deleting a binding;
+  // leaving its canonical recipient behind would create an orphan fixture.
+  const withoutCharge=recipientDeclarationView(adapter.book);
   for(const clause of withoutCharge.entities.find(e=>e.id===expectation.source.canonicalId).ruleContract.clauses)
     if(clause.rosterEffects?.some(effect=>effect.field==='chargeRoll')){clause.rosterEffects=[];clause.rosterClassification='DISPLAY_ONLY';}
-  const neutral=adapter.make(withoutCharge);neutral.load(enabled);
+  const neutral=adapter.make(compile(withoutCharge));neutral.load(enabled);
   assert.deepEqual(characteristics(service),characteristics(neutral),'Activating Charge must not change MODEL or weapon characteristics');
   service.load(JSON.parse(JSON.stringify(enabled)));verify(service,adapter,fixture,expectation,fixture.enabled);
   assert.deepEqual(characteristics(service),profileBaseline,'Charge changed MODEL/weapon characteristics');
@@ -104,13 +111,15 @@ for(const expectation of expectations.cases){
   assert.equal(service.import(fixture.text,{}, {replaceExisting:true}).status,'READY');if(fixture.bodyguard)service.attach(fixture.source,fixture.bodyguard);
   verify(service,adapter,fixture,expectation,fixture.enabled);
   for(const mutation of ['missing-binding','wrong-value','wrong-recipient']){
-    const changed=clone(adapter.book),rule=changed.entities.find(e=>e.id===expectation.source.canonicalId);
+    const declaration=recipientDeclarationView(adapter.book),rule=declaration.entities.find(e=>e.id===expectation.source.canonicalId);
     for(const clause of rule.ruleContract.clauses){
       const charge=clause.rosterEffects?.filter(e=>e.field==='chargeRoll')||[];
       if(mutation==='missing-binding'&&charge.length){clause.rosterEffects=clause.rosterEffects.filter(e=>e.field!=='chargeRoll');clause.rosterClassification='DISPLAY_ONLY';}
       if(mutation==='wrong-value')charge.forEach(e=>e.value=2);
-      if(mutation==='wrong-recipient')charge.forEach(e=>e.targetBinding='ROSTER_UNITS');
     }
+    const changed=compile(declaration),canonicalRule=changed.entities.find(e=>e.id===expectation.source.canonicalId);
+    if(mutation==='wrong-recipient')for(const clause of canonicalRule.ruleContract.clauses)
+      for(const effect of clause.rosterEffects||[])if(effect.field==='chargeRoll')resolveRecipient(canonicalRule,clause,effect.recipientId).from='ROSTER_UNITS';
     assert.throws(()=>{const bad=adapter.make(changed);bad.load(enabled);verify(bad,adapter,fixture,expectation,fixture.enabled,{binding:false});},
       /Independent Charge source -> executor -> presentation/,'Mutation escaped independent comparator: '+fixture.id+'/'+mutation);
     mutations.push(fixture.id+'/'+mutation);

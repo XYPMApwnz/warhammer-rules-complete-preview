@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -10,7 +11,7 @@ import {createEffectiveCoreCatalog} from '../content/effective-core-catalog.mjs'
 const repoRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const readerRoot=path.join(repoRoot,'books/core-rules/reader');
 const catalog=createEffectiveCoreCatalog();
-const screenshots=fs.mkdtempSync(path.join(os.tmpdir(),'core-factual-ownership-browser-'));
+const screenshots=createQaEvidenceDir('core-factual-ownership-browser-');
 const types={'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.jpg':'image/jpeg','.webp':'image/webp'};
 const server=createServer((request,response)=>{try{
   const url=new URL(request.url,'http://localhost');
@@ -39,8 +40,8 @@ try{
         if(name==='phone')assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${file}: page-wide horizontal overflow`);
       }
       await page.goto(`${origin}/books/core-rules/reader/index.html#faq`,{waitUntil:'domcontentloaded'});
-      assert.equal(await page.locator('#faq [data-faq-source]').count(),71,'FAQ provenance occurrences dropped or duplicated');
-      assert.equal(await page.locator('#faq [data-faq-source]').filter({hasText:'Accepted Wahapedia FAQ'}).count(),66,'secondary FAQ label partition wrong');
+      assert.equal(await page.locator('#faq [data-faq-source]').count(),78,'FAQ provenance occurrences dropped or duplicated');
+      assert.equal(await page.locator('#faq [data-faq-source]').filter({hasText:'Accepted Wahapedia FAQ'}).count(),73,'secondary FAQ label partition wrong');
       assert.equal(await page.locator('#faq [data-faq-source]').filter({hasText:'Official FAQ'}).count(),5,'official FAQ label partition wrong');
       for(const record of catalog.faqs)assert.equal(await page.locator(`[id="${record.id}"]`).count(),1,`${record.id}: canonical FAQ anchor not unique`);
       const faqPayloads=await page.locator('#faq aside[data-faq-id]').evaluateAll(nodes=>nodes.map(node=>`${node.querySelector('h4').textContent}|${node.querySelector('p').textContent}`));
@@ -101,5 +102,5 @@ try{
       assert.deepEqual(errors,[],`${name}: uncaught reader errors`);
     }finally{await context.close();}
   }
-  console.log(JSON.stringify({status:'PASS',desktop:'1440x900',phone:'390x844',routes:27,faqCanonicalAnchors:71,legacyOfficialFaqRoutes:5,secondaryLabels:66,officialLabels:5,screenshots:screenshotPaths}));
+  console.log(JSON.stringify({status:'PASS',desktop:'1440x900',phone:'390x844',routes:27,faqCanonicalAnchors:78,legacyOfficialFaqRoutes:5,secondaryLabels:73,officialLabels:5,screenshots:screenshotPaths}));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

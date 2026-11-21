@@ -1,12 +1,15 @@
 import fs from 'node:fs';
 import {isDeepStrictEqual} from 'node:util';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
+import {projectCurrentMfmBookBindings} from '../../shared/tools/effective-mfm-army-projection.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 
 const reviewed=JSON.parse(fs.readFileSync(new URL('./mfm-bindings.json',import.meta.url),'utf8'));
 const declarations=JSON.parse(fs.readFileSync(new URL('./identity-bindings.json',import.meta.url),'utf8')).bindings;
 const sourceIds=new Map(declarations.map(row=>[row.sourceEntityId,row]));
 const requireFact=(condition,message)=>{if(!condition)throw new Error(`Tyranids V2 MFM boundary: ${message}`);};
-const owner=createEffectiveMfmCatalog({asOf:'2026-10-14'});
+const selected=getCurrentMfmSource('tyranids');
+const owner=createEffectiveMfmCatalog({asOf:selected.currentnessCutoff});
 const partitions={unitBindings:['unitPointRecords','DATASHEET'],detachmentBindings:['detachments','DETACHMENT'],
   enhancementBindings:['enhancementCosts','ENHANCEMENT'],leaderBindings:['leaderEligibilityRecords','DATASHEET_SECTION'],
   paidOptionBindings:['paidUpgradeRecords','WEAPON_PROFILE']};
@@ -14,14 +17,15 @@ const partitions={unitBindings:['unitPointRecords','DATASHEET'],detachmentBindin
 /** Return the central immutable fact. No Army-owned copy of any numeric value. */
 export function resolveOwnedFact(id){
   const fact=owner.getById(id);
-  requireFact(fact?.factionId==='tyranids'&&fact.provenance.sourceId==='tyranids-mfm-v1.6'&&
-    fact.provenance.sourceVersion==='v1.6'&&Object.isFrozen(fact),'wrong/stale MFM owner');
+  requireFact(fact?.factionId==='tyranids'&&fact.provenance.sourceId===selected.sourceId&&
+    fact.provenance.sourceVersion===selected.version&&Object.isFrozen(fact),'wrong/stale MFM owner');
   return fact;
 }
 
 /** Validate persistent bridges, including source-declared Leader recipients. */
 export function consumeMfm(entities,{bindings=reviewed}={}){
   requireFact(isDeepStrictEqual(bindings,reviewed),'reviewed source bridges changed');
+  bindings=projectCurrentMfmBookBindings('tyranids',bindings,{owner});
   const forbidden=new Set(['points','pointSchedules','wahaPoints','paidOptions','enhancementPoints','detachmentPoints','forceDispositions','forceDisposition']);
   const checkValues=value=>{
     if(!value||typeof value!=='object')return;
@@ -34,7 +38,7 @@ export function consumeMfm(entities,{bindings=reviewed}={}){
   requireFact(byId.size===entities.length,'duplicate canonical identity');
   const refs=new Map(owner.catalog.unitReferences.filter(r=>r.factionId==='tyranids').map(r=>[r.id,r]));
   const unitId=ref=>{const value=refs.get(ref);requireFact(value?.armyBinding?.bindingStatus==='BOUND','unbound central unit');return value.armyBinding.armyUnitId;};
-  const result={owner:'CENTRALIZED_MFM',sourceVersion:'v1.6',effectiveDate:null,partitions:{},leaderRelations:[]};
+  const result={owner:'CENTRALIZED_MFM',sourceVersion:selected.version,effectiveDate:selected.effectiveDate,partitions:{},leaderRelations:[]};
   for(const [part,[centralPart,kind]] of Object.entries(partitions)){
     const central=owner.catalog[centralPart].filter(row=>row.factionId==='tyranids');
     const ids=bindings[part].map(row=>row.mfmRecordId);

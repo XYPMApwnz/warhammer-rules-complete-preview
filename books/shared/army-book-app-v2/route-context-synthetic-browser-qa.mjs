@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Actual shared app, synthetic canonical/effective inputs, no army data or writes. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -119,14 +120,14 @@ const base=`http://127.0.0.1:${server.address().port}/app.html`;
 const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
 const errors=[],results=[];
 const browserFailure=Promise.withResolvers();
 const failBrowser=error=>{errors.push(error.message);browserFailure.reject(error);};
 const ready=async page=>{await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
 async function openRosterUI(page){
-  const control=page.locator('.toc-shortcuts button').filter({hasText:/^(Attachment Setup|Roster)$/}).first();
-  if(!await control.isVisible())await page.getByRole('button',{name:'Open navigation',exact:true}).click();
+  const control=page.locator('.toc-bottom-shortcuts button, .toc-shortcuts button').filter({hasText:/^(Attachment Setup|Roster)$/}).first();
+  if(!await control.isVisible())await page.locator('#navMenu').click();
   await control.click();
   await page.locator('[data-roster-instances]').waitFor();
 }
@@ -160,13 +161,13 @@ try{
     const sourceSelect=sourceField.locator('select');
     assert.equal(await owner.locator('[data-roster-source-choices-for]').count(),1);
     assert.equal(await sourceSelect.locator('option').first().innerText(),'Not selected');
-    assert.match(await sourceSelect.getAttribute('aria-label'),/^Source selection for Independent source choice on /);
+    assert.match(await sourceSelect.getAttribute('aria-label'),/^Independent source choice for /);assert.doesNotMatch(await sourceSelect.getAttribute('aria-label'),/Source selection for/);
     assert.equal(await sourceField.locator(`a[data-target-id="${secondSourceChoiceId}"]`).count(),1,'Canonical source reference absent');
     await sourceSelect.selectOption('selected');
     assert.equal(await page.evaluate(({owner,id})=>window.syntheticService.sourceChoices(owner).find(c=>c.id===id).value,
       {owner:a.instanceId,id:secondSourceChoiceId}),null,'Changing a select must not apply the source choice');
     await sourceField.locator('[data-roster-action="set-source-choice"]').click();
-    await page.locator('.v2-roster-status').filter({hasText:'Source selection saved.'}).waitFor();
+    await page.locator('.v2-roster-status').filter({hasText:'Choice saved.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
     assert.equal(await sourceSelect.inputValue(),'selected');
     assert.equal(await otherOwner.locator(`select[data-source-choice-id="${secondSourceChoiceId}"]`).inputValue(),'','Independent physical owner changed');
     assert.equal(await owner.locator(`select[data-source-choice-id="${sourceChoiceId}"]`).inputValue(),'','Independent source choice changed');
@@ -194,7 +195,7 @@ try{
     assert.equal(readOnly.references,1);
     await sourceSelect.selectOption('');
     await sourceField.locator('[data-roster-action="set-source-choice"]').click();
-    await page.locator('.v2-roster-status').filter({hasText:'Source selection saved.'}).waitFor();
+    await page.locator('.v2-roster-status').filter({hasText:'Choice saved.'}).waitFor();assert.equal(await page.locator('.v2-roster-status').innerText(),'Choice saved.');assert.doesNotMatch(await page.locator('.v2-roster-status').innerText(),/Source selection saved\./);
     assert.equal(await sourceSelect.inputValue(),'','Not selected did not remove source choice');
     assert.equal(await page.evaluate(({owner,id})=>window.syntheticService.sourceChoices(owner).find(c=>c.id===id).value,
       {owner:a.instanceId,id:secondSourceChoiceId}),null);

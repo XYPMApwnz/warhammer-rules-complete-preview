@@ -5,6 +5,7 @@ import {loadSourceCompletenessInputs,assertSourceCompletenessGate,reviewFingerpr
 import {sourceEffectRegressionResult} from './source-effect-regression-qa.mjs';
 import {chargeSourceGuardResult} from './charge-effects-qa.mjs';
 import {sevenEffectsGuardResult} from '../books/tyranids/v2/seven-effects-qa.mjs';
+import {resolveRecipient} from '../books/shared/rule-contract-v2/recipients.mjs';
 
 const inputs=loadSourceCompletenessInputs(),clone=structuredClone,mutations=[];
 const verified=sourceEffectRegressionResult.verified;
@@ -57,8 +58,13 @@ rejected('M04_CHARGE_PLUS_TWO','INDEPENDENT_EFFECT_MISMATCH',candidate=>{
   assert.equal(operation.value,1);operation.value=2;
 });
 rejected('M05_MODEL_CHANGED_TO_UNIT','INDEPENDENT_EFFECT_MISMATCH',candidate=>{
-  const operation=executable(candidate,guardian).find(effect=>effect.operation==='GRANT_MODEL_ABILITY');assert.ok(operation);
-  assert.equal(operation.targetSubject,'MODEL');operation.targetSubject='UNIT';
+  const source=rule(candidate,guardian),clause=source.ruleContract.clauses.find(clause=>clause.rosterEffects?.some(effect=>effect.operation==='GRANT_MODEL_ABILITY'));
+  assert.ok(clause);const operation=clause.rosterEffects.find(effect=>effect.operation==='GRANT_MODEL_ABILITY');
+  const recipient=resolveRecipient(source,clause,operation.recipientId);
+  assert.equal(recipient.who,'MODEL');
+  // Keep the corrupted declaration structurally valid so the independent
+  // source expectation, rather than a malformed-address guard, rejects it.
+  recipient.who='UNIT';recipient.from='SOURCE_UNIT';
 });
 
 // The imported adapters really remove the computed metric from the effective

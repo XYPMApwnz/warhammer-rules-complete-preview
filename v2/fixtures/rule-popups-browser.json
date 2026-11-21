@@ -1,0 +1,55 @@
+{
+  "schema": "rule-popups-browser/v1",
+  "cases": [
+    {
+      "id": "native-ui/C",
+      "bookId": "tyranids",
+      "text": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Invasion Fleet\n1x Neurotyrant (120 pts)\n• 1x Neurotyrant: Psychic scream\n3x Zoanthropes (90 pts)\n• 1x Neurothrope: Warp Blast – witchfire\n• 2x Zoanthropes: Warp Blast – witchfire\n11x Neurogaunts (45 pts)\n• 1x Neurogaunt Nodebeasts: Chitinous claws and teeth\n• 10x Neurogaunts: Chitinous claws and teeth\n5x Hyperadapted Raveners (165 pts)\n• 1x Ravener Prime: Prime claws and talons\n• 3x Raveners: Ravener heavy claws and talons\n• 1x Raveners: Venom bolt, Ravener heavy claws and talons\n5x Raveners (125 pts)\n• 5x Raveners: Ravener claws and talons\n",
+      "unitId": "unit-hyperadapted-raveners",
+      "instanceId": "parsed-unit-4",
+      "ruleId": "datasheet-hyperadapted-raveners:section:1",
+      "source": "Existing accepted source-backed native fixture, unchanged text; captured at 9b99ade9975346afc3644ade7f69d01ed71cce31",
+      "textSha256": "17e89e30af008403fbb46a39cfe8fe13bb31607ffb77229c26326081b3979a57"
+    },
+    {
+      "id": "detachment-warpstrike-champions:enhancement:4::roster-clause-1",
+      "bookId": "chaos-space-marines",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Warpstrike Champions\n\n1x Chaos Lord In Terminator Armour (90 pts)\nEnhancement: Tzagulla\n• 1x Chaos Lord in Terminator Armour: Combi-bolter, Exalted weapon\n\n1x Chaos Lord In Terminator Armour (90 pts)\n• 1x Chaos Lord in Terminator Armour: Combi-bolter, Exalted weapon\n\n5x Chaos Terminator Squad (185 pts)\n• 1x Terminator Champion: Combi-bolter, Accursed weapon\n• 4x Chaos Terminators: Combi-bolter, Accursed weapon\n\n5x Chaos Terminator Squad (185 pts)\n• 1x Terminator Champion: Combi-bolter, Accursed weapon\n• 4x Chaos Terminators: Combi-bolter, Accursed weapon\n\nCreated with newrecruit.eu\n",
+      "unitId": "unit-chaos-lord-in-terminator-armour",
+      "instanceId": "parsed-unit-1",
+      "ruleId": "detachment-warpstrike-champions:enhancement:4",
+      "source": "Existing accepted source-backed native fixture, unchanged text; captured at 9b99ade9975346afc3644ade7f69d01ed71cce31",
+      "textSha256": "08d9447bcc9fccb0e5c9bd818d13b0ad4721295f67dc624e0408090e4989154c"
+    }
+  ],
+  "equipmentCases": [
+    {
+      "id": "existing-dark-commune-chaos-icon",
+      "bookId": "chaos-space-marines",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Veterans of the Long War\n\n5x Dark Commune (90 pts)\n• 1x Cult Demagogue: Autopistol, Commune stave\n• 1x Mindwitch: Warp Curse, Close combat weapon\n• 1x Iconarch: Autopistol, Close combat weapon, Chaos icon\n• 2x Blessed Blades: Commune blade\n\n5x Dark Commune (90 pts)\n• 1x Cult Demagogue: Autopistol, Commune stave\n• 1x Mindwitch: Warp Curse, Close combat weapon\n• 1x Iconarch: Autopistol, Close combat weapon, Chaos icon\n• 2x Blessed Blades: Commune blade\n\n8x Accursed Cultists (90 pts)\n• 3x Torments: Hideous mutations\n• 5x Mutants: Blasphemous appendages\n\n8x Accursed Cultists (90 pts)\n• 3x Torments: Hideous mutations\n• 5x Mutants: Blasphemous appendages\n\nCreated with newrecruit.eu\n",
+      "unitId": "unit-dark-commune",
+      "instanceId": "parsed-unit-1",
+      "equipmentId": "datasheet-dark-commune:section:2",
+      "ruleId": "datasheet-dark-commune:section:1:block:2:text",
+      "fieldPath": "/text",
+      "selectionText": "Chaos icon",
+      "title": "Chaos Icon",
+      "source": "Unchanged accepted native fixture datasheet-dark-commune:section:1:block:0:text::model-invulnerable at 9b99ade9",
+      "textSha256": "74b7bbe0c774d09f55319184b676d7b19496758968e3890b6eea52c4d9b757dc"
+    },
+    {
+      "id": "existing-tidewall-defence-platform",
+      "bookId": "tau-empire",
+      "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Mont'ka\n1x Tidewall Shieldline (100 pts): 1x Tidewall defence platform\n• 1x Tidewall Shieldline\n",
+      "unitId": "unit-tidewall-shieldline",
+      "instanceId": "parsed-unit-1",
+      "equipmentId": "datasheet-tidewall-shieldline:wargear:1",
+      "ruleId": "datasheet-tidewall-shieldline:section:1",
+      "fieldPath": "/blocks/2/text",
+      "selectionText": "Tidewall defence platform",
+      "title": "Tidewall Defence Platform",
+      "source": "Existing books/tau-empire/v2/roster-import-qa.mjs equipped-platform fixture",
+      "textSha256": "c4e94593b7698640d4990e95704448d30ffc0674501090492cdb38cee117e660"
+    }
+  ]
+}

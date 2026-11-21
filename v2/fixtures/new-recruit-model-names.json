@@ -1,0 +1,198 @@
+{
+  "classification": "SYNTHETIC_SOURCE_BACKED_MODEL_NAME_CONTROLS",
+  "cases": [
+    {
+      "bookId": "chaos-space-marines",
+      "id": "cultist",
+      "text": "+ FACTION KEYWORD: Chaos Space Marines\n+ DETACHMENT: Huron's Marauders\n\n10x Cultist Mob (50 pts)\n• 1x Cultist Champion: Brutal assault weapon, Bolt pistol\n• 9x Cultist: 9 with Autopistol, Brutal assault weapon",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-cultist-mob:section:2:member:1",
+        "datasheet-cultist-mob:section:2:member:2"
+      ]
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "id": "beastman",
+      "text": "+ FACTION KEYWORD: Chaos Space Marines\n+ DETACHMENT: Huron's Marauders\n\n10x Fellgor Beastmen (60 pts)\n• 1x Fellgor Champion: Chainsword, Plasma pistol\n• 9x Beastman",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-fellgor-beastmen:section:2:member:1",
+        "datasheet-fellgor-beastmen:section:2:member:2"
+      ]
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "id": "biker",
+      "text": "+ FACTION KEYWORD: Chaos Space Marines\n+ DETACHMENT: Huron's Marauders\n\n3x Chaos Bikers (70 pts)\n• 1x Biker Champion\n• 2x Biker",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-chaos-bikers:section:2:member:1",
+        "datasheet-chaos-bikers:section:2:member:2"
+      ]
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "id": "guardsman",
+      "text": "+ FACTION KEYWORD: Chaos Space Marines\n+ DETACHMENT: Huron's Marauders\n\n10x Traitor Guardsmen Squad (70 pts)\n• 1x Traitor Sergeant\n• 9x Guardsman",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-traitor-guardsmen-squad:section:2:member:1",
+        "datasheet-traitor-guardsmen-squad:section:2:member:2"
+      ]
+    },
+    {
+      "bookId": "space-marines",
+      "id": "assault-sergeant",
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n\n5x Terminator Assault Squad (180 pts)\n• 1x Assault Terminator Sergeant\n• 4x Terminator",
+      "expected": "READY",
+      "expectedProfiles": [
+        "model-sm-9229dcfcb0d4472d",
+        "model-sm-41730e5a9b8540d9"
+      ],
+      "expectedMembers": [
+        "composition-sm-6aa3e15d57c74a56",
+        "composition-sm-f76bb6d2249e48bf"
+      ]
+    },
+    {
+      "bookId": "space-marines",
+      "id": "assault-jump",
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n\n5x Assault Intercessors with Jump Packs (90 pts)\n• 1x Assault Intercessor Sergeant with Jump Pack\n• 4x Assault Intercessors with Jump Pack",
+      "expected": "READY",
+      "expectedProfiles": [
+        "model-sm-27b12c6f365c4055",
+        "model-sm-83f995776bf94667"
+      ],
+      "expectedMembers": [
+        "composition-sm-f25d41391d7f4808",
+        "composition-sm-c856cfb2f2ec4ea4"
+      ]
+    },
+    {
+      "bookId": "space-marines",
+      "id": "company-veteran",
+      "expected": "NEEDS_BINDINGS",
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n\n4x Company Heroes (95 pts)\n• 1x Ancient\n• 1x Company Champion\n• 2x Company Veteran"
+    },
+    {
+      "bookId": "blood-angels",
+      "id": "death-company",
+      "text": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n\n5x Death Company Marines with Jump Packs (130 pts)\n• 5x Death Company Marine",
+      "expected": "READY",
+      "expectedProfiles": [
+        "model-ba-52f3903a140343a39fbe"
+      ],
+      "expectedMembers": [
+        "composition-ba-b2e49c4fa8ee4bbfa01c"
+      ]
+    },
+    {
+      "bookId": "tau-empire",
+      "id": "fire-warrior",
+      "text": "+ FACTION KEYWORD: T'au Empire\n+ DETACHMENT: Mont'ka\n\n10x Strike Team (75 pts)\n• 1x Fire Warrior Shas'ui\n• 9x Fire Warrior",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-strike-team:profile:1",
+        "datasheet-strike-team:profile:1"
+      ],
+      "expectedMembers": [
+        "datasheet-strike-team:composition:1",
+        "datasheet-strike-team:composition:2"
+      ]
+    },
+    {
+      "bookId": "tau-empire",
+      "id": "krootox-rider",
+      "text": "+ FACTION KEYWORD: T'au Empire\n+ DETACHMENT: Mont'ka\n\n1x Krootox Riders (40 pts)\n• 1x Krootox Rider",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-krootox-riders:profile:1"
+      ],
+      "expectedMembers": [
+        "datasheet-krootox-riders:composition:1"
+      ]
+    },
+    {
+      "bookId": "tau-empire",
+      "id": "kroot-carnivore",
+      "text": "+ FACTION KEYWORD: T'au Empire\n+ DETACHMENT: Mont'ka\n\n10x Kroot Carnivores (65 pts)\n• 1x Long-quill\n• 9x Kroot Carnivore",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-kroot-carnivores:profile:1",
+        "datasheet-kroot-carnivores:profile:1"
+      ],
+      "expectedMembers": [
+        "datasheet-kroot-carnivores:composition:1",
+        "datasheet-kroot-carnivores:composition:2"
+      ]
+    },
+    {
+      "bookId": "tyranids",
+      "id": "termagant",
+      "text": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Invasion Fleet\n\n10x Termagants (60 pts)\n• 10x Termagant",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-termagants:profile:1"
+      ],
+      "expectedMembers": [
+        "datasheet-termagants:section:2:member:1"
+      ]
+    },
+    {
+      "bookId": "emperors-children",
+      "id": "terminators-group",
+      "text": "+ FACTION KEYWORD: Emperor's Children\n+ DETACHMENT: Coterie of the Conceited\n\n5x Chaos Terminators (180 pts)\n• 1x Terminator Champion\n• 4x Terminators",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-chaos-terminators:profile:1",
+        "datasheet-chaos-terminators:profile:1"
+      ],
+      "expectedMembers": [
+        "datasheet-chaos-terminators:section:2:member:1",
+        "datasheet-chaos-terminators:section:2:member:2"
+      ]
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "id": "terminator-equipment-named-model",
+      "text": "+ FACTION KEYWORD: Chaos Space Marines\n+ DETACHMENT: Huron's Marauders\n\n5x Chaos Terminator Squad (180 pts)\n• 1x Terminator Champion\n• 4x Accursed weapon and combi-bolter",
+      "expected": "READY",
+      "expectedProfiles": [
+        "datasheet-chaos-terminator-squad:section:2:member:1",
+        "datasheet-chaos-terminator-squad:section:2:member:2"
+      ],
+      "noImplicitGear": true
+    },
+    {
+      "bookId": "space-marines",
+      "id": "assault-terminator",
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n\n5x Terminator Assault Squad (180 pts)\n• 1x Assault Terminator Sergeant\n• 4x Assault Terminator",
+      "expected": "READY",
+      "expectedProfiles": [
+        "model-sm-9229dcfcb0d4472d",
+        "model-sm-41730e5a9b8540d9"
+      ],
+      "expectedMembers": [
+        "composition-sm-6aa3e15d57c74a56",
+        "composition-sm-f76bb6d2249e48bf"
+      ],
+      "noImplicitGear": true
+    },
+    {
+      "bookId": "space-marines",
+      "id": "vanguard-jump",
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n\n5x Vanguard Veteran Squad with Jump Packs (105 pts)\n• 1x Vanguard Veteran Sergeant with Jump Pack\n• 4x Vanguard Veterans with Jump Packs",
+      "expected": "READY",
+      "expectedProfiles": [
+        "model-sm-55bf1242f2bb4dae",
+        "model-sm-eaba389795c342e3"
+      ],
+      "expectedMembers": [
+        "composition-sm-b2e054ed2ab6473c",
+        "composition-sm-dc1b983be26846bf"
+      ],
+      "noImplicitGear": true
+    }
+  ]
+}

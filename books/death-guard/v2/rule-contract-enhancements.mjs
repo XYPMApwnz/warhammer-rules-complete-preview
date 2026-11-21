@@ -130,6 +130,11 @@ enhancement('detachment-contagion-engines:enhancement:2',any(unitKeyword('HELBRU
  [clause('mobile',[role('affected-unit','UNIT',any(unitKeyword('HELBRUTE'),unitKeyword('MYPHITIC BLIGHT-HAULER')))])],'UNIT');
 enhancement('detachment-flyblown-host:enhancement:1',unitKeyword('PLAGUE MARINES'),'UNIT_ATTACK_TARGET_RANGE',[],
  [clause('wound-reroll',[role('affected-unit','UNIT',unitKeyword('PLAGUE MARINES'))],[state('attackTargetsUnitInFriendlyContagionRange','When this unit’s attacks target a unit within Contagion Range of a friendly unit','UNIT')])],'UNIT');
+// This is a selected physical UNIT upgrade, not a Character bearer. The exact
+// source owner lets O-1 retain ownership while showing its conditional text on
+// other components of that same formed unit. Battle eligibility stays unknown.
+Object.assign(specifications.get('detachment-flyblown-host:enhancement:1').roles[0],
+ {purpose:'OWNER',binding:'SOURCE_UNIT'});
 enhancement('detachment-flyblown-host:enhancement:2',unitKeyword('PLAGUE MARINES'),'UNIT_DETECTION_RANGE',[],
  [clause('detection-range',[role('affected-unit','UNIT',unitKeyword('PLAGUE MARINES'))])],'UNIT');
 

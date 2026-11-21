@@ -33,7 +33,7 @@ Active V2 presentation files include names such as `book-v1.mjs` and `datasheet-
 - A frontend-only change does not justify refreshing sources or auditing rules. A source change does not justify UI refactoring.
 - Use `qa:help`, [QA_MATRIX](QA_MATRIX.md) and the source/gameplay contract for bounded checks. `qa:release` is a separate authorized checkpoint.
 - Known historical failures remain explicit in [TRACKER](../TRACKER.md); do not make EXPECTED match an erroneous result.
-- Browser acceptance uses real runtime bytes at the project prefix on desktop and 390x844 mobile. Preserve evidence outside the repository.
+- Browser acceptance uses real runtime bytes at the project prefix on desktop and 390x844 mobile. After verification, delete temporary worktrees, clones, runtime packages, QA work directories and anything not referenced by the report. Keep screenshots referenced by the report. Record SHA, branch, commands, results and limitations in the report.
 
 ## Search policy
 

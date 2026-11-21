@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,7 +11,7 @@ import {encodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 const repo=fileURLToPath(new URL('../',import.meta.url)),reader=path.join(repo,'books/core-rules/reader');
 const routes=fs.readdirSync(reader).filter(file=>file.endsWith('.html'));
 const types={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.jpg':'image/jpeg'};
-const errors=[],missing=[],results=[],screenshots=fs.mkdtempSync(path.join(os.tmpdir(),'core-v2-mount-'));
+const errors=[],missing=[],results=[],screenshots=createQaEvidenceDir('core-v2-mount-');
 const server=createServer((request,response)=>{try{
   const pathname=new URL(request.url,'http://local').pathname;
   if(pathname==='/favicon.ico'){response.writeHead(204).end();return;}
@@ -23,6 +24,35 @@ const origin=`http://127.0.0.1:${server.address().port}`,entry=`${origin}/v2/app
 const core={destination:'CORE_RULES',registryId:'core-rules'};
 const ready=async page=>{await page.waitForFunction(()=>!!window.WarhammerAppV2);await page.evaluate(()=>window.WarhammerAppV2.ready);};
 const child=async page=>(await page.locator('iframe.v2-core-reader').elementHandle()).contentFrame();
+async function readyPopupLink(frame,selector,href){
+  // CSS visibility alone does not mean the asynchronous reference URL is ready.
+  await frame.waitForFunction(({selector,href})=>{
+    const link=document.querySelector(selector);
+    return link instanceof HTMLAnchorElement&&!link.hidden&&link.href===href&&link.target==='_top';
+  },{selector,href},{timeout:15000});
+  const link=frame.locator(selector);
+  assert.equal(await link.getAttribute('href'),href,'Popup link lost its exact canonical destination');
+  return link;
+}
+async function assertCorePopup(tab,href,readerPath){
+  const target=new URL(href);
+  const section=target.searchParams.get('section');
+  const readerURL=new URL(readerPath,target.origin);
+  readerURL.hash=section;
+  const proof=await tab.waitForFunction(({href,readerURL,section})=>{
+    if(location.href!==href)return false;
+    const frames=document.querySelectorAll('iframe');
+    if(frames.length!==1||!frames[0].matches('iframe.v2-core-reader[title="Core Rules reader"]'))return false;
+    const frame=frames[0],doc=frame.contentDocument;
+    if(frame.closest('.v2-core-host')?.hidden||!doc||doc.readyState!=='complete'
+        ||doc.URL!==readerURL||!doc.querySelector('main.main')||!frame.contentWindow.WH40K_GLOSSARY)return false;
+    return {url:location.href,path:location.pathname,frameURL:doc.URL,
+      sections:[...doc.querySelectorAll('[id]')].filter(node=>node.id===section).length};
+  },{href:target.href,readerURL:readerURL.href,section});
+  try{
+    assert.deepEqual(await proof.jsonValue(),{url:target.href,path:'/v2/app.html',frameURL:readerURL.href,sections:1});
+  }finally{await proof.dispose();}
+}
 const navigate=async(page,route)=>{await page.evaluate(route=>window.WarhammerAppV2.navigate(route),route);await ready(page);};
 try{
   for(const width of [1440,390]){
@@ -70,8 +100,7 @@ try{
     const sectionLink=frame.locator('.on-page a').first(),sectionURL=await sectionLink.getAttribute('href');
     assert.equal(new URL(sectionURL).pathname,'/v2/app.html');assert(new URL(sectionURL).searchParams.get('section'));
     if(width===390)await frame.locator('#navButton').click();
-    const sectionOpening=context.waitForEvent('page');await sectionLink.click({modifiers:['Control']});const sectionTab=await sectionOpening;await ready(sectionTab);
-    assert.equal(new URL(sectionTab.url()).pathname,'/v2/app.html');await sectionTab.close();
+    const sectionOpening=context.waitForEvent('page');await sectionLink.click({modifiers:['Control']});const sectionTab=await sectionOpening;await assertCorePopup(sectionTab,sectionURL,new URL(frame.url()).pathname);await sectionTab.close();
     if(width===390)await frame.locator('#navButton').click();
     await sectionLink.click();await ready(page);frame=await child(page);
     await frame.locator('.on-page a').first().evaluate(link=>{
@@ -85,14 +114,22 @@ try{
     await navigate(page,{...core,chapterId:'monsters-vehicles'});frame=await child(page);
     assert.equal(await frame.locator('dialog[open]').count(),0,'Fresh same-chapter route retained an old popup');
     await frame.locator('[data-term="core-blast"]').first().click();assert.equal(await frame.locator('#termDialog').getAttribute('data-open-term'),'core::core-blast');
-    const fullRule=frame.locator('#termRule');await fullRule.waitFor({state:'visible'});
-    assert.equal(new URL(await fullRule.getAttribute('href')).hash,'#core-blast','Full rule link lost canonical identity');
-    const popupPromise=context.waitForEvent('page');await fullRule.click({modifiers:['Control']});const native=await popupPromise;await ready(native);assert.equal(new URL(native.url()).pathname,'/v2/app.html');assert.equal(await (await child(native)).locator('#rule-24-05').count(),1);await native.close();
+    const expectedRuleURL=encodeRoute(entry,{...core,chapterId:'core-abilities',sectionId:'rule-24-05',canonicalId:'core-blast'});
+    const fullRule=await readyPopupLink(frame,'#termRule',expectedRuleURL);
+    const fullRuleURL=await fullRule.getAttribute('href');
+    assert.equal(new URL(fullRuleURL).hash,'#core-blast','Full rule link lost canonical identity');
+    assert.equal(new URL(fullRuleURL).searchParams.get('section'),'rule-24-05');
+    const popupPromise=context.waitForEvent('page');await fullRule.click({modifiers:['Control']});const native=await popupPromise;await assertCorePopup(native,fullRuleURL,'/books/core-rules/reader/core-abilities.html');await native.close();
     await frame.locator('[data-term="core-blast"]').first().click();
-    await fullRule.click();await ready(page);assert.equal(await (await child(page)).locator('#rule-24-05').count(),1);
+    await readyPopupLink(frame,'#termRule',expectedRuleURL);
+    await Promise.all([page.waitForURL(expectedRuleURL,{timeout:15000}),fullRule.click()]);await ready(page);assert.equal(await (await child(page)).locator('#rule-24-05').count(),1);
     await page.evaluate(()=>history.back());await page.waitForURL(url=>url.searchParams.get('chapter')==='monsters-vehicles');await ready(page);frame=await child(page);
     await frame.locator('#termDialog[open]').waitFor();assert.equal(await frame.locator('#termDialog').getAttribute('data-open-term'),'core::core-blast','Back did not restore original Core popup');
-    await frame.locator('#termFull').click();await ready(page);assert.equal(await page.locator('[data-global-glossary]').count(),1,'Core article did not use existing shared reference presenter');assert.equal(await page.locator('iframe').count(),0);
+    const expectedArticleURL=encodeRoute(entry,{destination:'REFERENCE',registryId:'core-rules',canonicalId:'core-blast',fieldPath:'/glossary/core::core-blast'});
+    const fullArticle=await readyPopupLink(frame,'#termFull',expectedArticleURL);
+    assert.equal(new URL(await fullArticle.getAttribute('href')).hash,'#core-blast','Full article link lost canonical identity');
+    assert.equal(new URL(await fullArticle.getAttribute('href')).searchParams.get('field'),'/glossary/core::core-blast');
+    await Promise.all([page.waitForURL(expectedArticleURL,{timeout:15000}),fullArticle.click()]);await ready(page);await page.locator('[data-global-glossary]').waitFor({state:'visible'});assert.equal(await page.locator('[data-global-glossary]').count(),1,'Core article did not use existing shared reference presenter');assert.equal(await page.locator('iframe').count(),0);
     const article=await page.locator('.global-glossary-main').innerText();assert(/\bBlast\b/i.test(article),article);
     await page.evaluate(()=>history.back());await page.waitForURL(url=>url.searchParams.get('v2')==='CORE_RULES');await ready(page);frame=await child(page);await frame.locator('#termDialog[open]').waitFor();await frame.locator('#termClose').click();
     for(const chapterId of ['shooting-phase','fight-phase']){

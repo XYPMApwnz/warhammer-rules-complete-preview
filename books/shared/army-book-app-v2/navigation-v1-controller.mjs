@@ -9,7 +9,7 @@ export class NavigationController{
     constructor(adapter){
       this.adapter=adapter;
       this.lifecycle=createLifecycle(window);this.destroyed=false;this.restorations=[];this.savedAttributes=new Map();
-      this.breakpoint=800;this.resizeCleanupBreakpoint=800;this.trackingGap=18;this.epsilon=1;
+      this.breakpoint=760;this.resizeCleanupBreakpoint=760;this.trackingGap=18;this.epsilon=1;
       Object.assign(this,adapter.elements);
       this.attributeRoots=[this.panel,this.main,this.header,this.scrim,this.menuButton,this.collapseButton];
       this.rosterNavigation={active:false,items:[]};
@@ -169,7 +169,7 @@ export class NavigationController{
       document.body.classList.toggle('nav-drawer-open',this.state.drawer);
       document.body.classList.toggle('nav-collapsed',this.state.collapsed);
       this.menuButton.setAttribute('aria-expanded',String(this.state.drawer));
-      this.menuButton.setAttribute('aria-label',this.state.drawer?'Close navigation':'Open navigation');
+      this.menuButton.setAttribute('aria-label',this.state.drawer?'Close navigation':this.menuLabel||'Open navigation');
       this.collapseButton.setAttribute('aria-expanded',String(!this.state.collapsed));
       this.collapseButton.setAttribute('aria-label',this.state.collapsed?'Expand navigation':'Collapse navigation');
       this.collapseButton.textContent=this.state.collapsed?'▶':'◀';
@@ -251,6 +251,8 @@ export class NavigationController{
     }
     refreshGeometry(){
       if(this.destroyed)return;
+      try {
+      this.adapter.beforeGeometry?.();
       const scrollY=window.scrollY;
       this.geometry.headerBottom=this.header.getBoundingClientRect().bottom;
       document.documentElement.style.setProperty('--app-header-bottom',`${Math.max(0,this.geometry.headerBottom)}px`);
@@ -261,6 +263,7 @@ export class NavigationController{
         return{item,top:scrollY+rect.top-leadingMargin,bottom:scrollY+rect.bottom,measurable:rect.width>0||rect.height>0};
       }).filter(Boolean);
       this.readViewport();
+      } finally {this.adapter.afterGeometry?.();}
     }
     descendsFrom(item,ancestor){
       for(let node=this.parentNode(item.node);node;node=this.parentNode(node))if(node===ancestor.node)return true;

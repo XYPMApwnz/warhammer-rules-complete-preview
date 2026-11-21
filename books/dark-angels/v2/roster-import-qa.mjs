@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Independent source/input parity through the real shared import boundary.
  * All input texts are constructed, not authentic New Recruit exports. */
 import fs from 'node:fs';
@@ -11,19 +13,58 @@ import {createRosterImportService} from '../../shared/roster-v2/import-service.m
 import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
 import {projectInstanceCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
 import {renderRosterPointsStatus} from '../../shared/army-book-app-v2/roster.mjs';
-const read=path=>JSON.parse(fs.readFileSync(new URL(path,import.meta.url),'utf8')),clone=structuredClone;
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
+import {verifyFrozenSource} from '../../shared/tools/source-ingestion-contract.mjs';
+import {createHash} from 'node:crypto';
+const read=path=>parseSourceFixtureJSON(fs.readFileSync(new URL(path,import.meta.url),'utf8')),clone=structuredClone;
 const book=buildDarkAngelsImportBook(),index=new Map(book.entities.map(row=>[row.id,row]));
 const sources=new Map([...read('./generated/effective.json').entities,...read('../../space-marines/v2/generated/effective.json').entities].map(row=>[row.id,row]));
 const originalSources=JSON.stringify([...sources.values()]),payload=buildGameplayPresentation(),cards=new Map(payload.cards.map(card=>[card.id,card]));
-const rawCaptures={'dark-angels':read('../../../mfm/sources/v1.6/dark-angels.json'),'space-marines':read('../../../mfm/sources/v1.6/space-marines.json')};
+const captureSources=Object.fromEntries(['dark-angels','space-marines'].map(id=>[id,getCurrentMfmSource(id)]));
+const rawCaptures=Object.fromEntries(Object.entries(captureSources).map(([id,source])=>[id,read('../../../'+source.capturePath)]));
+const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
+const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
+const verifiedCaptures=new Set();
+const verifyCapture=owner=>{
+ if(verifiedCaptures.has(owner))return;const capture=rawCaptures[owner],{captureSha256,...payload}=capture;
+ verifyFrozenSource(captureSources[owner].sourceId);assert.equal(sha(JSON.stringify(stable(payload))),captureSha256);
+ for(const artifact of capture.rawArtifacts){const bytes=fs.readFileSync(new URL(artifact.path,new URL('../../../'+captureSources[owner].capturePath,import.meta.url)));assert.equal(sha(bytes),artifact.sha256);assert.equal(bytes.length,artifact.bytes);}
+ verifiedCaptures.add(owner);
+};
 const priceBridges=[...read('./mfm-bindings.json').unitBindings,...read('../../space-marines/v2/mfm-bindings.json').unitBindings];
+const historicalCaptures=new Map();
+function reviewedMfmUnit(binding,owner){
+ assert.ok(binding,'Missing reviewed unit MFM binding');
+ assert.ok(binding.sourceLocator,'Missing reviewed MFM source locator');
+ const locator=binding.sourceLocator,proof=binding.proof.mfm;
+ assert.equal(locator.partition,'units','MFM fixture locator must address units');
+ assert.equal(locator.factionId,owner,'MFM fixture locator has a foreign faction');
+ let historical=historicalCaptures.get(proof.sourcePath);
+ if(!historical){
+  historical=read('../../../'+proof.sourcePath);verifyFrozenSource(proof.sourceId);
+  const {captureSha256,...payload}=historical;
+  assert.equal(sha(JSON.stringify(stable(payload))),captureSha256,'Historical MFM capture fingerprint changed');
+  historicalCaptures.set(proof.sourcePath,historical);
+ }
+ assert.equal(historical.captureSha256,proof.captureSha256,'Historical reviewed MFM capture changed');
+ assert.equal(historical.factionId,owner,'Historical MFM proof has a foreign faction');
+ const oldRow=proof.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],historical);
+ assert.deepEqual([oldRow.title,oldRow.sourceGroup,oldRow.status],[locator.sourceTitle,locator.sourceGroup,locator.status],'Historical pointer no longer proves the reviewed source locator');
+ verifyCapture(owner);
+ assert.equal(rawCaptures[owner].factionId,owner,'Current MFM capture has a foreign faction');
+ const matches=rawCaptures[owner].units.filter(row=>row.title===locator.sourceTitle&&row.sourceGroup===locator.sourceGroup&&row.status===locator.status);
+ assert.equal(matches.length,1,'Current MFM source locator must resolve exactly once: '+JSON.stringify(locator)+'; matches='+matches.length);
+ return matches[0];
+}
 const sourceBase=(unitId,count,copy=1)=>{
  const binding=priceBridges.find(row=>row.entityId===unitId),owner=sources.get(unitId).bookId;
- const source=binding.proof.mfm.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],rawCaptures[owner]);
+ const source=reviewedMfmUnit(binding,owner);
  const prices=source.pointSchedules.filter(row=>(row.minCopies===undefined||copy>=row.minCopies)&&(row.maxCopies===undefined||copy<=row.maxCopies))
   .flatMap(row=>row.entries).filter(row=>count>=row.minModels&&count<=row.maxModels);
  return prices.length===1?prices[0].value:null;
 };
+const missingMfmLocator={...priceBridges.find(binding=>binding.bookId==='dark-angels'),sourceLocator:null};
+assert.throws(()=>reviewedMfmUnit(missingMfmLocator,missingMfmLocator.bookId),/Missing reviewed MFM source locator/);
 const ID={azrael:'unit-da-f8f0629206e744459a9f',command:'unit-da-467009b00bb9402dadee',sammael:'unit-da-0e189995095847bf9d47',
  out:'unit-sm-0dd92e6d8ad54ee6',ordinary:'unit-sm-59162946fee84360',darkflight:'detachment-da-d7c1a2b23f2e443aa22a',
  cyclone:'unit-da-9f8f2ccbdb7d4c72857c',lazarus:'unit-da-efa93d33ea414d8b8f11'};
@@ -59,7 +100,7 @@ check('83-source-datasheets-113-profile-occurrences-and-native-projections',()=>
    assert.equal(row.canonicalProfileId,proof.profileId);profileIds.add(row.canonicalProfileId);
    assert.equal(row.selections.length,0,'An omitted loadout became invented equipment');
   }
-  assert.equal(index.get(unit.id).bookId,sources.get(unit.id).bookId);assert.deepEqual(index.get(unit.id).provenance,sources.get(unit.id).provenance);
+  assert.equal(index.get(unit.id).bookId,sources.get(unit.id).bookId);assert.deepEqual(sourceSnapshot(index.get(unit.id)),sourceSnapshot(sources.get(unit.id)));
   const effective=service.effective(actual.instanceId),variants=projectInstanceCards(cards,actual,effective);
   assert.ok(variants.get(unit.id)?.length);assert.equal(projectPersonalBook(payload,service.state).instances.length,1);
   if([ID.azrael,ID.command].includes(unit.id)){
@@ -85,9 +126,11 @@ check('all-source-weapon-profiles-retain-exact-physical-owner-and-quantity',()=>
  }
  assert.equal(weaponEvidence.length,397);
 });
-check('all-18-detachments-through-shared-parser',()=>{
+// GW's 16 September 2026 preview allows Deathwatch Support in any Space Marines army.
+// https://www.warhammer-community.com/en-gb/articles/xciydqwa/space-marines-detachments-space-wolves-black-templars-and-deathwatch/
+check('all-19-detachments-through-shared-parser',()=>{
  const ids=book.entities.filter(row=>row.kind==='DETACHMENT').map(row=>row.id),service=createDarkAngelsRosterService(book);
- ready(service,header(ids)+fixture(ID.azrael).text);assert.deepEqual(service.state.detachmentIds,ids);assert.equal(ids.length,18);
+ ready(service,header(ids)+fixture(ID.azrael).text);assert.deepEqual(service.state.detachmentIds,ids);assert.equal(ids.length,19);assert.equal(ids.filter(id=>id==='detachment-dw-c015c08e99c14972').length,1);
 });
 check('ravenwing-command-three-models-and-azrael-without-token-model',()=>{
  const service=createDarkAngelsRosterService(book);ready(service,header()+fixture(ID.command).text+fixture(ID.azrael).text);
@@ -120,9 +163,11 @@ check('40-source-enhancement-upgrade-assignments',()=>{
   detachments:[{instanceId:'det',canonicalDetachmentId:det}],detachmentIds:[det],attachments:[],warlordInstanceId:null,
   units:[{instanceId:'probe',canonicalUnitId:candidate.id,startingStrength:candidate.count,warlord:null,selections:[],enhancementIds:[],
    modelRows:candidate.rows.map((row,n)=>({rowId:'row'+n,canonicalProfileId:book.importBindings.compositions.find(member=>member.id===row.id).profileId,quantity:row.quantity,compositionScope:'MODEL_ROW',selections:[]}))}]});
+ // Reviewed physical Epic Hero IDs at f7500b43, including own MODEL keyword scopes; no formation keywords.
+ const epicBearerIds=new Set(["unit-da-0e189995095847bf9d47","unit-da-4d0a2295a562420599b3","unit-da-955db164dd7144368578","unit-da-d711371794d441bf92a8","unit-da-efa93d33ea414d8b8f11","unit-da-f1f33dda5c5047efb013","unit-da-f8f0629206e744459a9f"]);
  for(const binding of book.importBindings.enhancements){
   let chosen;
-  for(const unit of book.entities.filter(row=>row.kind==='DATASHEET')){
+  for(const unit of book.entities.filter(row=>row.kind==='DATASHEET'&&!epicBearerIds.has(row.id))){
    const candidate=fixture(unit.id,{optional:false}),state=bareState(candidate,binding.detachmentId),projection=formRoster(book,state);
    const predicate=binding.assignmentReference?.selector||{predicate:'UNIT_KEYWORD',subject:'UNIT',contextLevel:'STATIC',arguments:{keyword:'ADEPTUS ASTARTES'}};
    const contract=index.get(binding.id).ruleContract,schema=createDarkAngelsRuleSchema();
@@ -144,7 +189,15 @@ check('paid-option-import-numeric-totals-known-unknown-and-alternative-family',(
   ready(service,header()+without.text);assert.equal(service.points.status,'UNRESOLVED');assert.equal(service.points.totalPoints,null);
   const input=fixture(binding.ownerUnitId,{unitGear:'2x '+label}),result=ready(service,header()+input.text,{}, {replaceExisting:true});
   const option=result.points.units[0].paid.options.find(row=>row.costRecordId===binding.costRecordId);
-  assert.equal(option.quantity,2);assert.equal(option.points,2*binding.value);assert.equal(service.state.units[0].selections.length,1);
+  assert.equal(option.quantity,2);assert.equal(option.points,2*binding.value);
+  const unit=service.state.units[0];
+  if(binding.ownerUnitId==='unit-sm-4fce70f042cc4e5d'&&binding.equipmentIds.includes('ability-sm-7d0c729bd52143f9')){
+   assert.equal(unit.startingStrength,1);assert.equal(unit.modelRows.length,1);assert.equal(unit.modelRows[0].quantity,1);
+   assert.equal(unit.selections.length,0);
+   const selected=unit.modelRows[0].selections.filter(row=>row.canonicalEquipmentIds.includes('ability-sm-7d0c729bd52143f9'));
+   assert.equal(selected.length,1);assert.equal(selected[0].physicalQuantity,2);assert.equal(selected[0].perModelQuantity,2);
+   assert.equal(selected[0].quantityEvidence.scope,'UNIT');assert.equal(selected[0].quantityEvidence.modelQuantity,1);
+  }else assert.equal(unit.selections.length,1);
   assert.equal(result.points.units[0].totalPoints,result.points.units[0].basePoints+2*binding.value);
   const snapshot=service.snapshot();ready(service,header()+input.text);assert.deepEqual(service.snapshot(),snapshot);
   service.recompute();assert.equal(service.points.units[0].paid.options.find(row=>row.costRecordId===binding.costRecordId).quantity,2);
@@ -216,7 +269,7 @@ check('browser-native-runtime-closure-and-source-immutability',()=>{
 });
 console.log(JSON.stringify({status:'PASS',checks,physical,weaponEvidence,assignmentEvidence,
  counts:{datasheetsImportable:physical.length,totalDatasheets:83,modelProfiles:profileIds.size,physicalModels:inputModelCount,
-  weaponProfiles:weaponEvidence.length,detachments:18,enhancementAssignments:assignmentEvidence.filter(row=>row.scope==='MODEL').length,
+  weaponProfiles:weaponEvidence.length,detachments:book.entities.filter(row=>row.kind==='DETACHMENT').length,enhancementAssignments:assignmentEvidence.filter(row=>row.scope==='MODEL').length,
   upgradeAssignments:assignmentEvidence.filter(row=>row.scope==='UNIT').length,chapterConditions:26,paidOptions:8},
  limitations:{fixtures:'CONSTRUCTED_NEW_RECRUIT_COMPATIBLE',realNewRecruitExportTested:false,browserVerified:false,
   genericOnlyChapter:'NOT_PROVEN',lazarus:'SEVEN_SOURCE_PROVEN_NATIVE_PERMISSIONS',mfmRelationReferences:'10_REFERENCE_ONLY_UNCHANGED'}},null,2));

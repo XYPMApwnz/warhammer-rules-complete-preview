@@ -1,9 +1,9 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
-import os from 'node:os';
 import {execFileSync} from 'node:child_process';
 import {buildFactualV2} from './build.mjs';
 import {buildRuleContractV2,compileCompatibility,previousAmbiguityDomain,summarize,entityContext} from './rule-contract-build.mjs';
@@ -100,8 +100,7 @@ export function sourceGuard(model) {
   return true;
 }
 const model=buildRuleContractV2();
-const bundled=path.join(os.homedir(),'.cache','codex-runtimes','codex-primary-runtime','dependencies','python','python.exe');
-const python=process.env.PYTHON||(fs.existsSync(bundled)?bundled:'python3');
+const python=resolveQaPython();
 const rawProof=JSON.parse(execFileSync(python,['-X','utf8',path.join(directory,'rule-contract-source-qa.py')],{encoding:'utf8'}));
 assert.equal(rawProof.rawSourceRecords,84);
 sourceGuard(model);

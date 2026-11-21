@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Book-owned native rule layout over the accepted Stage 2A factual owner.
  * Reuses the V2 projector and book-v1 presentation vocabulary. No MFM prices,
  * executable clauses, source parsing, legacy builder or application registration.
@@ -9,7 +10,7 @@ import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import {buildNativeDatasheets} from './datasheet-build.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone;
 const sorted=items=>[...items].sort((a,b)=>a.id.localeCompare(b.id));
 const ruleKinds=new Set(['ARMY_RULE','DETACHMENT','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM']);
@@ -50,7 +51,7 @@ function ruleView(owner,template){
     if(entity.kind==='STRATAGEM')Object.assign(entity.data,stratagemLayout(entity));
     if(entity.parentId)assert.ok(entities.has(entity.parentId),'Unresolved source parent');
   }
-  const payload=projectArmyBook(model,new Map(),{title:owner.bookId==='deathwatch'?'Deathwatch source references':'Space Marines',edition:'11th Edition'});
+  const payload=prepareSourceProducer(projectArmyBook(model,new Map(),{title:owner.bookId==='deathwatch'?'Deathwatch source references':'Space Marines',edition:'11th Edition'}));
   const cards=new Map(payload.cards.map(card=>[card.id,card])),records={};
   for(const entity of model.entities){
     const card=cards.get(entity.id);
@@ -87,6 +88,9 @@ function ruleView(owner,template){
 }
 
 export function buildNativeBook({facts=read('./generated/effective.json'),base=read('./generated/base.json'),cross=read('./generated/cross-owner-references.json')}={}){
+  facts=prepareSourceProducer(facts);
+  base=prepareSourceProducer(base);
+  cross=prepareSourceProducer(cross);
   const before=[facts,base,cross].map(value=>JSON.stringify(value));
   const review=assertSourceCompletenessGate({review:read('./source-review.json'),books:[
     {bookId:'space-marines',facts,executionBook:null,sourceReview:captureSourceReview('space-marines',facts)},
@@ -131,7 +135,7 @@ export function writeNativeBook({check=false}={}){
   const result=buildNativeBook();
   for(const [name,value] of [['native-book',result.model],['book-presentation',result.payload],
     ['deathwatch-presentation',result.deathwatch.payload],['source-ledger-coverage',result.coverage]]){
-    const file=new URL(`./generated/${name}.json`,import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+    const file=new URL(`./generated/${name}.json`,import.meta.url),bytes=serializeSourceJSON(value);
     if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,`Stale native output: ${name}`);else fs.writeFileSync(file,bytes);
   }
   return result;

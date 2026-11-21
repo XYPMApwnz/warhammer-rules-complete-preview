@@ -1,3 +1,6 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
+import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Source-owned import vocabulary over the existing physical V2 contract.
  * These names address existing records; they create no models, default weapons,
  * points, army legality decisions or legacy compatibility identities.
@@ -6,6 +9,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
+import {prepareSpaceMarinesStaticModels} from './roster-static-model-bindings.mjs';
 import {enhancementEligibility} from './rule-contract-declarations.mjs';
 import {createSpaceMarinesPaidOptionBindings} from './roster-paid-option-bindings-build.mjs';
 import {readSpaceMarinesRosterCorrections} from './roster-source-review.mjs';
@@ -17,6 +21,7 @@ const names=entity=>[entity.data.title,entity.data.name].filter(value=>typeof va
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 
 export function buildSpaceMarinesImportBook({built=buildSpaceMarinesContracts(),modelMappings,scopeCorrections}={}){
+  built={...built,book:prepareSourceProducer(built.book),...(built.facts?{facts:prepareSourceProducer(built.facts)}:{}),...(built.native?{native:{...built.native,model:prepareSourceProducer(built.native.model),payload:prepareSourceProducer(built.native.payload)}}:{})};
   if(modelMappings===undefined||scopeCorrections===undefined){
     const review=readSpaceMarinesRosterCorrections();
     modelMappings??=review.modelMappings;scopeCorrections??=review.scopeCorrections;
@@ -116,6 +121,7 @@ export function buildSpaceMarinesImportBook({built=buildSpaceMarinesContracts(),
   book.mfmImportReferences=clone(Object.fromEntries(['source','partitions','relationDeclarations','nativePoints','referenceOnlyUnits','referenceOnlyOwners']
     .map(key=>[key,built.consumed[key]])));
   book.mfmPhysicalPaidOptions=createSpaceMarinesPaidOptionBindings();
+  appendModelNameAliases(identityAliases,modelNames,compositions);
   book.importBindings={schema:'space-marines-v2/import-bindings/v1',identityAliases,compositions,unresolvedCompositions,
     weaponSelections,equipmentSelections,enhancements,
     nativeReferenceBindings:book.entities.filter(entity=>entity.kind==='RULE_REFERENCE').map(entity=>({id:entity.id,ownerId:entity.parentId,
@@ -135,16 +141,17 @@ export function buildSpaceMarinesImportBook({built=buildSpaceMarinesContracts(),
   book.mfmImportReferences.nativePoints.detachments.push(clone(allied.points));
   book.rosterDetachmentReferenceReview=clone(allied.review);
   // Exact lexical export domain; never a Chapter keyword grant.
-  book.importBindings.factionIdentityLabels=['Imperium - Adeptus Astartes - Space Marines'];
+  book.importBindings.factionIdentityLabels=['Space Marines','Adeptus Astartes','Imperium - Adeptus Astartes - Space Marines'];
+  book.importBindings.allowNormalizedEmptyFaction=true;
   assert.equal(JSON.stringify(built.book),original,'Import builder changed the gameplay factual view');
   assert.equal(new Set(book.entities.map(entity=>entity.id)).size,book.entities.length);
   assert.ok(same(book.importBindings.compositions.map(row=>row.id).sort(),[...compositions.map(row=>row.id)].sort()));
-  return book;
+  return prepareSpaceMarinesStaticModels(book);
 }
 
 export function writeSpaceMarinesImportBook({check=false}={}){
   const book=buildSpaceMarinesImportBook(),target=new URL('./generated/roster-import.json',import.meta.url);
-  const bytes=JSON.stringify(book,null,2)+'\n';
+  const bytes=serializeSourceJSON(book);
   if(check)assert.equal(fs.readFileSync(target,'utf8'),bytes,'Stale Space Marines native import view');
   else fs.writeFileSync(target,bytes);
   return {status:'PASS',datasheets:book.entities.filter(entity=>entity.kind==='DATASHEET').length,

@@ -1,3 +1,7 @@
+import {epicHeroUnitIds} from './compatibility-context.mjs';
+
+export const epicHeroEnhancementWarning=(enhancement,unit)=>`${enhancement} on ${unit}: Core Rules 25.04 prohibits Enhancements on Epic Hero units. This Enhancement is not applied, and the imported army list is invalid. Imported points are retained.`;
+
 // Names are resolved only at this import boundary. Runtime facts and joins
 // retain canonical IDs, physical ownership and quantities from the export.
 const own = (record, key) => record && Object.hasOwn(record, key) ? record[key] : undefined;
@@ -5,7 +9,7 @@ const clone = value => structuredClone(value);
 const equipmentKinds = new Set(['WARGEAR_OPTION', 'WARGEAR_FOOTNOTE', 'DATASHEET_SECTION', 'SUPPLEMENTAL_DATASHEET_RULE', 'UNIT_COMPOSITION']);
 const quantity = value => Number.isSafeInteger(value) && value >= 0;
 
-export const normalizeImportLabel = value => String(value ?? '').normalize('NFKD').replace(/\p{M}/gu,'')
+export const normalizeImportLabel = value => String(value ?? '').normalize('NFKD').replace(/[\p{M}]/gu,'')
   .replace(/[’‘']/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const gearNouns = {knives:'knife',weapons:'weapon',cannons:'cannon',gauntlets:'gauntlet',guns:'gun',pistols:'pistol',launchers:'launcher',
   fists:'fist',scourges:'scourge',spewers:'spewer',spitters:'spitter',blades:'blade',bolters:'bolter',swords:'sword',bells:'bell',
@@ -13,12 +17,41 @@ const gearNouns = {knives:'knife',weapons:'weapon',cannons:'cannon',gauntlets:'g
 const gearLabel = value => normalizeImportLabel(value).replace(/^additional /,'').split(' ').map(word=>gearNouns[word] || word).join(' ');
 const entryLabel = (kind,value) => normalizeImportLabel(kind==='DETACHMENT'?String(value ?? '').replace(/\s*\([^)]*\)\s*$/,''):value);
 const named = entity => [entity.data?.title,entity.data?.name,...(entity.aliases || [])].filter(value=>typeof value==='string');
+/** Lexical names from the book's existing source-owned MFM presentation.
+ * This runtime-only context changes no canonical entity, rule or roster field.
+ * The parser receives names as options and never loads a book or a file. */
+export async function loadImportHeaderContext(book,moduleURL,read=globalThis.fetch,presentation){
+  // The application passes its existing payload promise. Isolated factories
+  // may load that input themselves, without a process-global data cache.
+  let payload=await presentation;
+  if(payload===undefined){
+    const response=await read(new URL('./generated/app-presentation.json',moduleURL));
+    if(!response.ok)throw new TypeError('Book import header vocabulary unavailable: '+book.bookId);
+    payload=await response.json();
+  }
+  if(payload.book?.id!==book.bookId||payload.bookPresentation?.schema!=='army-book-app-v2/book-v1-presentation')
+    throw new TypeError('Wrong book import header vocabulary: '+book.bookId);
+  const detachments=new Set(book.entities.filter(entity=>entity.kind==='DETACHMENT').map(entity=>entity.id));
+  const cards=new Map(payload.cards.map(card=>[card.id,card])),names=new Set();
+  for(const record of Object.values(payload.bookPresentation.records)){
+    if(record.kind!=='DETACHMENT'||!detachments.has(record.id))continue;
+    for(const field of record.forceDispositions||[]){
+      const owner=cards.get(record.pointRecordId),source=owner?.fields.find(item=>item.id===field.id);
+      const name=field.displayValue??field.value;
+      if(!source||field.source?.entityId!==record.pointRecordId||source.value!==field.value||typeof name!=='string'||!normalizeImportLabel(name))
+        throw new TypeError('Unproven Force Disposition header name: '+book.bookId+' · '+record.id);
+      names.add(name);
+    }
+  }
+  if(!names.size)throw new TypeError('Missing Force Disposition header names: '+book.bookId);
+  return {...book,importHeaderContext:{forceDispositions:[...names]}};
+}
 // Import spelling equivalence only, never canonical identity creation. The
 // caller must provide the exact UNIT's declared MODEL records. Exact reviewed
 // names/aliases take precedence; plural collisions remain multiple candidates.
 // A reviewed composition quantity permitting multiple recipients is required;
 // a singular proper name ending in s is not thereby a plural MODEL label.
-const modelNumberLabel = value => normalizeImportLabel(value).replace(/ies$/, 'y').replace(/(?<!s|u|i)s$/, '');
+const modelNumberLabel = value => normalizeImportLabel(value).replace(/ies$/, 'y').replace(/(^|[^sui])s$/, '$1');
 export function importModelLabelCandidates(records,label,labels,quantityFor=record=>record.quantity??record.data?.composition?.quantity) {
   const key=normalizeImportLabel(label),exact=records.filter(record=>labels(record).some(value=>normalizeImportLabel(value)===key));
   if(exact.length||!key)return exact;
@@ -135,10 +168,40 @@ function rawSelections(value, key, scope, modelQuantity) {
   });
 }
 
-export function lexicalDraft(rawText, parse) {
+/** Only a unique complete cover of source-declared names can split an
+ * unlabelled caption. Whole names (including internal commas/and) win first.
+ * Unknown or ambiguous text stays intact for normal canonical admission. */
+function plainDetachmentLabels(label,book) {
+  const known=new Set((book?.entities||[]).filter(entity=>entity.kind==='DETACHMENT').flatMap(named).map(value=>entryLabel('DETACHMENT',value)).filter(Boolean));
+  if(known.has(entryLabel('DETACHMENT',label)))return [label];
+  const separators=[...label.matchAll(/,\s*(?:and\b\s*)?|\s+and\s+/gi)],memo=new Map();
+  function covers(start){
+    if(memo.has(start))return memo.get(start);
+    const tail=label.slice(start).trim(),found=[];
+    if(known.has(entryLabel('DETACHMENT',tail)))found.push([tail]);
+    for(const separator of separators){
+      if(separator.index<start)continue;
+      const head=label.slice(start,separator.index).trim();
+      if(!known.has(entryLabel('DETACHMENT',head)))continue;
+      for(const rest of covers(separator.index+separator[0].length)){
+        found.push([head,...rest]);if(found.length===2)break;
+      }
+      if(found.length===2)break;
+    }
+    memo.set(start,found);return found;
+  }
+  const matches=covers(0);return matches.length===1?matches[0]:[label];
+}
+
+export function lexicalDraft(rawText, parse, book) {
   if (typeof parse !== 'function') throw new TypeError('An independent lexical parse function is required');
-  const sourceText = String(rawText ?? ''), parsed = parse(sourceText);
+  const sourceText = String(rawText ?? ''), parsed = parse(sourceText,book?.importHeaderContext??{});
   if (!parsed || !Array.isArray(parsed.units)) throw new TypeError('Malformed lexical parser result');
+  if(parsed.plainHeader&&book){
+    const labels=plainDetachmentLabels(parsed.detachments[0].label,book);
+    parsed.detachments=labels.map(label=>({label,name:label,rule:'',disposition:parsed.disposition}));
+    parsed.detachment=labels[0];
+  }
   const units = parsed.units.map((raw, i) => {
     const id = `parsed-unit-${i + 1}`;
     if (raw.id && raw.id !== id) throw new TypeError('Lexical physical unit identity changed');
@@ -159,7 +222,7 @@ export function lexicalDraft(rawText, parse) {
   });
   const enhancements = (parsed.enhancements || []).map((item, i) => ({...clone(item), key: `enhancement/${i + 1}`}));
   const metadata = {};
-  for (const key of ['faction', 'detachment', 'detachments', 'disposition', 'declared', 'battleSize', 'pointsLimit', 'unitLineTotal']) {
+  for (const key of ['faction', 'detachment', 'detachments', 'disposition', 'declared', 'battleSize', 'pointsLimit', 'unitLineTotal', 'plainHeader']) {
     if (parsed[key] !== undefined) metadata[key] = clone(parsed[key]);
   }
   const importedDetachments = parsed.detachments ?? (parsed.detachment && parsed.detachment !== '—' ? [{label:parsed.detachment}] : []);
@@ -186,9 +249,9 @@ function fieldExists(data, pointer) {
 }
 
 export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId, weaponSelections=[],equipmentSelections=[],optionSelections=[],deferredUnits=[]} = {}) {
-  const errors = [], needsBindings = [], resolutions = [];
+  const errors = [], needsBindings = [], resolutions = [], warnings = [];
   let draft;
-  try { draft = lexicalDraft(rawText, parse); }
+  try { draft = lexicalDraft(rawText, parse, book); }
   catch (error) { return {schema: 'roster-v2/import-result', status: 'INVALID', draft: null,
     roster: null, needsBindings, errors: [{code: 'INVALID_LEXICAL_INPUT', key: 'input', message: error.message}]}; }
   const issue = (code, key, message) => errors.push({code, key, message});
@@ -401,20 +464,24 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
       ...optionState,
       enhancementIds: [], raw: {name: raw.name, quantity: raw.rawQuantity, points: raw.points, sourceRef: raw.sourceRef}});
   }
-  const byInstance = new Map(units.map(unit => [unit.instanceId, unit]));
+  const byInstance = new Map(units.map(unit => [unit.instanceId, unit])), epicOwners=Array.isArray(book?.entities)?epicHeroUnitIds(book):new Set();
   for (const raw of draft.enhancements) {
     const enhancement = exact(own(bindings.enhancements, raw.key), 'ENHANCEMENT', raw.key, raw.name);
     if (enhancement && detachmentIds.length && !detachmentIds.includes(enhancement.parentId)) issue('FOREIGN_ENHANCEMENT_CONTEXT', raw.key, 'Enhancement belongs to an unselected Detachment');
     const owner = byInstance.get(raw.ownerUnitId);
     if (raw.ownerStatus !== 'resolved' || !draft.units.some(unit => unit.id === raw.ownerUnitId)) issue('UNRESOLVED_ENHANCEMENT_OWNER', raw.key, 'Imported Enhancement physical owner is unresolved or ambiguous');
-    else if (enhancement && owner) owner.enhancementIds.push(enhancement.id);
+    else if (enhancement && owner) {
+      owner.enhancementIds.push(enhancement.id);
+      if(epicOwners.has(owner.canonicalUnitId))warnings.push(epicHeroEnhancementWarning(
+        enhancement.data.title||enhancement.data.name||raw.name,entities.get(owner.canonicalUnitId).data.title||owner.raw.name));
+    }
   }
   const warlords = units.filter(unit => unit.warlord === true);
   if (warlords.length > 1) issue('AMBIGUOUS_WARLORD_IDENTITY', 'warlord', 'Imported Warlord identity refers to multiple physical instances');
   const id = rosterId ?? defaultRosterId(draft.sourceText);
   if (typeof id !== 'string' || !id.trim()) issue('INVALID_ROSTER_ID', 'rosterId', 'Roster physical namespace is required');
   const status = errors.length ? 'INVALID' : needsBindings.length ? 'NEEDS_BINDINGS' : 'READY';
-  return {schema: 'roster-v2/import-result', status, draft, needsBindings, errors, resolutions,
+  return {schema: 'roster-v2/import-result', status, draft, needsBindings, errors, resolutions, ...(warnings.length?{warnings}:{}),
     roster: status === 'READY' ? {schema: 'roster-v2/roster', rosterId: id, bookId: book.bookId,
       detachments, detachmentIds, warlordInstanceId: warlords[0]?.instanceId || null, units, attachments: []} : null};
 }

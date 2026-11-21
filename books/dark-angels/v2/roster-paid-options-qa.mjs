@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 /** Constructed physical diagnostics; expectations come from accepted RAW. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -21,7 +22,7 @@ const expected=[
 assert.deepEqual(bindings.map(row=>row.costRecordId).sort(),expected.map(row=>row[0]).sort());
 assert.ok(!bindings.some(row=>row.costRecordId==='mfm-paid-upgrade-5acd905379273046'),'Foreign Chapter paid equipment admitted');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const python='C:/Users/denis/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
+const python=resolveQaPython();
 const proof=spawnSync(python,['-X','utf8','-c',`import json,sys
 from pathlib import Path
 from lxml import html

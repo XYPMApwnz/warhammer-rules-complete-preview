@@ -4,8 +4,9 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
-import {createEffectiveMfmArmyProjection} from '../../shared/tools/effective-mfm-army-projection.mjs';
+import {createEffectiveMfmArmyProjection,projectCurrentMfmBookBindings} from '../../shared/tools/effective-mfm-army-projection.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone;
@@ -17,10 +18,12 @@ const partitionKinds={unitBindings:['unitPointRecords','DATASHEET','armyUnitId']
 export function consumeMfm(entities,{canonicalFacts,bindings=read('./mfm-bindings.json'),presentUnitIds}={}){
   assert.deepEqual(bindings,read('./mfm-bindings.json'),'Unreviewed native MFM bridges');
   const owner=createEffectiveMfmCatalog(canonicalFacts?{canonicalFacts}:{}),catalog=owner.catalog;
+  const selected=getCurrentMfmSource('space-marines');
+  bindings=projectCurrentMfmBookBindings('space-marines',bindings,{owner});
   const projection=createEffectiveMfmArmyProjection('space-marines',canonicalFacts?{canonicalFacts}:{});
-  assert.equal(projection.sourceMetadata.version,'v1.6','Stale SM MFM source');
-  assert.equal(projection.sourceMetadata.verifiedAt,'2026-10-20','Wrong accepted SM observation');
-  const snapshot=catalog.sourceSnapshots.find(record=>record.sourceId==='space-marines-mfm-v1.6');
+  assert.equal(projection.sourceMetadata.version,selected.version,'Stale SM MFM source');
+  assert.equal(projection.sourceMetadata.verifiedAt,selected.verifiedAt,'Wrong accepted SM observation');
+  const snapshot=catalog.sourceSnapshots.find(record=>record.sourceId===selected.sourceId);
   const capture=read('../../../'+snapshot.sourcePath);
   const byId=new Map(entities.map(entity=>[entity.id,entity]));assert.equal(byId.size,entities.length);
   const refs=new Map(catalog.unitReferences.filter(record=>record.factionId==='space-marines').map(record=>[record.id,record]));
@@ -31,7 +34,7 @@ export function consumeMfm(entities,{canonicalFacts,bindings=read('./mfm-binding
     if(records.has(id))return records.get(id);
     const fact=owner.getById(id);
     assert.equal(fact?.factionId,'space-marines','Foreign native MFM record');
-    assert.equal(fact.provenance.sourceId,'space-marines-mfm-v1.6','Historical prices must not enter native current book');
+    assert.equal(fact.provenance.sourceId,selected.sourceId,'Historical prices must not enter native current book');
     assert.ok(Object.isFrozen(fact),'Mutable MFM owner');records.set(id,fact);
     for(const child of [...fact.qualifierIds||[],...fact.enhancementCostIds||[]])own(child);
     return fact;

@@ -61,7 +61,6 @@
     "projectStatProfiles": true,
     "preserveMultipartStatProfiles": true
   },
-  "compatibleRulesMatrix": true,
   "legacyRelatedRuleAttributes": false,
   "assetVersions": {
     "app": 13,
@@ -85,14 +84,14 @@
     "codexDatasheets": "content/tau-empire-codex-datasheets.en.json",
     "codexWargear": "content/tau-empire-codex-wargear.en.json",
     "codexParity": "content/tau-empire-codex-parity.en.json",
-    "points": "content/tau-empire-points.en.json",
+    "points": "../../mfm/sources/v1.6/tau-empire.json",
     "relatedRules": "content/tau-empire-related-rules.en.json",
     "manifest": "sources/source-manifest.json",
-    "officialMfm": "sources/official-mfm-v1.5.json",
+    "officialMfm": "../../mfm/sources/v1.6/tau-empire.json",
     "effectContracts": "sources/tau-empire-effect-contracts.v1.json",
     "wargearOptionContracts": "sources/tau-empire-wargear-option-contracts.v1.json",
     "attachmentGroupConstraints": "sources/tau-empire-attachment-group-constraints.v1.json",
-    "mfmCurrentCapture": "sources/official-mfm-v1.5.json",
+    "mfmCurrentCapture": "../../mfm/sources/v1.6/tau-empire.json",
     "wahaCurrentCorpus": "sources/waha-11e-current-2026-09-28/corpus.json"
   },
   "relatedRulesOwnership": {
@@ -100,16 +99,6 @@
     "path": "mobile/related-rules.inc"
   },
   "generatedOutputs": [
-    {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/tau-empire/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
     {
       "class": "DERIVED_SOURCE_PROJECTION",
       "producer": "books/tau-empire/tools/build-related-rules.mjs",
@@ -119,17 +108,201 @@
       "required": true,
       "tracked": true,
       "lifecycle": "EXPLICIT_SOURCE_UPDATE_OUTPUT"
-    },
-    {
-      "class": "QA_CAPTURE_REPORT",
-      "producer": "books/tau-empire/tools/import-wahapedia-compatible-rules.mjs",
-      "paths": [
-        "reports/compatible-rules-import-report.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "QA_CAPTURE_OUTPUT"
     }
   ],
-  "glossaryV2CompatibilityTerms": true
+  "glossaryV2CompatibilityTerms": true,
+  "passport": {
+    "schema": "army-book-passport/v1",
+    "edition": "11E",
+    "sources": {
+      "enrollment": "books/tau-empire/v2/sources/enrollment.json",
+      "effective": "books/tau-empire/v2/generated/effective.json",
+      "manifest": "books/tau-empire/sources/source-manifest.json",
+      "inputs": [
+        {
+          "role": "factionPack",
+          "path": "books/tau-empire/content/tau-empire-faction-pack.en.json"
+        },
+        {
+          "role": "codexDatasheets",
+          "path": "books/tau-empire/content/tau-empire-codex-datasheets.en.json"
+        },
+        {
+          "role": "codexWargear",
+          "path": "books/tau-empire/content/tau-empire-codex-wargear.en.json"
+        },
+        {
+          "role": "codexParity",
+          "path": "books/tau-empire/content/tau-empire-codex-parity.en.json"
+        },
+        {
+          "role": "currentMfmRelease",
+          "path": "mfm/current.json"
+        },
+        {
+          "role": "relatedRules",
+          "path": "books/tau-empire/content/tau-empire-related-rules.en.json"
+        },
+        {
+          "role": "manifest",
+          "path": "books/tau-empire/sources/source-manifest.json"
+        },
+        {
+          "role": "effectContracts",
+          "path": "books/tau-empire/sources/tau-empire-effect-contracts.v1.json"
+        },
+        {
+          "role": "wargearOptionContracts",
+          "path": "books/tau-empire/sources/tau-empire-wargear-option-contracts.v1.json"
+        },
+        {
+          "role": "attachmentGroupConstraints",
+          "path": "books/tau-empire/sources/tau-empire-attachment-group-constraints.v1.json"
+        },
+        {
+          "role": "wahaCurrentCorpus",
+          "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/corpus.json"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/tau-empire/v2/official-updates.json"
+        }
+      ]
+    },
+    "build": {
+      "steps": [
+        {
+          "book": "tau-empire",
+          "producer": "books/tau-empire/v2/build.py",
+          "args": [],
+          "runtime": "python",
+          "outputs": [
+            "books/tau-empire/v2/generated/base.json",
+            "books/tau-empire/v2/generated/effective.json",
+            "books/tau-empire/v2/generated/factual-census.json"
+          ]
+        },
+        {
+          "book": "tau-empire",
+          "producer": "books/tau-empire/v2/rule-contract-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/tau-empire/v2/generated/rule-contracts.json"
+          ]
+        },
+        {
+          "book": "tau-empire",
+          "producer": "books/tau-empire/v2/roster-import-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/tau-empire/v2/generated/roster-import.json"
+          ]
+        },
+        {
+          "book": "tau-empire",
+          "producer": "books/tau-empire/v2/app-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/tau-empire/v2/generated/app-presentation.json"
+          ]
+        }
+      ],
+      "postBuildSteps": [
+        {
+          "phase": "model-aliases",
+          "step": {
+            "book": "tau-empire",
+            "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+            "outputs": [
+              "books/tau-empire/v2/model-name-aliases.json"
+            ],
+            "args": [
+              "--book=tau-empire",
+              "--write"
+            ],
+            "runtime": "node"
+          }
+        }
+      ]
+    },
+    "qa": {
+      "script": "qa:tau",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
+    },
+    "mfm": {
+      "currentRelease": "mfm/current.json",
+      "bindingPath": "books/tau-empire/v2/mfm-bindings.json",
+      "scope": "tau-empire"
+    },
+    "runtime": {
+      "executionArtifact": "books/tau-empire/v2/generated/roster-import.json",
+      "conditionArtifact": "books/tau-empire/v2/generated/roster-import.json"
+    },
+    "canonical": {
+      "enhancementIdentity": {
+        "strategy": "owner-record",
+        "builtInExact": false
+      }
+    },
+    "modelNames": {
+      "enabled": true,
+      "artifact": "books/tau-empire/v2/generated/roster-import.json",
+      "metadata": {
+        "mode": "embedded",
+        "path": null,
+        "exportName": null
+      },
+      "sourceDocument": "books/tau-empire/sources/bsdata-tau-empire-11e.json",
+      "joins": "books/tau-empire/v2/model-name-source-bindings.json"
+    },
+    "official": {
+      "input": "books/tau-empire/v2/official-updates.json",
+      "stage": "canonical-facts"
+    },
+    "inheritance": {
+      "owners": []
+    },
+    "publication": {
+      "manifest": "tools/pages-runtime-manifest.json"
+    },
+    "audit": {
+      "conditionSchemas": [
+        "books/tau-empire/v2/rule-contract-schema.mjs"
+      ],
+      "originalSchema": {
+        "mode": "literal",
+        "sourcePath": "books/tau-empire/v2/rule-contract-schema.mjs",
+        "auxiliaryPath": null,
+        "constantName": null
+      },
+      "fieldExports": [],
+      "dynamicPhysicalChoices": true
+    },
+    "update": {
+      "reportArtifact": "books/tau-empire/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      },
+      "metadataPins": [
+        {
+          "inputRole": "currentMfmRelease",
+          "afterProducer": "books/tau-empire/v2/build.py",
+          "factualArtifact": "books/tau-empire/v2/generated/effective.json",
+          "reviewArtifact": "books/tau-empire/v2/rule-clause-review.json",
+          "reviewField": "factualFingerprint",
+          "metadataField": "mfmBoundary.sourceVersion",
+          "hashEncoding": "sha256-json-upper"
+        }
+      ]
+    },
+    "keywords": {
+      "format": "flat"
+    }
+  }
 }

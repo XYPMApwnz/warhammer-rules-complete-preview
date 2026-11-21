@@ -1,3 +1,4 @@
+import {copySourceEvidence,cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Book-owned bindings between canonical composition recipients and the shared
  * effective presentation interface. These views own no facts or effects. */
 const clone=value=>structuredClone(value);
@@ -18,7 +19,7 @@ export function buildCSMRosterPresentation(facts) {
       const field=(entityId,path,value,presentationPath,label)=>({id:`${member.id}::roster${presentationPath}`,
         label,value:clone(value),type:'text',contextId:unit.id,source:{entityId,path},presentationPath});
       profileCards.push({id:member.id,kind:'PROFILE',title:binding.name,parentId:unit.id,contextId:unit.id,
-        source:{entityId:member.id},children:[],links:[],provenance:clone(member.provenance),
+        source:{entityId:member.id},children:[],links:[],...copySourceEvidence(member,{book:facts}),
         fields:[field(member.id,'/composition/name',binding.name,'/name','name'),
           ...Object.entries(statline.data.stats).map(([name,value])=>field(statline.id,`/stats/${name}`,value,`/${name}`,name))]});
     }
@@ -29,7 +30,7 @@ export function buildCSMRosterPresentation(facts) {
 /** The interpreter keeps its existing book unchanged. Only the disposable
  * snapshot reader receives the already-established shared presentation kinds. */
 export function normalizeCSMEffectiveBook(book) {
-  const result=clone(book);
+  const result=cloneSourceBook(book);
   const aliases={DATASHEET_ABILITY:'SUPPLEMENTAL_DATASHEET_RULE',EQUIPMENT_ABILITY:'SUPPLEMENTAL_DATASHEET_RULE',
     UNIT_COMPOSITION:'DATASHEET_SECTION',ATTACHMENT_DECLARATION:'DATASHEET_SECTION',TRANSPORT_DECLARATION:'DATASHEET_SECTION',
     SPECIAL_DATASHEET_RULE:'DATASHEET_SECTION',UPGRADE_DECLARATION:'DATASHEET_SECTION'};

@@ -1,0 +1,122 @@
+[
+  {
+    "ruleId": "detachment-virulent-vectorium:rule",
+    "clauseId": "secure-objective",
+    "field": [
+      "text"
+    ],
+    "quote": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "The friendly UNIT controls an objective; the objective is the result recipient. Do not turn the ACTOR into EFFECT_RECIPIENT."
+  },
+  {
+    "ruleId": "detachment-virulent-vectorium:rule",
+    "clauseId": "objective-affliction",
+    "field": [
+      "text"
+    ],
+    "quote": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Enemy-only affliction."
+  },
+  {
+    "ruleId": "detachment-tallyband-summoners:rule",
+    "clauseId": "grant-nurgles-gift",
+    "field": [
+      "text"
+    ],
+    "quote": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.\nWhile a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.\nPLAGUE LEGIONS\nYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo PLAGUE LEGIONS models from your army can be your WARLORD.",
+    "disposition": "RECORD",
+    "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "contextLevel": "STATIC",
+      "arguments": {
+        "keyword": "PLAGUE LEGIONS"
+      },
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "PLAGUE LEGIONS"
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-tallyband-summoners:rule",
+    "clauseId": "contagion-range",
+    "field": [
+      "text"
+    ],
+    "quote": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.\nWhile a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.\nPLAGUE LEGIONS\nYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo PLAGUE LEGIONS models from your army can be your WARLORD.",
+    "disposition": "RECORD",
+    "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "contextLevel": "STATIC",
+      "arguments": {
+        "keyword": "DEATH GUARD"
+      },
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "DEATH GUARD"
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-tallyband-summoners:rule",
+    "clauseId": "include-plague-legions",
+    "field": [
+      "text"
+    ],
+    "quote": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.\nWhile a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.\nPLAGUE LEGIONS\nYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo PLAGUE LEGIONS models from your army can be your WARLORD.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army inclusion/points permission."
+  },
+  {
+    "ruleId": "detachment-tallyband-summoners:rule",
+    "clauseId": "warlord-restriction",
+    "field": [
+      "text"
+    ],
+    "quote": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.\nWhile a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.\nPLAGUE LEGIONS\nYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo PLAGUE LEGIONS models from your army can be your WARLORD.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army construction/Warlord restriction."
+  },
+  {
+    "ruleId": "detachment-champions-of-contagion:rule",
+    "clauseId": "replace-plague",
+    "field": [
+      "text"
+    ],
+    "quote": "At the start of the battle round, you can select one of the Plagues listed in Nurgle’s Gift. Until the end of the battle, that is your chosen Plague instead of any previously chosen Plague.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Whole-army Plague replacement, no UNIT/MODEL recipient."
+  },
+  {
+    "ruleId": "detachment-contagion-engines:rule",
+    "clauseId": "exclusive-detachment",
+    "field": [
+      "text"
+    ],
+    "quote": "- Friendly FOETID BLOAT-DRONE/FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER/HELBRUTE/MYPHITIC BLIGHT-HAULER units have CONTAGION ENGINE.\n- Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT].\nThis detachment has the ENGINES tag and cannot be taken with another ENGINES detachment.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Detachment tag/exclusivity."
+  },
+  {
+    "ruleId": "detachment-flyblown-host:rule",
+    "clauseId": "exclusive-detachment",
+    "field": [
+      "text"
+    ],
+    "quote": "In the Declare Battle Formations step, you can select up to two friendly PLAGUE MARINES units. Those units have Infiltrators.\nThis detachment has the FLYBLOWN tag and cannot be taken with another FLYBLOWN detachment.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Detachment tag/exclusivity."
+  }
+]

@@ -21,7 +21,7 @@ const core=rebuilt.entries.filter(entry=>entry.domain==='CORE');
 const coreById=new Map(core.map(entry=>[entry.id,entry]));
 const aliasOnly=new Set(['core-errata-15-05','core-errata-15-06']);
 const expected=catalog.records.filter(record=>!aliasOnly.has(record.id));
-assert.equal(core.length,369);
+assert.equal(core.length,383); // 385 canonical records minus the two unchanged alias-only errata.
 assert.deepEqual(new Set(core.map(entry=>entry.id)),new Set(expected.map(record=>'core::'+record.id)),'scoped build dropped canonical Core identities');
 assert.equal(JSON.stringify(publication),before,'scoped build mutated its input container');
 const nonCore=value=>value.entries.filter(entry=>entry.domain!=='CORE');

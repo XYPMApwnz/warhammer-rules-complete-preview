@@ -8,8 +8,16 @@ The existing worker prepares the V2 entry/code/shared styles. Large Army Book
 JSON and both glossary payloads remain lazy. Both datasheet-system.css and
 unit-art.css are mandatory. The Core reader still needs its lazy
 glossary/v2/generated/index.en.js definition data.
+The shared source registry, nine keyword passports and rule-facts bridge are
+eager startup dependencies. They and the book-shell AM logo are mandatory;
+native Army Book payloads and both large glossary payloads remain lazy.
 
-Updates require the existing explicit confirmation button. Other tabs are not
+Updates on a working screen require the existing explicit confirmation button.
+Only the initial loading boundary can activate a verified prepared worker
+automatically, before application modules or unfinished input are present. This
+also covers cached compatible HTML when a newer worker is already ready offline. A
+per-publication session marker allows one automatic attempt, and a failed startup
+offers an explicit retry instead of repeating activation. Other tabs are not
 automatically reloaded. Current V2 localStorage rosters and unfinished import
 drafts are retained. Version checks before/after view preparation refuse
 incompatible results before mount; no per-tab version/cache framework exists.
@@ -33,4 +41,5 @@ Relevant checks: tests/minimal-pwa-cache-qa.mjs,
 tests/service-worker-resilience-qa.mjs,
 tests/cache-revision-portability-qa.mjs,
 tests/minimal-pwa-import-purity-qa.mjs, v2/pwa-transition-qa.mjs,
+tests/browser/pwa-bootstrap-update.mjs (initial automatic recovery and live-tab safety),
 and the native runtime-only browser/package acceptance gates.

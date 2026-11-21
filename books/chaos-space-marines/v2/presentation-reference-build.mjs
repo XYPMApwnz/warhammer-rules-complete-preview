@@ -1,10 +1,11 @@
+import {parseProducerJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import fs from 'node:fs';
 import {isDeepStrictEqual} from 'node:util';
 import {buildGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {abilityParameters} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 
 export const REFERENCE_SCHEMA='army-book-app-v2/datasheet-reference-bindings/v1';
-const bindings=JSON.parse(fs.readFileSync(new URL('./presentation-reference-bindings.json',import.meta.url),'utf8'));
+const bindings=parseProducerJSON(fs.readFileSync(new URL('./presentation-reference-bindings.json',import.meta.url),'utf8'));
 
 /** Book-owned source-occurrence addresses bind existing canonical definitions.
  * Source labels only check that a declared occurrence still describes the same
@@ -26,7 +27,7 @@ export function buildPresentationReferences({model,cards,coreCatalog,runtimeBook
   if(!Array.isArray(model?.entities)||!Array.isArray(cards))throw new TypeError('Missing canonical presentation inputs');
   if(!runtimeBook?.rosterReferenceSemantics||!runtimeBook.rosterAbilityReferences)
     throw new TypeError('Missing registered native reference semantics');
-  const {coreCards,coreFactManifest,index}=buildGlossary({model,coreCatalog});
+  const {coreCards,coreFactManifest,index}=prepareSourceProducer(buildGlossary({model,coreCatalog}));
   const targets=new Map([...cards,...coreCards].map(card=>[card.id,card]));
   if(targets.size!==cards.length+coreCards.length)throw new Error('Duplicate canonical presentation identity');
   const fields={},entries={},seen=new Set();

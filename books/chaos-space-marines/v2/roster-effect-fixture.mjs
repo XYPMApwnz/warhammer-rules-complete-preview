@@ -3,6 +3,7 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
 import {formRoster} from '../../shared/roster-v2/context.mjs';
+import {findRosterConditionComputation} from '../../shared/roster-v2/condition-context.mjs';
 
 export function physical(book,instanceId,canonicalUnitId,enhancementIds=[]) {
   const records=new Map(book.entities.map(e=>[e.id,e])),unit=records.get(canonicalUnitId);
@@ -63,7 +64,7 @@ export function clauseFixture(book,ruleId,clauseId) {
     const owner=rule.ruleContract.roles.find(r=>r.id===rule.ruleContract.assignment.ownerRoleId);
     const walk=n=>n.op?n.args.flatMap(walk):[n];
     for(const condition of owner.conditions)for(const node of walk(condition)) {
-      const binding=book.rosterContextBindings[node.arguments?.key];
+      const binding=findRosterConditionComputation(book,node);
       if(binding?.kind==='SELECTED_MARK')a.selectedMarkId=binding.markId;
     }
   }

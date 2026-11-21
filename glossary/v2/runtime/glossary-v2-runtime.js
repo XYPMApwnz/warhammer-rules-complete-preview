@@ -463,7 +463,7 @@
   }
   const scopeOf=(entry,bookId='')=>entry.domain==='CORE'?'global':entry.domain==='MISSIONS'?'missions':bookId&&(entry.contexts||[]).some(context=>context.effectiveBookId===bookId)?bookId:entry.sourceOwner?.bookId||entry.contexts?.[0]?.effectiveBookId||entry.domain.toLocaleLowerCase();
   const kindOf=entry=>entry.recordType.toLocaleLowerCase().replaceAll('_','-');
-  const sourceOf=entry=>{const source=entry.provenance?.base||entry.provenance||{};return{documentId:source.sourceId||source.profileId||entry.sourceOwner?.interface||entry.domain,revision:source.sourceVersion||source.sourceDate||entry.currentness?.asOf||entry.currentness?.cutoff||'',locator:source.sourceLocator?.partition||source.contentLocator||entry.sourceOwner?.canonicalId||''};};
+  const sourceOf=entry=>{const source=entry.provenance?.base||entry.provenance||{},citation=entry.domain==='CORE'&&entry.facts?.sourceCode&&entry.facts.sourceCode!==entry.facts.code;return{documentId:source.sourceId||source.profileId||entry.sourceOwner?.interface||entry.domain,revision:source.sourceVersion||source.sourceDate||entry.currentness?.asOf||entry.currentness?.cutoff||'',locator:citation?entry.facts.sourceCode:source.sourceLocator?.partition||source.contentLocator||entry.sourceOwner?.canonicalId||'',...(citation?{anchor:entry.facts.sourceNode.anchor}:{})};};
   const relatedOf=entry=>{
     const ids=(entry.canonicalReferences||[]).map(reference=>reference.id).filter(id=>byId.has(id));
     if(entry.recordType==='TERRAIN_LAYOUT'){

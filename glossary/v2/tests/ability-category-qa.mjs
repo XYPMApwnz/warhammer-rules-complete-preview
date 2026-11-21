@@ -4,12 +4,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {parseProducerJSON} from '../../../books/shared/source-refs-v2/producer-io.mjs';
 import {adaptGlobalGlossary} from '../../../books/shared/army-book-app-v2/global-glossary.mjs';
 import {createReferenceContract} from '../../../books/shared/army-book-app-v2/reference-contract.mjs';
 import {encodeRoute,decodeRoute} from '../../../books/shared/army-book-app-v2/route-context.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
-const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
+const read=file=>parseProducerJSON(fs.readFileSync(path.join(root,file),'utf8'));
 const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines'];
 const specialGroups=new Set(['datasheet-mortarion:section:1','datasheet-belisarius-cawl:section:4','datasheet-thulia-ghuld:section:4','datasheet-fulgrim:section:5']);
 const selectionContexts={
@@ -29,7 +30,7 @@ const add=(entry,category,{path=null,label,body,physicalOwner,unitOwner,provenan
   expected.set(targetId,{targetId,category,book:entry.sourceOwner.bookId,canonicalId:entry.sourceOwner.canonicalId,path,label,body,physicalOwner,unitOwner,provenance,context});
 };
 for(const [book,model]of sourceModels){
-  const committed=JSON.parse(execFileSync('git',['show','HEAD:books/'+book+'/v2/generated/effective.json'],{cwd:root,encoding:'utf8',maxBuffer:40*1024*1024}));
+  const committed=parseProducerJSON(execFileSync('git',['show','HEAD:books/'+book+'/v2/generated/effective.json'],{cwd:root,encoding:'utf8',maxBuffer:40*1024*1024}));
   assert.deepEqual(model,committed,'Army Book factual owner changed during presentation-only task '+book);
   const modelOwners=new Map(model.entities.map(entity=>[entity.id,entity]));
   const contextFor=identity=>{if(!identity)return undefined;const owner=modelOwners.get(identity.canonicalId);assert.ok(owner,'Missing reviewed governing ability owner');const body=identity.path?identity.path.slice(1).split('/').reduce((value,key)=>value[key],owner.data):owner.data.text;assert.equal(typeof body,'string');return{...identity,body};};

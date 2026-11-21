@@ -48,7 +48,7 @@ export function createCoreFactProjection({repoRoot=defaultRepoRoot}={}){
   for(const rule of catalog.mainRules){
     if(CORE_GLOSSARY_EXCLUDED_CODES.has(rule.code))continue;
     const text=sourceConflictNotice(rule)||rule.semanticContent;
-    terms.set(rule.id,{id:rule.id,code:rule.code,kind:rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule',title:digitalTitle(rule),summary:concise(text),definition:cleanRuleText(text),aliases:[],canonicalSource:{documentId:'core-rules',revision:'11e',locator:rule.code},...(rule.fullRulePath?{fullRulePath:rule.fullRulePath}:{})});
+    terms.set(rule.id,{id:rule.id,code:rule.code,kind:rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule',title:digitalTitle(rule),summary:concise(text),definition:cleanRuleText(text),aliases:[],canonicalSource:{documentId:'core-rules',revision:'11e',locator:rule.sourceCode||rule.code,...(rule.sourceCode&&rule.sourceCode!==rule.code?{anchor:rule.sourceNode.anchor}:{})},...(rule.fullRulePath?{fullRulePath:rule.fullRulePath}:{})});
   }
   for(const [localId,entry] of Object.entries(coreData.terms)){
     const identity=identities.concepts[localId];
@@ -69,7 +69,7 @@ export function createCoreFactProjection({repoRoot=defaultRepoRoot}={}){
     const text=sourceConflictNotice(rule)||rule.semanticContent;
     const definition=rule.code==='03.03'?text.split('\nWHAT IS COHERENCY?')[0]:text;
     term.definition=cleanRuleText(definition);term.summary=concise(text);
-    term.canonicalSource={documentId:'core-rules',revision:'11e',locator:rule.code};
+    term.canonicalSource={documentId:'core-rules',revision:'11e',locator:rule.sourceCode||rule.code,...(rule.sourceCode&&rule.sourceCode!==rule.code?{anchor:rule.sourceNode.anchor}:{})};
     if(rule.fullRulePath)term.fullRulePath=rule.fullRulePath;
   }
   for(const [alias,target] of Object.entries(catalog.aliases))if(target&&alias!==target)aliases[alias]=target;

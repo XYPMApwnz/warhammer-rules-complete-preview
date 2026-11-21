@@ -1,7 +1,247 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
+import {rosterUnitNames,coreStratagemCards} from './roster-labels.mjs';
 /** Disposable presentation views. Roster services own eligibility and effects. */
+import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
+import {createSelectedSourceFieldPredicate} from '../roster-v2/context.mjs';
 const clone = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
+/** Read-only presentation context from already published native runtime assets.
+ * This never adds facts to the roster, executes clauses or changes F1 rows.
+ * Missing/ambiguous metadata cannot prove table placement or executable text. */
+export async function loadDetachmentPresentationSources({payload,assetBaseURL,fetch:read}){
+  const result=new Map(),published=new Map(payload.cards.map(card=>[card.id,card])),wanted=new Set(published.keys());
+  if(!payload.cards.some(card=>card.kind==='DETACHMENT_RULE')||!assetBaseURL||!read)return result;
+  try{
+    const root=new URL('../../../',import.meta.url),base=new URL('generated/',assetBaseURL);
+    const response=await read(new URL('glossary/generated/cache-revision.js',root));
+    if(!response.ok)return result;
+    const match=(await response.text()).match(/self\.WH40K_RUNTIME_ASSETS=(\{[^\n]*\});/);
+    if(!match)return result;
+    const assets=JSON.parse(match[1]),urls=Object.keys(assets).map(path=>new URL(path,root)).filter(url=>
+      url.origin===base.origin&&url.pathname.startsWith(base.pathname)&&
+      /\/(?:roster-runtime|rule-contract-effective|roster-attachments|roster-import)\.json$/.test(url.pathname));
+    const inputs=await Promise.allSettled(urls.map(async url=>{const response=await read(url);return response.ok?response.json():null;}));
+    const ambiguous=new Set();
+    for(const input of inputs)if(input.status==='fulfilled'&&input.value?.bookId===payload.book.id)
+      for(const rule of input.value.entities||[]){
+        if(!wanted.has(rule.id)||!rule.ruleContract?.clauses)continue;
+        if((published.get(rule.id).kind==='DETACHMENT_RULE')!==(rule.kind==='DETACHMENT_RULE'))continue;
+        // The same already-read contracts also identify selected equipment's
+        // effect text. Retain addresses only; do not execute a second policy.
+        if(rule.kind!=='DETACHMENT_RULE'&&!rule.ruleContract.clauses.some(clause=>clause.canonicalEquipmentRequirement||
+          clause.rosterEffects?.some(effect=>effect.equipmentRequirement)))continue;
+        if(!getRecordedSourceIdentity(rule,{book:input.value}))continue;
+        if(result.has(rule.id)&&JSON.stringify(result.get(rule.id))!==JSON.stringify(rule))ambiguous.add(rule.id);
+        else result.set(rule.id,rule);
+      }
+    for(const id of ambiguous)result.delete(id);
+  }catch{/* Render canonical fields without a guessed table insertion point. */}
+  return result;
+}
+/** Read-only source lookup for effects already assigned to this physical view.
+ * Eligibility, conditions and recipients remain the executor's decisions. In
+ * particular, full prose is not a declaration that every clause was executed. */
+export function executableDetachmentSources(cards,effective,sources=new Map()){
+  const result=new Map();
+  for(const row of [...(effective.applied||[]),...(effective.conditional||[]).filter(row=>!row.policy&&!row.detachmentText)]){
+    const card=cards.get(row.ruleId),rule=sources.get(row.ruleId);
+    if(card?.kind!=='DETACHMENT_RULE'||!rule)continue;
+    const clauses=rule.ruleContract.clauses.filter(clause=>clause.id===row.clauseId);
+    assert(clauses.length===1,'Unresolved executable Detachment text clause: '+row.ruleId);
+    const clause=clauses[0];
+    if(clause.rosterClassification!=='ROSTER_EXECUTABLE')continue;
+    assert(!row.targetInstanceId||row.targetInstanceId===effective.instanceId,'Executable Detachment text belongs to another physical unit');
+    if(row.effectId)assert(clause.rosterEffects.some(effect=>effect.id===row.effectId&&effect.operation===row.operation),
+      'Unresolved executable Detachment text effect: '+row.ruleId);
+    assert(getRecordedSourceIdentity(rule),'Missing executable Detachment text source: '+row.ruleId);
+    // Publication fields and runtime clauses must identify the same source
+    // content. AM/CSM/DG use distinct publication provenance envelopes, so do
+    // not require those envelopes to equal the native clause envelope.
+    for(const sourcePath of clause.sourceFields||[]){
+      const value=sourcePath.reduce((value,key)=>value?.[key],rule.data);
+      if(typeof value!=='string')continue;
+      const pointer='/'+sourcePath.map(key=>String(key).replaceAll('~','~0').replaceAll('/','~1')).join('/');
+      assert(card.fields.some(field=>(field.source?.path===pointer||field.presentationPath===pointer)&&field.value===value),
+        'Executable Detachment text differs from its published source: '+row.ruleId+' '+pointer);
+    }
+    if(!result.has(rule.id))result.set(rule.id,{card,rule,contributions:[]});
+    result.get(rule.id).contributions.push(clone(row));
+  }
+  return [...result.values()];
+}
+/** Field identity, not flattened text, owns display deduplication. Native row
+ * proof is validated separately and is never rewritten by this display plan. */
+/** Clip only an independently source-bound complete paragraph. Every nonblank
+ * line in the shared field must be covered by unambiguous, non-overlapping
+ * clause evidence. Uncovered mode headings, partial quotes and choice/table
+ * declarations retain their entire canonical field; no prose interpretation. */
+export function detachmentClauseSpan(rule,clause,path,rows){
+  if(rows.some(row=>row.detachmentText.kind==='ELIGIBLE_FOR_SELECTION'||row.detachmentText.kind==='SELECTED'||
+    row.detachmentText.tableOptions?.length||row.detachmentText.tableOption))return null;
+  // Shared-recipient rules keep their complete explanation, including modes.
+  // Only separately recorded recipient selectors can require clause-local text.
+  const selectors=new Set(rule.ruleContract.clauses.flatMap(clause=>(clause.recipients||[])
+    .filter(recipient=>recipient.side==='FRIENDLY'&&recipient.selector)
+    .map(recipient=>JSON.stringify([recipient.who,recipient.selector]))));
+  if(selectors.size<2)return null;
+  const text=path.reduce((value,key)=>value?.[key],rule.data);
+  if(typeof text!=='string')return null;
+  const spans=[];
+  for(const candidate of rule.ruleContract.clauses){
+    if(!(candidate.sourceFields||[]).some(field=>JSON.stringify(field)===JSON.stringify(path)))continue;
+    const quote=candidate.evidence?.quote;
+    if(JSON.stringify(candidate.evidence?.field)!==JSON.stringify(path)||typeof quote!=='string'||!quote.length)return null;
+    const start=text.indexOf(quote),end=start+quote.length;
+    if(start<0||start!==text.lastIndexOf(quote))return null;
+    const lineStart=text.lastIndexOf('\n',start-1)+1,prefix=text.slice(lineStart,start);
+    if(!['','- ','• '].includes(prefix)||end!==text.length&&text[end]!=='\n')return null;
+    spans.push({clauseId:candidate.id,start:lineStart,end});
+  }
+  spans.sort((a,b)=>a.start-b.start||a.end-b.end);
+  let end=0;
+  for(const span of spans){if(span.start<end||text.slice(end,span.start).trim())return null;end=span.end;}
+  if(text.slice(end).trim())return null;
+  return spans.find(span=>span.clauseId===clause.id)||null;
+}
+export function projectDetachmentFields(card,rows,sources=new Map()){
+  const fields=new Map(),clauses=[];
+  for(const row of rows){
+    const rule=sources.get(row.ruleId),matches=rule?.ruleContract?.clauses.filter(clause=>clause.id===row.clauseId)||[];
+    const clause=matches.length===1&&sameSourceEvidence(rule,row,{otherSlot:'sourceProvenance'})?matches[0]:null;
+    let selected=[];
+    if(clause){
+      for(const sourcePath of clause.sourceFields||[]){
+        const value=sourcePath.reduce((value,key)=>value?.[key],rule.data),id=JSON.stringify([row.ruleId,'/'+sourcePath.join('/')]);
+        if(typeof value==='string')selected.push({id,kind:'TEXT',sourcePath,text:value});
+        else if(Array.isArray(value))value.forEach((table,index)=>{
+          if(Array.isArray(table?.rows)&&table.rows.every(cells=>Array.isArray(cells)&&cells.every(cell=>typeof cell==='string')))
+            selected.push({id:JSON.stringify([row.ruleId,'/'+[...sourcePath,index,'rows'].join('/')]),kind:'TABLE',sourcePath:[...sourcePath,index,'rows'],rows:clone(table.rows)});
+        });
+      }
+      const flat=selected.filter(field=>field.kind==='TEXT').map(field=>field.text).join('\n')+
+        selected.filter(field=>field.kind==='TABLE').map(field=>'\n'+field.rows.map(cells=>cells.join(' · ')).join('\n')).join('');
+      if(flat!==row.detachmentText.text)selected=[];
+    }
+    if(!selected.length){
+      const matching=card.fields.filter(field=>field.source?.entityId===row.ruleId&&field.presentation!=='heading'&&
+        field.presentation!=='table-cell'&&typeof field.value==='string'&&field.value===row.detachmentText.text);
+      const field=matching.length===1?matching[0]:null;
+      selected=[{id:JSON.stringify([row.ruleId,field?.source.path||row.detachmentText.text]),kind:'TEXT',
+        sourcePath:field?.source.path||null,text:row.detachmentText.text}];
+      if(!field){
+        const tables=new Map();
+        for(const cell of card.fields.filter(field=>field.presentation==='table-cell'&&field.source?.entityId===row.ruleId)){
+          const id=cell.table?.id;if(!id)continue;
+          if(!tables.has(id))tables.set(id,{id:JSON.stringify([row.ruleId,id.slice(id.indexOf('::')+2)]),kind:'TABLE',sourcePath:id.slice(id.indexOf('::')+2),rows:[]});
+          const rows=tables.get(id).rows;rows[cell.table.row]??=[];rows[cell.table.row][cell.table.column]=cell.value;
+        }
+        const suffix=[...tables.values()].map(field=>'\n'+field.rows.map(cells=>cells.join(' · ')).join('\n')).join('');
+        const prefixes=card.fields.filter(field=>field.source?.entityId===row.ruleId&&field.presentation!=='heading'&&field.presentation!=='table-cell'&&
+          typeof field.value==='string'&&suffix&&field.value+suffix===row.detachmentText.text);
+        if(prefixes.length===1)selected=[{id:JSON.stringify([row.ruleId,prefixes[0].source.path]),kind:'TEXT',sourcePath:prefixes[0].source.path,text:prefixes[0].value},...[...tables.values()]];
+      }
+    }
+    if(clause)selected=selected.map(field=>{
+      if(field.kind!=='TEXT'||!Array.isArray(field.sourcePath))return field;
+      const span=detachmentClauseSpan(rule,clause,field.sourcePath,rows);
+      return span?{...field,id:JSON.stringify([field.id,span.start,span.end]),
+        text:field.text.slice(span.start,span.end),sourceRange:{start:span.start,end:span.end}}:field;
+    });
+    const tables=selected.filter(field=>field.kind==='TABLE'),quote=clause?.evidence?.quote;
+    const anchors=selected.filter(field=>field.kind==='TEXT'&&JSON.stringify(field.sourcePath)===JSON.stringify(clause?.evidence?.field)&&
+      typeof quote==='string'&&quote.length&&field.text.indexOf(quote)>=0&&field.text.indexOf(quote)===field.text.lastIndexOf(quote));
+    if(tables.length===1&&anchors.length===1)tables[0].anchor={fieldId:anchors[0].id,offset:anchors[0].text.indexOf(quote)+quote.length};
+    for(const field of selected)if(!fields.has(field.id))fields.set(field.id,field);
+    clauses.push({row,fieldIds:selected.map(field=>field.id),...(clause?{evidence:clone(clause.evidence),conditions:clone(clause.conditions||[])}:{})});
+  }
+  return {fields:[...fields.values()],clauses};
+}
+/** Table rows are pending choices under the proven leading recipient. Keep raw
+ * clause proof intact; this only omits duplicate standalone option rendering. */
+export function groupDetachmentTextRows(rows){
+  return rows.filter(row=>!row.detachmentText.tableOption||!rows.some(leading=>leading.ruleId===row.ruleId&&
+    leading.clauseId===row.detachmentText.tableOption.leadingClauseId&&leading.detachmentText.tableOptions?.length&&
+    leading.detachmentText.recipientSubject===row.detachmentText.recipientSubject&&
+    JSON.stringify(leading.recipientInstanceIds)===JSON.stringify(row.recipientInstanceIds)&&
+    JSON.stringify(leading.recipientModelScopeIds)===JSON.stringify(row.recipientModelScopeIds)));
+}
+/** F1 uses runtime-verified provenance. Presentation cards bind only canonical
+ * rule/parent IDs; their optional provenance decorations are book-specific. */
+export function validateDetachmentTextPresentation(cards,unit,effective,row,origin){
+  const rule=cards.get(row.ruleId),owner=cards.get(row.sourceDetachmentId),text=row.detachmentText,chain=row.sourceOwnerChain;
+  const chainMatches=Array.isArray(chain)&&chain.length>1&&new Set(chain.map(link=>link.id)).size===chain.length&&
+    chain[0].id===row.ruleId&&chain[0].parentId===row.sourceParentId&&chain.at(-1).id===row.sourceDetachmentId&&
+    chain.every((link,index)=>{const card=cards.get(link.id);return card?.id===link.id&&card.kind===link.kind&&
+      (card.parentId||null)===link.parentId&&(index===chain.length-1?card.kind==='DETACHMENT':card.kind!=='DETACHMENT'&&link.parentId===chain[index+1].id);});
+  const expectedRecipients=text?.recipientSubject==='UNIT'&&effective.formedUnit?[...effective.formedUnit.memberInstanceIds]:[unit?.instanceId];
+  const proof=origin?.effective||effective;
+  const verified=(proof.conditional||[]).filter(item=>item.detachmentText&&item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.recipientId===text?.recipientId);
+  if(origin){
+    // Only an already verified UNIT row can be displayed on another current
+    // component. Its complete recipient set and native proof stay untouched.
+    validateDetachmentTextPresentation(cards,origin.unit,proof,row);
+    assert(text?.recipientSubject==='UNIT'&&effective.formedUnit&&proof.formedUnit&&
+      effective.formedUnit.formedUnitId===proof.formedUnit.formedUnitId&&
+      JSON.stringify(effective.formedUnit.memberInstanceIds)===JSON.stringify(proof.formedUnit.memberInstanceIds)&&
+      effective.instanceId===unit.instanceId&&proof.instanceId===origin.unit.instanceId&&
+      expectedRecipients.includes(unit.instanceId)&&expectedRecipients.includes(origin.unit.instanceId),
+      'Foreign textual Detachment presentation component');
+  }
+  assert(!row.policy&&text&&row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&
+    text.classification==='BATTLE_ONLY'&&chainMatches&&rule?.id===row.ruleId&&rule.kind==='DETACHMENT_RULE'&&
+    owner?.id===row.sourceDetachmentId&&owner.kind==='DETACHMENT'&&
+    JSON.stringify(row.recipientInstanceIds)===JSON.stringify(expectedRecipients)&&
+    verified.length===1&&JSON.stringify(row.recipientModelScopeIds)===JSON.stringify(verified[0].recipientModelScopeIds)&&
+    JSON.stringify(row.detachmentText)===JSON.stringify(verified[0].detachmentText)&&
+    sameSourceEvidence(row,verified[0],{slot:'sourceProvenance'})&&
+    JSON.stringify(row.sourceOwnerChain)===JSON.stringify(verified[0].sourceOwnerChain)&&
+    ['recipientId','sourceInstanceId','sourceModelScopeId','sourceDetachmentId','sourceParentId'].every(key=>row[key]===verified[0][key])&&
+    ['UNIT','MODEL'].includes(text.recipientSubject)&&Array.isArray(row.recipientModelScopeIds)&&
+    (text.recipientSubject==='UNIT'?row.recipientModelScopeIds.length===0:
+      row.recipientModelScopeIds.length>0&&row.recipientModelScopeIds.every(id=>effective.profiles.some(model=>model.scopeId===id))),
+    'Unresolved textual Detachment presentation');
+}
+/** Re-read native projections for every render, including presentation-only UNIT
+ * copies. No cached proof or effective row is transferred between components. */
+export function validateComponentDetachmentText(cards,roster,unit,effective,row){
+  const hasRow=projection=>(projection.conditional||[]).some(item=>item.detachmentText&&
+    item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.recipientId===row.detachmentText.recipientId);
+  if(hasRow(effective))return validateDetachmentTextPresentation(cards,unit,effective,row);
+  assert(row.detachmentText.recipientSubject==='UNIT'&&effective.formedUnit&&
+    row.recipientInstanceIds.includes(unit.instanceId),'Missing local textual Detachment proof');
+  for(const id of effective.formedUnit.memberInstanceIds){
+    if(id===unit.instanceId)continue;
+    const source=roster.state.units.find(item=>item.instanceId===id),proof=roster.effective(id);
+    if(source&&hasRow(proof))return validateDetachmentTextPresentation(cards,unit,effective,row,{unit:source,effective:proof});
+  }
+  throw new TypeError('Missing current textual Detachment UNIT proof');
+}
+/** The current runtime proof must address the same canonical source field on
+ * the displayed card. Different named blocks in ABILITIES are never aliases. */
+export function validateAttachedRuleTextPresentation(cards,unit,effective,row){
+  assert(row&&row.recipientInstanceId===unit.instanceId&&effective.instanceId===unit.instanceId&&
+    effective.canonicalUnitId===unit.canonicalUnitId&&row.sourceInstanceId!==unit.instanceId&&
+    effective.formedUnit?.memberInstanceIds.includes(row.sourceInstanceId)&&
+    effective.formedUnit.memberInstanceIds.includes(unit.instanceId)&&
+    (effective.attachedRuleTexts||[]).some(value=>JSON.stringify(value)===JSON.stringify(row)),
+    'Unresolved attached rule component proof');
+  const chain=row.sourceOwnerChain,card=cards.get(row.ruleId);
+  assert(Array.isArray(chain)&&chain.length>1&&chain[0].id===row.ruleId&&new Set(chain.map(item=>item.id)).size===chain.length&&
+    chain.every((item,index)=>{const current=cards.get(item.id);return current?.id===item.id&&
+      (current.parentId||null)===item.parentId&&(index===chain.length-1||item.parentId===chain[index+1].id);}),
+    'Unresolved attached rule card ownership');
+  const owner=cards.get(chain.at(-1).id);
+  assert(card?.kind!=='STRATAGEM'&&(card.kind==='ENHANCEMENT'?owner?.kind==='DETACHMENT':owner?.kind==='DATASHEET'&&owner.id===row.sourceUnitId),
+    'Foreign attached rule source owner');
+  const pointer='/'+row.sourcePath.map(key=>String(key).replaceAll('~','~0').replaceAll('/','~1')).join('/');
+  const fields=(card.fields||[]).filter(field=>(field.source?.path===pointer||field.presentationPath===pointer)&&typeof field.value==='string');
+  assert(fields.length===1&&(fields[0].value===row.text||fields[0].value===row.title+': '+row.text)&&
+    getRecordedSourceIdentity(row,{slot:'sourceProvenance'})&&row.proofs?.length,
+    'Unresolved attached rule canonical text');
+  return fields[0].value;
+}
+
 /** Book-owned canonical profile bindings apply only to physical views. The
  * normal book map and every factual field/address remain unchanged. */
 export function prepareRosterPresentationCards(cards,presentation) {
@@ -59,12 +299,28 @@ export function projectFormedUnitCards(cards, roster, instanceId) {
     for(const component of components.slice(1))component.card.rosterUnitMetrics=component.card.rosterUnitMetrics.filter(value=>
       value.unitScope!=='FORMED'||identity(value)!==expected);
   }
+  if(group){
+    const identity=row=>JSON.stringify([row.ruleId,row.clauseId,row.detachmentText.recipientId,sourceSnapshot(row,{slot:'sourceProvenance'}),row.sourceOwnerChain]);
+    const sources=components.flatMap(component=>component.card.rosterDetachmentTexts||[])
+      .filter(row=>row.detachmentText.recipientSubject==='UNIT');
+    for(const component of components){
+      const rows=component.card.rosterDetachmentTexts||[],seen=new Set(rows.map(identity));
+      for(const row of sources){
+        if(seen.has(identity(row))||!row.recipientInstanceIds.includes(component.unit.instanceId))continue;
+        validateComponentDetachmentText(cards,roster,component.unit,roster.effective(component.unit.instanceId),row);
+        rows.push(clone(row));seen.add(identity(row));
+      }
+      if(rows.length)component.card.rosterDetachmentTexts=rows;
+    }
+  }
   return {formedUnitId:group?.formedUnitId||null,components};
 }
-export function projectPersonalBook(payload, state) {
+export function projectPersonalBook(payload, state, projection=null) {
   assert(state?.units?.length && state.detachmentIds?.length, 'No imported roster');
   const cards = new Map(payload.cards.map(card => [card.id,card]));
-  const detachments = new Set(state.detachmentIds), enhancements = new Set(state.units.flatMap(unit=>unit.enhancementIds));
+  const activeOwners=projection?new Map(projection.units.map(unit=>[unit.instanceId,unit.enhancementIds])):null;
+  const detachments = new Set(state.detachmentIds), enhancements = new Set(state.units.flatMap(unit=>activeOwners
+    ?activeOwners.get(unit.instanceId)||[]:unit.enhancementIds));
   const units = new Set(state.units.map(unit=>unit.canonicalUnitId)), allowedIds = new Set();
   const permitted = card => card && (card.kind!=='DETACHMENT' || detachments.has(card.id)) &&
     (card.kind!=='ENHANCEMENT' || enhancements.has(card.id)) &&
@@ -79,16 +335,17 @@ export function projectPersonalBook(payload, state) {
   // this adds a reference, never an equipment selection or an effect.
   for(const unit of state.units)for(const selection of [...(unit.selections||[]),
     ...(unit.modelRows||[]).flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])]){
-    const origin=cards.get(selection.sourceEquipmentIdentity),proof=selection.sourceEquipmentProvenance;
+    const origin=cards.get(selection.sourceEquipmentIdentity),proof=sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'});
     if(selection.physicalQuantity>0&&origin&&proof&&
         selection.canonicalEquipmentIds?.some(id=>allowedIds.has(id)&&cards.get(id)?.contextId===unit.canonicalUnitId)&&
-        ['sourceId','sourceEntityId','document','sha256','pointer'].every(key=>typeof proof[key]==='string'&&proof[key]===origin.provenance?.[key]))visit(origin.id);
+        ['sourceId','sourceEntityId','document','sha256','pointer'].every(key=>typeof proof[key]==='string'&&proof[key]===sourceSnapshot(origin)?.[key]))visit(origin.id);
   }
   for (const id of [...detachments,...enhancements,...units]) assert(allowedIds.has(id),'Unresolved personal book identity: '+id);
-  const copies = new Map();
-  state.units.forEach(unit=>{const list=copies.get(unit.canonicalUnitId)||[];list.push(unit.instanceId);copies.set(unit.canonicalUnitId,list);});
+  const names=rosterUnitNames(state,id=>cards.get(id)?.title);
+  const coreStratagems=coreStratagemCards(cards);
+  coreStratagems.forEach(card=>allowedIds.add(card.id));
   const instances=state.units.map(unit=>({id:unit.canonicalUnitId,instanceId:unit.instanceId,route:instanceRoute(unit.instanceId),
-    title:cards.get(unit.canonicalUnitId).title+(copies.get(unit.canonicalUnitId).length>1?` #${copies.get(unit.canonicalUnitId).indexOf(unit.instanceId)+1}`:'')}));
+    title:names.get(unit.instanceId)}));
   const entries = ids => [...ids].map(id=>({id,title:cards.get(id).title,route:id}));
   return {allowedIds,instances,groups:[
     {id:'army-rules',label:'Army Rules',entries:entries(roots)},
@@ -103,7 +360,8 @@ export function projectInstanceCards(cards, unit, effective) {
   assert(effective.instanceId===unit.instanceId && effective.canonicalUnitId===unit.canonicalUnitId,'Wrong physical projection');
   const variants=new Map(), root=clone(cards.get(unit.canonicalUnitId));
   assert(root?.kind==='DATASHEET','Unresolved canonical datasheet');
-  root.rosterEnhancementIds=[...(unit.enhancementIds||[])];
+  root.rosterEnhancementIds=Array.isArray(effective.enhancements)
+    ?effective.enhancements.map(enhancement=>enhancement.canonicalId):[...(unit.enhancementIds||[])];
   root.rosterEnhancements=clone(effective.enhancements||[]);
   for(const id of root.rosterEnhancementIds){
     const enhancement=cards.get(id);
@@ -295,13 +553,17 @@ export function projectInstanceCards(cards, unit, effective) {
     projected.fields=projected.fields.filter(field=>cards.get(field.source?.entityId)?.kind!=='UPGRADE_OPTION'||optionIds.has(field.source.entityId));
     variants.set(id,projected.fields.some(field=>field.presentation!=='heading')?[projected]:[]);
   }
-  const selectedSourceFields=new Set(selections.filter(selection=>selection.physicalQuantity>0)
-    .flatMap(selection=>(selection.sourceReferences || []).map(ref=>JSON.stringify([ref.entityId,ref.path]))));
+  const selectedSourceField=createSelectedSourceFieldPredicate(unit);
+  if(effective.optionalEquipmentSources?.length){
+    root.rosterOptionalEquipmentSources=clone(effective.optionalEquipmentSources);
+    for(const source of effective.optionalEquipmentSources)
+      if(!source.selected&&root.children.includes(source.ruleId))variants.set(source.ruleId,[]);
+  }
   for (const id of root.children) {
     const section=cards.get(id);if (section?.kind!=='DATASHEET_SECTION') continue;
     const optionalBlocks=(section.fields || []).filter(field=>field.value===true && /^\/blocks\/\d+\/wargearAbility$/.test(field.source?.path || ''));
     if (!optionalBlocks.length) continue;
-    const omitted=optionalBlocks.filter(field=>!selectedSourceFields.has(JSON.stringify([id,field.source.path.replace(/wargearAbility$/,'text')]))).map(field=>field.source.path.replace(/wargearAbility$/,''));
+    const omitted=optionalBlocks.filter(field=>!selectedSourceField(id,field.source.path.replace(/wargearAbility$/,'text'))).map(field=>field.source.path.replace(/wargearAbility$/,''));
     const projected=annotate(section);projected.fields=projected.fields.filter(field=>!omitted.some(prefix=>field.source?.path.startsWith(prefix)));
     variants.set(id,projected.fields.some(field=>field.presentation!=='heading')?[projected]:[]);
   }
@@ -317,10 +579,11 @@ export function projectInstanceCards(cards, unit, effective) {
     return sources.length?{keywordSources:clone(sources)}:{};
   };
   root.fields=root.fields.filter(field=>!field.source?.path.startsWith('/keywords/'));
-  effective.keywords.forEach((keyword,index)=>root.fields.push({...firstKeyword,id:`${root.id}::/keywords/${index}`,
+  const physicalKeywords=requiredKeywordField(effective, "physicalKeywords")||requiredKeywordField(effective);
+  physicalKeywords.forEach((keyword,index)=>root.fields.push({...firstKeyword,id:`${root.id}::/keywords/${index}`,
     label:'Keywords',type:'tokens',value:keyword,contextId:root.contextId,
     source:{entityId:root.id,path:`/keywords/${index}`},runtimeDerived:true,...keywordAttribution(keyword)}));
-  if(root.keywordGroups) {
+  if(requiredKeywordField(root, "keywordGroups")) {
     const factionFields=root.fields.filter(field=>field.presentationPath?.startsWith('/factionKeywords/'));
     const faction=new Set(factionFields.map(field=>field.value));
     // Nested keyword storage uses the same effective interface as flat storage.
@@ -336,27 +599,34 @@ export function projectInstanceCards(cards, unit, effective) {
     };
     // Replace, rather than repeat, the temporary flat UNIT keyword overlay.
     root.fields=root.fields.filter(field=>!field.source?.path.startsWith('/keywords/'));
-    add('Keywords',effective.keywords.filter(keyword=>!faction.has(keyword)),'unit');
+    add('Keywords',physicalKeywords.filter(keyword=>!faction.has(keyword)),'unit');
     if(effective.profiles.length>1)for(const [index,profile]of effective.profiles.entries()) {
       const canonicalName=profileName(profile.id),scope=scopeCaptions.get(profile.scopeId);
       const name=scope?.canonicalLabelIncluded?scope.label:
         scope?.label && scope.label!==canonicalName ? `${scope.label} (${canonicalName})` : canonicalName;
-      add(`${name} · Model keywords`,(profile.keywords||[]).filter(keyword=>!faction.has(keyword)),`profile-${index}`,profile);
+      add(`${name} · Model keywords`,(requiredKeywordField(profile)||[]).filter(keyword=>!faction.has(keyword)),`profile-${index}`,profile);
     }
-    const factionGroup=root.keywordGroups.find(group=>group.fieldIds.some(id=>factionFields.some(field=>field.id===id)));
+    const factionGroup=requiredKeywordField(root, "keywordGroups").find(group=>group.fieldIds.some(id=>factionFields.some(field=>field.id===id)));
     if(factionGroup)groups.push(clone(factionGroup));
     root.keywordGroups=groups;
   }
+  const texts=(effective.conditional||[]).filter(row=>row.detachmentText);
+  if(effective.attachedRuleTexts?.length){
+    for(const row of effective.attachedRuleTexts)validateAttachedRuleTextPresentation(cards,unit,effective,row);
+    root.rosterAttachedRuleTexts=clone(effective.attachedRuleTexts);
+  }
+  for(const row of texts)validateDetachmentTextPresentation(cards,unit,effective,row);
+  if(texts.length)root.rosterDetachmentTexts=clone(texts);
   const policies=(effective.conditional||[]).filter(row=>row.policy);
   if(policies.length){
     const hasSource=row=>{
       if(row.sourceInstanceId)return true;
       const rule=cards.get(row.ruleId),owner=cards.get(rule?.parentId);
-      return row.sourceInstanceId===null&&row.sourceModelScopeId===null&&row.policy.recipientScope==='ROSTER_UNITS'&&
+      return row.sourceInstanceId===null&&row.sourceModelScopeId===null&&row.recipient?.from==='ROSTER_UNITS'&&
         rule?.kind==='DETACHMENT_RULE'&&owner?.kind==='DETACHMENT'&&rule.identity?.canonicalId===row.ruleId&&owner.identity?.canonicalId===rule.parentId&&typeof rule.identity?.registryId==='string'&&rule.identity.registryId===owner.identity?.registryId&&
-        JSON.stringify(row.sourceProvenance)===JSON.stringify(rule.provenance)&&row.recipientInstanceIds?.includes(unit.instanceId);
+        sameSourceEvidence(row,rule,{slot:'sourceProvenance',otherSlot:'provenance'})&&row.recipientInstanceIds?.includes(unit.instanceId);
     };
-    assert(policies.every(row=>row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&hasSource(row)&&row.sourceProvenance?.sourceId&&Array.isArray(row.recipientInstanceIds)),'Unresolved conditional policy presentation');
+    assert(policies.every(row=>row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&row.recipientId===row.policy.recipientId&&row.recipient?.id===row.recipientId&&hasSource(row)&&getRecordedSourceIdentity(row,{slot:'sourceProvenance'})&&Array.isArray(row.recipientInstanceIds)),'Unresolved conditional policy presentation');
     root.rosterConditionalPolicies=clone(policies);
   }
   root.rosterUnitAbilities=clone(effective.unitAbilities||[]);

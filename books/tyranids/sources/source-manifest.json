@@ -66,8 +66,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/tyranids/sources/tyranids-faction-pack-v1.2.pdf",
@@ -129,8 +128,7 @@
       "consumers": [
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
-        "POINTS_PROJECTION",
-        "COMPATIBLE_RULES"
+        "POINTS_PROJECTION"
       ],
       "paths": [
         "books/tyranids/sources/bsdata-tyranids-11e.json",
@@ -217,8 +215,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/tyranids/content/tyranids-codex-parity.en.json"
@@ -236,8 +233,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/tyranids/content/tyranids-related-rules.en.json"
@@ -257,72 +253,6 @@
       ],
       "paths": [
         "books/tyranids/mobile/related-rules.inc"
-      ]
-    },
-    {
-      "id": "wahapedia-compatible-rules",
-      "title": "Frozen Wahapedia Compatible Rules comparison",
-      "edition": "11th Edition",
-      "version": "1",
-      "publicationDate": null,
-      "effectiveDate": null,
-      "retrievedAt": "2026-08-02",
-      "frozenAt": "2026-08-02",
-      "localPath": "books/tyranids/sources/wahapedia-compatible-rules.snapshot.json",
-      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/",
-      "sha256": "C4D145163ED8F311DB04BED57F65003D1940EC4B53AE5BD6C25A9A97B17D516A",
-      "authority": "secondary",
-      "role": "compatible-rules-comparison",
-      "scope": [
-        "rule-to-unit-associations",
-        "compatible-rules-candidates"
-      ],
-      "coverage": {
-        "matrixRows": 1947,
-        "conditionalRows": 90,
-        "unresolvedRows": 0
-      },
-      "knownGaps": [
-        "This snapshot does not provide all-content Wahapedia parity for every rule-bearing layer."
-      ],
-      "supersedes": [],
-      "language": "en",
-      "affectedRecords": [
-        "compatible-rules-correction-ledger.json",
-        "generated/compatible-rules.json"
-      ],
-      "affectedOutputs": [
-        "mobile/related-rules.inc",
-        "reader.html"
-      ],
-      "sourceId": "tyranids-compatible-rules-snapshot",
-      "active": true,
-      "sourceType": "legacy-normalized-secondary",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-associations"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/tyranids/sources/wahapedia-compatible-rules.snapshot.json"
-      ]
-    },
-    {
-      "id": "tyranids-compatible-rules-corrections",
-      "sourceId": "tyranids-compatible-rules-corrections",
-      "active": true,
-      "sourceType": "structured-contract",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-adjudication"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/tyranids/sources/compatible-rules-correction-ledger.json"
       ]
     },
     {
@@ -426,9 +356,9 @@
     {
       "id": "tyranids-mfm-v1.5",
       "sourceId": "tyranids-mfm-v1.5",
-      "active": true,
+      "active": false,
       "sourceType": "official-web-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "title": "Munitorum Field Manual v1.5 current official capture",
       "authority": "official-live-mfm",
       "version": "v1.5",
@@ -459,6 +389,62 @@
         "books/tyranids/sources/official-mfm-v1.5.json",
         "books/tyranids/sources/official-mfm-v1.5.html",
         "books/tyranids/sources/official-mfm-v1.5-legends.html"
+      ]
+    },
+    {
+      "id": "tyranids-mfm-v1.6",
+      "sourceId": "tyranids-mfm-v1.6",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.6 accepted official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.6",
+      "updated": "2026-10-14",
+      "capturedAt": "2026-10-14",
+      "currentnessCutoff": "2026-10-14",
+      "url": "https://mfm.warhammer-community.com/en/tyranids",
+      "role": "current-mfm-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules",
+        "paid-wargear",
+        "enhancement-prices",
+        "leader-eligibility",
+        "support-eligibility",
+        "detachment-points",
+        "force-dispositions",
+        "qualifier-tags",
+        "legends-pricing"
+      ],
+      "consumers": [
+        "SOURCE_FRESHNESS",
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION"
+      ],
+      "paths": [
+        "mfm/sources/v1.6/tyranids.json",
+        "mfm/sources/v1.6/tyranids.html",
+        "mfm/sources/v1.6/tyranids-legends.html"
+      ]
+    },
+    {
+      "id": "tyranids-wargear-option-contracts",
+      "sourceId": "tyranids-wargear-option-contracts",
+      "active": true,
+      "lifecycle": "ACCEPTED_SOURCE",
+      "sourceType": "structured-contract",
+      "title": "Wargear option contracts",
+      "factsOwned": [
+        "wargear-option-legality"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL"
+      ],
+      "paths": [
+        "books/tyranids/sources/tyranids-wargear-option-contracts.v1.json"
       ]
     }
   ],

@@ -1,0 +1,197 @@
+{
+  "schema": "core-switch-gameplay-publication-proof/v1",
+  "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+  "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+  "status": "PASS",
+  "entries": [
+    {
+      "id": "blood-angels",
+      "file": "books/blood-angels/v2/generated/gameplay-presentation.json",
+      "status": "PASS",
+      "beforeSha256": "5904936478e057079acc02e854042804b47ca3008db0c947bfa382de09033168",
+      "afterSha256": "7ac874de15654081d4b64cf49bc39a910a2414487728fae3bef8a1f7da69102b",
+      "beforeCounts": {
+        "coreCards": 371,
+        "coreFacts": 1055,
+        "coreGlossary": 371,
+        "nonCoreCards": 1777,
+        "nonCoreFacts": 14125,
+        "nonCoreGlossary": 358
+      },
+      "afterCounts": {
+        "coreCards": 385,
+        "coreFacts": 1092,
+        "coreGlossary": 385,
+        "nonCoreCards": 1777,
+        "nonCoreFacts": 14125,
+        "nonCoreGlossary": 358
+      },
+      "beforeCoreSha256": "563647bc9dd44a09d4a5385e221c33f5a708da9e52d915d4568312b29cb46d8e",
+      "afterCoreSha256": "255d78a8800f89f9aa3146b267fc4760bcdbe2d4508c6cf70f33e8502d20d079",
+      "unchangedParts": [
+        {
+          "name": "nonCore",
+          "beforeSha256": "190d1412e3df73fcc4645d2b66bdb6495e9cc89b7d9ebafe1d6d439e2c1d4fac",
+          "afterSha256": "190d1412e3df73fcc4645d2b66bdb6495e9cc89b7d9ebafe1d6d439e2c1d4fac",
+          "status": "PASS"
+        },
+        {
+          "name": "relatedRules",
+          "beforeSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "afterSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "status": "PASS"
+        },
+        {
+          "name": "nonCoreCards",
+          "beforeSha256": "d87b96a8a13d4cab1a1c3deada1ff87d2e4f0fbefacca93e5baebf4ea9de3c5d",
+          "afterSha256": "d87b96a8a13d4cab1a1c3deada1ff87d2e4f0fbefacca93e5baebf4ea9de3c5d",
+          "status": "PASS"
+        },
+        {
+          "name": "nonCoreFactManifest",
+          "beforeSha256": "2ba88b9aee372751eaba08b1bc746e7d6bfc7b00aa39c95c54958cfe6f150609",
+          "afterSha256": "2ba88b9aee372751eaba08b1bc746e7d6bfc7b00aa39c95c54958cfe6f150609",
+          "status": "PASS"
+        },
+        {
+          "name": "glossaryOutsideCore",
+          "beforeSha256": "e17ce3738b7822b1d68414b035c4e62e477cc8adc4b969450155a37069e82768",
+          "afterSha256": "e17ce3738b7822b1d68414b035c4e62e477cc8adc4b969450155a37069e82768",
+          "status": "PASS"
+        },
+        {
+          "name": "rest",
+          "beforeSha256": "8a41a5da791b54ee7cbbb289aadfc280841cce70398efd43f0424f16f8e1b697",
+          "afterSha256": "8a41a5da791b54ee7cbbb289aadfc280841cce70398efd43f0424f16f8e1b697",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "dark-angels",
+      "file": "books/dark-angels/v2/generated/gameplay-presentation.json",
+      "status": "PASS",
+      "beforeSha256": "657c444f91b734d692c4b3b8a9bab685b10478a9745b4b47ee9924efdcdba557",
+      "afterSha256": "7ceab464d1eabb1a02f718405b31d837e7188c1a6c90bb7e002d437d2dacaa11",
+      "beforeCounts": {
+        "coreCards": 371,
+        "coreFacts": 1055,
+        "coreGlossary": 371,
+        "nonCoreCards": 1800,
+        "nonCoreFacts": 14353,
+        "nonCoreGlossary": 344
+      },
+      "afterCounts": {
+        "coreCards": 385,
+        "coreFacts": 1092,
+        "coreGlossary": 385,
+        "nonCoreCards": 1800,
+        "nonCoreFacts": 14353,
+        "nonCoreGlossary": 344
+      },
+      "beforeCoreSha256": "563647bc9dd44a09d4a5385e221c33f5a708da9e52d915d4568312b29cb46d8e",
+      "afterCoreSha256": "255d78a8800f89f9aa3146b267fc4760bcdbe2d4508c6cf70f33e8502d20d079",
+      "unchangedParts": [
+        {
+          "name": "nonCore",
+          "beforeSha256": "a575067dac6b19deb1f772b2fbdd4e581ae929ebe0314b4205106c741ff8fcb5",
+          "afterSha256": "a575067dac6b19deb1f772b2fbdd4e581ae929ebe0314b4205106c741ff8fcb5",
+          "status": "PASS"
+        },
+        {
+          "name": "relatedRules",
+          "beforeSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "afterSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "status": "PASS"
+        },
+        {
+          "name": "nonCoreCards",
+          "beforeSha256": "90b41a8a41d4ed1322848cd7e9dbfc77f139b52ca1516b8f989f5124070610ff",
+          "afterSha256": "90b41a8a41d4ed1322848cd7e9dbfc77f139b52ca1516b8f989f5124070610ff",
+          "status": "PASS"
+        },
+        {
+          "name": "nonCoreFactManifest",
+          "beforeSha256": "6d6ab69a722b248495374a25f7aa76cdd2882eb3c3b6603bae5d281a5e1d0ecd",
+          "afterSha256": "6d6ab69a722b248495374a25f7aa76cdd2882eb3c3b6603bae5d281a5e1d0ecd",
+          "status": "PASS"
+        },
+        {
+          "name": "glossaryOutsideCore",
+          "beforeSha256": "b33b05f3400e6cb60d5a4877cbf46d704335f9c4d192d640da5ac7e663eb9545",
+          "afterSha256": "b33b05f3400e6cb60d5a4877cbf46d704335f9c4d192d640da5ac7e663eb9545",
+          "status": "PASS"
+        },
+        {
+          "name": "rest",
+          "beforeSha256": "9910aae617748d53d8a102b2fbe2f5a40af872274d62705bd25d8197b9d11dac",
+          "afterSha256": "9910aae617748d53d8a102b2fbe2f5a40af872274d62705bd25d8197b9d11dac",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "space-marines",
+      "file": "books/space-marines/v2/generated/gameplay-presentation.json",
+      "status": "PASS",
+      "beforeSha256": "9a76297d4ef3250881c05bd6f49c81cfed1c3329b439ca6ceb7014f6795faf3c",
+      "afterSha256": "34535405ab3f9742c11b789920759597f6106600462f0c9413f8d2094cef5412",
+      "beforeCounts": {
+        "coreCards": 371,
+        "coreFacts": 1055,
+        "coreGlossary": 371,
+        "nonCoreCards": 1954,
+        "nonCoreFacts": 15485,
+        "nonCoreGlossary": 411
+      },
+      "afterCounts": {
+        "coreCards": 385,
+        "coreFacts": 1092,
+        "coreGlossary": 385,
+        "nonCoreCards": 1954,
+        "nonCoreFacts": 15485,
+        "nonCoreGlossary": 411
+      },
+      "beforeCoreSha256": "563647bc9dd44a09d4a5385e221c33f5a708da9e52d915d4568312b29cb46d8e",
+      "afterCoreSha256": "255d78a8800f89f9aa3146b267fc4760bcdbe2d4508c6cf70f33e8502d20d079",
+      "unchangedParts": [
+        {
+          "name": "nonCore",
+          "beforeSha256": "bd74fc3f49c811512bf3199cc37deac9f4e065b35559528b5b762bada76a44ba",
+          "afterSha256": "bd74fc3f49c811512bf3199cc37deac9f4e065b35559528b5b762bada76a44ba",
+          "status": "PASS"
+        },
+        {
+          "name": "relatedRules",
+          "beforeSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "afterSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "status": "PASS"
+        },
+        {
+          "name": "nonCoreCards",
+          "beforeSha256": "7975bd857ced198918e7c462b11e5e877f8b83a07871eafab8acc082b6ecd599",
+          "afterSha256": "7975bd857ced198918e7c462b11e5e877f8b83a07871eafab8acc082b6ecd599",
+          "status": "PASS"
+        },
+        {
+          "name": "nonCoreFactManifest",
+          "beforeSha256": "373203ee19857e156acf014e2da6e20b40221ff6d2ad33ea136d64930d9fbdd1",
+          "afterSha256": "373203ee19857e156acf014e2da6e20b40221ff6d2ad33ea136d64930d9fbdd1",
+          "status": "PASS"
+        },
+        {
+          "name": "glossaryOutsideCore",
+          "beforeSha256": "f5e1acdd9a85815508d70775b8d2fc965a217ce761987ac57e21609673148acb",
+          "afterSha256": "f5e1acdd9a85815508d70775b8d2fc965a217ce761987ac57e21609673148acb",
+          "status": "PASS"
+        },
+        {
+          "name": "rest",
+          "beforeSha256": "a77a5b0212c86802ad77ae0ab91bb0fc5e26314c386b6e9588577001feddf8f6",
+          "afterSha256": "a77a5b0212c86802ad77ae0ab91bb0fc5e26314c386b6e9588577001feddf8f6",
+          "status": "PASS"
+        }
+      ]
+    }
+  ]
+}

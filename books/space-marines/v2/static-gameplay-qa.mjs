@@ -1,10 +1,12 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 /** Independent source-literal Stage 4D expectations. No browser/real export claim. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
+import {parseProducerJSON} from '../../shared/source-refs-v2/producer-io.mjs';
+import {buildSpaceMarinesRuntimeContracts as buildSpaceMarinesContracts} from './rule-contract-build.mjs';
 import {declarations} from './rule-contract-declarations.mjs';
 import {createSpaceMarinesRosterRuntime} from './roster-runtime.mjs';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
@@ -15,7 +17,7 @@ import {formRoster} from '../../shared/roster-v2/context.mjs';
 import {projectInstanceCards,projectPersonalBook,projectFormedUnitCards} from '../../shared/army-book-app-v2/personal.mjs';
 import {projectAbilityPresentation} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 
-const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const clone=structuredClone,read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
 const review=read('./static-gameplay-review.json'),ledger=read('./rule-clause-review.json'),facts=read('./generated/effective.json');
 const sourceIndex=new Map(facts.entities.map(row=>[row.id,row])),built=buildSpaceMarinesContracts(),book=built.book;
@@ -42,7 +44,7 @@ for(const test of review.cases){
 
 // Review pins point to accepted RAW, not generated runtime contracts.
 const rawProofs=[...new Map([...review.cases,...review.physicalCases].map(row=>[row.ruleId,row.sourceProof]))].map(([,proof])=>proof).filter(proof=>proof.selectedHtmlSha256);
-const python=process.env.CODEX_PYTHON||'C:/Users/denis/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
+const python=resolveQaPython({envKeys:['CODEX_PYTHON']});
 const raw=spawnSync(python,['-X','utf8','-c',String.raw`
 import json,sys,hashlib
 from pathlib import Path
@@ -61,8 +63,8 @@ print(json.dumps({'rawSourceOwners':checks}))
 assert.equal(raw.status,0,raw.stderr);const rawResult=JSON.parse(raw.stdout);
 const core=createEffectiveCoreCatalog();
 for(const [id,quote,hash]of [
- ['core-rule-01-02-units-and-models','When an effect or ability applies to a unit, it applies to every model in that unit.','9A3E26E62A76BA37CA60B63BFCD22CB4DD9343FB89A10DD69A047C3D88CCF421'],
- ['core-rule-13-06-terrain-and-movement','INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.','7C53E78F2CD965F63AC95D234D8DCD2BDD52903F2DC5EB0179657F27D2BC2A2A']
+ ['core-rule-01-02-units-and-models','When an effect or ability applies to a unit, it applies to every model in that unit.','5CF579FA20A1229423313E19D6E03D628005405666973A3AC7B5885E1B66F1DB'],
+ ['core-rule-13-06-terrain-and-movement','INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.','C7C5D4699A151FB3903FAB4FF95FC6B225C0C5BB0BAF934E0464B2E5A908D86D']
 ]){const row=core.getById(id);assert.equal(row.state,'FULL_CONTENT');assert.ok(row.text.includes(quote));assert.ok(row.sourceContentHashes.includes(hash));}
 
 function unit(instanceId,unitId,{enhancementId,secondModel=false}={}){

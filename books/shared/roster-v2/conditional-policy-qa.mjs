@@ -4,8 +4,10 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {validateRoster,withRosterDetachments,changeAttachment,formRoster} from './context.mjs';
-import {validateRosterEffects,executeRosterEffects} from './effects.mjs';
-import {projectEffectiveInstance} from './effective-instance.mjs';
+import {executeRosterEffects} from './effects.mjs';
+import {projectEffectiveInstance as projectCanonicalEffectiveInstance} from './effective-instance.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
+import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
 const clone=structuredClone,id=value=>'synthetic-policy:'+value;
 const contextQuote='Reviewed synthetic conditional policy source, including all qualifiers and exact recipient.';
 const evidence={field:['text'],quote:contextQuote};
@@ -40,12 +42,27 @@ function fixture(kind='QUALIFIED_FNP',recipientScope='PHYSICAL_UNIT'){
  const state={schema:'roster-v2/roster',bookId:book.bookId,rosterId:id('roster'),detachments:[{instanceId:'main',canonicalDetachmentId:id('detachment')}],units:[unit('a','bodyguard'),unit('b','bodyguard'),unit('l','leader'),unit('l2','leader')],attachments:[],warlordInstanceId:null};
  return {book,state,rule,clause,policy:clause.conditionalPolicy};
 }
-function run(book,state){const oldBook=clone(book),oldState=clone(state);api.validateContracts(book);validateRosterEffects(book,api.validatePredicate,api.evaluatePredicate);const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),api);assert.deepEqual(book,oldBook);assert.deepEqual(state,oldState);return result;}
+function run(book,state){const oldBook=clone(book),oldState=clone(state),canonical=compileRecipientFixture(book,api);const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),api);assert.deepEqual(book,oldBook);assert.deepEqual(state,oldState);return result;}
+const projectEffectiveInstance=(book,...args)=>projectCanonicalEffectiveInstance(compileRecipientFixture(book,api),...args);
 const unit=(result,name)=>result.units.find(row=>row.instanceId===name);
 const rows=(result,name)=>unit(result,name).conditional.filter(row=>row.policy);
 const numerical=result=>{const value=clone(result);for(const unit of value.units)unit.conditional=unit.conditional.filter(row=>!row.policy);return value;};
 function baseline(f){const off=clone(f.book);delete off.entities.find(row=>row.id===f.rule.id).ruleContract.clauses[0].conditionalPolicy;return run(off,f.state);}
-function invariant(f,result){assert.deepEqual(numerical(result),baseline(f),'Policies never change numerical profiles, abilities, metrics, applied traces or inventory');for(const u of result.units)for(const row of rows(result,u.instanceId)){assert.equal(row.state,'UNKNOWN');assert.equal(row.execution,'CONDITIONAL_TEXT_ONLY');assert.equal(row.ruleId,f.rule.id);assert.equal(row.clauseId,f.clause.id);assert.ok(['l','l2'].includes(row.sourceInstanceId));assert.deepEqual(row.policy,f.policy);}}
+function invariant(f,result){
+ assert.deepEqual(numerical(result),baseline(f),'Policies never change numerical profiles, abilities, metrics, applied traces or inventory');
+ const canonical=compileRecipientFixture(f.book,api),rule=canonical.entities.find(rule=>rule.id===f.rule.id),clause=rule.ruleContract.clauses.find(clause=>clause.id===f.clause.id);
+ for(const u of result.units)for(const row of rows(result,u.instanceId)){
+  assert.equal(row.state,'UNKNOWN');assert.equal(row.execution,'CONDITIONAL_TEXT_ONLY');assert.equal(row.ruleId,f.rule.id);assert.equal(row.clauseId,f.clause.id);assert.ok(['l','l2'].includes(row.sourceInstanceId));
+  const {recipientScope,recipientKeywords,aura,...expected}=f.policy,{recipientId,...actual}=row.policy;
+  assert.deepEqual(actual,expected,'All original policy payload, qualifiers and source proof remain exact');
+  assert.equal(row.recipientId,recipientId);
+  const {id:canonicalId,...address}=resolveRecipient(rule,clause,recipientId);assert.equal(typeof canonicalId,'string');
+  const expectedAddress=recipientScope==='AURA_UNRESOLVED'?{who:'UNIT',how:'AURA',aura:clone(aura),side:aura.allegiance}:
+   recipientScope==='ROSTER_UNITS'?{who:'UNIT',from:'ROSTER_UNITS',scope:'FORMED',unitKeywords:clone(recipientKeywords)}:
+   {who:'UNIT',from:'SOURCE_UNIT',scope:recipientScope==='PHYSICAL_UNIT'?'PHYSICAL':'FORMED'};
+  assert.deepEqual(address,expectedAddress,'Original independently supplied receiver scope is preserved');
+ }
+}
 for(const kind of Object.keys(payloads))check(kind+' is opt-in, source-bound and non-numeric',()=>{const f=fixture(kind);const result=run(f.book,f.state);invariant(f,result);assert.equal(rows(result,'a').length,0);assert.equal(rows(result,'b').length,0);for(const name of ['l','l2']){assert.equal(rows(result,name).length,1);assert.equal(rows(result,name)[0].sourceInstanceId,name);assert.deepEqual(rows(result,name)[0].recipientInstanceIds,[name]);}assert.deepEqual(run(f.book,JSON.parse(JSON.stringify(f.state))),result);assert.deepEqual(run(f.book,f.state),result);});
 check('formed propagation, source provenance and detach',()=>{const f=fixture('QUALIFIED_FNP','FORMED_UNIT');f.state=changeAttachment(f.book,f.state,f.book.rosterAttachmentPolicies,'ATTACH','l','a');let result=run(f.book,f.state);invariant(f,result);assert.deepEqual(rows(result,'a')[0].recipientInstanceIds.slice().sort(),['a','l']);assert.equal(rows(result,'a')[0].sourceInstanceId,'l');assert.equal(rows(result,'b').length,0);f.state=changeAttachment(f.book,f.state,f.book.rosterAttachmentPolicies,'DETACH','l');result=run(f.book,f.state);invariant(f,result);assert.equal(rows(result,'a').length,0);assert.deepEqual(rows(result,'l')[0].recipientInstanceIds,['l']);});
 check('three aura source spans never select recipients from roster',()=>{for(const [kind,payload]of [['QUALIFIED_FNP',payloads.QUALIFIED_FNP],['REROLL',{roll:'HIT',results:'ONES',weaponMode:'melee'}],['REROLL',{roll:'WOUND',results:'ONES',weaponMode:'melee'}]]){const f=fixture(kind,'AURA_UNRESOLVED');f.policy.payload=clone(payload);f.policy.aura={range:6,allegiance:'FRIENDLY',unitKeyword:'DARK ANGELS'};f.state=changeAttachment(f.book,f.state,f.book.rosterAttachmentPolicies,'ATTACH','l','a');const result=run(f.book,f.state);invariant(f,result);assert.equal(rows(result,'a').length,0);assert.equal(rows(result,'b').length,0);for(const name of ['l','l2'])assert.deepEqual(rows(result,name)[0].recipientInstanceIds,[]);}});

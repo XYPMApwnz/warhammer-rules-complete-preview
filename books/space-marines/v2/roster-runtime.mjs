@@ -1,44 +1,16 @@
+import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Browser-native book bindings around the existing physical roster/runtime.
  * Source readers and MFM producers remain outside the runtime dependency graph.
  */
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
-import {changeAttachment,formRoster} from '../../shared/roster-v2/context.mjs';
+import {changeAttachment} from '../../shared/roster-v2/context.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
-import {bindSpaceMarinesStaticModels} from './roster-static-model-bindings.mjs';
 
 const clone=structuredClone;
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
-const hasEquipment=(selection,id)=>selection.physicalQuantity>0&&selection.canonicalEquipmentIds?.includes(id)&&selection.canonicalFieldPaths?.[id]?.includes('/text');
-function equipmentContext(state,book){
-  const physical=formRoster(book,state),permanentSources=new Set((book.rosterPermanentDoctrineSources||[]).map(row=>row.unitId));
-  const permanentUnits=new Set();
-  for(const unit of physical.units)if(permanentSources.has(unit.canonicalUnitId)){
-    const group=physical.formedUnits.find(group=>group.formedUnitId===unit.formedUnitId);
-    for(const id of group?.memberInstanceIds||[unit.instanceId])permanentUnits.add(id);
-  }
-  return (context,predicate)=>{
-    if(!context)return context;
-    context={...context,roster:{...context.roster,smPhysicalUnitInstanceId:context.instanceId||'',
-      smPhysicalModelScopeId:context.subject==='MODEL'?context.modelScopeId||'':'',
-      smPermanentAssaultSource:permanentUnits.has(context.instanceId)}};
-    const id=predicate?.evidence?.otherEntityId;
-    if(predicate?.predicate!=='FIELD'||predicate.arguments.key!=='smEquipmentBearerSatisfied')return context;
-    const unit=state.units.find(row=>row.instanceId===context.instanceId);
-    let selected=false;
-    if(unit&&context.modelScopeId)for(const row of unit.modelRows){
-      const groups=[{key:row.rowId,kind:'PROFILE',selections:row.selections||[]},
-        ...(row.loadouts||[]).map(loadout=>({key:loadout.loadoutId,kind:'LOADOUT',selections:[...(row.selections||[]),...(loadout.selections||[])]}))];
-      for(const group of groups)if(`${unit.instanceId}/${row.rowId}/${group.kind}/${group.key}`===context.modelScopeId)
-        selected=group.selections.some(selection=>hasEquipment(selection,id));
-    }
-    // Aggregate UNIT quantity is inventory evidence, never a MODEL assignment.
-    return {...context,roster:{...context.roster,smEquipmentBearerSatisfied:selected}};
-  };
-}
-
 export function createSpaceMarinesRosterRuntime(built){
-  const template=clone(built.book||built),consumed=built.consumed||template.mfmImportReferences;
+  const template=cloneSourceBook(built.book||built),consumed=built.consumed||template.mfmImportReferences;
   requireValue(template.bookId==='space-marines'&&consumed?.relationDeclarations&&consumed.nativePoints,'Missing native MFM runtime bindings');
   const index=new Map(template.entities.map(entity=>[entity.id,entity]));
   let active=null,boundBook=null;
@@ -48,7 +20,7 @@ export function createSpaceMarinesRosterRuntime(built){
     get catalog(){return active?.catalog||template.entities.map(entity=>({id:entity.id,kind:entity.kind,parentId:entity.parentId,title:entity.data.title||entity.data.name||entity.id}));},
     load(snapshot){
       requireValue(snapshot?.bookId==='space-marines','Wrong physical book');
-      let nextBook=clone(template);const ids=snapshot.units.map(unit=>unit.canonicalUnitId);
+      let nextBook=cloneSourceBook(template);const ids=snapshot.units.map(unit=>unit.canonicalUnitId);
       // Existing MFM ARMY_UNIT_PRESENT declarations are resolved from the whole
       // physical army, independently of attachments. No faction/name heuristic.
       nextBook.rosterAttachmentPolicies=consumed.relationDeclarations.flatMap(declaration=>{
@@ -73,8 +45,8 @@ export function createSpaceMarinesRosterRuntime(built){
         return {...binding,maxModels:confirmed||unitMaximum};
       });
       nextBook.compatibilityFeasibility=buildAttachmentFeasibility(nextBook,composition);
-      nextBook=bindSpaceMarinesStaticModels(nextBook,snapshot);
-      const schema=createSpaceMarinesRuleSchema({bindContext:equipmentContext(snapshot,nextBook)});
+      const schema=createSpaceMarinesRuleSchema({book:nextBook,state:snapshot,conditionInputs:[
+        {key:'equipmentBearerSatisfied',arguments:{quantityProof:'POSITIVE_SELECTION'},clearUnrequestedEquipment:false}]});
       const next=createRosterRuntime(nextBook,schema);next.load(snapshot);
       active=next;boundBook=nextBook;return service.state;
     },

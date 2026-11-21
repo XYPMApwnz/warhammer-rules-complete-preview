@@ -1,3 +1,4 @@
+import {assertQaTempPath,cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -6,7 +7,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {finishCanonicalBuild} from '../books/shared/tools/canonical-build-contract.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const temp=fs.mkdtempSync(path.join(os.tmpdir(),'ra02-wiring-'));
+const temp=createQaTempDir('ra02-wiring-');
 const versions={points:{data:9,validator:7}};
 const validator='../../roster-guides/points-validator.js?v=7';
 const anchor='../shared/roster-context.js?v=17';
@@ -76,7 +77,7 @@ try{
     console.log(`Restored wiring oracle: PASS (${oracle(finishCanonicalBuild)} controls)`);
   }
 }finally{
-  assert.equal(path.dirname(path.resolve(temp)),path.resolve(os.tmpdir()),'TEMP cleanup boundary');
-  assert.ok(path.basename(temp).startsWith('ra02-wiring-'),'TEMP cleanup ownership');
-  fs.rmSync(temp,{recursive:true,force:true});
+  assert.ok(assertQaTempPath(temp));
+  assert.ok(path.basename(path.dirname(temp)).startsWith('ra02-wiring-'),'TEMP cleanup ownership');
+  cleanupQaTempDir(temp);
 }

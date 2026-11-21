@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Main Unified V2 consumer acceptance. Ordinary user actions only; evaluate
  * inspects DOM/runtime/storage, never changes them. Constructed INPUT is
  * explicitly separate from genuine New Recruit export evidence. */
@@ -9,7 +11,7 @@ import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.SM_APP_BROWSER_OUT||'E:/Warhammer/qa-artifacts/recovery-sm-v2-stage5a-20261020/browser';
+const out=process.env.SM_APP_BROWSER_OUT||createQaEvidenceDir('app-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const prefix='/warhammer-rules-complete-preview';
 const read=file=>JSON.parse(fs.readFileSync(file,'utf8'));
@@ -32,7 +34,7 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin='http://127.0.0.1:'+server.address().port;
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 let page,device;
 const record=(name,detail={})=>{result.results.push({device,name,status:'PASS',...detail});console.log(device+' '+name+' PASS');};
 async function ready(){

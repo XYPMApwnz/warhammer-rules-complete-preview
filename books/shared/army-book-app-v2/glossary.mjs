@@ -1,3 +1,4 @@
+import {copySourceEvidence} from '../source-refs-v2/source-refs.mjs';
 // Disposable presentation/search projection. Definitions remain in canonical cards.
 export const GLOSSARY_SCHEMA = 'army-book-glossary/v2';
 
@@ -8,7 +9,7 @@ const pointer = path => '/' + path.map(p => String(p).replaceAll('~', '~0').repl
 const labelOf = entity => entity.data?.title || entity.data?.name || entity.label || human(entity.kind);
 
 export function normalizeGlossaryQuery(value) {
-  return String(value ?? '').normalize('NFKD').replace(/\p{M}/gu, '')
+  return String(value ?? '').normalize('NFKD').replace(/[\p{M}]/gu, '')
     .toLowerCase().replace(/['’‘]/g, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 }
 
@@ -44,7 +45,7 @@ function projectCore(coreCatalog) {
     if (!record.id || !record.title || (record.state !== 'FULL_CONTENT'&&!sourceConflict)) throw new Error(`Unavailable Core record: ${record.id}`);
     const card = {id: record.id, kind: `CORE_${record.recordType}`, title: record.title,
       domain: 'CORE', parentId: null, contextId: record.id, source: {entityId: record.id},
-      provenance: structuredClone(record.provenance), children: [], fields: [], links: []};
+      ...copySourceEvidence(record,{book:coreCatalog}), children: [], fields: [], links: []};
     const add = (path, value, label, type = 'text') => {
       const sourcePath = pointer(path), id = `${record.id}::${sourcePath}`;
       card.fields.push({id, label, value: structuredClone(value), type, contextId: record.id,
@@ -59,7 +60,7 @@ function projectCore(coreCatalog) {
       add(path, value, path.map(human).join(' · '));
     };
     add(['title'], record.title, 'Title', 'heading');
-    if (record.code) add(['code'], record.code, 'Code');
+    if (record.code) add(record.sourceCode&&record.sourceCode!==record.code?['sourceCode']:['code'], record.sourceCode||record.code, 'Code');
     // An existing derived concept points to its existing definition owner.
     // It does not acquire another independent presentation definition.
     const sourceRuleId = record.relationships?.sourceRuleId;
@@ -155,7 +156,7 @@ export function searchGlossary(index, query) {
   const normalized = normalizeGlossaryQuery(query);
   const results = [];
   for (const entry of index.entries) {
-    const candidates = [{label: entry.label}, ...entry.aliases];
+    const candidates = [{label: entry.label}, ...entry.aliases.filter(alias=>alias.match!=='EXACT')];
     let best = null;
     for (const candidate of candidates) {
       const value = normalizeGlossaryQuery(candidate.label);

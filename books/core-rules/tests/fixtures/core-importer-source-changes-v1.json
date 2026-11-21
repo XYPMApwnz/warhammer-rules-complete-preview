@@ -1,0 +1,113 @@
+{
+  "schema": "core-importer-approved-source-changes/v1",
+  "baselineHead": "7b15dc36425ac577b6928837ec9983409972e278",
+  "authorization": "Owner clarification: genuine source changes in the explicitly known rules may replace only the audited old sentences; a fingerprint change is not evidence.",
+  "records": [
+    {
+      "id": "core-rule-09-07-01-desperate-escape-test",
+      "code": "09.07.01",
+      "kind": "ACTUAL_SOURCE_TEXT_CHANGED",
+      "reason": "Known 09.07 source update: the former Example paragraph is explicitly labelled Example 1 in the fresh own source, alongside new instructions and Example 2; only the audited old Example-prefixed sentence is superseded.",
+      "beforeSourceTextSHA256": [
+        "6aaf73d3e695f21e14eede60d4bcb8a5432699d07bdd22ef21a615c3e03236fd"
+      ],
+      "afterSourceTextSHA256": [
+        "3779410951535637b9faf043780bf1046ff7d3d09b9f265e7f9eea7958547c97"
+      ],
+      "beforeSourceBodies": [
+        {
+          "sourceUnitId": "waha-core-rule-09-07-01",
+          "anchor": "Desperate-Escape-Test",
+          "text": "Desperate Escape Test 09.07.01Some rules may reference the term 'Desperate Escape test'. In all instances this means the hazard rolls made for the desperate escape mode of a fall-back move.Abilities that subtract from a unit's Desperate Escape test instead subtract from those hazard rolls.Example: A battle-shocked unit makes a fall-back move away from a unit of Bloodletters that have the Bane of Cowards ability. As a result of Bane of Cowards, because the unit making the fall-back move is battle-shocked, the hazard rolls they make as part of their desperate escape will be at -1.",
+          "normalizedTextSHA256": "6aaf73d3e695f21e14eede60d4bcb8a5432699d07bdd22ef21a615c3e03236fd"
+        }
+      ],
+      "afterSourceBodies": [
+        {
+          "sourceUnitId": "waha-core-rule-09-07-01",
+          "anchor": "Desperate-Escape-Test",
+          "text": "Desperate Escape TestSome rules may reference the term 'Desperate Escape test'. In all instances this means the hazard rolls made for the desperate escape mode of a fall-back move.Abilities that subtract from a unit's Desperate Escape test instead subtract from those hazard rolls.If a stratagem or ability instructs a unit to make a Desperate Escape test, that unit:Must use the desperate escape mode when it is selected to make a fall-back move.Must make one hazard roll for each model in that unit.Must make a battle-shock roll.Example 1: A battle-shocked unit makes a fall-back move away from a unit of Bloodletters that have the Bane of Cowards ability. As a result of Bane of Cowards, because the unit making the fall-back move is battle-shocked, the hazard rolls they make as part of their desperate escape will be at -1.Example 2: If an ability allows a unit to re-roll Desperate Escape tests, that unit can re-roll hazard rolls made for the desperate escape mode of a fall-back move.",
+          "normalizedTextSHA256": "3779410951535637b9faf043780bf1046ff7d3d09b9f265e7f9eea7958547c97"
+        }
+      ],
+      "changedSentences": [
+        {
+          "text": "Example: A battle-shocked unit makes a fall-back move away from a unit of Bloodletters that have the Bane of Cowards ability.",
+          "normalizedSentenceSHA256": "61b18c32e752251bfe69420a264fda75fa1d174e996a5ad546344c3084a2e405"
+        }
+      ]
+    },
+    {
+      "id": "core-rule-18-07-shock-disembark-move",
+      "code": "18.07",
+      "kind": "ACTUAL_SOURCE_TEXT_CHANGED",
+      "reason": "Owner-approved known source update: exact old sentences occur in the frozen accepted source but not in the fresh same-owner source; metadata-only changes do not satisfy this proof.",
+      "beforeSourceTextSHA256": [
+        "ad7975925d241d1ea73d0e6c16e1966d3bafc0b30a5ff79a042e0805561370a4"
+      ],
+      "afterSourceTextSHA256": [
+        "2928d91507eeec8ee459573123d9651faf6f080aa34b1ab0198b5af1b3efc1d3"
+      ],
+      "beforeSourceBodies": [
+        {
+          "sourceUnitId": "waha-core-rule-18-07",
+          "anchor": "SHOCK-DISEMBARK-MOVE",
+          "text": "SHOCK DISEMBARK MOVE18.07 SET-UP DISTANCE: 3\"ELIGIBLE IF:Embarked within a TRANSPORT on the battlefieldDid not embark within that TRANSPORT this phaseEFFECT: Set up as described in Set Up (03.02).WHILE MOVING: Set up each model wholly within the set-up distance of that TRANSPORT.AFTER MOVING: Each model that started this move engaged with an enemy unit must still be engaged with that enemy unit. If one or more enemy units engaged with your unit have not been selected to fight this phase, your opponent must select each of those units, one at a time; when each is selected, it becomes eligible to fight and is selected to fight.",
+          "normalizedTextSHA256": "ad7975925d241d1ea73d0e6c16e1966d3bafc0b30a5ff79a042e0805561370a4"
+        }
+      ],
+      "afterSourceBodies": [
+        {
+          "sourceUnitId": "waha-core-rule-18-07",
+          "anchor": "SHOCK-DISEMBARK-MOVE",
+          "text": "SHOCK DISEMBARK MOVE18.07 SET-UP DISTANCE: 3\"ELIGIBLE IF:Embarked within a TRANSPORT on the battlefieldDid not embark within that TRANSPORT this phaseEFFECT: Set up as described in Set Up (03.02).WHILE MOVING: Set up each model wholly within the set-up distance of that TRANSPORT.AFTER MOVING: Your unit is not eligible to declare a charge until the end of the turn. FAQShowQ:If a unit makes any disembark move in a turn (i.e. Disembark move, Emergency Disembark move etc.) has it disembarked that turn?A:Yes.",
+          "normalizedTextSHA256": "2928d91507eeec8ee459573123d9651faf6f080aa34b1ab0198b5af1b3efc1d3"
+        }
+      ],
+      "changedSentences": [
+        {
+          "text": "AFTER MOVING: Each model that started this move engaged with an enemy unit must still be engaged with that enemy unit.",
+          "normalizedSentenceSHA256": "2aaf5ce23663ede18bd9f51d16f501e1cc54282a44103486c8e99d826115d5b5"
+        },
+        {
+          "text": "If one or more enemy units engaged with your unit have not been selected to fight this phase, your opponent must select each of those units, one at a time; when each is selected, it becomes eligible to fight and is selected to fight.",
+          "normalizedSentenceSHA256": "7d7ed1be13ed1ee17d403b8cac1aa7f889cad4f52f68ce39e8277ea8cc3ee3cc"
+        }
+      ]
+    },
+    {
+      "id": "core-rule-21-02-surge-move",
+      "code": "21.02",
+      "kind": "ACTUAL_SOURCE_TEXT_CHANGED",
+      "reason": "Owner-approved known source update: exact old sentences occur in the frozen accepted source but not in the fresh same-owner source; metadata-only changes do not satisfy this proof.",
+      "beforeSourceTextSHA256": [
+        "50abe76a6a2d73cd307346cf7075925e3841a745e542c6ff14ee1f8ef1dc4bac"
+      ],
+      "afterSourceTextSHA256": [
+        "a42e71a40489c37553e5e951fae3f699e9c921c7f4d0e4693e36d00bff6bb0d6"
+      ],
+      "beforeSourceBodies": [
+        {
+          "sourceUnitId": "waha-core-rule-21-02",
+          "anchor": "SURGE-MOVE",
+          "text": "SURGE MOVE21.02 SET-UP DISTANCE: As stated in the rule allowing this move type.ELIGIBLE IF: All of the following apply:The rule allowing this move type has been triggered.Your unit is not battle-shocked.Your unit is unengaged.Your unit has not moved this phase.EFFECT: Your unit moves as described in Moving (03).BEFORE MOVING: Select the closest enemy unit to be the surge target.WHILE MOVING:Each model must end its move engaged with the surge target if possible.Each model that cannot end its move engaged with the surge target must end its move as close as possible to the surge target.AFTER MOVING:Your unit cannot be engaged with one or more enemy units that were not the surge target.Your unit cannot move again this phase.",
+          "normalizedTextSHA256": "50abe76a6a2d73cd307346cf7075925e3841a745e542c6ff14ee1f8ef1dc4bac"
+        }
+      ],
+      "afterSourceBodies": [
+        {
+          "sourceUnitId": "waha-core-rule-21-02",
+          "anchor": "SURGE-MOVE",
+          "text": "SURGE MOVE21.02 MAXIMUM DISTANCE: As stated in the rule allowing this move type.ELIGIBLE IF: All of the following apply:The rule allowing this move type has been triggered.Your unit is not battle-shocked.Your unit is unengaged.Your unit has not moved this phase.EFFECT: Your unit moves as described in Moving (03).BEFORE MOVING: Select the closest enemy unit to be the surge target.WHILE MOVING:Each model must end its move engaged with the surge target if possible.Each model that cannot end its move engaged with the surge target must end its move as close as possible to the surge target.AFTER MOVING:Your unit cannot be engaged with one or more enemy units that were not the surge target.Your unit cannot move again this phase. SEE ALSORules Sequencing 01.03.02MAKING A SURGE MOVEUnit A shoots, and destroys two models from unit B.Unit B has an ability that allows it to make a surge move of D6\" after an enemy unit has shot, if one or more of its models were destroyed by those attacks. The active player rolls one D6, resulting in a 4.Unit B makes a surge move, each of its surviving models moving up to 4\" towards the closest enemy unit (unit C). It ends this move engaged with that unit.",
+          "normalizedTextSHA256": "a42e71a40489c37553e5e951fae3f699e9c921c7f4d0e4693e36d00bff6bb0d6"
+        }
+      ],
+      "changedSentences": [
+        {
+          "text": "SET-UP DISTANCE: As stated in the rule allowing this move type.",
+          "normalizedSentenceSHA256": "4b72985eb7671d4b6b16740fff1579e9c50b6b7a97a609a779e3046bff8a6b48"
+        }
+      ]
+    }
+  ]
+}

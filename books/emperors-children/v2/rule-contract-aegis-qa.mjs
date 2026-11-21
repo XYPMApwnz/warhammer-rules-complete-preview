@@ -44,8 +44,8 @@ check(()=>{
   assert.ok(texts.join(' ').replace(/\s/g,'').includes(quote.replace(/\s/g,'')));
   assert.equal(sha(fs.readFileSync(new URL('./sources/emperors-children-faction-pack-v1.3.pdf',import.meta.url))),
     '18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A');
-  const official=JSON.parse(fs.readFileSync(new URL('./official-bindings.json',import.meta.url)));
-  assert.ok(!official.occurrences.some(o=>o.patches.some(p=>p.sourceId===id)));
+  const official=JSON.parse(fs.readFileSync(new URL('./official-updates.json',import.meta.url)));
+  assert.ok(!official.entries.some(p=>p.target.id===id));
   assert.equal(canonical.get(profileId).data.stats.SV,'5+');assert.equal(canonical.get(profileId).data.stats.INSV,'4+');
 });
 const selection=(equipmentId=id,pointer='/blocks/2/text',quantity=1)=>({selectionKey:'optional-equipment',physicalQuantity:quantity,

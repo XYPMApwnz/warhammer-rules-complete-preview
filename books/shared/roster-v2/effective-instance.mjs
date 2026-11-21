@@ -1,9 +1,16 @@
-import {projectConditionalPolicy} from './conditional-policy.mjs';
+import {keywordField,requiredKeywordField} from '../keyword-values.mjs';
+import {getSourceContext,copySourceEvidence,mergeSourceEvidence} from '../source-refs-v2/source-refs.mjs';
+import {projectConditionalRow} from './conditional-policy.mjs';
+import {resolveExecutionEffect,resolvePhysicalSelectionAttribution} from './recipient-execution.mjs';
+import {resolvePhysicalChoiceAttribution} from './physical-choice.mjs';
+import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
+import {projectAttachedRuleTexts} from './attached-rule-text.mjs';
+import {createSelectedSourceFieldPredicate,sourceEquipmentSelected} from './context.mjs';
 /** Presentation snapshot of one physical component from an existing projection.
  * This does not evaluate rules or combine component inventories. */
 const clone=value=>structuredClone(value);
 const fields=value=>Object.entries(value).map(([label,value])=>({label,value}));
-export function projectEffectiveInstance(book,projection,instanceId) {
+export function projectEffectiveInstance(book,projection,instanceId,context={}) {
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   const unit = projection?.units.find(u=>u.instanceId === instanceId);
   if (!unit) throw new TypeError('Unresolved physical instance');
@@ -11,15 +18,19 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   const name = id=>records.get(id)?.data.title || records.get(id)?.data.name || id;
   const effectSource=row=>{
     const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(value=>value.id===row.clauseId);
-    const effect=clause?.rosterEffects.find(value=>value.id===row.effectId);
+    const declaration=clause?.rosterEffects.find(value=>value.id===row.effectId);
+    const effect=declaration?.physicalSelection||declaration?.physicalChoice?undefined:declaration||
+      (rule?.ruleContract?.clauses.some(item=>item.rosterEffects.some(effect=>effect.physicalSelection))?
+        resolvePhysicalSelectionAttribution(book,projection,row):rule?.ruleContract?.clauses.some(item=>item.rosterEffects.some(effect=>effect.physicalChoice))?
+        resolvePhysicalChoiceAttribution(book,projection,row):undefined);
     if(!effect||effect.operation!==row.operation||row.operation==='MODIFY_STAT'&&row.field!==({BS:'skill',WS:'skill'}[effect.field]||effect.field))
       throw new TypeError('Unresolved executed effect attribution');
-    const canonicalRuleId=effect.referencedRuleId||effect.provenance?.canonicalRuleId||row.ruleId;
+    const canonicalRuleId=effect.referencedRuleId||getSourceContext(effect,{book}).canonicalRuleId||row.ruleId;
     const origin=records.get(canonicalRuleId);
-    if(!origin||effect.referencedRuleId&&effect.provenance?.canonicalRuleId&&effect.referencedRuleId!==effect.provenance.canonicalRuleId)
+    if(!origin||effect.referencedRuleId&&getSourceContext(effect,{book}).canonicalRuleId&&effect.referencedRuleId!==getSourceContext(effect,{book}).canonicalRuleId)
       throw new TypeError('Unresolved canonical effect origin');
     return {...clone(row),canonicalRuleId,label:origin.displayName||name(canonicalRuleId),
-      provenance:clone(origin.provenance||{}),...(effect.provenance?{effectProvenance:clone(effect.provenance)}:{}),
+      ...mergeSourceEvidence(copySourceEvidence(origin,{book}),copySourceEvidence(effect,{book,targetSlot:'effectProvenance'})),
       ...(row.operation==='GRANT_WEAPON_ABILITY'?{ability:effect.ability}:{})};
   };
   // Resolve only recorded keyword grants. The final keyword bags remain the
@@ -27,21 +38,22 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   const keywordSources=(group?projection.units.filter(member=>group.memberInstanceIds.includes(member.instanceId)):[unit])
     .flatMap(member=>member.applied.filter(row=>['GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD'].includes(row.operation)).flatMap(row=>{
       const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(item=>item.id===row.clauseId);
-      const effect=clause?.rosterEffects.find(item=>item.id===row.effectId);
+      const declaration=clause?.rosterEffects.find(item=>item.id===row.effectId);
+      const effect=declaration&&resolveExecutionEffect(rule,clause,declaration);
       const model=row.operation==='GRANT_MODEL_KEYWORD'?member.profiles.find(profile=>profile.scopeId===row.targetCompositionId&&profile.canonicalProfileId===row.targetProfileId):null;
       if(!effect||effect.operation!==row.operation||effect.targetSubject!==(model?'MODEL':'UNIT')||
           row.targetInstanceId!==member.instanceId||row.field!=='keywords'||!Array.isArray(row.after)||!row.after.includes(effect.keyword)||
           row.operation==='GRANT_MODEL_KEYWORD'&&!model)
         throw new TypeError('Unresolved typed keyword grant provenance');
-      if(!(model?.keywords||member.keywords).includes(effect.keyword))return []; // A later removal is not a current grant.
-      const canonicalRuleId=effect.referencedRuleId||effect.provenance?.canonicalRuleId||row.ruleId;
+      if(!(keywordField(model)||requiredKeywordField(member)).includes(effect.keyword))return []; // A later removal is not a current grant.
+      const canonicalRuleId=effect.referencedRuleId||getSourceContext(effect,{book}).canonicalRuleId||row.ruleId;
       const origin=records.get(canonicalRuleId);
-      if(!origin||effect.referencedRuleId&&effect.provenance?.canonicalRuleId&&effect.referencedRuleId!==effect.provenance.canonicalRuleId)
+      if(!origin||effect.referencedRuleId&&getSourceContext(effect,{book}).canonicalRuleId&&effect.referencedRuleId!==getSourceContext(effect,{book}).canonicalRuleId)
         throw new TypeError('Unresolved canonical keyword grant origin');
       return [{...clone(row),keyword:effect.keyword,subject:effect.targetSubject,
         unitScope:effect.targetSubject==='UNIT'?(effect.unitScope||'FORMED'):null,
         canonicalRuleId,label:origin.displayName||name(canonicalRuleId),
-        provenance:clone(origin.provenance||{}),...(effect.provenance?{effectProvenance:clone(effect.provenance)}:{})}];
+        ...mergeSourceEvidence(copySourceEvidence(origin,{book}),copySourceEvidence(effect,{book,targetSlot:'effectProvenance'}))}];
     }));
   // UNIT modifiers stay on the UNIT. Preserve the executor's final value
   // and resolve its exact typed source; presentation must not recalculate it.
@@ -49,11 +61,12 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   const unitMetricSources=unit.applied.filter(row=>row.operation==='MODIFY_RULE_METRIC'&&Object.hasOwn(unitMetrics,row.field)&&
     !row.targetModelInstanceId&&!row.targetProfileId&&!row.targetCompositionId&&!row.targetWeaponProfileId).map(row=>{
     const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(clause=>clause.id===row.clauseId);
-    const effect=clause?.rosterEffects.find(effect=>effect.id===row.effectId);
+    const declaration=clause?.rosterEffects.find(effect=>effect.id===row.effectId);
+    const effect=declaration&&resolveExecutionEffect(rule,clause,declaration);
     if(!effect||effect.operation!=='MODIFY_RULE_METRIC'||effect.field!==row.field||effect.targetSubject!=='UNIT'||
         !(effect.field==='detectionRange'&&effect.unitScope===undefined||['PHYSICAL','FORMED'].includes(effect.unitScope))||row.targetInstanceId!==instanceId||row.targetModelInstanceId)
       throw new TypeError('Unresolved typed UNIT metric provenance');
-    return {...clone(row),unitScope:effect.unitScope,label:rule.displayName||name(row.ruleId),provenance:clone(rule.provenance||{})};
+    return {...clone(row),unitScope:effect.unitScope,label:rule.displayName||name(row.ruleId),...copySourceEvidence(rule,{book})};
   });
   for(const field of Object.keys(unitMetrics))if(!unitMetricSources.some(source=>source.field===field))throw new TypeError('Missing computed UNIT metric provenance');
   // Check the executor's recorded state transitions, without recalculating a
@@ -79,14 +92,16 @@ export function projectEffectiveInstance(book,projection,instanceId) {
       subject==='MODEL'&&unit.profiles.length===1&&unit.profiles[0].quantity===1?unit.profiles[0]:null;
     const grantedRules=(rule.ruleContract?.clauses||[]).flatMap(clause=>{
       const binding=clause.rosterReferenceBinding;if(!binding)return [];
-      if(binding.sourceBinding!=='SOURCE_MODEL'||binding.subject!=='UNIT'||
-          binding.standaloneBinding!=='SOURCE_UNIT'||binding.attachedBinding!=='SOURCE_FORMED_MODELS')
+      const standalone=resolveRecipient(rule,clause,binding.standaloneRecipientId),attached=resolveRecipient(rule,clause,binding.attachedRecipientId);
+      if(binding.sourceBinding!=='SOURCE_MODEL'||['subject','standaloneBinding','attachedBinding'].some(key=>Object.hasOwn(binding,key))||
+          standalone.who!=='UNIT'||standalone.from!=='SOURCE_UNIT'||standalone.scope!=='PHYSICAL'||
+          attached.who!=='UNIT'||attached.from!=='SOURCE_UNIT'||attached.scope!=='FORMED'||standalone.id===attached.id)
         throw new TypeError('Unsupported declarative reference scope');
       if(!model)return []; // An unresolved physical bearer cannot grant a rule.
       return binding.canonicalRuleReferences.map(canonicalId=>{
         if(!records.has(canonicalId))throw new TypeError('Unresolved granted canonical rule');
         return {canonicalId,sourceRuleId:id,clauseId:clause.id,sourceInstanceId:instanceId,
-          sourceModelScopeId:model.scopeId,subject:binding.subject,
+          sourceModelScopeId:model.scopeId,subject:(group?attached:standalone).who,
           recipientInstanceIds:group?[...group.memberInstanceIds]:[instanceId]};
       });
     });
@@ -94,15 +109,39 @@ export function projectEffectiveInstance(book,projection,instanceId) {
       modelScopeId:model?.scopeId||null,grantedRules};
   });
   const weapons=[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))];
+  const sourceUnit=context.state?.units.find(source=>source.instanceId===instanceId)||unit;
+  const selectedSourceField=createSelectedSourceFieldPredicate(sourceUnit);
+  // Bridge only non-executable formed-recipient text whose optional flag is
+  // absent from the owner's published card. Other native equipment rendering
+  // retains its existing inventory/effect path.
+  const optionalEquipmentSources=book.entities.filter(rule=>rule.parentId===unit.canonicalUnitId&&rule.data.wargearAbility===true&&typeof rule.data.text==='string'&&
+    rule.ruleContract?.clauses.some(clause=>!clause.rosterEffects?.length&&clause.recipients?.some(recipient=>
+      recipient.from==='SOURCE_FORMED_MODELS'||recipient.who==='UNIT'&&recipient.scope==='FORMED')))
+    .map(rule=>({ruleId:rule.id,selected:sourceEquipmentSelected(rule,['text'],selectedSourceField)}));
+  // Validate the original policy row before applying a read-only source gate.
+  // Execution retains its conditional rows and never gains equipment facts.
+  const conditional=unit.conditional.map(row=>({...projectConditionalRow(book,projection,unit,row),label:name(row.ruleId)})).filter(row=>{
+    if(!row.policy)return true;
+    const rule=records.get(row.ruleId),clause=rule.ruleContract.clauses.find(value=>value.id===row.clauseId);
+    const optional=rule.data.wargearAbility===true||(clause.sourceFields||[]).some(path=>path[0]==='blocks'&&rule.data.blocks?.[path[1]]?.wargearAbility===true);
+    if(!optional)return true;
+    const source=context.state?.units.find(source=>source.instanceId===row.sourceInstanceId)||projection.units.find(source=>source.instanceId===row.sourceInstanceId);
+    if(!source)return false;
+    const selected=createSelectedSourceFieldPredicate(source);
+    return (clause.sourceFields||[]).some(path=>sourceEquipmentSelected(rule,path,selected,clause));
+  });
   return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
+    ...(optionalEquipmentSources.length?{optionalEquipmentSources}:{}),
+    attachedRuleTexts:projectAttachedRuleTexts(book,projection,instanceId,{...context,records}),
     ...(keywordSources.length?{keywordSources}:{}),
     ...(unit.applied.some(row=>row.operation==='MODIFY_STAT')?{statSources:unit.applied.filter(row=>row.operation==='MODIFY_STAT').map(effectSource)}:{}),
     enhancements,
     ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
     ...(Object.keys(unitMetrics).length?{unitMetrics,unitMetricSources}:{}),
-    formedUnit:group?clone(group):null,keywords:group?[...group.keywords]:[...unit.keywords],intrinsicKeywords:[...unit.intrinsicKeywords],
+    formedUnit:group?clone(group):null,keywords:group?[...requiredKeywordField(group)]:[...requiredKeywordField(unit)],
+    physicalKeywords:[...requiredKeywordField(unit)],intrinsicKeywords:[...requiredKeywordField(unit, "intrinsicKeywords")],
     profiles:unit.profiles.map(m=>({id:m.canonicalProfileId,scopeId:m.scopeId,ownerInstanceId:instanceId,quantity:m.quantity,modelInstanceId:m.modelInstanceId,title:canonical.data.title,
-      fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],keywords:[...m.keywords],intrinsicKeywords:[...(m.intrinsicKeywords||unit.intrinsicKeywords)],metrics:clone(m.metrics),abilities:clone(m.abilities),
+      fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],keywords:[...requiredKeywordField(m)],intrinsicKeywords:[...(requiredKeywordField(m, "intrinsicKeywords")||requiredKeywordField(unit, "intrinsicKeywords"))],metrics:clone(m.metrics),abilities:clone(m.abilities),
       ...(m.suppressedAbilityIds?{suppressedAbilityIds:[...m.suppressedAbilityIds]}:{})})),
     weapons:weapons.map(w=>{
       const unambiguousLegacy=!w.quantityPartition&&weapons.filter(other=>other.canonicalProfileId===w.canonicalProfileId&&
@@ -117,7 +156,7 @@ export function projectEffectiveInstance(book,projection,instanceId) {
         const rule=records.get(row.ruleId),effect=rule?.ruleContract?.clauses.find(c=>c.id===row.clauseId)?.rosterEffects.find(e=>e.id===row.effectId);
         if(effect?.operation!=='MODIFY_RULE_METRIC'||effect.field!=='criticalHitThreshold'||effect.mode!=='SET'||row.targetInstanceId!==instanceId)
           throw new TypeError('Unresolved Critical Hit threshold provenance');
-        return {...clone(row),value:effect.value,label:effect.label||rule.displayName||name(row.ruleId),provenance:clone(rule.provenance||{})};
+        return {...clone(row),value:effect.value,label:effect.label||rule.displayName||name(row.ruleId),...copySourceEvidence(rule,{book})};
       });
       if(w.data.criticalHitThreshold!==undefined && (!sources.length||Math.min(6,...sources.map(s=>s.value))!==w.data.criticalHitThreshold))
         throw new TypeError('Missing or inconsistent Critical Hit threshold sources');
@@ -160,5 +199,5 @@ export function projectEffectiveInstance(book,projection,instanceId) {
             abilityRangeField:'/'+binding.field.join('/'),parameters:clone(ability.parameters),ownerInstanceId:instanceId}];
         });
       }),
-    applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional:unit.conditional.map(row=>({...projectConditionalPolicy(book,projection,unit,row),label:name(row.ruleId)}))};
+    applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional};
 }

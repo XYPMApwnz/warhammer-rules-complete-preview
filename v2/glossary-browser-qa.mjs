@@ -1,3 +1,6 @@
+import {assertDialogActionLabel} from '../tests/helpers/player-dialog-assertions.mjs';
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 import {armyBooks} from './army-books.mjs';
 /** Fresh real-browser global Glossary smoke; no standalone viewer runtime is served. */
 import assert from 'node:assert/strict';
@@ -91,8 +94,8 @@ const origin=`http://127.0.0.1:${server.address().port}`,entry=origin+'/v2/app.h
 const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
-const screenshots=process.env.V2_GLOSSARY_SCREENSHOTS||'E:/Warhammer/qa-artifacts/mega-glossary-v2';fs.mkdirSync(screenshots,{recursive:true});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
+const screenshots=process.env.V2_GLOSSARY_SCREENSHOTS||createQaEvidenceDir('glossary-browser-qa-');fs.mkdirSync(screenshots,{recursive:true});
 const ready=async page=>{
   try{await page.waitForFunction(()=>Boolean(window.WarhammerAppV2));}catch(error){console.error('GLOSSARY_BROWSER_READINESS',JSON.stringify({url:page.url(),requests,forbidden,errors,page:await page.evaluate(()=>({url:location.href,title:document.title,body:document.body?.innerText,revision:document.querySelector('meta[name=\"wh-runtime-revision\"]')?.content,pwa:!!window.WHOfflineStatus})).catch(()=>null)}));throw error;}await page.evaluate(async()=>{await window.WarhammerAppV2.ready;await window.ArmyBookAppV2?.rosterPanel?.ready;});
   await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].every(link=>Boolean(link.sheet)));
@@ -179,7 +182,7 @@ try {
       const direct=await link.getAttribute('href');assert.deepEqual(decodeRoute(direct),decodeRoute(encodeRoute(entry,{destination:'GLOSSARY',...target.identity})));
       await link.click();const popup=await article(page,target.id,true);await popupGeometry(page);
       assert.deepEqual(await popup.locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,`${sample.label}: popup must contain its exact source field and applicable governing condition`);
-      await popup.getByRole('link',{name:'Open full entry',exact:true}).click();const full=await article(page,target.id);
+      await assertDialogActionLabel(page);await popup.getByRole('link',{name:'Open in Glossary',exact:true}).click();const full=await article(page,target.id);
       assert.deepEqual(await full.locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,`${sample.label}: article source-field and condition parity`);
       if(sample.path)assert.equal(decodeRoute(page.url()).fieldPath,sample.path,'Qualified source field lost from route');
       await page.reload();await ready(page);assert.deepEqual(await (await article(page,target.id)).locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,'Reload lost source field or governing condition');
@@ -201,13 +204,13 @@ try {
     await link.click();await article(page,deep,true);await popupGeometry(page);await screenshot(page,device+'-popup');
     const expectedDefinition=contract.resolve(deep).sections.flatMap(section=>section.fields.map(field=>field.value)).join('\n');
     assert.ok((await page.locator('dialog[open]').innerText()).includes(expectedDefinition),'Popup definition differs from enrolled canonical content');
-    assert.ok((await page.locator('dialog[open]').innerText()).includes('Open full entry'));
+    assert.ok((await page.locator('dialog[open]').innerText()).includes('Open in Glossary'));
     await page.keyboard.press('Escape');assert.equal(await page.locator('dialog[open]').count(),0);
     assert.equal(await link.evaluate(node=>node===document.activeElement),true,'Escape failed focus restoration');
     await link.click();await article(page,deep,true);await page.getByRole('button',{name:'Close rule reference',exact:true}).click();
     assert.equal(await link.evaluate(node=>node===document.activeElement),true,'Close failed focus restoration');
     await link.click();await article(page,deep,true);await page.mouse.click(2,2);assert.equal(await page.locator('dialog[open]').count(),0,'Outside click failed');
-    await link.click();await article(page,deep,true);await page.getByRole('link',{name:'Open full entry',exact:true}).click();await article(page,deep);await global(page);
+    await link.click();await article(page,deep,true);await assertDialogActionLabel(page);await page.getByRole('link',{name:'Open in Glossary',exact:true}).click();await article(page,deep);await global(page);
     assert.deepEqual(decodeRoute(page.url()),decodeRoute(href),'Popup permalink changed canonical identity');await screenshot(page,device+'-article');
     await page.reload();await ready(page);await article(page,deep);
     await page.goBack();await ready(page);await page.getByRole('searchbox',{name:'Search glossary',exact:true}).waitFor();

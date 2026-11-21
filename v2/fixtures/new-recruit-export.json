@@ -1,0 +1,910 @@
+{
+  "schema": "new-recruit-export-qa/v1",
+  "baseline": "6fdb77a320b3907e206e08f9c4a6167c12593eb7",
+  "factions": [
+    {
+      "bookId": "adeptus-mechanicus",
+      "sourceFixture": "F1/Haloscreed Battle Clade",
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\nChar1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\nChar2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\n9x Servitor Battleclade (110 pts)\n• 1x Servitor Underseer: Mechanicus pistol, Dataspikes\n• 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw\n• 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon",
+      "bindings": {},
+      "shortLabel": "Adeptus Mechanicus",
+      "catalogue": "Imperium - Adeptus Mechanicus",
+      "catalogueEvidence": {
+        "document": "books/adeptus-mechanicus/sources/bsdata-adeptus-mechanicus-11e.json",
+        "path": "/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "blood-angels",
+      "sourceFixture": "native-export/newrecruit-v37.2-user-redemptor.txt",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Astartes - Blood Angels\n+ DETACHMENT: Angelic Inheritors, Encarmine Speartip, Wrath of the Doomed, Assault Brethren, Deathwatch Support, Devastator Brethren, Gauntlet Task Force, Gladius Task Force, Gravis Linebreaker Force, Gravis Siege Force, Ironclad Champions, Ironstorm Spearhead, Phobos Shadow Force, Phobos Shock Force, Stormlance Task Force, Tactical Brethren, Tacticus Attack Force, Tacticus Firestorm Force, Terminator Storm Force (Legacy of the Angel)\n+ FORCE DISPOSITION: Disruption\n+ TOTAL ARMY POINTS: 180pts\n+\n+ NUMBER OF UNITS: 1\n+ SECONDARY: - Bring It Down: (1x2)\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n1x Redemptor Dreadnought (180 pts): Icarus Rocket Pod, Redemptor Fist, Macro Plasma Incinerator, Onslaught gatling cannon, Storm Bolters\n\nCreated with newrecruit.eu v37.2\n",
+      "bindings": {},
+      "shortLabel": "Blood Angels",
+      "catalogue": "Imperium - Adeptus Astartes - Blood Angels",
+      "catalogueEvidence": {
+        "document": "books/blood-angels/sources/bsdata-blood-angels-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "blood angels",
+        "space marines",
+        "adeptus astartes",
+        "imperium adeptus astartes blood angels"
+      ],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "sourceFixture": "F1-F2/csm-daemonkin",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Veterans of the Long War\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n1x Chaos Lord (95 pts)\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n\nCreated with newrecruit.eu",
+      "bindings": {},
+      "shortLabel": "Chaos Space Marines",
+      "catalogue": "Chaos - Chaos Space Marines",
+      "catalogueEvidence": {
+        "document": "books/chaos-space-marines/sources/bsdata-chaos-space-marines-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "dark-angels",
+      "sourceFixture": "native-export/newrecruit-v37.3-user-da-10-models.txt",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Astartes - Dark Angels\n+ DETACHMENT: Darkflight Pursuit, Inner Circle Task Force, Wrath of the Rock, Assault Brethren, Deathwatch Support, Devastator Brethren, Gauntlet Task Force, Gladius Task Force, Gravis Linebreaker Force, Gravis Siege Force, Ironclad Champions, Ironstorm Spearhead, Phobos Shadow Force, Phobos Shock Force, Stormlance Task Force, Tactical Brethren, Tacticus Attack Force, Tacticus Firestorm Force, Terminator Storm Force (Black-winged Vigilance)\n+ FORCE DISPOSITION: Disruption\n+ TOTAL ARMY POINTS: 400pts\n+\n+ NUMBER OF UNITS: 1\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n10x Deathwing Terminator Squad (400 pts)\n• 9x Deathwing Terminator\n    7 with Power fist, Storm bolter\n    2 with Power fist, Cyclone missile launcher, Storm bolter\n• 1x Deathwing Sergeant: Power fist, Storm bolter\n\nCreated with newrecruit.eu v37.3\n",
+      "bindings": {},
+      "shortLabel": "Dark Angels",
+      "catalogue": "Imperium - Adeptus Astartes - Dark Angels",
+      "catalogueEvidence": {
+        "document": "books/dark-angels/sources/bsdata-dark-angels-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "dark angels",
+        "space marines",
+        "adeptus astartes",
+        "imperium adeptus astartes dark angels"
+      ],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "death-guard",
+      "sourceFixture": "F1-F2/omega",
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n+ DETACHMENT: Shamblerot Vectorium\n+ DETACHMENT: Tallyband Summoners\n+ DETACHMENT: Death Lord’s Chosen\n+ DETACHMENT: Mortarion’s Hammer\n+ DETACHMENT: Champions of Contagion\n+ DETACHMENT: Paragons of Putrescence\n+ DETACHMENT: Contagion Engines\n+ DETACHMENT: Flyblown Host\n5x Plague Marines (0 pts)\nEnhancement: Plagueveil\n• 1x Plague Champion: Boltgun, Plague knives\n• 1x Plague Marine: Meltagun, Plague knives\n• 1x Plague Marine: Blight launcher, Plague knives\n• 1x Plague Marine: Boltgun, Plague knives, Icon of Despair\n• 1x Plague Marine: Boltgun, Plague knives\n10x Plague Marines (0 pts)\n• 1x Plague Champion: Plasma pistol, Power fist\n• 2x Plague Marine: Heavy plague weapon, Plague knives\n• 2x Plague Marine: Bubotic weapons, Plague knives\n• 1x Plague Marine: Plague spewer, Plague knives\n• 1x Plague Marine: Plasma gun, Plague knives\n• 3x Plague Marine: Boltgun, Plague knives\n5x Plague Marines (0 pts)\n• 1x Plague Champion: Boltgun, Plague knives\n• 1x Plague Marine: Plague belcher, Plague knives\n• 1x Plague Marine: Blight launcher, Plague knives\n• 2x Plague Marine: Boltgun, Plague knives\n5x Plague Marines (0 pts)\n• 1x Plague Champion: Boltgun, Plague knives\n• 1x Plague Marine: Plasma gun, Plague knives\n• 1x Plague Marine: Plague spewer, Plague knives\n• 2x Plague Marine: Boltgun, Plague knives\n10x Plague Marines (0 pts)\n• 1x Plague Champion: Boltgun, Plague knives\n• 1x Plague Marine: Boltgun, Plague knives, Icon of Despair\n• 8x Plague Marine: Boltgun, Plague knives\n3x Deathshroud Terminators (0 pts)\n• 1x Deathshroud Champion: Manreaper, 2x Plaguespurt gauntlet, Icon of Despair\n• 2x Deathshroud Terminator: Manreaper, Plaguespurt gauntlet\n6x Deathshroud Terminators (0 pts)\n• 1x Deathshroud Champion: Manreaper, Plaguespurt gauntlet\n• 5x Deathshroud Terminator: Manreaper, Plaguespurt gauntlet\n5x Blightlord Terminators (0 pts)\n• 1x Blightlord Champion: Combi-bolter, Bubotic blade\n• 1x Blightlord Terminator: Blight launcher, Bubotic blade\n• 1x Blightlord Terminator: Reaper autocannon, Bubotic blade\n• 1x Blightlord Terminator: Flail of corruption\n• 1x Blightlord Terminator: Combi-weapon, Bubotic blade\n3x Blightlord Terminators (0 pts)\n• 1x Blightlord Champion: Combi-bolter, Bubotic blade\n• 1x Blightlord Terminator: Plague spewer, Close combat weapon\n• 1x Blightlord Terminator: Combi-weapon, Bubotic blade\n1x Helbrute (0 pts)\nEnhancement: Lancet of the Worldsore\n• 1x Helbrute: Multi-melta, Helbrute fist, Close combat weapon\n1x Helbrute (0 pts)\n• 1x Helbrute: Twin lascannon, Power scourge, Close combat weapon\n1x Helbrute (0 pts)\n• 1x Helbrute: 2x Helbrute fist, Heavy flamer, Close combat weapon\n1x Plagueburst Crawler (0 pts)\n• 1x Plagueburst Crawler: 2x Entropy cannon, Heavy slugger, Plagueburst mortar, Armoured tracks\n1x Plagueburst Crawler (0 pts)\n• 1x Plagueburst Crawler: 2x Plaguespitter, Rothail volley gun, Plagueburst mortar, Armoured tracks\n1x Foetid Bloat-drone (0 pts)\n• 1x Foetid Bloat-drone: Fleshmower, Plague probe\n1x Foetid Bloat-drone (0 pts)\n• 1x Foetid Bloat-drone: 2x Plaguespitter, Plague probe\n1x Myphitic Blight-hauler (0 pts)\n• 1x Myphitic Blight-hauler: Bile spurt, Missile launcher, Multi-melta, Gnashing maw\n2x Myphitic Blight-hauler (0 pts)\n• 2x Myphitic Blight-hauler: Bile spurt, Missile launcher, Multi-melta, Gnashing maw\n1x Chaos Rhino (0 pts)\n• 1x Chaos Rhino: Combi-bolter, Combi-weapon, Havoc launcher, Armoured tracks\n1x Chaos Rhino (0 pts)\n• 1x Chaos Rhino: Havoc launcher, Armoured tracks\n10x Plaguebearers (0 pts)\n• 1x Plagueridden: Plaguesword\n• 1x Plaguebearer: Plaguesword, Instrument of Chaos\n• 1x Plaguebearer: Plaguesword, Daemonic Icon\n• 7x Plaguebearer: Plaguesword\n10x Plaguebearers (0 pts): 1x Daemonic Icon\n• 1x Plagueridden: Plaguesword\n• 9x Plaguebearer: Plaguesword\n3x Plague Drones (0 pts)\n• 1x Plaguebringer: Death’s heads, Foul mouthparts, Plaguesword\n• 1x Plague Drone: Death’s heads, Foul mouthparts, Plaguesword, Instrument of Chaos\n• 1x Plague Drone: Death’s heads, Foul mouthparts, Plaguesword, Daemonic Icon\n6x Plague Drones (0 pts): 1x Instrument of Chaos\n• 1x Plaguebringer: Death’s heads, Foul mouthparts, Plaguesword\n• 5x Plague Drone: Death’s heads, Foul mouthparts, Plaguesword\n20x Poxwalkers (0 pts)\n• 20x Poxwalker: Improvised weapon\n10x Poxwalkers (0 pts)\n• 10x Poxwalker: Improvised weapon\n1x Biologus Putrifier (0 pts)\n• 1x Biologus Putrifier: Hyper blight grenades, Injector pistol, Plague knives\n1x Biologus Putrifier (0 pts)\nEnhancement: Rejuvenating Swarm\n• 1x Biologus Putrifier: Hyper blight grenades, Injector pistol, Plague knives\n1x Noxious Blightbringer (0 pts)\nEnhancement: Revolting Regeneration\n• 1x Noxious Blightbringer: Plasma pistol, Cursed plague bell\n1x Noxious Blightbringer (0 pts)\nEnhancement: Witherbone Pipes\n• 1x Noxious Blightbringer: Plasma pistol, Cursed plague bell\n1x Malignant Plaguecaster (0 pts)\nEnhancement: Furnace of Plagues\n• 1x Malignant Plaguecaster: Bolt pistol, Plague Wind, Corrupted staff\n1x Malignant Plaguecaster (0 pts)\nEnhancement: Sorrowsyphon\n• 1x Malignant Plaguecaster: Bolt pistol, Plague Wind, Corrupted staff\n1x Lord of Contagion (0 pts)\nEnhancement: Vile Vigour\n• 1x Lord of Contagion: Manreaper\n1x Lord of Contagion (0 pts)\nEnhancement: Fell Harvester\n• 1x Lord of Contagion: Manreaper\n1x Lord of Virulence (0 pts)\nEnhancement: Tendrilous Emissions\n• 1x Lord of Virulence: Twin plague spewer, Power fist\n1x Lord of Poxes (0 pts)\nEnhancement: Cornucophagus\n• 1x Lord of Poxes: Plasma pistol, Great plague blade\n1x Icon Bearer (0 pts)\n• 1x Icon Bearer: Boltgun, Plague knife\n1x Plague Surgeon (0 pts)\nEnhancement: Needle of Nurgle\n• 1x Plague Surgeon: Bolt pistol, Balesword",
+      "bindings": {},
+      "shortLabel": "Death Guard",
+      "catalogue": "Chaos - Death Guard",
+      "catalogueEvidence": {
+        "authority": "OWNER_PROVIDED_TASK",
+        "note": "No captured DG BSData catalogue is stored in Git; this ungated header is explicitly provided in the task."
+      },
+      "factionGate": true,
+      "legacyLabels": [],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "emperors-children",
+      "sourceFixture": "charge/ec-daemonettes",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Carnival of Excess\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws, Instrument of Chaos\n• 1x Daemonette: Slashing claws, Daemonic icon\n• 7x Daemonette: Slashing claws\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws\n• 1x Daemonette: Slashing claws\n• 7x Daemonette: Slashing claws\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws\n• 1x Daemonette: Slashing claws, Daemonic icon\n• 7x Daemonette: Slashing claws",
+      "bindings": {},
+      "shortLabel": "Emperor's Children",
+      "catalogue": "Chaos - Emperor's Children",
+      "catalogueEvidence": {
+        "document": "books/emperors-children/sources/bsdata-emperors-children-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "emperors children",
+        "chaos emperors children"
+      ],
+      "normalizedEmptyAccepted": false
+    },
+    {
+      "bookId": "space-marines",
+      "sourceFixture": "native-export/newrecruit-v37.3-user-sm.txt",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Assault Brethren, Deathwatch Support, Devastator Brethren, Gauntlet Task Force, Gladius Task Force, Gravis Linebreaker Force, Gravis Siege Force, Ironclad Champions, Ironstorm Spearhead, Phobos Shadow Force, Phobos Shock Force, Stormlance Task Force, Tactical Brethren, Tacticus Attack Force, Tacticus Firestorm Force, Terminator Storm Force (Assault Mastery)\n+ FORCE DISPOSITION: Disruption\n+ TOTAL ARMY POINTS: 490pts\n+\n+ NUMBER OF UNITS: 3\n+ SECONDARY: - Bring It Down: (1x2) + (2x4)\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n2x Invader ATVs (130 pts): 2 with Armoured Impact, Bolt pistol, Twin Bolt Rifle, Onslaught gatling cannon\n1x Redemptor Dreadnought (170 pts): Redemptor Fist, Heavy Onslaught Gatling Cannon, Heavy Flamer, Fragstorm Grenade Launchers\n1x Repulsor (190 pts): Armoured Hull, Defensive Array, Hunter-slayer missile, Twin heavy bolter, Heavy Onslaught Gatling Cannon\n\nCreated with newrecruit.eu v37.3",
+      "bindings": {},
+      "shortLabel": "Space Marines",
+      "catalogue": "Imperium - Adeptus Astartes - Space Marines",
+      "catalogueEvidence": {
+        "document": "books/space-marines/sources/bsdata-space-marines-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "space marines",
+        "adeptus astartes",
+        "imperium adeptus astartes space marines"
+      ],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "tau-empire",
+      "sourceFixture": "F1/broad-fixture",
+      "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n+ DETACHMENT: Kroot Hunting Pack\n1x Darkstrider (100 pts)\n• 1x Darkstrider: 1x Shade\n1x Commander In Coldstar Battlesuit (100 pts)\n• 1x Commander in Coldstar Battlesuit: 1x Plasma rifle\nEnhancement: Precision of the Patient Hunter\n3x Crisis Fireknife Battlesuits (100 pts)\n• 1x Crisis Fireknife Shas’vre: 1x Plasma rifle\n• 2x Crisis Fireknife Shas’ui: 1x Plasma rifle\n10x Kroot Carnivores (100 pts)\n• 1x Long-quill: 1x Kroot rifle\n• 9x Kroot Carnivores: 1x Kroot rifle\n",
+      "bindings": {},
+      "shortLabel": "T’au Empire",
+      "catalogue": "Xenos - T'au Empire",
+      "catalogueEvidence": {
+        "document": "books/tau-empire/sources/bsdata-tau-empire-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "tau empire"
+      ],
+      "normalizedEmptyAccepted": false
+    },
+    {
+      "bookId": "tyranids",
+      "sourceFixture": "F1/broad-fixture",
+      "text": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Invasion Fleet\n1x Tyrannofex (180 pts)\n• 1x Tyrannofex: Acid spray, Stinger salvoes, Powerful limbs\n1x Tyrannofex (190 pts)\n• 1x Tyrannofex: Rupture cannon, Stinger salvoes, Powerful limbs\n1x Tyrannofex (180 pts)\n• 1x Tyrannofex: Fleshborer hive, Stinger salvoes, Powerful limbs\n",
+      "bindings": {},
+      "shortLabel": "Tyranids",
+      "catalogue": "Xenos - Tyranids",
+      "catalogueEvidence": {
+        "document": "books/tyranids/sources/bsdata-tyranids-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "tyranids"
+      ],
+      "normalizedEmptyAccepted": false
+    }
+  ],
+  "compactEquipment": [
+    {
+      "bookId": "adeptus-mechanicus",
+      "unitId": "unit-archaeopter-fusilave",
+      "unit": "Archaeopter Fusilave",
+      "ruleId": "datasheet-archaeopter-fusilave:section:1",
+      "sourceField": "/blocks/1/text",
+      "equipment": [
+        "Chaff Launcher"
+      ],
+      "sourceText": "Chaff Launcher: The bearer has the SMOKE keyword.",
+      "compactText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Fusilave (0 pts): Chaff Launcher\n",
+      "rowText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Fusilave (0 pts)\n• 1x Archaeopter Fusilave: Chaff Launcher\n",
+      "loadoutText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Fusilave (0 pts)\n• 1x Archaeopter Fusilave\n1 with Chaff Launcher\n",
+      "absentText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Fusilave (0 pts)\n• 1x Archaeopter Fusilave\n",
+      "expectedGameSha256": "50e09537bc058fd88bb326d6aafe7e36de2cfdf238237e2cb5ca331d4fb242b4",
+      "expectedAbsentGameSha256": "151563ef5523e3687fbac42c2388831b058b5a143fb888f149188a60b95f840a",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "unitId": "unit-archaeopter-fusilave",
+      "unit": "Archaeopter Fusilave",
+      "ruleId": "datasheet-archaeopter-fusilave:section:1",
+      "sourceField": "/blocks/2/text",
+      "equipment": [
+        "Command Uplink"
+      ],
+      "sourceText": "Command Uplink: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+      "compactText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Fusilave (0 pts): Command Uplink\n",
+      "rowText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Fusilave (0 pts)\n• 1x Archaeopter Fusilave: Command Uplink\n",
+      "loadoutText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Fusilave (0 pts)\n• 1x Archaeopter Fusilave\n1 with Command Uplink\n",
+      "absentText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Fusilave (0 pts)\n• 1x Archaeopter Fusilave\n",
+      "expectedGameSha256": "bfc79118320c54f5ecf1b1accc08a4f7a916f06081cdeea569f868e2a67e121e",
+      "expectedAbsentGameSha256": "151563ef5523e3687fbac42c2388831b058b5a143fb888f149188a60b95f840a",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "unitId": "unit-archaeopter-stratoraptor",
+      "unit": "Archaeopter Stratoraptor",
+      "ruleId": "datasheet-archaeopter-stratoraptor:section:1",
+      "sourceField": "/blocks/1/text",
+      "equipment": [
+        "Chaff Launcher"
+      ],
+      "sourceText": "Chaff Launcher: The bearer has the SMOKE keyword.",
+      "compactText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Stratoraptor (0 pts): Chaff Launcher\n",
+      "rowText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Stratoraptor (0 pts)\n• 1x Archaeopter Stratoraptor: Chaff Launcher\n",
+      "loadoutText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Stratoraptor (0 pts)\n• 1x Archaeopter Stratoraptor\n1 with Chaff Launcher\n",
+      "absentText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Stratoraptor (0 pts)\n• 1x Archaeopter Stratoraptor\n",
+      "expectedGameSha256": "9ff901d35bf030a6791a572a72a4bb972c56ec833753173debb75ce0abebb826",
+      "expectedAbsentGameSha256": "0862c6007c1a955750a48ec53a01ee02a7647c53359bd384d1ac2dea9ee67b02",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "unitId": "unit-archaeopter-stratoraptor",
+      "unit": "Archaeopter Stratoraptor",
+      "ruleId": "datasheet-archaeopter-stratoraptor:section:1",
+      "sourceField": "/blocks/2/text",
+      "equipment": [
+        "Command Uplink"
+      ],
+      "sourceText": "Command Uplink: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+      "compactText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Stratoraptor (0 pts): Command Uplink\n",
+      "rowText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Stratoraptor (0 pts)\n• 1x Archaeopter Stratoraptor: Command Uplink\n",
+      "loadoutText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Stratoraptor (0 pts)\n• 1x Archaeopter Stratoraptor\n1 with Command Uplink\n",
+      "absentText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Stratoraptor (0 pts)\n• 1x Archaeopter Stratoraptor\n",
+      "expectedGameSha256": "97ce574d14c72c91b18b3d02b23b5ab9f61c8dce818913247fe526b873559d31",
+      "expectedAbsentGameSha256": "0862c6007c1a955750a48ec53a01ee02a7647c53359bd384d1ac2dea9ee67b02",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "unitId": "unit-archaeopter-transvector",
+      "unit": "Archaeopter Transvector",
+      "ruleId": "datasheet-archaeopter-transvector:section:1",
+      "sourceField": "/blocks/1/text",
+      "equipment": [
+        "Chaff Launcher"
+      ],
+      "sourceText": "Chaff Launcher: The bearer has the SMOKE keyword.",
+      "compactText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Transvector (0 pts): Chaff Launcher\n",
+      "rowText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Transvector (0 pts)\n• 1x Archaeopter Transvector: Chaff Launcher\n",
+      "loadoutText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Transvector (0 pts)\n• 1x Archaeopter Transvector\n1 with Chaff Launcher\n",
+      "absentText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Transvector (0 pts)\n• 1x Archaeopter Transvector\n",
+      "expectedGameSha256": "42941567a6bdede68efb263de3318c5985fd7766f6ed5f80796844e463951718",
+      "expectedAbsentGameSha256": "06a1de4bd047fa3041f90f16b7933b408a4e289862be709f8398e57c6888455d",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "unitId": "unit-archaeopter-transvector",
+      "unit": "Archaeopter Transvector",
+      "ruleId": "datasheet-archaeopter-transvector:section:1",
+      "sourceField": "/blocks/2/text",
+      "equipment": [
+        "Command Uplink"
+      ],
+      "sourceText": "Command Uplink: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+      "compactText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Transvector (0 pts): Command Uplink\n",
+      "rowText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Transvector (0 pts)\n• 1x Archaeopter Transvector: Command Uplink\n",
+      "loadoutText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Transvector (0 pts)\n• 1x Archaeopter Transvector\n1 with Command Uplink\n",
+      "absentText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Archaeopter Transvector (0 pts)\n• 1x Archaeopter Transvector\n",
+      "expectedGameSha256": "cdfbc1cb2cdd9e02843e649d19e971168c1aecd7e8a0dc02a3f3e63f4ed5ca25",
+      "expectedAbsentGameSha256": "06a1de4bd047fa3041f90f16b7933b408a4e289862be709f8398e57c6888455d",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "unitId": "unit-onager-dunecrawler",
+      "unit": "Onager Dunecrawler",
+      "ruleId": "datasheet-onager-dunecrawler:section:1",
+      "sourceField": "/blocks/2/text",
+      "equipment": [
+        "Broad spectrum data-tether"
+      ],
+      "sourceText": "Broad spectrum data-tether: The bearer loses the SMOKE keyword, but each time you target the bearer with a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+      "compactText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Onager Dunecrawler (0 pts): Broad spectrum data-tether\n",
+      "rowText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Onager Dunecrawler (0 pts)\n• 1x Onager Dunecrawler: Broad spectrum data-tether\n",
+      "loadoutText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Onager Dunecrawler (0 pts)\n• 1x Onager Dunecrawler\n1 with Broad spectrum data-tether\n",
+      "absentText": "+ FACTION KEYWORD: Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Onager Dunecrawler (0 pts)\n• 1x Onager Dunecrawler\n",
+      "expectedGameSha256": "563534a6b02ec6e287b2b7cd1999c69b33f6ff5337356fe92bd4d57e1a4cedc4",
+      "expectedAbsentGameSha256": "13e62b80545515c477263f889b2e8128793157b05676b68684efa46029605d57",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "unitId": "unit-sorcerer-in-terminator-armour",
+      "unit": "Sorcerer In Terminator Armour",
+      "ruleId": "datasheet-sorcerer-in-terminator-armour:section:1:block:2:text",
+      "sourceField": "/text",
+      "equipment": [
+        "Chaos familiar"
+      ],
+      "sourceText": "Chaos Familiar: Once per battle, when an attack is allocated to the bearer, you can change the Damage characteristic to 0.",
+      "compactText": "+ FACTION KEYWORD: Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Sorcerer In Terminator Armour (0 pts): Chaos familiar\n",
+      "rowText": "+ FACTION KEYWORD: Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Sorcerer In Terminator Armour (0 pts)\n• 1x Sorcerer in Terminator Armour: Chaos familiar\n",
+      "loadoutText": "+ FACTION KEYWORD: Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Sorcerer In Terminator Armour (0 pts)\n• 1x Sorcerer in Terminator Armour\n1 with Chaos familiar\n",
+      "absentText": "+ FACTION KEYWORD: Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Sorcerer In Terminator Armour (0 pts)\n• 1x Sorcerer in Terminator Armour\n",
+      "expectedGameSha256": "846c6763bc416d871f117359d32391a6e8878b8aebfc1fb39c0ece63110f8ebf",
+      "expectedAbsentGameSha256": "846c6763bc416d871f117359d32391a6e8878b8aebfc1fb39c0ece63110f8ebf",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "emperors-children",
+      "unitId": "unit-keeper-of-secrets",
+      "unit": "Keeper of Secrets",
+      "ruleId": "datasheet-keeper-of-secrets:section:1",
+      "sourceField": "/blocks/2/text",
+      "equipment": [
+        "shining aegis"
+      ],
+      "sourceText": "Shining Aegis: The bearer has a Save characteristic of 3+.",
+      "compactText": "+ FACTION KEYWORD: Emperor's Children\n+ DETACHMENT: Carnival of Excess\n1x Keeper of Secrets (0 pts): shining aegis\n",
+      "rowText": "+ FACTION KEYWORD: Emperor's Children\n+ DETACHMENT: Carnival of Excess\n1x Keeper of Secrets (0 pts)\n• 1x Keeper of Secrets: shining aegis\n",
+      "loadoutText": "+ FACTION KEYWORD: Emperor's Children\n+ DETACHMENT: Carnival of Excess\n1x Keeper of Secrets (0 pts)\n• 1x Keeper of Secrets\n1 with shining aegis\n",
+      "absentText": "+ FACTION KEYWORD: Emperor's Children\n+ DETACHMENT: Carnival of Excess\n1x Keeper of Secrets (0 pts)\n• 1x Keeper of Secrets\n",
+      "expectedGameSha256": "ad5100f37d4d71939358b9bfc0e5407492e144b1388d532ebcdbef6c2d000574",
+      "expectedAbsentGameSha256": "94180da9b831c653a5ea875cb42fc7f7511dbc26c1399f813e78b60ebb872591",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-commander-in-coldstar-battlesuit",
+      "unit": "Commander In Coldstar Battlesuit",
+      "ruleId": "datasheet-commander-in-coldstar-battlesuit:section:1",
+      "sourceField": "/blocks/1/text",
+      "equipment": [
+        "Battlesuit Support System"
+      ],
+      "sourceText": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts): Battlesuit Support System\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit: Battlesuit Support System\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit\n1 with Battlesuit Support System\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit\n",
+      "expectedGameSha256": "6cee68c336775e4df93fd1a54c17dd8f0a46c94348a4464662e820b09ca220c6",
+      "expectedAbsentGameSha256": "1592cffd030977cc5c3110dd77eba1fd065fa090f475f3ad13cf30427c2a9a8b",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-commander-in-coldstar-battlesuit",
+      "unit": "Commander In Coldstar Battlesuit",
+      "ruleId": "datasheet-commander-in-coldstar-battlesuit:section:1",
+      "sourceField": "/blocks/2/text",
+      "equipment": [
+        "Shield Generator"
+      ],
+      "sourceText": "Shield Generator: The bearer has a 4+ invulnerable save.",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts): Shield Generator\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit: Shield Generator\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit\n1 with Shield Generator\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit\n",
+      "expectedGameSha256": "7f45c991f7dc64293f5b95ecf1afc257b36464aa69532d7053e765eded3d65e3",
+      "expectedAbsentGameSha256": "1592cffd030977cc5c3110dd77eba1fd065fa090f475f3ad13cf30427c2a9a8b",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-commander-in-coldstar-battlesuit",
+      "unit": "Commander In Coldstar Battlesuit",
+      "ruleId": "datasheet-commander-in-coldstar-battlesuit:section:1",
+      "sourceField": "/blocks/3/text",
+      "equipment": [
+        "Weapon Support System"
+      ],
+      "sourceText": "Weapon Support System: Each time the bearer makes a ranged attack, you can ignore any or all modifiers to the Hit roll.",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts): Weapon Support System\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit: Weapon Support System\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit\n1 with Weapon Support System\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit\n",
+      "expectedGameSha256": "6cee68c336775e4df93fd1a54c17dd8f0a46c94348a4464662e820b09ca220c6",
+      "expectedAbsentGameSha256": "1592cffd030977cc5c3110dd77eba1fd065fa090f475f3ad13cf30427c2a9a8b",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-commander-in-enforcer-battlesuit",
+      "unit": "Commander In Enforcer Battlesuit",
+      "ruleId": "datasheet-commander-in-enforcer-battlesuit:section:1",
+      "sourceField": "/blocks/1/text",
+      "equipment": [
+        "Battlesuit Support System"
+      ],
+      "sourceText": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts): Battlesuit Support System\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit: Battlesuit Support System\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\n1 with Battlesuit Support System\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\n",
+      "expectedGameSha256": "97d466e676c7096987a3c86d3661b0e561a33e73b719da669775736e1f876aae",
+      "expectedAbsentGameSha256": "3342fc5eb95c326fe64cee6aa43dab1d8ce8d04c19e7da23b9aa835d54b4b02e",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-commander-in-enforcer-battlesuit",
+      "unit": "Commander In Enforcer Battlesuit",
+      "ruleId": "datasheet-commander-in-enforcer-battlesuit:section:1",
+      "sourceField": "/blocks/2/text",
+      "equipment": [
+        "Shield Generator"
+      ],
+      "sourceText": "Shield Generator: The bearer has a 4+ invulnerable save.",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts): Shield Generator\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit: Shield Generator\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\n1 with Shield Generator\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\n",
+      "expectedGameSha256": "4bcada4746b2b0f7cfed88171083c20ceaba12e123f532eec019cd0ac78823e4",
+      "expectedAbsentGameSha256": "3342fc5eb95c326fe64cee6aa43dab1d8ce8d04c19e7da23b9aa835d54b4b02e",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-commander-in-enforcer-battlesuit",
+      "unit": "Commander In Enforcer Battlesuit",
+      "ruleId": "datasheet-commander-in-enforcer-battlesuit:section:1",
+      "sourceField": "/blocks/3/text",
+      "equipment": [
+        "Weapon Support System"
+      ],
+      "sourceText": "Weapon Support System: Each time the bearer makes a ranged attack, you can ignore any or all modifiers to the Hit roll.",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts): Weapon Support System\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit: Weapon Support System\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\n1 with Weapon Support System\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\n",
+      "expectedGameSha256": "97d466e676c7096987a3c86d3661b0e561a33e73b719da669775736e1f876aae",
+      "expectedAbsentGameSha256": "3342fc5eb95c326fe64cee6aa43dab1d8ce8d04c19e7da23b9aa835d54b4b02e",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-ethereal",
+      "unit": "Ethereal",
+      "ruleId": "datasheet-ethereal:section:1",
+      "sourceField": "/blocks/2/text",
+      "equipment": [
+        "Hover Drone"
+      ],
+      "sourceText": "Hover Drone: The bearer can FLY and has a Move characteristic of 10\".",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Ethereal (0 pts): Hover Drone\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Ethereal (0 pts)\n• 1x Ethereal: Hover Drone\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Ethereal (0 pts)\n• 1x Ethereal\n1 with Hover Drone\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Ethereal (0 pts)\n• 1x Ethereal\n",
+      "expectedGameSha256": "eeb116b1f56f362a4a5843a3388b63ad90a364d14cbda777a6c9bf50cbf51d22",
+      "expectedAbsentGameSha256": "9a3486b153f4381a51845a9c97038bfb744dd7ca0cf783cba79728d0af1824b4",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-broadside-battlesuits",
+      "unit": "Broadside Battlesuits",
+      "ruleId": "datasheet-broadside-battlesuits:section:1",
+      "sourceField": "/blocks/1/text",
+      "equipment": [
+        "Weapon Support System"
+      ],
+      "sourceText": "Weapon Support System: Each time the bearer makes a ranged attack, you can ignore any or all modifiers to the Hit roll.",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Broadside Battlesuits (0 pts): Weapon Support System\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Broadside Battlesuits (0 pts)\n• 1x Broadside Shas’vre: Weapon Support System\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Broadside Battlesuits (0 pts)\n• 1x Broadside Shas’vre\n1 with Weapon Support System\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Broadside Battlesuits (0 pts)\n• 1x Broadside Shas’vre\n",
+      "expectedGameSha256": "3ba406b2f50dc7c695f3e635c719de5979018b49e728c23d73e0e716fe916727",
+      "expectedAbsentGameSha256": "3ba406b2f50dc7c695f3e635c719de5979018b49e728c23d73e0e716fe916727",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-ghostkeel-battlesuit",
+      "unit": "Ghostkeel Battlesuit",
+      "ruleId": "datasheet-ghostkeel-battlesuit:section:1",
+      "sourceField": "/blocks/1/text",
+      "equipment": [
+        "Battlesuit Support System"
+      ],
+      "sourceText": "Battlesuit Support System: The bearer is eligible to shoot in a turn in which it Fell Back but it loses the SMOKE keyword.",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Ghostkeel Battlesuit (0 pts): Battlesuit Support System\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Ghostkeel Battlesuit (0 pts)\n• 1x Ghostkeel Battlesuit: Battlesuit Support System\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Ghostkeel Battlesuit (0 pts)\n• 1x Ghostkeel Battlesuit\n1 with Battlesuit Support System\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Ghostkeel Battlesuit (0 pts)\n• 1x Ghostkeel Battlesuit\n",
+      "expectedGameSha256": "243ce79dc031adad4958328ae73b5c7887665f8ccbc0adbafbcab62ed25c40d2",
+      "expectedAbsentGameSha256": "dfcbdb0d44efe4542f88e5aa79186dfe84e4f08e86c56e027fe7a70d3a5dc0e5",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "tau-empire",
+      "unitId": "unit-tiger-shark",
+      "unit": "Tiger Shark",
+      "ruleId": "datasheet-tiger-shark:section:1",
+      "sourceField": "/blocks/1/text",
+      "equipment": [
+        "Transport Bay"
+      ],
+      "sourceText": "Transport Bay: The bearer has the TRANSPORT keyword and has a transport capacity of 12 TACTICAL DRONES models.",
+      "compactText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Tiger Shark (0 pts): Transport Bay\n",
+      "rowText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Tiger Shark (0 pts)\n• 1x Tiger Shark: Transport Bay\n",
+      "loadoutText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Tiger Shark (0 pts)\n• 1x Tiger Shark\n1 with Transport Bay\n",
+      "absentText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Tiger Shark (0 pts)\n• 1x Tiger Shark\n",
+      "expectedGameSha256": "463cd1975479fd52b5c80d1fcb93b508ce05900078a76f2eb61fe8d5f6c0daf6",
+      "expectedAbsentGameSha256": "5070496802cec6f9ca2186c0f1ef103c50ef03a388b67d6aa040836d131e44cc",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "space-marines",
+      "unitId": "unit-sm-4660f547cc3744b0",
+      "unit": "Lieutenant",
+      "ruleId": "ability-sm-097567b13c02404d",
+      "sourceField": "/text",
+      "equipment": [
+        "Storm Shield"
+      ],
+      "sourceText": "Storm Shield: This model has a 4+ InSv.",
+      "compactText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts): Storm Shield\n",
+      "rowText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts)\n• 1x Lieutenant: Storm Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts)\n• 1x Lieutenant\n1 with Storm Shield\n",
+      "absentText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts)\n• 1x Lieutenant\n",
+      "expectedGameSha256": "915f7dc11009685e38442cdd249241ef0de1b0b0e408800d043e3b1a1781559c",
+      "expectedAbsentGameSha256": "e866db74b53c437980025e284fccd32a35c8f4ed15ca5ba28ebf7ba90fca0dfa",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "space-marines",
+      "unitId": "unit-sm-b994e641eaea4060",
+      "unit": "Chaplain In Terminator Armour",
+      "ruleId": "ability-sm-431f22d15f7545b4",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts)\n• 1x Chaplain in Terminator Armour: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts)\n• 1x Chaplain in Terminator Armour\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts)\n• 1x Chaplain in Terminator Armour\n",
+      "expectedGameSha256": "d7a6fed8ed007d9d014ddcc8947148335b942333f23fac7be70f45fd8e5e3b47",
+      "expectedAbsentGameSha256": "c32ffc8feb97fa569ab1e9f5a1e730ab5413e05e6a3c0a9d056c5958173a2a60",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "space-marines",
+      "unitId": "unit-sm-4fce70f042cc4e5d",
+      "unit": "Impulsor",
+      "ruleId": "ability-sm-68f84cbf74d9438b",
+      "sourceField": "/text",
+      "equipment": [
+        "Shield Dome"
+      ],
+      "sourceText": "Shield Dome: This unit has 5+ InSv.",
+      "compactText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts): Shield Dome\n",
+      "rowText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor: Shield Dome\n",
+      "loadoutText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n1 with Shield Dome\n",
+      "absentText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n",
+      "expectedGameSha256": "5c5808db44ceecf5468c73a1f5ce4105f4ff1eb46559993b13952a4c343c793f",
+      "expectedAbsentGameSha256": "f6b51c4bcaeded519ec58799859f17ee6221ad88aa0588a63c296d622addb4c5",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "space-marines",
+      "unitId": "unit-sm-4fce70f042cc4e5d",
+      "unit": "Impulsor",
+      "ruleId": "ability-sm-7d0c729bd52143f9",
+      "sourceField": "/text",
+      "equipment": [
+        "Orbital Comms Array"
+      ],
+      "sourceText": "Orbital Comms Array: This unit has Scouts 6\".",
+      "compactText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts): Orbital Comms Array\n",
+      "rowText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor: Orbital Comms Array\n",
+      "loadoutText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n1 with Orbital Comms Array\n",
+      "absentText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n",
+      "expectedGameSha256": "0aa4cf5b8551ed9f9fcfa4b42a3234a8e07703f9739840f990f2885c3df752ff",
+      "expectedAbsentGameSha256": "f6b51c4bcaeded519ec58799859f17ee6221ad88aa0588a63c296d622addb4c5",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "space-marines",
+      "unitId": "unit-sm-99eb03d4f2d448e2",
+      "unit": "Captain",
+      "ruleId": "ability-sm-8c9e7e37a8494c1d",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n",
+      "expectedGameSha256": "68474d0564426a9fbf92b8a4c3f562b1cb8178aef2a3a247da9002fb409e4c50",
+      "expectedAbsentGameSha256": "651ed99008c0791fa88e432a5794fc9b3e46dbcf51959bba8abcd57984baa344",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path.",
+      "independentStats": {
+        "W": "6"
+      },
+      "independentAbsentStats": {
+        "W": "5"
+      }
+    },
+    {
+      "bookId": "space-marines",
+      "unitId": "unit-sm-e595c56eab2f493b",
+      "unit": "Captain With Jump Pack",
+      "ruleId": "ability-sm-daf87042d20348dd",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack\n",
+      "expectedGameSha256": "34177454539dda913fe4d47f44d05ee98e477f7be45535242d7652cf581d86c6",
+      "expectedAbsentGameSha256": "65c750ad3deca70982754d6b482dd7655316b55cf349b3da969f7f7af9704105",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "dark-angels",
+      "unitId": "unit-sm-4660f547cc3744b0",
+      "unit": "Lieutenant",
+      "ruleId": "ability-sm-097567b13c02404d",
+      "sourceField": "/text",
+      "equipment": [
+        "Storm Shield"
+      ],
+      "sourceText": "Storm Shield: This model has a 4+ InSv.",
+      "compactText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts): Storm Shield\n",
+      "rowText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts)\n• 1x Lieutenant: Storm Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts)\n• 1x Lieutenant\n1 with Storm Shield\n",
+      "absentText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts)\n• 1x Lieutenant\n",
+      "expectedGameSha256": "915f7dc11009685e38442cdd249241ef0de1b0b0e408800d043e3b1a1781559c",
+      "expectedAbsentGameSha256": "e866db74b53c437980025e284fccd32a35c8f4ed15ca5ba28ebf7ba90fca0dfa",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "dark-angels",
+      "unitId": "unit-sm-b994e641eaea4060",
+      "unit": "Chaplain In Terminator Armour",
+      "ruleId": "ability-sm-431f22d15f7545b4",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts)\n• 1x Chaplain in Terminator Armour: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts)\n• 1x Chaplain in Terminator Armour\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts)\n• 1x Chaplain in Terminator Armour\n",
+      "expectedGameSha256": "d7a6fed8ed007d9d014ddcc8947148335b942333f23fac7be70f45fd8e5e3b47",
+      "expectedAbsentGameSha256": "c32ffc8feb97fa569ab1e9f5a1e730ab5413e05e6a3c0a9d056c5958173a2a60",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "dark-angels",
+      "unitId": "unit-sm-4fce70f042cc4e5d",
+      "unit": "Impulsor",
+      "ruleId": "ability-sm-68f84cbf74d9438b",
+      "sourceField": "/text",
+      "equipment": [
+        "Shield Dome"
+      ],
+      "sourceText": "Shield Dome: This unit has 5+ InSv.",
+      "compactText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts): Shield Dome\n",
+      "rowText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor: Shield Dome\n",
+      "loadoutText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n1 with Shield Dome\n",
+      "absentText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n",
+      "expectedGameSha256": "5c5808db44ceecf5468c73a1f5ce4105f4ff1eb46559993b13952a4c343c793f",
+      "expectedAbsentGameSha256": "f6b51c4bcaeded519ec58799859f17ee6221ad88aa0588a63c296d622addb4c5",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "dark-angels",
+      "unitId": "unit-sm-4fce70f042cc4e5d",
+      "unit": "Impulsor",
+      "ruleId": "ability-sm-7d0c729bd52143f9",
+      "sourceField": "/text",
+      "equipment": [
+        "Orbital Comms Array"
+      ],
+      "sourceText": "Orbital Comms Array: This unit has Scouts 6\".",
+      "compactText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts): Orbital Comms Array\n",
+      "rowText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor: Orbital Comms Array\n",
+      "loadoutText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n1 with Orbital Comms Array\n",
+      "absentText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n",
+      "expectedGameSha256": "0aa4cf5b8551ed9f9fcfa4b42a3234a8e07703f9739840f990f2885c3df752ff",
+      "expectedAbsentGameSha256": "f6b51c4bcaeded519ec58799859f17ee6221ad88aa0588a63c296d622addb4c5",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "dark-angels",
+      "unitId": "unit-sm-99eb03d4f2d448e2",
+      "unit": "Captain",
+      "ruleId": "ability-sm-8c9e7e37a8494c1d",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n",
+      "expectedGameSha256": "68474d0564426a9fbf92b8a4c3f562b1cb8178aef2a3a247da9002fb409e4c50",
+      "expectedAbsentGameSha256": "651ed99008c0791fa88e432a5794fc9b3e46dbcf51959bba8abcd57984baa344",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path.",
+      "independentStats": {
+        "W": "6"
+      },
+      "independentAbsentStats": {
+        "W": "5"
+      }
+    },
+    {
+      "bookId": "dark-angels",
+      "unitId": "unit-sm-e595c56eab2f493b",
+      "unit": "Captain With Jump Pack",
+      "ruleId": "ability-sm-daf87042d20348dd",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack\n",
+      "expectedGameSha256": "34177454539dda913fe4d47f44d05ee98e477f7be45535242d7652cf581d86c6",
+      "expectedAbsentGameSha256": "65c750ad3deca70982754d6b482dd7655316b55cf349b3da969f7f7af9704105",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "blood-angels",
+      "unitId": "unit-ba-5269d704246f4e3a8d81",
+      "unit": "Death Company Captain with jump pack",
+      "ruleId": "ability-ba-da87d6022de8416d9040",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Death Company Captain with jump pack (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Death Company Captain with jump pack (0 pts)\n• 1x Death Company Captain with Jump Pack: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Death Company Captain with jump pack (0 pts)\n• 1x Death Company Captain with Jump Pack\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Death Company Captain with jump pack (0 pts)\n• 1x Death Company Captain with Jump Pack\n",
+      "expectedGameSha256": "2e4373ec69c9d6ff4d0f5870a3d7b110dab76e5464ca966f8d3be61becb7d809",
+      "expectedAbsentGameSha256": "0ad43f2278a26042f2b55b1c4484866ee233df66de9281726d2f86f9b2fb929b",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "blood-angels",
+      "unitId": "unit-sm-4660f547cc3744b0",
+      "unit": "Lieutenant",
+      "ruleId": "ability-sm-097567b13c02404d",
+      "sourceField": "/text",
+      "equipment": [
+        "Storm Shield"
+      ],
+      "sourceText": "Storm Shield: This model has a 4+ InSv.",
+      "compactText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts): Storm Shield\n",
+      "rowText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts)\n• 1x Lieutenant: Storm Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts)\n• 1x Lieutenant\n1 with Storm Shield\n",
+      "absentText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant (0 pts)\n• 1x Lieutenant\n",
+      "expectedGameSha256": "915f7dc11009685e38442cdd249241ef0de1b0b0e408800d043e3b1a1781559c",
+      "expectedAbsentGameSha256": "e866db74b53c437980025e284fccd32a35c8f4ed15ca5ba28ebf7ba90fca0dfa",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "blood-angels",
+      "unitId": "unit-sm-b994e641eaea4060",
+      "unit": "Chaplain In Terminator Armour",
+      "ruleId": "ability-sm-431f22d15f7545b4",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts)\n• 1x Chaplain in Terminator Armour: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts)\n• 1x Chaplain in Terminator Armour\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Chaplain In Terminator Armour (0 pts)\n• 1x Chaplain in Terminator Armour\n",
+      "expectedGameSha256": "d7a6fed8ed007d9d014ddcc8947148335b942333f23fac7be70f45fd8e5e3b47",
+      "expectedAbsentGameSha256": "c32ffc8feb97fa569ab1e9f5a1e730ab5413e05e6a3c0a9d056c5958173a2a60",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "blood-angels",
+      "unitId": "unit-sm-4fce70f042cc4e5d",
+      "unit": "Impulsor",
+      "ruleId": "ability-sm-68f84cbf74d9438b",
+      "sourceField": "/text",
+      "equipment": [
+        "Shield Dome"
+      ],
+      "sourceText": "Shield Dome: This unit has 5+ InSv.",
+      "compactText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts): Shield Dome\n",
+      "rowText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor: Shield Dome\n",
+      "loadoutText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n1 with Shield Dome\n",
+      "absentText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n",
+      "expectedGameSha256": "5c5808db44ceecf5468c73a1f5ce4105f4ff1eb46559993b13952a4c343c793f",
+      "expectedAbsentGameSha256": "f6b51c4bcaeded519ec58799859f17ee6221ad88aa0588a63c296d622addb4c5",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "blood-angels",
+      "unitId": "unit-sm-4fce70f042cc4e5d",
+      "unit": "Impulsor",
+      "ruleId": "ability-sm-7d0c729bd52143f9",
+      "sourceField": "/text",
+      "equipment": [
+        "Orbital Comms Array"
+      ],
+      "sourceText": "Orbital Comms Array: This unit has Scouts 6\".",
+      "compactText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts): Orbital Comms Array\n",
+      "rowText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor: Orbital Comms Array\n",
+      "loadoutText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n1 with Orbital Comms Array\n",
+      "absentText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Impulsor (0 pts)\n• 1x Impulsor\n",
+      "expectedGameSha256": "0aa4cf5b8551ed9f9fcfa4b42a3234a8e07703f9739840f990f2885c3df752ff",
+      "expectedAbsentGameSha256": "f6b51c4bcaeded519ec58799859f17ee6221ad88aa0588a63c296d622addb4c5",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    },
+    {
+      "bookId": "blood-angels",
+      "unitId": "unit-sm-99eb03d4f2d448e2",
+      "unit": "Captain",
+      "ruleId": "ability-sm-8c9e7e37a8494c1d",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n",
+      "expectedGameSha256": "68474d0564426a9fbf92b8a4c3f562b1cb8178aef2a3a247da9002fb409e4c50",
+      "expectedAbsentGameSha256": "651ed99008c0791fa88e432a5794fc9b3e46dbcf51959bba8abcd57984baa344",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path.",
+      "independentStats": {
+        "W": "6"
+      },
+      "independentAbsentStats": {
+        "W": "5"
+      }
+    },
+    {
+      "bookId": "blood-angels",
+      "unitId": "unit-sm-e595c56eab2f493b",
+      "unit": "Captain With Jump Pack",
+      "ruleId": "ability-sm-daf87042d20348dd",
+      "sourceField": "/text",
+      "equipment": [
+        "Relic Shield"
+      ],
+      "sourceText": "Relic Shield: This model has +1 W.",
+      "compactText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts): Relic Shield\n",
+      "rowText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack: Relic Shield\n",
+      "loadoutText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack\n1 with Relic Shield\n",
+      "absentText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack\n",
+      "expectedGameSha256": "34177454539dda913fe4d47f44d05ee98e477f7be45535242d7652cf581d86c6",
+      "expectedAbsentGameSha256": "65c750ad3deca70982754d6b482dd7655316b55cf349b3da969f7f7af9704105",
+      "expectedEvidence": "Unmodified 6fdb77a3 explicit MODEL-row control; exact source rule text above. No expectations are captured from the corrected compact path."
+    }
+  ],
+  "realCompactCaptain": {
+    "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\nChar1: 1x Captain (80 pts): Heavy bolt pistol, Master-crafted power weapon, Relic shield\n",
+    "expectedWounds": "6",
+    "withoutShieldWounds": "5",
+    "source": "Owner-provided compact New Recruit line; Relic Shield source literal grants +1 W."
+  },
+  "multiModel": [
+    {
+      "bookId": "space-marines",
+      "header": 10,
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n10x Infiltrator Squad (0 pts): 1x Helix gauntlet\n• 1x Infiltrator Sergeant\n• 9x Infiltrators",
+      "expectedFullStateAndProjectionSha256": "60aad5d57a65f71b333f69615bd0e6cdfd16f0b277137b04e61bc30b49dd0e64"
+    },
+    {
+      "bookId": "space-marines",
+      "header": 1,
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Infiltrator Squad (0 pts): 1x Helix gauntlet\n• 1x Infiltrator Sergeant\n• 9x Infiltrators",
+      "expectedFullStateAndProjectionSha256": "a111a2c54009ace29edd5a8eeda9f2be7f4a74b6c24f1f5fc86bcddc97eb606c"
+    },
+    {
+      "bookId": "dark-angels",
+      "header": 10,
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n10x Infiltrator Squad (0 pts): 1x Helix gauntlet\n• 1x Infiltrator Sergeant\n• 9x Infiltrators",
+      "expectedFullStateAndProjectionSha256": "9e1ad37b4642b94d32178eade1b447f61fb34071e3d45ecf2186be25f441fcad"
+    },
+    {
+      "bookId": "dark-angels",
+      "header": 1,
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Infiltrator Squad (0 pts): 1x Helix gauntlet\n• 1x Infiltrator Sergeant\n• 9x Infiltrators",
+      "expectedFullStateAndProjectionSha256": "9e65de01a59a2d3523a0ee2ce7375db707912cf3fce56a6f7cd24893fd876b4b"
+    },
+    {
+      "bookId": "blood-angels",
+      "header": 10,
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n10x Infiltrator Squad (0 pts): 1x Helix gauntlet\n• 1x Infiltrator Sergeant\n• 9x Infiltrators",
+      "expectedFullStateAndProjectionSha256": "0a6ad97721be81590ba51e5f0fd685f1ed325568004b5652a200fbcf1b2f5464"
+    },
+    {
+      "bookId": "blood-angels",
+      "header": 1,
+      "text": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Infiltrator Squad (0 pts): 1x Helix gauntlet\n• 1x Infiltrator Sergeant\n• 9x Infiltrators",
+      "expectedFullStateAndProjectionSha256": "51f8fc49b594e69be82defc2d180f9e44426a03b5807b9eb7b9c9364507c1f86"
+    }
+  ]
+}

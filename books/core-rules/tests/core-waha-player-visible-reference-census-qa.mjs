@@ -6,7 +6,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const sourceDir = path.resolve(here, "..", "sources", "waha-core-2026-09-25");
+const sourceDir = path.resolve(here, "..", "sources", "waha-core-2026-11-11");
 const corpusPath = path.join(sourceDir, "waha-core-corpus.v1.json");
 const outputPath = path.join(sourceDir, "waha-core-player-visible-reference-census.v1.json");
 const targetRoot = process.env.CORE_REPO_ROOT || path.resolve(here, "..", "..", "..");
@@ -22,7 +22,7 @@ const titleCode = new Map([
   ["INFLICTDAMAGE", "05.04"], ["WHENMODIFYINGCHARACTERISTICS", "02.02.01"],
   ["IDENTICALATTACKS", "04.03.01"], ["MOVINGAMODELINASTRAIGHTLINE", "03.01"],
   ["ROTATINGAMODEL", "03.01"], ["SURGEMOVE", "21.02"], ["KEYWORDS", "02.05"],
-  ["SELECTENHANCEMENTS", "25.04"],
+  ["SELECTENHANCEMENTS", "25.04.04"],
 ]);
 const sectionCode = new Map(Object.entries({
   "The-Battle-Round-1": "07.01", Stratagems: "15.01", Actions: "16.01",
@@ -131,8 +131,8 @@ function readerAnchorExists(readerPath) {
 export async function buildCensus() {
   const corpusRaw = fs.readFileSync(corpusPath);
   const corpus = JSON.parse(corpusRaw);
-  assert.equal(sha256(corpusRaw), "7761005215C03F9D0E0A5BC217894F8605662FC41F04052150FF73218A3D588E");
-  assert.equal(corpus.fingerprint, "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F");
+  assert.equal(sha256(corpusRaw), "DCCCB02C5DA68F0AF500EDAAAB7FDCDBB6F9D5060D0F2A7B0075A6685D579B4E");
+  assert.equal(corpus.fingerprint, "2E39280BEB3D0C92F87F4F3DB231CA3BC40192C12575AF998E5D2A2DB684C14A");
   const corePage = corpus.pages.find((page) => page.id === "core");
   const appendixPage = corpus.pages.find((page) => page.id === "appendix");
   assert.ok(corePage && appendixPage);
@@ -219,12 +219,12 @@ export async function buildCensus() {
     }
   }
 
-  assert.equal(entries.length, 1087);
+  assert.equal(entries.length, 1104);
   const byStatus = Object.fromEntries([...new Set(entries.map((entry) => entry.status))]
     .sort().map((status) => [status, entries.filter((entry) => entry.status === status).length]));
   assert.deepEqual(byStatus, {
     KNOWN_SOURCE_NAVIGATION_DEFECT_RESOLVED: 1,
-    RESOLVED_PLAYER_NAVIGABLE: 1086,
+    RESOLVED_PLAYER_NAVIGABLE: 1103,
   });
   const expectedRows = entries.filter((entry) => entry.status === "EXPECTED_AFTER_CATALOG_REPAIR");
   assert.equal(expectedRows.length, 0);
@@ -234,7 +234,7 @@ export async function buildCensus() {
   assert.equal(defectRows.length, 1);
   const defect = defectRows[0];
   assert.equal(defect.sourceOwner.id, "waha-core-rule-24-23");
-  assert.equal(defect.sourceOwner.sourceOrder, 162);
+  assert.equal(defect.sourceOwner.sourceOrder, 161);
   assert.equal(defect.sourceOccurrence.label, "[DEVASTATING WOUNDS]");
   assert.equal(defect.intendedCode, "24.10");
   assert.equal(defect.canonicalId, "core-devastating-wounds");
@@ -248,6 +248,14 @@ export async function buildCensus() {
   assert.equal(glossary.entries.filter((entry) =>
     entry.id === "core::core-devastating-wounds").length, 1);
 
+  // Count distinct source-owner/reference witnesses, rather than carrying the
+  // obsolete unexplained 925 literal from the old capture. Independent source
+  // inventory pins 556 for the accepted raw bytes and physical owner scopes.
+  const uniqueReferenceEdges=new Set(entries.map(entry=>JSON.stringify([
+    entry.sourcePage,entry.sourceOwner.id,entry.sourceOwner.occurrenceIndex,
+    signature(entry.sourceOccurrence),
+  ]))).size;
+  assert.equal(uniqueReferenceEdges,556,'unique physical source-owner/reference witnesses changed; review the captured source');
   return {
     schema: "waha-core-player-visible-reference-census.v1",
     generatedFrom: {
@@ -262,7 +270,7 @@ export async function buildCensus() {
     },
     counts: {
       total: entries.length, byStatus,
-      uniqueReferenceEdges: 925,
+      uniqueReferenceEdges,
       currentlyCanonicalResolved: entries.filter((entry) =>
         entry.currentState !== "MISSING_CANONICAL_RECORD").length,
       currentlyPlayerNavigable: entries.filter((entry) =>

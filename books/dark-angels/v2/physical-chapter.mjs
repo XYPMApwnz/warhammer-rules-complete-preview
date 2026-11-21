@@ -1,6 +1,7 @@
 /** Browser-native projection of reviewed source facts onto validated UNITs.
  * This accepts no Chapter selector, import header or snapshot proof field. */
 import {validateRoster} from '../../shared/roster-v2/context.mjs';
+import {sameSourceEvidence,copySourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 const clone=structuredClone;
 const requireValue=(condition,message)=>{if(!condition)throw new TypeError(message);};
 export function resolvePhysicalChapterContexts(book,input){
@@ -16,7 +17,7 @@ export function resolvePhysicalChapterContexts(book,input){
   for(const binding of rows){
    const entity=records.get(binding.canonicalUnitId);
    requireValue(entity?.kind==='DATASHEET'&&!bindings.has(entity.id)&&entity.bookId===binding.sourceOwner&&
-    entity.sourceEntityId===binding.sourceEntityId&&JSON.stringify(entity.provenance)===JSON.stringify(binding.provenance),'Invalid Chapter source owner or identity');
+    entity.sourceEntityId===binding.sourceEntityId&&sameSourceEvidence(entity,binding,{book}),'Invalid Chapter source owner or identity');
    const expected=known?['ADEPTUS ASTARTES','DARK ANGELS']:['ADEPTUS ASTARTES'];
    requireValue(JSON.stringify(entity.data.factionKeywords)===JSON.stringify(expected)&&
     (!known||binding.chapter==='DARK ANGELS'&&binding.keywordIndex===1),'Unreviewed Chapter faction field');
@@ -28,7 +29,7 @@ export function resolvePhysicalChapterContexts(book,input){
   instanceId:unit.instanceId,canonicalUnitId:unit.canonicalUnitId,
   sourceReference:{canonicalId:unit.canonicalUnitId,sourceOwner:records.get(unit.canonicalUnitId).bookId,
    sourceEntityId:records.get(unit.canonicalUnitId).sourceEntityId,path:'/factionKeywords/1',
-   provenance:clone(records.get(unit.canonicalUnitId).provenance)}
+   ...copySourceEvidence(records.get(unit.canonicalUnitId),{book})}
  }));
  // A source-fixed DA member proves army applicability under the one-Chapter
  // restriction and the closed, validated membership. It does not give generic
@@ -37,9 +38,9 @@ export function resolvePhysicalChapterContexts(book,input){
   const entity=records.get(unit.canonicalUnitId),entry=bindings.get(entity.id);
   requireValue(entry,'Unresolved physical UNIT Chapter membership');
   const references=[{canonicalId:entity.id,sourceOwner:entity.bookId,sourceEntityId:entity.sourceEntityId,
-   path:entry.known?'/factionKeywords/1':'/factionKeywords',provenance:clone(entity.provenance)}];
+   path:entry.known?'/factionKeywords/1':'/factionKeywords',...copySourceEvidence(entity,{book})}];
   if(entry.known)references.push({canonicalId:metadata.definition.canonicalId,sourceOwner:metadata.definition.sourceOwner,
-   sourceEntityId:metadata.definition.sourceEntityId,path:'/text',provenance:clone(metadata.definition.provenance)});
+   sourceEntityId:metadata.definition.sourceEntityId,path:'/text',...copySourceEvidence(metadata.definition,{book})});
   return {rosterId:state.rosterId,instanceId:unit.instanceId,canonicalUnitId:entity.id,sourceOwner:entity.bookId,
    status:entry.known?'CHAPTER_CONTEXT_PROVEN':'CHAPTER_CONTEXT_NOT_PROVEN',
    chapter:entry.known?entry.binding.chapter:null,sourceReferences:references,

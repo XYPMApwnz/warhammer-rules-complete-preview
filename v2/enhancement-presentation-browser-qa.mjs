@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 /** Focused selected-rule regression through the real main application.
  * Constructed New Recruit grammar; all changes use ordinary player controls.
  * DOM reads are assertions only. No state, style or runtime-output injection. */
@@ -12,7 +14,7 @@ import {isApplicationTestDependency} from '../books/shared/application-v2/browse
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const fixtures=JSON.parse(fs.readFileSync(new URL('./enhancement-presentation-fixtures.json',import.meta.url),'utf8'));
-const out=process.env.ENHANCEMENT_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/recovery-v2-enhancement-text-fix-78522fcf-20261018/persistent-browser';
+const out=process.env.ENHANCEMENT_V2_SCREENSHOTS||createQaEvidenceDir('enhancement-presentation-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const require=createRequire(import.meta.url);
 let playwright,playwrightVersion;
@@ -45,10 +47,10 @@ const norm=text=>text.replace(/\s+/g,' ').replace(/[‘’]/g,"'").replace(/\s*\
 const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
 async function roster(page){
   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+  await page.locator('[data-roster-view]').waitFor();
 }
 async function imported(page,text){
-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
   await page.locator('[data-roster-action="review-import"]').click();
   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
@@ -64,7 +66,7 @@ async function attachment(page,c,detach=false){
 }
 async function view(page,id,mode){
   await roster(page);
-  if(mode==='Effective')await page.locator('[data-roster-instance-id="'+id+'"]').getByRole('button',{name:'Effective datasheet',exact:true}).click();
+  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
   else{
     await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
     await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();
@@ -105,7 +107,7 @@ const origin='http://127.0.0.1:'+server.address().port;
 const executable=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe';
 let browser;
 try{
-  browser=await playwright.chromium.launch({headless:true,...(fs.existsSync(executable)?{executablePath:executable}:{})});
+  browser=await launchQaBrowser(playwright.chromium,{headless:true,...(fs.existsSync(executable)?{executablePath:executable}:{})});
   for(const [device,viewport]of [['desktop',{width:1440,height:900}],['mobile',{width:390,height:844}]])for(const c of fixtures.cases){
     const context=await browser.newContext({viewport}),page=await context.newPage();
     page.on('pageerror',error=>errors.push({case:c.name,device,error:error.message}));
@@ -142,4 +144,16 @@ try{
   fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({browser:browser?.version(),playwright:playwrightVersion,
     realNewRecruitExportTested:false,results,errors,missing,requestFailures},null,2));
   if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+}
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

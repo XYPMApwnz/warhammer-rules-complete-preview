@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Closed BA consumer membership over independently owned native facts.
  * This is a disposable V2 projection, never a second SM factual owner.
  */
@@ -7,18 +8,22 @@ import {fileURLToPath} from 'node:url';
 import {buildNativeMfmBook as buildSM} from '../../space-marines/v2/mfm-build.mjs';
 import {bindNativeKeywords} from '../../space-marines/v2/native-ability-bindings.mjs';
 import {readSpaceMarinesRosterCorrections} from '../../space-marines/v2/roster-source-review.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {createEffectiveMfmArmyProjection} from '../../shared/tools/effective-mfm-army-projection.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {consumeMfm} from './mfm-boundary.mjs';
 import {buildBAOwnedNative} from './owned-book-view.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone,sort=rows=>[...rows].sort((a,b)=>a.id.localeCompare(b.id));
 
 export function buildBloodAngelsMixedBook({baFacts=read('./generated/effective.json'),
   baBase=read('./generated/base.json'),smFacts=read('../../space-marines/v2/generated/effective.json'),
   membership=read('./inherited-sm-references.json')}={}){
+  baFacts=prepareSourceProducer(baFacts);
+  baBase=prepareSourceProducer(baBase);
+  smFacts=prepareSourceProducer(smFacts);
   assert.deepEqual(membership,read('./inherited-sm-references.json'),'Unreviewed inherited membership');
   const before=[baFacts,baBase,smFacts,membership].map(value=>JSON.stringify(value));
   const smById=new Map(smFacts.entities.map(entity=>[entity.id,entity]));
@@ -55,6 +60,8 @@ export function buildBloodAngelsMixedBook({baFacts=read('./generated/effective.j
     if(entity.sourceKind==='DATASHEET_ABILITY'&&entity.data.wargearAbility)entity.kind='DATASHEET_SECTION';
   }
   const consumed=consumeMfm(baFacts.entities),central=createEffectiveMfmCatalog(),records=new Map();
+  const selectedSources=new Map();
+  const selectedSource=bookId=>{if(!selectedSources.has(bookId))selectedSources.set(bookId,getCurrentMfmSource(bookId));return selectedSources.get(bookId);};
   const partitions={};
   for(const part of ['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings']){
     partitions[part]=[...consumed.partitions[part],...sm.consumed.partitions[part].filter(binding=>canonicalIds.has(binding.entityId))];
@@ -63,7 +70,7 @@ export function buildBloodAngelsMixedBook({baFacts=read('./generated/effective.j
   const own=id=>{
     if(records.has(id))return;
     const fact=central.getById(id);assert.ok(fact,'Unresolved central price reference');
-    assert.equal(fact.provenance.sourceVersion,'v1.6','Stale price');records.set(id,fact);
+    assert.equal(fact.provenance.sourceVersion,selectedSource(fact.factionId).version,'Stale price');records.set(id,fact);
     for(const child of [...fact.qualifierIds||[],...fact.enhancementCostIds||[]])own(child);
   };
   for(const bindings of Object.values(partitions))for(const binding of bindings)own(binding.mfmRecordId);
@@ -71,7 +78,7 @@ export function buildBloodAngelsMixedBook({baFacts=read('./generated/effective.j
     authority:'DISPOSABLE_MIXED_OWNER_CONSUMER_PROJECTION',
     mfmBoundary:{...clone(ba.model.mfmBoundary),integration:'NATIVE_PRICING_BOUND'},
     canonicalMembership:canonicalEntities.map(entity=>({id:entity.id,bookId:entity.bookId,sourceEntityId:entity.sourceEntityId})),
-    mfm:{source:{label:'Official MFM v1.6; source-owned BA/SM partitions'},...partitions,
+    mfm:{source:{label:`Official MFM ${selectedSource('blood-angels').version}; source-owned BA/SM partitions`},...partitions,
       relations:[],eligibilityEvidenceBindings:[]},
     rosterAttachmentPolicies:[],rosterEquipmentCaptionBindings:[],
     chapterContextStatus:'NOT_PROVEN_FOR_INHERITED_PHYSICAL_UNIT',chapterGrantsActive:false};
@@ -98,7 +105,7 @@ export function buildBloodAngelsMixedBook({baFacts=read('./generated/effective.j
     return {...binding,maxModels:member.data.quantity.max};
   });
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
-  const payload=projectArmyBook(book,records,{title:'Blood Angels',edition:'11th Edition'});
+  const payload=prepareSourceProducer(projectArmyBook(book,records,{title:'Blood Angels',edition:'11th Edition'}));
   const templates=new Map([...ba.payload.cards,...sm.payload.cards.filter(card=>inheritedIds.has(card.id))].map(card=>[card.id,card]));
   for(const card of payload.cards){
     const entity=byId.get(card.id),centralFact=records.get(card.id);
@@ -164,7 +171,7 @@ export function writeBloodAngelsMixedBook({check=false}={}){
   const result=buildBloodAngelsMixedBook();
   for(const [name,value]of [['mixed-owner-book',result.book],['mixed-owner-presentation',result.payload],
     ['mixed-owner-points',result.points],['mixed-owner-coverage',result.coverage]]){
-    const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+    const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=serializeSourceJSON(value);
     if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale BA mixed-owner output '+name);else fs.writeFileSync(file,bytes);
   }
   return result;

@@ -2,10 +2,11 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments} from './context.mjs';
-import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {executeRosterEffects} from './effects.mjs';
 import {createRosterRuntime} from './runtime.mjs';
 import {buildAttachmentFeasibility} from './compatibility-feasibility.mjs';
 import {projectAbilityPresentation} from '../army-book-app-v2/ability-presentation.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 
 const clone=value=>structuredClone(value),id=name=>'synthetic-suppression:'+name;
 const evidence={field:['text'],quote:'Eligible models suppress the designated canonical ability while this source applies.'};
@@ -50,8 +51,8 @@ function fixture({global=false,leading=false,abilityId=id('ability-a')}={}) {
 const model=(result,instance='a',profile='eligible')=>result.units.find(unit=>unit.instanceId===instance).profiles.find(row=>row.canonicalProfileId===id(profile));
 const has=(model,name)=>model.abilities.some(ability=>ability.canonicalId===id(name));
 function execute(book,state) {
-  const snapshot=JSON.stringify({book,state});evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),evaluator);
+  const snapshot=JSON.stringify({book,state}),canonical=compileRecipientFixture(book,evaluator);
+  const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),evaluator);
   assert.equal(JSON.stringify({book,state}),snapshot);return result;
 }
 function verify(abilityId=id('ability-a')) {
@@ -93,7 +94,7 @@ assert.equal(has(model(execute(leaderConditional.book,changeAttachment(leaderCon
 
 book.compatibilityFeasibility=buildAttachmentFeasibility(book,book.rosterProfileBindings.map(binding=>({
   unitId:binding.unitId,profileId:binding.profileId,intrinsicKeywords:binding.intrinsicKeywords,maxModels:1})));
-const service=createRosterRuntime(book,evaluator);service.load(state);const effective=service.effective('a');
+const service=createRosterRuntime(compileRecipientFixture(book,evaluator),evaluator);service.load(state);const effective=service.effective('a');
 assert.deepEqual(effective.profiles[0].suppressedAbilityIds,[id('ability-a')]);
 const profiles=result.units[0].profiles.map(row=>({id:row.canonicalProfileId,scopeId:row.scopeId,quantity:row.quantity,abilities:row.abilities,suppressedAbilityIds:row.suppressedAbilityIds}));
 const refs=[{canonicalId:id('ability-a'),parameters:{},group:'ARMY RULES',label:'Identical display caption'}];
@@ -119,7 +120,7 @@ assert.equal(sameProfile.profiles[1].abilities.some(ability=>ability.canonicalId
 const allSuppressed=fixture();allSuppressed.book.rosterReferenceSemantics[id('mixed-reference')].abilities=[canonical('ability-a')];
 allSuppressed.effect.conditions=[];
 allSuppressed.book.compatibilityFeasibility=book.compatibilityFeasibility;
-const allService=createRosterRuntime(allSuppressed.book,evaluator);allService.load(allSuppressed.state);
+const allService=createRosterRuntime(compileRecipientFixture(allSuppressed.book,evaluator),evaluator);allService.load(allSuppressed.state);
 assert.ok(!allService.effective('a').abilities.some(row=>row.id===id('mixed-reference')));
 assert.ok(allService.effective('b').abilities.some(row=>row.id===id('mixed-reference')));
 // Suppression stays effective even when an independent source grants the same ID.

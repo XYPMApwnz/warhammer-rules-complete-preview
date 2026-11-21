@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import {allowApplicationTestDependencies} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -50,9 +52,9 @@ const server=http.createServer((req,res)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin='http://127.0.0.1:'+server.address().port;
-const out=process.env.ARMY_APP_V2_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'dg-auto-import-'));
+const out=process.env.ARMY_APP_V2_SCREENSHOTS||createQaEvidenceDir('dg-auto-import-');
 fs.mkdirSync(out,{recursive:true});
-const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
 const results=[];
 let activePage,step='boot';
 const ready=async page=>{await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
@@ -155,7 +157,7 @@ try {
     const backup=JSON.parse(fs.readFileSync(await download.path(),'utf8'));assert.deepEqual(backup,saved.state);
     await page.evaluate(()=>localStorage.clear());await page.reload();await ready(page);
     await page.getByText('Backup and restore',{exact:true}).click();
-    await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles({name:'roster-v2.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});await settled(page);assert.deepEqual(await snapshot(page),saved);
+    assert.equal(await page.getByLabel('Restore a V2 roster backup',{exact:true}).count(),0);await page.getByLabel('Restore a roster backup',{exact:true}).setInputFiles({name:'roster-v2.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});await settled(page);assert.deepEqual(await snapshot(page),saved);
     step=device+'/bounded-ambiguity-ui';
     const candidateUi=await page.evaluate(async()=>{
       const {createRosterPanel}=await import('/books/shared/army-book-app-v2/roster.mjs');

@@ -1,4 +1,6 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
+import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {createRosterAttachmentService} from '../../shared/roster-v2/attachment-service.mjs';
@@ -11,8 +13,9 @@ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 
 /** Shared text parsing/resolution with book-owned physical source bindings. */
 export function createTyranidsRosterImport(input){
-  const book=copy(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
+  const book=copy(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e])),epicOwners=epicHeroUnitIds(book);
   requireValue(book.bookId==='tyranids'&&metadata?.schema==='tyranids-v2/import-bindings/v1','Invalid Tyranids import domain');
+  const acceptsFaction=createExportFactionCheck(metadata);
   for(const binding of metadata.compositions){
     const fact=index.get(binding.id);
     requireValue(fact?.kind==='COMPOSITION_MEMBER'&&fact.parentId===binding.ownerId&&fact.data.modelProfileId===binding.profileId&&
@@ -68,7 +71,7 @@ export function createTyranidsRosterImport(input){
     };
     if(draft){
       state.importEvidence=copy(draft.metadata);
-      if(draft.metadata.faction&&draft.metadata.faction!=='—'&&normalizeImportLabel(draft.metadata.faction)!=='tyranids')
+      if(!acceptsFaction(draft.metadata.faction))
         error('FOREIGN_FACTION_EXPORT','faction','Export identifies a different faction');
     }
     if(bindings.modelBearers!==undefined&&(!bindings.modelBearers||typeof bindings.modelBearers!=='object'||Array.isArray(bindings.modelBearers)))
@@ -180,6 +183,7 @@ export function createTyranidsRosterImport(input){
         error('INVALID_MODEL_BINDING',id,'Foreign or invalid MODEL Enhancement assignment');
       const physical=formRoster(book,state).units.find(u=>u.instanceId===unit.instanceId);
       for(const id of unit.enhancementIds){
+        if(epicOwners.has(unit.canonicalUnitId))continue;
         const binding=metadata.enhancements.find(e=>e.id===id);requireValue(binding,'Unknown Enhancement source');
         if(binding.scope==='UNIT'){
           if(!binding.eligibleUnitIds.includes(unit.canonicalUnitId))error('WRONG_UPGRADE_UNIT',unit.instanceId,'UNIT Upgrade has a different source owner');
@@ -225,7 +229,7 @@ export function createTyranidsRosterImport(input){
       if(status==='READY')saved=checked.state;
       return {...result,status,roster:status==='READY'?copy(checked.state):null,
         ...(status==='READY'?{}:{candidateRoster:copy(checked.state)}),needsBindings:[...result.needsBindings,...checked.needs],
-        errors:[...result.errors,...checked.errors],legality:'NOT_ASSESSED',mfmSourceVersion:'v1.6',
+        errors:[...result.errors,...checked.errors],legality:'NOT_ASSESSED',mfmSourceVersion:book.mfmImportReferences.sourceVersion,
         unresolvedEquipmentScopes:checked.state.units.filter(u=>!u.equipmentContextKnown).map(u=>u.instanceId)};
     },
     load(snapshot){

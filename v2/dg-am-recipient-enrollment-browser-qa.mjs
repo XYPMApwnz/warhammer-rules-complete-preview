@@ -1,0 +1,291 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+/** O-1: independent accepted-source text checks through normal player controls.
+ * These are constructed New Recruit-compatible inputs, not real user exports.
+ * Browser evaluation only reads state/DOM; it never injects roster or UI state. */
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import http from 'node:http';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
+import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+
+const option=name=>process.argv.find(arg=>arg.startsWith(name+'='))?.slice(name.length+1);
+const repo=path.resolve(option('--root')||fileURLToPath(new URL('../',import.meta.url)));
+const out=path.resolve(option('--out')||createQaEvidenceDir('wh-dg-am-enrollment-browser-'));
+assert.ok(out!==repo&&!out.startsWith(repo+path.sep),'Keep browser evidence outside the repository');
+fs.mkdirSync(out,{recursive:true});
+const norm=value=>String(value).replace(/\s+/g,' ').replace(/[‘’]/g,"'").trim();
+// The accepted SM presentation removes only this exact repeated first line.
+// Keep independent source expectations for the complete restriction and body.
+function enhancementExpectation(c,value=c.canonical.text){
+  const prefix='- '+c.rule+'\n';
+  if(!value?.startsWith(prefix))return null;
+  const text=value.slice(prefix.length),end=text.indexOf('.');
+  assert(end>=0,'Source enhancement restriction is complete');
+  const restriction=text.slice(0,end+1),body=text.slice(end+1).trimStart();
+  assert.match(restriction,/\b(?:model|unit)\b.*\bonly\.$/,'Source enhancement restriction is explicit');
+  assert(body,'Source enhancement body is complete');
+  return {text,restriction,body};
+}
+function assertEnhancementCopy(actual,wanted){
+  assert.deepEqual(actual.restrictions,[wanted.restriction],'Complete enhancement restriction on the same physical block');
+  assert.deepEqual(actual.bodies,[wanted.body],'Full enhancement body on the same physical block');
+  assert.equal(norm(actual.displayText),norm(wanted.text),'Full source text after removing only the exact repeated heading');
+}
+const fixtures=option('--fixtures')?JSON.parse(fs.readFileSync(option('--fixtures'),'utf8')):
+  ['death-guard','adeptus-mechanicus'].flatMap(book=>{const file=path.join(repo,'books',book,'v2/recipient-enrollment-qa.json');return fs.existsSync(file)?[JSON.parse(fs.readFileSync(file,'utf8'))]:[];});
+if(process.argv.includes('--equipment-only'))fixtures.push(...JSON.parse(fs.readFileSync(new URL('./fixtures/source-equipment-entity-browser.json',import.meta.url),'utf8')));
+const cases=fixtures.flatMap(fixture=>fixture.browserCases);
+const runtimePaths=new Set(JSON.parse(fs.readFileSync(path.join(repo,'tools/pages-runtime-manifest.json'),'utf8')).files.map(row=>'/'+row.path));
+const allowed=address=>!/(?:\/sources\/|-qa\.|-fixtures\.)/.test(address)&&(
+  runtimePaths.has(address)||isApplicationTestDependency(address)||
+  /^\/books\/(?:adeptus-mechanicus|death-guard)\/v2\/[\w./-]+\.(?:mjs|js|json|css)$/.test(address)||
+  /^\/books\/(?:adeptus-mechanicus|death-guard)\/assets\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address)||
+  /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2|source-refs-v2)\/[\w./-]+\.(?:mjs|js|json|css)$/.test(address));
+const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json',
+  '.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg'};
+const results=[],errors=[],missing=[],screenshots=[];
+const started=Date.now(),activity={contexts:0,initialLoads:0,imports:0,reloads:0};
+const server=http.createServer((request,response)=>{
+  const requested=decodeURIComponent(new URL(request.url,'http://localhost').pathname),address=requested==='/'?'/index.html':requested;
+  if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
+  const file=path.resolve(repo,'.'+address);
+  if(!allowed(address)||!file.startsWith(repo+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){
+    missing.push(address);response.writeHead(404);response.end();return;
+  }
+  // The server exposes one immutable checkout for this run. Reusing HTTP bytes
+  // across reloads preserves the real JSON/module loading path without re-I/O.
+  response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'public, max-age=3600'});
+  response.end(fs.readFileSync(file));
+});
+const ready=page=>page.waitForFunction(()=>window.ArmyBookAppV2?.roster);
+async function roster(page){
+  await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
+  await page.locator('[data-roster-view]').waitFor();
+}
+async function imported(page,text){
+  activity.imports++;
+  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await page.locator('[data-roster-action="review-import"]').click();
+  await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
+  if(await replace.count()){
+    await replace.click();await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
+  }
+  assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
+  const units=await page.evaluate(()=>window.ArmyBookAppV2.roster.state.units);
+  assert.equal(units.length,3,'Constructed roster has a leader, bodyguard and independent duplicate');
+}
+async function attach(page){
+  await roster(page);
+  await page.locator('[data-attachment-candidate-for="parsed-unit-2"]').selectOption('parsed-unit-1');
+  await page.locator('[data-attachment-target-instance-id="parsed-unit-2"] [data-roster-action="attach"]').click();
+  await page.locator('[data-attached-leader-instance-id="parsed-unit-1"]').waitFor();
+}
+async function detach(page){
+  await roster(page);await page.locator('[data-roster-action="detach"][data-leader-instance-id="parsed-unit-1"]').click();
+  await page.locator('[data-attached-leader-instance-id="parsed-unit-1"]').waitFor({state:'hidden'});
+}
+async function view(page,id,mode){
+  await roster(page);
+  if(mode==='Effective')await openCard(page,page.locator('[data-roster-instance-id="'+id+'"]'));
+  else{
+    await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
+    await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();
+  }
+  await page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').waitFor();
+}
+async function inspect(page,c,device,mode,id,stage,wanted){
+  const card=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]');
+  const rows=await card.locator('article[data-attached-rule-id]').evaluateAll(nodes=>nodes.map(node=>({
+    ruleId:node.dataset.attachedRuleId,sourceInstanceId:node.dataset.sourceInstanceId,sourcePath:JSON.parse(node.dataset.sourceFieldPath),
+    title:node.querySelector('h5')?.textContent||'',text:node.querySelector('[data-attached-rule-text]')?.textContent||'',
+    visible:!!node.getClientRects().length,content:node.innerText,
+    gained:(()=>{const group=node.closest('[data-gained-source-kind]'),headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));
+      return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.innerText||'',headingCount:headings.length,
+        headingVisible:!!headings[0]?.getClientRects().length,sameCard:group?.closest('.unit-card')===node.closest('.unit-card')};})(),
+    restrictions:[...node.querySelectorAll('[data-attached-rule-text] [data-enhancement-restriction]')].map(part=>part.textContent),
+    bodies:[...node.querySelectorAll('[data-attached-rule-text] [data-enhancement-body]')].map(part=>part.textContent),
+    displayText:node.querySelector('[data-attached-rule-text]')?.innerText||''})));
+  const found=rows.filter(row=>norm(row.title)===norm(c.rule));
+  assert.equal(found.length,wanted?1:0,`${c.rule}: ${stage} ${mode} on ${id}`);
+  if(wanted){
+    const row=found[0];assert.equal(row.sourceInstanceId,c.ownerInstance,'Exact physical source');
+    assert.ok(row.visible,'Rule is actually rendered');
+    const body=c.quote?.startsWith(c.rule+':')?c.quote.slice(c.rule.length+1).trim():c.quote;
+    assert.equal(row.ruleId,c.canonical.ruleId,'Exact canonical rule identity');assert.deepEqual(row.sourcePath,c.canonical.sourcePath,'Exact source block');
+    const prefix=row.title+':';
+    const expectedBody=c.canonical.text.startsWith(prefix)?c.canonical.text.slice(prefix.length):c.canonical.text;
+    const enhancement=enhancementExpectation(c);
+    if(enhancement)assertEnhancementCopy(row,enhancement);
+    else assert.equal(row.text,expectedBody,'Original source body is byte-for-byte identical after removing only its repeated heading');
+    assert.ok(!row.text.startsWith(prefix),'Rule heading is not repeated in the body');
+    if(c.quote)assert.ok(norm(enhancement?row.displayText:row.text).includes(norm(enhancementExpectation(c,c.quote)?.text??body)),'Full independent accepted source text, including conditions');
+    assert.ok(norm(row.gained.heading).toLowerCase().includes(norm(c.owner).toLowerCase()),'Visible source owner');
+    assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(row.gained.kind),'Attached source has its exact typed gained group');
+    assert.equal(row.gained.source,c.ownerInstance,'The source group retains the exact physical owner');
+    assert.equal(row.gained.headingCount,1);assert.ok(row.gained.headingVisible&&row.gained.sameCard,'The exact owner heading is visible on this physical recipient card');
+    assert.doesNotMatch(row.content,/Conditional rule|Not automatically|source-clause-|recipient\//i,'No technical labels on O-1 text');
+    const rowNode=card.locator('article[data-attached-rule-id]').filter({has:page.locator('h5',{hasText:c.rule})}).first();
+    await rowNode.scrollIntoViewIfNeeded();assert.ok(await rowNode.isVisible());
+    if(stage==='attached'&&option('--screenshots')?.split('|').includes(c.id)){
+      const filename=`${device}-${String(cases.indexOf(c)+1).padStart(2,'0')}-${mode.toLowerCase()}.png`;
+      await page.screenshot({path:path.join(out,filename)});screenshots.push(filename);
+    }
+  }
+  for(const title of c.negative)assert.ok(!rows.some(row=>norm(row.title)===norm(title)),title+' must not transfer');
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'No horizontal overflow');
+  await assertNoVisibleLegacyAttribution(card);
+  results.push({caseId:c.id,book:c.book,rule:c.rule,source:c.owner,target:id===c.target?(c.reverse?c.leader:c.bodyguard):'Independent duplicate',
+    device,mode,stage,wanted,status:'PASS',observed:found});
+}
+await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+const origin='http://127.0.0.1:'+server.address().port;
+const snapshots=[];
+let browser,completed=false;
+try{
+  browser=await launchChromium();
+  const selected=cases.filter(c=>(!process.argv.includes('--equipment-only')||typeof c.expectedOwner==='boolean')&&
+    (!option('--case')||option('--case').split('|').some(filter=>norm(c.rule).toLowerCase().includes(norm(filter).toLowerCase())))&&
+    (!option('--books')||option('--books').split(',').includes(c.book)));
+  assert.ok(selected.length,'Case filter must select at least one case');
+  console.log('DG/AM enrollment browser evidence: '+out);
+  const devices=[['desktop',{width:1440,height:900}],['mobile',{width:390,height:844}]]
+    .filter(([device])=>!option('--device')||option('--device')===device);
+  for(const [device,viewport]of devices)for(const fixture of fixtures){
+    const bookCases=selected.filter(c=>c.book===fixture.bookId);
+    if(!bookCases.length&&option('--books')&&!option('--books').split(',').includes(fixture.bookId))continue;
+    // One real application per book/device; replacement uses the player's UI.
+    const context=await browser.newContext({viewport,serviceWorkers:'block'}),page=await context.newPage();activity.contexts++;
+    page.setDefaultTimeout(30000);page.setDefaultNavigationTimeout(60000);
+    page.on('pageerror',error=>errors.push({book:fixture.bookId,device,error:error.message}));
+    try{
+      await page.goto(origin+'/v2/app.html');activity.initialLoads++;
+      await page.locator('[data-v2-book="'+fixture.bookId+'"]').click();await ready(page);
+      const groups=new Map();
+      for(const c of process.argv.includes('--source-only')?[]:bookCases){
+        const key=JSON.stringify([c.text,c.ownerInstance,c.target,!!c.skipAttach]);
+        if(!groups.has(key))groups.set(key,[]);groups.get(key).push(c);
+      }
+      for(const group of groups.values()){
+        const first=group[0],groupStarted=Date.now();
+        try{
+          await imported(page,first.text);
+          if(await page.evaluate(()=>window.ArmyBookAppV2.roster.state.attachments.length))await detach(page);
+          if(!first.skipAttach)await attach(page);
+          const state=await page.evaluate(()=>window.ArmyBookAppV2.roster.state);
+          for(const c of group)snapshots.push({id:c.id,book:c.book,device,state});
+          await view(page,first.ownerInstance,'Guide');
+          const ownerText=await page.locator('main .unit-card[data-roster-instance-id="'+first.ownerInstance+'"]').innerText();
+          for(const c of group){
+            const original=c.canonical.text.startsWith(c.rule+':')?c.canonical.text.slice(c.rule.length+1):c.canonical.text;
+            const enhancement=enhancementExpectation(c);
+            if(enhancement){
+              const ownerRule=page.locator('main .unit-card[data-roster-instance-id="'+c.ownerInstance+'"] [data-enhancement-owner-instance-id="'+c.ownerInstance+'"][data-card-id="'+c.canonical.ruleId+'"]');
+              assert.equal(await ownerRule.count(),(c.expectedOwner??true)?1:0,'One selected enhancement on the exact physical owner');
+              if(c.expectedOwner??true){
+                assert.ok(await ownerRule.isVisible(),'Owner enhancement is visible');
+                const copy=await ownerRule.evaluate(node=>({
+                  restrictions:[...node.querySelectorAll('[data-enhancement-restriction]')].map(part=>part.textContent),
+                  bodies:[...node.querySelectorAll('[data-enhancement-body]')].map(part=>part.textContent),
+                  displayText:node.querySelector('[data-enhancement-text]')?.innerText||'',
+                  heading:node.querySelector('h4 .book-fact-value')?.textContent,
+                  ruleId:node.dataset.cardId,owner:node.dataset.enhancementOwnerInstanceId}));
+                assert.equal(copy.ruleId,c.canonical.ruleId,'Exact owner rule identity');
+                assert.equal(copy.owner,c.ownerInstance,'Exact physical enhancement owner');
+                assert.equal(copy.heading,c.rule,'One exact source heading');
+                assertEnhancementCopy(copy,enhancement);
+              }
+            }else assert.equal(norm(ownerText).includes(norm(original)),c.expectedOwner??true,'Owner uses the same physical equipment source gate');
+          }
+          const before=await page.evaluate(()=>JSON.stringify(window.ArmyBookAppV2.roster.projection));
+          for(const mode of ['Effective','Guide']){
+            await view(page,first.target,mode);
+            for(const c of group)await inspect(page,c,device,mode,c.target,'attached',c.expectedAttached);
+            await view(page,'parsed-unit-3',mode);
+            for(const c of group)await inspect(page,c,device,mode,'parsed-unit-3','independent-control',false);
+          }
+          assert.equal(await page.evaluate(()=>JSON.stringify(window.ArmyBookAppV2.roster.projection)),before,'Reading text cannot change effects');
+          if(!first.skipAttach)await detach(page);
+          for(const mode of ['Effective','Guide']){
+            await view(page,first.target,mode);
+            for(const c of group)await inspect(page,c,device,mode,c.target,'detached',false);
+          }
+          if(!first.skipAttach)await attach(page);
+          // One genuine reload per distinct physical fixture, shared only by
+          // rules proven from that exact same import/owner/recipient context.
+          await page.reload();activity.reloads++;await ready(page);
+          for(const mode of ['Effective','Guide']){
+            await view(page,first.target,mode);
+            for(const c of group)await inspect(page,c,device,mode,c.target,'reattached-reload',c.expectedAttached);
+          }
+          for(const c of group)console.log('PASS '+device+' '+c.rule);
+          console.log('Fixture '+device+' '+first.id+': '+group.length+' rules, '+(Date.now()-groupStarted)+'ms');
+        }catch(error){
+          process.exitCode=1;
+          for(const c of group)results.push({caseId:c.id,book:c.book,rule:c.rule,device,status:'NEW_FAIL',error:error.stack});
+          console.error('FAIL '+device+' '+first.rule+': '+error.message);
+          const filename=`failure-${device}-${cases.indexOf(first)+1}.png`;
+          await page.screenshot({path:path.join(out,filename),fullPage:true}).catch(()=>{});screenshots.push(filename);
+        }
+        fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({results,errors,missing,screenshots,snapshots},null,2));
+      }
+      // Return through normal navigation; retain this same book/device context.
+      for(const record of fixture.records.filter(row=>!row.browserCase)){
+        await page.locator('[data-v2-primary-nav] [data-v2-destination="ARMY_BOOK"]').click();
+        await page.locator('[data-v2-book="'+fixture.bookId+'"]').click();await ready(page);
+        const presentation=JSON.parse(fs.readFileSync(path.join(repo,'books',fixture.bookId,'v2/generated/app-presentation.json'),'utf8'));
+        const rule=presentation.cards.find(card=>card.id===record.ruleId);assert.equal(rule.kind,'DETACHMENT_RULE');
+        await page.locator('main a[data-target-id="'+rule.parentId+'"]').first().click();
+        const card=page.locator('main [data-card-id="'+rule.id+'"]');await card.waitFor();
+      // Canonical text may include a flattened duplicate of its structured
+      // table. The reader renders the actual cells, with visual spacing.
+      const tables=new Map();
+      for(const field of rule.fields.filter(field=>field.presentation==='table-cell')){
+        const key=field.table.id;if(!tables.has(key))tables.set(key,[]);
+        const rows=tables.get(key);rows[field.table.row]||=[];rows[field.table.row][field.table.column]=field.value;
+      }
+      let prose=record.quote;
+      for(const rows of tables.values()){
+        const flat=rows.flat().join('');if(prose.endsWith(flat))prose=prose.slice(0,-flat.length).trimEnd();
+      }
+      for(const field of rule.fields.filter(field=>field.presentation==='table-cell')){
+        const cell=card.locator('[data-fact-id="'+field.id+'"]');
+        assert.equal(await cell.count(),1,'One exact source-bound table cell');
+        assert.equal(await cell.textContent(),field.value,'Original table cell text');assert.ok(await cell.isVisible());
+        assert.ok(await cell.evaluate(node=>!!node.closest('table,[role="table"]')),'Cell is in the visible reader table');
+      }
+      assert.ok(norm(await card.innerText()).includes(norm(prose)),'Enemy receiver keeps original detachment prose');
+      assert.ok(await card.isVisible());results.push({book:fixture.bookId,ruleId:rule.id,clauseId:record.clauseId,device,mode:'Source detachment',status:'PASS'});
+      console.log('PASS '+device+' source detachment '+record.ruleId+'/'+record.clauseId);
+      }
+    }finally{await context.close();}
+  }
+  if(!process.argv.includes('--source-only')){
+    for(const c of selected)for(const [device]of devices){
+      const checks=results.filter(row=>row.caseId===c.id&&row.device===device&&row.status==='PASS');
+      assert.equal(checks.length,8,'Every original rule retains all eight stage/view assertions: '+c.id+'/'+device);
+      assert.equal(new Set(checks.map(row=>[row.mode,row.stage,row.target].join('/'))).size,8,'No repeated assertion substitutes for a missing stage');
+    }
+  }
+  assert.equal(errors.length,0,'No uncaught application errors');assert.equal(missing.length,0,'No missing runtime resources');
+  completed=true;
+}finally{
+  fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:!completed||process.exitCode||errors.length||missing.length?'NEW_FAIL':'PASS',
+    elapsedMs:Date.now()-started,activity,caseIds:cases.map(c=>c.id),browser:browser?.version(),serviceWorkers:'blocked',realNewRecruitExportTested:false,results,errors,missing,screenshots,snapshots},null,2));
+  if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+}
+
+async function openCard(page,owner){
+  assert.equal(await page.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+  await owner.getByRole('button',{name:'Open card',exact:true}).click();
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
+}

@@ -1,0 +1,248 @@
+{
+  "schema": "core-importer-approved-redistributions/v1",
+  "baselineHead": "7b15dc36425ac577b6928837ec9983409972e278",
+  "authorization": "Owner clarification 1: explicit sentence redistribution with no loss; 21.01 approved after the recorded ownership blocker.",
+  "records": [
+    {
+      "id": "core-rule-21-01-surge-moves",
+      "code": "21.01",
+      "sectionAnchor": "Flying-and-Surging",
+      "sourceUnitId": "waha-core-rule-21-01",
+      "sourceAnchor": "Surge-Moves",
+      "baselineSemanticSHA256": "5ecc1227c32655eb4b6f25ff8981678ba00452853c099c97edda95f03c8afab6",
+      "reason": "The accepted 21.01 importer overcaptured the source-owned 21.02 surge diagram/SEE ALSO and 21.03 flying diagram. Their source words are unchanged; the move restores their numbered owners rather than deleting text.",
+      "removedSentences": [
+        {
+          "text": "SEE ALSO",
+          "normalizedSHA256": "6a36aa4852cc379521925dbe47f651aabe49b9ca45feaac698f89db1fc6c6fd6",
+          "normalizedSentenceSHA256": "6a36aa4852cc379521925dbe47f651aabe49b9ca45feaac698f89db1fc6c6fd6",
+          "destinationId": "core-rule-21-02-surge-move",
+          "destinationSourceUnitId": "waha-core-rule-21-02",
+          "destinationAnchor": "SURGE-MOVE"
+        },
+        {
+          "text": "• Rules Sequencing 01.03.02",
+          "normalizedSHA256": "3c5fe378ffe8100fb04c63760baa4a377bf8175d3a85f2fa288577e7345a0f7c",
+          "normalizedSentenceSHA256": "3c5fe378ffe8100fb04c63760baa4a377bf8175d3a85f2fa288577e7345a0f7c",
+          "destinationId": "core-rule-21-02-surge-move",
+          "destinationSourceUnitId": "waha-core-rule-21-02",
+          "destinationAnchor": "SURGE-MOVE"
+        },
+        {
+          "text": "MAKING A SURGE MOVE",
+          "normalizedSHA256": "3a149c717eb6846d4b9311c9d4ac846a13d9da6b45334d0c21c6b22cf11094de",
+          "normalizedSentenceSHA256": "3a149c717eb6846d4b9311c9d4ac846a13d9da6b45334d0c21c6b22cf11094de",
+          "destinationId": "core-rule-21-02-surge-move",
+          "destinationSourceUnitId": "waha-core-rule-21-02",
+          "destinationAnchor": "SURGE-MOVE"
+        },
+        {
+          "text": "• Unit A shoots, and destroys two models from unit B.",
+          "normalizedSHA256": "e43c866c94d915982ebabcfd5f6c81da490aa1ab8d12f6f6235201559cac71c6",
+          "normalizedSentenceSHA256": "e43c866c94d915982ebabcfd5f6c81da490aa1ab8d12f6f6235201559cac71c6",
+          "destinationId": "core-rule-21-02-surge-move",
+          "destinationSourceUnitId": "waha-core-rule-21-02",
+          "destinationAnchor": "SURGE-MOVE"
+        },
+        {
+          "text": "• Unit B has an ability that allows it to make a surge move of D6\" after an enemy unit has shot, if one or more of its models were destroyed by those attacks.",
+          "normalizedSHA256": "b104e62e8a759d7af6080b97be006a93720d096798c10e924e89b2619dc6f343",
+          "normalizedSentenceSHA256": "b104e62e8a759d7af6080b97be006a93720d096798c10e924e89b2619dc6f343",
+          "destinationId": "core-rule-21-02-surge-move",
+          "destinationSourceUnitId": "waha-core-rule-21-02",
+          "destinationAnchor": "SURGE-MOVE"
+        },
+        {
+          "text": "The active player rolls one D6, resulting in a 4.",
+          "normalizedSHA256": "a8f8a58635534cd2089324a3f2ca7e835743bb7d6958650d618f9c2c9e403a12",
+          "normalizedSentenceSHA256": "a8f8a58635534cd2089324a3f2ca7e835743bb7d6958650d618f9c2c9e403a12",
+          "destinationId": "core-rule-21-02-surge-move",
+          "destinationSourceUnitId": "waha-core-rule-21-02",
+          "destinationAnchor": "SURGE-MOVE"
+        },
+        {
+          "text": "• Unit B makes a surge move, each of its surviving models moving up to 4\" towards the closest enemy unit (unit C).",
+          "normalizedSHA256": "322af1b33e081945f21755719a494de8093eee3df45304ee0fd7e864ebab625e",
+          "normalizedSentenceSHA256": "322af1b33e081945f21755719a494de8093eee3df45304ee0fd7e864ebab625e",
+          "destinationId": "core-rule-21-02-surge-move",
+          "destinationSourceUnitId": "waha-core-rule-21-02",
+          "destinationAnchor": "SURGE-MOVE"
+        },
+        {
+          "text": "It ends this move engaged with that unit.",
+          "normalizedSHA256": "f77b21b2241cd225191a1a7087694c498a3d85a3bd3f257d6a2b6e31c776eb8e",
+          "normalizedSentenceSHA256": "f77b21b2241cd225191a1a7087694c498a3d85a3bd3f257d6a2b6e31c776eb8e",
+          "destinationId": "core-rule-21-02-surge-move",
+          "destinationSourceUnitId": "waha-core-rule-21-02",
+          "destinationAnchor": "SURGE-MOVE"
+        },
+        {
+          "text": "TAKING TO THE SKIES",
+          "normalizedSHA256": "42ed1ff8f4fe77ecf578ba7022fb19d4a9df7ed93f3f284412b4582af7729933",
+          "normalizedSentenceSHA256": "42ed1ff8f4fe77ecf578ba7022fb19d4a9df7ed93f3f284412b4582af7729933",
+          "destinationId": "core-rule-21-03-flying-models",
+          "destinationSourceUnitId": "waha-core-rule-21-03",
+          "destinationAnchor": "Flying-Models"
+        },
+        {
+          "text": "• This Riptide Battlesuit can FLY.",
+          "normalizedSHA256": "067ea6dcdbe6604d680e49d39219ee1bad33b06d985e1eb68d972697e42627e0",
+          "normalizedSentenceSHA256": "067ea6dcdbe6604d680e49d39219ee1bad33b06d985e1eb68d972697e42627e0",
+          "destinationId": "core-rule-21-03-flying-models",
+          "destinationSourceUnitId": "waha-core-rule-21-03",
+          "destinationAnchor": "Flying-Models"
+        },
+        {
+          "text": "It makes an advance move with a maximum distance of 16\".",
+          "normalizedSHA256": "56057c441e44b2e2380d350ee07b9101d20ab1b9032574b413d704e64e966073",
+          "normalizedSentenceSHA256": "56057c441e44b2e2380d350ee07b9101d20ab1b9032574b413d704e64e966073",
+          "destinationId": "core-rule-21-03-flying-models",
+          "destinationSourceUnitId": "waha-core-rule-21-03",
+          "destinationAnchor": "Flying-Models"
+        },
+        {
+          "text": "• Before moving the unit, the active player declares that it will take to the skies.",
+          "normalizedSHA256": "b8c90cdca0fb4c5469a664f37006b907286d1b4ac8859a9ba6e3004ce6d8ed2c",
+          "normalizedSentenceSHA256": "b8c90cdca0fb4c5469a664f37006b907286d1b4ac8859a9ba6e3004ce6d8ed2c",
+          "destinationId": "core-rule-21-03-flying-models",
+          "destinationSourceUnitId": "waha-core-rule-21-03",
+          "destinationAnchor": "Flying-Models"
+        },
+        {
+          "text": "That move’s maximum distance is reduced to 14\", but while making that move, the Riptide Battlesuit can move through all enemy units (including VEHICLES) and all terrain features, ignoring any vertical distance that would normally be counted to ascend and descend terrain features.",
+          "normalizedSHA256": "225885d3250423b33e3c88e106f6fb43291a0a142c42cdeda543237342444a91",
+          "normalizedSentenceSHA256": "225885d3250423b33e3c88e106f6fb43291a0a142c42cdeda543237342444a91",
+          "destinationId": "core-rule-21-03-flying-models",
+          "destinationSourceUnitId": "waha-core-rule-21-03",
+          "destinationAnchor": "Flying-Models"
+        }
+      ]
+    },
+    {
+      "id": "core-rule-12-07-consolidate",
+      "code": "12.07",
+      "sectionAnchor": "Fight-Phase",
+      "sourceUnitId": "waha-core-rule-12-07",
+      "sourceAnchor": "4.-Consolidate",
+      "baselineSemanticSHA256": "e7848e29e3dc9f306e2c6eafd901a841ab336a6d57dade38cf88e53978b35efe",
+      "reason": "Explicit owner-authorized redistribution: these exact baseline sentences are retained by the adjacent numbered owner in the same source section; no global or cross-section search is permitted.",
+      "removedSentences": [
+        {
+          "text": "NEW FOES TO FACE",
+          "normalizedSentenceSHA256": "7225fe3d67ab3f357e048a02b76791b80ff65384f090ccd92a6b802bf53ddfb8",
+          "destinationId": "core-rule-12-08-consolidation-move",
+          "destinationSourceUnitId": "waha-core-rule-12-08",
+          "destinationAnchor": "CONSOLIDATION-MOVE"
+        },
+        {
+          "text": "While using the engaging consolidation mode, your unit can end its consolidation move engaged with enemy units that have not yet fought this phase.",
+          "normalizedSentenceSHA256": "5241ac18dc6b34469469e1c97295af3532cab8af7aa77af721299dc35e8978a7",
+          "destinationId": "core-rule-12-08-consolidation-move",
+          "destinationSourceUnitId": "waha-core-rule-12-08",
+          "destinationAnchor": "CONSOLIDATION-MOVE"
+        },
+        {
+          "text": "If so, each of those enemy units will have an opportunity to fight your unit, so think carefully about how aggressively you want to move your unit using this mode.",
+          "normalizedSentenceSHA256": "264f24876779cec185974b479ff86bc44e5a037b11e63a8606f4b51a7eb02953",
+          "destinationId": "core-rule-12-08-consolidation-move",
+          "destinationSourceUnitId": "waha-core-rule-12-08",
+          "destinationAnchor": "CONSOLIDATION-MOVE"
+        }
+      ]
+    },
+    {
+      "id": "core-rule-20-03-advanced-arriving-from-strategic-reserves",
+      "code": "20.03",
+      "sectionAnchor": "Strategic-Reserves",
+      "sourceUnitId": "waha-core-rule-20-03",
+      "sourceAnchor": "Arriving-from-Strategic-Reserves",
+      "baselineSemanticSHA256": "eb2dc23f53f8d3f417e2d3f57f2477fe3530cab47ccd626a4f03039835ee4bb0",
+      "reason": "Explicit owner-authorized redistribution: these exact baseline sentences are retained by the adjacent numbered owner in the same source section; no global or cross-section search is permitted.",
+      "removedSentences": [
+        {
+          "text": "At the end of the third battle round, unless otherwise stated, all strategic reserves units that have not made one or more ingress moves are destroyed, with the following exceptions:",
+          "normalizedSentenceSHA256": "a74cfb879e6e1c8b6a1aa5d4870c47302ba1bf019981512ce6f4cdaf173c41d0",
+          "destinationId": "core-rule-20-04-ingress-move",
+          "destinationSourceUnitId": "waha-core-rule-20-04",
+          "destinationAnchor": "INGRESS-MOVE"
+        },
+        {
+          "text": "• Units embarked within TRANSPORTS that have made an ingress move during the battle.",
+          "normalizedSentenceSHA256": "89b62b083067cd4a4a3918f6f0bea5aa6484089a30a51d414dd136ee635c8acd",
+          "destinationId": "core-rule-20-04-ingress-move",
+          "destinationSourceUnitId": "waha-core-rule-20-04",
+          "destinationAnchor": "INGRESS-MOVE"
+        },
+        {
+          "text": "• Repositioned units (see above).",
+          "normalizedSentenceSHA256": "ea5676b6c4c8dc6da2846ee67df1f40775432a63c25f63fb7f4980014be425fa",
+          "destinationId": "core-rule-20-04-ingress-move",
+          "destinationSourceUnitId": "waha-core-rule-20-04",
+          "destinationAnchor": "INGRESS-MOVE"
+        },
+        {
+          "text": "SEE ALSO",
+          "normalizedSentenceSHA256": "6a36aa4852cc379521925dbe47f651aabe49b9ca45feaac698f89db1fc6c6fd6",
+          "destinationId": "core-rule-20-04-ingress-move",
+          "destinationSourceUnitId": "waha-core-rule-20-04",
+          "destinationAnchor": "INGRESS-MOVE"
+        },
+        {
+          "text": "• Not on the Battlefield 01.02.04",
+          "normalizedSentenceSHA256": "40b48aa0b4a9228fb58190303287285ba48aff3f21c51fab57e63f0a33a90786",
+          "destinationId": "core-rule-20-04-ingress-move",
+          "destinationSourceUnitId": "waha-core-rule-20-04",
+          "destinationAnchor": "INGRESS-MOVE"
+        },
+        {
+          "text": "• Persisting Rules Effects 01.02.02",
+          "normalizedSentenceSHA256": "876c385721603fb76fbdea845c7259a7d33bfc45eae28ea78f8096d104d186f2",
+          "destinationId": "core-rule-20-04-ingress-move",
+          "destinationSourceUnitId": "waha-core-rule-20-04",
+          "destinationAnchor": "INGRESS-MOVE"
+        },
+        {
+          "text": "• Setting Up Large Models 03.02.02",
+          "normalizedSentenceSHA256": "a62af2cb9af6db3fb53c927943e946e35ff16f72e993be08c318890d268cf600",
+          "destinationId": "core-rule-20-04-ingress-move",
+          "destinationSourceUnitId": "waha-core-rule-20-04",
+          "destinationAnchor": "INGRESS-MOVE"
+        },
+        {
+          "text": "• Set Up As Reinforcements 20.03.01",
+          "normalizedSentenceSHA256": "84f0021342615a531bb67fa13effadd0d4de6f394251ce900e458a2b78052237",
+          "destinationId": "core-rule-20-04-ingress-move",
+          "destinationSourceUnitId": "waha-core-rule-20-04",
+          "destinationAnchor": "INGRESS-MOVE"
+        }
+      ]
+    },
+    {
+      "id": "core-rule-19-01-forming-attached-units",
+      "code": "19.01",
+      "sectionAnchor": "Attached-Units",
+      "sourceUnitId": "waha-core-rule-19-01",
+      "sourceAnchor": "Forming-Attached-Units",
+      "baselineSemanticSHA256": "3a31cc8e74b791294fc67e8fee68832523efcf8b1fdc1e06a0f30718bd243d43",
+      "reason": "The old parent overcaptured SEE ALSO belonging to the physically embedded LEADER card in Attached Units 19. The selected source occurrence is order118 in section19; the later code24.22 occurrence is not admissible for this transfer.",
+      "removedSentences": [
+        {
+          "text": "SEE ALSO",
+          "normalizedSentenceSHA256": "6a36aa4852cc379521925dbe47f651aabe49b9ca45feaac698f89db1fc6c6fd6",
+          "destinationId": "core-leader",
+          "destinationSourceUnitId": "waha-core-rule-24-22",
+          "destinationAnchor": null,
+          "destinationSourceOrder": 118
+        },
+        {
+          "text": "• Attached Units After Their Bodyguard Unit is Destroyed 19.01.01",
+          "normalizedSentenceSHA256": "0cafdd066b675659a4f03fb3e88ee2b9b51e5653b0a1b10bbe054931ec362681",
+          "destinationId": "core-leader",
+          "destinationSourceUnitId": "waha-core-rule-24-22",
+          "destinationAnchor": null,
+          "destinationSourceOrder": 118
+        }
+      ]
+    }
+  ]
+}

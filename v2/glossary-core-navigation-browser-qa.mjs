@@ -1,3 +1,5 @@
+import {assertDialogActionLabel} from '../tests/helpers/player-dialog-assertions.mjs';
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 /** Core-aware reference navigation stays optional: metadata failure cannot disable Glossary. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -9,7 +11,7 @@ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 import {encodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
-const out=process.env.WH_CORE_NAV_BROWSER_EVIDENCE||fs.mkdtempSync(path.join(os.tmpdir(),'core-glossary-navigation-'));
+const out=process.env.WH_CORE_NAV_BROWSER_EVIDENCE||createQaEvidenceDir('core-glossary-navigation-');
 fs.mkdirSync(out,{recursive:true});
 const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
 const placements=JSON.parse(fs.readFileSync(path.join(repo,'books/core-rules/reader/search-index.json'),'utf8'));
@@ -164,7 +166,7 @@ try{
     const diagnostic=await page.locator('[data-core-navigation-status]').evaluate(node=>({status:node.dataset.coreNavigationStatus,reason:node.dataset.coreNavigationError||null}));
     if(diagnostic.status==='UNAVAILABLE')assert(diagnostic.reason?.length,'failure reason remains observable');
     const view=await popup(page,'Deep Strike','core-deep-strike');assert.equal(await view.getByRole('link',{name:'Open in Core Rules'}).count(),Number(fault==='success'));
-    await view.getByRole('link',{name:'Open full entry',exact:true}).click();await article(page,'core::core-deep-strike').waitFor();
+    await assertDialogActionLabel(page);await view.getByRole('link',{name:'Open in Glossary',exact:true}).click();await article(page,'core::core-deep-strike').waitFor();
     assert.equal(await article(page,'core::core-deep-strike').getByRole('link',{name:'Open in Core Rules'}).count(),Number(fault==='success'));
     assert.equal(await page.getByText('Glossary unavailable',{exact:true}).count(),0);
     await page.getByRole('button',{name:'Glossary',exact:true}).click();await page.getByRole('searchbox',{name:'Search glossary',exact:true}).waitFor();

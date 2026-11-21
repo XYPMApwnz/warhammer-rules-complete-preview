@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 const keys=['canLead','canSupport','canBeLedBy','canBeSupportedBy'];
 const inverse={leader:['canLead','canBeLedBy'],support:['canSupport','canBeSupportedBy']};
 
@@ -51,14 +52,14 @@ export function buildRelationGraphs(units,edges,options=null){
     if(seen.has(id))continue;seen.add(id);
     const constraint=constraintByEdge.get(id);
     if(constraint)usedConstraints.add(id);
-    const fact=(unit,mandatory)=>({unitId:unit.id,keywords:unit.keywords||[],characterCount:(unit.keywords||[]).some(value=>String(value).toUpperCase()==='CHARACTER')?1:0,...(edge.removeKeywords?.length?{removeKeywords:edge.removeKeywords}: {}),...(mandatory?{mandatory:true}: {}),...(constraint?{attachmentGroupConstraint:structuredClone(constraint)}:{})});
+    const fact=(unit,mandatory)=>({unitId:unit.id,keywords:requiredKeywordField(unit)||[],characterCount:(requiredKeywordField(unit)||[]).some(value=>String(value).toUpperCase()==='CHARACTER')?1:0,...(edge.removeKeywords?.length?{removeKeywords:edge.removeKeywords}: {}),...(mandatory?{mandatory:true}: {}),...(constraint?{attachmentGroupConstraint:structuredClone(constraint)}:{})});
     graphs.get(source.id)[pair[0]].push(fact(target,edge.mandatory===true));
     graphs.get(target.id)[pair[1]].push(fact(source,false));
   }
   for(const key of constraintByEdge.keys())if(!usedConstraints.has(key))throw new Error(`Attachment-group constraint has no canonical relation edge: ${key.replaceAll('\0',' -> ')}`);
   const maxCharacters=unitId=>{
     const graph=graphs.get(unitId),unit=byId.get(unitId);
-    return ((unit.keywords||[]).some(value=>String(value).toUpperCase()==='CHARACTER')?1:0)
+    return ((requiredKeywordField(unit)||[]).some(value=>String(value).toUpperCase()==='CHARACTER')?1:0)
       +(graph.canBeLedBy.length?1:0)+(graph.canBeSupportedBy.length?1:0);
   };
   for(const [unitId,graph] of graphs){

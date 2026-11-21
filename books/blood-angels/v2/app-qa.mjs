@@ -1,3 +1,6 @@
+import {assertRelatedPanelSnapshot} from '../../../tests/helpers/related-panel-assertions.mjs';
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Native application wiring only; no browser or full semantic certification. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,7 +9,7 @@ import {buildApp,assertBloodAngelsAppSourceReview} from './app-build.mjs';
 import {registration} from './registration.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import {armyBooks} from '../../../v2/army-books.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),sm=read('../../space-marines/v2/generated/effective.json');
 const before=JSON.stringify([facts,sm]),payload=buildApp(),cards=new Map(payload.cards.map(card=>[card.id,card]));
 const membership=read('./inherited-sm-references.json'),checks=[];
@@ -23,7 +26,7 @@ check('exact-source-owned-corpus-and-inherited-identities',()=>{
  assert.equal(ds.filter(card=>card.identity.registryId==='blood-angels').length,14);
  assert.equal(ds.filter(card=>card.identity.registryId==='space-marines').length,67);
  for(const card of ds){const source=[...facts.entities,...sm.entities].find(row=>row.id===card.id);assert.ok(source);
-  assert.equal(card.identity.canonicalId,source.id);assert.equal(card.identity.registryId,source.bookId);assert.deepEqual(card.provenance,source.provenance);}
+  assert.equal(card.identity.canonicalId,source.id);assert.equal(card.identity.registryId,source.bookId);assert.deepEqual(sourceSnapshot(card),sourceSnapshot(source));}
  for(const row of membership.excludedOtherChapterDatasheets)assert.ok(!cards.has(row.canonicalId));
  assert.equal(payload.groups.find(group=>group.id==='army-rules').itemIds.length,3);
  assert.equal(payload.groups.find(group=>group.id==='detachments').itemIds.length,18);
@@ -34,8 +37,9 @@ check('exact-source-owned-corpus-and-inherited-identities',()=>{
 check('all-reference-and-related-rule-targets-resolve',()=>{
  for(const card of payload.cards)for(const id of [...card.children||[],...(card.links||[]).map(link=>link.targetId),...(card.fields||[]).flatMap(field=>field.targetIds||[])])assert.ok(cards.has(id),'Missing target '+id);
  assert.equal(payload.relatedRules.rows.length,81*100);
- for(const row of payload.relatedRules.rows){assert.equal(cards.get(row.ruleId).parentId,row.detachmentId);assert.equal(row.state,'UNKNOWN');}
+ for(const row of payload.relatedRules.rows){assert.equal(cards.get(row.ruleId).parentId,row.detachmentId);}
 });
+assertRelatedPanelSnapshot(payload);
 check('limitations-and-source-review-stay-honest',()=>{
  const result=assertBloodAngelsAppSourceReview();assert.equal(result.status,'PARTIAL');assert.equal(result.classifications.UNVERIFIED,301);
  assert.equal(result.semanticCompleteness,'NOT_PROVEN');assert.equal(payload.rulePresentationLimitations.realNewRecruitExportTested,false);

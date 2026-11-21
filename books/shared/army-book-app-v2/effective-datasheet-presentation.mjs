@@ -4,6 +4,40 @@ const value=field=>field?.displayValue??field?.value??null;
 const stable=item=>Array.isArray(item)?item.map(stable):item&&typeof item==='object'
   ?Object.fromEntries(Object.keys(item).sort().map(key=>[key,stable(item[key])])):item;
 const key=item=>JSON.stringify(stable(item));
+/** A reference is a player-facing name and optional definition. Binding status
+ * and scope remain facts on its canonical record, not ability prose. */
+export function ruleReferenceTextFields(card) {
+  const label=card.fields.find(field=>path(field)==='/label');
+  return card.fields.filter(field=>['/label','/text'].includes(path(field))&&
+    typeof field.value==='string'&&field.value.length&&
+    !(path(field)==='/text'&&field.value===label?.value));
+}
+/** Display-only source blocks. Keep every source character, including the
+ * printed bullet marker, so field text/provenance can still be checked exactly.
+ * Only an exact heading already supplied by this section is omitted. */
+export function sourceTextBlocks(value,{heading}={}) {
+  if(typeof value!=='string')return [];
+  const text=heading&&value.startsWith(heading+'\n')?value.slice(heading.length+1):value;
+  const blocks=[];
+  for(const line of text.split('\n')){
+    const kind=/^\s*[-•] /.test(line)?'LIST':'PARAGRAPH';
+    const previous=blocks.at(-1);
+    if(previous?.kind===kind)previous.lines.push(line);
+    else blocks.push({kind,lines:[line]});
+  }
+  return blocks;
+}
+/** Clauses remain separate. Only identical full prose from the same recorded
+ * rule and physical source may share a display node on this component card. */
+export function conditionalSourceTextKey(row,provenance,{sourceKind=null}={}) {
+  if(!provenance||typeof row.ruleId!=='string'||!row.ruleId||typeof row.policy?.contextQuote!=='string')return null;
+  const physical=typeof row.sourceInstanceId==='string'&&row.sourceInstanceId.length>0;
+  // A canonical Detachment rule has no physical bearer. Its explicit kind and
+  // provenance prove ownership; an unspecified physical source still does not.
+  const detachment=sourceKind==='DETACHMENT_RULE'&&row.sourceInstanceId===null&&row.sourceModelScopeId===null;
+  if(!physical&&!detachment)return null;
+  return key([row.ruleId,provenance,physical?row.sourceInstanceId:{kind:'DETACHMENT_RULE'},row.sourceModelScopeId??null,row.policy.contextQuote]);
+}
 export const profileCharacteristics=['M','T','SV','W','LD','OC','INSV'];
 export function profileDisplayKey(card,boundFields=new Map()) {
   const fields=[...card.fields,...(card.profileFieldIds||[]).map(id=>boundFields.get(id)).filter(Boolean)];
@@ -25,6 +59,84 @@ export function groupDisplayRecords(records,identity) {
   }
   return [...groups.values()];
 }
+/** Count MODEL carriers, never weapon copies or repeated captions. Call once per
+ * exact source/effect contribution. A PROFILE's physical scope owns its model
+ * quantity; WEAPON_PROFILE quantities only verify a selected item and never
+ * become a model count. A one-model component also proves its own inventory. */
+export function countPhysicalCarriers(records,profileCards=[],{unit,unitCard}={}) {
+  const groups=new Map();
+  for(const record of records){
+    const instanceId=record.instanceId||null;
+    const selections=unit?.instanceId===instanceId?[...(unit.selections||[]),...(unit.modelRows||[]).flatMap(row=>[
+      ...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])]
+      .filter(selection=>selection.selectionKey===record.selectionKey):[];
+    const selection=selections.length===1?selections[0]:null;
+    const equipped=record.kind==='WEAPON_PROFILE'&&selection?.canonicalProfileIds?.includes(record.id)&&
+      Number.isSafeInteger(selection.physicalQuantity)&&selection.physicalQuantity>0&&
+      Number.isSafeInteger(record.rosterQuantity)&&record.rosterQuantity>0;
+    const candidates=record.kind==='PROFILE'?[record]:profileCards.filter(profile=>
+      profile.kind==='PROFILE'&&profile.instanceId===record.instanceId&&
+      typeof record.scopeId==='string'&&profile.scopeId===record.scopeId);
+    const physicalProfiles=profileCards.filter(profile=>profile.kind==='PROFILE'&&profile.instanceId===instanceId);
+    // A validated one-model component has exactly one possible physical carrier
+    // for its own selected weapon, including a UNIT-level equipment selection.
+    // The same conclusion is unavailable for aggregate multi-model inventory.
+    const singleton=equipped&&unit?.instanceId===instanceId&&unit.startingStrength===1&&
+      unit.modelRows?.reduce((sum,row)=>sum+row.quantity,0)===1&&physicalProfiles.length===1&&
+      unit.modelRows.every(row=>row.canonicalProfileId===physicalProfiles[0].id)&&
+      physicalProfiles[0].rosterQuantity===1&&record.rosterQuantity===selection.physicalQuantity&&
+      (record.scopeId==null||record.scopeId===physicalProfiles[0].scopeId)&&
+      (!record.parentId||record.parentId===unit.canonicalUnitId);
+    const profile=candidates.length===1?candidates[0]:candidates.length===0&&singleton?physicalProfiles[0]:null;
+    const display=profile?.presentationScope;
+    const named=profile?.fields?.find(field=>path(field)==='/name')?.value;
+    const componentCard=unit?.instanceId===instanceId&&unitCard?.kind==='DATASHEET'&&unitCard.id===unit.canonicalUnitId?unitCard:null;
+    const profileTitle=profile?.title&&profile.title!=='PROFILE'?profile.title:null;
+    const rowLabels=unit?.instanceId===instanceId?(unit.modelRows||[]).filter(row=>row.canonicalProfileId===profile?.id)
+      .map(row=>row.presentationLabel).filter(label=>typeof label==='string'&&label.trim()):[];
+    const rowLabel=new Set(rowLabels).size===1?rowLabels[0]:null;
+    // A weapon name is never a model label. Carry the typed label identity so
+    // both renderers and tests can verify its physical/canonical origin.
+    const profileLabel=display?.label||named||profileTitle||rowLabel;
+    const label=display?.canonicalLabelIncluded?display.label.replace(/ · Group \d+$/,''):
+      profileLabel||componentCard?.title||'Physical models';
+    const labelIdentity=profileLabel?{kind:'PROFILE',canonicalId:profile.id,instanceId}:
+      componentCard?{kind:'DATASHEET',canonicalId:componentCard.id,instanceId}:{kind:'UNRESOLVED',canonicalId:null,instanceId};
+    const profileId=profile?.id||null;
+    const signature=key([instanceId,profileId,label]);
+    let group=groups.get(signature);
+    if(!group){group={instanceId,profileId,label,labelIdentity,quantity:0,scopeIds:[],modelInstanceIds:[],members:[]};groups.set(signature,group);}
+    const quantity=profile?.rosterQuantity;
+    const modelId=record.modelInstanceId||profile?.modelInstanceId||null;
+    // A scoped item total alone does not prove its distribution among models.
+    const distribution=record.kind!=='WEAPON_PROFILE'||equipped&&(singleton||
+      Number.isSafeInteger(selection.perModelQuantity)&&selection.perModelQuantity>0&&
+      record.rosterQuantity===selection.perModelQuantity*quantity);
+    const known=instanceId&&profile&&typeof profile.scopeId==='string'&&profile.scopeId.length&&
+      Number.isSafeInteger(quantity)&&quantity>0&&(!modelId||quantity===1)&&distribution;
+    const address=known?key([instanceId,modelId?'MODEL':'SCOPE',modelId||profile.scopeId]):null;
+    const duplicate=address&&group.members.some(member=>member.address===address);
+    // Unknown/ambiguous ownership remains visible without an invented count.
+    if(!known||duplicate&&group.members.some(member=>member.address===address&&member.quantity!==quantity))group.quantity=null;
+    else if(!duplicate&&group.quantity!==null)group.quantity+=quantity;
+    if(known&&!duplicate){group.scopeIds.push(profile.scopeId);if(modelId)group.modelInstanceIds.push(modelId);}
+    group.members.push({address,quantity:known?quantity:null,scopeId:record.scopeId||null,selectionKey:record.selectionKey||null,
+      proof:known?(singleton?'SINGLE_MODEL_COMPONENT':'SCOPED_PROFILE'):null});
+  }
+  return [...groups.values()];
+}
+export function formatPhysicalCarriers(groups) {
+  return groups.map(group=>group.label+(group.quantity===null?' · model count unknown':
+    ` · ${group.quantity} ${group.quantity===1?'model':'models'}`));
+}
+/** Source/effect identity precedes recipient aggregation. Equal rule titles or
+ * final values never merge independently executed contributions. */
+export const effectContributionKey=source=>key([
+  source.canonicalRuleId||source.ruleId,source.clauseId??null,source.effectId??null,source.operation??null,
+  source.field??null,source.sourceInstanceId??null,source.sourceProfileId??null,source.sourceCompositionId??null,
+  source.sourceModelInstanceId??null,source.sourceFields??null,source.lifetime??null,
+  source.targetInstanceId??null,source.recipientScope??null,source.unitScope??null
+]);
 /** Share an effective annotation only when the same typed effect/source and
  * final presentation apply to EVERY represented physical profile scope.
  * Missing execution provenance fails closed; captions/text alone are not IDs. */

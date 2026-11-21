@@ -1,0 +1,5291 @@
+[
+  {
+    "ruleId": "stratagem-sm-009d50dc6eac4c47",
+    "title": "SUPPRESSED WEAPONS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-02921fdd8b6242a6",
+    "title": "ARMOUR OF CONTEMPT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-0535aebd698e4323",
+    "title": "FOR THE EMPEROR!",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TACTICUS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-079891eda74042ad",
+    "title": "TRANSHUMAN SWIFTNESS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective and is eligible to fight.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TACTICUS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective and is eligible to fight."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective and is eligible to fight."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective and is eligible to fight."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-099e768dfc7b4e2d",
+    "title": "MORTIS SNARES",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "PHOBOS"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+            }
+          },
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-sm-3815e40077e44702"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-0d0f47368d2944c6",
+    "title": "HEADHUNTER DOCTRINE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VEHICLE"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-125c803bfe7749c4",
+    "title": "ANNIHILATING FORCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That GRAVIS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "GRAVIS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That GRAVIS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That GRAVIS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That GRAVIS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-14bb8a63c3b340e3",
+    "title": "LAY LOW THE TYRANTS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-165185d7c1d04840",
+    "title": "MIGHT OF ANGELS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-202d43d3a3a54d18",
+    "title": "ANNIHILATING FORCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That GRAVIS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "GRAVIS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That GRAVIS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That GRAVIS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That GRAVIS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-210e7e9e774c4e7b",
+    "title": "DOMINATION FIRE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-21e7037b760a44e4",
+    "title": "TACTICAL FORESIGHT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-22d9e6906241422f",
+    "title": "TRANSHUMAN REACTIONS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That PHOBOS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "PHOBOS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That PHOBOS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That PHOBOS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That PHOBOS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-27496d381a364a6e",
+    "title": "GUNSHIP EXTRACTION",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES TERMINATOR unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES TERMINATOR unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TERMINATOR"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES TERMINATOR unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES TERMINATOR unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES TERMINATOR unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-2aeed9f48eb84869",
+    "title": "MURDEROUS FUSILLADE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-2f4d03c6272e4468",
+    "title": "EXEMPLARY VIGILANCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-36d57c0fe4e749ff",
+    "title": "TACTICAL FOCUS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That TACTICUS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TACTICUS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That TACTICUS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That TACTICUS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That TACTICUS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-3a09cf94971d488d",
+    "title": "CRUCIBLE OF BATTLE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-3a46ef47dc2f4ed4",
+    "title": "ARMOUR OF CONTEMPT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-3c36cc7d9ade438a",
+    "title": "UPSTOPPABLE ADVANCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That DREADNOUGHT unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "DREADNOUGHT"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That DREADNOUGHT unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That DREADNOUGHT unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That DREADNOUGHT unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-3d793ebda73c4667",
+    "title": "WITHDRAW AND REGROUP",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES MOUNTED/SPEEDER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "SPEEDER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-3eb2f068419e4e92",
+    "title": "MASTERFUL TACTICS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-3fc669c545274dec",
+    "title": "PURGATION PUSH",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That GRAVIS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "GRAVIS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That GRAVIS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That GRAVIS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That GRAVIS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-40173dcf29124da5",
+    "title": "ARMOUR OF CONTEMPT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-41d28eda06164d5c",
+    "title": "UNBOWED CONVICTION",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is below starting strength.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is below starting strength."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is below starting strength."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is below starting strength."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-44cf7ac47c3f44d2",
+    "title": "BURNING VENGEANCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES unit embarked within that ADEPTUS ASTARTES TRANSPORT unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly ADEPTUS ASTARTES unit embarked within that ADEPTUS ASTARTES TRANSPORT unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES unit embarked within that ADEPTUS ASTARTES TRANSPORT unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES unit embarked within that ADEPTUS ASTARTES TRANSPORT unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-4867737eb8ef451b",
+    "title": "WRATH AND RUIN",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-48bce6a91cfe4938",
+    "title": "STRIKE FROM THE SHADOWS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That PHOBOS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "PHOBOS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That PHOBOS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That PHOBOS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That PHOBOS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-4967a4a300cb43d9",
+    "title": "INTO DARKNESS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One unengaged ADEPTUS ASTARTES INFANTRY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One unengaged ADEPTUS ASTARTES INFANTRY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One unengaged ADEPTUS ASTARTES INFANTRY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One unengaged ADEPTUS ASTARTES INFANTRY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One unengaged ADEPTUS ASTARTES INFANTRY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-4e1b0376f6604827",
+    "title": "GENE-WROUGHT MIGHT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-5083815fb7e34cbe",
+    "title": "POINT-BLANK BRUTALITY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That TACTICUS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TACTICUS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That TACTICUS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That TACTICUS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That TACTICUS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-518c2a26e3624920",
+    "title": "RELENTLESS ASSAULT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That TACTICUS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TACTICUS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That TACTICUS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That TACTICUS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That TACTICUS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-59d5c5959c5044b5",
+    "title": "FLAWLESS RIDERS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MOUNTED"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-5f21bfd0016f4012",
+    "title": "POWER OF THE MACHINE SPIRIT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VEHICLE"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-5f991ca6dd4e48ec",
+    "title": "MOBILE LETHALITY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-613cddaa26084fb2",
+    "title": "LAYERED CERAMITE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VEHICLE"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-61fd86dcc1394918",
+    "title": "DUTY IN DEATH",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-635962cdf879468f",
+    "title": "HAIL OF VENGEANCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-65387435f3a641c4",
+    "title": "RELENTLESS ASSAULT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That TACTICUS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TACTICUS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That TACTICUS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That TACTICUS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That TACTICUS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-65917e52c6534c21",
+    "title": "ESTABLISH SUPREMACY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-65e07b8106db4469",
+    "title": "PRACTICAL TACTICS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-67a14d3d77984c23",
+    "title": "RESPONSIVE TACTICS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-6ebd49b416db4abe",
+    "title": "ARMOUR OF CONTEMPT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-6fa62f326da54301",
+    "title": "STORM OF DEVASTATION",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-7017f3c4832540c6",
+    "title": "MIGHT OF THE MACHINE SPIRIT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units).",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VEHICLE"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+            }
+          },
+          {
+            "op": "NOT",
+            "args": [
+              {
+                "op": "ANY",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "DEDICATED TRANSPORT"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "FLY"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "WALKER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-75103cd97b8f4cf6",
+    "title": "SPIRITS OF IRON",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-7cabf49e71194a9c",
+    "title": "SUPPRESSION VOLLEYS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That GRAVIS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "GRAVIS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That GRAVIS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That GRAVIS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That GRAVIS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-7d6130f1d89f44d1",
+    "title": "MERCY IS WEAKNESS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That DREADNOUGHT unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "DREADNOUGHT"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That DREADNOUGHT unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That DREADNOUGHT unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That DREADNOUGHT unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-835e21c4a8e34e29",
+    "title": "STRIKE FROM THE SHADOWS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That PHOBOS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "PHOBOS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That PHOBOS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That PHOBOS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That PHOBOS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-8509fb96e0844319",
+    "title": "A WORTHY DEATH",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-8749bb86b8074399",
+    "title": "SPEAR THRUST AND SABRE SWING",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-8d8390a96e104ea8",
+    "title": "ADAPTIVE STRATEGY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-94ec9277c91646e4",
+    "title": "AUGMENTED TARGETING",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-95acc09c5b014e5d",
+    "title": "STAND TO THE END",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-9c1e682899e240d4",
+    "title": "SUDDEN ONSLAUGHT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "SPEEDER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-9d2347061c8243ff",
+    "title": "RAPTORIAL VIGILANCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-9f5ed1a884a14306",
+    "title": "ARMOURED IMPACT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That GRAVIS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "GRAVIS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That GRAVIS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That GRAVIS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That GRAVIS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-a0148c793c87420f",
+    "title": "VENGEFUL ANIMUS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That friendly ADEPTUS ASTARTES VEHICLE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That friendly ADEPTUS ASTARTES VEHICLE unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VEHICLE"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That friendly ADEPTUS ASTARTES VEHICLE unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That friendly ADEPTUS ASTARTES VEHICLE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That friendly ADEPTUS ASTARTES VEHICLE unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-a2ff0b812cf349d0",
+    "title": "ADAMANTINE TERROR",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly DREADNOUGHT unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "DREADNOUGHT"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly DREADNOUGHT unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly DREADNOUGHT unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly DREADNOUGHT unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-a3067cc567994adf",
+    "title": "AGGRESSIVE DISEMBARKATION",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-a32818b0436a44dd",
+    "title": "STAND UNYIELDING",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly GRAVIS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "GRAVIS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly GRAVIS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly GRAVIS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly GRAVIS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-a7ecc5f3f3e04650",
+    "title": "MERCILESS VETERANS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TERMINATOR"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-ab92482177a14323",
+    "title": "ARMOUR OF CONTEMPT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-ae4a39306eac42f4",
+    "title": "UMBRAL EVASION",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That PHOBOS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "PHOBOS"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That PHOBOS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That PHOBOS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That PHOBOS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-b2a64d5995bb49eb",
+    "title": "ULTRAMARIAN ADAPTIVITY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-b7bac41ed659473e",
+    "title": "FEINT AND THRUST",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-b9b9d6bf879c4c3f",
+    "title": "IMMOLATION PROTOCOLS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-ba168da7a465485f",
+    "title": "STORM AND SECURE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES TRANSPORT unit that has an ADEPTUS ASTARTES BATTLELINE unit embarked within it.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES TRANSPORT unit that has an ADEPTUS ASTARTES BATTLELINE unit embarked within it."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TRANSPORT"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES TRANSPORT unit that has an ADEPTUS ASTARTES BATTLELINE unit embarked within it."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES TRANSPORT unit that has an ADEPTUS ASTARTES BATTLELINE unit embarked within it."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES TRANSPORT unit that has an ADEPTUS ASTARTES BATTLELINE unit embarked within it."
+      }
+    },
+    "reviewNote": "BATTLELINE describes the passenger, not the selected TRANSPORT."
+  },
+  {
+    "ruleId": "stratagem-sm-bed5759020414030",
+    "title": "ANCIENT FURY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES DREADNOUGHT unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES DREADNOUGHT unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DREADNOUGHT"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES DREADNOUGHT unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES DREADNOUGHT unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES DREADNOUGHT unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-c7e6ae242a1344d7",
+    "title": "TACTICAL WITHDRAWAL",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "PHOBOS"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+            }
+          },
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-sm-3815e40077e44702"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-cb6af49b58df4d38",
+    "title": "PRIORITY STRIKE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-cc5af276022348b6",
+    "title": "FORGED IN FIRE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-d1c4ac406b484b41",
+    "title": "DUTY IS NEVER DONE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY unit that was eligible to fight this phase, is wholly within 6\" of a friendly TRANSPORT unit, and is eligible to embark within that TRANSPORT unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY unit that was eligible to fight this phase, is wholly within 6\" of a friendly TRANSPORT unit, and is eligible to embark within that TRANSPORT unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY unit that was eligible to fight this phase, is wholly within 6\" of a friendly TRANSPORT unit, and is eligible to embark within that TRANSPORT unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY unit that was eligible to fight this phase, is wholly within 6\" of a friendly TRANSPORT unit, and is eligible to embark within that TRANSPORT unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY unit that was eligible to fight this phase, is wholly within 6\" of a friendly TRANSPORT unit, and is eligible to embark within that TRANSPORT unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-d429c6e00b9942de",
+    "title": "HUNTER'S INSTINCTS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED/SPEEDER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED/SPEEDER unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED/SPEEDER unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED/SPEEDER unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "SPEEDER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED/SPEEDER unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED/SPEEDER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED/SPEEDER unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-d642d4d85db04dc9",
+    "title": "TACTICAL DREADNOUGHT FORTITUDE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TERMINATOR"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-d73478d582584763",
+    "title": "HURTLING TARGETS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "SPEEDER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-d796ccb1e3914a47",
+    "title": "EVASIVE MANOEUVERS",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "SPEEDER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-dba1398518304892",
+    "title": "UNYIELDING MIGHT",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is within range of an objective.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is within range of an objective."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is within range of an objective."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is within range of an objective."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-de651a42695d4a6a",
+    "title": "BLAZING EARTH",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES unit equipped with one or more Torrent/Melta weapons.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES unit equipped with one or more Torrent/Melta weapons."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES unit equipped with one or more Torrent/Melta weapons."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES unit equipped with one or more Torrent/Melta weapons."
+      }
+    },
+    "reviewNote": "Weapon loadout/abilities remain unknown; they are not UNIT keywords."
+  },
+  {
+    "ruleId": "stratagem-sm-df1a5abb4e824983",
+    "title": "EVASIVE REPOSITIONING",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY/MOUNTED unit that lost a wound as a result of those attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY/MOUNTED unit that lost a wound as a result of those attacks."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY/MOUNTED unit that lost a wound as a result of those attacks."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY/MOUNTED unit that lost a wound as a result of those attacks."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY/MOUNTED unit that lost a wound as a result of those attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY/MOUNTED unit that lost a wound as a result of those attacks."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-e25acace6b584a5e",
+    "title": "STORM OF FIRE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-e7abe776b8534bda",
+    "title": "COURAGE AND HONOUR!",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-ee7521323e3742d5",
+    "title": "WIND-SWIFT EVASION",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES MOUNTED unit that was eligible to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES MOUNTED unit that was eligible to fight this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MOUNTED"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES MOUNTED unit that was eligible to fight this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES MOUNTED unit that was eligible to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES MOUNTED unit that was eligible to fight this phase."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-sm-f5590987ff0f48fe",
+    "title": "METHODICAL BRUTALITY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That ADEPTUS ASTARTES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  }
+]

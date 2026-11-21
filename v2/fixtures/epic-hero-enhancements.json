@@ -1,0 +1,2526 @@
+{
+  "schema": "epic-hero-enhancement-qa/v1",
+  "baseline": "f7500b434806e2ebc7fa9d7148bf6ce616cd2b81",
+  "fixtureKind": "CONSTRUCTED_NEW_RECRUIT_PLAIN_HEADER_NOT_REAL_EXPORT",
+  "authority": "OWNER_CONFIRMED_CORE_25.04_AND_FAQ; baseline counts are regression controls, not rule authority",
+  "books": {
+    "space-marines": {
+      "epicUnitIds": [
+        "unit-sm-02d5dee4717544ad",
+        "unit-sm-10396cd2726045a8",
+        "unit-sm-1af70808102d4286",
+        "unit-sm-2e0979af1d9040af",
+        "unit-sm-3460439c3a774c66",
+        "unit-sm-3d29619313c24850",
+        "unit-sm-55f195878fab446f",
+        "unit-sm-611995a1ac614acb",
+        "unit-sm-70b477e461b5487a",
+        "unit-sm-7ee313f201ab42cf",
+        "unit-sm-9f9c66dce3814cc5",
+        "unit-sm-ac0e865c5ab94c9b",
+        "unit-sm-ad36b4f4c8f14a97",
+        "unit-sm-bdf36a7ab1d64d50",
+        "unit-sm-c7226873c51d43c0",
+        "unit-sm-f169827c554c4eee",
+        "unit-sm-f8bea3d5b0fa44a6",
+        "unit-sm-f9d22ec2aff840de"
+      ],
+      "ordinaryCharacters": [
+        {
+          "unitId": "unit-sm-0b0b22ecffa74125",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-1330b7672f934fd8",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-1d09de3e7281438a",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 32,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 32,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-4660f547cc3744b0",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-4a2efa64a7c34868",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-4cd4bf89720c4fa0",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 24,
+            "NO_MATCH": 32,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 24,
+            "NO_MATCH": 32,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-536d38b5ac7645dc",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-63a015916b46446a",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-96f12b073f4649c7",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-99eb03d4f2d448e2",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-9f9e7c18b7354927",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-a2a8db8a9f124a7f",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-b994e641eaea4060",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-bc4486ac79ec477f",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-bc9aa3cbedb2415c",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 34,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 34,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-c60b9f00ff7a42b0",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-d101fa171b7a40c4",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 32,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 32,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-db3ce647d7024b24",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 29,
+            "NO_MATCH": 27,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 29,
+            "NO_MATCH": 27,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-e43fc0c6d8b14ad8",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 31,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-e595c56eab2f493b",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 34,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 34,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-e62a5d7c19b24d57",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 35,
+            "NO_MATCH": 21,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 35,
+            "NO_MATCH": 21,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-eb2d6ede583e4473",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-f3366b4701174e71",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-ff2af9c56daa4536",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 30,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        }
+      ]
+    },
+    "blood-angels": {
+      "epicUnitIds": [
+        "unit-ba-3483c88a4df4495ca2e2",
+        "unit-ba-4ea9a8226a61470fa157",
+        "unit-ba-7f57bc2e255748b09903",
+        "unit-ba-92fdb23a526b4c328367",
+        "unit-ba-d84ea7c581874feca80b"
+      ],
+      "ordinaryCharacters": [
+        {
+          "unitId": "unit-ba-014cc7b19aca4d5b84a3",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 21,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 21,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-ba-09adea2bf319462fb4ed",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 19,
+            "NO_MATCH": 21,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 19,
+            "NO_MATCH": 21,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-ba-1388b9b0dc5d40c1aba4",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-ba-5269d704246f4e3a8d81",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 17,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 17,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-0b0b22ecffa74125",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-1330b7672f934fd8",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-1d09de3e7281438a",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-4660f547cc3744b0",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-4a2efa64a7c34868",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-4cd4bf89720c4fa0",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 11,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 11,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-536d38b5ac7645dc",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-63a015916b46446a",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-96f12b073f4649c7",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-99eb03d4f2d448e2",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-9f9e7c18b7354927",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-a2a8db8a9f124a7f",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-b994e641eaea4060",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-bc4486ac79ec477f",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-bc9aa3cbedb2415c",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 18,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 18,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-c60b9f00ff7a42b0",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-d101fa171b7a40c4",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-db3ce647d7024b24",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 15,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 15,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-e43fc0c6d8b14ad8",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-e595c56eab2f493b",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 21,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 21,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-e62a5d7c19b24d57",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 19,
+            "NO_MATCH": 21,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 19,
+            "NO_MATCH": 21,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-eb2d6ede583e4473",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-f3366b4701174e71",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-ff2af9c56daa4536",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 18,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 18,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        }
+      ]
+    },
+    "dark-angels": {
+      "epicUnitIds": [
+        "unit-da-0e189995095847bf9d47",
+        "unit-da-4d0a2295a562420599b3",
+        "unit-da-955db164dd7144368578",
+        "unit-da-d711371794d441bf92a8",
+        "unit-da-efa93d33ea414d8b8f11",
+        "unit-da-f1f33dda5c5047efb013",
+        "unit-da-f8f0629206e744459a9f"
+      ],
+      "ordinaryCharacters": [
+        {
+          "unitId": "unit-da-467009b00bb9402dadee",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 11,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 11,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-0b0b22ecffa74125",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 15,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 15,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-1330b7672f934fd8",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 12,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 12,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-1d09de3e7281438a",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-4660f547cc3744b0",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-4a2efa64a7c34868",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-4cd4bf89720c4fa0",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 31,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 31,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-536d38b5ac7645dc",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-63a015916b46446a",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-96f12b073f4649c7",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-99eb03d4f2d448e2",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-9f9e7c18b7354927",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 12,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 12,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-a2a8db8a9f124a7f",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-b994e641eaea4060",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 12,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 12,
+            "NO_MATCH": 28,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-bc4486ac79ec477f",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-bc9aa3cbedb2415c",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-c60b9f00ff7a42b0",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-d101fa171b7a40c4",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 15,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 15,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-db3ce647d7024b24",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 13,
+            "NO_MATCH": 27,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 13,
+            "NO_MATCH": 27,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-e43fc0c6d8b14ad8",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 15,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 15,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-e595c56eab2f493b",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-e62a5d7c19b24d57",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 17,
+            "NO_MATCH": 23,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-eb2d6ede583e4473",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-f3366b4701174e71",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sm-ff2af9c56daa4536",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        }
+      ]
+    },
+    "adeptus-mechanicus": {
+      "epicUnitIds": [
+        "unit-belisarius-cawl",
+        "unit-thulia-ghuld"
+      ],
+      "ordinaryCharacters": [
+        {
+          "unitId": "unit-cybernetica-datasmith",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 24,
+            "NO_MATCH": 10,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 24,
+            "CONDITIONAL": 0,
+            "NO_MATCH": 10,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-skitarii-marshal",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 20,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 14,
+            "CONDITIONAL": 0,
+            "NO_MATCH": 20,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sydonian-skatros",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 9,
+            "CONDITIONAL": 0,
+            "NO_MATCH": 25,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-tech-priest-dominus",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 24,
+            "NO_MATCH": 10,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 24,
+            "CONDITIONAL": 0,
+            "NO_MATCH": 10,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-tech-priest-enginseer",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 23,
+            "CONDITIONAL": 0,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-tech-priest-manipulus",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 24,
+            "NO_MATCH": 10,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 24,
+            "CONDITIONAL": 0,
+            "NO_MATCH": 10,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-technoarcheologist",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 23,
+            "CONDITIONAL": 0,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        }
+      ]
+    },
+    "chaos-space-marines": {
+      "epicUnitIds": [
+        "unit-abaddon-the-despoiler",
+        "unit-cypher",
+        "unit-fabius-bile",
+        "unit-haarken-worldclaimer",
+        "unit-huron-blackheart",
+        "unit-kravek-morne",
+        "unit-masters-of-the-maelstrom",
+        "unit-vashtorr-the-arkifane"
+      ],
+      "ordinaryCharacters": [
+        {
+          "unitId": "unit-chaos-lord",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 44,
+            "NO_MATCH": 18,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 44,
+            "NO_MATCH": 18,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-chaos-lord-in-terminator-armour",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 46,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 46,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-chaos-lord-with-jump-pack",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 50,
+            "NO_MATCH": 12,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 50,
+            "NO_MATCH": 12,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-cultist-firebrand",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 34,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 34,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-dark-apostle",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 42,
+            "NO_MATCH": 20,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 42,
+            "NO_MATCH": 20,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-dark-commune",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 34,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 34,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-heretic-astartes-daemon-prince",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 33,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 33,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-heretic-astartes-daemon-prince-with-wings",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 36,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 36,
+            "NO_MATCH": 26,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-lord-discordant-on-helstalker",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 33,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 33,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-master-of-executions",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 38,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 38,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-master-of-possession",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 38,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 38,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-red-corsairs-reave-captain",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 38,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 38,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sorcerer",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 38,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 38,
+            "NO_MATCH": 24,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sorcerer-in-terminator-armour",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 42,
+            "NO_MATCH": 20,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 42,
+            "NO_MATCH": 20,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-traitor-enforcer",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 34,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 28,
+            "NO_MATCH": 34,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-warpsmith",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 42,
+            "NO_MATCH": 20,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 42,
+            "NO_MATCH": 20,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        }
+      ]
+    },
+    "death-guard": {
+      "epicUnitIds": [
+        "unit-mortarion",
+        "unit-rotigus",
+        "unit-typhus"
+      ],
+      "ordinaryCharacters": [
+        {
+          "unitId": "unit-biologus-putrifier",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 12,
+            "NO_MATCH": 18,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 6,
+            "CONDITIONAL": 6,
+            "NO_MATCH": 18,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-daemon-prince-of-nurgle",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 8,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 5,
+            "CONDITIONAL": 3,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-daemon-prince-of-nurgle-with-wings",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 8,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 5,
+            "CONDITIONAL": 3,
+            "NO_MATCH": 22,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-foul-blightspawn",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 11,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 6,
+            "CONDITIONAL": 5,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-great-unclean-one",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 1,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 1,
+            "NO_MATCH": 29,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-icon-bearer",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 11,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 6,
+            "CONDITIONAL": 5,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-lord-of-contagion",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 14,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 5,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-lord-of-poxes",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 12,
+            "NO_MATCH": 18,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 6,
+            "CONDITIONAL": 6,
+            "NO_MATCH": 18,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-lord-of-virulence",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 15,
+            "NO_MATCH": 15,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 5,
+            "CONDITIONAL": 10,
+            "NO_MATCH": 15,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-malignant-plaguecaster",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 9,
+            "CONDITIONAL": 7,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-noxious-blightbringer",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 13,
+            "NO_MATCH": 17,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 6,
+            "CONDITIONAL": 7,
+            "NO_MATCH": 17,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-plague-surgeon",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 12,
+            "NO_MATCH": 18,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 6,
+            "CONDITIONAL": 6,
+            "NO_MATCH": 18,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-tallyman",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 11,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 6,
+            "CONDITIONAL": 5,
+            "NO_MATCH": 19,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        }
+      ]
+    },
+    "tau-empire": {
+      "epicUnitIds": [
+        "unit-commander-farsight",
+        "unit-commander-shadowsun",
+        "unit-darkstrider",
+        "unit-the-twin-lance"
+      ],
+      "ordinaryCharacters": [
+        {
+          "unitId": "unit-cadre-fireblade",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-commander-in-coldstar-battlesuit",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 7,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 7,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-commander-in-enforcer-battlesuit",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 7,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 16,
+            "NO_MATCH": 7,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-ethereal",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-firesight-team",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-kroot-flesh-shaper",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 7,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 7,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-kroot-lone-spear",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 9,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-kroot-trail-shaper",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 7,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 7,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-kroot-war-shaper",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 7,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 7,
+            "NO_MATCH": 16,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        }
+      ]
+    },
+    "tyranids": {
+      "epicUnitIds": [
+        "unit-deathleaper",
+        "unit-old-one-eye",
+        "unit-the-red-terror",
+        "unit-the-swarmlord"
+      ],
+      "ordinaryCharacters": [
+        {
+          "unitId": "unit-broodlord",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 22,
+            "NO_MATCH": 12,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 22,
+            "NO_MATCH": 12,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-hive-tyrant",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-hyperadapted-raveners",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 22,
+            "NO_MATCH": 12,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 22,
+            "NO_MATCH": 12,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-neurotyrant",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-parasite-of-mortrex",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 22,
+            "NO_MATCH": 12,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 22,
+            "NO_MATCH": 12,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-tervigon",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 23,
+            "NO_MATCH": 11,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-tyranid-prime-with-lash-whip",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 21,
+            "NO_MATCH": 13,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 21,
+            "NO_MATCH": 13,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-winged-hive-tyrant",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 26,
+            "NO_MATCH": 8,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 26,
+            "NO_MATCH": 8,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-winged-tyranid-prime",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 24,
+            "NO_MATCH": 10,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 24,
+            "NO_MATCH": 10,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        }
+      ]
+    },
+    "emperors-children": {
+      "epicUnitIds": [
+        "unit-fulgrim",
+        "unit-lucius-the-eternal",
+        "unit-shalaxi-helbane"
+      ],
+      "ordinaryCharacters": [
+        {
+          "unitId": "unit-keeper-of-secrets",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 2,
+            "NO_MATCH": 32,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 2,
+            "NO_MATCH": 32,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-lord-exultant",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 29,
+            "NO_MATCH": 5,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 29,
+            "NO_MATCH": 5,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-daemon-prince-of-slaanesh",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 21,
+            "NO_MATCH": 13,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 21,
+            "NO_MATCH": 13,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-lord-kakophonist",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 27,
+            "NO_MATCH": 7,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 27,
+            "NO_MATCH": 7,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-daemon-prince-of-slaanesh-with-wings",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 20,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 20,
+            "NO_MATCH": 14,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        },
+        {
+          "unitId": "unit-sorcerer",
+          "allDetachments": {
+            "MATCH": 0,
+            "CONDITIONAL": 26,
+            "NO_MATCH": 8,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          },
+          "selectedDetachment": {
+            "MATCH": 0,
+            "CONDITIONAL": 26,
+            "NO_MATCH": 8,
+            "INVALID": 0,
+            "UNRESOLVED": 0
+          }
+        }
+      ]
+    }
+  },
+  "importCases": [
+    {
+      "id": "titus-artificer",
+      "book": "space-marines",
+      "unitId": "unit-sm-10396cd2726045a8",
+      "unit": "Captain Titus",
+      "enhancementId": "enhancement-sm-33db6f7f8bc04d0c",
+      "enhancement": "Artificer Armour",
+      "epic": true,
+      "exportPoints": 90,
+      "text": "Epic Hero regression (2000 Points)\n\nSpace Marines\nGladius Task Force (1 Detachment Point)\n\nChar1: 1x Captain Titus (90 pts): Bolt pistol, Master-crafted bolter, Master-crafted chainsword\nEnhancement: Artificer Armour (+15 pts)\n\nCreated with newrecruit.eu v37.15\n",
+      "expectedMfmEnhancementRecordId": "mfm-enhancement-e6034fe032b96b7e",
+      "acceptedEnhancementPoints": 15,
+      "exportEnhancementPoints": 15
+    },
+    {
+      "id": "captain-artificer",
+      "book": "space-marines",
+      "unitId": "unit-sm-99eb03d4f2d448e2",
+      "unit": "Captain",
+      "enhancementId": "enhancement-sm-33db6f7f8bc04d0c",
+      "enhancement": "Artificer Armour",
+      "epic": false,
+      "exportPoints": 80,
+      "text": "Epic Hero regression (2000 Points)\n\nSpace Marines\nGladius Task Force (1 Detachment Point)\n\nChar1: 1x Captain (80 pts): Heavy bolt pistol, Master-crafted bolter, Master-crafted power weapon\nEnhancement: Artificer Armour (+15 pts)\n\nCreated with newrecruit.eu v37.15\n",
+      "expectedMfmEnhancementRecordId": "mfm-enhancement-e6034fe032b96b7e",
+      "acceptedEnhancementPoints": 15,
+      "exportEnhancementPoints": 15
+    },
+    {
+      "id": "farsight-grenades",
+      "book": "tau-empire",
+      "unitId": "unit-commander-farsight",
+      "unit": "Commander Farsight",
+      "enhancementId": "detachment-retaliation-cadre:enhancement:1",
+      "enhancement": "Internal Grenade Racks",
+      "epic": true,
+      "exportPoints": 95,
+      "text": "Epic Hero regression (2000 Points)\n\nT'au Empire\nRetaliation Cadre (1 Detachment Point)\n\nChar1: 1x Commander Farsight (95 pts): Dawn blade, High-intensity plasma rifle\nEnhancement: Internal Grenade Racks (+20 pts)\n\nCreated with newrecruit.eu v37.15\n",
+      "expectedMfmEnhancementRecordId": "mfm-enhancement-587cc900250b7aa5",
+      "acceptedEnhancementPoints": 20,
+      "exportEnhancementPoints": 20
+    },
+    {
+      "id": "coldstar-grenades",
+      "book": "tau-empire",
+      "unitId": "unit-commander-in-coldstar-battlesuit",
+      "unit": "Commander in Coldstar Battlesuit",
+      "enhancementId": "detachment-retaliation-cadre:enhancement:1",
+      "enhancement": "Internal Grenade Racks",
+      "epic": false,
+      "exportPoints": 95,
+      "text": "Epic Hero regression (2000 Points)\n\nT'au Empire\nRetaliation Cadre (1 Detachment Point)\n\nChar1: 1x Commander in Coldstar Battlesuit (95 pts): High-output burst cannon, Battlesuit fists\nEnhancement: Internal Grenade Racks (+20 pts)\n\nCreated with newrecruit.eu v37.15\n",
+      "expectedMfmEnhancementRecordId": "mfm-enhancement-587cc900250b7aa5",
+      "acceptedEnhancementPoints": 20,
+      "exportEnhancementPoints": 20
+    }
+  ],
+  "faq": {
+    "kind": "REAL_ACCEPTED_RULE_COMBINATION_SYNTHETIC_EXPORT",
+    "book": "tau-empire",
+    "leaderId": "unit-darkstrider",
+    "bodyguardId": "unit-pathfinder-team",
+    "enhancementId": "detachment-advanced-acquisition-cadre:enhancement:2",
+    "enhancement": "Unmasking Suite",
+    "sourceRelationId": "mfm-leader-eligibility-47d31b7a66b9df3b",
+    "text": "Epic attachment regression (2000 Points)\n\nT'au Empire\nAdvanced Acquisition Cadre (1 Detachment Point)\n\nChar1: 1x Darkstrider (60 pts): Shade\n10x Pathfinder Team (90 pts)\n• 1x Pathfinder Shas’ui\n• 9x Pathfinders\nEnhancement: Unmasking Suite (+15 pts)\n\nCreated with newrecruit.eu v37.15\n"
+  },
+  "manualBearer": {
+    "kind": "CONSTRUCTED_NEW_RECRUIT_PLAIN_HEADER_NOT_REAL_EXPORT",
+    "book": "space-marines",
+    "unitId": "unit-sm-f169827c554c4eee",
+    "unit": "Victrix Honour Guard",
+    "enhancementId": "enhancement-sm-33db6f7f8bc04d0c",
+    "enhancement": "Artificer Armour",
+    "epicProfileIds": [
+      "model-sm-0e744f442661486e",
+      "model-sm-28ca787bfb32419d"
+    ],
+    "text": "Manual bearer regression (2000 Points)\n\nSpace Marines\nGladius Task Force (1 Detachment Point)\n\n4x Victrix Honour Guard (200 pts)\n• 1x Chapter Ancient\n• 1x Chapter Champion\n• 2x Victrix Honour Guard\nEnhancement: Artificer Armour (+15 pts)\n\nCreated with newrecruit.eu v37.15\n"
+  }
+}

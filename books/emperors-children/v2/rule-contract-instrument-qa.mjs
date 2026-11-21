@@ -46,8 +46,8 @@ check(()=>{
   }
   assert.equal(sha(fs.readFileSync(new URL('./sources/emperors-children-faction-pack-v1.3.pdf',import.meta.url))),
     '18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A');
-  const official=JSON.parse(fs.readFileSync(new URL('./official-bindings.json',import.meta.url)));
-  assert.ok(!official.occurrences.some(o=>o.patches.some(p=>names.some(n=>p.sourceId===ruleId(n)))));
+  const official=JSON.parse(fs.readFileSync(new URL('./official-updates.json',import.meta.url)));
+  assert.ok(!official.entries.some(p=>names.some(n=>p.target.id===ruleId(n))));
 });
 const selected=(name,icon=false,quantity=1,pointer='/text')=>({selectionKey:icon?'icon':'instrument',physicalQuantity:quantity,
   canonicalProfileIds:[],canonicalEquipmentIds:[equipmentId(name,icon)],canonicalFieldPaths:{[equipmentId(name,icon)]:[pointer]}});

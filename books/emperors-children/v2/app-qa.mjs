@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 /** Bounded presentation parity and fail-closed controls; no source re-audit. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,14 +7,15 @@ import {buildECContracts} from './rule-contract-build.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {registration} from './registration.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const built=buildECContracts(),before=JSON.stringify(built),payload=writeApp({check:true});
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(entity=>[entity.id,entity]));
 const cards=new Map(payload.cards.map(card=>[card.id,card]));
 assert.equal(cards.size,payload.cards.length,'Duplicate canonical card');
 for(const [kind,count]of [['DATASHEET',23],['DETACHMENT',10],['ARMY_RULE',2],['ENHANCEMENT',34],['STRATAGEM',51]])
   assert.equal(payload.cards.filter(card=>card.kind===kind).length,count,kind+' inventory');
-assert.equal(payload.ruleContractIds.length,26);assert.equal(payload.book.mfmVersion,'v1.6');
+assert.equal(payload.ruleContractIds.length,161);assert.equal(payload.book.mfmVersion,getCurrentMfmSource('emperors-children').version);
 const value=(source,path)=>path.slice(1).split('/').reduce((current,key)=>current?.[key.replaceAll('~1','/').replaceAll('~0','~')],source);
 export function assertPresentationParity(candidate){
   const seen=new Set();
@@ -67,5 +69,5 @@ assert.throws(()=>assertPresentationParity(mismatch),/Factual presentation misma
 const missing=structuredClone(payload);missing.cards.find(card=>card.id==='datasheet-lord-exultant:section:4').fields=missing.cards.find(card=>card.id==='datasheet-lord-exultant:section:4').fields.filter(field=>field.source.path!=='/blocks/0/text');
 assert.throws(()=>assertPresentationParity(missing),/Missing source block/);mutations++;
 const duplicate=buildECContracts();duplicate.book.entities.push(structuredClone(duplicate.book.entities[0]));assert.throws(()=>buildApp(duplicate),/Duplicate canonical entity/);mutations++;
-console.log(JSON.stringify({status:'PASS',datasheets:23,detachments:10,enhancements:34,stratagems:51,contracts:26,
+console.log(JSON.stringify({status:'PASS',datasheets:23,detachments:10,enhancements:34,stratagems:51,contracts:161,
   compositionMembers:30,ruleReferences:54,updates:46,mutations,canonicalFactsUnchanged:true,registrationId:registration.id}));

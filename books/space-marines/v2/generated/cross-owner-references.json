@@ -18,14 +18,8 @@
         "ruleClass": "CHAPTER_SOURCE_CONDITION",
         "execution": "NOT_IMPLEMENTED"
       },
-      "provenance": {
-        "sourceId": "space-marines-waha-11e-2026-10-20",
-        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
-        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
-        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[9]/div[1]",
-        "sourceEntityId": "sm-source-a030e6c453754488",
-        "authority": "ACCEPTED_SECONDARY"
-      }
+      "sourceRefs": [{"documentId":"documents-3b10e7bb0d4f7d3f","referenceId":"refs-40bd26f5ae9c38b1","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[6]/div[9]/div[1]"}]}],
+      "sourceBindings": {"provenance":{"layout":"layouts-49d5f0e12e9933b5","refs":[0,0,0,0],"contexts":["contexts-0bb8ca0cf1320f74","contexts-f4adf2fecbfd9542"]},"$schema":"source-refs/v1","$order":["id","kind","sourceEntityId","bookId","data","provenance"]}
     },
     {
       "id": "detachment-dw-c015c08e99c14972",
@@ -52,14 +46,8 @@
           "stratagem-dw-aadc1d7a9fdb47fa"
         ]
       },
-      "provenance": {
-        "sourceId": "space-marines-waha-11e-2026-10-20",
-        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
-        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
-        "pointer": "/html/body/div/div[1]/div[3]/div[41]/h2",
-        "sourceEntityId": "sm-source-7b509dad4aeb4acd",
-        "authority": "ACCEPTED_SECONDARY"
-      }
+      "sourceRefs": [{"documentId":"documents-3b10e7bb0d4f7d3f","referenceId":"refs-4eba09bfe4c4a12f","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[41]/h2"}]}],
+      "sourceBindings": {"provenance":{"layout":"layouts-49d5f0e12e9933b5","refs":[0,0,0,0],"contexts":["contexts-0bb8ca0cf1320f74","contexts-d188052c2df5df28"]},"$schema":"source-refs/v1","$order":["id","kind","sourceEntityId","bookId","data","provenance"]}
     },
     {
       "id": "detachment-rule-dw-b41deacc51464866",
@@ -73,15 +61,9 @@
         "execution": "UNVERIFIED",
         "nestedRuleIds": []
       },
-      "provenance": {
-        "sourceId": "space-marines-waha-11e-2026-10-20",
-        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
-        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
-        "pointer": "/html/body/div/div[1]/div[3]/div[41]/div[2]/div[2]",
-        "sourceEntityId": "sm-source-af2e8f78186c42e6",
-        "authority": "ACCEPTED_SECONDARY"
-      },
-      "parentId": "detachment-dw-c015c08e99c14972"
+      "parentId": "detachment-dw-c015c08e99c14972",
+      "sourceRefs": [{"documentId":"documents-3b10e7bb0d4f7d3f","referenceId":"refs-28095866f72dc07a","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[41]/div[2]/div[2]"}]}],
+      "sourceBindings": {"provenance":{"layout":"layouts-49d5f0e12e9933b5","refs":[0,0,0,0],"contexts":["contexts-0bb8ca0cf1320f74","contexts-60c862508069bad0"]},"$schema":"source-refs/v1","$order":["id","kind","sourceEntityId","bookId","data","provenance","parentId"]}
     },
     {
       "id": "enhancement-dw-5d8e0ccbf8b9425a",
@@ -96,15 +78,9 @@
         "eligibilityText": "- Beacon Angelis\nADEPTUS ASTARTES model only. If this unit is a KILL TEAM unit, this unit has:\n- Deep Strike.\n- When you target this unit with the Rapid Ingress Stratagem, that use is -1CP.",
         "execution": "UNVERIFIED"
       },
-      "provenance": {
-        "sourceId": "space-marines-waha-11e-2026-10-20",
-        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
-        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
-        "pointer": "/html/body/div/div[1]/div[3]/div[41]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
-        "sourceEntityId": "sm-source-d475fe95654843d4",
-        "authority": "ACCEPTED_SECONDARY"
-      },
-      "parentId": "detachment-dw-c015c08e99c14972"
+      "parentId": "detachment-dw-c015c08e99c14972",
+      "sourceRefs": [{"documentId":"documents-3b10e7bb0d4f7d3f","referenceId":"refs-84fdc5b2fb08f6e4","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[41]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td"}]}],
+      "sourceBindings": {"provenance":{"layout":"layouts-49d5f0e12e9933b5","refs":[0,0,0,0],"contexts":["contexts-0bb8ca0cf1320f74","contexts-b032eb4bdb49cdb1"]},"$schema":"source-refs/v1","$order":["id","kind","sourceEntityId","bookId","data","provenance","parentId"]}
     },
     {
       "id": "stratagem-dw-685c75e235e249e9",
@@ -187,5 +163,7 @@
       "parentId": "detachment-dw-c015c08e99c14972"
     }
   ],
-  "scope": "SOURCE_REFERENCE_ONLY; not Space Marines-owned gameplay facts or a registered Deathwatch book"
+  "scope": "SOURCE_REFERENCE_ONLY; not Space Marines-owned gameplay facts or a registered Deathwatch book",
+  "sourceSchema": "source-refs/v1",
+  "sourceContextCatalog": {"contexts-f4adf2fecbfd9542":{"kind":"IDENTITY","field":"sourceEntityId","value":"sm-source-a030e6c453754488"},"contexts-b032eb4bdb49cdb1":{"kind":"IDENTITY","field":"sourceEntityId","value":"sm-source-d475fe95654843d4"}}
 }

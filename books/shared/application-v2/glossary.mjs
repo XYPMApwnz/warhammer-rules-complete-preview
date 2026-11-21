@@ -5,6 +5,7 @@ import {createReferencePresenter} from '../army-book-app-v2/reference-v1.mjs';
 import {createGlossaryCatalog} from '../army-book-app-v2/glossary-v1.mjs';
 import {decodeRoute,encodeRoute} from '../army-book-app-v2/route-context.mjs';
 import {positionV1Popup} from '../army-book-app-v2/popup-v1.mjs';
+import {createRuleTermLinker} from '../army-book-app-v2/rule-term-links.mjs';
 
 /** Global catalog scope; canonical search/resolution/articles are the book reference contract. */
 export function mountGlobalGlossary(document,corpus,{root,entryURL,registryLabels={},coreRoutes=null,loadCoreRoutes=null}) {
@@ -35,7 +36,8 @@ export function mountGlobalGlossary(document,corpus,{root,entryURL,registryLabel
     });return node;
   };
   const factValue=(tag,field)=>el(tag,'',field.displayValue??String(field.value));
-  const presenter=createReferencePresenter({el,factValue,anchor,contract,cards,payload:{},allowedIds:()=>null});
+  const termLinker=createRuleTermLinker({document,cards,index:projection.index,anchor});
+  const presenter=createReferencePresenter({el,factValue,anchor,contract,cards,payload:{},allowedIds:()=>null,linkTerms:node=>termLinker.link(node)});
   function navigateRoute(route) {
     view.history.pushState(null,'',encodeRoute(entryURL,route));view.dispatchEvent(new view.PopStateEvent('popstate'));
     main.focus({preventScroll:true});view.scrollTo({top:0,behavior:'instant'});

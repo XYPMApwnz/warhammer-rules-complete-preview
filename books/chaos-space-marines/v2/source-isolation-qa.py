@@ -2,8 +2,12 @@
 import copy
 import json
 import shutil
-import tempfile
+import sys
 from pathlib import Path
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]/'tests/helpers'))
+from qa_temp import create_qa_temp_dir
 
 from build import build, canonicalize, unique_index
 from model_sources import validate_model_bindings
@@ -54,7 +58,7 @@ def identity_controls():
 def main():
     expected = build()
     enrollment = read(HERE / "sources/enrollment.json")
-    with tempfile.TemporaryDirectory(prefix="csm-v2-source-only-") as directory:
+    with create_qa_temp_dir("csm-v2-source-only-") as directory:
         isolated = Path(directory)
         for artifact in enrollment["artifacts"]:
             relative = artifact["path"]

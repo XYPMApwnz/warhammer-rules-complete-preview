@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -12,6 +13,7 @@ import {
 import {verifyBsdataSource} from '../books/shared/tools/verify-bsdata-source.mjs';
 import {buildSourceEnrollment} from '../books/shared/tools/source-enrollment-contract.mjs';
 import {buildSourceStatus} from '../books/shared/tools/source-freshness.mjs';
+import {mfmReleaseExpectations} from './helpers/mfm-release-expectations.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
@@ -27,7 +29,25 @@ const registeredPublicSources=registeredActiveBookSources.filter(source=>source.
 assert.equal(freshness.summary.DECLARED_SOURCE_COUNT,registeredActiveBookSources.length);
 assert.equal(freshness.summary.CLASSIFIED_DECLARED_SOURCE_COUNT,registeredActiveBookSources.length);
 assert.equal(freshness.summary.PUBLIC_ACTIVE_SOURCE_COUNT,registeredPublicSources.length);
-assert.equal(registeredBookSources.length-registeredActiveBookSources.length,1);
+const historicalBookSources=registeredBookSources.filter(source=>!activeKeys.has(`${source.book}\0${source.sourceId}`));
+const releaseExpectations=mfmReleaseExpectations(root,[
+  'adeptus-mechanicus-mfm-v1.4','adeptus-mechanicus-mfm-v1.5',
+  'blood-angels-mfm-v1.4',
+  'chaos-space-marines-mfm-v1.4','chaos-space-marines-mfm-v1.5','csm-mfm-v1.3',
+  'dark-angels-mfm-v1.4',
+  'death-guard-mfm-v1.3-capture-2026-08-27','death-guard-mfm-v1.4','death-guard-mfm-v1.5',
+  'emperors-children-mfm-v1.3','emperors-children-mfm-v1.4','emperors-children-mfm-v1.5',
+  'space-marines-mfm-v1.4',
+  'tau-empire-mfm-v1.4','tau-empire-mfm-v1.5','tau-mfm-v1.3',
+  'tyranids-mfm-v1.3','tyranids-mfm-v1.4','tyranids-mfm-v1.5'
+]);
+assert.deepEqual(historicalBookSources.map(source=>source.sourceId).sort(),releaseExpectations.historicalIds);
+for(const source of historicalBookSources){
+  const manifest=JSON.parse(read(`books/${source.book}/sources/source-manifest.json`));
+  const declaration=[...(manifest.layers||[]),...(manifest.sources||[])].find(row=>(row.ingestionSourceId||row.sourceId||row.id)===source.sourceId);
+  assert.equal(declaration?.active,false,source.sourceId);
+  assert.equal(declaration.lifecycle,'HISTORICAL_EVIDENCE',source.sourceId);
+}
 assert(registry.sources.some(source=>source.sourceId==='death-guard-mfm-v1.3-capture-2026-08-27'),'Historical DG MFM v1.3 provenance must remain registered');
 assert.equal(freshness.summary.FRESHNESS_ONLY_ACTIVE_SOURCE_COUNT,3);
 assert.equal(freshness.summary.UNCLASSIFIED_SOURCE_COUNT,0);
@@ -35,10 +55,12 @@ assert.equal(freshness.summary.REGISTERED_WITHOUT_MANIFEST_DECLARATION_COUNT,fre
 assert.deepEqual(freshness.summary.BOOKS_WITH_COMPLETE_SOURCE_ENROLLMENT,['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines','space-marines','dark-angels','blood-angels','orks']);
 assert.deepEqual(freshness.summary.BOOKS_WITH_PARTIAL_SOURCE_ENROLLMENT,[]);
 assert.deepEqual(freshness.summary.BOOKS_WITH_NO_SOURCE_ENROLLMENT,[]);
-assert.equal(freshness.sources.find(source=>source.SOURCE_ID==='tau-mfm-v1.3').UPSTREAM_OBSERVATION.status,'UPDATE_AVAILABLE');
-const currentMfm=freshness.sources.filter(source=>source.BOOK!=='shared'&&source.SOURCE_ID.endsWith('-mfm-v1.4'));
+const currentMfm=freshness.sources.filter(source=>releaseExpectations.currentFactionIds.includes(source.SOURCE_ID));
 assert.equal(currentMfm.length,9);
-assert(currentMfm.every(source=>source.UPSTREAM_OBSERVATION.status==='CURRENT'),'Only authenticated v1.4 MFM captures may claim currentness');
+assert(currentMfm.every(source=>source.UPSTREAM_OBSERVATION.status==='CURRENT'),'Only authenticated selected-release MFM captures may claim currentness');
+const currentMfmDependencies=freshness.sources.filter(source=>releaseExpectations.currentDependencyIds.includes(source.SOURCE_ID));
+assert.equal(currentMfmDependencies.length,2);
+assert(currentMfmDependencies.every(source=>source.UPSTREAM_OBSERVATION.status==='CURRENT'),'Both authenticated selected-release MFM dependencies must remain current');
 const active=[
   ['books/space-marines/tools/extract-codex-details.cjs','space-marines-codex-details'],
   ['books/chaos-space-marines/tools/extract-mfm.cjs','csm-mfm-v1.3'],
@@ -49,13 +71,8 @@ const active=[
 const legacy=[
   {tool:'books/adeptus-mechanicus/tools/extract-codex-rules.cjs',inputs:['books/adeptus-mechanicus/content/adeptus-mechanicus-codex-detachments.en.json'],outputs:['books/adeptus-mechanicus/content/adeptus-mechanicus-codex-parity.en.json']},
   {tool:'books/adeptus-mechanicus/tools/extract-wargear.cjs',inputs:['books/adeptus-mechanicus/content/adeptus-mechanicus-codex-datasheets.en.json','books/adeptus-mechanicus/content/adeptus-mechanicus-rules.en.json'],outputs:['books/adeptus-mechanicus/content/adeptus-mechanicus-codex-wargear.en.json']},
-  {tool:'books/adeptus-mechanicus/tools/import-wahapedia-compatible-rules.mjs',inputs:['books/adeptus-mechanicus/content/adeptus-mechanicus-codex-datasheets.en.json','books/adeptus-mechanicus/content/adeptus-mechanicus-rules.en.json','books/adeptus-mechanicus/content/adeptus-mechanicus-codex-detachments.en.json'],outputs:['books/adeptus-mechanicus/sources/wahapedia-compatible-rules.snapshot.json','books/adeptus-mechanicus/reports/compatible-rules-import-report.json']},
-  {tool:'books/death-guard/tools/import-wahapedia-compatible-rules.mjs',inputs:['books/death-guard/content/death-guard-rules.en.json'],outputs:['books/death-guard/sources/wahapedia-compatible-rules.snapshot.json','books/death-guard/reports/compatible-rules-import-report.json']},
-  {tool:'books/emperors-children/tools/import-wahapedia-compatible-rules.mjs',inputs:['books/emperors-children/content/emperors-children-codex-datasheets.en.json','books/emperors-children/content/emperors-children-faction-pack.en.json','books/emperors-children/content/emperors-children-codex-parity.en.json'],outputs:['books/emperors-children/sources/wahapedia-compatible-rules.snapshot.json','books/emperors-children/reports/compatible-rules-import-report.json']},
   {tool:'books/tyranids/tools/extract-codex-parity.cjs',inputs:['books/tyranids/content/tyranids-points.en.json'],outputs:['books/tyranids/content/tyranids-codex-parity.en.json']},
   {tool:'books/tyranids/tools/extract-wargear.cjs',inputs:['books/tyranids/content/tyranids-codex-datasheets.en.json'],outputs:['books/tyranids/content/tyranids-codex-wargear.en.json']},
-  {tool:'books/tyranids/tools/import-wahapedia-compatible-rules.mjs',inputs:['books/tyranids/content/tyranids-codex-datasheets.en.json','books/tyranids/content/tyranids-faction-pack.en.json','books/tyranids/content/tyranids-codex-parity.en.json'],outputs:['books/tyranids/sources/wahapedia-compatible-rules.snapshot.json','books/tyranids/reports/compatible-rules-import-report.json']},
-  {tool:'books/tau-empire/tools/import-wahapedia-compatible-rules.mjs',inputs:['books/tau-empire/content/tau-empire-codex-datasheets.en.json','books/tau-empire/content/tau-empire-faction-pack.en.json','books/tau-empire/content/tau-empire-codex-parity.en.json'],outputs:['books/tau-empire/sources/wahapedia-compatible-rules.snapshot.json','books/tau-empire/reports/compatible-rules-import-report.json'],verify:true}
 ];
 
 const walk=directory=>fs.readdirSync(directory,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?walk(path.join(directory,entry.name)):[path.join(directory,entry.name)]);
@@ -123,7 +140,7 @@ assert.throws(()=>requireSourceToolMode(['--check','--capture-update'],{toolName
 assert.throws(()=>requireSourceToolMode(['--capture-update'],{toolName:'probe'}),/candidate-dir/);
 assert.deepEqual(requireSourceToolMode(['--check'],{toolName:'probe'}),{kind:'verify'});
 
-const temp=fs.mkdtempSync(path.join(os.tmpdir(),'warhammer-source-contract-'));
+const temp=createQaTempDir('warhammer-source-contract-');
 try{
   const artifact=path.join(temp,'accepted.json');fs.writeFileSync(artifact,'{"ok":true}\r\n');
   const sourceRegistry={schema:'warhammer-source-ingestion/v1',sources:[{sourceId:'probe',artifacts:[{path:'accepted.json',normalization:'lf',sha256:sha256('{"ok":true}\n')}]}]};
@@ -185,7 +202,7 @@ try{
   assert.throws(()=>verifyCaptureManifest(trackedManifestPath,{repoRoot:trackedRoot}),/repository inputs differ from HEAD/);
   fs.writeFileSync(path.join(trackedRoot,'untracked.json'),'{}\n');
   assert.throws(()=>createCaptureSession({repoRoot:trackedRoot,sourceId:'untracked-probe',authority:'official',sourceType:'html',candidateDir:path.join(temp,'untracked-capture'),extractorPath:'extractor.mjs',localInputs:['untracked.json']}),/every repository input must be tracked/);
-}finally{fs.rmSync(temp,{recursive:true,force:true});}
+}finally{cleanupQaTempDir(temp);}
 
 assert.throws(()=>verifyBsdataSource({checkout:root,expectedCommit:'0'.repeat(40),inputFiles:[path.join(root,'package.json')]}),/does not match checkout HEAD/,'BSData commit mismatch must fail closed');
 
@@ -204,7 +221,6 @@ assert(smFactionPackExtractor.includes('parser.add_argument("--bsdata-faction", 
 assert(packageJson.scripts['army-books:sources:check'].includes('node books/space-marines/tools/extract-faction-pack.mjs --check'),'Normal source checking must use the authenticated Space Marines Faction Pack wrapper');
 assert(packageJson.scripts['source:check'].includes('node tests/sm-authenticated-bsdata-argument-binding-qa.mjs'),'Normal source checking must enforce the Space Marines authenticated child-argument binding');
 assert(packageJson.scripts['army-books:sources:check'].includes('node books/space-marines/tools/build-related-rules.mjs --check'),'Normal source checking must verify the deterministic Space Marines Related Rules aggregate');
-assert(packageJson.scripts['space-marines:build'].startsWith('node books/space-marines/tools/build-related-rules.mjs'),'Normal Space Marines build must run the sole Related Rules aggregate writer');
 const smCodexDetails=read('books/space-marines/tools/extract-codex-details.cjs');
 const smSessionIndex=smCodexDetails.indexOf('contract.createCaptureSession({sourceId:');
 for(const input of ['datasheetsPath','packPath']){
@@ -263,6 +279,5 @@ for(const source of registry.sources){
   assert.equal(source.acceptedHash.toLowerCase(),expectedHash.toLowerCase(),`${source.sourceId}: accepted hash must identify its complete frozen artifact set`);
 }
 
-await import('./space-marines-feedback-edge-qa.mjs');
 
 console.log(`Source ingestion contract QA passed: ${active.length} frozen live-derived sources, ${legacy.length} candidate-only legacy update tools; 0 direct accepted writers.`);

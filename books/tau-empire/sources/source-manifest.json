@@ -43,8 +43,7 @@
       "consumers": [
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
-        "RELATED_RULES",
-        "COMPATIBLE_RULES"
+        "RELATED_RULES"
       ],
       "paths": [
         "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
@@ -109,8 +108,7 @@
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
         "POINTS_PROJECTION",
-        "RELATED_RULES",
-        "COMPATIBLE_RULES"
+        "RELATED_RULES"
       ],
       "paths": [
         "books/tau-empire/sources/bsdata-tau-empire-11e.json",
@@ -153,8 +151,7 @@
       "consumers": [
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
-        "RELATED_RULES",
-        "COMPATIBLE_RULES"
+        "RELATED_RULES"
       ],
       "paths": [
         "books/tau-empire/content/tau-empire-codex-parity.en.json"
@@ -198,7 +195,7 @@
       "sourceId": "tau-mfm-v1.3",
       "active": false,
       "sourceType": "official-json-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "factsOwned": [
         "points",
         "costs"
@@ -243,43 +240,10 @@
         "enhancement-ownership"
       ],
       "consumers": [
-        "RELATED_RULES",
-        "COMPATIBLE_RULES"
+        "RELATED_RULES"
       ],
       "paths": [
         "books/tau-empire/sources/tau-empire-related-rules-contracts.v1.json"
-      ]
-    },
-    {
-      "id": "tau-compatible-rules-snapshot",
-      "sourceId": "tau-compatible-rules-snapshot",
-      "active": true,
-      "sourceType": "legacy-normalized-secondary",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-associations"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/tau-empire/sources/wahapedia-compatible-rules.snapshot.json"
-      ]
-    },
-    {
-      "id": "tau-compatible-rules-corrections",
-      "sourceId": "tau-compatible-rules-corrections",
-      "active": true,
-      "sourceType": "structured-contract",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-adjudication"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/tau-empire/sources/compatible-rules-correction-ledger.json"
       ]
     },
     {
@@ -399,14 +363,15 @@
       "paths": [
         "books/tau-empire/sources/waha-11e-current-2026-09-28/corpus.json",
         "books/tau-empire/sources/waha-11e-current-2026-09-28/source-defects.json"
-      ]
+      ],
+      "ingestionSourceId": "tau-empire-waha-11e-current-2026-09-28"
     },
     {
       "id": "tau-empire-mfm-v1.5",
       "sourceId": "tau-empire-mfm-v1.5",
-      "active": true,
+      "active": false,
       "sourceType": "official-web-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "title": "Munitorum Field Manual v1.5 current official capture",
       "authority": "official-live-mfm",
       "version": "v1.5",
@@ -435,6 +400,59 @@
         "books/tau-empire/sources/official-mfm-v1.5.html",
         "books/tau-empire/sources/official-mfm-v1.5-legends.html"
       ]
+    },
+    {
+      "id": "tau-empire-mfm-v1.6",
+      "sourceId": "tau-empire-mfm-v1.6",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.6 accepted official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.6",
+      "updated": "2026-10-14",
+      "capturedAt": "2026-10-14",
+      "currentnessCutoff": "2026-10-14",
+      "url": "https://mfm.warhammer-community.com/en/tau-empire",
+      "role": "current-points-and-eligibility-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules",
+        "paid-wargear",
+        "enhancement-prices",
+        "leader-eligibility",
+        "support-eligibility",
+        "detachment-points",
+        "force-dispositions",
+        "qualifier-tags",
+        "legends-pricing"
+      ],
+      "consumers": [
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "mfm/sources/v1.6/tau-empire.json",
+        "mfm/sources/v1.6/tau-empire.html",
+        "mfm/sources/v1.6/tau-empire-legends.html"
+      ]
+    },
+    {
+      "id": "tau-empire-wargear-option-contracts",
+      "sourceId": "tau-empire-wargear-option-contracts",
+      "active": true,
+      "lifecycle": "ACCEPTED_SOURCE",
+      "sourceType": "structured-contract",
+      "title": "Wargear option contracts",
+      "factsOwned": [
+        "wargear-option-legality"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL"
+      ],
+      "paths": [
+        "books/tau-empire/sources/tau-empire-wargear-option-contracts.v1.json"
+      ]
     }
   ],
   "gates": {
@@ -452,18 +470,8 @@
     "wahapedia-secondary-parity"
   ],
   "knownGaps": [],
-  "enrollmentScope": {
-    "0": "P",
-    "1": "U",
-    "2": "B",
-    "3": "L",
-    "4": "I",
-    "5": "C",
-    "6": "_",
-    "7": "B",
-    "8": "O",
-    "9": "O",
-    "10": "K",
+  "enrollmentScope": "PUBLIC_BOOK",
+  "sourceCoverage": {
     "currentWahaCorpus": "books/tau-empire/sources/waha-11e-current-2026-09-28/corpus.json",
     "currentNonLegendsDatasheets": 43,
     "legendsExcluded": 20

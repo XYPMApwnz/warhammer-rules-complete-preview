@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -7,7 +8,7 @@ import {fileURLToPath} from 'node:url';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const extractor=path.join(repo,'books','shared','tools','extract-bsdata-11e.mjs');
-const root=fs.mkdtempSync(path.join(os.tmpdir(),'bsdata-provenance-'));
+const root=createQaTempDir('bsdata-provenance-');
 const run=(command,args,cwd=root)=>spawnSync(command,args,{cwd,encoding:'utf8'});
 const output=result=>`${result.stdout||''}\n${result.stderr||''}`;
 try{
@@ -44,8 +45,8 @@ try{
   assert.match(output(dirty),/configured inputs differ from HEAD/);
   assert.equal(run('git',['checkout','--','Faction.json']).status,0);
 
-  const external=fs.mkdtempSync(path.join(os.tmpdir(),'bsdata-external-'));
-  const secondary=fs.mkdtempSync(path.join(os.tmpdir(),'bsdata-secondary-'));
+  const external=createQaTempDir('bsdata-external-');
+  const secondary=createQaTempDir('bsdata-secondary-');
   try{
     for(const checkout of [external,secondary]){
       assert.equal(run('git',['init','-q'],checkout).status,0);
@@ -76,17 +77,17 @@ try{
     assert.notEqual(dirtyDerived.status,0,output(dirtyDerived));
     assert.match(output(dirtyDerived),/repository inputs differ from HEAD/);
   }finally{
-    fs.rmSync(external,{recursive:true,force:true});fs.rmSync(secondary,{recursive:true,force:true});
+    cleanupQaTempDir(external);cleanupQaTempDir(secondary);
   }
 
-  const nongit=fs.mkdtempSync(path.join(os.tmpdir(),'bsdata-nongit-'));
+  const nongit=createQaTempDir('bsdata-nongit-');
   try{
     fs.writeFileSync(path.join(nongit,'Faction.json'),'{}');
     config.source.checkout=nongit;config.inputs=[{role:'faction',path:path.join(nongit,'Faction.json')}];fs.writeFileSync(configPath,JSON.stringify(config,null,2));
     const invalid=run(process.execPath,[extractor,configPath]);
     assert.notEqual(invalid.status,0,output(invalid));
     assert.match(output(invalid),/BSData source verification failed/);
-  }finally{fs.rmSync(nongit,{recursive:true,force:true});}
-}finally{fs.rmSync(root,{recursive:true,force:true});}
+  }finally{cleanupQaTempDir(nongit);}
+}finally{cleanupQaTempDir(root);}
 
 console.log('BSData checkout provenance QA passed: exact HEAD, tracked clean inputs, mismatch and non-Git rejection.');

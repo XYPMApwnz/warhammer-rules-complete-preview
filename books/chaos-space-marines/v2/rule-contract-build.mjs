@@ -1,3 +1,9 @@
+import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
+import {validateBookTextRosterFacts} from '../../shared/roster-v2/text-roster-facts.mjs';
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
+import {compileConditionSchema} from '../../shared/rule-contract-v2/conditions-build.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -11,7 +17,7 @@ import {semanticInputs,bindModelDenotations,createCSMCompatibilityCompiler} from
 export const directory=path.dirname(fileURLToPath(import.meta.url));
 export const declarationFiles=['contract-datasheet-army-declarations.json','contract-enhancement-detachment-declarations.json',
   'contract-stratagem-declarations.json','contract-construction-declarations.json'];
-export const readJson=name=>JSON.parse(fs.readFileSync(path.join(directory,name),'utf8'));
+export const readJson=name=>parseProducerJSON(fs.readFileSync(path.join(directory,name),'utf8'));
 export const ruleKinds=new Set(['ARMY_RULE','DATASHEET_ABILITY','EQUIPMENT_ABILITY','SPECIAL_DATASHEET_RULE',
   'NAMED_RULE_COMPONENT','UPGRADE_DECLARATION','UPGRADE_OPTION','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM',
   'WARGEAR_OPTION','UNIT_COMPOSITION','ATTACHMENT_DECLARATION','TRANSPORT_DECLARATION','FAQ','ERRATA',
@@ -45,7 +51,9 @@ export function createCSMSchema(declarations) {
 }
 
 export function buildCSMContracts({facts=readJson('generated/effective.json'),inputs=declarationFiles.map(readJson),
-  identities=readJson('identity-bindings.json')}={}) {
+  identities=readJson('identity-bindings.json'),recipientStage='CANONICAL'}={}) {
+  facts=prepareSourceProducer(facts);
+  assert.ok(['CANONICAL','DECLARATION'].includes(recipientStage),'Unknown recipient producer stage');
   const original=JSON.stringify(facts),semantic=semanticInputs(facts,identities),{book}=semantic;
   const index=new Map(book.entities.map(entity=>[entity.id,entity]));
   const inventory=ownerInventory(facts),owners=inventory.filter(row=>row.disposition==='RULE_OWNER');
@@ -98,10 +106,14 @@ export function buildCSMContracts({facts=readJson('generated/effective.json'),in
     entity.ruleContract=bindCanonicalContract({entity,bookId:book.bookId,schema:'rule-contract/v2',declaration,index,
       currentness:{acceptedBaseHead:facts.acceptedBaseHead,sourceEvidence:entity.provenance.sourceEvidence}});
   }
-  const valid=schema.evaluator.validateContracts(book);
+  recordReviewedTextRecipients(book,readJson('recipient-declarations.json'));
+  validateBookTextRosterFacts(book);
+  const valid=schema.evaluator.validateContractDeclarations(book);
   assert.equal(valid.rules,declarations.size);
   rejectPairwiseAuthority(book);
   assert.equal(JSON.stringify(facts),original,'Canonical factual input mutated');
+  assertBookOfficialEffectReviews(book);
+  if(recipientStage==='CANONICAL'){finalizeRecipientBook(book);schema.evaluator.validateContracts(book);}
   return {facts,...semantic,schema,declarations,classifications,inventory};
 }
 
@@ -120,7 +132,7 @@ export function artifacts(built,compiled) {
   const blocked=[...built.classifications.values()].filter(row=>row.status==='BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY');
   const contracts=Object.fromEntries(built.book.entities.filter(entity=>entity.ruleContract).map(entity=>[entity.id,entity.ruleContract]));
   return {'rule-contracts':{schema:'csm-rule-contract-overlay/v2',authority:'DISPOSABLE_PROJECTION',
-    factualInput:'generated/effective.json',contracts,registry:{stateFields:built.schema.stateFields,modelAbilities:built.schema.modelAbilities},
+    factualInput:'generated/effective.json',contracts,registry:{...compileConditionSchema(built.schema.stateFields,{book:built.book}),modelAbilities:built.schema.modelAbilities},
     modelBindings:built.profileBindings},
     'rule-contract-census':{schema:'csm-rule-contract-census/v2',ruleOwners:built.classifications.size,
       counts,validContracts:Object.keys(contracts).length,unclassifiedRuleOwners:0,invalidRuleContracts:0,unboundRuleContracts:0,
@@ -133,7 +145,7 @@ export function artifacts(built,compiled) {
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const built=buildCSMContracts(),compiled=compileCSMContracts(built),outputs=artifacts(built,compiled);
   for(const [name,value] of Object.entries(outputs)) {
-    const text=JSON.stringify(value,null,2)+'\n',file=path.join(directory,'generated',name+'.json');
+    const text=serializeSourceJSON(value),file=path.join(directory,'generated',name+'.json');
     if(process.argv.includes('--check'))assert.equal(fs.readFileSync(file,'utf8'),text,'Disposable projection drift: '+name);
     else fs.writeFileSync(file,text);
   }

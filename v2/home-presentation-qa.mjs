@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 /** V1 visual oracle, live V2 routes, synthetic registry shelves and book style isolation. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -10,7 +12,7 @@ import {isApplicationTestDependency} from '../books/shared/application-v2/browse
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const base='b7db5f316eda422408f46e709c0918d25c4da806';
-const artifacts=process.env.V2_HOME_SCREENSHOTS||'E:/Warhammer/qa-artifacts/v1-home-port';
+const artifacts=process.env.V2_HOME_SCREENSHOTS||createQaEvidenceDir('home-presentation-qa-');
 fs.mkdirSync(artifacts,{recursive:true});
 const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webmanifest':'application/manifest+json'};
 const forbidden=[],errors=[],reports=[],screenshots=[];
@@ -56,7 +58,7 @@ const origins=Object.fromEntries(Object.entries(servers).map(([mode,server])=>[m
 const {chromium}=createRequire(import.meta.url)('playwright');
 const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
 const ready=async page=>{
   await page.waitForFunction(()=>Boolean(window.WarhammerAppV2));await page.evaluate(async()=>{await window.WarhammerAppV2.ready;await window.ArmyBookAppV2?.rosterPanel?.ready;});
   await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].every(link=>Boolean(link.sheet)));

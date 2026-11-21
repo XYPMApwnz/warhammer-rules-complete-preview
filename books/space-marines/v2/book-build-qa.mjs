@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 /** Independent source/parity oracle for the isolated native full-book projection.
  * Expected facts are accepted Stage 2A records and their RAW addresses, never
  * output of the new book producer. No runtime/legality or MFM certification. */
@@ -26,7 +27,7 @@ const expectedKinds={ARMY_RULE:5,DETACHMENT:21,DETACHMENT_RULE:24,ENHANCEMENT:56
 // Re-read accepted HTML using independent lxml, not the factual producer. Exact
 // provenance XPaths select occurrences; text tokens prove full clauses survive.
 // Presentation tests below additionally require exact accepted punctuation/text.
-const python=process.env.PYTHON_EXECUTABLE||'C:/Users/denis/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
+const python=resolveQaPython({envKeys:['PYTHON_EXECUTABLE']});
 const rawOracle=String.raw`
 import copy, hashlib, json, re, sys
 from pathlib import Path

@@ -43,7 +43,6 @@
     "projectStatProfiles": true,
     "preserveMultipartStatProfiles": true
   },
-  "compatibleRulesMatrix": true,
   "customApp": true,
   "dedicatedMobile": true,
   "sharedArmyBookApp": true,
@@ -72,11 +71,11 @@
     "codexWargear": "content/emperors-children-codex-wargear.en.json",
     "relatedRules": "content/emperors-children-related-rules.en.json",
     "enhancementOwners": "sources/enhancement-owner-matrix.json",
-    "officialMfm": "sources/official-mfm-v1.5.json",
+    "officialMfm": "../../mfm/sources/v1.6/emperors-children.json",
     "manifest": "sources/source-manifest.json",
     "effectContracts": "sources/emperors-children-effect-contracts.v1.json",
     "wargearOptionContracts": "sources/emperors-children-wargear-option-contracts.v1.json",
-    "mfmCurrentCapture": "sources/official-mfm-v1.5.json",
+    "mfmCurrentCapture": "../../mfm/sources/v1.6/emperors-children.json",
     "wahaCurrentCorpus": "sources/waha-11e-current-2026-09-28/corpus.json"
   },
   "compactSharedAbilities": [
@@ -123,16 +122,6 @@
   },
   "generatedOutputs": [
     {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/emperors-children/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
       "class": "DERIVED_SOURCE_PROJECTION",
       "producer": "books/emperors-children/tools/build-bsdata-enhancement-index.mjs",
       "paths": [
@@ -141,17 +130,227 @@
       "required": true,
       "tracked": true,
       "lifecycle": "EXPLICIT_SOURCE_UPDATE_OUTPUT"
-    },
-    {
-      "class": "QA_CAPTURE_REPORT",
-      "producer": "books/emperors-children/tools/import-wahapedia-compatible-rules.mjs",
-      "paths": [
-        "reports/compatible-rules-import-report.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "QA_CAPTURE_OUTPUT"
     }
   ],
-  "glossaryV2CompatibilityTerms": true
+  "glossaryV2CompatibilityTerms": true,
+  "passport": {
+    "schema": "army-book-passport/v1",
+    "edition": "11E",
+    "sources": {
+      "enrollment": "books/emperors-children/v2/sources/enrollment.json",
+      "effective": "books/emperors-children/v2/generated/effective.json",
+      "manifest": "books/emperors-children/sources/source-manifest.json",
+      "inputs": [
+        {
+          "role": "factionPack",
+          "path": "books/emperors-children/content/emperors-children-faction-pack.en.json"
+        },
+        {
+          "role": "codexParity",
+          "path": "books/emperors-children/content/emperors-children-codex-parity.en.json"
+        },
+        {
+          "role": "codexDatasheets",
+          "path": "books/emperors-children/content/emperors-children-codex-datasheets.en.json"
+        },
+        {
+          "role": "codexWargear",
+          "path": "books/emperors-children/content/emperors-children-codex-wargear.en.json"
+        },
+        {
+          "role": "relatedRules",
+          "path": "books/emperors-children/content/emperors-children-related-rules.en.json"
+        },
+        {
+          "role": "enhancementOwners",
+          "path": "books/emperors-children/sources/enhancement-owner-matrix.json"
+        },
+        {
+          "role": "currentMfmRelease",
+          "path": "mfm/current.json"
+        },
+        {
+          "role": "manifest",
+          "path": "books/emperors-children/sources/source-manifest.json"
+        },
+        {
+          "role": "effectContracts",
+          "path": "books/emperors-children/sources/emperors-children-effect-contracts.v1.json"
+        },
+        {
+          "role": "wargearOptionContracts",
+          "path": "books/emperors-children/sources/emperors-children-wargear-option-contracts.v1.json"
+        },
+        {
+          "role": "wahaCurrentCorpus",
+          "path": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/emperors-children/v2/official-updates.json"
+        }
+      ]
+    },
+    "build": {
+      "steps": [
+        {
+          "book": "emperors-children",
+          "producer": "books/emperors-children/v2/build.py",
+          "args": [],
+          "runtime": "python",
+          "outputs": [
+            "books/emperors-children/v2/generated/base.json",
+            "books/emperors-children/v2/generated/effective.json",
+            "books/emperors-children/v2/generated/factual-census.json"
+          ]
+        },
+        {
+          "book": "emperors-children",
+          "producer": "books/emperors-children/v2/rule-contract-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/emperors-children/v2/generated/rule-contracts.json"
+          ]
+        },
+        {
+          "book": "emperors-children",
+          "producer": "books/emperors-children/v2/roster-import-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/emperors-children/v2/generated/roster-import.json"
+          ]
+        },
+        {
+          "book": "emperors-children",
+          "producer": "books/emperors-children/v2/roster-attachment-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/emperors-children/v2/generated/roster-attachments.json"
+          ]
+        },
+        {
+          "book": "emperors-children",
+          "producer": "books/emperors-children/v2/app-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/emperors-children/v2/generated/app-presentation.json"
+          ]
+        }
+      ],
+      "postBuildSteps": [
+        {
+          "phase": "model-aliases",
+          "step": {
+            "book": "emperors-children",
+            "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+            "outputs": [
+              "books/emperors-children/v2/model-name-aliases.json"
+            ],
+            "args": [
+              "--book=emperors-children",
+              "--write"
+            ],
+            "runtime": "node"
+          }
+        }
+      ]
+    },
+    "qa": {
+      "script": "qa:ec",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
+    },
+    "mfm": {
+      "currentRelease": "mfm/current.json",
+      "bindingPath": "books/emperors-children/v2/mfm-bindings.json",
+      "scope": "emperors-children"
+    },
+    "runtime": {
+      "executionArtifact": "books/emperors-children/v2/generated/roster-attachments.json",
+      "conditionArtifact": "books/emperors-children/v2/generated/roster-attachments.json"
+    },
+    "canonical": {
+      "enhancementIdentity": {
+        "strategy": "owner-record",
+        "builtInExact": false
+      }
+    },
+    "modelNames": {
+      "enabled": true,
+      "artifact": "books/emperors-children/v2/generated/roster-import.json",
+      "metadata": {
+        "mode": "embedded",
+        "path": null,
+        "exportName": null
+      },
+      "sourceDocument": "books/emperors-children/sources/bsdata-emperors-children-11e.json",
+      "joins": "books/emperors-children/v2/model-name-source-bindings.json"
+    },
+    "official": {
+      "input": "books/emperors-children/v2/official-updates.json",
+      "stage": "canonical-facts"
+    },
+    "inheritance": {
+      "owners": []
+    },
+    "publication": {
+      "manifest": "tools/pages-runtime-manifest.json"
+    },
+    "audit": {
+      "conditionSchemas": [
+        "books/emperors-children/v2/rule-contract-schema.mjs",
+        "books/emperors-children/v2/rule-contract-permission-declarations.mjs"
+      ],
+      "originalSchema": {
+        "mode": "upgrade-and-events",
+        "sourcePath": "books/emperors-children/v2/rule-contract-schema.mjs",
+        "auxiliaryPath": "books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+        "constantName": "bladeId"
+      },
+      "fieldExports": [
+        {
+          "path": "books/emperors-children/v2/rule-contract-schema.mjs",
+          "exportName": "finalStateFields",
+          "anchor": "export const finalStateFields"
+        },
+        {
+          "path": "books/emperors-children/v2/rule-contract-schema.mjs",
+          "exportName": "formationStateFields",
+          "anchor": "export const formationStateFields"
+        },
+        {
+          "path": "books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+          "exportName": "permissionStateFields",
+          "anchor": "export const permissionStateFields"
+        }
+      ],
+      "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/emperors-children/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      },
+      "metadataPins": [
+        {
+          "inputRole": "currentMfmRelease",
+          "afterProducer": "books/emperors-children/v2/build.py",
+          "factualArtifact": "books/emperors-children/v2/generated/effective.json",
+          "reviewArtifact": "books/emperors-children/v2/text-rule-review.json",
+          "reviewField": "factualFingerprint",
+          "metadataField": "mfmBoundary.sourceVersion",
+          "hashEncoding": "sha256-json-lower"
+        }
+      ]
+    },
+    "keywords": {
+      "format": "flat"
+    }
+  }
 }

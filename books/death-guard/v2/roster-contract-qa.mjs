@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -208,7 +209,7 @@ function rawSourceQA(model) {
   for(const unit of ['plague-drones','plaguebearers']) {const id=`datasheet-${unit}:wargear:2`;assert.ok(texts.get(id+'\0'+JSON.stringify(['text'])).includes(normalize('1 daemonic icon.')),'Selected equipment explicit ID against raw option');assert.equal(normalize(get(index.get(id),['text'])),texts.get(id+'\0'+JSON.stringify(['text'])),'Exact raw source equipment option');}
   const pdfPath=path.join(directory,'sources/gw-death-guard-faction-pack-2026-09-30.pdf'),enrollment=read('sources/source-enrollment.json'),source=enrollment.sources.find(s=>s.path.endsWith('gw-death-guard-faction-pack-2026-09-30.pdf'));
   assert.equal(createHash('sha256').update(fs.readFileSync(pdfPath)).digest('hex').toUpperCase(),source.sha256.toUpperCase());
-  const bundled=path.join(process.env.USERPROFILE||'','.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'),python=process.env.DG_QA_PYTHON||(fs.existsSync(bundled)?bundled:'python');
+  const python=resolveQaPython({envKeys:['DG_QA_PYTHON']});
   const result=spawnSync(python,['-c',"import json,sys,pdfplumber\nwith pdfplumber.open(sys.argv[1]) as p:\n print(json.dumps({str(n):p.pages[n-1].crop((28,190,p.pages[n-1].width/2,p.pages[n-1].height-28)).extract_text() for n in [2,3,4]}|{'cap':p.pages[6].crop((28,200,295,805)).extract_text()},ensure_ascii=True))",pdfPath],{encoding:'utf8'});
   assert.equal(result.status,0,'Offline current official PDF extraction: '+result.stderr);const pages=JSON.parse(result.stdout);
   for(const [rule,,field,fragment] of expected) {const page=rule.startsWith('detachment-contagion-engines:')?'2':rule.startsWith('detachment-flyblown-host:')?'3':rule.startsWith('detachment-paragons-of-putrescence:')?'4':null;if(page)assert.ok(normalize(pages[page]).includes(normalize(fragment)),'Current official source roster operation '+rule);}

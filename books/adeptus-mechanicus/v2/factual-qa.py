@@ -7,6 +7,7 @@ import copy
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from collections import Counter
 from pathlib import Path
@@ -16,6 +17,9 @@ import pdfplumber
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
+from bridge import apply_book_official_updates
 SOURCE = ROOT/'books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25'
 read = lambda path: json.loads(path.read_text('utf8'))
 norm = lambda value: re.sub(r'\s+', ' ', str(value)).strip()
@@ -452,8 +456,19 @@ def verify(base, effective):
 
 
 def main():
-    base = read(HERE/'generated/base.json')
-    effective = read(HERE/'generated/effective.json')
+    # Decode the published sourceRefs representation at its existing JS boundary.
+    # Raw captures and the independent source expectations keep their own shape.
+    decoder = """
+import fs from 'node:fs';
+import {parseProducerJSON} from './books/shared/source-refs-v2/producer-io.mjs';
+process.stdout.write(JSON.stringify(process.argv.slice(1).map(file =>
+    parseProducerJSON(fs.readFileSync(file, 'utf8')))));
+"""
+    decoded = subprocess.run(
+        ['node', '--input-type=module', '-e', decoder,
+         str(HERE/'generated/base.json'), str(HERE/'generated/effective.json')],
+        cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True, encoding='utf8')
+    base, effective = json.loads(decoded.stdout)
     result = verify(base, effective)
     mutations = [
         lambda m: m['entities'].pop(next(i for i,r in enumerate(m['entities']) if r['kind']=='DATASHEET')),
@@ -492,20 +507,20 @@ def main():
             for key in op['field'][:-1]:
                 field = field[key]
             field[op['field'][-1]] = op['after']
-        for op in read(HERE/'sources/official-v1.4-updates.json')['operations']:
-            if op['targetId'] not in poisoned_index:
-                continue
-            field = poisoned_index[op['targetId']]['data']
-            for key in op['field'][:-1]:
-                field = field[key]
-            field[op['field'][-1]] = op['after']
+        official_input = read(ROOT/'books/adeptus-mechanicus/book.config.json')['passport']['official']['input']
+        official = read(ROOT/official_input)
+        replay = {**official, 'entries': [entry for entry in official['entries']
+                                        if entry['annotations']['phase'] == 'effective'
+                                        and entry['target']['id'] in poisoned_index]}
+        poisoned_effective = apply_book_official_updates(
+            'adeptus-mechanicus', poisoned_effective, ROOT, document=replay)['model']
         try:
             verify(poisoned, poisoned_effective)
         except (AssertionError, KeyError, IndexError):
             continue
         raise AssertionError('Undetected factual mutation')
     result['mutationsDetected'] = len(mutations)
-    text = json.dumps(result, indent=2, sort_keys=True)+'\n'
+    text = json.dumps(result, indent=2, sort_keys=True, ensure_ascii=False)+'\n'
     if '--write-census' in sys.argv:
         (HERE/'generated/factual-census.json').write_text(text,encoding='utf8',newline='\n')
     print(text)

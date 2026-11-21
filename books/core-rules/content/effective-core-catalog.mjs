@@ -6,8 +6,8 @@ import {fileURLToPath} from 'node:url';
 import {recordText} from './record-content.mjs';
 import {bindFactSources,validateFactSources,factAt} from './fact-source-bindings.mjs';
 import {applyCoreCurrentOfficial,loadCoreCurrentOfficial,loadCoreSourceRegistry} from './core-current-official.mjs';
-import {bindWahaSourceNodes,createWahaErrataRecords,createWahaFaqRecords,createWahaUniversalUpdateRecords,indexWahaCoreCorpus,loadWahaCoreCorpus,loadWahaKnownSourceDefects,sourceMappingSkeleton} from './waha-core-source.mjs';
-import {applySourceBoundEdits,normalizeFaqOwnership,separateEmbeddedFaqPanels,separateAppliedErrataPanels,applySourceConflicts,validateSourceConflicts,validateFaqOwnership} from '../../shared/canonical-content-v2/effective-content.mjs';
+import {bindWahaSourceNodes,createWahaErrataRecords,createWahaFaqRecords,createWahaUniversalUpdateRecords,indexWahaCoreCorpus,loadWahaCoreCorpus,loadWahaKnownSourceDefects,loadWahaCoreSourceIdentities,loadAcceptedCoreCandidate,sourceMappingSkeleton,WAHA_CORE_SOURCE_ID,WAHA_CORE_CAPTURE_DATE} from './waha-core-source.mjs';
+import {applySourceBoundEdits,normalizeFaqOwnership,faqPresentationIdentity,separateEmbeddedFaqPanels,separateAppliedErrataPanels,applySourceConflicts,validateSourceConflicts,validateFaqOwnership} from '../../shared/canonical-content-v2/effective-content.mjs';
 
 const contentRoot=path.dirname(fileURLToPath(import.meta.url));
 const readJson=file=>JSON.parse(fs.readFileSync(file,'utf8'));
@@ -20,8 +20,26 @@ export const EFFECTIVE_CORE_SCHEMA='wh40k-effective-core-catalog/v1';
 export const CORE_RECORD_TYPES=Object.freeze(['MAIN_RULE','ERRATA','FAQ_CLARIFICATION','UNIVERSAL_RULE_UPDATE','CORE_CONCEPT']);
 export const CORE_RECORD_STATES=Object.freeze(['FULL_CONTENT','IDENTITY_ONLY','SOURCE_CONFLICT']);
 
+// Early panel separation must not discard the accepted aliases of the same
+// question and answer in an already associated source context. This retains
+// presentation ownership; primary/related FAQ rule bindings remain unchanged.
+export function retainCoreFaqAliases(records,faqs,declarations,{historicalRecords,sourceUnits}){
+  const result=clone(records),owners=new Map(result.map(record=>[record.id,record]));
+  const old=new Map(historicalRecords.map(record=>[record.id,record])),current=new Map(faqs.map(record=>[record.id,record])),seen=new Set();
+  for(const declaration of declarations){
+    const {ownerId,faqId,existingGroupWitnessId,sourceUnitId,sourceContentHash}=declaration;
+    const key=`${ownerId}#${faqId}`,owner=owners.get(ownerId),faq=current.get(faqId),witness=current.get(existingGroupWitnessId),previous=old.get(faqId),unit=sourceUnits.get(sourceUnitId);
+    const question=unit?.content?.tables.filter(row=>row[0]==='Q:').map(row=>row.slice(1).join(' ')).join(' ');
+    const answer=unit?.content?.tables.filter(row=>row[0]==='A:').map(row=>row.slice(1).join(' ')).join(' ');
+    if(seen.has(key)||!owner||!faq||!witness||!previous||!old.get(ownerId)?.relationships?.faqIds?.includes(faqId)||!owner.relationships?.faqIds?.includes(existingGroupWitnessId)||!unit||unit.contentHash!==sourceContentHash||faqPresentationIdentity(faq)!==faqPresentationIdentity(previous)||faqPresentationIdentity(faq)!==faqPresentationIdentity(witness)||faqPresentationIdentity(faq)!==faqPresentationIdentity({question,answer}))throw new Error(`Invalid historical FAQ appearance: ${key}`);
+    seen.add(key);
+    owner.relationships.faqIds=[...new Set([...owner.relationships.faqIds,faqId])];
+  }
+  return result;
+}
+
 function baseProvenance(sourceRegistry){
-  const source=sourceRegistry.sources.find(item=>item.sourceId==='waha-core-corpus-2026-09-25');
+  const source=sourceRegistry.sources.find(item=>item.sourceId===WAHA_CORE_SOURCE_ID);
   if(!source)throw new Error('Missing accepted Core base source registration');
   return {sourceId:source.sourceId,sourceClass:source.sourceClass,sourceArtifact:source.urlOrLocalArtifact,sourceDate:source.date,sourceScope:source.scope,authorityLevel:source.authorityLevel};
 }
@@ -91,7 +109,10 @@ export function validateEffectiveCoreCatalog(catalog){
   for(const expected of expectedNodes){
     const binding=catalog.contentBindings.sourceNodes.find(item=>item.anchor===expected.sourceNode.anchor);
     const record=byId.get(binding.targetRuleId);
-    if(!record||record.sourceCode!==expected.sourceCode||JSON.stringify(record.sourceNode)!==JSON.stringify(expected.sourceNode)||JSON.stringify(record.provenance.sourceNode)!==JSON.stringify(expected.sourceNode)||record.semanticContent!==recordText(expected)||JSON.stringify(record.sourceStructure)!==JSON.stringify(expected.sourceStructure))throw new Error(`Changed source-node ownership: ${binding.targetRuleId}`);
+    const accepted=catalog.acceptedCandidate.records.find(item=>item.id===binding.acceptedCandidateId);
+    const locator=accepted?.sourceLocators?.find(item=>item.anchor===binding.anchor&&item.sourceUnitId===binding.sourceUnitId);
+    const hash=createHash('sha256').update(record?.semanticContent||'').digest('hex');
+    if(!record||!accepted||!locator||locator.sourceOrder!==binding.sourceOrder||locator.sourceContentHash!==binding.contentHash||accepted.id!==binding.targetRuleId||record.semanticContent!==accepted.text||hash!==binding.renderedContentHash||record.sourceCode!==expected.sourceCode||JSON.stringify(record.sourceNode)!==JSON.stringify(expected.sourceNode)||JSON.stringify(record.provenance.sourceNode)!==JSON.stringify(expected.sourceNode)||JSON.stringify(record.sourceStructure)!==JSON.stringify(expected.sourceStructure))throw new Error(`Changed source-node ownership: ${binding.targetRuleId}`);
   }
   for(const record of catalog.records){
     for(const id of Object.values(record.relationships||{}).flat().filter(Boolean))if(!byId.has(id))throw new Error(`Unresolved Core relationship ${record.id} -> ${id}`);
@@ -104,6 +125,8 @@ export function validateEffectiveCoreCatalog(catalog){
     const source=catalog.acceptedSourceRegistry.sources.find(item=>item.sourceId===faq.provenance.sourceId);
     if(!source||source.sourceClass!==faq.provenance.sourceClass||source.authorityLevel!==faq.provenance.authorityLevel||source.date!==faq.provenance.sourceDate)throw new Error(`Invalid canonical FAQ provenance: ${faq.id}`);
   }
+  const retained=retainCoreFaqAliases(catalog.mainRules,catalog.faqs,catalog.contentBindings.faqAppearanceRetentions,{historicalRecords:catalog.faqAppearanceHistory,sourceUnits:new Map(Object.entries(catalog.sourceUnits))});
+  for(const expected of retained)if(JSON.stringify(expected.relationships.faqIds)!==JSON.stringify(catalog.mainRules.find(record=>record.id===expected.id).relationships.faqIds))throw new Error(`Lost historical FAQ appearance: ${expected.id}`);
   return catalog;
 }
 
@@ -115,9 +138,16 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
   const current=clone(currentOfficial||loadCoreCurrentOfficial(root));
   const identities=clone(identityRegistry||readJson(path.join(root,'core-identities.v1.json')));
   const wahaCorpus=loadWahaCoreCorpus(root);
+  const sourceIdentities=loadWahaCoreSourceIdentities(root);
   const sourceDefectLedger=loadWahaKnownSourceDefects(root,wahaCorpus);
   const wahaIndex=indexWahaCoreCorpus(wahaCorpus);
   const bindings=clone(contentBindings||readJson(path.join(root,'core-effective-bindings.v1.json')));
+  const acceptedCandidate=loadAcceptedCoreCandidate(root,bindings.acceptedCandidate);
+  const appearanceSource=bindings.faqAppearanceSource;
+  if(appearanceSource?.file!=='../sources/core-importer-baselines/7b15dc36.v1.json')throw new Error('Missing historical FAQ appearance source');
+  const appearanceBytes=fs.readFileSync(path.resolve(root,appearanceSource.file));
+  if(createHash('sha256').update(appearanceBytes).digest('hex')!==appearanceSource.sha256)throw new Error('Changed historical FAQ appearance source');
+  const faqAppearanceHistory=JSON.parse(appearanceBytes).view.records;
   const resolveFactSource=source=>{
     if(source.artifact){
       const image=(bindings.pageImageEvidence||[]).find(image=>image.artifact===source.artifact);
@@ -142,7 +172,7 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
     throw new Error('Missing contributing fact evidence');
   };
   if(bindings.schema!=='canonical-content-bindings/v1'||bindings.corpusFingerprint!==wahaCorpus.fingerprint)throw new Error('Unbound effective Core normalization declarations');
-  const sourceMappings=sourceMappingSkeleton(wahaCorpus,identities);
+  const sourceMappings=sourceMappingSkeleton(wahaCorpus,identities,sourceIdentities);
   validateCoreIdentityRegistry(identities,acceptedBase.records);
   const effective=applyCoreCurrentOfficial(acceptedBase,current,registry);
   const baseOwner=baseProvenance(registry);
@@ -159,17 +189,27 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
     if(targetCode==='24.23')return candidates.find(item=>/lethal hits/i.test(item.occurrence.title))||null;
     return candidates.find(item=>item.unit.page==='appendix')||candidates[0]||null;
   };
+  const boundSourceNodes=new Map(bindWahaSourceNodes([],bindings.sourceNodes||[],wahaIndex.unitById).map(record=>[record.sourceNode.anchor,record]));
   let mainRules=effective.records.map(sourceRecord=>{
     const record=clone(sourceRecord),nodeIdentity=identities.sourceNodes?.[record.sourceNode?.anchor],id=nodeIdentity?.id||identities.rules[record.code];
     const parts=record.code.split('.'),parentCode=parts.length===3?parts.slice(0,2).join('.'):null;
     const section=sectionByNumber.get(record.code.slice(0,2));
-    const sourceCodes=record.code==='24.34'?['24.22','24.23']:[record.code],sourceUnits=record.sourceNode?[record.sourceNode.sourceUnitId]:sourceCodes.flatMap(code=>sourceNumberedByCode.get(code)?.sourceUnitIds||[]),selected=record.sourceNode?null:sourceOccurrence(record.code==='24.34'?'24.23':record.code,record.code);
+    const legacySupport=record.code==='24.34'&&!sourceNumberedByCode.has('24.34');
+    const sourceCodes=legacySupport?['24.22','24.23']:[record.code],sourceUnits=record.sourceNode?[record.sourceNode.sourceUnitId]:sourceCodes.flatMap(code=>sourceNumberedByCode.get(code)?.sourceUnitIds||[]),selected=record.sourceNode?null:sourceOccurrence(legacySupport?'24.23':record.code,record.code);
     const nodeBinding=nodeIdentity?bindings.sourceNodes.find(binding=>binding.targetRuleId===id):null;
+    if(record.preservedBaselineBinding){
+      const preserved=record.preservedBaselineBinding;
+      const accepted=acceptedCandidate.records.find(item=>item.id===id);
+      if(id!=='core-support'||accepted?.origin!=='BASELINE_PRESENTATION_EXCEPTION'||JSON.stringify(preserved)!==JSON.stringify(accepted)||recordText(record)!==accepted.semanticContent)throw new Error('Changed accepted SUPPORT representation');
+      const {origin,sourceLocators,...baselineRecord}=preserved;
+      return baselineRecord;
+    }
+    const nodeSource=nodeBinding?boundSourceNodes.get(nodeBinding.anchor):null;
     const sourceAdjudications=sourceDefectLedger.defects.filter(defect=>defect.source.code===record.code).map(defect=>({id:defect.id,kind:defect.kind,status:defect.status,disposition:clone(defect.disposition)}));
-    return {...record,id,recordType:'MAIN_RULE',semanticContent:recordText(record),provenance:{base:clone(baseOwner),...(record.sourceNode?{sourceNode:clone(record.sourceNode)}:{}),...(record.currentOfficialOverride?{effectiveOverride:clone(record.currentOfficialOverride)}:{}),...(sourceAdjudications.length?{sourceAdjudications}:{})},relationships:{...(parentCode?{parentRuleId:identities.rules[parentCode]}:{}),...(nodeBinding?{relatedRuleIds:clone(nodeBinding.relatedRuleIds||[])}:{}),errataIds:[]},state:'FULL_CONTENT',sourceUnitIds:[...new Set(sourceUnits)],sourceContentHashes:record.sourceNode?[record.sourceNode.contentHash]:sourceUnits.map(sourceId=>wahaIndex.unitById.get(sourceId)?.contentHash).filter(Boolean),...(selected?{sourceStructure:clone(selected.occurrence.content)}:{}),...(section?{fullRulePath:`books/core-rules/reader/${section}.html#${nodeIdentity?id:`rule-${record.code.replaceAll('.','-')}`}`}:{})};
+    return {...record,id,recordType:'MAIN_RULE',semanticContent:recordText(record),provenance:{base:clone(baseOwner),...(record.sourceNode?{sourceNode:clone(record.sourceNode)}:{}),...(record.currentOfficialOverride?{effectiveOverride:clone(record.currentOfficialOverride)}:{}),...(sourceAdjudications.length?{sourceAdjudications}:{})},relationships:{...clone(record.relationships||{}),...(parentCode?{parentRuleId:identities.rules[parentCode]}:{}),...(nodeBinding?{relatedRuleIds:clone(nodeBinding.relatedRuleIds||[])}:{}),errataIds:[]},state:'FULL_CONTENT',sourceUnitIds:[...new Set(sourceUnits)],sourceContentHashes:record.sourceNode?[record.sourceNode.contentHash]:sourceUnits.map(sourceId=>wahaIndex.unitById.get(sourceId)?.contentHash).filter(Boolean),...(nodeSource?{sourceStructure:clone(nodeSource.sourceStructure)}:selected?{sourceStructure:clone(selected.occurrence.content)}:{}),...(section?{fullRulePath:`books/core-rules/reader/${section}.html#${nodeIdentity?id:`rule-${record.code.replaceAll('.','-')}`}`}:{})};
   });
   let mainByCode=new Map(mainRules.filter(record=>mainRules.filter(other=>other.code===record.code).length===1).map(record=>[record.code,record]));
-  const wahaErrata=createWahaErrataRecords(wahaCorpus,identities);
+  const wahaErrata=createWahaErrataRecords(wahaCorpus,identities,sourceIdentities);
   const wahaErrataIds=new Set(wahaErrata.map(record=>record.id));
   const strongerGwOnlyErrata=current.ruleOverrides.filter(update=>!wahaErrataIds.has(update.id)).map(update=>{
     const owner=mainByCode.get(update.code);
@@ -178,7 +218,7 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
   const errata=[...wahaErrata,...strongerGwOnlyErrata];
   for(const owner of mainRules)owner.relationships.errataIds=errata.filter(record=>record.code===owner.code).map(record=>record.id);
   const faqOwner=pdfProvenance(acceptedSource,registry);
-  const wahaFaqs=createWahaFaqRecords(wahaCorpus,identities);
+  const wahaFaqs=createWahaFaqRecords(wahaCorpus,identities,sourceIdentities);
   const officialFaqs=(acceptedSource.faqs||[]).map(faq=>({id:faq.id,recordType:'FAQ_CLARIFICATION',title:faq.question,semanticContent:faq.answer,provenance:{...clone(faqOwner),sourceLocator:`Rules Appendix; page ${faq.page}`},relationships:{primaryRuleId:identities.rules[faq.primaryRule],relatedRuleIds:faq.relatedRules.map(code=>identities.rules[code])},state:'FULL_CONTENT',question:faq.question,answer:faq.answer,page:faq.page,primaryRule:faq.primaryRule,relatedRules:clone(faq.relatedRules)}));
   const faqs=normalizeFaqOwnership([...wahaFaqs,...officialFaqs],bindings.faqRelationships);
   mainRules=applySourceBoundEdits(mainRules,bindings.effectiveEdits,{sourceRecords:new Map(errata.map(record=>[record.id,record])),sourceUnits:wahaIndex.unitById});
@@ -198,6 +238,7 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
       rule.relationships.faqIds=[...new Set([...(rule.relationships.faqIds||[]),faq.id])];
     }
   }
+  mainRules=retainCoreFaqAliases(mainRules,faqs,bindings.faqAppearanceRetentions,{historicalRecords:faqAppearanceHistory,sourceUnits:wahaIndex.unitById});
   for(const record of mainRules)if(record.state!=='SOURCE_CONFLICT')record.semanticContent=recordText(record);
   const universalUpdates=createWahaUniversalUpdateRecords(wahaCorpus,identities,current,update=>overrideProvenance(update,registry));
   const identityOnly=[];
@@ -211,8 +252,10 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
     concepts.push({id:identity.id,recordType:'CORE_CONCEPT',title:entry.title,semanticContent:entry.summary,provenance:{sourceId:'core-reader-curated-concepts',sourceClass:'ACCEPTED_CORE_PRESENTATION',sourceArtifact:'books/core-rules/content/core-rules.en.js',sourceDate:acceptedSource.meta?.file||'11E',sourceScope:'GLOBAL_CORE',derivedFromSourceUnitIds:identity.ownerCode?sourceNumberedByCode.get(identity.ownerCode)?.sourceUnitIds||[]:[]},relationships:{},state:'FULL_CONTENT'});
   }
   for(const concept of Object.values(identities.derivedConcepts||{})){
-    const owner=mainByCode.get(concept.ownerCode);
-    concepts.push({id:concept.id,code:concept.ownerCode,recordType:'CORE_CONCEPT',title:concept.title,semanticContent:owner.semanticContent,provenance:clone(owner.provenance),relationships:{sourceRuleId:owner.id},state:'FULL_CONTENT'});
+    const accepted=acceptedCandidate.records.find(record=>record.id===concept.id);
+    if(accepted?.origin!=='BASELINE_CONCEPT_UNCHANGED'||accepted.recordType!=='CORE_CONCEPT')throw new Error(`Unbound accepted Core concept: ${concept.id}`);
+    const {text,origin,sourceLocators,...preserved}=accepted;
+    concepts.push(clone(preserved));
   }
   for(const record of mainRules)for(const alias of record.compatibilityAliases||[]){const key=slug(alias);if(key&&key!==record.id)aliases[key]=record.id;}
   const records=[...mainRules,...errata,...faqs,...universalUpdates,...identityOnly,...concepts];
@@ -220,7 +263,7 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
   const byCode=new Map([...mainRules,...identityOnly].filter(record=>mainRules.filter(other=>other.code===record.code).length===1).map(record=>[record.code,record]));
   const byAnchor=new Map(mainRules.filter(record=>record.sourceNode).map(record=>[record.sourceNode.anchor,record]));
   const resolveId=value=>byId.has(value)?value:aliases[value]||null;
-  const catalog={schema:EFFECTIVE_CORE_SCHEMA,asOf:'2026-09-25',records,mainRules,errata,faqs,universalUpdates,identityOnly,concepts,aliases,sourceMappings,sourceDefects:clone(sourceDefectLedger.defects),wahaCorpusFingerprint:wahaCorpus.fingerprint,contentBindings:bindings,acceptedSourceRegistry:registry,sourceUnits:Object.fromEntries(wahaIndex.unitById),resolveFactSource,resolveId,getById:value=>byId.get(resolveId(value))||null,getByCode:code=>byCode.get(code)||null,getByAnchor:anchor=>byAnchor.get(anchor)||null,presentation:{reader:acceptedData,sourceSections:acceptedSource.sections,sourceMeta:acceptedSource.meta,images:effective.images||{},baseMeta:effective.meta},identityRegistry:identities};
+  const catalog={schema:EFFECTIVE_CORE_SCHEMA,asOf:WAHA_CORE_CAPTURE_DATE,records,mainRules,errata,faqs,universalUpdates,identityOnly,concepts,aliases,sourceMappings,sourceDefects:clone(sourceDefectLedger.defects),wahaCorpusFingerprint:wahaCorpus.fingerprint,contentBindings:bindings,acceptedSourceRegistry:registry,sourceUnits:Object.fromEntries(wahaIndex.unitById),resolveFactSource,resolveId,getById:value=>byId.get(resolveId(value))||null,getByCode:code=>byCode.get(code)||null,getByAnchor:anchor=>byAnchor.get(anchor)||null,presentation:{reader:acceptedData,sourceSections:acceptedSource.sections,sourceMeta:acceptedSource.meta,images:effective.images||{},baseMeta:effective.meta},identityRegistry:identities,acceptedCandidate,faqAppearanceHistory};
   validateEffectiveCoreCatalog(catalog);
   return freeze(catalog);
 }

@@ -1,20 +1,27 @@
+import {serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
+import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
+import {qaProgress} from '../../../tests/helpers/qa-progress.mjs';
+const progress=qaProgress('SM roster');
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 /** Independent physical-input oracle, plus accepted MFM capture comparisons.
  * These texts are constructed diagnostic New Recruit-compatible fixtures. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
-import {buildSpaceMarinesImportBook,writeSpaceMarinesImportBook} from './roster-import-build.mjs';
+import {buildSpaceMarinesImportBook} from './roster-import-build.mjs';
 import {createSpaceMarinesRosterImport,createSpaceMarinesRosterService} from './roster-import.mjs';
 import {formRoster,predicateContext,selections} from '../../shared/roster-v2/context.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
 import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
 import {projectInstanceCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8')),clone=structuredClone;
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8')),clone=structuredClone;
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(row=>[row.id,row]));
-const book=buildSpaceMarinesImportBook(),sourceMfm=read('../../../mfm/sources/v1.6/space-marines.json');
-const bridges=read('./mfm-bindings.json'),payload=buildGameplayPresentation(),cards=new Map(payload.cards.map(card=>[card.id,card]));
+const built=buildSpaceMarinesContracts();progress('contracts built');
+const book=buildSpaceMarinesImportBook({built}),sourceMfm=read('../../../'+getCurrentMfmSource('space-marines').capturePath);
+const bridges=read('./mfm-bindings.json'),payload=buildGameplayPresentation(built),cards=new Map(payload.cards.map(card=>[card.id,card]));
 const DEFAULT='detachment-sm-6341f5a9b9584677',CAPTAIN='unit-sm-99eb03d4f2d448e2',INTERCESSORS='unit-sm-59162946fee84360';
 const DAINAL_UNIT='unit-sm-c7226873c51d43c0',CATO='unit-sm-02d5dee4717544ad',MARNEUS='unit-sm-1af70808102d4286',VICTRIX='unit-sm-f169827c554c4eee';
 const header=ids=>'+ FACTION KEYWORD: Space Marines\n'+(ids||[DEFAULT]).map(id=>'+ DETACHMENT: '+index.get(id).data.title+'\n').join('');
@@ -35,22 +42,32 @@ function fixture(id,{gear=true,unitEquipment='',modelEquipment='',enhancement=''
 function ready(service,text,choices={},options){
   const result=service.import(text,choices,options);assert.equal(result.status,'READY',JSON.stringify({needs:result.needsBindings,errors:result.errors}));return result;
 }
+function sourceMfmUnit(bridge){
+  assert.ok(bridge,'Missing reviewed unit MFM binding');
+  const locator=bridge.sourceLocator;
+  assert.equal(locator.partition,'units','MFM unit locator must address units');
+  assert.equal(locator.factionId,sourceMfm.factionId,'MFM unit locator has a foreign faction');
+  const matches=sourceMfm.units.filter(row=>row.title===locator.sourceTitle&&row.sourceGroup===locator.sourceGroup&&row.status===locator.status);
+  assert.equal(matches.length,1,'MFM source locator must resolve exactly once: '+JSON.stringify(locator)+'; matches='+matches.length);
+  return matches[0];
+}
+assert.throws(()=>sourceMfmUnit({...bridges.unitBindings[0],sourceLocator:{...bridges.unitBindings[0].sourceLocator,sourceTitle:'SYNTHETIC MISSING MFM UNIT'}}),/MFM source locator must resolve exactly once:.*matches=0/);
 function expectedBase(unitId,count,copy=1){
-  const bridge=bridges.unitBindings.find(row=>row.entityId===unitId);
-  const raw=bridge.proof.mfm.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],sourceMfm);
+  const raw=sourceMfmUnit(bridges.unitBindings.find(row=>row.entityId===unitId));
   const schedules=raw.pointSchedules.filter(row=>(row.minCopies===undefined||copy>=row.minCopies)&&(row.maxCopies===undefined||copy<=row.maxCopies));
   const prices=schedules.flatMap(row=>row.entries).filter(row=>count>=row.minModels&&count<=row.maxModels);
   return prices.length===1?prices[0].value:null;
 }
 function pricedFixture(unitId,options={}){
   const input=fixture(unitId,options),bridge=bridges.unitBindings.find(row=>row.entityId===unitId);
-  const raw=bridge.proof.mfm.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],sourceMfm);
+  const raw=sourceMfmUnit(bridge);
   return fixture(unitId,{...options,extraModels:raw.pointSchedules[0].entries[0].minModels-input.total});
 }
 const physical=[],blocked=[];let inputModelCount=0;
+let physicalProgress=0;
 for(const unit of facts.entities.filter(row=>row.kind==='DATASHEET')){
+ progress('physical',++physicalProgress+'/85');
   const input=fixture(unit.id),service=createSpaceMarinesRosterService(book),result=service.import(header()+input.text);
-  if(unit.id===DAINAL_UNIT){assert.equal(result.status,'NEEDS_BINDINGS');blocked.push({unitId:unit.id,status:result.status,needs:result.needsBindings});continue;}
   assert.equal(result.status,'READY',unit.id+' '+JSON.stringify({needs:result.needsBindings,errors:result.errors}));
   const actual=service.state.units[0];assert.equal(actual.canonicalUnitId,unit.id);assert.equal(actual.startingStrength,input.total);
   assert.equal(actual.modelRows.length,input.rows.length);
@@ -66,7 +83,7 @@ for(const unit of facts.entities.filter(row=>row.kind==='DATASHEET')){
   ready(service,header()+input.text);assert.deepEqual(service.snapshot(),snapshot);service.load(snapshot);assert.deepEqual(service.projection,projection);
   inputModelCount+=input.total;physical.push({unitId:unit.id,models:input.total,status:'PASS',points:result.points.status});
 }
-assert.equal(physical.length,84);assert.equal(blocked.length,1);
+assert.equal(physical.length,85);assert.equal(blocked.length,0);
 
 // All 21 existing Detachment identities pass through the real shared parser.
 const detachmentInput=fixture(INTERCESSORS),allDetachmentIds=facts.entities.filter(row=>row.kind==='DETACHMENT').map(row=>row.id);
@@ -94,7 +111,18 @@ for(const [n,binding]of book.mfmPhysicalPaidOptions.entries()){
   assert.equal(one.points.units[0].paid.totalPaidPoints,paidSourceExpected[n]);
   assert.equal(one.points.units[0].basePoints,expectedBase(binding.ownerUnitId,clean.total));
   assert.equal(one.points.totalPoints,expectedBase(binding.ownerUnitId,clean.total)+paidSourceExpected[n]);
-  assert.ok(one.points.units[0].paid.options[0].selections.every(row=>row.scope.modelScopeId===null),'UNIT inventory acquired a fabricated MODEL');
+  const scopes=one.points.units[0].paid.options[0].selections.map(row=>row.scope);
+  // Orbital Comms Array is a paid equipment ability on the sole physical
+  // Impulsor MODEL. The owner's singleton import rule now proves that bearer;
+  // no multi-MODEL inventory or paid weapon acquires an inferred MODEL.
+  if(binding.ownerUnitId==='unit-sm-4fce70f042cc4e5d'&&binding.equipmentIds.includes('ability-sm-7d0c729bd52143f9')){
+    assert.equal(clean.total,1);assert.equal(exact.state.units[0].modelRows.length,1);
+    const unit=exact.state.units[0],row=unit.modelRows[0];assert.equal(row.quantity,1);
+    assert.deepEqual(scopes,[{kind:'MODEL',unitInstanceId:unit.instanceId,modelScopeId:`${unit.instanceId}/${row.rowId}/PROFILE/${row.rowId}`}]);
+    const occurrence=row.selections.find(item=>item.canonicalEquipmentIds.includes('ability-sm-7d0c729bd52143f9'));
+    assert.equal(occurrence.quantityEvidence.scope,'UNIT','Original lexical evidence remains UNIT-origin');
+    assert.equal(occurrence.quantityEvidence.modelQuantity,1);assert.equal(occurrence.perModelQuantity,1);
+  }else assert.ok(scopes.every(scope=>scope.modelScopeId===null),'UNIT inventory acquired a fabricated MODEL');
   const nonPaid=index.get(binding.ownerUnitId).data.weaponIds.find(id=>!binding.profileIds.includes(id)&&!index.get(id).data.name.includes(','));
   const noPaid=pricedFixture(binding.ownerUnitId,{gear:false,unitEquipment:'1x '+index.get(nonPaid).data.name});
   const pair=createSpaceMarinesRosterService(book);ready(pair,header()+clean.text+noPaid.text);
@@ -111,9 +139,13 @@ assert.equal(paidResults.length,8);
 // Every source-backed assignment can be represented, without executing unknown
 // battle conditions. Fixture recipient discovery is not a new eligibility oracle.
 const assignmentResults=[],schema=createSpaceMarinesRuleSchema();
+let enhancementProgress=0;
+// Reviewed physical Epic Hero IDs at f7500b43, including own MODEL keyword scopes; no formation keywords.
+const epicBearerIds=new Set(["unit-sm-02d5dee4717544ad","unit-sm-10396cd2726045a8","unit-sm-1af70808102d4286","unit-sm-2e0979af1d9040af","unit-sm-3460439c3a774c66","unit-sm-3d29619313c24850","unit-sm-55f195878fab446f","unit-sm-611995a1ac614acb","unit-sm-70b477e461b5487a","unit-sm-7ee313f201ab42cf","unit-sm-9f9c66dce3814cc5","unit-sm-ac0e865c5ab94c9b","unit-sm-ad36b4f4c8f14a97","unit-sm-bdf36a7ab1d64d50","unit-sm-c7226873c51d43c0","unit-sm-f169827c554c4eee","unit-sm-f8bea3d5b0fa44a6","unit-sm-f9d22ec2aff840de"]);
 for(const binding of book.importBindings.enhancements){
+ progress('enhancements',++enhancementProgress+'/56');
   let chosen=null;
-  for(const source of facts.entities.filter(row=>row.kind==='DATASHEET'&&row.id!==DAINAL_UNIT)){
+  for(const source of facts.entities.filter(row=>row.kind==='DATASHEET'&&row.id!==DAINAL_UNIT&&!epicBearerIds.has(row.id))){
     const candidate=fixture(source.id,{gear:false});
     // Discover a diagnostic recipient from source MODEL rows without repeatedly
     // executing full imports. The chosen fixture still goes through the real
@@ -168,9 +200,10 @@ const unknown=active.import(header()+'1x Astraeus (9999 pts)\n');assert.equal(un
 assert.equal(book.importBindings.referenceOnly.length,21);
 const unknownInput=active.import(header()+'1x Thunderhawk Gunship (9999 pts)\n');assert.equal(unknownInput.status,'NEEDS_BINDINGS');
 
-const original=JSON.stringify(book);assert.deepEqual(buildSpaceMarinesImportBook(),book);assert.equal(JSON.stringify(book),original);
-writeSpaceMarinesImportBook({check:true});
-console.log(JSON.stringify({status:'PASS',physicalSourceUnits:84,sourceMappingBlockedUnits:blocked,constructedInputModels:inputModelCount,
+const original=JSON.stringify(book);assert.deepEqual(buildSpaceMarinesImportBook({built}),book);assert.equal(JSON.stringify(book),original);
+assert.equal(fs.readFileSync(new URL('./generated/roster-import.json',import.meta.url),'utf8'),serializeSourceJSON(book),'Stale Space Marines native import view');
+progress.close();
+console.log(JSON.stringify({status:'PASS',physicalSourceUnits:physical.length,sourceMappingBlockedUnits:blocked,constructedInputModels:inputModelCount,
   physical:physical,detachments:21,paidOptionControls:paidResults,assignments:assignmentResults,cato:catoResults,
   repeatedUnits:true,quantityParity:true,sourceReplacementsNoDefaultGear:true,atomicImport:true,replacementConfirmation:true,
   snapshots:true,reimportAttachments:true,deterministic:true,realNewRecruitExportTested:false,browserAcceptance:'NOT_RUN'}));

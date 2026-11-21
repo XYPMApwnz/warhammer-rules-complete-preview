@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Isolated native V2 datasheet view. Facts remain in the Stage 2A foundation.
  * Same disposable PROFILE/layout adaptation used by Tyranids/T'au app-build.
  * No legacy Army builder, MFM lookup, roster engine or executable rules.
@@ -8,13 +9,15 @@ import {fileURLToPath} from 'node:url';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone;
 const sorted=entities=>[...entities].sort((a,b)=>a.id.localeCompare(b.id));
 const key=field=>field.source.path;
 const one=(card,path)=>{const field=card.fields.find(f=>key(f)===path);assert.ok(field,`${card.id}: missing ${path}`);return field;};
 
 export function buildNativeDatasheets({facts=read('./generated/effective.json'),base=read('./generated/base.json')}={}){
+  facts=prepareSourceProducer(facts);
+  base=prepareSourceProducer(base);
   const before=JSON.stringify(facts),baseBefore=JSON.stringify(base);
   const unitIds=new Set(facts.entities.filter(e=>e.kind==='DATASHEET').map(e=>e.id));
   const selected=facts.entities.filter(e=>unitIds.has(e.id)||unitIds.has(e.parentId));
@@ -46,7 +49,7 @@ export function buildNativeDatasheets({facts=read('./generated/effective.json'),
       }
     }
   }
-  const payload=projectArmyBook(model,new Map(),{title:'Dark Angels',edition:'11th Edition'});
+  const payload=prepareSourceProducer(projectArmyBook(model,new Map(),{title:'Dark Angels',edition:'11th Edition'}));
   const cards=new Map(payload.cards.map(c=>[c.id,c]));
   payload.datasheetPresentation=buildDatasheetPresentation(model,{units:{}},{bindings:{},records:new Map()});
   const roles=payload.datasheetPresentation.sectionRoles;
@@ -109,7 +112,7 @@ export function buildNativeDatasheets({facts=read('./generated/effective.json'),
 export function writeNativeDatasheets({check=false}={}){
   const result=buildNativeDatasheets();
   for(const [name,value] of [['native-datasheets',result.model],['datasheet-presentation',result.payload]]){
-    const file=new URL(`./generated/${name}.json`,import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+    const file=new URL(`./generated/${name}.json`,import.meta.url),bytes=serializeSourceJSON(value);
     if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,`Stale native output: ${name}`);else fs.writeFileSync(file,bytes);
   }
   return result;

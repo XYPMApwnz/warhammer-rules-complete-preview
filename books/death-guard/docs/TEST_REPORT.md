@@ -2,9 +2,13 @@
 
 Date: July 21, 2026.
 
+> Retired V1 verification report. The book-relative command and browser results
+> below describe the historical v4 reader, not current Unified V2 acceptance.
+> They must not be used as executable instructions or fresh V2 coverage.
+
 ## Automated verification
 
-- Command: `node tests/qa.mjs`.
+- Historical command (retired): `node tests/qa.mjs`.
 - Result: **48/48 checks passed**.
 - The checks covered script syntax, ID uniqueness, 26 global-navigation items, tree depth, 20 terms, the popup state machine, the Journey/Back contract, CSS/JS separation, the service worker, and the v4 icon.
 

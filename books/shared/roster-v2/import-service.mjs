@@ -1,6 +1,9 @@
 import {parse as parseText} from './parser.mjs';
 import {lexicalDraft,importNewRecruit} from './import.mjs';
 import {validateRoster} from './context.mjs';
+import {bindSingletonModelEquipment} from './singleton-model-import.mjs';
+import {createExportFactionCheck,exportFactionError} from './export-faction.mjs';
+import {getRecordedSourceIdentity,registerBookSources,cloneSourceBook} from '../source-refs-v2/source-refs.mjs';
 
 const copy=value=>structuredClone(value);
 const reject=(condition,message)=>{if (!condition) throw new TypeError(message);};
@@ -9,12 +12,13 @@ const reject=(condition,message)=>{if (!condition) throw new TypeError(message);
  * Evidence is an existing canonical field, interpreted by the book owner. */
 function importBook(book,aliases,weaponSelections,equipmentSelections,optionSelections) {
   reject(book && typeof book.bookId==='string' && Array.isArray(book.entities),'Missing canonical book');
-  const view=copy(book),records=new Map(view.entities.map(entity=>[entity.id,entity]));
+  const view=cloneSourceBook(book),records=new Map(view.entities.map(entity=>[entity.id,entity]));
+  registerBookSources(view);
   reject(records.size===view.entities.length,'Duplicate canonical identity');
   reject(Array.isArray(aliases),'Invalid import aliases');
   const evidenceField=evidence=>{
     const reference=records.get(evidence?.entityId);
-    reject(reference && reference.provenance?.sourceId && typeof evidence.path==='string'&&evidence.path.startsWith('/'),'Missing canonical import evidence');
+    reject(reference && getRecordedSourceIdentity(reference,{book:view}) && typeof evidence.path==='string'&&evidence.path.startsWith('/'),'Missing canonical import evidence');
     let value=reference.data;
     for (const part of evidence.path.slice(1).split('/').map(part=>part.replaceAll('~1','/').replaceAll('~0','~'))) value=value?.[part];
     reject(typeof value==='string'&&value.length,'Unresolved canonical import evidence');
@@ -69,15 +73,30 @@ function importBook(book,aliases,weaponSelections,equipmentSelections,optionSele
 
 /** Import-only boundary. No effect projection, battle state or attachment edits.
  * Callers get the same canonical UNIT_INSTANCE snapshot used by Roster V2. */
-export function createRosterImportService(book,{parse=parseText,identityAliases=[],weaponSelections=[],equipmentSelections=[],optionSelections=[],deferredUnits=[]}={}) {
+export function createRosterImportService(book,{parse=parseText,identityAliases=[],weaponSelections=[],equipmentSelections=[],optionSelections=[],deferredUnits=[],factionIdentityLabels,allowNormalizedEmptyFaction=false,gateAllFactionHeaders=false,factionDisplayName}={}) {
+  registerBookSources(book);
+  reject(typeof gateAllFactionHeaders==='boolean','Invalid export faction header policy');
+  reject(!gateAllFactionHeaders||Array.isArray(factionIdentityLabels)&&typeof factionDisplayName==='string'&&factionDisplayName.trim(),
+    'Missing all-header export faction vocabulary/display name');
   const canonical=copy(book),declaredSelections=copy(weaponSelections),equipment=copy(equipmentSelections),options=copy(optionSelections),deferred=copy(deferredUnits),view=importBook(canonical,identityAliases,declaredSelections,equipment,options);
   let state=null;
+  const acceptsPlainFaction=factionIdentityLabels===undefined?null:createExportFactionCheck({factionIdentityLabels,allowNormalizedEmptyFaction});
   const service={
     get state(){return state?copy(state):null;},
-    draft:text=>lexicalDraft(text,parse),
+    draft:text=>lexicalDraft(text,parse,view),
     import(text,bindings) {
       const result=importNewRecruit(text,{parse,bindings,book:view,weaponSelections:declaredSelections,equipmentSelections:equipment,optionSelections:options,deferredUnits:deferred});
-      if (result.status==='READY') service.load(result.roster);
+      // Existing books retain their native labelled admission path. Books that
+      // opt into the common all-header policy reject before any state load,
+      // including when foreign UNIT identities would otherwise need bindings.
+      if((gateAllFactionHeaders||result.draft?.metadata.plainHeader)&&acceptsPlainFaction&&!acceptsPlainFaction(result.draft?.metadata.faction))
+        return {...result,status:'INVALID',roster:null,needsBindings:[],errors:[gateAllFactionHeaders
+          ?exportFactionError(result.draft.metadata.faction,factionDisplayName)
+          :{code:'FOREIGN_FACTION_EXPORT',key:'faction',message:'Export identifies a different Army Book'}]};
+      if (result.status==='READY') {
+        bindSingletonModelEquipment(result.roster,equipment);
+        service.load(result.roster);
+      }
       return result;
     },
     load(snapshot) {

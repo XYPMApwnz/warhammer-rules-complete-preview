@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 /** Existing targeted book QA pattern. All rosters here are constructed physical
  * diagnostic snapshots; no real New Recruit export is claimed. */
 import fs from 'node:fs';
@@ -22,7 +23,7 @@ const expected=[
  ['mfm-paid-upgrade-f0d7680f02efab10','REPULSOR EXECUTIONER','per Heavy Laser Destroyer',10],
  ['mfm-paid-upgrade-fe9bdd5878ada46f','TERMINATOR ASSAULT SQUAD','per Storm Shield',5]
 ];
-const python='C:/Users/denis/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
+const python=resolveQaPython();
 const raw=spawnSync(python,['-X','utf8','-c',`import json,sys
 from lxml import html
 f=json.load(sys.stdin);t=html.parse(f['mfm']);out=[]

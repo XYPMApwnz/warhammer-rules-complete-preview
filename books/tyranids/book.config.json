@@ -62,7 +62,6 @@
     "enforceCompositionConstraints": true,
     "projectStatProfiles": true
   },
-  "compatibleRulesMatrix": true,
   "legacyRelatedRuleAttributes": false,
   "assetVersions": {
     "app": 11,
@@ -82,38 +81,204 @@
     "codexDatasheets": "content/tyranids-codex-datasheets.en.json",
     "codexWargear": "content/tyranids-codex-wargear.en.json",
     "codexParity": "content/tyranids-codex-parity.en.json",
-    "points": "content/tyranids-points.en.json",
+    "points": "../../mfm/sources/v1.6/tyranids.json",
     "relatedRules": "content/tyranids-related-rules.en.json",
     "manifest": "sources/source-manifest.json",
     "effectContracts": "sources/tyranids-effect-contracts.v1.json",
-    "mfmCurrentCapture": "sources/official-mfm-v1.5.json",
+    "mfmCurrentCapture": "../../mfm/sources/v1.6/tyranids.json",
     "wargearOptionContracts": "sources/tyranids-wargear-option-contracts.v1.json"
   },
   "relatedRulesOwnership": {
     "mode": "authoritative-runtime-source",
     "path": "mobile/related-rules.inc"
   },
-  "generatedOutputs": [
-    {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/tyranids/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
+  "generatedOutputs": [],
+  "glossaryV2CompatibilityTerms": true,
+  "passport": {
+    "schema": "army-book-passport/v1",
+    "edition": "11E",
+    "sources": {
+      "enrollment": "books/tyranids/v2/sources/enrollment.json",
+      "effective": "books/tyranids/v2/generated/effective.json",
+      "manifest": "books/tyranids/sources/source-manifest.json",
+      "inputs": [
+        {
+          "role": "factionPack",
+          "path": "books/tyranids/content/tyranids-faction-pack.en.json"
+        },
+        {
+          "role": "codexDatasheets",
+          "path": "books/tyranids/content/tyranids-codex-datasheets.en.json"
+        },
+        {
+          "role": "codexWargear",
+          "path": "books/tyranids/content/tyranids-codex-wargear.en.json"
+        },
+        {
+          "role": "codexParity",
+          "path": "books/tyranids/content/tyranids-codex-parity.en.json"
+        },
+        {
+          "role": "currentMfmRelease",
+          "path": "mfm/current.json"
+        },
+        {
+          "role": "relatedRules",
+          "path": "books/tyranids/content/tyranids-related-rules.en.json"
+        },
+        {
+          "role": "manifest",
+          "path": "books/tyranids/sources/source-manifest.json"
+        },
+        {
+          "role": "effectContracts",
+          "path": "books/tyranids/sources/tyranids-effect-contracts.v1.json"
+        },
+        {
+          "role": "wargearOptionContracts",
+          "path": "books/tyranids/sources/tyranids-wargear-option-contracts.v1.json"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/tyranids/v2/official-updates.json"
+        }
+      ]
     },
-    {
-      "class": "QA_CAPTURE_REPORT",
-      "producer": "books/tyranids/tools/import-wahapedia-compatible-rules.mjs",
-      "paths": [
-        "reports/compatible-rules-import-report.json"
+    "build": {
+      "steps": [
+        {
+          "book": "tyranids",
+          "producer": "books/tyranids/v2/build.py",
+          "args": [],
+          "runtime": "python",
+          "outputs": [
+            "books/tyranids/v2/generated/base.json",
+            "books/tyranids/v2/generated/effective.json",
+            "books/tyranids/v2/generated/factual-census.json"
+          ]
+        },
+        {
+          "book": "tyranids",
+          "producer": "books/tyranids/v2/roster-import-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/tyranids/v2/generated/roster-import.json"
+          ]
+        },
+        {
+          "book": "tyranids",
+          "producer": "books/tyranids/v2/rule-contract-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/tyranids/v2/generated/rule-contracts.json"
+          ]
+        },
+        {
+          "book": "tyranids",
+          "producer": "books/tyranids/v2/app-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/tyranids/v2/generated/roster-runtime.json",
+            "books/tyranids/v2/generated/app-presentation.json"
+          ]
+        }
       ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "QA_CAPTURE_OUTPUT"
+      "postBuildSteps": [
+        {
+          "phase": "model-aliases",
+          "step": {
+            "book": "tyranids",
+            "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+            "outputs": [
+              "books/tyranids/v2/model-name-aliases.json"
+            ],
+            "args": [
+              "--book=tyranids",
+              "--write"
+            ],
+            "runtime": "node"
+          }
+        }
+      ]
+    },
+    "qa": {
+      "script": "qa:tyranids",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
+    },
+    "mfm": {
+      "currentRelease": "mfm/current.json",
+      "bindingPath": "books/tyranids/v2/mfm-bindings.json",
+      "scope": "tyranids"
+    },
+    "runtime": {
+      "executionArtifact": "books/tyranids/v2/generated/roster-runtime.json",
+      "conditionArtifact": "books/tyranids/v2/generated/roster-runtime.json"
+    },
+    "canonical": {
+      "enhancementIdentity": {
+        "strategy": "owner-record",
+        "builtInExact": false
+      }
+    },
+    "modelNames": {
+      "enabled": true,
+      "artifact": "books/tyranids/v2/generated/roster-import.json",
+      "metadata": {
+        "mode": "embedded",
+        "path": null,
+        "exportName": null
+      },
+      "sourceDocument": "books/tyranids/sources/bsdata-tyranids-11e.json",
+      "joins": "books/tyranids/v2/model-name-source-bindings.json"
+    },
+    "official": {
+      "input": "books/tyranids/v2/official-updates.json",
+      "stage": "canonical-facts"
+    },
+    "inheritance": {
+      "owners": []
+    },
+    "publication": {
+      "manifest": "tools/pages-runtime-manifest.json"
+    },
+    "audit": {
+      "conditionSchemas": [
+        "books/tyranids/v2/roster-source-choices.mjs"
+      ],
+      "originalSchema": {
+        "mode": "source-choice",
+        "sourcePath": "books/tyranids/v2/roster-source-choices.mjs",
+        "auxiliaryPath": null,
+        "constantName": "trygonChoiceField"
+      },
+      "fieldExports": [],
+      "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/tyranids/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      },
+      "metadataPins": [
+        {
+          "inputRole": "currentMfmRelease",
+          "afterProducer": "books/tyranids/v2/build.py",
+          "factualArtifact": "books/tyranids/v2/generated/effective.json",
+          "reviewArtifact": "books/tyranids/v2/text-rule-review.json",
+          "reviewField": "factualFingerprint",
+          "metadataField": "mfmBoundary.sourceVersion",
+          "hashEncoding": "sha256-json-lower"
+        }
+      ]
+    },
+    "keywords": {
+      "format": "profile-groups"
     }
-  ],
-  "glossaryV2CompatibilityTerms": true
+  }
 }

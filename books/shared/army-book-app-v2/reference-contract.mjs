@@ -93,7 +93,7 @@ export function createReferenceContract({cards,index,registryId='book',coreRegis
     const normalized=normalizeGlossaryQuery(query),available=scope(allowedIds),results=[];
     for(const entry of entries.values()) {
       if(!available.has(entry.targetId)||(category&&categoryFor(cards.get(entry.targetId))!==(categories[category] || 'Reference')))continue;
-      const candidates=[{label:entry.label},...entry.aliases];
+      const candidates=[{label:entry.label},...entry.aliases.filter(alias=>alias.match!=='EXACT')];
       let best=null,model=null;
       const resolved=()=>model??=resolve(entry.targetId,allowedIds);
       for(const candidate of candidates) {
@@ -139,5 +139,6 @@ export function createReferenceContract({cards,index,registryId='book',coreRegis
     const candidates=eligible.filter(entry=>(entry.aliases||[]).some(alias=>alias.match!=='EXACT'&&normalizeGlossaryQuery(alias.label)===token));
     return candidates.length===1?candidates[0].targetId:null;
   }
-  return Object.freeze({resolve,canResolve,identityFor,resolveAlias,search,categories:categoryList,isEntry:id=>entries.has(id)});
+  return Object.freeze({resolve,canResolve,identityFor,resolveAlias,search,categories:categoryList,isEntry:id=>entries.has(id),
+    availableTargets:allowedIds=>new Set(scope(allowedIds))});
 }

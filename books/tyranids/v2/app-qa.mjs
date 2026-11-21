@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Bounded presentation parity and fail-closed controls; no source re-audit. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,14 +8,15 @@ import {buildTyranidsContracts} from './rule-contract-build.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {registration} from './registration.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const built=buildTyranidsContracts(),before=JSON.stringify(built),payload=writeApp({check:true});
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(entity=>[entity.id,entity]));
 const cards=new Map(payload.cards.map(card=>[card.id,card]));
 assert.equal(cards.size,payload.cards.length,'Duplicate canonical card');
 for(const [kind,count]of [['DATASHEET',52],['DETACHMENT',10],['DETACHMENT_RULE',11],['ARMY_RULE',2],['ENHANCEMENT',34],['STRATAGEM',51],['WEAPON_PROFILE',133]])
   assert.equal(payload.cards.filter(card=>card.kind===kind).length,count,kind+' inventory');
-assert.equal(payload.ruleContractIds.length,19);assert.equal(payload.book.mfmVersion,'v1.6');
+assert.equal(payload.ruleContractIds.length,227);assert.equal(payload.book.mfmVersion,getCurrentMfmSource('tyranids').version);
 const value=(source,path)=>path.slice(1).split('/').reduce((current,key)=>current?.[key.replaceAll('~1','/').replaceAll('~0','~')],source);
 export function assertPresentationParity(candidate){
   const seen=new Set();
@@ -21,7 +24,7 @@ export function assertPresentationParity(candidate){
   for(const entity of facts.entities){
     const card=candidate.cards.find(card=>card.id===entity.id);assert.ok(card,'Missing factual card '+entity.id);
     assert.equal(card.parentId,entity.parentId,'Changed canonical owner '+entity.id);
-    assert.deepEqual(card.provenance,entity.provenance,'Changed provenance '+entity.id);
+    assert.deepEqual(sourceSnapshot(card),sourceSnapshot(entity),'Changed provenance '+entity.id);
   }
   for(const card of candidate.cards)for(const field of card.fields){
     if(!index.has(field.source.entityId)&&!field.source.entityId.startsWith('mfm-'))continue;
@@ -79,10 +82,13 @@ for(const id of ['faq-biovores-seed-spore-mines-hidden-v1.3','tyranids-source-co
 }
 for(const id of ['datasheet-old-one-eye:rule-reference:1','datasheet-psychophage:rule-reference:2']){
  const source=facts.rosterReferenceSemantics[id];assert.ok(source,'Missing native FNP MODEL semantics');
- assert.deepEqual(source,built.book.rosterReferenceSemantics[id]);
+ assert.deepEqual(sourceDeclarationView(source,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics[id],{book:built.book}));
 }
 assert.equal(JSON.stringify(built),before,'Presentation mutated source owner');
 let mutations=0;
+const changedFnp=structuredClone(facts.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1']);
+sourceFixture(changedFnp,{book:facts}).provenance.sha256='changed-source-hash';
+assert.throws(()=>assert.deepEqual(sourceDeclarationView(changedFnp,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1'],{book:built.book})),'FNP source equality must still reject a changed recorded hash');mutations++;
 const mismatch=structuredClone(payload);mismatch.cards.find(card=>card.id==='datasheet-psychophage:profile:1').fields.find(field=>field.source.path==='/stats/W').value='2';
 assert.throws(()=>assertPresentationParity(mismatch),/Factual presentation mismatch/);mutations++;
 const missing=structuredClone(payload);missing.cards.find(card=>card.id==='datasheet-broodlord:section:1').fields=missing.cards.find(card=>card.id==='datasheet-broodlord:section:1').fields.filter(field=>field.source.path!=='/blocks/0/text');
@@ -90,5 +96,5 @@ assert.throws(()=>assertPresentationParity(missing),/Missing source block/);muta
 const duplicate=buildTyranidsContracts();duplicate.book.entities.push(structuredClone(duplicate.book.entities[0]));assert.throws(()=>buildApp(duplicate),/Duplicate canonical entity/);mutations++;
 const foreign=structuredClone(payload);foreign.cards.find(card=>card.id===elevated).parentId='detachment-invasion-fleet';
 assert.throws(()=>assertPresentationParity(foreign),/Changed canonical owner/);mutations++;
-console.log(JSON.stringify({status:'PASS',datasheets:52,detachments:10,namedRules:11,enhancements:34,stratagems:51,contracts:19,
+console.log(JSON.stringify({status:'PASS',datasheets:52,detachments:10,namedRules:11,enhancements:34,stratagems:51,contracts:227,
   compositionMembers:57,mutations,canonicalFactsUnchanged:true,registrationId:registration.id}));

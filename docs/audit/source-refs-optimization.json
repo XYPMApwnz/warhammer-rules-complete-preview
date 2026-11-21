@@ -1,0 +1,4777 @@
+{
+  "schema": "source-refs-optimization/v1",
+  "base": "75d322e4e3274f14d7e2a81abace3ba63c784ec5",
+  "status": "TARGETED_CHECKS_COMPLETE",
+  "payloads": {
+    "baseline": {
+      "files": 429,
+      "bytes": 271531285,
+      "contentSha256": "92c07f6abd5222f455c68a611acae9a4f8e83547448c5bb873df244300833c1e",
+      "cacheRevision": "90a31a5d4781b6a2"
+    },
+    "before": {
+      "files": 430,
+      "bytes": 303574045,
+      "contentSha256": "bfbd2150a67d914247ef8322ad80b2965c08b04e588590a0a6605dee0f1ba93f",
+      "cacheRevision": "78f945e567e6a7a7"
+    },
+    "after": {
+      "files": 432,
+      "bytes": 270049414,
+      "contentSha256": "80dcbec62a7954230b49aa1afb2c613faa1a474be4d744e39a217fe2899380e6",
+      "cacheRevision": "8312260aa5c2fd6b"
+    }
+  },
+  "size": {
+    "oldGrowth": 32042760,
+    "newGrowth": -1481871,
+    "saved": 33524631,
+    "targetMaxGrowth": 2000000,
+    "targetPass": true
+  },
+  "files": [
+    {
+      "path": ".nojekyll",
+      "baselineBytes": 1,
+      "beforeBytes": 1,
+      "afterBytes": 1,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/adeptus-mechanicus-cover-480.webp",
+      "baselineBytes": 52998,
+      "beforeBytes": 52998,
+      "afterBytes": 52998,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/adeptus-mechanicus-cover-800.webp",
+      "baselineBytes": 128270,
+      "beforeBytes": 128270,
+      "afterBytes": 128270,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/adeptus-mechanicus-cover-fallback.jpg",
+      "baselineBytes": 173682,
+      "beforeBytes": 173682,
+      "afterBytes": 173682,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/adeptus-mechanicus-cover-thumb.jpg",
+      "baselineBytes": 7883,
+      "beforeBytes": 7883,
+      "afterBytes": 7883,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/apple-touch-icon.png",
+      "baselineBytes": 9134,
+      "beforeBytes": 9134,
+      "afterBytes": 9134,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/core-rules-cover-480.webp",
+      "baselineBytes": 53074,
+      "beforeBytes": 53074,
+      "afterBytes": 53074,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/core-rules-cover-800.webp",
+      "baselineBytes": 158196,
+      "beforeBytes": 158196,
+      "afterBytes": 158196,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/core-rules-cover-fallback.jpg",
+      "baselineBytes": 185826,
+      "beforeBytes": 185826,
+      "afterBytes": 185826,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/core-rules-cover-thumb.jpg",
+      "baselineBytes": 7389,
+      "beforeBytes": 7389,
+      "afterBytes": 7389,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/death-guard-cover-480.webp",
+      "baselineBytes": 32960,
+      "beforeBytes": 32960,
+      "afterBytes": 32960,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/death-guard-cover-800.webp",
+      "baselineBytes": 68710,
+      "beforeBytes": 68710,
+      "afterBytes": 68710,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/death-guard-cover-fallback.jpg",
+      "baselineBytes": 121424,
+      "beforeBytes": 121424,
+      "afterBytes": 121424,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/death-guard-cover-thumb.jpg",
+      "baselineBytes": 7722,
+      "beforeBytes": 7722,
+      "afterBytes": 7722,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/death-guard-cover.jpg",
+      "baselineBytes": 473320,
+      "beforeBytes": 473320,
+      "afterBytes": 473320,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/games-workshop-logo.png",
+      "baselineBytes": 53556,
+      "beforeBytes": 53556,
+      "afterBytes": 53556,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/icon-192.png",
+      "baselineBytes": 9631,
+      "beforeBytes": 9631,
+      "afterBytes": 9631,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/icon-512.png",
+      "baselineBytes": 54730,
+      "beforeBytes": 54730,
+      "afterBytes": 54730,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/icon-maskable-512.png",
+      "baselineBytes": 39165,
+      "beforeBytes": 39165,
+      "afterBytes": 39165,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/tyranids-cover-480.webp",
+      "baselineBytes": 54430,
+      "beforeBytes": 54430,
+      "afterBytes": 54430,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/tyranids-cover-800.webp",
+      "baselineBytes": 116998,
+      "beforeBytes": 116998,
+      "afterBytes": 116998,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/tyranids-cover-fallback.jpg",
+      "baselineBytes": 197170,
+      "beforeBytes": 197170,
+      "afterBytes": 197170,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/tyranids-cover-thumb.jpg",
+      "baselineBytes": 10493,
+      "beforeBytes": 10493,
+      "afterBytes": 10493,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "assets/warhammer-40000-logo-optimized.png",
+      "baselineBytes": 63522,
+      "beforeBytes": 63522,
+      "afterBytes": 63522,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/mechanicus-cover-800.webp",
+      "baselineBytes": 128270,
+      "beforeBytes": 128270,
+      "afterBytes": 128270,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/mechanicus-logo.png",
+      "baselineBytes": 132575,
+      "beforeBytes": 132575,
+      "afterBytes": 132575,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/archaeopter-fusilave.webp",
+      "baselineBytes": 122640,
+      "beforeBytes": 122640,
+      "afterBytes": 122640,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/archaeopter-stratoraptor.webp",
+      "baselineBytes": 151132,
+      "beforeBytes": 151132,
+      "afterBytes": 151132,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/archaeopter-transvector.webp",
+      "baselineBytes": 101176,
+      "beforeBytes": 101176,
+      "afterBytes": 101176,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/belisarius-cawl-background.webp",
+      "baselineBytes": 74384,
+      "beforeBytes": 74384,
+      "afterBytes": 74384,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/corpuscarii-electro-priests.webp",
+      "baselineBytes": 131432,
+      "beforeBytes": 131432,
+      "afterBytes": 131432,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/cybernetica-datasmith.webp",
+      "baselineBytes": 93486,
+      "beforeBytes": 93486,
+      "afterBytes": 93486,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/fulgurite-electro-priests.webp",
+      "baselineBytes": 106238,
+      "beforeBytes": 106238,
+      "afterBytes": 106238,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/hastarii-exterminators.webp",
+      "baselineBytes": 170876,
+      "beforeBytes": 170876,
+      "afterBytes": 170876,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/hastarii-fusiliers.webp",
+      "baselineBytes": 253560,
+      "beforeBytes": 253560,
+      "afterBytes": 253560,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/ironstrider-ballistarii.webp",
+      "baselineBytes": 70526,
+      "beforeBytes": 70526,
+      "afterBytes": 70526,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/kastelan-robots.webp",
+      "baselineBytes": 84320,
+      "beforeBytes": 84320,
+      "afterBytes": 84320,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/kataphron-breachers.webp",
+      "baselineBytes": 69094,
+      "beforeBytes": 69094,
+      "afterBytes": 69094,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/kataphron-destroyers.webp",
+      "baselineBytes": 68336,
+      "beforeBytes": 68336,
+      "afterBytes": 68336,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/onager-dunecrawler.webp",
+      "baselineBytes": 147050,
+      "beforeBytes": 147050,
+      "afterBytes": 147050,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/pteraxii-skystalkers.webp",
+      "baselineBytes": 87118,
+      "beforeBytes": 87118,
+      "afterBytes": 87118,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/pteraxii-sterylizors.webp",
+      "baselineBytes": 78030,
+      "beforeBytes": 78030,
+      "afterBytes": 78030,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/serberys-raiders.webp",
+      "baselineBytes": 129498,
+      "beforeBytes": 129498,
+      "afterBytes": 129498,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/serberys-sulphurhounds.webp",
+      "baselineBytes": 168136,
+      "beforeBytes": 168136,
+      "afterBytes": 168136,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/servitor-battleclade.webp",
+      "baselineBytes": 256212,
+      "beforeBytes": 256212,
+      "afterBytes": 256212,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/sicarian-infiltrators.webp",
+      "baselineBytes": 168422,
+      "beforeBytes": 168422,
+      "afterBytes": 168422,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/sicarian-ruststalkers.webp",
+      "baselineBytes": 164444,
+      "beforeBytes": 164444,
+      "afterBytes": 164444,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/skitarii-marshal.webp",
+      "baselineBytes": 145954,
+      "beforeBytes": 145954,
+      "afterBytes": 145954,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/skitarii-rangers.webp",
+      "baselineBytes": 169906,
+      "beforeBytes": 169906,
+      "afterBytes": 169906,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/skitarii-vanguard.webp",
+      "baselineBytes": 147604,
+      "beforeBytes": 147604,
+      "afterBytes": 147604,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/skorpius-disintegrator.webp",
+      "baselineBytes": 140134,
+      "beforeBytes": 140134,
+      "afterBytes": 140134,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/skorpius-dunerider.webp",
+      "baselineBytes": 128244,
+      "beforeBytes": 128244,
+      "afterBytes": 128244,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/sydonian-dragoons-with-radium-jezzails.webp",
+      "baselineBytes": 80626,
+      "beforeBytes": 80626,
+      "afterBytes": 80626,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/sydonian-dragoons-with-taser-lances.webp",
+      "baselineBytes": 82218,
+      "beforeBytes": 82218,
+      "afterBytes": 82218,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/sydonian-skatros.webp",
+      "baselineBytes": 114454,
+      "beforeBytes": 114454,
+      "afterBytes": 114454,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/tech-priest-dominus.webp",
+      "baselineBytes": 95480,
+      "beforeBytes": 95480,
+      "afterBytes": 95480,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/tech-priest-enginseer.webp",
+      "baselineBytes": 100760,
+      "beforeBytes": 100760,
+      "afterBytes": 100760,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/tech-priest-manipulus.webp",
+      "baselineBytes": 182492,
+      "beforeBytes": 182492,
+      "afterBytes": 182492,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/technoarcheologist.webp",
+      "baselineBytes": 131790,
+      "beforeBytes": 131790,
+      "afterBytes": 131790,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/assets/unit-images/thulia-ghuld.webp",
+      "baselineBytes": 235690,
+      "beforeBytes": 235690,
+      "afterBytes": 235690,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/generated/compatible-rules.json",
+      "baselineBytes": 203901,
+      "beforeBytes": 203901,
+      "afterBytes": 203901,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+      "baselineBytes": 7766993,
+      "beforeBytes": 8208657,
+      "afterBytes": 7598132,
+      "oldGrowth": 441664,
+      "newGrowth": -168861,
+      "saved": 610525
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/effective.json",
+      "baselineBytes": 2072771,
+      "beforeBytes": 2425608,
+      "afterBytes": 2071698,
+      "oldGrowth": 352837,
+      "newGrowth": -1073,
+      "saved": 353910
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "baselineBytes": 4552846,
+      "beforeBytes": 5028149,
+      "afterBytes": 4543197,
+      "oldGrowth": 475303,
+      "newGrowth": -9649,
+      "saved": 484952
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/registration.mjs",
+      "baselineBytes": 917,
+      "beforeBytes": 917,
+      "afterBytes": 917,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/roster-import-aliases.json",
+      "baselineBytes": 973,
+      "beforeBytes": 973,
+      "afterBytes": 973,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "baselineBytes": 2993,
+      "beforeBytes": 3106,
+      "afterBytes": 3106,
+      "oldGrowth": 113,
+      "newGrowth": 113,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "baselineBytes": 2694,
+      "beforeBytes": 2694,
+      "afterBytes": 2694,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/theme.css",
+      "baselineBytes": 1329,
+      "beforeBytes": 1329,
+      "afterBytes": 1329,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/assets/blood-angels-cover-480.webp",
+      "baselineBytes": 61496,
+      "beforeBytes": 61496,
+      "afterBytes": 61496,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/assets/blood-angels-cover-800.webp",
+      "baselineBytes": 143962,
+      "beforeBytes": 143962,
+      "afterBytes": 143962,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/generated/compatible-rules.json",
+      "baselineBytes": 1806836,
+      "beforeBytes": 1806836,
+      "afterBytes": 1806836,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/v2/generated/app-presentation.json",
+      "baselineBytes": 17663313,
+      "beforeBytes": 19967255,
+      "afterBytes": 17128132,
+      "oldGrowth": 2303942,
+      "newGrowth": -535181,
+      "saved": 2839123
+    },
+    {
+      "path": "books/blood-angels/v2/generated/roster-import.json",
+      "baselineBytes": 5948853,
+      "beforeBytes": 8089624,
+      "afterBytes": 5337178,
+      "oldGrowth": 2140771,
+      "newGrowth": -611675,
+      "saved": 2752446
+    },
+    {
+      "path": "books/blood-angels/v2/registration.mjs",
+      "baselineBytes": 915,
+      "beforeBytes": 915,
+      "afterBytes": 915,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/v2/roster-boot.mjs",
+      "baselineBytes": 532,
+      "beforeBytes": 532,
+      "afterBytes": 532,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/v2/roster-import.mjs",
+      "baselineBytes": 18928,
+      "beforeBytes": 19638,
+      "afterBytes": 19638,
+      "oldGrowth": 710,
+      "newGrowth": 710,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/v2/roster-paid-options.mjs",
+      "baselineBytes": 6409,
+      "beforeBytes": 6593,
+      "afterBytes": 6593,
+      "oldGrowth": 184,
+      "newGrowth": 184,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/v2/roster-runtime.mjs",
+      "baselineBytes": 2356,
+      "beforeBytes": 2356,
+      "afterBytes": 2356,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/v2/rule-contract-schema.mjs",
+      "baselineBytes": 363,
+      "beforeBytes": 363,
+      "afterBytes": 363,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/blood-angels/v2/theme.css",
+      "baselineBytes": 998,
+      "beforeBytes": 998,
+      "afterBytes": 998,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp",
+      "baselineBytes": 59770,
+      "beforeBytes": 59770,
+      "afterBytes": 59770,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/assets/chaos-space-marines-cover-800.webp",
+      "baselineBytes": 150756,
+      "beforeBytes": 150756,
+      "afterBytes": 150756,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/assets/source-die-1.png",
+      "baselineBytes": 469,
+      "beforeBytes": 469,
+      "afterBytes": 469,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/assets/source-die-2.png",
+      "baselineBytes": 683,
+      "beforeBytes": 683,
+      "afterBytes": 683,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/assets/source-die-3.png",
+      "baselineBytes": 759,
+      "beforeBytes": 759,
+      "afterBytes": 759,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/assets/source-die-4.png",
+      "baselineBytes": 869,
+      "beforeBytes": 869,
+      "afterBytes": 869,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/assets/source-die-5.png",
+      "baselineBytes": 981,
+      "beforeBytes": 981,
+      "afterBytes": 981,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/assets/source-die-6.png",
+      "baselineBytes": 1081,
+      "beforeBytes": 1081,
+      "afterBytes": 1081,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/generated/compatible-rules.json",
+      "baselineBytes": 996143,
+      "beforeBytes": 996143,
+      "afterBytes": 996143,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/app-presentation.json",
+      "baselineBytes": 20341735,
+      "beforeBytes": 22639158,
+      "afterBytes": 19553775,
+      "oldGrowth": 2297423,
+      "newGrowth": -787960,
+      "saved": 3085383
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-import.json",
+      "baselineBytes": 3550204,
+      "beforeBytes": 6073444,
+      "afterBytes": 3065402,
+      "oldGrowth": 2523240,
+      "newGrowth": -484802,
+      "saved": 3008042
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "baselineBytes": 8458678,
+      "beforeBytes": 11440784,
+      "afterBytes": 7651722,
+      "oldGrowth": 2982106,
+      "newGrowth": -806956,
+      "saved": 3789062
+    },
+    {
+      "path": "books/chaos-space-marines/v2/registration.mjs",
+      "baselineBytes": 874,
+      "beforeBytes": 874,
+      "afterBytes": 874,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-attachment-bindings.json",
+      "baselineBytes": 3676,
+      "beforeBytes": 3676,
+      "afterBytes": 3676,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "baselineBytes": 5158,
+      "beforeBytes": 5285,
+      "afterBytes": 5301,
+      "oldGrowth": 127,
+      "newGrowth": 143,
+      "saved": -16
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-attachments.mjs",
+      "baselineBytes": 1040,
+      "beforeBytes": 1040,
+      "afterBytes": 1040,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "baselineBytes": 3247,
+      "beforeBytes": 3247,
+      "afterBytes": 3247,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-effect-context.mjs",
+      "baselineBytes": 3185,
+      "beforeBytes": 3185,
+      "afterBytes": 3185,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "baselineBytes": 9742,
+      "beforeBytes": 9742,
+      "afterBytes": 9742,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-import.mjs",
+      "baselineBytes": 751,
+      "beforeBytes": 751,
+      "afterBytes": 751,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-presentation.mjs",
+      "baselineBytes": 3123,
+      "beforeBytes": 3210,
+      "afterBytes": 3236,
+      "oldGrowth": 87,
+      "newGrowth": 113,
+      "saved": -26
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "baselineBytes": 3298,
+      "beforeBytes": 3298,
+      "afterBytes": 3375,
+      "oldGrowth": 0,
+      "newGrowth": 77,
+      "saved": -77
+    },
+    {
+      "path": "books/chaos-space-marines/v2/theme.css",
+      "baselineBytes": 1130,
+      "beforeBytes": 1130,
+      "afterBytes": 1130,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/BattleShockExamples1.webp",
+      "baselineBytes": 45656,
+      "beforeBytes": 45656,
+      "afterBytes": 45656,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/BattleShockExamples2.webp",
+      "baselineBytes": 31676,
+      "beforeBytes": 31676,
+      "afterBytes": 31676,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/BattleShockExamples3.webp",
+      "baselineBytes": 28020,
+      "beforeBytes": 28020,
+      "afterBytes": 28020,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/BattleShockExamples4.webp",
+      "baselineBytes": 40682,
+      "beforeBytes": 40682,
+      "afterBytes": 40682,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/BenefitOfCover.webp",
+      "baselineBytes": 202594,
+      "beforeBytes": 202594,
+      "afterBytes": 202594,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ControllingATerrainObjective.webp",
+      "baselineBytes": 235554,
+      "beforeBytes": 235554,
+      "afterBytes": 235554,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/DatasheetExample.webp",
+      "baselineBytes": 166430,
+      "beforeBytes": 166430,
+      "afterBytes": 166430,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/EngagedMonstersVehiclesShooting.webp",
+      "baselineBytes": 168840,
+      "beforeBytes": 168840,
+      "afterBytes": 168840,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ExampleAction.webp",
+      "baselineBytes": 55392,
+      "beforeBytes": 55392,
+      "afterBytes": 55392,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/HiddenAndObscuring.webp",
+      "baselineBytes": 104800,
+      "beforeBytes": 104800,
+      "afterBytes": 104800,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/MakingAChargeMove.webp",
+      "baselineBytes": 171940,
+      "beforeBytes": 171940,
+      "afterBytes": 171940,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/MakingASurgeMove.webp",
+      "baselineBytes": 139740,
+      "beforeBytes": 139740,
+      "afterBytes": 139740,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ModelFullyVisible.webp",
+      "baselineBytes": 48410,
+      "beforeBytes": 48410,
+      "afterBytes": 48410,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ModelVisible.webp",
+      "baselineBytes": 56738,
+      "beforeBytes": 56738,
+      "afterBytes": 56738,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/NormalFight.webp",
+      "baselineBytes": 156468,
+      "beforeBytes": 156468,
+      "afterBytes": 156468,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ObjectiveConsolidation.webp",
+      "baselineBytes": 175112,
+      "beforeBytes": 175112,
+      "afterBytes": 175112,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/OngoingConsolidation.webp",
+      "baselineBytes": 173200,
+      "beforeBytes": 173200,
+      "afterBytes": 173200,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/OverrunFight.webp",
+      "baselineBytes": 156486,
+      "beforeBytes": 156486,
+      "afterBytes": 156486,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/PhaseAbility_Fight.webp",
+      "baselineBytes": 690,
+      "beforeBytes": 690,
+      "afterBytes": 690,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/PhaseAbility_Shoot.webp",
+      "baselineBytes": 784,
+      "beforeBytes": 784,
+      "afterBytes": 784,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/PileInMoves.webp",
+      "baselineBytes": 164238,
+      "beforeBytes": 164238,
+      "afterBytes": 164238,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/PlungingFire.webp",
+      "baselineBytes": 143938,
+      "beforeBytes": 143938,
+      "afterBytes": 143938,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/Solid.webp",
+      "baselineBytes": 208274,
+      "beforeBytes": 208274,
+      "afterBytes": 208274,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/StartOfFightPhase.webp",
+      "baselineBytes": 157248,
+      "beforeBytes": 157248,
+      "afterBytes": 157248,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/TakingToTheSkies.webp",
+      "baselineBytes": 150796,
+      "beforeBytes": 150796,
+      "afterBytes": 150796,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/TerrainAndMovement.webp",
+      "baselineBytes": 190130,
+      "beforeBytes": 190130,
+      "afterBytes": 190130,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/TerrainAndMovement2.webp",
+      "baselineBytes": 171464,
+      "beforeBytes": 171464,
+      "afterBytes": 171464,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/TerrainPlacedOnAMat.webp",
+      "baselineBytes": 169956,
+      "beforeBytes": 169956,
+      "afterBytes": 169956,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/TerrainPlacedOnTheBattlefield.webp",
+      "baselineBytes": 165162,
+      "beforeBytes": 165162,
+      "afterBytes": 165162,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/UnitFullyVisible.webp",
+      "baselineBytes": 61392,
+      "beforeBytes": 61392,
+      "afterBytes": 61392,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/UnitVisible.webp",
+      "baselineBytes": 45076,
+      "beforeBytes": 45076,
+      "afterBytes": 45076,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex10.webp",
+      "baselineBytes": 99032,
+      "beforeBytes": 99032,
+      "afterBytes": 99032,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex11.webp",
+      "baselineBytes": 240614,
+      "beforeBytes": 240614,
+      "afterBytes": 240614,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex12.webp",
+      "baselineBytes": 214830,
+      "beforeBytes": 214830,
+      "afterBytes": 214830,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex2.webp",
+      "baselineBytes": 59106,
+      "beforeBytes": 59106,
+      "afterBytes": 59106,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex4.webp",
+      "baselineBytes": 88726,
+      "beforeBytes": 88726,
+      "afterBytes": 88726,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex5.webp",
+      "baselineBytes": 39530,
+      "beforeBytes": 39530,
+      "afterBytes": 39530,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex6.webp",
+      "baselineBytes": 95128,
+      "beforeBytes": 95128,
+      "afterBytes": 95128,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex7.webp",
+      "baselineBytes": 168236,
+      "beforeBytes": 168236,
+      "afterBytes": 168236,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex8.webp",
+      "baselineBytes": 106372,
+      "beforeBytes": 106372,
+      "afterBytes": 106372,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/diagrams/ex9.webp",
+      "baselineBytes": 109202,
+      "beforeBytes": 109202,
+      "afterBytes": 109202,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-04.jpg",
+      "baselineBytes": 156473,
+      "beforeBytes": 156473,
+      "afterBytes": 156473,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-05.jpg",
+      "baselineBytes": 176741,
+      "beforeBytes": 176741,
+      "afterBytes": 176741,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-08.jpg",
+      "baselineBytes": 163521,
+      "beforeBytes": 163521,
+      "afterBytes": 163521,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-09.jpg",
+      "baselineBytes": 156015,
+      "beforeBytes": 156015,
+      "afterBytes": 156015,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-10.jpg",
+      "baselineBytes": 169666,
+      "beforeBytes": 169666,
+      "afterBytes": 169666,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-11.jpg",
+      "baselineBytes": 143215,
+      "beforeBytes": 143215,
+      "afterBytes": 143215,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-12.jpg",
+      "baselineBytes": 163357,
+      "beforeBytes": 163357,
+      "afterBytes": 163357,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-13.jpg",
+      "baselineBytes": 147166,
+      "beforeBytes": 147166,
+      "afterBytes": 147166,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-14.jpg",
+      "baselineBytes": 153614,
+      "beforeBytes": 153614,
+      "afterBytes": 153614,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-15.jpg",
+      "baselineBytes": 131220,
+      "beforeBytes": 131220,
+      "afterBytes": 131220,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-16.jpg",
+      "baselineBytes": 145249,
+      "beforeBytes": 145249,
+      "afterBytes": 145249,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-17.jpg",
+      "baselineBytes": 166569,
+      "beforeBytes": 166569,
+      "afterBytes": 166569,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-18.jpg",
+      "baselineBytes": 151092,
+      "beforeBytes": 151092,
+      "afterBytes": 151092,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-19.jpg",
+      "baselineBytes": 153154,
+      "beforeBytes": 153154,
+      "afterBytes": 153154,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-20.jpg",
+      "baselineBytes": 144151,
+      "beforeBytes": 144151,
+      "afterBytes": 144151,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-21.jpg",
+      "baselineBytes": 161959,
+      "beforeBytes": 161959,
+      "afterBytes": 161959,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-22.jpg",
+      "baselineBytes": 145403,
+      "beforeBytes": 145403,
+      "afterBytes": 145403,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-23.jpg",
+      "baselineBytes": 141848,
+      "beforeBytes": 141848,
+      "afterBytes": 141848,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-24.jpg",
+      "baselineBytes": 155192,
+      "beforeBytes": 155192,
+      "afterBytes": 155192,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-25.jpg",
+      "baselineBytes": 168853,
+      "beforeBytes": 168853,
+      "afterBytes": 168853,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-28.jpg",
+      "baselineBytes": 157811,
+      "beforeBytes": 157811,
+      "afterBytes": 157811,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-29.jpg",
+      "baselineBytes": 145707,
+      "beforeBytes": 145707,
+      "afterBytes": 145707,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-30.jpg",
+      "baselineBytes": 152016,
+      "beforeBytes": 152016,
+      "afterBytes": 152016,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-31.jpg",
+      "baselineBytes": 141729,
+      "beforeBytes": 141729,
+      "afterBytes": 141729,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-32.jpg",
+      "baselineBytes": 143219,
+      "beforeBytes": 143219,
+      "afterBytes": 143219,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-33.jpg",
+      "baselineBytes": 165902,
+      "beforeBytes": 165902,
+      "afterBytes": 165902,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-34.jpg",
+      "baselineBytes": 143884,
+      "beforeBytes": 143884,
+      "afterBytes": 143884,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-35.jpg",
+      "baselineBytes": 144255,
+      "beforeBytes": 144255,
+      "afterBytes": 144255,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-36.jpg",
+      "baselineBytes": 158137,
+      "beforeBytes": 158137,
+      "afterBytes": 158137,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-37.jpg",
+      "baselineBytes": 147405,
+      "beforeBytes": 147405,
+      "afterBytes": 147405,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-38.jpg",
+      "baselineBytes": 147278,
+      "beforeBytes": 147278,
+      "afterBytes": 147278,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-39.jpg",
+      "baselineBytes": 150072,
+      "beforeBytes": 150072,
+      "afterBytes": 150072,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-40.jpg",
+      "baselineBytes": 155774,
+      "beforeBytes": 155774,
+      "afterBytes": 155774,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-41.jpg",
+      "baselineBytes": 151712,
+      "beforeBytes": 151712,
+      "afterBytes": 151712,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-42.jpg",
+      "baselineBytes": 156636,
+      "beforeBytes": 156636,
+      "afterBytes": 156636,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-43.jpg",
+      "baselineBytes": 138041,
+      "beforeBytes": 138041,
+      "afterBytes": 138041,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-46.jpg",
+      "baselineBytes": 163926,
+      "beforeBytes": 163926,
+      "afterBytes": 163926,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-47.jpg",
+      "baselineBytes": 143210,
+      "beforeBytes": 143210,
+      "afterBytes": 143210,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-48.jpg",
+      "baselineBytes": 148730,
+      "beforeBytes": 148730,
+      "afterBytes": 148730,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-49.jpg",
+      "baselineBytes": 154248,
+      "beforeBytes": 154248,
+      "afterBytes": 154248,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-50.jpg",
+      "baselineBytes": 167300,
+      "beforeBytes": 167300,
+      "afterBytes": 167300,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-51.jpg",
+      "baselineBytes": 168867,
+      "beforeBytes": 168867,
+      "afterBytes": 168867,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-52.jpg",
+      "baselineBytes": 155837,
+      "beforeBytes": 155837,
+      "afterBytes": 155837,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-53.jpg",
+      "baselineBytes": 125548,
+      "beforeBytes": 125548,
+      "afterBytes": 125548,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-54.jpg",
+      "baselineBytes": 145391,
+      "beforeBytes": 145391,
+      "afterBytes": 145391,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-55.jpg",
+      "baselineBytes": 134610,
+      "beforeBytes": 134610,
+      "afterBytes": 134610,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-56.jpg",
+      "baselineBytes": 169907,
+      "beforeBytes": 169907,
+      "afterBytes": 169907,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-57.jpg",
+      "baselineBytes": 166282,
+      "beforeBytes": 166282,
+      "afterBytes": 166282,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-58.jpg",
+      "baselineBytes": 143418,
+      "beforeBytes": 143418,
+      "afterBytes": 143418,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-59.jpg",
+      "baselineBytes": 171402,
+      "beforeBytes": 171402,
+      "afterBytes": 171402,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-62.jpg",
+      "baselineBytes": 167154,
+      "beforeBytes": 167154,
+      "afterBytes": 167154,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-63.jpg",
+      "baselineBytes": 144229,
+      "beforeBytes": 144229,
+      "afterBytes": 144229,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-64.jpg",
+      "baselineBytes": 152769,
+      "beforeBytes": 152769,
+      "afterBytes": 152769,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-65.jpg",
+      "baselineBytes": 148389,
+      "beforeBytes": 148389,
+      "afterBytes": 148389,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-66.jpg",
+      "baselineBytes": 152869,
+      "beforeBytes": 152869,
+      "afterBytes": 152869,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-67.jpg",
+      "baselineBytes": 146420,
+      "beforeBytes": 146420,
+      "afterBytes": 146420,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-68.jpg",
+      "baselineBytes": 156275,
+      "beforeBytes": 156275,
+      "afterBytes": 156275,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-69.jpg",
+      "baselineBytes": 130616,
+      "beforeBytes": 130616,
+      "afterBytes": 130616,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-70.jpg",
+      "baselineBytes": 144153,
+      "beforeBytes": 144153,
+      "afterBytes": 144153,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-71.jpg",
+      "baselineBytes": 141452,
+      "beforeBytes": 141452,
+      "afterBytes": 141452,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-72.jpg",
+      "baselineBytes": 145318,
+      "beforeBytes": 145318,
+      "afterBytes": 145318,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-73.jpg",
+      "baselineBytes": 126149,
+      "beforeBytes": 126149,
+      "afterBytes": 126149,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-74.jpg",
+      "baselineBytes": 138440,
+      "beforeBytes": 138440,
+      "afterBytes": 138440,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-75.jpg",
+      "baselineBytes": 143638,
+      "beforeBytes": 143638,
+      "afterBytes": 143638,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-78.jpg",
+      "baselineBytes": 168522,
+      "beforeBytes": 168522,
+      "afterBytes": 168522,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-79.jpg",
+      "baselineBytes": 141713,
+      "beforeBytes": 141713,
+      "afterBytes": 141713,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-80.jpg",
+      "baselineBytes": 182792,
+      "beforeBytes": 182792,
+      "afterBytes": 182792,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-81.jpg",
+      "baselineBytes": 146072,
+      "beforeBytes": 146072,
+      "afterBytes": 146072,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-82.jpg",
+      "baselineBytes": 172011,
+      "beforeBytes": 172011,
+      "afterBytes": 172011,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-83.jpg",
+      "baselineBytes": 138296,
+      "beforeBytes": 138296,
+      "afterBytes": 138296,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-84.jpg",
+      "baselineBytes": 171022,
+      "beforeBytes": 171022,
+      "afterBytes": 171022,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/assets/pages/page-85.jpg",
+      "baselineBytes": 148510,
+      "beforeBytes": 148510,
+      "afterBytes": 148510,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/actions.html",
+      "baselineBytes": 15719,
+      "beforeBytes": 15719,
+      "afterBytes": 15719,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/aircraft.html",
+      "baselineBytes": 16347,
+      "beforeBytes": 16347,
+      "afterBytes": 16347,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/app.js",
+      "baselineBytes": 13201,
+      "beforeBytes": 13201,
+      "afterBytes": 13201,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/attached-units.html",
+      "baselineBytes": 39627,
+      "beforeBytes": 39627,
+      "afterBytes": 39627,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/attack-sequence.html",
+      "baselineBytes": 88156,
+      "beforeBytes": 88156,
+      "afterBytes": 88156,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/battle-round-overview.html",
+      "baselineBytes": 13418,
+      "beforeBytes": 13418,
+      "afterBytes": 13418,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/charge-phase.html",
+      "baselineBytes": 43063,
+      "beforeBytes": 43063,
+      "afterBytes": 43063,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/command-phase.html",
+      "baselineBytes": 28466,
+      "beforeBytes": 28466,
+      "afterBytes": 28466,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/core-abilities.html",
+      "baselineBytes": 176133,
+      "beforeBytes": 176133,
+      "afterBytes": 176133,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/core-concepts.html",
+      "baselineBytes": 84805,
+      "beforeBytes": 84805,
+      "afterBytes": 84805,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/datasheets.html",
+      "baselineBytes": 89365,
+      "beforeBytes": 89365,
+      "afterBytes": 89365,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/fight-phase.html",
+      "baselineBytes": 67267,
+      "beforeBytes": 67267,
+      "afterBytes": 67267,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/flying-surging.html",
+      "baselineBytes": 28297,
+      "beforeBytes": 28297,
+      "afterBytes": 28297,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/index.html",
+      "baselineBytes": 242659,
+      "beforeBytes": 242659,
+      "afterBytes": 242659,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/introduction.html",
+      "baselineBytes": 9827,
+      "beforeBytes": 9827,
+      "afterBytes": 9827,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/making-attacks.html",
+      "baselineBytes": 65698,
+      "beforeBytes": 65698,
+      "afterBytes": 65698,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/monsters-vehicles.html",
+      "baselineBytes": 36251,
+      "beforeBytes": 36251,
+      "afterBytes": 36251,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/mount.mjs",
+      "baselineBytes": 12065,
+      "beforeBytes": 12065,
+      "afterBytes": 12065,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/movement-phase.html",
+      "baselineBytes": 51653,
+      "beforeBytes": 51653,
+      "afterBytes": 51653,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/moving.html",
+      "baselineBytes": 43803,
+      "beforeBytes": 43803,
+      "afterBytes": 43803,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/muster-armies.html",
+      "baselineBytes": 20567,
+      "beforeBytes": 20567,
+      "afterBytes": 20567,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/objectives.html",
+      "baselineBytes": 29770,
+      "beforeBytes": 29770,
+      "afterBytes": 29770,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/other-concepts.html",
+      "baselineBytes": 40265,
+      "beforeBytes": 40265,
+      "afterBytes": 40265,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/other-rules-abilities.html",
+      "baselineBytes": 11228,
+      "beforeBytes": 11228,
+      "afterBytes": 11228,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/search-index.json",
+      "baselineBytes": 213565,
+      "beforeBytes": 213565,
+      "afterBytes": 213565,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/shooting-phase.html",
+      "baselineBytes": 56758,
+      "beforeBytes": 56758,
+      "afterBytes": 56758,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/stratagems.html",
+      "baselineBytes": 70966,
+      "beforeBytes": 70966,
+      "afterBytes": 70966,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/strategic-reserves.html",
+      "baselineBytes": 34632,
+      "beforeBytes": 34632,
+      "afterBytes": 34632,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/styles.css",
+      "baselineBytes": 21777,
+      "beforeBytes": 21777,
+      "afterBytes": 21777,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/terrain.html",
+      "baselineBytes": 55966,
+      "beforeBytes": 55966,
+      "afterBytes": 55966,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/reader/transports.html",
+      "baselineBytes": 73934,
+      "beforeBytes": 73934,
+      "afterBytes": 73934,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+      "baselineBytes": 1467795,
+      "beforeBytes": 1467795,
+      "afterBytes": 1467795,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/assets/dark-angels-cover-480.webp",
+      "baselineBytes": 71096,
+      "beforeBytes": 71096,
+      "afterBytes": 71096,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/assets/dark-angels-cover-800.webp",
+      "baselineBytes": 149822,
+      "beforeBytes": 149822,
+      "afterBytes": 149822,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/v2/generated/app-presentation.json",
+      "baselineBytes": 17960149,
+      "beforeBytes": 20290724,
+      "afterBytes": 17421156,
+      "oldGrowth": 2330575,
+      "newGrowth": -538993,
+      "saved": 2869568
+    },
+    {
+      "path": "books/dark-angels/v2/generated/roster-import.json",
+      "baselineBytes": 6174362,
+      "beforeBytes": 8390079,
+      "afterBytes": 5539055,
+      "oldGrowth": 2215717,
+      "newGrowth": -635307,
+      "saved": 2851024
+    },
+    {
+      "path": "books/dark-angels/v2/physical-chapter.mjs",
+      "baselineBytes": 4089,
+      "beforeBytes": 4162,
+      "afterBytes": 4162,
+      "oldGrowth": 73,
+      "newGrowth": 73,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/v2/registration.mjs",
+      "baselineBytes": 909,
+      "beforeBytes": 909,
+      "afterBytes": 909,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/v2/roster-boot.mjs",
+      "baselineBytes": 522,
+      "beforeBytes": 522,
+      "afterBytes": 522,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/v2/roster-import.mjs",
+      "baselineBytes": 17857,
+      "beforeBytes": 18554,
+      "afterBytes": 18554,
+      "oldGrowth": 697,
+      "newGrowth": 697,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/v2/roster-paid-options.mjs",
+      "baselineBytes": 5706,
+      "beforeBytes": 5890,
+      "afterBytes": 5890,
+      "oldGrowth": 184,
+      "newGrowth": 184,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/v2/roster-runtime.mjs",
+      "baselineBytes": 2580,
+      "beforeBytes": 2580,
+      "afterBytes": 2580,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/v2/rule-contract-declarations.mjs",
+      "baselineBytes": 5077,
+      "beforeBytes": 5077,
+      "afterBytes": 5077,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "baselineBytes": 1893,
+      "beforeBytes": 1893,
+      "afterBytes": 1893,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/dark-angels/v2/theme.css",
+      "baselineBytes": 997,
+      "beforeBytes": 997,
+      "afterBytes": 997,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/icon-v4.svg",
+      "baselineBytes": 708,
+      "beforeBytes": 708,
+      "afterBytes": 708,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/beasts-of-nurgle.png",
+      "baselineBytes": 772468,
+      "beforeBytes": 772468,
+      "afterBytes": 772468,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/biologus-putrifier.png",
+      "baselineBytes": 632537,
+      "beforeBytes": 632537,
+      "afterBytes": 632537,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/blightlord-terminators.png",
+      "baselineBytes": 960040,
+      "beforeBytes": 960040,
+      "afterBytes": 960040,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/chaos-land-raider.png",
+      "baselineBytes": 573293,
+      "beforeBytes": 573293,
+      "afterBytes": 573293,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/chaos-predator-annihilator.png",
+      "baselineBytes": 579583,
+      "beforeBytes": 579583,
+      "afterBytes": 579583,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/chaos-rhino.png",
+      "baselineBytes": 558909,
+      "beforeBytes": 558909,
+      "afterBytes": 558909,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/chaos-spawn.png",
+      "baselineBytes": 644396,
+      "beforeBytes": 644396,
+      "afterBytes": 644396,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/deathshroud-terminators.png",
+      "baselineBytes": 867808,
+      "beforeBytes": 867808,
+      "afterBytes": 867808,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/defiler.png",
+      "baselineBytes": 811654,
+      "beforeBytes": 811654,
+      "afterBytes": 811654,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/foetid-bloat-drone.png",
+      "baselineBytes": 679428,
+      "beforeBytes": 679428,
+      "afterBytes": 679428,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/foul-blightspawn.png",
+      "baselineBytes": 645541,
+      "beforeBytes": 645541,
+      "afterBytes": 645541,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/great-unclean-one.png",
+      "baselineBytes": 971569,
+      "beforeBytes": 971569,
+      "afterBytes": 971569,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/helbrute.png",
+      "baselineBytes": 532278,
+      "beforeBytes": 532278,
+      "afterBytes": 532278,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/icon-bearer.png",
+      "baselineBytes": 660473,
+      "beforeBytes": 660473,
+      "afterBytes": 660473,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/lord-of-contagion.png",
+      "baselineBytes": 417156,
+      "beforeBytes": 417156,
+      "afterBytes": 417156,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/lord-of-poxes.png",
+      "baselineBytes": 580908,
+      "beforeBytes": 580908,
+      "afterBytes": 580908,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/lord-of-virulence.png",
+      "baselineBytes": 798837,
+      "beforeBytes": 798837,
+      "afterBytes": 798837,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/malignant-plaguecaster.png",
+      "baselineBytes": 320496,
+      "beforeBytes": 320496,
+      "afterBytes": 320496,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+      "baselineBytes": 751762,
+      "beforeBytes": 751762,
+      "afterBytes": 751762,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/mortarion.png",
+      "baselineBytes": 773150,
+      "beforeBytes": 773150,
+      "afterBytes": 773150,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/myphitic-blight-hauler.png",
+      "baselineBytes": 728571,
+      "beforeBytes": 728571,
+      "afterBytes": 728571,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/noxious-blightbringer.png",
+      "baselineBytes": 543775,
+      "beforeBytes": 543775,
+      "afterBytes": 543775,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/nurglings.png",
+      "baselineBytes": 590907,
+      "beforeBytes": 590907,
+      "afterBytes": 590907,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plague-drones.png",
+      "baselineBytes": 590092,
+      "beforeBytes": 590092,
+      "afterBytes": 590092,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plague-marines.png",
+      "baselineBytes": 1147370,
+      "beforeBytes": 1147370,
+      "afterBytes": 1147370,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plague-surgeon.png",
+      "baselineBytes": 653959,
+      "beforeBytes": 653959,
+      "afterBytes": 653959,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plaguebearers.png",
+      "baselineBytes": 616287,
+      "beforeBytes": 616287,
+      "afterBytes": 616287,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+      "baselineBytes": 794274,
+      "beforeBytes": 794274,
+      "afterBytes": 794274,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/poxwalkers.png",
+      "baselineBytes": 772906,
+      "beforeBytes": 772906,
+      "afterBytes": 772906,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/rotigus.png",
+      "baselineBytes": 896776,
+      "beforeBytes": 896776,
+      "afterBytes": 896776,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/tallyman.png",
+      "baselineBytes": 715708,
+      "beforeBytes": 715708,
+      "afterBytes": 715708,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/assets/unit-images/typhus.png",
+      "baselineBytes": 662245,
+      "beforeBytes": 662245,
+      "afterBytes": 662245,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/generated/compatible-rules.json",
+      "baselineBytes": 149589,
+      "beforeBytes": 149589,
+      "afterBytes": 149589,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/v2/generated/app-presentation.json",
+      "baselineBytes": 6239872,
+      "beforeBytes": 6723197,
+      "afterBytes": 6064868,
+      "oldGrowth": 483325,
+      "newGrowth": -175004,
+      "saved": 658329
+    },
+    {
+      "path": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "baselineBytes": 2244250,
+      "beforeBytes": 3025408,
+      "afterBytes": 2161836,
+      "oldGrowth": 781158,
+      "newGrowth": -82414,
+      "saved": 863572
+    },
+    {
+      "path": "books/death-guard/v2/instrument-selections.mjs",
+      "baselineBytes": 3882,
+      "beforeBytes": 3882,
+      "afterBytes": 3882,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/v2/registration.mjs",
+      "baselineBytes": 865,
+      "beforeBytes": 865,
+      "afterBytes": 865,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/v2/roster-boot.mjs",
+      "baselineBytes": 2044,
+      "beforeBytes": 2044,
+      "afterBytes": 2044,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/v2/roster-import-bindings.mjs",
+      "baselineBytes": 1585,
+      "beforeBytes": 1685,
+      "afterBytes": 1685,
+      "oldGrowth": 100,
+      "newGrowth": 100,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/v2/rule-contract-schema.mjs",
+      "baselineBytes": 543,
+      "beforeBytes": 543,
+      "afterBytes": 543,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/death-guard/v2/rule-contract-state-fields.mjs",
+      "baselineBytes": 15724,
+      "beforeBytes": 15724,
+      "afterBytes": 15724,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/assets/emperors-children-cover-480.webp",
+      "baselineBytes": 90072,
+      "beforeBytes": 90072,
+      "afterBytes": 90072,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/assets/emperors-children-cover-800.webp",
+      "baselineBytes": 209438,
+      "beforeBytes": 209438,
+      "afterBytes": 209438,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/generated/compatible-rules.json",
+      "baselineBytes": 191392,
+      "beforeBytes": 191392,
+      "afterBytes": 191392,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/generated/app-presentation.json",
+      "baselineBytes": 5162402,
+      "beforeBytes": 6115751,
+      "afterBytes": 4814125,
+      "oldGrowth": 953349,
+      "newGrowth": -348277,
+      "saved": 1301626
+    },
+    {
+      "path": "books/emperors-children/v2/generated/roster-attachments.json",
+      "baselineBytes": 2998017,
+      "beforeBytes": 3616068,
+      "afterBytes": 2735476,
+      "oldGrowth": 618051,
+      "newGrowth": -262541,
+      "saved": 880592
+    },
+    {
+      "path": "books/emperors-children/v2/generated/roster-import.json",
+      "baselineBytes": 2357146,
+      "beforeBytes": 2871694,
+      "afterBytes": 2164577,
+      "oldGrowth": 514548,
+      "newGrowth": -192569,
+      "saved": 707117
+    },
+    {
+      "path": "books/emperors-children/v2/registration.mjs",
+      "baselineBytes": 889,
+      "beforeBytes": 889,
+      "afterBytes": 889,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/roster-attachments.mjs",
+      "baselineBytes": 3557,
+      "beforeBytes": 3557,
+      "afterBytes": 3557,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/roster-boot.mjs",
+      "baselineBytes": 5473,
+      "beforeBytes": 5473,
+      "afterBytes": 5473,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/roster-equipment-context.mjs",
+      "baselineBytes": 2102,
+      "beforeBytes": 2102,
+      "afterBytes": 2102,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/roster-import.mjs",
+      "baselineBytes": 16672,
+      "beforeBytes": 16795,
+      "afterBytes": 16795,
+      "oldGrowth": 123,
+      "newGrowth": 123,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/rule-contract-choice-context.mjs",
+      "baselineBytes": 1050,
+      "beforeBytes": 1050,
+      "afterBytes": 1050,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "baselineBytes": 1223,
+      "beforeBytes": 1223,
+      "afterBytes": 1223,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+      "baselineBytes": 4188,
+      "beforeBytes": 4188,
+      "afterBytes": 4188,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/rule-contract-schema.mjs",
+      "baselineBytes": 1049,
+      "beforeBytes": 1049,
+      "afterBytes": 1049,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/emperors-children/v2/theme.css",
+      "baselineBytes": 1077,
+      "beforeBytes": 1077,
+      "afterBytes": 1077,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/application-v2/glossary.css",
+      "baselineBytes": 3031,
+      "beforeBytes": 3031,
+      "afterBytes": 3031,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/application-v2/glossary.mjs",
+      "baselineBytes": 7811,
+      "beforeBytes": 7811,
+      "afterBytes": 7811,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/application-v2/home.css",
+      "baselineBytes": 5991,
+      "beforeBytes": 5991,
+      "afterBytes": 5991,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/application-v2/home.mjs",
+      "baselineBytes": 7327,
+      "beforeBytes": 7327,
+      "afterBytes": 7327,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/application-v2/registry.mjs",
+      "baselineBytes": 1307,
+      "beforeBytes": 1307,
+      "afterBytes": 1307,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/application-v2/routes.mjs",
+      "baselineBytes": 2042,
+      "beforeBytes": 2042,
+      "afterBytes": 2042,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/application-v2/runtime.mjs",
+      "baselineBytes": 14773,
+      "beforeBytes": 14773,
+      "afterBytes": 14773,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/application-v2/shell.css",
+      "baselineBytes": 5877,
+      "beforeBytes": 5877,
+      "afterBytes": 5877,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "baselineBytes": 7837,
+      "beforeBytes": 7837,
+      "afterBytes": 7837,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/book-v1.css",
+      "baselineBytes": 21897,
+      "beforeBytes": 21897,
+      "afterBytes": 21897,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/book-v1.mjs",
+      "baselineBytes": 13176,
+      "beforeBytes": 13300,
+      "afterBytes": 13300,
+      "oldGrowth": 124,
+      "newGrowth": 124,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "baselineBytes": 9910,
+      "beforeBytes": 9910,
+      "afterBytes": 9910,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/datasheet-v1.css",
+      "baselineBytes": 22317,
+      "beforeBytes": 22317,
+      "afterBytes": 22317,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "baselineBytes": 75932,
+      "beforeBytes": 76098,
+      "afterBytes": 76098,
+      "oldGrowth": 166,
+      "newGrowth": 166,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "baselineBytes": 13984,
+      "beforeBytes": 13984,
+      "afterBytes": 13984,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "baselineBytes": 788,
+      "beforeBytes": 788,
+      "afterBytes": 788,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "baselineBytes": 48576,
+      "beforeBytes": 48576,
+      "afterBytes": 48576,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "baselineBytes": 8882,
+      "beforeBytes": 8882,
+      "afterBytes": 8882,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "baselineBytes": 3269,
+      "beforeBytes": 3269,
+      "afterBytes": 3269,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/glossary.mjs",
+      "baselineBytes": 10647,
+      "beforeBytes": 10719,
+      "afterBytes": 10719,
+      "oldGrowth": 72,
+      "newGrowth": 72,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "baselineBytes": 2023,
+      "beforeBytes": 2023,
+      "afterBytes": 2023,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "baselineBytes": 23066,
+      "beforeBytes": 23066,
+      "afterBytes": 23066,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "baselineBytes": 2571,
+      "beforeBytes": 2571,
+      "afterBytes": 2571,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/navigation-v1.css",
+      "baselineBytes": 13737,
+      "beforeBytes": 13737,
+      "afterBytes": 13737,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "baselineBytes": 16533,
+      "beforeBytes": 16606,
+      "afterBytes": 16606,
+      "oldGrowth": 73,
+      "newGrowth": 73,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "baselineBytes": 5235,
+      "beforeBytes": 5467,
+      "afterBytes": 5467,
+      "oldGrowth": 232,
+      "newGrowth": 232,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/personal.mjs",
+      "baselineBytes": 41381,
+      "beforeBytes": 41572,
+      "afterBytes": 41572,
+      "oldGrowth": 191,
+      "newGrowth": 191,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/popup-v1.css",
+      "baselineBytes": 12394,
+      "beforeBytes": 12394,
+      "afterBytes": 12394,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/popup-v1.mjs",
+      "baselineBytes": 1634,
+      "beforeBytes": 1634,
+      "afterBytes": 1634,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "baselineBytes": 9976,
+      "beforeBytes": 9976,
+      "afterBytes": 9976,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/reference-v1.css",
+      "baselineBytes": 3056,
+      "beforeBytes": 3056,
+      "afterBytes": 3056,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "baselineBytes": 5566,
+      "beforeBytes": 5566,
+      "afterBytes": 5566,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/related-v1.mjs",
+      "baselineBytes": 4315,
+      "beforeBytes": 4315,
+      "afterBytes": 4315,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/roster.mjs",
+      "baselineBytes": 44428,
+      "beforeBytes": 44499,
+      "afterBytes": 44499,
+      "oldGrowth": 71,
+      "newGrowth": 71,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/route-context.mjs",
+      "baselineBytes": 4231,
+      "beforeBytes": 4231,
+      "afterBytes": 4231,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/runtime.mjs",
+      "baselineBytes": 63277,
+      "beforeBytes": 63380,
+      "afterBytes": 63380,
+      "oldGrowth": 103,
+      "newGrowth": 103,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/source-table.mjs",
+      "baselineBytes": 1975,
+      "beforeBytes": 1975,
+      "afterBytes": 1975,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/army-book-app-v2/styles.css",
+      "baselineBytes": 21198,
+      "beforeBytes": 21198,
+      "afterBytes": 21198,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/compatible-rules-matrix.mjs",
+      "baselineBytes": 4729,
+      "beforeBytes": 4729,
+      "afterBytes": 4729,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/datasheet-system.css",
+      "baselineBytes": 22590,
+      "beforeBytes": 22590,
+      "afterBytes": 22590,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/offline-status.js",
+      "baselineBytes": 16970,
+      "beforeBytes": 16970,
+      "afterBytes": 16970,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/attachment-service.mjs",
+      "baselineBytes": 3433,
+      "beforeBytes": 3433,
+      "afterBytes": 3433,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/compatibility-context.mjs",
+      "baselineBytes": 681,
+      "beforeBytes": 681,
+      "afterBytes": 681,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "baselineBytes": 13892,
+      "beforeBytes": 13892,
+      "afterBytes": 13892,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/condition-context.mjs",
+      "baselineBytes": 7261,
+      "beforeBytes": 7261,
+      "afterBytes": 7261,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/conditional-policy.mjs",
+      "baselineBytes": 29418,
+      "beforeBytes": 29804,
+      "afterBytes": 29804,
+      "oldGrowth": 386,
+      "newGrowth": 386,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/context.mjs",
+      "baselineBytes": 29244,
+      "beforeBytes": 29395,
+      "afterBytes": 29395,
+      "oldGrowth": 151,
+      "newGrowth": 151,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/effective-instance.mjs",
+      "baselineBytes": 15229,
+      "beforeBytes": 15434,
+      "afterBytes": 15434,
+      "oldGrowth": 205,
+      "newGrowth": 205,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/effects.mjs",
+      "baselineBytes": 53199,
+      "beforeBytes": 53323,
+      "afterBytes": 53323,
+      "oldGrowth": 124,
+      "newGrowth": 124,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/enhancement-bearers.mjs",
+      "baselineBytes": 2233,
+      "beforeBytes": 2233,
+      "afterBytes": 2233,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/import-service.mjs",
+      "baselineBytes": 8244,
+      "beforeBytes": 8417,
+      "afterBytes": 8444,
+      "oldGrowth": 173,
+      "newGrowth": 200,
+      "saved": -27
+    },
+    {
+      "path": "books/shared/roster-v2/import.mjs",
+      "baselineBytes": 32991,
+      "beforeBytes": 32991,
+      "afterBytes": 32991,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/parser.mjs",
+      "baselineBytes": 13349,
+      "beforeBytes": 13349,
+      "afterBytes": 13349,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/physical-condition-context.mjs",
+      "baselineBytes": 11645,
+      "beforeBytes": 11645,
+      "afterBytes": 11645,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/recipient-execution.mjs",
+      "baselineBytes": 1812,
+      "beforeBytes": 1812,
+      "afterBytes": 1812,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/related.mjs",
+      "baselineBytes": 2430,
+      "beforeBytes": 2430,
+      "afterBytes": 2430,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/roster-v2/runtime.mjs",
+      "baselineBytes": 5679,
+      "beforeBytes": 5779,
+      "afterBytes": 5795,
+      "oldGrowth": 100,
+      "newGrowth": 116,
+      "saved": -16
+    },
+    {
+      "path": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "baselineBytes": 7798,
+      "beforeBytes": 7798,
+      "afterBytes": 7798,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/rule-contract-v2/conditions.mjs",
+      "baselineBytes": 28077,
+      "beforeBytes": 28077,
+      "afterBytes": 28077,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "baselineBytes": 1299,
+      "beforeBytes": 1683,
+      "afterBytes": 1683,
+      "oldGrowth": 384,
+      "newGrowth": 384,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/rule-contract-v2/recipients.mjs",
+      "baselineBytes": 31975,
+      "beforeBytes": 32104,
+      "afterBytes": 32104,
+      "oldGrowth": 129,
+      "newGrowth": 129,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/rule-contract-v2/schema.mjs",
+      "baselineBytes": 23535,
+      "beforeBytes": 23698,
+      "afterBytes": 23698,
+      "oldGrowth": 163,
+      "newGrowth": 163,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.json",
+      "baselineBytes": 0,
+      "beforeBytes": 0,
+      "afterBytes": 6442156,
+      "oldGrowth": 0,
+      "newGrowth": 6442156,
+      "saved": -6442156
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.mjs",
+      "baselineBytes": 0,
+      "beforeBytes": 0,
+      "afterBytes": 1313,
+      "oldGrowth": 0,
+      "newGrowth": 1313,
+      "saved": -1313
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-refs.mjs",
+      "baselineBytes": 0,
+      "beforeBytes": 33583,
+      "afterBytes": 38789,
+      "oldGrowth": 33583,
+      "newGrowth": 38789,
+      "saved": -5206
+    },
+    {
+      "path": "books/shared/stratagem-presentation.mjs",
+      "baselineBytes": 2324,
+      "beforeBytes": 2324,
+      "afterBytes": 2324,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/styles/offline-status.css",
+      "baselineBytes": 3763,
+      "beforeBytes": 3763,
+      "afterBytes": 3763,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/shared/unit-art.css",
+      "baselineBytes": 2643,
+      "beforeBytes": 2643,
+      "afterBytes": 2643,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/assets/space-marines-cover-480.webp",
+      "baselineBytes": 70640,
+      "beforeBytes": 70640,
+      "afterBytes": 70640,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/assets/space-marines-cover-800.webp",
+      "baselineBytes": 160098,
+      "beforeBytes": 160098,
+      "afterBytes": 160098,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/generated/compatible-rules.json",
+      "baselineBytes": 1916576,
+      "beforeBytes": 1916576,
+      "afterBytes": 1916576,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/v2/generated/app-presentation.json",
+      "baselineBytes": 20399922,
+      "beforeBytes": 23060150,
+      "afterBytes": 19937258,
+      "oldGrowth": 2660228,
+      "newGrowth": -462664,
+      "saved": 3122892
+    },
+    {
+      "path": "books/space-marines/v2/generated/roster-import.json",
+      "baselineBytes": 6824936,
+      "beforeBytes": 9100994,
+      "afterBytes": 6036659,
+      "oldGrowth": 2276058,
+      "newGrowth": -788277,
+      "saved": 3064335
+    },
+    {
+      "path": "books/space-marines/v2/registration.mjs",
+      "baselineBytes": 921,
+      "beforeBytes": 921,
+      "afterBytes": 921,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/v2/roster-boot.mjs",
+      "baselineBytes": 605,
+      "beforeBytes": 605,
+      "afterBytes": 605,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/v2/roster-import.mjs",
+      "baselineBytes": 17083,
+      "beforeBytes": 17780,
+      "afterBytes": 17780,
+      "oldGrowth": 697,
+      "newGrowth": 697,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/v2/roster-paid-options.mjs",
+      "baselineBytes": 5684,
+      "beforeBytes": 5868,
+      "afterBytes": 5868,
+      "oldGrowth": 184,
+      "newGrowth": 184,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/v2/roster-runtime.mjs",
+      "baselineBytes": 5188,
+      "beforeBytes": 5188,
+      "afterBytes": 5188,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/v2/roster-static-model-bindings.mjs",
+      "baselineBytes": 5079,
+      "beforeBytes": 5245,
+      "afterBytes": 5245,
+      "oldGrowth": 166,
+      "newGrowth": 166,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/v2/rule-contract-schema.mjs",
+      "baselineBytes": 1049,
+      "beforeBytes": 1049,
+      "afterBytes": 1049,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/space-marines/v2/theme.css",
+      "baselineBytes": 1045,
+      "beforeBytes": 1045,
+      "afterBytes": 1045,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/assets/tau-empire-cover-800.webp",
+      "baselineBytes": 119340,
+      "beforeBytes": 119340,
+      "afterBytes": 119340,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/generated/compatible-rules.json",
+      "baselineBytes": 126734,
+      "beforeBytes": 126734,
+      "afterBytes": 126734,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/v2/generated/app-presentation.json",
+      "baselineBytes": 6729225,
+      "beforeBytes": 7979375,
+      "afterBytes": 6413595,
+      "oldGrowth": 1250150,
+      "newGrowth": -315630,
+      "saved": 1565780
+    },
+    {
+      "path": "books/tau-empire/v2/generated/roster-import.json",
+      "baselineBytes": 3381794,
+      "beforeBytes": 5317760,
+      "afterBytes": 3197708,
+      "oldGrowth": 1935966,
+      "newGrowth": -184086,
+      "saved": 2120052
+    },
+    {
+      "path": "books/tau-empire/v2/registration.mjs",
+      "baselineBytes": 882,
+      "beforeBytes": 882,
+      "afterBytes": 882,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/v2/roster-boot.mjs",
+      "baselineBytes": 7512,
+      "beforeBytes": 7512,
+      "afterBytes": 7512,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/v2/roster-import.mjs",
+      "baselineBytes": 14451,
+      "beforeBytes": 15148,
+      "afterBytes": 15148,
+      "oldGrowth": 697,
+      "newGrowth": 697,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/v2/roster-source-choices.mjs",
+      "baselineBytes": 18641,
+      "beforeBytes": 19030,
+      "afterBytes": 19030,
+      "oldGrowth": 389,
+      "newGrowth": 389,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "baselineBytes": 11250,
+      "beforeBytes": 11519,
+      "afterBytes": 11519,
+      "oldGrowth": 269,
+      "newGrowth": 269,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/v2/rule-contract-declarations.mjs",
+      "baselineBytes": 20021,
+      "beforeBytes": 20021,
+      "afterBytes": 20021,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/v2/rule-contract-schema.mjs",
+      "baselineBytes": 1022,
+      "beforeBytes": 1022,
+      "afterBytes": 1022,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tau-empire/v2/theme.css",
+      "baselineBytes": 1046,
+      "beforeBytes": 1046,
+      "afterBytes": 1046,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tyranids/generated/compatible-rules.json",
+      "baselineBytes": 243074,
+      "beforeBytes": 243074,
+      "afterBytes": 243074,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tyranids/v2/generated/app-presentation.json",
+      "baselineBytes": 7783682,
+      "beforeBytes": 8859244,
+      "afterBytes": 7427491,
+      "oldGrowth": 1075562,
+      "newGrowth": -356191,
+      "saved": 1431753
+    },
+    {
+      "path": "books/tyranids/v2/generated/roster-runtime.json",
+      "baselineBytes": 2106010,
+      "beforeBytes": 3495233,
+      "afterBytes": 1881514,
+      "oldGrowth": 1389223,
+      "newGrowth": -224496,
+      "saved": 1613719
+    },
+    {
+      "path": "books/tyranids/v2/registration.mjs",
+      "baselineBytes": 889,
+      "beforeBytes": 889,
+      "afterBytes": 889,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tyranids/v2/roster-boot.mjs",
+      "baselineBytes": 5466,
+      "beforeBytes": 5466,
+      "afterBytes": 5466,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tyranids/v2/roster-import.mjs",
+      "baselineBytes": 20035,
+      "beforeBytes": 20035,
+      "afterBytes": 20035,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "books/tyranids/v2/roster-source-choices.mjs",
+      "baselineBytes": 7050,
+      "beforeBytes": 7197,
+      "afterBytes": 7197,
+      "oldGrowth": 147,
+      "newGrowth": 147,
+      "saved": 0
+    },
+    {
+      "path": "books/tyranids/v2/theme.css",
+      "baselineBytes": 1068,
+      "beforeBytes": 1068,
+      "afterBytes": 1068,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "glossary-return.js",
+      "baselineBytes": 10671,
+      "beforeBytes": 10671,
+      "afterBytes": 10671,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "glossary/generated/cache-revision.js",
+      "baselineBytes": 69592,
+      "beforeBytes": 69779,
+      "afterBytes": 70113,
+      "oldGrowth": 187,
+      "newGrowth": 521,
+      "saved": -334
+    },
+    {
+      "path": "glossary/v2/generated/index.en.js",
+      "baselineBytes": 23127001,
+      "beforeBytes": 23127001,
+      "afterBytes": 23127001,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "glossary/v2/generated/index.en.json",
+      "baselineBytes": 31087310,
+      "beforeBytes": 31087310,
+      "afterBytes": 31087310,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "baselineBytes": 48356,
+      "beforeBytes": 48356,
+      "afterBytes": 48356,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "index.html",
+      "baselineBytes": 359,
+      "beforeBytes": 359,
+      "afterBytes": 359,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "manifest.webmanifest",
+      "baselineBytes": 730,
+      "beforeBytes": 730,
+      "afterBytes": 730,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "service-worker.js",
+      "baselineBytes": 13071,
+      "beforeBytes": 13071,
+      "afterBytes": 13071,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "v2/app.html",
+      "baselineBytes": 741,
+      "beforeBytes": 741,
+      "afterBytes": 741,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "v2/army-books.mjs",
+      "baselineBytes": 1049,
+      "beforeBytes": 1049,
+      "afterBytes": 1049,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    },
+    {
+      "path": "v2/boot.mjs",
+      "baselineBytes": 403,
+      "beforeBytes": 403,
+      "afterBytes": 403,
+      "oldGrowth": 0,
+      "newGrowth": 0,
+      "saved": 0
+    }
+  ],
+  "metadataByRecordKind": [
+    {
+      "kind": "ALLIED_POINTS_DEPENDENCY",
+      "beforeBytes": 2082,
+      "afterBytes": 1520,
+      "beforeProperties": 16,
+      "afterProperties": 16
+    },
+    {
+      "kind": "ARMY_RULE",
+      "beforeBytes": 32269,
+      "afterBytes": 21405,
+      "beforeProperties": 223,
+      "afterProperties": 223
+    },
+    {
+      "kind": "ARMY_RULE_COMPONENT",
+      "beforeBytes": 18637,
+      "afterBytes": 14658,
+      "beforeProperties": 115,
+      "afterProperties": 115
+    },
+    {
+      "kind": "ATTACHMENT_DECLARATION",
+      "beforeBytes": 27377,
+      "afterBytes": 17843,
+      "beforeProperties": 183,
+      "afterProperties": 183
+    },
+    {
+      "kind": "ATTACHMENT_RELATION",
+      "beforeBytes": 60378,
+      "afterBytes": 49412,
+      "beforeProperties": 464,
+      "afterProperties": 464
+    },
+    {
+      "kind": "BOOK_CONTAINER",
+      "beforeBytes": 17402116,
+      "afterBytes": 1916159,
+      "beforeProperties": 13825,
+      "afterProperties": 13762
+    },
+    {
+      "kind": "BOOK_USAGE",
+      "beforeBytes": 632,
+      "afterBytes": 636,
+      "beforeProperties": 6,
+      "afterProperties": 6
+    },
+    {
+      "kind": "BOOK_USAGE_RULES",
+      "beforeBytes": 1057,
+      "afterBytes": 469,
+      "beforeProperties": 7,
+      "afterProperties": 7
+    },
+    {
+      "kind": "COMPOSITION_MEMBER",
+      "beforeBytes": 385435,
+      "afterBytes": 301404,
+      "beforeProperties": 2767,
+      "afterProperties": 2767
+    },
+    {
+      "kind": "CORE_CORE_CONCEPT",
+      "beforeBytes": 29169,
+      "afterBytes": 2349,
+      "beforeProperties": 162,
+      "afterProperties": 162
+    },
+    {
+      "kind": "CORE_ERRATA",
+      "beforeBytes": 37467,
+      "afterBytes": 15039,
+      "beforeProperties": 162,
+      "afterProperties": 162
+    },
+    {
+      "kind": "CORE_FAQ_CLARIFICATION",
+      "beforeBytes": 313605,
+      "afterBytes": 112734,
+      "beforeProperties": 1278,
+      "afterProperties": 1278
+    },
+    {
+      "kind": "CORE_MAIN_RULE",
+      "beforeBytes": 1025424,
+      "afterBytes": 116802,
+      "beforeProperties": 4986,
+      "afterProperties": 4986
+    },
+    {
+      "kind": "CORE_UNIVERSAL_RULE_UPDATE",
+      "beforeBytes": 30555,
+      "afterBytes": 16218,
+      "beforeProperties": 90,
+      "afterProperties": 90
+    },
+    {
+      "kind": "DATASHEET",
+      "beforeBytes": 342408,
+      "afterBytes": 266783,
+      "beforeProperties": 2548,
+      "afterProperties": 2548
+    },
+    {
+      "kind": "DATASHEET_ABILITY",
+      "beforeBytes": 475877,
+      "afterBytes": 305914,
+      "beforeProperties": 2456,
+      "afterProperties": 2456
+    },
+    {
+      "kind": "DATASHEET_SECTION",
+      "beforeBytes": 1311647,
+      "afterBytes": 917690,
+      "beforeProperties": 9009,
+      "afterProperties": 9009
+    },
+    {
+      "kind": "DETACHMENT",
+      "beforeBytes": 167690,
+      "afterBytes": 112965,
+      "beforeProperties": 967,
+      "afterProperties": 967
+    },
+    {
+      "kind": "DETACHMENT_ROSTER_METADATA",
+      "beforeBytes": 17697,
+      "afterBytes": 13560,
+      "beforeProperties": 136,
+      "afterProperties": 136
+    },
+    {
+      "kind": "DETACHMENT_RULE",
+      "beforeBytes": 224818,
+      "afterBytes": 158755,
+      "beforeProperties": 1383,
+      "afterProperties": 1383
+    },
+    {
+      "kind": "ENHANCEMENT",
+      "beforeBytes": 807756,
+      "afterBytes": 577573,
+      "beforeProperties": 4208,
+      "afterProperties": 4208
+    },
+    {
+      "kind": "ENHANCEMENT_COST_QUALIFIERS",
+      "beforeBytes": 64542,
+      "afterBytes": 53184,
+      "beforeProperties": 496,
+      "afterProperties": 496
+    },
+    {
+      "kind": "EQUIPMENT_ABILITY",
+      "beforeBytes": 7259,
+      "afterBytes": 4242,
+      "beforeProperties": 42,
+      "afterProperties": 42
+    },
+    {
+      "kind": "EQUIPMENT_RULE",
+      "beforeBytes": 5880,
+      "afterBytes": 3790,
+      "beforeProperties": 35,
+      "afterProperties": 35
+    },
+    {
+      "kind": "ERRATA",
+      "beforeBytes": 20943,
+      "afterBytes": 19609,
+      "beforeProperties": 154,
+      "afterProperties": 154
+    },
+    {
+      "kind": "FACTION_KEYWORD",
+      "beforeBytes": 84618,
+      "afterBytes": 67156,
+      "beforeProperties": 648,
+      "afterProperties": 648
+    },
+    {
+      "kind": "FAQ",
+      "beforeBytes": 21299,
+      "afterBytes": 23643,
+      "beforeProperties": 128,
+      "afterProperties": 128
+    },
+    {
+      "kind": "INVULNERABLE_SAVE",
+      "beforeBytes": 39764,
+      "afterBytes": 36205,
+      "beforeProperties": 300,
+      "afterProperties": 300
+    },
+    {
+      "kind": "KEYWORD_MEMBERSHIP",
+      "beforeBytes": 470648,
+      "afterBytes": 396582,
+      "beforeProperties": 3480,
+      "afterProperties": 3480
+    },
+    {
+      "kind": "KEYWORD_SCOPES",
+      "beforeBytes": 15232,
+      "afterBytes": 14892,
+      "beforeProperties": 136,
+      "afterProperties": 136
+    },
+    {
+      "kind": "MFM_DETACHMENT",
+      "beforeBytes": 16788,
+      "afterBytes": 8934,
+      "beforeProperties": 72,
+      "afterProperties": 72
+    },
+    {
+      "kind": "MFM_ENHANCEMENT_COST",
+      "beforeBytes": 37008,
+      "afterBytes": 24815,
+      "beforeProperties": 160,
+      "afterProperties": 160
+    },
+    {
+      "kind": "MFM_PAID_UPGRADE",
+      "beforeBytes": 8630,
+      "afterBytes": 6102,
+      "beforeProperties": 42,
+      "afterProperties": 42
+    },
+    {
+      "kind": "MFM_QUALIFIER",
+      "beforeBytes": 11043,
+      "afterBytes": 6772,
+      "beforeProperties": 46,
+      "afterProperties": 46
+    },
+    {
+      "kind": "MFM_UNIT_POINTS",
+      "beforeBytes": 137897,
+      "afterBytes": 99162,
+      "beforeProperties": 812,
+      "afterProperties": 812
+    },
+    {
+      "kind": "MODEL_BASE",
+      "beforeBytes": 24752,
+      "afterBytes": 27431,
+      "beforeProperties": 212,
+      "afterProperties": 212
+    },
+    {
+      "kind": "MODEL_BASE_METADATA",
+      "beforeBytes": 127608,
+      "afterBytes": 103752,
+      "beforeProperties": 968,
+      "afterProperties": 968
+    },
+    {
+      "kind": "NAMED_RULE_COMPONENT",
+      "beforeBytes": 4746,
+      "afterBytes": 3030,
+      "beforeProperties": 30,
+      "afterProperties": 30
+    },
+    {
+      "kind": "NO_WARGEAR_OPTIONS",
+      "beforeBytes": 6246,
+      "afterBytes": 5160,
+      "beforeProperties": 48,
+      "afterProperties": 48
+    },
+    {
+      "kind": "OFFICIAL_UPDATE",
+      "beforeBytes": 24380,
+      "afterBytes": 24246,
+      "beforeProperties": 184,
+      "afterProperties": 184
+    },
+    {
+      "kind": "PAID_WARGEAR_COST",
+      "beforeBytes": 1656,
+      "afterBytes": 1248,
+      "beforeProperties": 12,
+      "afterProperties": 12
+    },
+    {
+      "kind": "POINTS_SCHEDULE_ROW",
+      "beforeBytes": 51336,
+      "afterBytes": 41070,
+      "beforeProperties": 372,
+      "afterProperties": 372
+    },
+    {
+      "kind": "PROFILE",
+      "beforeBytes": 615257,
+      "afterBytes": 503995,
+      "beforeProperties": 4369,
+      "afterProperties": 4369
+    },
+    {
+      "kind": "RULE_REFERENCE",
+      "beforeBytes": 841471,
+      "afterBytes": 676353,
+      "beforeProperties": 5996,
+      "afterProperties": 5996
+    },
+    {
+      "kind": "SHARED_CATALOG",
+      "beforeBytes": 0,
+      "afterBytes": 6442155,
+      "beforeProperties": 0,
+      "afterProperties": 4
+    },
+    {
+      "kind": "SOURCE_CONFLICT",
+      "beforeBytes": 831,
+      "afterBytes": 1194,
+      "beforeProperties": 6,
+      "afterProperties": 6
+    },
+    {
+      "kind": "SOURCE_ERRATUM",
+      "beforeBytes": 60652,
+      "afterBytes": 44526,
+      "beforeProperties": 438,
+      "afterProperties": 438
+    },
+    {
+      "kind": "SOURCE_PRESENTATION_NOTE",
+      "beforeBytes": 6337,
+      "afterBytes": 5806,
+      "beforeProperties": 46,
+      "afterProperties": 46
+    },
+    {
+      "kind": "SOURCE_RELATION",
+      "beforeBytes": 142774,
+      "afterBytes": 89670,
+      "beforeProperties": 840,
+      "afterProperties": 840
+    },
+    {
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "beforeBytes": 83322,
+      "afterBytes": 89842,
+      "beforeProperties": 677,
+      "afterProperties": 677
+    },
+    {
+      "kind": "SPECIAL_DATASHEET_RULE",
+      "beforeBytes": 12769,
+      "afterBytes": 8224,
+      "beforeProperties": 81,
+      "afterProperties": 81
+    },
+    {
+      "kind": "STRUCTURED_RULE_TABLE",
+      "beforeBytes": 6135,
+      "afterBytes": 5896,
+      "beforeProperties": 47,
+      "afterProperties": 47
+    },
+    {
+      "kind": "SUPPLEMENTAL_DATASHEET_RULE",
+      "beforeBytes": 49556,
+      "afterBytes": 45704,
+      "beforeProperties": 388,
+      "afterProperties": 388
+    },
+    {
+      "kind": "TRANSPORT_DECLARATION",
+      "beforeBytes": 1468,
+      "afterBytes": 1720,
+      "beforeProperties": 8,
+      "afterProperties": 8
+    },
+    {
+      "kind": "UNIQUE",
+      "beforeBytes": 18608,
+      "afterBytes": 10591,
+      "beforeProperties": 72,
+      "afterProperties": 72
+    },
+    {
+      "kind": "UNIT_COMPOSITION",
+      "beforeBytes": 29808,
+      "afterBytes": 21708,
+      "beforeProperties": 216,
+      "afterProperties": 216
+    },
+    {
+      "kind": "UPGRADE_DECLARATION",
+      "beforeBytes": 2839,
+      "afterBytes": 1875,
+      "beforeProperties": 18,
+      "afterProperties": 18
+    },
+    {
+      "kind": "UPGRADE_OPTION",
+      "beforeBytes": 123255,
+      "afterBytes": 123065,
+      "beforeProperties": 597,
+      "afterProperties": 597
+    },
+    {
+      "kind": "WARGEAR_FOOTNOTE",
+      "beforeBytes": 708,
+      "afterBytes": 336,
+      "beforeProperties": 4,
+      "afterProperties": 4
+    },
+    {
+      "kind": "WARGEAR_OPTION",
+      "beforeBytes": 486323,
+      "afterBytes": 361487,
+      "beforeProperties": 3428,
+      "afterProperties": 3428
+    },
+    {
+      "kind": "WEAPON_ABILITY",
+      "beforeBytes": 552,
+      "afterBytes": 736,
+      "beforeProperties": 3,
+      "afterProperties": 3
+    },
+    {
+      "kind": "WEAPON_PROFILE",
+      "beforeBytes": 1656621,
+      "afterBytes": 1372400,
+      "beforeProperties": 11862,
+      "afterProperties": 11862
+    },
+    {
+      "kind": "WEAPON_PROFILE_SELECTION",
+      "beforeBytes": 7335,
+      "afterBytes": 5119,
+      "beforeProperties": 46,
+      "afterProperties": 46
+    },
+    {
+      "kind": "WEAPON_PROFILE_SELECTION_INSTRUCTION",
+      "beforeBytes": 368,
+      "afterBytes": 452,
+      "beforeProperties": 4,
+      "afterProperties": 4
+    }
+  ],
+  "metadataByForm": [
+    {
+      "field": "fieldProvenance",
+      "beforeBytes": 45234,
+      "afterBytes": 45234
+    },
+    {
+      "field": "sourceBindings",
+      "beforeBytes": 11412979,
+      "afterBytes": 1136323
+    },
+    {
+      "field": "sourceContextCatalog",
+      "beforeBytes": 3153440,
+      "afterBytes": 0
+    },
+    {
+      "field": "sourceLayoutCatalog",
+      "beforeBytes": 649518,
+      "afterBytes": 0
+    },
+    {
+      "field": "sourceOwnership",
+      "beforeBytes": 76799,
+      "afterBytes": 76799
+    },
+    {
+      "field": "sourceRefCatalog",
+      "beforeBytes": 11382690,
+      "afterBytes": 0
+    },
+    {
+      "field": "sourceRefs",
+      "beforeBytes": 1322364,
+      "afterBytes": 8022920
+    },
+    {
+      "field": "sourceSchema",
+      "beforeBytes": 336,
+      "afterBytes": 336
+    }
+  ],
+  "attribution": "Per-file bytes and deltas are exact physical package sizes. Record-kind/form columns count compact UTF-8 source-property values, excluding formatting and ordinary facts. They explain duplication but must not be added to physical file deltas.",
+  "sharedCatalog": {
+    "bytes": 6442156,
+    "documentsByBook": {
+      "adeptus-mechanicus": {
+        "entries": 58,
+        "compactBytes": 13240
+      },
+      "blood-angels": {
+        "entries": 14,
+        "compactBytes": 3436
+      },
+      "chaos-space-marines": {
+        "entries": 120,
+        "compactBytes": 34530
+      },
+      "dark-angels": {
+        "entries": 14,
+        "compactBytes": 3427
+      },
+      "death-guard": {
+        "entries": 50,
+        "compactBytes": 14208
+      },
+      "emperors-children": {
+        "entries": 37,
+        "compactBytes": 11337
+      },
+      "space-marines": {
+        "entries": 13,
+        "compactBytes": 3009
+      },
+      "tau-empire": {
+        "entries": 141,
+        "compactBytes": 40154
+      },
+      "tyranids": {
+        "entries": 115,
+        "compactBytes": 31128
+      }
+    },
+    "pools": {
+      "layouts": {
+        "entries": 182,
+        "compactBytes": 231402
+      },
+      "contexts": {
+        "entries": 10081,
+        "compactBytes": 1181162
+      },
+      "bindings": {
+        "entries": 19130,
+        "compactBytes": 4874917
+      }
+    }
+  },
+  "performance": {
+    "samples": 5,
+    "execution": "SEQUENTIAL_ALTERNATING_FRESH_NODE_PROCESSES",
+    "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+    "allSamplesMs": {
+      "baseline": [
+        473.8974,
+        468.7568,
+        464.9362,
+        471.7718,
+        466.74049999999994
+      ],
+      "before": [
+        1438.4135000000003,
+        1467.0898000000002,
+        1453.5526,
+        1438.3297999999998,
+        1443.6997999999996
+      ],
+      "optimized": [
+        506.56590000000017,
+        504.5521,
+        507.43150000000014,
+        508.09119999999996,
+        500.8616000000002
+      ]
+    },
+    "mediansMs": {
+      "baseline": 468.7568,
+      "before": 1443.6997999999996,
+      "optimized": 506.56590000000017
+    },
+    "baselineMedianMs": 468.7568,
+    "beforeMedianMs": 1443.6997999999996,
+    "featureMedianMs": 506.56590000000017,
+    "changePercent": 8.065824325108494,
+    "stages": [
+      {
+        "stage": "module-imports",
+        "baselineMedianMs": 26.942700000000002,
+        "beforeMedianMs": 28.4302,
+        "optimizedMedianMs": 63.21480000000001
+      },
+      {
+        "stage": "read-json",
+        "baselineMedianMs": 114.70530000000001,
+        "beforeMedianMs": 164.63049999999998,
+        "optimizedMedianMs": 111.1691
+      },
+      {
+        "stage": "create-importer",
+        "baselineMedianMs": 28.358799999999974,
+        "beforeMedianMs": 160.94159999999997,
+        "optimizedMedianMs": 35.365099999999984
+      },
+      {
+        "stage": "import-text",
+        "baselineMedianMs": 17.87730000000002,
+        "beforeMedianMs": 52.0489,
+        "optimizedMedianMs": 13.815300000000008
+      },
+      {
+        "stage": "explicit-fixture-bearer",
+        "baselineMedianMs": 1.2404999999999973,
+        "beforeMedianMs": 1.3075999999999794,
+        "optimizedMedianMs": 1.6277000000000044
+      },
+      {
+        "stage": "create-runtime",
+        "baselineMedianMs": 130.65210000000002,
+        "beforeMedianMs": 446.1943,
+        "optimizedMedianMs": 120.28659999999999
+      },
+      {
+        "stage": "runtime-load",
+        "baselineMedianMs": 98.48689999999999,
+        "beforeMedianMs": 412.6653000000001,
+        "optimizedMedianMs": 115.46260000000001
+      },
+      {
+        "stage": "normalize-effective-book",
+        "baselineMedianMs": 24.885299999999972,
+        "beforeMedianMs": 38.21270000000004,
+        "optimizedMedianMs": 10.585900000000038
+      },
+      {
+        "stage": "prepare-presentation-cards",
+        "baselineMedianMs": 2.832400000000007,
+        "beforeMedianMs": 3.108600000000024,
+        "optimizedMedianMs": 2.914600000000007
+      },
+      {
+        "stage": "personal-book-projection",
+        "baselineMedianMs": 0.6464000000000283,
+        "beforeMedianMs": 0.8542999999999665,
+        "optimizedMedianMs": 0.8065000000000282
+      },
+      {
+        "stage": "effective/parsed-unit-1",
+        "baselineMedianMs": 6.2964999999999804,
+        "beforeMedianMs": 37.72609999999986,
+        "optimizedMedianMs": 8.651400000000024
+      },
+      {
+        "stage": "personal-instance/parsed-unit-1",
+        "baselineMedianMs": 1.9196000000000026,
+        "beforeMedianMs": 3.264499999999998,
+        "optimizedMedianMs": 2.3496000000000095
+      },
+      {
+        "stage": "effective/parsed-unit-2",
+        "baselineMedianMs": 3.6426999999999907,
+        "beforeMedianMs": 30.806800000000067,
+        "optimizedMedianMs": 5.094099999999969
+      },
+      {
+        "stage": "personal-instance/parsed-unit-2",
+        "baselineMedianMs": 0.6188999999999965,
+        "beforeMedianMs": 1.514699999999948,
+        "optimizedMedianMs": 1.0131999999999834
+      },
+      {
+        "stage": "effective/parsed-unit-3",
+        "baselineMedianMs": 3.5371999999999844,
+        "beforeMedianMs": 29.039799999999786,
+        "optimizedMedianMs": 5.0067000000000235
+      },
+      {
+        "stage": "personal-instance/parsed-unit-3",
+        "baselineMedianMs": 0.8378999999999905,
+        "beforeMedianMs": 1.6619000000000597,
+        "optimizedMedianMs": 1.1361000000000558
+      },
+      {
+        "stage": "effective/parsed-unit-4",
+        "baselineMedianMs": 3.541300000000035,
+        "beforeMedianMs": 28.777900000000045,
+        "optimizedMedianMs": 4.927400000000034
+      },
+      {
+        "stage": "personal-instance/parsed-unit-4",
+        "baselineMedianMs": 0.6621000000000095,
+        "beforeMedianMs": 1.5389999999999873,
+        "optimizedMedianMs": 1.0189000000000306
+      }
+    ],
+    "targetPass": true
+  },
+  "browser": {
+    "status": "PASS",
+    "scope": "SELECTED_FIXTURES",
+    "selectedBookIds": [
+      "emperors-children",
+      "tau-empire",
+      "tyranids"
+    ],
+    "selectedFixtures": 74,
+    "counts": {
+      "books": 3,
+      "sourceFixtures": 171,
+      "savedSnapshotFixtures": 0,
+      "acceptedImports": 146,
+      "rejectedOrPendingImports": 2,
+      "scenarioViews": 414,
+      "cardViews": 2322,
+      "uniqueTextBytes": 1737264
+    },
+    "comparison": {
+      "status": "PASS",
+      "zeroDifference": true
+    },
+    "method": "Original renderer; styles/fonts ready and two animation frames without DOM or resize changes before exact textContent/innerText and block-order comparison."
+  },
+  "sourceChecks": {
+    "artifacts": 97,
+    "inverse": "PASS",
+    "stratagemSerialization": "PASS",
+    "sourceBindings": 122031,
+    "existingNegativeControls": [
+      {
+        "name": "unknown source reference",
+        "status": "REJECTED"
+      },
+      {
+        "name": "document hash changed behind content ID",
+        "status": "REJECTED"
+      },
+      {
+        "name": "legacy provenance shadow",
+        "status": "REJECTED"
+      },
+      {
+        "name": "canonical ownership changed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "field source map changed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "currentness shadow",
+        "status": "REJECTED"
+      }
+    ],
+    "newNegativeControls": [
+      {
+        "name": "locator changed after first read",
+        "status": "REJECTED"
+      },
+      {
+        "name": "unregistered document pointer",
+        "status": "REJECTED"
+      },
+      {
+        "name": "reference content anchor removed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "binding identity replaced",
+        "status": "REJECTED"
+      },
+      {
+        "name": "legacy proof shadow after cache",
+        "status": "REJECTED"
+      },
+      {
+        "name": "mutable shared locator denied",
+        "status": "REJECTED"
+      },
+      {
+        "name": "immutable value cannot alias a different content identity",
+        "status": "REJECTED"
+      },
+      {
+        "name": "document hash changed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "binding tuple changed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "layout changed",
+        "status": "REJECTED"
+      }
+    ],
+    "oracles": [
+      {
+        "oracle": "AM application oracle",
+        "mutation": "missing sourceId",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "AM application oracle",
+        "mutation": "missing sourcePath",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "DG application oracle",
+        "mutation": "missing qualification source proof",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "SM physical source review",
+        "mutation": "changed sha256",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "SM physical source review",
+        "mutation": "changed pointer",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "Independent source completeness",
+        "mutation": "changed sourceId",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "Independent source completeness",
+        "mutation": "changed sha256",
+        "status": "REJECTED"
+      }
+    ]
+  },
+  "notRun": [
+    "Full native-book QA",
+    "qa:effects",
+    "qa:roster",
+    "qa:integration",
+    "qa:workflow",
+    "full test:browser",
+    "packaging/determinism 14-check suite"
+  ],
+  "cleanup": {
+    "status": "BLOCKED_BY_AUTOMATIC_REVIEW",
+    "retainedIntermediates": [
+      "feature-runtime-optimized",
+      "size-before-optimization.json.prototype-catalog.json"
+    ],
+    "reason": "The tool policy rejected the Remove-Item operation without a more detailed reason. No alternative removal was attempted. Baseline/before/final evidence packages are intentionally retained for final QA."
+  },
+  "limits": [
+    "Timing covers one existing CSM source-backed recipe through actual import, bearer selection, runtime, effective and personal paths in fresh alternating Node processes; it is not a claim about every roster.",
+    "PRE_EXISTING_LAYOUT_NONDETERMINISM was reproduced on the unchanged base. No renderer or expected rule text was changed.",
+    "The original all-book migration audit remains a draft pending final full QA and regeneration; this checkpoint supersedes its earlier size/performance measurements and certifies browser parity only for the three requested books.",
+    "No commit, push, source/release/main ref update or publication is part of this checkpoint."
+  ]
+}

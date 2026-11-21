@@ -1,3 +1,9 @@
+import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
+import {recordReviewedDetachmentRecipients} from '../../shared/rule-contract-v2/reviewed-detachment-recipients.mjs';
+import {recordReviewedStratagemTargets} from '../../shared/rule-contract-v2/reviewed-stratagem-targets.mjs';
+import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from '../../space-marines/v2/reviewed-text-recipients.mjs';
 /** Source-reviewed BA gameplay over the existing closed mixed-owner view.
  * No Chapter is inferred from book membership, a Detachment or attachment. */
 import fs from 'node:fs';
@@ -15,7 +21,7 @@ import {bindBloodAngelsNative} from './native-ability-bindings.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone,sha=text=>createHash('sha256').update(text).digest('hex').toUpperCase();
 const atom=(predicate,subject,args,evidence,contextLevel='STATIC')=>({predicate,subject,arguments:args,contextLevel,evidence:clone(evidence)});
 const all=args=>args.length===1?args[0]:{op:'ALL',args};
@@ -161,10 +167,21 @@ export function buildBloodAngelsContracts({inputs=declarations,review=read('./ru
  }
  assert.equal(executed.length,inputs.length,'Orphan BA lowering');
 
+ book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'sm',equipmentBearerMode:'UNIFORM_PHYSICAL_GROUP'};
+ recordReviewedStratagemTargets(book,read('./stratagem-target-declarations.json'));
+  recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
+ recordReviewedDetachmentRecipients(book,read('./detachment-recipient-declarations.json'));
+  assertBookOfficialEffectReviews(book);
+  finalizeRecipientBook(book);
  const schema=createBloodAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
  const artifact={scope:'STAGE_3A_SOURCE_PROVEN_STATIC_GAMEPLAY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
-  coverage:{...clone(review.coverage),displayOnlyPolicyProofs:conditionalDeclarations.size},executed,conditionalPolicies:[...conditionalDeclarations.values()].map(row=>({recordId:row.recordId,kind:row.kind,recipientScope:row.recipientScope,execution:'TEXT_ONLY_SOURCE_BACKED'})),...nativeBindings,inheritedContracts,selectorProjections,permanentDoctrineSources:clone(permanentDoctrineSources),
+  coverage:{...clone(review.coverage),displayOnlyPolicyProofs:conditionalDeclarations.size},executed,conditionalPolicies:[...conditionalDeclarations.values()].map(row=>{
+   const matches=book.entities.flatMap(entity=>(entity.ruleContract?.clauses||[]).filter(clause=>clause.id===row.recordId&&clause.conditionalPolicy).map(clause=>({entity,clause})));
+   assert.equal(matches.length,1,'Ambiguous conditional policy summary');
+   const {entity,clause}=matches[0];
+   return {recordId:row.recordId,kind:row.kind,ruleId:entity.id,clauseId:clause.id,recipientId:clause.conditionalPolicy.recipientId,execution:'TEXT_ONLY_SOURCE_BACKED'};
+  }),...nativeBindings,inheritedContracts,selectorProjections,permanentDoctrineSources:clone(permanentDoctrineSources),
   inheritedTypedClauses:book.entities.filter(e=>e.bookId==='space-marines').flatMap(e=>e.ruleContract?.clauses||[]).filter(row=>row.rosterEffects.length).length,
   chapterContext:'NOT_INFERRED_FROM_BOOK_DETACHMENT_OR_ATTACHMENT',
   unsupported:['AUTOMATIC_INCOMING_ATTACK_RESOLUTION','AUTOMATIC_REROLL_RESOLUTION','AUTOMATIC_QUALIFIED_FNP_RESOLUTION','AUTOMATIC_CP_ACTION_COST','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS','TACTICAL_FALLBACK_PERMISSIONS','DOCTRINE_PHASE_AND_EXCLUSIVITY'],
@@ -176,7 +193,7 @@ export function buildBloodAngelsContracts({inputs=declarations,review=read('./ru
 export function writeBloodAngelsContracts({check=false}={}){
  const result=buildBloodAngelsContracts();
  for(const [name,value]of [['rule-contracts',result.artifact],['roster-runtime',result.book]]){
-  const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+  const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=serializeSourceJSON(value);
   if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale BA gameplay output '+name);else fs.writeFileSync(file,bytes);
  }
  return result;

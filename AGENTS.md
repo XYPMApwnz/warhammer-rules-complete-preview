@@ -35,3 +35,10 @@ Start with [README.md](README.md), the current task and the nearest scoped `AGEN
 - Inspect the full diff and keep the final tree clean. Report exact scope, tests, limits and semantic changes.
 - Push, deployment, cache/release changes and live source updates require task authorization. No force push or history rewrite.
 - Use runtime-only packaging for Pages. Do not publish the source repository or QA archives wholesale.
+
+## Branches, review and cleanup
+
+- Work in a separate feature branch from current `codex/unified-v2-source`; push only that feature branch.
+- Update `codex/unified-v2-source` only by fast-forward to the independently reviewed (Claude PASS) feature head, with explicit owner authorization. Never push to `main`.
+- Release candidate: `git commit-tree` with current release as its only parent and reviewed source tree; push only to a new review branch. Candidate preparation is not publication. After Claude PASS and the owner's manual check, Codex performs the ordinary fast-forward of `unified-v2-release` only with separate explicit owner authorization for that exact candidate SHA. All [release procedure](tools/PAGES_RUNTIME_RELEASE.md#source-review-and-release-authorization) checks still apply, including for rollback.
+- After verification, delete temporary worktrees, clones, runtime packages, QA work directories and anything not referenced by the report. Keep screenshots referenced by the report. Record SHA, branch, commands, results and limitations in the report.

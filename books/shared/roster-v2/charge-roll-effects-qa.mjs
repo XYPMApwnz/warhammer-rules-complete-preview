@@ -2,7 +2,8 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {validateRoster,withRosterDetachments,changeAttachment} from './context.mjs';
-import {validateRosterEffects,executeRosterEffects} from './effects.mjs';
+import {executeRosterEffects} from './effects.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 const clone=structuredClone,id=n=>'synthetic-charge:'+n;
 const evidence={field:['text'],quote:'Reviewed synthetic UNIT Charge-roll modifier evidence.'};
 const atom=(predicate,subject,args,level='STATIC')=>({predicate,subject,arguments:args,contextLevel:level,evidence:clone(evidence)});
@@ -31,8 +32,8 @@ function fixture(){
   return {book,state,effect};
 }
 function run(book,state){
-  const originalBook=clone(book),originalState=clone(state);api.validateContracts(book);validateRosterEffects(book,api.validatePredicate,api.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),api);
+  const originalBook=clone(book),originalState=clone(state),canonical=compileRecipientFixture(book,api);
+  const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),api);
   assert.deepEqual(book,originalBook);assert.deepEqual(state,originalState);return result;
 }
 const unit=(result,name='a')=>result.units.find(u=>u.instanceId===name);

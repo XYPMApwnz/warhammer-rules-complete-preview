@@ -54,29 +54,7 @@ function placeProfileStrip(layout) {
 
 function balanceAbilities(layout) {
   restoreAbilities(layout);
-  if (layout.cards.length < 2 || !layout.card.isConnected) return;
-
-  const arsenalBox = layout.arsenal.getBoundingClientRect();
-  const supportBox = layout.support.getBoundingClientRect();
-  const parallel = Math.abs(arsenalBox.top - supportBox.top) <= 1
-    && supportBox.left > arsenalBox.left + 1;
-  if (!parallel || !arsenalBox.width) return;
-
-  let split = layout.cards.length;
-  for (let index = 0; index < layout.cards.length; index += 1) {
-    if (layout.cards[index].getBoundingClientRect().bottom > arsenalBox.bottom + 1) {
-      split = Math.max(1, index);
-      break;
-    }
-  }
-  if (split >= layout.cards.length) return;
-
-  if (!layout.continuation) {
-    layout.continuation = layout.card.ownerDocument.createElement('div');
-    layout.continuation.className = 'ability-list ds-abilities-continuation';
-  }
-  layout.arsenal.append(layout.continuation);
-  layout.cards.slice(split).forEach(node => layout.continuation.append(node));
+  // Weapons and abilities keep their semantic columns at every card width.
 }
 
 function enhance(card, phoneMedia) {

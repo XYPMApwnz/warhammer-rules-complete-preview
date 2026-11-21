@@ -33,7 +33,7 @@ export function runChapterContextQA(built){
       .filter(effect=>effect.operation==='GRANT_UNIT_KEYWORD'&&chapterKeywords.includes(effect.keyword));
     assert.equal(grants.length,6);
     assert.ok(grants.every(effect=>effect.unitScope==='PHYSICAL'&&effect.conditions.some(condition=>
-      condition.binding==='TARGET'&&condition.predicate.arguments?.key==='daArmyMembershipProven')));
+      condition.binding==='TARGET'&&condition.predicate.arguments?.key==='reviewedArmyMembershipProven')));
   });
   check('parser-faction-is-army-metadata-not-physical-unit-proof',()=>{
     const draft=lexicalDraft('FACTION KEYWORD: Dark Angels\nDETACHMENT: Inner Circle Task Force\n1x Bladeguard Ancient (60 pts)',parse);

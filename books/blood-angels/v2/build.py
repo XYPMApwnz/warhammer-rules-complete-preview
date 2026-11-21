@@ -18,6 +18,10 @@ from lxml import html
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.path.insert(0, str(ROOT/'books/shared/tools'))
+from source_refs_output import serialized_source_outputs
+sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
+from bridge import apply_book_official_updates
 BOOK = 'blood-angels'
 RAW = 'books/blood-angels/v2/sources/raw/'
 HUB = RAW+'wahapedia-blood-angels-main.html'
@@ -423,12 +427,14 @@ def build():
           'sourceCompleteness':'PARTIAL','semanticCompleteness':'NOT_PROVEN',
           'gameplayContractsImplemented':0,'rosterIntegrationImplemented':False,'presentationImplemented':False,'contentCertified':False,
           'mixedOwnerRuntimeStatus':'NOT_PROVEN; reference ledger is not runtime integration'}
+    # Local corrections only; inherited SM facts keep their owning application.
     effective=copy.deepcopy(base)
     effective['schema']='blood-angels-v2-effective/v1'
     effective['officialReview']={'applicableBaFieldCorrections':[],
         'status':'NO_ADDITIONAL_APPLICABLE_OFFICIAL_FIELDS_PROVEN; full official App unavailable',
         'legendsPack':'v1.2 is Legends-only, excluded from current facts',
         'inheritedSmOfficialCorrections':'Existing SM effective owner; not reapplied'}
+    effective=apply_book_official_updates(BOOK, effective, ROOT)['model']
     validate(base);validate(effective)
     counts=dict(Counter(r['kind'] for r in main))
     census={'bookId':BOOK,'sourceRows':len(main),'mainEntities':len(main),'counts':counts,
@@ -452,9 +458,8 @@ def main():
     parser.add_argument('--check',action='store_true')
     args=parser.parse_args()
     documents=build()
-    for name,value in documents.items():
+    for name,expected in serialized_source_outputs(documents, ROOT).items():
         path=HERE/'generated'/(name+'.json')
-        expected=serialize(value)
         if args.check:
             if not path.exists() or path.read_bytes()!=expected:
                 raise ValueError('Stale/non-deterministic factual output: '+name)

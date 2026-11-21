@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../helpers/qa-temp.mjs';
 import {launchChromium} from '../helpers/browser-launch.mjs';
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
@@ -6,7 +7,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
-const screenshots=path.resolve(root,'..','DG ART PASS','2026-08-23','integration-screenshots');
+const screenshots=createQaEvidenceDir('dg-unit-art-');
 await mkdir(screenshots,{recursive:true});
 const manifest=JSON.parse(await readFile(path.join(root,'books/death-guard/presentation/unit-images.json'),'utf8'));
 const artIds=Object.keys(manifest.units);

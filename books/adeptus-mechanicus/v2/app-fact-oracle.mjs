@@ -2,6 +2,7 @@
  * This module imports neither the application producer nor presentation code.
  * Source evidence/navigation is classified separately from player-facing facts.
  */
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 export const factPointer=path=>'/'+path.map(key=>String(key).replace(/~/g,'~0').replace(/\//g,'~1')).join('/');
 export const factIdentity=(ownerId,path)=>`${ownerId}::${factPointer(path)}`;
 const definitions={
@@ -35,7 +36,8 @@ export function enumerateExpectedFacts(book) {
     ids.add(entity.id);
     const shape=definitions[entity.kind];
     if(!shape)fail(`Unclassified canonical kind ${entity.kind}`);
-    if(!entity.provenance?.sourceId||!entity.provenance?.sourcePath)fail(`Severed source evidence ${entity.id}`);
+    const provenance=sourceSnapshot(entity,{book});
+    if(!provenance?.sourceId||!provenance?.sourcePath)fail(`Severed source evidence ${entity.id}`);
     const walk=(value,path)=>{
       if(value&&typeof value==='object') {
         if(Array.isArray(value))value.forEach((child,index)=>walk(child,[...path,index]));
@@ -45,7 +47,7 @@ export function enumerateExpectedFacts(book) {
       const address=factPointer(path);
       if(matches(address,shape.visible))facts.push({id:factIdentity(entity.id,path),entityId:entity.id,
         cardId:entity.id,path,value:structuredClone(value),contextId:entity.parentId||entity.id,
-        provenance:structuredClone(entity.provenance)});
+        provenance:structuredClone(provenance)});
       else if(!matches(address,shape.metadata))fail(`Unclassified canonical data ${entity.id}${address}`);
     };
     walk(entity.data,[]);

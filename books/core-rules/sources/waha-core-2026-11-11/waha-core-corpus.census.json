@@ -1,0 +1,4668 @@
+{
+  "schema": "core-candidate-source-census/v1",
+  "scope": "SOURCE_AND_CANDIDATE_ONLY",
+  "notRuntimePublicationCoverage": true,
+  "corpusFingerprint": "2E39280BEB3D0C92F87F4F3DB231CA3BC40192C12575AF998E5D2A2DB684C14A",
+  "counts": {
+    "core": {
+      "numbered": 185,
+      "faq": 73,
+      "errata": 7,
+      "uru": 0,
+      "total": 265,
+      "gameplayListItems": 329,
+      "seeAlsoItems": 153,
+      "tables": 87,
+      "tableRows": 187,
+      "faqTableRows": 146,
+      "notes": 29,
+      "examples": 15,
+      "referenceOccurrences": 900
+    },
+    "appendix": {
+      "numbered": 108,
+      "faq": 0,
+      "errata": 1,
+      "uru": 5,
+      "total": 114,
+      "gameplayListItems": 111,
+      "seeAlsoItems": 0,
+      "tables": 2,
+      "tableRows": 6,
+      "faqTableRows": 0,
+      "notes": 1,
+      "examples": 13,
+      "referenceOccurrences": 204
+    },
+    "effective": {
+      "numbered": 282,
+      "faq": 73,
+      "errata": 8,
+      "uru": 5,
+      "total": 368,
+      "numberedOverlap": 11
+    }
+  },
+  "numberedOwnership": [
+    {
+      "sourceUnitId": "waha-core-rule-01-01",
+      "canonicalIds": [
+        "core-rule-01-01-armies"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-01-02",
+      "canonicalIds": [
+        "core-rule-01-02-units-and-models"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-01-03",
+      "canonicalIds": [
+        "core-rule-01-03-active-player-and-opposing-player"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-01-04",
+      "canonicalIds": [
+        "core-rule-01-04-measuring-distances"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-01-05",
+      "canonicalIds": [
+        "core-rule-01-05-dice"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-01-06",
+      "canonicalIds": [
+        "core-rule-01-06-leadership-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-01-06-01",
+      "canonicalIds": [
+        "core-rule-01-06-01-leadership-test"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-01-07",
+      "canonicalIds": [
+        "core-rule-01-07-battle-shock-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-01",
+      "canonicalIds": [
+        "core-rule-02-01-datasheet-name"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-02",
+      "canonicalIds": [
+        "core-rule-02-02-profiles"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-03",
+      "canonicalIds": [
+        "core-rule-02-03-abilities"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-04",
+      "canonicalIds": [
+        "core-rule-02-04-weapons"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-05",
+      "canonicalIds": [
+        "core-rule-02-05-keywords"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-06",
+      "canonicalIds": [
+        "core-rule-02-06-unit-composition-and-other-rules"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-07",
+      "canonicalIds": [
+        "core-rule-02-07-wargear-options"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-03-01",
+      "canonicalIds": [
+        "core-rule-03-01-moving-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-03-02",
+      "canonicalIds": [
+        "core-rule-03-02-set-up"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-03-03",
+      "canonicalIds": [
+        "core-rule-03-03-coherency"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-03-03-01",
+      "canonicalIds": [
+        "core-rule-03-03-01-what-is-coherency"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-03-04",
+      "canonicalIds": [
+        "core-rule-03-04-engagement"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-04-01",
+      "canonicalIds": [
+        "core-rule-04-01-select-weapons"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-04-02",
+      "canonicalIds": [
+        "core-rule-04-02-select-targets"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-04-03",
+      "canonicalIds": [
+        "core-rule-04-03-resolve-attacks"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-01",
+      "canonicalIds": [
+        "core-rule-05-01-hit-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-01-01",
+      "canonicalIds": [
+        "core-rule-05-01-01-critical-hits-and-critical-wounds"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-02",
+      "canonicalIds": [
+        "core-rule-05-02-wound-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-03",
+      "canonicalIds": [
+        "core-rule-05-03-save-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-03-01",
+      "canonicalIds": [
+        "core-rule-05-03-01-saving-throw"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-03-02",
+      "canonicalIds": [
+        "core-rule-05-03-02-attacks-modified-during-hit-and-wound-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-04",
+      "canonicalIds": [
+        "core-rule-05-04-inflict-damage"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-04-03",
+      "canonicalIds": [
+        "core-rule-05-04-03-suffers-damage"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-06-01",
+      "canonicalIds": [
+        "core-rule-06-01-visibility"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-06-01-01",
+      "canonicalIds": [
+        "core-rule-06-01-01-describing-visible-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-06-02",
+      "canonicalIds": [
+        "core-rule-06-02-mortal-wounds"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-06-03",
+      "canonicalIds": [
+        "core-rule-06-03-hazard-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-06-03-01",
+      "canonicalIds": [
+        "core-rule-06-03-01-hazardous-test"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-07-01",
+      "canonicalIds": [
+        "core-rule-07-01-start-of-battle-round"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-07-02",
+      "canonicalIds": [
+        "core-rule-07-02-player-turns"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-07-03",
+      "canonicalIds": [
+        "core-rule-07-03-end-of-battle-round"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-08-01",
+      "canonicalIds": [
+        "core-rule-08-01-start-of-command-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-08-02",
+      "canonicalIds": [
+        "core-rule-08-02-gain-core-cp"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-08-03",
+      "canonicalIds": [
+        "core-rule-08-03-battle-shock"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-08-04",
+      "canonicalIds": [
+        "core-rule-08-04-command-abilities"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-08-05",
+      "canonicalIds": [
+        "core-rule-08-05-end-of-command-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-09-01",
+      "canonicalIds": [
+        "core-rule-09-01-start-of-movement-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-09-02",
+      "canonicalIds": [
+        "core-rule-09-02-move-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-09-03",
+      "canonicalIds": [
+        "core-rule-09-03-end-of-movement-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-09-04",
+      "canonicalIds": [
+        "core-rule-09-04-remain-stationary"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-09-05",
+      "canonicalIds": [
+        "core-rule-09-05-normal-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-09-05-01",
+      "canonicalIds": [
+        "core-rule-09-05-01-more-than-one-normal-move-in-a-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-09-06",
+      "canonicalIds": [
+        "core-rule-09-06-advance-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-09-07",
+      "canonicalIds": [
+        "core-rule-09-07-fall-back-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-09-07-01",
+      "canonicalIds": [
+        "core-rule-09-07-01-desperate-escape",
+        "core-rule-09-07-01-desperate-escape-test"
+      ],
+      "occurrences": 2
+    },
+    {
+      "sourceUnitId": "waha-core-rule-10-01",
+      "canonicalIds": [
+        "core-rule-10-01-start-of-shooting-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-10-02",
+      "canonicalIds": [
+        "core-rule-10-02-shoot"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-10-03",
+      "canonicalIds": [
+        "core-rule-10-03-end-of-shooting-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-10-04",
+      "canonicalIds": [
+        "core-rule-10-04-normal-shooting"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-10-05",
+      "canonicalIds": [
+        "core-rule-10-05-assault-shooting"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-10-06",
+      "canonicalIds": [
+        "core-rule-10-06-close-quarters-shooting"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-10-07",
+      "canonicalIds": [
+        "core-rule-10-07-indirect-shooting"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-11-01",
+      "canonicalIds": [
+        "core-rule-11-01-start-of-charge-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-11-02",
+      "canonicalIds": [
+        "core-rule-11-02-charge"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-11-03",
+      "canonicalIds": [
+        "core-rule-11-03-end-of-charge-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-11-04",
+      "canonicalIds": [
+        "core-rule-11-04-charge-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-01",
+      "canonicalIds": [
+        "core-rule-12-01-start-of-fight-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-02",
+      "canonicalIds": [
+        "core-rule-12-02-pile-in"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-03",
+      "canonicalIds": [
+        "core-rule-12-03-pile-in-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-04",
+      "canonicalIds": [
+        "core-rule-12-04-fight"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-05",
+      "canonicalIds": [
+        "core-rule-12-05-normal-fight"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-06",
+      "canonicalIds": [
+        "core-rule-12-06-overrun-fight"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-07",
+      "canonicalIds": [
+        "core-rule-12-07-consolidate"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-08",
+      "canonicalIds": [
+        "core-rule-12-08-consolidation-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-09",
+      "canonicalIds": [
+        "core-rule-12-09-end-of-fight-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-01",
+      "canonicalIds": [
+        "core-rule-13-01-placing-terrain"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-02",
+      "canonicalIds": [
+        "core-rule-13-02-terrain-categories"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-03",
+      "canonicalIds": [
+        "core-rule-13-03-exposed"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-04",
+      "canonicalIds": [
+        "core-rule-13-04-light"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-05",
+      "canonicalIds": [
+        "core-rule-13-05-dense"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-06",
+      "canonicalIds": [
+        "core-rule-13-06-terrain-and-movement"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-07",
+      "canonicalIds": [
+        "core-rule-13-07-terrain-and-visibility"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-08",
+      "canonicalIds": [
+        "core-rule-13-08-benefit-of-cover"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-09",
+      "canonicalIds": [
+        "core-rule-13-09-hidden"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-09-01",
+      "canonicalIds": [
+        "core-rule-13-09-01-hidden-and-the-first-turn"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-10",
+      "canonicalIds": [
+        "core-rule-13-10-obscuring"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-11",
+      "canonicalIds": [
+        "core-rule-13-11-solid"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-11-01",
+      "canonicalIds": [
+        "core-rule-13-11-01-gone-to-ground"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-14-01",
+      "canonicalIds": [
+        "core-rule-14-01-terrain-objectives"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-14-01-01",
+      "canonicalIds": [
+        "core-rule-14-01-01-objectives-not-within-a-terrain-area"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-14-02",
+      "canonicalIds": [
+        "core-rule-14-02-level-of-control"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-14-02-01",
+      "canonicalIds": [
+        "core-rule-14-02-01-controlling-an-objective-at-the-end-of-a-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-14-03",
+      "canonicalIds": [
+        "core-rule-14-03-secured-objectives"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-01",
+      "canonicalIds": [
+        "core-rule-15-01-using-stratagems"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-02",
+      "canonicalIds": [
+        "core-rule-15-02-command-re-roll"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-03",
+      "canonicalIds": [
+        "core-rule-15-03-epic-challenge"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-04",
+      "canonicalIds": [
+        "core-rule-15-04-insane-bravery"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-05",
+      "canonicalIds": [
+        "core-rule-15-05-explosives"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-06",
+      "canonicalIds": [
+        "core-rule-15-06-crushing-impact"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-07",
+      "canonicalIds": [
+        "core-rule-15-07-rapid-ingress"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-08",
+      "canonicalIds": [
+        "core-stratagem-fire-overwatch"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-09",
+      "canonicalIds": [
+        "core-rule-15-09-snap-shooting"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-10",
+      "canonicalIds": [
+        "core-rule-15-10-smokescreen"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-11",
+      "canonicalIds": [
+        "core-rule-15-11-heroic-intervention"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-12",
+      "canonicalIds": [
+        "core-rule-15-12-counteroffensive"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-16-01",
+      "canonicalIds": [
+        "core-rule-16-01-performing-actions"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-17-01",
+      "canonicalIds": [
+        "core-rule-17-01-moving-monsters-and-vehicles"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-17-02",
+      "canonicalIds": [
+        "core-rule-17-02-frame"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-17-03",
+      "canonicalIds": [
+        "core-rule-17-03-shooting-at-engaged-monsters-and-vehicles"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-01",
+      "canonicalIds": [
+        "core-rule-18-01-transport-capacity"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-02",
+      "canonicalIds": [
+        "core-rule-18-02-embarking"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-02-01",
+      "canonicalIds": [
+        "core-rule-18-02-01-able-to-embark"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-03",
+      "canonicalIds": [
+        "core-rule-18-03-disembarking"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-04",
+      "canonicalIds": [
+        "core-rule-18-04-disembark-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-05",
+      "canonicalIds": [
+        "core-rule-18-05-emergency-disembark-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-06",
+      "canonicalIds": [
+        "core-rule-18-06-assault-disembark-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-07",
+      "canonicalIds": [
+        "core-rule-18-07-shock-disembark-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-19-01",
+      "canonicalIds": [
+        "core-rule-19-01-forming-attached-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-22",
+      "canonicalIds": [
+        "core-leader"
+      ],
+      "occurrences": 2
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-34",
+      "canonicalIds": [
+        "core-support"
+      ],
+      "occurrences": 2
+    },
+    {
+      "sourceUnitId": "waha-core-rule-19-02",
+      "canonicalIds": [
+        "core-rule-19-02-attacking-attached-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-19-03",
+      "canonicalIds": [
+        "core-rule-19-03-keywords-in-attached-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-19-04",
+      "canonicalIds": [
+        "core-rule-19-04-abilities-in-attached-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-20-01",
+      "canonicalIds": [
+        "core-rule-20-01-placing-units-in-strategic-reserves"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-20-01-02",
+      "canonicalIds": [
+        "core-rule-20-01-02-strategic-reserves-at-the-end-of-the-battle"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-20-02",
+      "canonicalIds": [
+        "core-rule-20-02-repositioned-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-20-03",
+      "canonicalIds": [
+        "core-rule-20-03-advanced-arriving-from-strategic-reserves"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-20-04",
+      "canonicalIds": [
+        "core-rule-20-04-ingress-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-21-01",
+      "canonicalIds": [
+        "core-rule-21-01-surge-moves"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-21-02",
+      "canonicalIds": [
+        "core-rule-21-02-surge-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-21-03",
+      "canonicalIds": [
+        "core-rule-21-03-flying-models"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-22-01",
+      "canonicalIds": [
+        "core-rule-22-01-aura-abilities"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-22-02",
+      "canonicalIds": [
+        "core-rule-22-02-faction-abilities"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-22-03",
+      "canonicalIds": [
+        "core-rule-22-03-psychic-abilities"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-22-04",
+      "canonicalIds": [
+        "core-rule-22-04-wargear-abilities"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-22-05",
+      "canonicalIds": [
+        "core-rule-22-05-plunging-fire"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-23-01",
+      "canonicalIds": [
+        "core-rule-23-01-deployment"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-23-02",
+      "canonicalIds": [
+        "core-rule-23-02-movement"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-23-03",
+      "canonicalIds": [
+        "core-rule-23-03-shooting"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-23-04",
+      "canonicalIds": [
+        "core-rule-23-04-charging-and-fighting"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-01",
+      "canonicalIds": [
+        "core-abilities"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-02",
+      "canonicalIds": [
+        "core-duplicated-abilities"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-03",
+      "canonicalIds": [
+        "core-anti"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-04",
+      "canonicalIds": [
+        "core-assault"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-05",
+      "canonicalIds": [
+        "core-blast"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-06",
+      "canonicalIds": [
+        "core-cleave"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-07",
+      "canonicalIds": [
+        "core-close-quarters"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-08",
+      "canonicalIds": [
+        "core-deadly-demise"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-09",
+      "canonicalIds": [
+        "core-deep-strike"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-10",
+      "canonicalIds": [
+        "core-devastating-wounds"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-11",
+      "canonicalIds": [
+        "core-extra-attacks"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-12",
+      "canonicalIds": [
+        "core-feel-no-pain"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-13",
+      "canonicalIds": [
+        "core-fights-first"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-14",
+      "canonicalIds": [
+        "core-firing-deck"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-15",
+      "canonicalIds": [
+        "core-hazardous"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-16",
+      "canonicalIds": [
+        "core-heavy"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-17",
+      "canonicalIds": [
+        "core-hover"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-18",
+      "canonicalIds": [
+        "core-ignores-cover"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-19",
+      "canonicalIds": [
+        "core-indirect-fire"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-20",
+      "canonicalIds": [
+        "core-infiltrators"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-21",
+      "canonicalIds": [
+        "core-lance"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-23",
+      "canonicalIds": [
+        "core-lethal-hits"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-24",
+      "canonicalIds": [
+        "core-lone-operative"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-25",
+      "canonicalIds": [
+        "core-melta"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-26",
+      "canonicalIds": [
+        "core-one-shot"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-27",
+      "canonicalIds": [
+        "core-pistol"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-28",
+      "canonicalIds": [
+        "core-precision"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-28-01",
+      "canonicalIds": [
+        "core-rule-24-28-01-precision-and-devastating-wounds"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-29",
+      "canonicalIds": [
+        "core-psychic"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-30",
+      "canonicalIds": [
+        "core-rapid-fire"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-31",
+      "canonicalIds": [
+        "core-scouts"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-32",
+      "canonicalIds": [
+        "core-scout-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-33",
+      "canonicalIds": [
+        "core-stealth"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-35",
+      "canonicalIds": [
+        "core-super-heavy-walker"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-36",
+      "canonicalIds": [
+        "core-sustained-hits"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-37",
+      "canonicalIds": [
+        "core-torrent"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-37-01",
+      "canonicalIds": [
+        "core-rule-24-37-01-torrent-restrictions"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-38",
+      "canonicalIds": [
+        "core-twin-linked"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-39",
+      "canonicalIds": [
+        "core-damaged"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-25-01",
+      "canonicalIds": [
+        "core-rule-25-01-start-your-army-roster"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-25-02",
+      "canonicalIds": [
+        "core-rule-25-02-select-army-faction"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-25-03",
+      "canonicalIds": [
+        "core-rule-25-03-select-battle-size"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-25-04",
+      "canonicalIds": [
+        "core-rule-25-04-fill-your-army-roster"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-25-04-01",
+      "canonicalIds": [
+        "core-rule-25-04-01-select-detachments"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-25-04-02",
+      "canonicalIds": [
+        "core-rule-25-04-02-select-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-25-04-03",
+      "canonicalIds": [
+        "core-rule-25-04-03-attach-leaders-and-support-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-core-rule-25-04-04",
+      "canonicalIds": [
+        "core-rule-25-04-04-select-enhancements"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-01-01",
+      "canonicalIds": [
+        "core-rule-01-01-01-you"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-01",
+      "canonicalIds": [
+        "core-rule-01-02-01-starting-strength-and-half-strength"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-02",
+      "canonicalIds": [
+        "core-rule-01-02-02-persisting-rules-effects"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-03",
+      "canonicalIds": [
+        "core-rule-01-02-03-revived-and-adding-models-to-a-unit"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-04",
+      "canonicalIds": [
+        "core-rule-01-02-04-not-on-the-battlefield"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-05",
+      "canonicalIds": [
+        "core-rule-01-02-05-other-model-unit"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-06",
+      "canonicalIds": [
+        "core-rule-01-02-06-splitting-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-07",
+      "canonicalIds": [
+        "core-rule-01-02-07-describing-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-08",
+      "canonicalIds": [
+        "core-rule-01-02-08-a-unit-model-object"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-09",
+      "canonicalIds": [
+        "core-rule-01-02-09-tokens"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-10",
+      "canonicalIds": [
+        "core-rule-01-02-10-adding-a-new-unit-to-your-army"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-11",
+      "canonicalIds": [
+        "core-rule-01-02-11-all-types-of-model"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-12",
+      "canonicalIds": [
+        "core-rule-01-02-12-replacing-one-model-with-another"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-03-01",
+      "canonicalIds": [
+        "core-rule-01-03-01-players-rules"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-03-02",
+      "canonicalIds": [
+        "core-rule-01-03-02-rules-sequencing"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-04-01",
+      "canonicalIds": [
+        "core-rule-01-04-01-within-wholly-within"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-04-02",
+      "canonicalIds": [
+        "core-rule-01-04-02-closest-or-nearest-model-unit"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-04-03",
+      "canonicalIds": [
+        "core-rule-01-04-03-as-close-as-possible"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-04-04",
+      "canonicalIds": [
+        "core-rule-01-04-04-base-contact-or-base-to-base-contact"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-04-05",
+      "canonicalIds": [
+        "core-rule-01-04-05-table-quarters"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-04-06",
+      "canonicalIds": [
+        "core-rule-01-04-06-drawing-a-line"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-05-01",
+      "canonicalIds": [
+        "core-rule-01-05-01-automatically-successful-passes-hits-wounds"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-05-02",
+      "canonicalIds": [
+        "core-rule-01-05-02-re-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-05-03",
+      "canonicalIds": [
+        "core-rule-01-05-03-modifying-dice-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-05-04",
+      "canonicalIds": [
+        "core-rule-01-05-04-ignoring-roll-modifiers"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-05-05",
+      "canonicalIds": [
+        "core-rule-01-05-05-roll-off"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-05-06",
+      "canonicalIds": [
+        "core-rule-01-05-06-doubles-or-triples"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-05-07",
+      "canonicalIds": [
+        "core-rule-01-05-07-highest-or-lowest-dice-result"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-05-08",
+      "canonicalIds": [
+        "core-rule-01-05-08-treated-as-set-to-dice-roll"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-07-01",
+      "canonicalIds": [
+        "core-rule-01-07-01-battlefield-morale"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-07-02",
+      "canonicalIds": [
+        "core-rule-01-07-02-battle-shock-test"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-01-01",
+      "canonicalIds": [
+        "core-rule-02-01-01-datasheet-name-and-keywords"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-02-01",
+      "canonicalIds": [
+        "core-rule-02-02-01-modifiers"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-02-02",
+      "canonicalIds": [
+        "core-rule-02-02-02-ignore-modifiers"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-02-03",
+      "canonicalIds": [
+        "core-rule-02-02-03-random-characteristics"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-02-04",
+      "canonicalIds": [
+        "core-rule-02-02-04-healing-or-regaining-lost-wounds"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-02-05",
+      "canonicalIds": [
+        "core-rule-02-02-05-full-wounds-remaining"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-02-06",
+      "canonicalIds": [
+        "core-rule-02-02-06-characteristic-modifiers-modified-characteristics"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-03-01",
+      "canonicalIds": [
+        "core-rule-02-03-01-rules-with-multiple-conditions-and-effects"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-04-01",
+      "canonicalIds": [
+        "core-rule-02-04-01-weapons-with-no-strength"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-05-01",
+      "canonicalIds": [
+        "core-rule-02-05-01-using-keywords-mixed-keywords-in-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-06-01",
+      "canonicalIds": [
+        "core-rule-02-06-01-bearer"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-06-02",
+      "canonicalIds": [
+        "core-rule-02-06-02-units-equipment"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-03-01-01",
+      "canonicalIds": [
+        "core-rule-03-01-01-different-move-characteristics"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-03-01-02",
+      "canonicalIds": [
+        "core-rule-03-01-02-moving-over-or-through-models"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-03-01-03",
+      "canonicalIds": [
+        "core-rule-03-01-03-random-movement"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-03-01-04",
+      "canonicalIds": [
+        "core-rule-03-01-04-when-moving-up-to"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-03-02-01",
+      "canonicalIds": [
+        "core-rule-03-02-01-if-you-cannot-set-up-a-unit"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-03-02-02",
+      "canonicalIds": [
+        "core-rule-03-02-02-setting-up-large-models"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-03-02-03",
+      "canonicalIds": [
+        "core-rule-03-02-03-redeployments"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-03-04-01",
+      "canonicalIds": [
+        "core-rule-03-04-01-what-is-engagement"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-01-01",
+      "canonicalIds": [
+        "core-rule-04-01-01-models-without-ranged-melee-weapons"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-01-02",
+      "canonicalIds": [
+        "core-rule-04-01-02-sidearms"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-01-03",
+      "canonicalIds": [
+        "core-rule-04-01-03-multiple-weapon-profiles"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-01-04",
+      "canonicalIds": [
+        "core-rule-04-01-04-attack-characteristics-and-abilities"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-01-05",
+      "canonicalIds": [
+        "core-rule-04-01-05-selected-to-attack"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-02-01",
+      "canonicalIds": [
+        "core-rule-04-02-01-selecting-targets"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-02-02",
+      "canonicalIds": [
+        "core-rule-04-02-02-against-an-attack"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-02-03",
+      "canonicalIds": [
+        "core-rule-04-02-03-single-target"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-03-01",
+      "canonicalIds": [
+        "core-rule-04-03-01-identical-attacks"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-03-02",
+      "canonicalIds": [
+        "core-rule-04-03-02-splitting-melee-attacks"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-03-03",
+      "canonicalIds": [
+        "core-rule-04-03-03-target-no-longer-eligible-or-viable"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-03-04",
+      "canonicalIds": [
+        "core-rule-04-03-04-shot"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-03-05",
+      "canonicalIds": [
+        "core-rule-04-03-05-fought"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-04-03-06",
+      "canonicalIds": [
+        "core-rule-04-03-06-finished-making-its-attacks"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-05-02-01",
+      "canonicalIds": [
+        "core-rule-05-02-01-multiple-toughness-characteristics"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-05-04-01",
+      "canonicalIds": [
+        "core-rule-05-04-01-current-allocation-group"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-05-04-02",
+      "canonicalIds": [
+        "core-rule-05-04-02-modifying-damage"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-05-04-04",
+      "canonicalIds": [
+        "core-destroyed"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-05-04-05",
+      "canonicalIds": [
+        "core-rule-05-04-05-fight-on-death"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-05-04-06",
+      "canonicalIds": [
+        "core-rule-05-04-06-measuring-to-a-destroyed-model-or-unit"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-06-01-01",
+      "canonicalIds": [
+        "core-rule-06-01-01-describing-visible-units"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-06-02-01",
+      "canonicalIds": [
+        "core-rule-06-02-01-normal-damage"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-06-03-01",
+      "canonicalIds": [
+        "core-rule-06-03-01-hazardous-test"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-07-02-01",
+      "canonicalIds": [
+        "core-rule-07-02-01-out-of-phase-rules"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-07-02-02",
+      "canonicalIds": [
+        "core-rule-07-02-02-battle-round-turn-phase-definitions"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-08-02-01",
+      "canonicalIds": [
+        "core-rule-08-02-01-command-points"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-08-03-01",
+      "canonicalIds": [
+        "core-rule-08-03-01-multiple-battle-shock-rolls"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-09-02-01",
+      "canonicalIds": [
+        "core-rule-09-02-01-selecting-units-to-move"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-09-02-02",
+      "canonicalIds": [
+        "core-rule-09-02-02-selecting-modes"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-09-02-03",
+      "canonicalIds": [
+        "core-reinforcements-step"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-09-05-01",
+      "canonicalIds": [
+        "core-rule-09-05-01-more-than-one-normal-move-in-a-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-11-02-01",
+      "canonicalIds": [
+        "core-rule-11-02-01-failed-charges"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-12-04-01",
+      "canonicalIds": [
+        "core-rule-12-04-01-eligible-to-fight-but-unable-to-fight"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-13-02-01",
+      "canonicalIds": [
+        "core-rule-13-02-01-creating-your-own-battlefield"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-13-06-01",
+      "canonicalIds": [
+        "core-rule-13-06-01-solid-terrain-and-movement"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-13-09-01",
+      "canonicalIds": [
+        "core-rule-13-09-01-hidden-and-the-first-turn"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-13-11-01",
+      "canonicalIds": [
+        "core-rule-13-11-01-gone-to-ground"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-14-01-01",
+      "canonicalIds": [
+        "core-rule-14-01-01-objectives-not-within-a-terrain-area"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-14-02-01",
+      "canonicalIds": [
+        "core-rule-14-02-01-controlling-an-objective-at-the-end-of-a-phase"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-15-01-01",
+      "canonicalIds": [
+        "core-rule-15-01-01-modifying-cp-cost"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-15-01-02",
+      "canonicalIds": [
+        "core-rule-15-01-02-affected-by-a-stratagem"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-15-01-03",
+      "canonicalIds": [
+        "core-rule-15-01-03-stratagem-definitions"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-17-03-01",
+      "canonicalIds": [
+        "core-rule-17-03-01-shooting-while-engaged-with-monsters-vehicles"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-18-02-01",
+      "canonicalIds": [
+        "core-rule-18-02-01-able-to-embark"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-18-04-01",
+      "canonicalIds": [
+        "core-rule-18-04-01-rapid-disembark-and-limitations"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-19-01-01",
+      "canonicalIds": [
+        "core-rule-19-01-01-attached-units-after-their-bodyguard-unit-is-destroyed"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-19-04-01",
+      "canonicalIds": [
+        "core-rule-19-04-01-only-in-death-does-duty-end"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-20-01-01",
+      "canonicalIds": [
+        "core-rule-20-01-01-reserves"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-20-01-02",
+      "canonicalIds": [
+        "core-rule-20-01-02-strategic-reserves-at-the-end-of-the-battle"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-20-03-01",
+      "canonicalIds": [
+        "core-rule-20-03-01-set-up-as-reinforcements"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-22-03-01",
+      "canonicalIds": [
+        "core-rule-22-03-01-psychic-abilities-with-a-psychic-level"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-24-01-01",
+      "canonicalIds": [
+        "core-rule-24-01-01-with-the-x-ability"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-24-11-01",
+      "canonicalIds": [
+        "core-rule-24-11-01-only-extra-attacks-weapons"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-24-24-01",
+      "canonicalIds": [
+        "core-rule-24-24-01-attached-units-and-lone-operative"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-24-26-01",
+      "canonicalIds": [
+        "core-rule-24-26-01-multiple-one-shot-weapons"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-24-28-01",
+      "canonicalIds": [
+        "core-rule-24-28-01-precision-and-devastating-wounds"
+      ],
+      "occurrences": 1
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-24-37-01",
+      "canonicalIds": [
+        "core-rule-24-37-01-torrent-restrictions"
+      ],
+      "occurrences": 1
+    }
+  ],
+  "canonicalTargetIds": [
+    "core-abilities",
+    "core-anti",
+    "core-assault",
+    "core-blast",
+    "core-cleave",
+    "core-close-quarters",
+    "core-damaged",
+    "core-deadly-demise",
+    "core-deep-strike",
+    "core-destroyed",
+    "core-devastating-wounds",
+    "core-duplicated-abilities",
+    "core-errata-15-05",
+    "core-errata-15-06",
+    "core-errata-17-03",
+    "core-extra-attacks",
+    "core-faq-waha-001",
+    "core-faq-waha-002",
+    "core-faq-waha-003",
+    "core-faq-waha-004",
+    "core-faq-waha-005",
+    "core-faq-waha-006",
+    "core-faq-waha-007",
+    "core-faq-waha-008",
+    "core-faq-waha-009",
+    "core-faq-waha-010",
+    "core-faq-waha-011",
+    "core-faq-waha-012",
+    "core-faq-waha-013",
+    "core-faq-waha-014",
+    "core-faq-waha-015",
+    "core-faq-waha-016",
+    "core-faq-waha-017",
+    "core-faq-waha-018",
+    "core-faq-waha-019",
+    "core-faq-waha-020",
+    "core-faq-waha-021",
+    "core-faq-waha-022",
+    "core-faq-waha-023",
+    "core-faq-waha-024",
+    "core-faq-waha-025",
+    "core-faq-waha-026",
+    "core-faq-waha-027",
+    "core-faq-waha-028",
+    "core-faq-waha-029",
+    "core-faq-waha-030",
+    "core-faq-waha-031",
+    "core-faq-waha-032",
+    "core-faq-waha-033",
+    "core-faq-waha-034",
+    "core-faq-waha-035",
+    "core-faq-waha-036",
+    "core-faq-waha-037",
+    "core-faq-waha-038",
+    "core-faq-waha-039",
+    "core-faq-waha-040",
+    "core-faq-waha-041",
+    "core-faq-waha-042",
+    "core-faq-waha-043",
+    "core-faq-waha-044",
+    "core-faq-waha-045",
+    "core-faq-waha-046",
+    "core-faq-waha-047",
+    "core-faq-waha-048",
+    "core-faq-waha-049",
+    "core-faq-waha-050",
+    "core-faq-waha-051",
+    "core-faq-waha-052",
+    "core-faq-waha-053",
+    "core-faq-waha-054",
+    "core-faq-waha-055",
+    "core-faq-waha-056",
+    "core-faq-waha-057",
+    "core-faq-waha-058",
+    "core-faq-waha-059",
+    "core-faq-waha-060",
+    "core-faq-waha-061",
+    "core-faq-waha-062",
+    "core-faq-waha-063",
+    "core-faq-waha-064",
+    "core-faq-waha-065",
+    "core-faq-waha-066",
+    "core-faq-waha-067",
+    "core-faq-waha-068",
+    "core-faq-waha-069",
+    "core-faq-waha-070",
+    "core-faq-waha-071",
+    "core-faq-waha-072",
+    "core-faq-waha-073",
+    "core-feel-no-pain",
+    "core-fights-first",
+    "core-firing-deck",
+    "core-hazardous",
+    "core-heavy",
+    "core-hover",
+    "core-ignores-cover",
+    "core-indirect-fire",
+    "core-infiltrators",
+    "core-lance",
+    "core-leader",
+    "core-lethal-hits",
+    "core-lone-operative",
+    "core-melta",
+    "core-one-shot",
+    "core-pistol",
+    "core-precision",
+    "core-psychic",
+    "core-rapid-fire",
+    "core-reinforcements-step",
+    "core-rule-01-01-01-you",
+    "core-rule-01-01-armies",
+    "core-rule-01-02-01-starting-strength-and-half-strength",
+    "core-rule-01-02-02-persisting-rules-effects",
+    "core-rule-01-02-03-revived-and-adding-models-to-a-unit",
+    "core-rule-01-02-04-not-on-the-battlefield",
+    "core-rule-01-02-05-other-model-unit",
+    "core-rule-01-02-06-splitting-units",
+    "core-rule-01-02-07-describing-units",
+    "core-rule-01-02-08-a-unit-model-object",
+    "core-rule-01-02-09-tokens",
+    "core-rule-01-02-10-adding-a-new-unit-to-your-army",
+    "core-rule-01-02-11-all-types-of-model",
+    "core-rule-01-02-12-replacing-one-model-with-another",
+    "core-rule-01-02-units-and-models",
+    "core-rule-01-03-01-players-rules",
+    "core-rule-01-03-02-rules-sequencing",
+    "core-rule-01-03-active-player-and-opposing-player",
+    "core-rule-01-04-01-within-wholly-within",
+    "core-rule-01-04-02-closest-or-nearest-model-unit",
+    "core-rule-01-04-03-as-close-as-possible",
+    "core-rule-01-04-04-base-contact-or-base-to-base-contact",
+    "core-rule-01-04-05-table-quarters",
+    "core-rule-01-04-06-drawing-a-line",
+    "core-rule-01-04-measuring-distances",
+    "core-rule-01-05-01-automatically-successful-passes-hits-wounds",
+    "core-rule-01-05-02-re-rolls",
+    "core-rule-01-05-03-modifying-dice-rolls",
+    "core-rule-01-05-04-ignoring-roll-modifiers",
+    "core-rule-01-05-05-roll-off",
+    "core-rule-01-05-06-doubles-or-triples",
+    "core-rule-01-05-07-highest-or-lowest-dice-result",
+    "core-rule-01-05-08-treated-as-set-to-dice-roll",
+    "core-rule-01-05-dice",
+    "core-rule-01-06-01-leadership-test",
+    "core-rule-01-06-leadership-rolls",
+    "core-rule-01-07-01-battlefield-morale",
+    "core-rule-01-07-02-battle-shock-test",
+    "core-rule-01-07-battle-shock-rolls",
+    "core-rule-02-01-01-datasheet-name-and-keywords",
+    "core-rule-02-01-datasheet-name",
+    "core-rule-02-02-01-modifiers",
+    "core-rule-02-02-02-ignore-modifiers",
+    "core-rule-02-02-03-random-characteristics",
+    "core-rule-02-02-04-healing-or-regaining-lost-wounds",
+    "core-rule-02-02-05-full-wounds-remaining",
+    "core-rule-02-02-06-characteristic-modifiers-modified-characteristics",
+    "core-rule-02-02-profiles",
+    "core-rule-02-03-01-rules-with-multiple-conditions-and-effects",
+    "core-rule-02-03-abilities",
+    "core-rule-02-04-01-weapons-with-no-strength",
+    "core-rule-02-04-weapons",
+    "core-rule-02-05-01-using-keywords-mixed-keywords-in-units",
+    "core-rule-02-05-keywords",
+    "core-rule-02-06-01-bearer",
+    "core-rule-02-06-02-units-equipment",
+    "core-rule-02-06-unit-composition-and-other-rules",
+    "core-rule-02-07-wargear-options",
+    "core-rule-03-01-01-different-move-characteristics",
+    "core-rule-03-01-02-moving-over-or-through-models",
+    "core-rule-03-01-03-random-movement",
+    "core-rule-03-01-04-when-moving-up-to",
+    "core-rule-03-01-moving-units",
+    "core-rule-03-02-01-if-you-cannot-set-up-a-unit",
+    "core-rule-03-02-02-setting-up-large-models",
+    "core-rule-03-02-03-redeployments",
+    "core-rule-03-02-set-up",
+    "core-rule-03-03-01-what-is-coherency",
+    "core-rule-03-03-coherency",
+    "core-rule-03-04-01-what-is-engagement",
+    "core-rule-03-04-engagement",
+    "core-rule-04-01-01-models-without-ranged-melee-weapons",
+    "core-rule-04-01-02-sidearms",
+    "core-rule-04-01-03-multiple-weapon-profiles",
+    "core-rule-04-01-04-attack-characteristics-and-abilities",
+    "core-rule-04-01-05-selected-to-attack",
+    "core-rule-04-01-select-weapons",
+    "core-rule-04-02-01-selecting-targets",
+    "core-rule-04-02-02-against-an-attack",
+    "core-rule-04-02-03-single-target",
+    "core-rule-04-02-select-targets",
+    "core-rule-04-03-01-identical-attacks",
+    "core-rule-04-03-02-splitting-melee-attacks",
+    "core-rule-04-03-03-target-no-longer-eligible-or-viable",
+    "core-rule-04-03-04-shot",
+    "core-rule-04-03-05-fought",
+    "core-rule-04-03-06-finished-making-its-attacks",
+    "core-rule-04-03-resolve-attacks",
+    "core-rule-05-01-01-critical-hits-and-critical-wounds",
+    "core-rule-05-01-hit-rolls",
+    "core-rule-05-02-01-multiple-toughness-characteristics",
+    "core-rule-05-02-wound-rolls",
+    "core-rule-05-03-01-saving-throw",
+    "core-rule-05-03-02-attacks-modified-during-hit-and-wound-rolls",
+    "core-rule-05-03-save-rolls",
+    "core-rule-05-04-01-current-allocation-group",
+    "core-rule-05-04-02-modifying-damage",
+    "core-rule-05-04-03-suffers-damage",
+    "core-rule-05-04-05-fight-on-death",
+    "core-rule-05-04-06-measuring-to-a-destroyed-model-or-unit",
+    "core-rule-05-04-inflict-damage",
+    "core-rule-06-01-01-describing-visible-units",
+    "core-rule-06-01-visibility",
+    "core-rule-06-02-01-normal-damage",
+    "core-rule-06-02-mortal-wounds",
+    "core-rule-06-03-01-hazardous-test",
+    "core-rule-06-03-hazard-rolls",
+    "core-rule-07-01-start-of-battle-round",
+    "core-rule-07-02-01-out-of-phase-rules",
+    "core-rule-07-02-02-battle-round-turn-phase-definitions",
+    "core-rule-07-02-player-turns",
+    "core-rule-07-03-end-of-battle-round",
+    "core-rule-08-01-start-of-command-phase",
+    "core-rule-08-02-01-command-points",
+    "core-rule-08-02-gain-core-cp",
+    "core-rule-08-03-01-multiple-battle-shock-rolls",
+    "core-rule-08-03-battle-shock",
+    "core-rule-08-04-command-abilities",
+    "core-rule-08-05-end-of-command-phase",
+    "core-rule-09-01-start-of-movement-phase",
+    "core-rule-09-02-01-selecting-units-to-move",
+    "core-rule-09-02-02-selecting-modes",
+    "core-rule-09-02-move-units",
+    "core-rule-09-03-end-of-movement-phase",
+    "core-rule-09-04-remain-stationary",
+    "core-rule-09-05-01-more-than-one-normal-move-in-a-phase",
+    "core-rule-09-05-normal-move",
+    "core-rule-09-06-advance-move",
+    "core-rule-09-07-01-desperate-escape",
+    "core-rule-09-07-01-desperate-escape-test",
+    "core-rule-09-07-fall-back-move",
+    "core-rule-10-01-start-of-shooting-phase",
+    "core-rule-10-02-shoot",
+    "core-rule-10-03-end-of-shooting-phase",
+    "core-rule-10-04-normal-shooting",
+    "core-rule-10-05-assault-shooting",
+    "core-rule-10-06-close-quarters-shooting",
+    "core-rule-10-07-indirect-shooting",
+    "core-rule-11-01-start-of-charge-phase",
+    "core-rule-11-02-01-failed-charges",
+    "core-rule-11-02-charge",
+    "core-rule-11-03-end-of-charge-phase",
+    "core-rule-11-04-charge-move",
+    "core-rule-12-01-start-of-fight-phase",
+    "core-rule-12-02-pile-in",
+    "core-rule-12-03-pile-in-move",
+    "core-rule-12-04-01-eligible-to-fight-but-unable-to-fight",
+    "core-rule-12-04-fight",
+    "core-rule-12-05-normal-fight",
+    "core-rule-12-06-overrun-fight",
+    "core-rule-12-07-consolidate",
+    "core-rule-12-08-consolidation-move",
+    "core-rule-12-09-end-of-fight-phase",
+    "core-rule-13-01-placing-terrain",
+    "core-rule-13-02-01-creating-your-own-battlefield",
+    "core-rule-13-02-terrain-categories",
+    "core-rule-13-03-exposed",
+    "core-rule-13-04-light",
+    "core-rule-13-05-dense",
+    "core-rule-13-06-01-solid-terrain-and-movement",
+    "core-rule-13-06-terrain-and-movement",
+    "core-rule-13-07-terrain-and-visibility",
+    "core-rule-13-08-benefit-of-cover",
+    "core-rule-13-09-01-hidden-and-the-first-turn",
+    "core-rule-13-09-hidden",
+    "core-rule-13-10-obscuring",
+    "core-rule-13-11-01-gone-to-ground",
+    "core-rule-13-11-solid",
+    "core-rule-14-01-01-objectives-not-within-a-terrain-area",
+    "core-rule-14-01-terrain-objectives",
+    "core-rule-14-02-01-controlling-an-objective-at-the-end-of-a-phase",
+    "core-rule-14-02-level-of-control",
+    "core-rule-14-03-secured-objectives",
+    "core-rule-15-01-01-modifying-cp-cost",
+    "core-rule-15-01-02-affected-by-a-stratagem",
+    "core-rule-15-01-03-stratagem-definitions",
+    "core-rule-15-01-using-stratagems",
+    "core-rule-15-02-command-re-roll",
+    "core-rule-15-03-epic-challenge",
+    "core-rule-15-04-insane-bravery",
+    "core-rule-15-05-explosives",
+    "core-rule-15-06-crushing-impact",
+    "core-rule-15-07-rapid-ingress",
+    "core-rule-15-09-snap-shooting",
+    "core-rule-15-10-smokescreen",
+    "core-rule-15-11-heroic-intervention",
+    "core-rule-15-12-counteroffensive",
+    "core-rule-16-01-performing-actions",
+    "core-rule-17-01-moving-monsters-and-vehicles",
+    "core-rule-17-02-frame",
+    "core-rule-17-03-01-shooting-while-engaged-with-monsters-vehicles",
+    "core-rule-17-03-shooting-at-engaged-monsters-and-vehicles",
+    "core-rule-18-01-transport-capacity",
+    "core-rule-18-02-01-able-to-embark",
+    "core-rule-18-02-embarking",
+    "core-rule-18-03-disembarking",
+    "core-rule-18-04-01-rapid-disembark-and-limitations",
+    "core-rule-18-04-disembark-move",
+    "core-rule-18-05-emergency-disembark-move",
+    "core-rule-18-06-assault-disembark-move",
+    "core-rule-18-07-shock-disembark-move",
+    "core-rule-19-01-01-attached-units-after-their-bodyguard-unit-is-destroyed",
+    "core-rule-19-01-forming-attached-units",
+    "core-rule-19-02-attacking-attached-units",
+    "core-rule-19-03-keywords-in-attached-units",
+    "core-rule-19-04-01-only-in-death-does-duty-end",
+    "core-rule-19-04-abilities-in-attached-units",
+    "core-rule-20-01-01-reserves",
+    "core-rule-20-01-02-strategic-reserves-at-the-end-of-the-battle",
+    "core-rule-20-01-placing-units-in-strategic-reserves",
+    "core-rule-20-02-repositioned-units",
+    "core-rule-20-03-01-set-up-as-reinforcements",
+    "core-rule-20-03-advanced-arriving-from-strategic-reserves",
+    "core-rule-20-04-ingress-move",
+    "core-rule-21-01-surge-moves",
+    "core-rule-21-02-surge-move",
+    "core-rule-21-03-flying-models",
+    "core-rule-22-01-aura-abilities",
+    "core-rule-22-02-faction-abilities",
+    "core-rule-22-03-01-psychic-abilities-with-a-psychic-level",
+    "core-rule-22-03-psychic-abilities",
+    "core-rule-22-04-wargear-abilities",
+    "core-rule-22-05-plunging-fire",
+    "core-rule-23-01-deployment",
+    "core-rule-23-02-movement",
+    "core-rule-23-03-shooting",
+    "core-rule-23-04-charging-and-fighting",
+    "core-rule-24-01-01-with-the-x-ability",
+    "core-rule-24-11-01-only-extra-attacks-weapons",
+    "core-rule-24-24-01-attached-units-and-lone-operative",
+    "core-rule-24-26-01-multiple-one-shot-weapons",
+    "core-rule-24-28-01-precision-and-devastating-wounds",
+    "core-rule-24-37-01-torrent-restrictions",
+    "core-rule-25-01-start-your-army-roster",
+    "core-rule-25-02-select-army-faction",
+    "core-rule-25-03-select-battle-size",
+    "core-rule-25-04-01-select-detachments",
+    "core-rule-25-04-02-select-units",
+    "core-rule-25-04-03-attach-leaders-and-support-units",
+    "core-rule-25-04-04-select-enhancements",
+    "core-rule-25-04-fill-your-army-roster",
+    "core-scout-move",
+    "core-scouts",
+    "core-stealth",
+    "core-stratagem-fire-overwatch",
+    "core-super-heavy-walker",
+    "core-support",
+    "core-sustained-hits",
+    "core-torrent",
+    "core-twin-linked",
+    "core-waha-errata-01-02-06",
+    "core-waha-errata-07-01",
+    "core-waha-errata-12-08",
+    "core-waha-errata-13-09",
+    "core-waha-errata-18-05",
+    "uru-2026-07-22-defensive-stratagem-range",
+    "uru-2026-07-22-identical-destroyed-unit",
+    "uru-2026-07-22-stratagem-cp-cost",
+    "uru-2026-07-22-stratagem-reuse",
+    "uru-2026-08-26-disembark-move-types"
+  ],
+  "subsectionHierarchy": [
+    {
+      "sourceUnitId": "waha-core-rule-01-02",
+      "ownerAnchor": "Units-and-Models",
+      "sourceOrder": 2,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Core-Concepts",
+          "title": "Core Concepts 01"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-01-07",
+      "ownerAnchor": "Battle-shock-Rolls",
+      "sourceOrder": 8,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Core-Concepts",
+          "title": "Core Concepts 01"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-02",
+      "ownerAnchor": "2.-Profiles",
+      "sourceOrder": 10,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Datasheets",
+          "title": "Datasheets 02"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-04",
+      "ownerAnchor": "4.-Weapons",
+      "sourceOrder": 12,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Datasheets",
+          "title": "Datasheets 02"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-05",
+      "ownerAnchor": "5.-Keywords",
+      "sourceOrder": 13,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Datasheets",
+          "title": "Datasheets 02"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-02-06",
+      "ownerAnchor": "6.-Unit-Composition-and-Other-Rules",
+      "sourceOrder": 14,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Datasheets",
+          "title": "Datasheets 02"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-03-01",
+      "ownerAnchor": "Moving-Units",
+      "sourceOrder": 16,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Moving",
+          "title": "Moving 03"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "Moving a Model in a Straight Line",
+          "anchor": "Moving-a-Model-in-a-Straight-Line",
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "Moving a Model in a Straight LineEach time you move a model in a straight line, move it horizontally across the battlefield. Measure from the same point on its base at the start and end of that move, and add that distance to any other distance it has moved since its unit began that move. The distance moved cannot be greater than the maximum distance of that move type.",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "FD4427C9FFB406EB1B7C3FFCE1AEFCED3B10F4547D5DE4AFFA9954BC3D160641"
+          }
+        },
+        {
+          "title": "Rotating a Model",
+          "anchor": "Rotating-a-Model",
+          "orderWithinOwner": 2,
+          "body": {
+            "text": "Rotating a ModelEach time you rotate a model, turn it any amount around the centre of its base, while keeping it upright. Note that rotating a model does not count towards the distance it has moved.",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "8B56D6EA84CD1D4030D7A4190A04AF3A3A5A0F968A3FA0FD8BBA764A8B571E04"
+          }
+        },
+        {
+          "title": "Ending a Move",
+          "anchor": "Ending-a-Move",
+          "orderWithinOwner": 3,
+          "body": {
+            "text": "Ending a MoveAfter you have finished setting up all of the models in a unit and/or moving all of the models in a unit that you want to move, check that all of the following apply:If that unit is on the battlefield, it is in coherency (03.03).No models in that unit are on another model or partway through a surface of a terrain feature (e.g. a wall or ceiling).All stated 'After Moving' conditions are met.If one or more of the above conditions are not met, that unit cannot make that move and its models are returned to their positions at the start of that move. Otherwise, after resolving any additional rules stated in the 'After Moving' section of that move type, that move ends.SEE ALSOFrame 17.02Monsters and Vehicles 17.00Moving Vertically 13.06Random MovementStrategic Reserves 20.00Terrain 13.00Transports 18.00MOVE TYPESAdvance Move 09.06Charge Move 11.04Consolidation Move 12.08Disembark Move 18.04Emergency Disembark Move 18.05Fall-back Move 09.07Ingress Move 20.04Normal Move 09.05Pile-in Move 12.03Scout Move 24.32Surge Move 21.02MOVING IN A STRAIGHT LINEBoth models shown here can move a maximum distance of 6\". They both move 3\" in a straight line, then 3\" in another straight line, for a total movement of 6\".ROTATINGThis model can move a maximum distance of 12\". It moves in a series of straight lines and rotations, as follows:A) Moves 6\" in a straight lineB) RotatesC) Moves 6\" in a straight lineD) Rotates This model has moved a total of 12\".ROTATINGModels without a base are rotated around their central axis (see Frame, 17.02).",
+            "lists": [
+              {
+                "ordered": false,
+                "items": [
+                  "If that unit is on the battlefield, it is in coherency (03.03).",
+                  "No models in that unit are on another model or partway through a surface of a terrain feature (e.g. a wall or ceiling).",
+                  "All stated 'After Moving' conditions are met."
+                ]
+              },
+              {
+                "ordered": false,
+                "items": [
+                  "Frame 17.02",
+                  "Monsters and Vehicles 17.00",
+                  "Moving Vertically 13.06",
+                  "Random Movement",
+                  "Strategic Reserves 20.00",
+                  "Terrain 13.00",
+                  "Transports 18.00"
+                ]
+              },
+              {
+                "ordered": false,
+                "items": [
+                  "Advance Move 09.06",
+                  "Charge Move 11.04",
+                  "Consolidation Move 12.08",
+                  "Disembark Move 18.04",
+                  "Emergency Disembark Move 18.05",
+                  "Fall-back Move 09.07",
+                  "Ingress Move 20.04",
+                  "Normal Move 09.05",
+                  "Pile-in Move 12.03",
+                  "Scout Move 24.32",
+                  "Surge Move 21.02"
+                ]
+              }
+            ],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [
+              {
+                "kind": "tooltip",
+                "label": "03.03",
+                "selector": "#tooltip_content00065",
+                "resolved": true,
+                "identity": "code:03.03"
+              },
+              {
+                "kind": "href",
+                "label": "terrain feature",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#Terrain",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Terrain",
+                "internalCore": true
+              },
+              {
+                "kind": "tooltip",
+                "label": "17.02",
+                "selector": "#tooltip_content00015",
+                "resolved": true,
+                "identity": "code:17.02"
+              },
+              {
+                "kind": "href",
+                "label": "17.00",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#Monsters-and-Vehicles",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Monsters-and-Vehicles",
+                "internalCore": true
+              },
+              {
+                "kind": "tooltip",
+                "label": "13.06",
+                "selector": "#tooltip_content00067",
+                "resolved": true,
+                "identity": "code:13.06"
+              },
+              {
+                "kind": "tooltip",
+                "label": "Random Movement",
+                "selector": "#tooltip_content00063",
+                "resolved": true,
+                "identity": "code:03.01.03"
+              },
+              {
+                "kind": "href",
+                "label": "20.00",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#Strategic-Reserves",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Strategic-Reserves",
+                "internalCore": true
+              },
+              {
+                "kind": "href",
+                "label": "13.00",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#Terrain",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Terrain",
+                "internalCore": true
+              },
+              {
+                "kind": "href",
+                "label": "18.00",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#Transports",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Transports",
+                "internalCore": true
+              },
+              {
+                "kind": "tooltip",
+                "label": "09.06",
+                "selector": "#tooltip_content00069",
+                "resolved": true,
+                "identity": "code:09.06"
+              },
+              {
+                "kind": "tooltip",
+                "label": "11.04",
+                "selector": "#tooltip_content00044",
+                "resolved": true,
+                "identity": "code:11.04"
+              },
+              {
+                "kind": "tooltip",
+                "label": "12.08",
+                "selector": "#tooltip_content00070",
+                "resolved": true,
+                "identity": "code:12.08"
+              },
+              {
+                "kind": "tooltip",
+                "label": "18.04",
+                "selector": "#tooltip_content00081",
+                "resolved": true,
+                "identity": "code:18.04"
+              },
+              {
+                "kind": "tooltip",
+                "label": "18.05",
+                "selector": "#tooltip_content00082",
+                "resolved": true,
+                "identity": "code:18.05"
+              },
+              {
+                "kind": "tooltip",
+                "label": "09.07",
+                "selector": "#tooltip_content00075",
+                "resolved": true,
+                "identity": "code:09.07"
+              },
+              {
+                "kind": "tooltip",
+                "label": "20.04",
+                "selector": "#tooltip_content00077",
+                "resolved": true,
+                "identity": "code:20.04"
+              },
+              {
+                "kind": "tooltip",
+                "label": "09.05",
+                "selector": "#tooltip_content00076",
+                "resolved": true,
+                "identity": "code:09.05"
+              },
+              {
+                "kind": "tooltip",
+                "label": "12.03",
+                "selector": "#tooltip_content00084",
+                "resolved": true,
+                "identity": "code:12.03"
+              },
+              {
+                "kind": "tooltip",
+                "label": "24.32",
+                "selector": "#tooltip_content00085",
+                "resolved": true,
+                "identity": "code:24.32"
+              },
+              {
+                "kind": "tooltip",
+                "label": "21.02",
+                "selector": "#tooltip_content00086",
+                "resolved": true,
+                "identity": "title:Surge Move"
+              },
+              {
+                "kind": "tooltip",
+                "label": "17.02",
+                "selector": "#tooltip_content00015",
+                "resolved": true,
+                "identity": "code:17.02"
+              }
+            ],
+            "contentHash": "96F74EE5E9B643C23C83FA3832ECE3CA8A6491982D94752519C6C6F3108018EC"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-03-03",
+      "ownerAnchor": "Coherency",
+      "sourceOrder": 18,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Moving",
+          "title": "Moving 03"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-03-04",
+      "ownerAnchor": "Engagement",
+      "sourceOrder": 20,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Moving",
+          "title": "Moving 03"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-04-02",
+      "ownerAnchor": "2.-Select-Targets",
+      "sourceOrder": 22,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Making-Attacks",
+          "title": "Making Attacks 04"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-04-03",
+      "ownerAnchor": "3.-Resolve-Attacks",
+      "sourceOrder": 23,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Making-Attacks",
+          "title": "Making Attacks 04"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        },
+        {
+          "title": "Identical Attacks",
+          "anchor": "Identical-Attacks",
+          "orderWithinOwner": 2,
+          "body": {
+            "text": "Identical AttacksIdentical attacks are those that have the same BS/WS, S, AP and D characteristics, and which are affected by the same applicable abilities and rules.",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "65CDC556BD4241A55A25CDCB6FCAFBE3A8A4380B1B0D30D193525C1F9A9E1589"
+          }
+        },
+        {
+          "title": "Splitting Melee Attacks",
+          "anchor": "Splitting-Melee-Attacks",
+          "orderWithinOwner": 3,
+          "body": {
+            "text": "Splitting Melee AttacksWhile selecting targets, if you select more than one unit as the target of a melee weapon, you must split that weapon's attacks between those target units. To do so, declare how many of that weapon's attacks will be made against each unit (you must declare at least one attack per unit targeted).In the Gather Attack Dice step, for each weapon that is splitting its attacks, only gather a number of attack dice for that weapon equal to the number of attacks you declared would be made against that target with that weapon.",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "F579D14E461D37D5A22CBBEC21FF70CEFDB79E20E7B6F68038C0755F63B8F00D"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-01",
+      "ownerAnchor": "1.-Hit-Roll",
+      "sourceOrder": 24,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Attack-Sequence",
+          "title": "Attack Sequence 05"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-03",
+      "ownerAnchor": "3.-Save-Rolls",
+      "sourceOrder": 27,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Attack-Sequence",
+          "title": "Attack Sequence 05"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-04",
+      "ownerAnchor": "4.-Inflict-Damage",
+      "sourceOrder": 30,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Attack-Sequence",
+          "title": "Attack Sequence 05"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-05-04-03",
+      "ownerAnchor": "Suffers-Damage",
+      "sourceOrder": 31,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Attack-Sequence",
+          "title": "Attack Sequence 05"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "See Also",
+          "anchor": "See-Also",
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "See AlsoModifying Dice Rolls 01.05.03Modified Characteristics 02.02.01Random Characteristics 02.02.03Current Allocation Group 05.04.01Modifying Damage 05.04.02Suffers Damage 05.04.03Destroyed 05.04.04Fight On Death 05.04.05Measuring To A Destroyed Model Or Unit 05.04.06",
+            "lists": [
+              {
+                "ordered": false,
+                "items": [
+                  "Modifying Dice Rolls 01.05.03",
+                  "Modified Characteristics 02.02.01",
+                  "Random Characteristics 02.02.03",
+                  "Current Allocation Group 05.04.01",
+                  "Modifying Damage 05.04.02",
+                  "Suffers Damage 05.04.03",
+                  "Destroyed 05.04.04",
+                  "Fight On Death 05.04.05",
+                  "Measuring To A Destroyed Model Or Unit 05.04.06"
+                ]
+              }
+            ],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [
+              {
+                "kind": "tooltip",
+                "label": "01.05.03",
+                "selector": "#tooltip_content00026",
+                "resolved": true,
+                "identity": "code:01.05.03"
+              },
+              {
+                "kind": "tooltip",
+                "label": "02.02.01",
+                "selector": "#tooltip_content00120",
+                "resolved": true,
+                "identity": "title:When Modifying Characteristics"
+              },
+              {
+                "kind": "tooltip",
+                "label": "02.02.03",
+                "selector": "#tooltip_content00038",
+                "resolved": true,
+                "identity": "code:02.02.03"
+              },
+              {
+                "kind": "tooltip",
+                "label": "05.04.01",
+                "selector": "#tooltip_content00111",
+                "resolved": true,
+                "identity": "code:05.04.01"
+              },
+              {
+                "kind": "tooltip",
+                "label": "05.04.02",
+                "selector": "#tooltip_content00121",
+                "resolved": true,
+                "identity": "code:05.04.02"
+              },
+              {
+                "kind": "href",
+                "label": "05.04.03",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#Suffers-Damage",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Suffers-Damage",
+                "internalCore": true
+              },
+              {
+                "kind": "tooltip",
+                "label": "05.04.04",
+                "selector": "#tooltip_content00036",
+                "resolved": true,
+                "identity": "code:05.04.04"
+              },
+              {
+                "kind": "tooltip",
+                "label": "05.04.05",
+                "selector": "#tooltip_content00117",
+                "resolved": true,
+                "identity": "code:05.04.05"
+              },
+              {
+                "kind": "tooltip",
+                "label": "05.04.06",
+                "selector": "#tooltip_content00122",
+                "resolved": true,
+                "identity": "code:05.04.06"
+              }
+            ],
+            "contentHash": "6CE7ABA6C835E5BA0A2BF844463525336FBAF54C1AD3A515768D7ACF6A2583BF"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-06-01",
+      "ownerAnchor": "Visibility",
+      "sourceOrder": 32,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Other-Concepts",
+          "title": "Other Concepts 06"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-06-02",
+      "ownerAnchor": "Mortal-Wounds",
+      "sourceOrder": 34,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Other-Concepts",
+          "title": "Other Concepts 06"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-06-03",
+      "ownerAnchor": "Hazard-Rolls",
+      "sourceOrder": 35,
+      "parentHierarchy": [
+        {
+          "id": "BASIC-RULES",
+          "title": "BASIC RULES"
+        },
+        {
+          "id": "Other-Concepts",
+          "title": "Other Concepts 06"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-07-01",
+      "ownerAnchor": "1.-Start-of-Battle-Round",
+      "sourceOrder": 37,
+      "parentHierarchy": [
+        {
+          "id": "THE-BATTLE-ROUND",
+          "title": "THE BATTLE ROUND"
+        },
+        {
+          "id": "The-Battle-Round-1",
+          "title": "The Battle Round 07"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "Errata",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "ErrataShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "9463A196238AC8C6A372242A3900382C5E2FCCAED7559E1702FD3C6465B53C66"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-10-02",
+      "ownerAnchor": "2.-Shoot",
+      "sourceOrder": 56,
+      "parentHierarchy": [
+        {
+          "id": "THE-BATTLE-ROUND",
+          "title": "THE BATTLE ROUND"
+        },
+        {
+          "id": "Shooting-Phase",
+          "title": "Shooting Phase 10"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-11-02",
+      "ownerAnchor": "2.-Charge-Step",
+      "sourceOrder": 63,
+      "parentHierarchy": [
+        {
+          "id": "THE-BATTLE-ROUND",
+          "title": "THE BATTLE ROUND"
+        },
+        {
+          "id": "Charge-Phase",
+          "title": "Charge Phase 11"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-12-04",
+      "ownerAnchor": "3.-Fight-Step",
+      "sourceOrder": 69,
+      "parentHierarchy": [
+        {
+          "id": "THE-BATTLE-ROUND",
+          "title": "THE BATTLE ROUND"
+        },
+        {
+          "id": "Fight-Phase",
+          "title": "Fight Phase 12"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        },
+        {
+          "title": "When a Unit is Selected to Fight",
+          "anchor": "When-a-Unit-is-Selected-to-Fight",
+          "orderWithinOwner": 2,
+          "body": {
+            "text": "When a Unit is Selected to FightEach time a unit is selected to fight, select one fight type that unit is eligible to make, and resolve it with that unit. This can be one listed below, or one presented elsewhere:",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "663E6BDEEF598B24DE033BADD907412865BA013BB08E57C727BB16FA14044612"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-01",
+      "ownerAnchor": "Placing-Terrain",
+      "sourceOrder": 75,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Terrain",
+          "title": "Terrain 13"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-06",
+      "ownerAnchor": "Terrain-and-Movement",
+      "sourceOrder": 80,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Terrain",
+          "title": "Terrain 13"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "Moving Vertically",
+          "anchor": "Moving-Vertically",
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "Moving VerticallyModels can move vertically to ascend or descend terrain features. While doing so:That model must remain within 1/2\" horizontally of that terrain feature.Add the distance moved vertically up, and the distance moved vertically down, to any other distance that model has moved since its unit began that move.PLUNGING FIREAs well as gaining superior lines of sight, models that ascend tall terrain features can benefit from the Plunging Fire rule (22.05).",
+            "lists": [
+              {
+                "ordered": false,
+                "items": [
+                  "That model must remain within 1/2\" horizontally of that terrain feature.",
+                  "Add the distance moved vertically up, and the distance moved vertically down, to any other distance that model has moved since its unit began that move."
+                ]
+              }
+            ],
+            "tables": [],
+            "notes": [
+              "PLUNGING FIREAs well as gaining superior lines of sight, models that ascend tall terrain features can benefit from the Plunging Fire rule (22.05)."
+            ],
+            "examples": [],
+            "references": [
+              {
+                "kind": "tooltip",
+                "label": "22.05",
+                "selector": "#tooltip_content00146",
+                "resolved": true,
+                "identity": "code:22.05"
+              }
+            ],
+            "contentHash": "A1B5092D64A3108549A2DCC50E3C9371A16B4603E5A1AB21E7D87DF904788BCE"
+          }
+        },
+        {
+          "title": "Setting Up or Ending a Move",
+          "anchor": "Setting-Up-or-Ending-a-Move",
+          "orderWithinOwner": 2,
+          "body": {
+            "text": "Setting Up or Ending a MoveModels can be set up or end a move on the ground level of terrain features. Models can also be set up or end a move on any surface of a terrain feature that is not on ground level, if all of the following apply:That model has one or more of the following keywords: INFANTRY/BEASTS/SWARM/FLY/MONSTER.After ending that move, that model is stable and no part of its base overhangs the outer edge of that surface.SOLID TERRAINIf a terrain feature has the Solid rule (13.11), as dense terrain features do, a model cannot end a move such that any part of it is through any enclosed part of that terrain feature that is 3\" or less from ground level - not even through small openings such as doors and windows. This ensures that protruding elements of models cannot be used to circumvent the visibility restrictions of the Solid rule.TERRAIN AND MOVEMENTAAll sections of this dense terrain feature are more than 2\" in height, so this MONSTER model cannot move through it and must move around it instead.BThese INFANTRY models can move through dense terrain features, such as the walls of this ruin.AThis INFANTRY model is not being moved over or through any terrain features. Its move through the terrain area shown is therefore unimpeded.BThis INFANTRY model can move vertically and end its move on the top surface of this terrain feature, as it is stable and no part of its base overhangs the outer edge of that surface.CThis VEHICLE model cannot move through this dense terrain feature, but It can move vertically to ascend and descend sections that are more than 2\" in height (provided it does not end that move on top of such sections).",
+            "lists": [
+              {
+                "ordered": false,
+                "items": [
+                  "That model has one or more of the following keywords: INFANTRY/BEASTS/SWARM/FLY/MONSTER.",
+                  "After ending that move, that model is stable and no part of its base overhangs the outer edge of that surface."
+                ]
+              }
+            ],
+            "tables": [],
+            "notes": [
+              "SOLID TERRAINIf a terrain feature has the Solid rule (13.11), as dense terrain features do, a model cannot end a move such that any part of it is through any enclosed part of that terrain feature that is 3\" or less from ground level - not even through small openings such as doors and windows. This ensures that protruding elements of models cannot be used to circumvent the visibility restrictions of the Solid rule."
+            ],
+            "examples": [],
+            "references": [
+              {
+                "kind": "tooltip",
+                "label": "13.11",
+                "selector": "#tooltip_content00147",
+                "resolved": true,
+                "identity": "code:13.11"
+              },
+              {
+                "kind": "tooltip",
+                "label": "dense terrain features",
+                "selector": "#tooltip_content00143",
+                "resolved": true,
+                "identity": "code:13.05"
+              },
+              {
+                "kind": "tooltip",
+                "label": "dense terrain feature",
+                "selector": "#tooltip_content00143",
+                "resolved": true,
+                "identity": "code:13.05"
+              },
+              {
+                "kind": "tooltip",
+                "label": "terrain area",
+                "selector": "#tooltip_content00014",
+                "resolved": true,
+                "identity": "code:13.01"
+              },
+              {
+                "kind": "tooltip",
+                "label": "dense terrain feature",
+                "selector": "#tooltip_content00143",
+                "resolved": true,
+                "identity": "code:13.05"
+              }
+            ],
+            "contentHash": "886F3D708126DCE25F0844B9B0252D2F2254A12624385E290F7FEFA61B129370"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-08",
+      "ownerAnchor": "Benefit-of-Cover",
+      "sourceOrder": 82,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Terrain",
+          "title": "Terrain 13"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-13-09",
+      "ownerAnchor": "Hidden",
+      "sourceOrder": 83,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Terrain",
+          "title": "Terrain 13"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "Errata",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "ErrataShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "9463A196238AC8C6A372242A3900382C5E2FCCAED7559E1702FD3C6465B53C66"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-14-01",
+      "ownerAnchor": "Terrain-Objectives",
+      "sourceOrder": 88,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Objectives",
+          "title": "Objectives 14"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-14-02",
+      "ownerAnchor": "Level-of-Control",
+      "sourceOrder": 90,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Objectives",
+          "title": "Objectives 14"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-14-03",
+      "ownerAnchor": "Secured-Objectives",
+      "sourceOrder": 92,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Objectives",
+          "title": "Objectives 14"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-01",
+      "ownerAnchor": "Using-Stratagems",
+      "sourceOrder": 93,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Stratagems",
+          "title": "Stratagems 15"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        },
+        {
+          "title": "Core Stratagems",
+          "anchor": "Core-Stratagems",
+          "orderWithinOwner": 2,
+          "body": {
+            "text": "Core StratagemsAll players can use core stratagems (see below). Additional stratagems can be found in Codexes and other publications.",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "257F1D43E84B89F7F4F64D8E04C1CFEADA1C85129D66FC1936CEA1837297D618"
+          }
+        },
+        {
+          "title": "Stratagems Key",
+          "anchor": "Stratagems-Key",
+          "orderWithinOwner": 3,
+          "body": {
+            "text": "Stratagems KeyUsed in:Either player's turnUsed in:Your turnUsed in:Opponent's turn",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "02D36A54CCB668BFDCF39E63A06EE96210FF9AD249B7F4D7306F60BEEECDD918"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-05",
+      "ownerAnchor": "EXPLOSIVES",
+      "sourceOrder": 97,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Stratagems",
+          "title": "Stratagems 15"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "Errata",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "ErrataShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "9463A196238AC8C6A372242A3900382C5E2FCCAED7559E1702FD3C6465B53C66"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-15-06",
+      "ownerAnchor": "CRUSHING-IMPACT",
+      "sourceOrder": 98,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Stratagems",
+          "title": "Stratagems 15"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "Errata",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "ErrataShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "9463A196238AC8C6A372242A3900382C5E2FCCAED7559E1702FD3C6465B53C66"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-16-01",
+      "ownerAnchor": "Performing-Actions",
+      "sourceOrder": 105,
+      "parentHierarchy": [
+        {
+          "id": "BATTLEFIELDS-AND-TACTICS",
+          "title": "BATTLEFIELDS AND TACTICS"
+        },
+        {
+          "id": "Actions",
+          "title": "Actions 16"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        },
+        {
+          "title": "Starting an Action",
+          "anchor": "Starting-an-Action",
+          "orderWithinOwner": 2,
+          "body": {
+            "text": "Starting an ActionA unit is eligible to start an action unless one or more of the following apply to that unit:It is not on the battlefield.It is an AIRCRAFT/FORTIFICATION unit.It is battle-shocked.It has an OC characteristic of 0 or '-'.It is engaged (unless it is a TITANIC unit).It made an advance or fall-back move this turn.It started another action this turn.If a unit starts an action, until the end of the turn:It is not eligible to shoot (excluding TITANIC units).It is not eligible to declare a charge.",
+            "lists": [
+              {
+                "ordered": false,
+                "items": [
+                  "It is not on the battlefield.",
+                  "It is an AIRCRAFT/FORTIFICATION unit.",
+                  "It is battle-shocked.",
+                  "It has an OC characteristic of 0 or '-'.",
+                  "It is engaged (unless it is a TITANIC unit).",
+                  "It made an advance or fall-back move this turn.",
+                  "It started another action this turn."
+                ]
+              },
+              {
+                "ordered": false,
+                "items": [
+                  "It is not eligible to shoot (excluding TITANIC units).",
+                  "It is not eligible to declare a charge."
+                ]
+              }
+            ],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [
+              {
+                "kind": "tooltip",
+                "label": "not on the battlefield",
+                "selector": "#tooltip_content00005",
+                "resolved": true,
+                "identity": "code:01.02.04"
+              },
+              {
+                "kind": "href",
+                "label": "battle-shocked",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#3.-Battle-shock-Step",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#3.-Battle-shock-Step",
+                "internalCore": true
+              },
+              {
+                "kind": "tooltip",
+                "label": "engaged",
+                "selector": "#tooltip_content00068",
+                "resolved": true,
+                "identity": "code:03.04"
+              },
+              {
+                "kind": "tooltip",
+                "label": "advance",
+                "selector": "#tooltip_content00069",
+                "resolved": true,
+                "identity": "code:09.06"
+              },
+              {
+                "kind": "tooltip",
+                "label": "fall-back move",
+                "selector": "#tooltip_content00075",
+                "resolved": true,
+                "identity": "code:09.07"
+              },
+              {
+                "kind": "href",
+                "label": "eligible to shoot",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#2.-Shoot",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#2.-Shoot",
+                "internalCore": true
+              },
+              {
+                "kind": "href",
+                "label": "eligible to declare a charge",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#2.-Charge-Step",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#2.-Charge-Step",
+                "internalCore": true
+              }
+            ],
+            "contentHash": "49750DDE03856A32C79E353B030BA59A2E9CB37D1FA24B617412EABC5A8C1A3A"
+          }
+        },
+        {
+          "title": "Completing an Action",
+          "anchor": "Completing-an-Action",
+          "orderWithinOwner": 3,
+          "body": {
+            "text": "Completing an ActionIf a unit performing an action makes a move (excluding pile-in and consolidation moves) or leaves the battlefield, that unit does not complete that action. Otherwise, when an action is completed, its 'Effect' section is triggered.Example action for illustrative purposes only.",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [
+              {
+                "kind": "tooltip",
+                "label": "pile-in",
+                "selector": "#tooltip_content00084",
+                "resolved": true,
+                "identity": "code:12.03"
+              },
+              {
+                "kind": "tooltip",
+                "label": "consolidation moves",
+                "selector": "#tooltip_content00070",
+                "resolved": true,
+                "identity": "code:12.08"
+              }
+            ],
+            "contentHash": "93DCADC0D8A469DBD2DE53EDB7B1C9A5FE3189733AC9B37730A2DE1A383ED7F1"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-17-01",
+      "ownerAnchor": "Moving-Monsters-and-Vehicles",
+      "sourceOrder": 106,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Monsters-and-Vehicles",
+          "title": "Monsters and Vehicles 17"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-17-02",
+      "ownerAnchor": "Frame",
+      "sourceOrder": 107,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Monsters-and-Vehicles",
+          "title": "Monsters and Vehicles 17"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-17-03",
+      "ownerAnchor": "Shooting-at-Engaged-Monsters-and-Vehicles",
+      "sourceOrder": 108,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Monsters-and-Vehicles",
+          "title": "Monsters and Vehicles 17"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "Errata",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "ErrataShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "9463A196238AC8C6A372242A3900382C5E2FCCAED7559E1702FD3C6465B53C66"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-02",
+      "ownerAnchor": "Embarking",
+      "sourceOrder": 110,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Transports",
+          "title": "Transports 18"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-18-07",
+      "ownerAnchor": "SHOCK-DISEMBARK-MOVE",
+      "sourceOrder": 116,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Transports",
+          "title": "Transports 18"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-22",
+      "ownerAnchor": null,
+      "sourceOrder": 118,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Attached-Units",
+          "title": "Attached Units 19"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-24-34",
+      "ownerAnchor": null,
+      "sourceOrder": 118,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Attached-Units",
+          "title": "Attached Units 19"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-19-03",
+      "ownerAnchor": "Keywords-in-Attached-Units",
+      "sourceOrder": 120,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Attached-Units",
+          "title": "Attached Units 19"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-19-04",
+      "ownerAnchor": "Abilities-in-Attached-Units",
+      "sourceOrder": 121,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Attached-Units",
+          "title": "Attached Units 19"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-20-01",
+      "ownerAnchor": "Placing-Units-in-Strategic-Reserves",
+      "sourceOrder": 122,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Strategic-Reserves",
+          "title": "Strategic Reserves 20"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-21-03",
+      "ownerAnchor": "Flying-Models",
+      "sourceOrder": 129,
+      "parentHierarchy": [
+        {
+          "id": "ADVANCED-RULES",
+          "title": "ADVANCED RULES"
+        },
+        {
+          "id": "Flying-and-Surging",
+          "title": "Flying and Surging 21"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-core-rule-25-04",
+      "ownerAnchor": "Fill-Your-Army-Roster",
+      "sourceOrder": 182,
+      "parentHierarchy": [
+        {
+          "id": "REFERENCE",
+          "title": "REFERENCE"
+        },
+        {
+          "id": "Muster-Armies",
+          "title": "Muster Armies 25"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "FAQ",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "FAQShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E2476D9D8F626DB0FDF0EDAB7EB19C58886D12FCDD2A56BCC0DF9926A4872328"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-01-02-06",
+      "ownerAnchor": "Splitting-Units",
+      "sourceOrder": 7,
+      "parentHierarchy": [
+        {
+          "id": "Core-Concepts",
+          "title": "Core Concepts"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "Errata",
+          "anchor": null,
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "ErrataShow",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "9463A196238AC8C6A372242A3900382C5E2FCCAED7559E1702FD3C6465B53C66"
+          }
+        }
+      ]
+    },
+    {
+      "sourceUnitId": "waha-appendix-rule-02-02-01",
+      "ownerAnchor": "Modifiers",
+      "sourceOrder": 33,
+      "parentHierarchy": [
+        {
+          "id": "Datasheets",
+          "title": "Datasheets"
+        }
+      ],
+      "subsections": [
+        {
+          "title": "What are Modifiers?",
+          "anchor": "What-are-Modifiers-",
+          "orderWithinOwner": 1,
+          "body": {
+            "text": "What are Modifiers?Many rules in the game modify a value, characteristic or roll elsewhere in the game. A rule that does so is known as a modifier. A value that has been changed is a modified rule (e.g. modified characteristic, modified roll, modified value, etc). One of the most common ways for modifiers to be presented is as +1 or -1 to a characteristic, roll or value.If the rule has +1 to a characteristic, it improves it by the value after the '+' symbol.Example: 'This weapon has +1 AP' would improve an AP characteristic of -2 to -3.If the rule has -1 to a characteristic, it worsens it by the value after the '-' symbol.Example: 'This unit has -1 Sv' would worsen a Sv characteristic of 3+ to 4+.",
+            "lists": [],
+            "tables": [],
+            "notes": [],
+            "examples": [
+              "Example: 'This weapon has +1 AP' would improve an AP characteristic of -2 to -3.",
+              "Example: 'This unit has -1 Sv' would worsen a Sv characteristic of 3+ to 4+."
+            ],
+            "references": [],
+            "contentHash": "64DD714222010F4D3016CF4A81A80A7C07280CD10D89E931ECC10917C824EDCC"
+          }
+        },
+        {
+          "title": "Applying Modifiers",
+          "anchor": "Applying-Modifiers",
+          "orderWithinOwner": 2,
+          "body": {
+            "text": "Applying ModifiersThis section presents the various ways rules may be modified. All modifiers are cumulative.When a value is modified (e.g. characteristic, dice roll, distance), do so in the following order.If a rule instructs you to change or replace one value with a specified value, you must first change the relevant value to the new value.Note that rules that modify a characteristic in this step to a new value of '0', '-' or '*' cannot be modified by other rules (in such cases, skip steps 2-5).Apply multiplication modifiers.Apply addition modifiers.Apply division modifiers.Apply subtraction modifiers.Round any fractions up after applying all modifiers.",
+            "lists": [
+              {
+                "ordered": true,
+                "items": [
+                  "If a rule instructs you to change or replace one value with a specified value, you must first change the relevant value to the new value.Note that rules that modify a characteristic in this step to a new value of '0', '-' or '*' cannot be modified by other rules (in such cases, skip steps 2-5).",
+                  "Apply multiplication modifiers.",
+                  "Apply addition modifiers.",
+                  "Apply division modifiers.",
+                  "Apply subtraction modifiers.",
+                  "Round any fractions up after applying all modifiers."
+                ]
+              }
+            ],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "959E43A062D8173012DA2188233F842B92A5C6497935D239D9DB397D3B60D4E0"
+          }
+        },
+        {
+          "title": "When Modifying Characteristics",
+          "anchor": null,
+          "orderWithinOwner": 3,
+          "body": {
+            "text": "When Modifying CharacteristicsWhen modifying characteristics, unless otherwise stated, the following points also apply:Characteristics of '-', '*' and 'N/A' can never be modified.Rules that modify a model's WS and/or BS characteristic modify the WS and/or BS characteristic of every weapon equipped by that model.After all modifiers have been applied:M cannot be less than 1\"\".T cannot be less than 1.Sv cannot be 1+ or better.InSv cannot be 1+ or better.Ld cannot be 4+ (or better) or 9+ (or worse).OC cannot be less than 0 or '-'.Range characteristics cannot be less than 1\".A cannot be less than 1.WS cannot be 1+ (or better) or 7+ (or worse).BS cannot be 1+ (or better) or 7+ (or worse).S cannot be less than 1.AP cannot be worse than 0.D cannot be less than 1.When these terms are used in rules, the affected characteristics are being modified, and the following points apply:Improving WS, BS, Sv and Ld: When improving a WS, BS, Sv or Ld characteristic, subtract the appropriate amount from the number before the plus sign, e.g. improving a WS of 3+ by 1 would result in a WS of 2+.Worsening WS, BS, Sv and Ld: When worsening a WS, BS, Sv or Ld characteristic, add the appropriate amount to the number before the plus sign, e.g. worsening a WS of 3+ by 1 would result in a WS of 4+.Improving AP: When improving an Armour Penetration characteristic, subtract the appropriate amount from the characteristic, e.g. improving an AP of -1 by 1 would result in an AP of -2; improving an AP of 0 by 1 would result in an AP of -1.Reducing or Worsening AP: When reducing or worsening an Armour Penetration characteristic, add the appropriate amount to the characteristic, to a maximum of 0, e.g. reducing/worsening an AP of -1 by 1 would result in an AP of 0; reducing/worsening an AP of 0 by 1 would result in an AP of 0.Improving or Worsening Other Characteristics: When instructed to improve/worsen a characteristic that does not include a '+' or '-' symbol, add/subtract the specified amount to/from that characteristic (e.g. to improve a S by 1, add 1 to it).",
+            "lists": [
+              {
+                "ordered": false,
+                "items": [
+                  "Characteristics of '-', '*' and 'N/A' can never be modified.",
+                  "Rules that modify a model's WS and/or BS characteristic modify the WS and/or BS characteristic of every weapon equipped by that model.",
+                  "After all modifiers have been applied:"
+                ]
+              },
+              {
+                "ordered": false,
+                "items": [
+                  "M cannot be less than 1\"\".",
+                  "T cannot be less than 1.",
+                  "Sv cannot be 1+ or better.",
+                  "InSv cannot be 1+ or better.",
+                  "Ld cannot be 4+ (or better) or 9+ (or worse).",
+                  "OC cannot be less than 0 or '-'.",
+                  "Range characteristics cannot be less than 1\".",
+                  "A cannot be less than 1.",
+                  "WS cannot be 1+ (or better) or 7+ (or worse).",
+                  "BS cannot be 1+ (or better) or 7+ (or worse).",
+                  "S cannot be less than 1.",
+                  "AP cannot be worse than 0.",
+                  "D cannot be less than 1."
+                ]
+              },
+              {
+                "ordered": false,
+                "items": [
+                  "Improving WS, BS, Sv and Ld: When improving a WS, BS, Sv or Ld characteristic, subtract the appropriate amount from the number before the plus sign, e.g. improving a WS of 3+ by 1 would result in a WS of 2+.",
+                  "Worsening WS, BS, Sv and Ld: When worsening a WS, BS, Sv or Ld characteristic, add the appropriate amount to the number before the plus sign, e.g. worsening a WS of 3+ by 1 would result in a WS of 4+.",
+                  "Improving AP: When improving an Armour Penetration characteristic, subtract the appropriate amount from the characteristic, e.g. improving an AP of -1 by 1 would result in an AP of -2; improving an AP of 0 by 1 would result in an AP of -1.",
+                  "Reducing or Worsening AP: When reducing or worsening an Armour Penetration characteristic, add the appropriate amount to the characteristic, to a maximum of 0, e.g. reducing/worsening an AP of -1 by 1 would result in an AP of 0; reducing/worsening an AP of 0 by 1 would result in an AP of 0.",
+                  "Improving or Worsening Other Characteristics: When instructed to improve/worsen a characteristic that does not include a '+' or '-' symbol, add/subtract the specified amount to/from that characteristic (e.g. to improve a S by 1, add 1 to it)."
+                ]
+              }
+            ],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [],
+            "contentHash": "E63B0A9D24EEC20A6E811B046FB41EDDD18F4289FC344327CCA08C7AD03AC92F"
+          }
+        },
+        {
+          "title": "When Modifying Dice Rolls",
+          "anchor": "When-Modifying-Dice-Rolls",
+          "orderWithinOwner": 4,
+          "body": {
+            "text": "When Modifying Dice RollsWhen modifying dice rolls, the following points also apply:Modifiers are applied after any re-rolls of that dice roll.Rules that refer to the value of an 'unmodified' dice roll are referring to the dice result after any re-rolls, but before modifiers.A dice result can be modified above its maximum possible value (for example, a D6 roll can be modified above 6).A result that would be less than 1 is changed to a result of 1.Hit rolls and wound rolls can never be modified by more than -1 or +1. After all the cumulative modifiers to such a roll have been calculated, if the total modifier would be:-2 or worse, it is changed to -1.+2 or better, it is changed to +1.Charge rolls cannot be greater than 12. After all the cumulative modifiers to a charge roll have been calculated, if the result would be 13 or more, it is changed to 12.",
+            "lists": [
+              {
+                "ordered": false,
+                "items": [
+                  "Modifiers are applied after any re-rolls of that dice roll.Rules that refer to the value of an 'unmodified' dice roll are referring to the dice result after any re-rolls, but before modifiers.",
+                  "A dice result can be modified above its maximum possible value (for example, a D6 roll can be modified above 6).",
+                  "A result that would be less than 1 is changed to a result of 1.",
+                  "Hit rolls and wound rolls can never be modified by more than -1 or +1. After all the cumulative modifiers to such a roll have been calculated, if the total modifier would be:-2 or worse, it is changed to -1.+2 or better, it is changed to +1.",
+                  "Charge rolls cannot be greater than 12. After all the cumulative modifiers to a charge roll have been calculated, if the result would be 13 or more, it is changed to 12."
+                ]
+              },
+              {
+                "ordered": false,
+                "items": [
+                  "Rules that refer to the value of an 'unmodified' dice roll are referring to the dice result after any re-rolls, but before modifiers."
+                ]
+              },
+              {
+                "ordered": false,
+                "items": [
+                  "-2 or worse, it is changed to -1.",
+                  "+2 or better, it is changed to +1."
+                ]
+              }
+            ],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [
+              {
+                "kind": "tooltip",
+                "label": "re-rolls",
+                "selector": "#tooltip_content00034",
+                "resolved": true,
+                "identity": "code:01.05.02"
+              },
+              {
+                "kind": "tooltip",
+                "label": "Hit rolls",
+                "selector": "#tooltip_content00027",
+                "resolved": true,
+                "identity": "title:Hit Roll"
+              },
+              {
+                "kind": "tooltip",
+                "label": "wound rolls",
+                "selector": "#tooltip_content00030",
+                "resolved": true,
+                "identity": "title:Wound Roll"
+              },
+              {
+                "kind": "href",
+                "label": "Charge rolls",
+                "rawTarget": "/wh40k11ed/the-rules/core-rules/#2.-Charge-Step",
+                "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#2.-Charge-Step",
+                "internalCore": true
+              }
+            ],
+            "contentHash": "CD91F7CA074DE15F045A57A1BF8BAE8D58F858C7F5A4CCA8C91B7F3DEB25CA3E"
+          }
+        },
+        {
+          "title": "Other Modified Rules",
+          "anchor": "Other-Modified-Rules",
+          "orderWithinOwner": 5,
+          "body": {
+            "text": "Other Modified RulesThe following rules apply to various rules and effects found throughout the game.Detection range and Lone Operative cannot be better than 9\" or worse than 30\".A stratagem cannot have its CP increased by more than 1 or reduced to below 0 after all modifiers have been applied.",
+            "lists": [
+              {
+                "ordered": false,
+                "items": [
+                  "Detection range and Lone Operative cannot be better than 9\" or worse than 30\"."
+                ]
+              }
+            ],
+            "tables": [],
+            "notes": [],
+            "examples": [],
+            "references": [
+              {
+                "kind": "tooltip",
+                "label": "Detection range",
+                "selector": "#tooltip_content00017",
+                "resolved": true,
+                "identity": "code:13.09"
+              },
+              {
+                "kind": "tooltip",
+                "label": "Lone Operative",
+                "selector": "#tooltip_content00035",
+                "resolved": true,
+                "identity": "code:24.24"
+              }
+            ],
+            "contentHash": "23F010F0B2398E23C389C695864D715E2502E76B95AB8BA4A0A9CBE571768662"
+          }
+        }
+      ]
+    }
+  ],
+  "unresolvedReferences": [
+    {
+      "page": "core",
+      "kind": "href",
+      "label": "[DEVASTATING WOUNDS]",
+      "rawTarget": "/wh40k11ed/the-rules/core-rules/#Assault-",
+      "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Assault-",
+      "internalCore": true
+    }
+  ]
+}

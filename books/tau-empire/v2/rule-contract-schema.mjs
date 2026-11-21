@@ -1,7 +1,8 @@
 /** Existing T’au typed schema factory, shared by the offline producer and browser. */
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {createRosterConditionBinding} from '../../shared/roster-v2/condition-binding.mjs';
 
-export function createTauRuleSchema({bindContext=context=>context}={}){
+export function createTauRuleSchema({book,state,inputs=[]}={}){
   const schema=createRuleContractSchema({stateFields:{
     attached:{contextLevel:'ROSTER',valueType:'boolean'},
     equipmentRequirementSatisfied:{contextLevel:'ROSTER',valueType:'boolean'},
@@ -11,6 +12,5 @@ export function createTauRuleSchema({bindContext=context=>context}={}){
     tauPhysicalModelScopeId:{contextLevel:'ROSTER',valueType:'string'},
     tauMarkerSelected:{contextLevel:'ROSTER',valueType:'boolean'}
   }});
-  return {...schema,evaluatePredicate:(predicate,context)=>schema.evaluatePredicate(predicate,bindContext(context)),
-    evaluateRole:(role,conditions,context)=>schema.evaluateRole(role,conditions,bindContext(context))};
+  return createRosterConditionBinding({book,state,schema,inputs});
 }

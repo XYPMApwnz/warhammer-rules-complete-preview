@@ -1,8 +1,9 @@
+import {parseProducerJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Exact accepted source references, not Chapter choices or new factual owners. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const sha=value=>createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex').toUpperCase();
 // Fixed source clauses, not text-to-effect inference. Recipient identities and
 // exact href/keyword proofs remain in the independently reviewed ledger.

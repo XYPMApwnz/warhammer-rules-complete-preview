@@ -3,11 +3,13 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {validateRoster,withRosterDetachments,changeAttachment} from './context.mjs';
-import {validateRosterEffects,executeRosterEffects} from './effects.mjs';
-import {projectEffectiveInstance} from './effective-instance.mjs';
+import {executeRosterEffects} from './effects.mjs';
+import {projectEffectiveInstance as projectCanonicalEffectiveInstance} from './effective-instance.mjs';
 import {projectInstanceCards,projectFormedUnitCards} from '../army-book-app-v2/personal.mjs';
 import {createSyntheticPersonalFixture} from '../army-book-app-v2/personal-datasheet-qa.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 const clone=structuredClone,api=withRosterDetachments(createRuleContractSchema());
+const projectEffectiveInstance=(book,...args)=>projectCanonicalEffectiveInstance(compileRecipientFixture(book,api),...args);
 function fixture(){
  const f=createSyntheticPersonalFixture('scoped-detection'),{id}=f,book=clone(f.model);
  for(const unit of book.entities.filter(e=>e.kind==='DATASHEET'))Object.assign(unit.data,{title:unit.data.name,
@@ -36,9 +38,9 @@ function fixture(){
  return {...f,book,state,effect,rule};
 }
 function run(f,state=f.state){
- api.validateContracts(f.book);validateRosterEffects(f.book,api.validatePredicate,api.evaluatePredicate);
- const validated=validateRoster(f.book,state,f.book.rosterAttachmentPolicies),projection=executeRosterEffects(f.book,validated,api);
- const service={state:validated,effective:id=>projectEffectiveInstance(f.book,projection,id)};
+ const canonical=compileRecipientFixture(f.book,api);
+ const validated=validateRoster(canonical,state,canonical.rosterAttachmentPolicies),projection=executeRosterEffects(canonical,validated,api);
+ const service={state:validated,effective:id=>projectCanonicalEffectiveInstance(canonical,projection,id)};
  const view=projectFormedUnitCards(f.cards,service,validated.units[0].instanceId);
  return {validated,projection,service,view,rows:view.components.flatMap(component=>component.card.rosterUnitMetrics||[])};
 }

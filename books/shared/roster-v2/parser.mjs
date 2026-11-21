@@ -110,6 +110,28 @@ export function parse(text, options = {}) {
       return metadataLines.filter(line => prefix.test(line)).map(line => line.replace(prefix, '').trim()).filter(Boolean);
     };
     const value = key => values(key)[0] || '—';
+    // The unlabelled preamble is a separate lexical format. Never
+    // reinterpret a labelled export, including the older KEY: spelling.
+    const labelled = metadataLines.some(line => /^\+|^(?:FACTION KEYWORD|DETACHMENT|FORCE DISPOSITION|WARLORD|ENHANCEMENT|BATTLE SIZE|TOTAL ARMY POINTS|NUMBER OF UNITS|SECONDARY)\s*:/i.test(line));
+    const title = !labelled && metadataLines.length >= 3 && metadataLines.length <= 5 && metadataLines[0].match(/^(.+?)\s+\(([\d,]+)\s+Points\)$/i);
+    const detachmentHeading = title && metadataLines[2].match(/^(.+?)\s+\(([\d,]+)\s+Detachment Points?\)$/i);
+    let plain = detachmentHeading && integer(title[2]) !== null && integer(detachmentHeading[2]) !== null
+      ? {listName:title[1],declared:integer(title[2]),pointsLimit:null,battleSize:'—',disposition:'—',faction:metadataLines[1],label:detachmentHeading[1],detachmentPoints:integer(detachmentHeading[2])} : null;
+    if(plain){
+      const vocabulary=options.forceDispositions??[];
+      if(!Array.isArray(vocabulary)||vocabulary.some(name=>typeof name!=='string'||!normalize(name)))throw new TypeError('Invalid book Force Disposition vocabulary');
+      const dispositions=new Set(vocabulary.map(normalize)),seen=new Set();
+      for(const line of metadataLines.slice(3)){
+        const size=line.match(/^(Incursion|Strike Force) \(([\d,]+) Points\)$/i);
+        if(size){
+          const limit=normalize(size[1])==='incursion'?1000:2000;
+          if(seen.has('size')||integer(size[2])!==limit){plain=null;break;}
+          seen.add('size');plain.pointsLimit=limit;plain.battleSize=limit===1000?'Incursion':'Strike Force';
+        }else if(dispositions.has(normalize(line))&&!seen.has('disposition')){
+          seen.add('disposition');plain.disposition=line;
+        }else{plain=null;break;}
+      }
+    }
     const units = [];
     const rawEnhancements = [];
     const warnings = [];
@@ -204,16 +226,16 @@ export function parse(text, options = {}) {
       rawEnhancements.push({ ...enhancementParts(item), source:'header', ownerUnitId:'' });
     }
     const enhancements = reconcileEnhancements(rawEnhancements, units, warnings);
-    const battleSize = value('BATTLE SIZE');
+    const battleSize = plain ? plain.battleSize : value('BATTLE SIZE');
     const pointsLimitMatch = battleSize.match(/([\d,]+)\s*Point limit/i);
     const pointsLimitNumber = integer(pointsLimitMatch?.[1]);
-    const pointsLimit = pointsLimitMatch ? pointsLimitNumber : (/incursion/i.test(battleSize) ? 1000 : /strike force/i.test(battleSize) ? 2000 : null);
+    const pointsLimit = plain ? plain.pointsLimit : pointsLimitMatch ? pointsLimitNumber : (/incursion/i.test(battleSize) ? 1000 : /strike force/i.test(battleSize) ? 2000 : null);
     if (pointsLimitMatch && pointsLimitNumber === null) warnings.push('Battle size point limit could not be parsed.');
-    const declaredValue = value('TOTAL ARMY POINTS'), declaredMatch = declaredValue.match(/^([\d,]+)\s*pts?\b/i), declaredNumber = integer(declaredMatch?.[1]), declared = declaredNumber ?? 0;
+    const declaredValue = value('TOTAL ARMY POINTS'), declaredMatch = declaredValue.match(/^([\d,]+)\s*pts?\b/i), declaredNumber = integer(declaredMatch?.[1]), declared = plain ? plain.declared : declaredNumber ?? 0;
     if (declaredValue !== '—' && declaredNumber === null) warnings.push('Total army points could not be parsed.');
     const unitLineTotal = units.reduce((total, unit) => total + unit.points, 0);
-    const dispositions = splitList(values('FORCE DISPOSITION'));
-    const detachments = splitList(values('DETACHMENT')).map((label, index) => ({
+    const dispositions = plain ? (plain.disposition==='—'?[]:[plain.disposition]) : splitList(values('FORCE DISPOSITION'));
+    const detachments = (plain ? [plain.label] : splitList(values('DETACHMENT'))).map((label, index) => ({
       label,
       name:label.replace(/\s*\([^)]*\)\s*$/, ''),
       rule:label.match(/\(([^)]*)\)/)?.[1] || '',
@@ -233,7 +255,7 @@ export function parse(text, options = {}) {
       if (typeof canonicalUnitId === 'string' && canonicalUnitId.trim()) unit.canonicalUnitId = canonicalUnitId.trim();
     }
     return {
-      faction:value('FACTION KEYWORD'),
+      faction:plain ? plain.faction : value('FACTION KEYWORD'),
       detachment:detachments[0]?.label || '—',
       detachments,
       disposition:dispositions[0] || '—',
@@ -242,6 +264,7 @@ export function parse(text, options = {}) {
       declared,
       battleSize,
       pointsLimit,
+      ...(plain ? {plainHeader:{listName:plain.listName,detachmentPoints:plain.detachmentPoints}} : {}),
       calculated:unitLineTotal,
       unitLineTotal,
       exportMatches:declared > 0 && declared === unitLineTotal,

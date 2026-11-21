@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {levels} from './schema.mjs';
+import {getRecordedSourceIdentity} from '../source-refs-v2/source-refs.mjs';
 
 /** Typed declarations are the input authority. No source grammar lives here. */
 export function mergeContractDeclarations(maps) {
@@ -135,8 +136,8 @@ export function validateContractBinding({entity,bookId,schema,declaration,curren
   assert.equal(contract.schema,schema,'Contract schema binding severed');
   assert.equal(contract.ruleId,entity.id,'Canonical semantic owner changed');
   assert.equal(contract.ownerId,entity.parentId||bookId,'Canonical owner binding severed');
-  assert.ok(entity.provenance?.sourceId,'Canonical source missing');
-  assert.equal(contract.sourceId,entity.provenance.sourceId,'Canonical source binding severed');
+  assert.ok(getRecordedSourceIdentity(entity),'Canonical source missing');
+  assert.equal(getRecordedSourceIdentity(contract,{slot:'sourceId'}),getRecordedSourceIdentity(entity),'Canonical source binding severed');
   if (currentness!==undefined) assert.deepEqual(contract.currentness,currentness,'Source currentness binding severed');
   for (const [key,value] of Object.entries(declaration))
     assert.deepEqual(contract[key],value,`Typed declaration binding changed: ${key}`);
@@ -147,7 +148,7 @@ export function bindCanonicalContract({entity,bookId,schema,declaration,currentn
     assert.ok(!Object.hasOwn(declaration,key),`Declaration cannot replace canonical ${key}`);
   inspectDeclarationEvidence(declaration,index,entity);
   const contract={schema,ruleId:entity.id,ownerId:entity.parentId||bookId,
-    sourceId:entity.provenance.sourceId,...structuredClone(declaration),currentness:structuredClone(currentness)};
+    sourceId:getRecordedSourceIdentity(entity),...structuredClone(declaration),currentness:structuredClone(currentness)};
   validateContractBinding({entity,bookId,schema,declaration,currentness},contract);
   return contract;
 }

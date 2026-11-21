@@ -1,4 +1,11 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import {loadRuntimeJSON} from '../../shared/source-refs-v2/source-catalog.mjs';
+const modelNames=await loadRuntimeJSON(new URL('./model-name-aliases.json',import.meta.url));
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
+
+/** Book title and the catalogue name in sources/bsdata-adeptus-mechanicus-11e.json. */
+export const factionIdentityLabels=Object.freeze(['Adeptus Mechanicus','Imperium - Adeptus Mechanicus']);
 
 /** Reviewed presentation link, not an equipment identity or effect declaration.
  * The selected ability block and the option spelling retain their own owners. */
@@ -15,9 +22,9 @@ export function withEquipmentCaptionBindings(book) {
     const selected=records.get(id),option=records.get(optionId);
     if(book.bookId!=='adeptus-mechanicus'||records.get(ownerId)?.kind!=='DATASHEET'||
       selected?.kind!=='DATASHEET_SECTION'||selected.parentId!==ownerId||
-      selected.data.blocks?.[index]?.wargearAbility!==true||!selected.provenance?.sourceId||
+      selected.data.blocks?.[index]?.wargearAbility!==true||!getRecordedSourceIdentity(selected,{book})||
       !selected.data.blocks[index].text.toLowerCase().startsWith(label+':')||
-      option?.kind!=='WARGEAR_OPTION'||option.parentId!==ownerId||!option.provenance?.sourceId)
+      option?.kind!=='WARGEAR_OPTION'||option.parentId!==ownerId||!getRecordedSourceIdentity(option,{book}))
       throw new TypeError('Missing canonical '+label+' caption owner');
     const text=option.data.text,start=text?.indexOf(label);
     if(typeof text!=='string'||start<0||text.indexOf(label,start+label.length)!==-1)
@@ -33,8 +40,9 @@ export function withEquipmentCaptionBindings(book) {
 export function createAdMechRosterImport(book,metadata) {
   if (metadata?.schema!=='roster-v2/import-aliases') throw new TypeError('Invalid import metadata');
   const input=withEquipmentCaptionBindings(book);
-  return createRosterImportService(input,{identityAliases:metadata.aliases,weaponSelections:metadata.weaponSelections,
-    equipmentSelections:input.rosterEquipmentCaptionBindings});
+  return createRosterImportService(input,{identityAliases:appendModelNameAliases([...metadata.aliases],modelNames),weaponSelections:metadata.weaponSelections,
+    equipmentSelections:input.rosterEquipmentCaptionBindings,factionIdentityLabels,
+    factionDisplayName:factionIdentityLabels[0],gateAllFactionHeaders:true,allowNormalizedEmptyFaction:true});
 }
 
 /** Browser/Node entrypoint for import consumers. Intentionally not connected to

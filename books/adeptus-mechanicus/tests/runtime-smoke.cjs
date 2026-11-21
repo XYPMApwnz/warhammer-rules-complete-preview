@@ -1,3 +1,5 @@
+const {createQaEvidenceDir}=require('../../../tests/helpers/qa-temp.cjs');
+const {launchQaBrowser}=require('../../../tests/helpers/qa-browser.cjs');
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -14,10 +16,10 @@ const enginseerPoints=pointsCatalog.units.find(unit=>unit.id==='unit-tech-priest
 const necromechanicPoints=pointsCatalog.enhancements.find(item=>item.id==='enhancement-necromechanic').value;
 const base = process.env.AM_TEST_BASE || 'http://127.0.0.1:8766';
 const executablePath = process.env.BROWSER_EXECUTABLE;
-const output = path.resolve(__dirname, '..', '..', '..', 'tmp', 'mechanicus-runtime');
+const output = createQaEvidenceDir('mechanicus-runtime-');
 fs.mkdirSync(output, { recursive: true });
 
-const browser = await chromium.launch({ executablePath, headless: true });
+const browser = await launchQaBrowser(chromium,{ executablePath, headless: true });
 const failures = [];
 
 async function pageFor(name, viewport) {

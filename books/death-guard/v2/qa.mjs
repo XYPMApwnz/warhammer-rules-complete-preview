@@ -7,6 +7,7 @@ import {assertUpgradeLabelFacts} from './app-fact-oracle.mjs';
 
 const read = name => JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const enrollment = read('./sources/source-enrollment.json');
+const officialUpdates = read('./official-updates.json');
 const evidence = read('./sources/official-source-evidence.json');
 const {base,effective} = buildFactualV2();
 assert.deepEqual(buildFactualV2(),{base,effective},'Deterministic effective build');
@@ -96,7 +97,7 @@ let mutations = 0;
 // spelling remains base evidence and must not overwrite the official name.
 const erratumId = 'errata-3';
 const officialTitle = 'Virulent Vectorium Detachment, Worldblight Detachment Rule';
-const titleOverlay = enrollment.overlayOperations.find(row => row.targetId === erratumId && row.field.join('/') === 'title');
+const titleOverlay = officialUpdates.entries.find(row => row.target.id === erratumId && row.target.field.join('/') === 'title');
 assert.ok(titleOverlay,'Official erratum-title overlay required');
 assert.equal(baseById.get(erratumId).data.title,'Virulent Vectorum Detachment, Worldblight Detachment Rule');
 function verifyErratumTitle(model) {
@@ -111,8 +112,8 @@ function verifyErratumTitle(model) {
   });
 }
 verifyErratumTitle(effective);
-const withoutTitle = buildFactualV2({enrollment:{...enrollment,
-  overlayOperations:enrollment.overlayOperations.filter(row => row.id !== titleOverlay.id)}});
+const withoutTitle = buildFactualV2({officialUpdates:{...officialUpdates,
+  entries:officialUpdates.entries.filter(row => row.id !== titleOverlay.id)}});
 assert.deepEqual(withoutTitle.base,base,'Accepted base facts remain unchanged');
 assert.throws(() => verifyErratumTitle(withoutTitle.effective),/Official v1.3 p7 erratum title/); mutations++;
 for (const entity of effective.entities) {
@@ -128,10 +129,10 @@ for (const entity of effective.entities) {
 const labelFacts = model => model.entities.filter(entity => Object.hasOwn(entity.data,'sourceTypeLabel'))
   .map(entity => ({id:entity.id+'::/sourceTypeLabel',value:entity.data.sourceTypeLabel}));
 assertUpgradeLabelFacts(labelFacts(effective));
-const labelOperations = enrollment.overlayOperations.filter(row => row.field.join('/') === 'sourceTypeLabel');
+const labelOperations = officialUpdates.entries.filter(row => row.target.field.join('/') === 'sourceTypeLabel');
 assert.equal(labelOperations.length,4);
 for (const operation of labelOperations) {
-  const entity = byId.get(operation.targetId);
+  const entity = byId.get(operation.target.id);
   assert.equal(entity.kind,'ENHANCEMENT','Preserve existing canonical classification/identity');
   assert.equal(Object.hasOwn(baseById.get(entity.id).data,'sourceTypeLabel'),false,'Frozen accepted base remains unchanged');
   assert.match(entity.data.text,/unit only\./,'UNIT eligibility text retained');
@@ -141,8 +142,8 @@ for (const operation of labelOperations) {
     page,documentPath:'books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf',
     sourceLocator:entity.id,quote:entity.data.title.toUpperCase()+' UPGRADE'
   });
-  const mutant = buildFactualV2({enrollment:{...enrollment,
-    overlayOperations:enrollment.overlayOperations.filter(row => row.id !== operation.id)}}).effective;
+  const mutant = buildFactualV2({officialUpdates:{...officialUpdates,
+    entries:officialUpdates.entries.filter(row => row.id !== operation.id)}}).effective;
   assert.throws(() => assertUpgradeLabelFacts(labelFacts(mutant)),/UPGRADE label facts/); mutations++;
 }
 const labels = labelFacts(effective);
@@ -155,8 +156,8 @@ for (const mutate of [
   const mutant = structuredClone(labels); mutate(mutant);
   assert.throws(() => assertUpgradeLabelFacts(mutant),/UPGRADE label facts/); mutations++;
 }
-const withoutLabels = buildFactualV2({enrollment:{...enrollment,
-  overlayOperations:enrollment.overlayOperations.filter(row => !labelOperations.includes(row))}});
+const withoutLabels = buildFactualV2({officialUpdates:{...officialUpdates,
+  entries:officialUpdates.entries.filter(row => !labelOperations.includes(row))}});
 assert.deepEqual(withoutLabels.base,base);
 const strippedLabels = structuredClone(effective);
 strippedLabels.appliedOverlays = strippedLabels.appliedOverlays.filter(row => row.field.join('/') !== 'sourceTypeLabel');
@@ -166,12 +167,12 @@ for (const entity of strippedLabels.entities) if (Object.hasOwn(entity.data,'sou
 assert.deepEqual(strippedLabels,withoutLabels.effective,'Only four display labels/provenance change; other Enhancements and all Stratagems unchanged');
 const baseIntegrity = structuredClone(enrollment); baseIntegrity.acceptedBase.sha256 = '0'.repeat(64);
 assert.throws(() => buildFactualV2({enrollment:baseIntegrity}),/source integrity/); mutations++;
-for (const operation of enrollment.overlayOperations.filter(row => evidence.newSeptemberWeaponTable.targetInventory.some(source => source.targetId === row.targetId && Object.hasOwn(source.fields,row.field[0])))) {
-  const mutant = {...enrollment,overlayOperations:enrollment.overlayOperations.filter(row => row.id !== operation.id)};
-  assert.throws(() => verifySeptemberWeaponFacts(buildFactualV2({enrollment:mutant}).effective),`${operation.id}: missing overlay must fail accepted-source guard`);mutations++;
+for (const operation of officialUpdates.entries.filter(row => evidence.newSeptemberWeaponTable.targetInventory.some(source => source.targetId === row.target.id && Object.hasOwn(source.fields,row.target.field[0])))) {
+  const mutant = {...officialUpdates,entries:officialUpdates.entries.filter(row => row.id !== operation.id)};
+  assert.throws(() => verifySeptemberWeaponFacts(buildFactualV2({officialUpdates:mutant}).effective),`${operation.id}: missing overlay must fail accepted-source guard`);mutations++;
 }
-const wrongTarget = structuredClone(enrollment); wrongTarget.overlayOperations[0].targetId = 'unresolved-source-target';
-assert.throws(() => buildFactualV2({enrollment:wrongTarget}),/unresolved target identity/); mutations++;
+const wrongTarget = structuredClone(officialUpdates); wrongTarget.entries[0].target.id = 'unresolved-source-target';
+assert.throws(() => buildFactualV2({officialUpdates:wrongTarget}),/target unresolved-source-target: expected exactly 1, found 0/); mutations++;
 const ownership = structuredClone(base.entities); ownership[0].data.points = [{value:1}];
 assert.throws(() => assertNoMfmValues(ownership),/duplicate MFM value ownership/); mutations++;
 const pending = {...enrollment.sources[0],id:'new-applicable-update',effectiveFrom:'2026-10-02',reconciled:false};

@@ -1,8 +1,11 @@
+import {epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
 /** Book-owned source decisions over the existing physical selection snapshot.
  * These records select recipients; they never store computed abilities. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
+import {createTauRuleSchema} from './rule-contract-schema.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {tauPrototypeField,tauPrototypeDecisions,validateTauPrototypeChoices,setTauPrototypeChoice} from './roster-weapon-choices.mjs';
+import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot,copySourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
 export const tauStudentRuleId='detachment-auxiliary-cadre:enhancement:1';
 export const tauStudentOptionId=tauStudentRuleId+'::choice::physical-recipients';
@@ -22,14 +25,14 @@ const decisionRows=unit=>selections(unit).filter(selection=>selection.selectionF
 
 export function addTauSourceChoices(book) {
   const records=indexOf(book),rule=records.get(tauStudentRuleId),bodyguard=records.get(bodyguardRuleId);
-  requireValue(rule?.kind==='ENHANCEMENT'&&rule.data.text===quote&&rule.provenance?.sourceId,
+  requireValue(rule?.kind==='ENHANCEMENT'&&rule.data.text===quote&&getRecordedSourceIdentity(rule,{book}),
     'Unconfirmed Student of Kauyon source decision');
   requireValue(bodyguard?.parentId==='unit-kroot-carnivores'&&bodyguard.data.blocks?.some(block=>block.text===bodyguardQuote)&&
-    bodyguard.provenance?.sourceId,'Unconfirmed Kroot BODYGUARD source gate');
+    getRecordedSourceIdentity(bodyguard,{book}),'Unconfirmed Kroot BODYGUARD source gate');
   const option={id:tauStudentOptionId,kind:'UPGRADE_OPTION',parentId:rule.id,
     authority:'SOURCE_BACKED_SELECTION_BINDING',data:{selectionRuleId:rule.id,
       recipientUnitIds:[...allowedRecipients],maximumRecipients:3,timing:'DECLARE_BATTLE_FORMATIONS'},
-    provenance:clone(rule.provenance)};
+    ...copySourceEvidence(rule,{book})};
   requireValue(!records.has(option.id),'Duplicate T’au source choice');
   book.entities.push(option);book.rosterSelectionOptions=[...(book.rosterSelectionOptions||[]),option];
   // The shared checker owns capacity and distinct-Leader semantics. Its static
@@ -60,7 +63,7 @@ export function validateTauAttachmentSourceConditions(book,state) {
 
 export function validateTauSourceChoices(book,state) {
   const records=indexOf(book),rule=records.get(tauStudentRuleId),option=records.get(tauStudentOptionId);
-  requireValue(option?.parentId===rule?.id&&equal(option.provenance,rule.provenance)&&
+  requireValue(option?.parentId===rule?.id&&sameSourceEvidence(option,rule,{book})&&
     option.data.maximumRecipients===3&&equal(option.data.recipientUnitIds,[...allowedRecipients]),'Unbound T’au source choice');
   const physical=formRoster(book,state),byInstance=new Map(state.units.map(unit=>[unit.instanceId,unit]));
   for(const unit of state.units) {
@@ -84,7 +87,7 @@ export function validateTauSourceChoices(book,state) {
       decision.selectionField===tauStudentField&&decision.selectionCardinality==='MANY'&&
       equal(decision.canonicalOptionIds,[option.id])&&equal(decision.canonicalProfileIds,[])&&equal(decision.canonicalEquipmentIds,[])&&
       equal(decision.sourceChoiceReference,{bookId:book.bookId,entityId:rule.id,path:'/text'})&&
-      equal(decision.sourceProvenance,rule.provenance),'Invalid Student of Kauyon physical source evidence');
+      sameSourceEvidence(decision,rule,{book,slot:'sourceProvenance',otherSlot:'provenance'}),'Invalid Student of Kauyon physical source evidence');
     requireValue(Array.isArray(recipients)&&recipients.length<=3&&new Set(recipients).size===recipients.length&&
       recipients.every(id=>typeof id==='string'&&allowedRecipients.has(byInstance.get(id)?.canonicalUnitId)),
       'Student of Kauyon requires up to three distinct confirmed KROOT CARNIVORES/FARSTALKERS physical UNIT recipients');
@@ -100,6 +103,7 @@ export function setTauStudentChoice(book,snapshot,sourceInstanceId,recipientInst
   for(const container of [unit,...unit.modelRows,...unit.modelRows.flatMap(row=>row.loadouts||[])])
     container.selections=(container.selections||[]).filter(selection=>!decisionRows({selections:[selection]}).length);
   if(recipientInstanceIds.length) {
+    requireValue(!epicHeroUnitIds(book).has(unit.canonicalUnitId),'Epic Hero cannot receive an Enhancement recipient choice');
     const rule=indexOf(book).get(tauStudentRuleId),physical=formRoster(book,state).units.find(item=>item.instanceId===sourceInstanceId);
     const assignment=unit.enhancementAssignments?.find(item=>item.enhancementId===rule.id);
     const models=physical.profiles.filter(model=>(!assignment||model.scopeId===assignment.modelScopeId)&&
@@ -115,107 +119,20 @@ export function setTauStudentChoice(book,snapshot,sourceInstanceId,recipientInst
       canonicalProfileIds:[],canonicalEquipmentIds:[],canonicalOptionIds:[tauStudentOptionId],
       selectionField:tauStudentField,selectionCardinality:'MANY',sourceInstanceId:unit.instanceId,
       sourceModelScopeId:model.scopeId,recipientInstanceIds:clone(recipientInstanceIds),
-      sourceChoiceReference:{bookId:book.bookId,entityId:rule.id,path:'/text'},sourceProvenance:clone(rule.provenance)});
+      sourceChoiceReference:{bookId:book.bookId,entityId:rule.id,path:'/text'},...copySourceEvidence(rule,{book,targetSlot:'sourceProvenance'})});
   }
   return validateTauSourceChoices(book,state);
 }
 
+export function tauSourceChoiceInputs(book,state) {
+  if(state)validateTauSourceChoices(book,state);
+  return [{key:'sourceEquipmentSelected',arguments:{sourceEquipmentIdentity:'drone-marker-drone'},physicalIdentity:true}];
+}
+
 export function tauSourceChoiceContext(book,state) {
-  validateTauSourceChoices(book,state);
-  // This context is bound only after the import boundary validates equipment
-  // identity, source caption, quantity and provenance. Shared option IDs alone
-  // cannot distinguish different drones selected from the same source field.
-  const markers=new Set(state.units.filter(unit=>selections(unit).some(selection=>
-    selection.sourceEquipmentIdentity==='drone-marker-drone'&&selection.physicalQuantity>0)).map(unit=>unit.instanceId));
-  return context=>context?{...context,roster:{...context.roster,
-    tauPhysicalUnitInstanceId:context.instanceId||'',tauMarkerSelected:markers.has(context.instanceId),
-    tauPhysicalModelScopeId:context.subject==='MODEL'?context.modelScopeId||'':''}}:context;
+  return createTauRuleSchema({book,state,inputs:tauSourceChoiceInputs(book,state)}).bindContext;
 }
 
-/** Bind inventory counts to the existing MODEL scopes, not canonical profile
- * IDs. The shared operation computes W; this lowering never changes a stat. */
-export function bindTauShieldModels(book,state){
-  const result=clone(book),records=indexOf(result),root=records.get('drone-shield-drone');
-  requireValue(root?.data.text==='SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.',
-    'Unreviewed Shield Drone source');
-  for(const entity of result.entities)if(entity.ruleContract)
-    entity.ruleContract.clauses=entity.ruleContract.clauses.filter(clause=>!clause.physicalShieldSelection);
-  const physical=formRoster(result,state),seen=new Set();
-  for(const unit of physical.units){
-    for(const selection of unit.selections)if(selection.sourceEquipmentIdentity===root.id)
-      requireValue(selection.sourceModelScopeId===undefined,'UNIT-level Shield inventory has no confirmed MODEL scope');
-    for(const model of unit.profiles)for(const selection of model.selections){
-      if(selection.sourceEquipmentIdentity!==root.id||selection.physicalQuantity===0)continue;
-      requireValue((selection.sourceModelScopeId===undefined||selection.sourceModelScopeId===model.scopeId)&&
-        (selection.sourceInstanceId===undefined||selection.sourceInstanceId===unit.instanceId),
-        'Foreign or stale Shield Drone physical MODEL scope');
-      // Per-model quantity is confirmed by the import boundary. An explicit
-      // homogeneous group may retain quantity>1; its characteristic is still
-      // per MODEL. Never divide UNIT inventory to invent a bearer or count.
-      const quantity=selection.perModelQuantity;
-      requireValue(Number.isSafeInteger(quantity)&&quantity>0&&equal(selection.sourceEquipmentProvenance,root.provenance),
-        'Shield Drone requires confirmed per-MODEL quantity and source evidence');
-      requireValue(selection.canonicalEquipmentIds.length===1,'Ambiguous Shield source occurrence');
-      const local=records.get(selection.canonicalEquipmentIds[0]);
-      const template=local?.ruleContract?.clauses.find(clause=>clause.id==='shield-drone-physical-model');
-      requireValue(local?.parentId===unit.canonicalUnitId&&template&&local.ruleContract.canonicalRuleReferences.includes(root.id),
-        'Missing Shield Drone physical source reference');
-      const identity=JSON.stringify([unit.instanceId,model.scopeId,selection.selectionKey]);
-      requireValue(!seen.has(identity),'Duplicate Shield Drone physical equipment selection');seen.add(identity);
-      const clause=clone(template),proof={field:['text'],quote:local.data.text};
-      clause.id=local.id+'::shield-model/'+identity;clause.physicalShieldSelection=identity;
-      clause.rosterClassification='ROSTER_EXECUTABLE';
-      clause.rosterClassificationNote={reason:'Source +1 W per confirmed Shield Drone on this existing physical MODEL scope'};
-      clause.rosterEffects=[{id:clause.id+'/wounds',operation:'MODIFY_STAT',field:'W',mode:'ADD',value:quantity,
-        targetBinding:'SOURCE_UNIT_MODELS',targetSubject:'MODEL',lifetime:'WHILE_EQUIPPED',
-        conditions:[['SOURCE','UNIT','tauPhysicalUnitInstanceId',unit.instanceId],
-          ['TARGET','MODEL','tauPhysicalModelScopeId',model.scopeId]].map(([binding,subject,key,equals])=>({binding,
-          predicate:{predicate:'FIELD',subject,contextLevel:'ROSTER',arguments:{key,equals},evidence:clone(proof)}})),
-        sourceFields:[['text']],evidence:clone(proof),referencedRuleId:root.id,
-        sourceRuleEvidence:{evidence:{otherEntityId:root.id,field:['text'],quote:root.data.text}},
-        provenance:{canonicalRuleId:root.id,canonicalOwnerId:root.parentId||book.bookId,
-          canonicalClauseId:'drone-shield-drone#wounds',sourceEvidence:clone(root.provenance),
-          physicalEquipmentReference:{entityId:local.id,provenance:clone(local.provenance),unitInstanceId:unit.instanceId,
-            modelScopeId:model.scopeId,selectionKey:selection.selectionKey,perModelQuantity:quantity}}}];
-      local.ruleContract.clauses.push(clause);
-    }
-  }
-  return result;
-}
-
-/** Lower validated decisions to existing SOURCE and TARGET FIELD conditions.
- * Physical IDs are runtime bindings, never new factual owners. Rebuild from
- * the canonical display clause on every load, so choices cannot accumulate. */
-export function bindTauStudentPairs(book,state) {
-  validateTauSourceChoices(book,state);
-  const result=clone(book),rule=indexOf(result).get(tauStudentRuleId);
-  requireValue(rule.data.text===quote,'Unreviewed Student of Kauyon source');
-  const contract=rule.ruleContract;
-  contract.clauses=contract.clauses.filter(clause=>!clause.physicalSourcePair);
-  const template=contract.clauses.find(clause=>clause.rosterClassificationNote?.sourceChoice===rule.id);
-  requireValue(template?.rosterClassification==='DISPLAY_ONLY'&&template.rosterEffects.length===0,
-    'Student requires the original canonical display clause before physical lowering');
-  if(!state.detachmentIds.includes(rule.parentId))return result;
-  const sources=state.units.filter(unit=>unit.enhancementIds.includes(rule.id)).sort((a,b)=>a.instanceId.localeCompare(b.instanceId));
-  for(const source of sources)for(const decision of decisionRows(source))for(const recipient of [...decision.recipientInstanceIds].sort()){
-    const pair={sourceInstanceId:source.instanceId,recipientInstanceId:recipient,sourceModelScopeId:decision.sourceModelScopeId};
-    const clause=clone(template),proof={field:['text'],quote:rule.data.text};
-    clause.id=rule.id+'::physical-pair/'+JSON.stringify([source.instanceId,recipient]);
-    clause.physicalSourcePair=clone(pair);clause.rosterClassification='ROSTER_EXECUTABLE';
-    clause.rosterClassificationNote={reason:'Confirmed physical source/recipient pair using existing typed FIELD conditions',
-      sourceChoice:rule.id,canonicalClauseId:template.id};
-    clause.rosterEffects=[{id:clause.id+'/deep-strike',operation:'GRANT_ABILITY',
-      ability:{canonicalId:'core-deep-strike',parameters:{}},targetBinding:'ROSTER_UNITS',targetSubject:'UNIT',unitScope:'PHYSICAL',
-      conditions:[['SOURCE',source.instanceId],['TARGET',recipient]].map(([binding,id])=>({binding,
-        predicate:{predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',
-          arguments:{key:'tauPhysicalUnitInstanceId',equals:id},evidence:clone(proof)}})),
-      evidence:clone(proof),sourceFields:[['text']],lifetime:'WHILE_ASSIGNED',
-      provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:template.id,
-        sourceEvidence:clone(rule.provenance),physicalSourcePair:clone(pair)}}];
-    contract.clauses.push(clause);
-  }
-  return result;
-}
 
 function physicalInput(state) {
   const strip=unit=>{

@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Rendered synthetic scope/identity guards. No faction factual/runtime data. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,7 +8,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.ARMY_APP_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/ability-presentation-synthetic';
+const out=process.env.ARMY_APP_V2_SCREENSHOTS||createQaEvidenceDir('ability-presentation-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;
@@ -18,7 +20,7 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const {chromium}=createRequire(import.meta.url)('playwright');
 const chrome='C:/Program Files/Google/Chrome/Application/chrome.exe';
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(chrome)?chrome:undefined)});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(chrome)?chrome:undefined)});
 const observations=[],errors=[];
 try{
   for(const [device,viewport]of [['desktop',{width:1440,height:900}],['phone',{width:390,height:844}]]){

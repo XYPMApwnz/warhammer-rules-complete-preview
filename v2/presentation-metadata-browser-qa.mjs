@@ -1,3 +1,6 @@
+import {assertDialogActionLabel} from '../tests/helpers/player-dialog-assertions.mjs';
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 /** Player surfaces must not expose dataset metadata; facts/provenance stay intact. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -42,8 +45,8 @@ const entry=`http://127.0.0.1:${server.address().port}/v2/app.html`;
 const {chromium}=createRequire(import.meta.url)('playwright');
 const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
-const screenshots=process.env.V2_METADATA_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'v2-presentation-metadata-'));
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
+const screenshots=process.env.V2_METADATA_SCREENSHOTS||createQaEvidenceDir('v2-presentation-metadata-');
 fs.mkdirSync(screenshots,{recursive:true});
 const errors=[],missing=[],results=[];
 const ready=async page=>{await page.waitForFunction(()=>!!window.WarhammerAppV2);await page.evaluate(async()=>{
@@ -108,7 +111,7 @@ try {
     await top(page,'GLOSSARY');await clean(page,'Mega Glossary');
     await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill('Deep Strike');
     await page.locator('.v2-glossary-result[data-target-id="core::core-deep-strike"]').click();await page.locator('dialog[open]').waitFor();await clean(page,'Glossary popup');
-    await page.locator('dialog[open]').getByRole('link',{name:'Open full entry',exact:true}).click();await clean(page,'Glossary article');
+    await assertDialogActionLabel(page);await page.locator('dialog[open]').getByRole('link',{name:'Open in Glossary',exact:true}).click();await clean(page,'Glossary article');
     await context.close();
     poison=true;
     const synthetic=await browser.newContext({viewport:{width,height:width===390?844:900},serviceWorkers:'block'}),probe=await synthetic.newPage();

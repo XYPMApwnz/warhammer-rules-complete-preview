@@ -1,0 +1,852 @@
+{
+  "schema": "army-book-official-updates/v1",
+  "bookId": "space-marines",
+  "stage": "canonical-facts",
+  "selection": {
+    "collection": [
+      "entities"
+    ],
+    "identity": "id",
+    "data": [
+      "data"
+    ]
+  },
+  "order": "declared",
+  "initialize": [
+    {
+      "path": [
+        "officialUpdates"
+      ],
+      "value": []
+    }
+  ],
+  "entries": [
+    {
+      "id": "space-marines-official-v1.1:captain-titus-righteous-fury",
+      "source": {
+        "id": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "locator": "space-marines-official-v1.1:captain-titus-righteous-fury"
+      },
+      "target": {
+        "id": "ability-sm-c2f9109d902c4546",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_ABILITY"
+          },
+          {
+            "path": [
+              "bookId"
+            ],
+            "expected": "space-marines"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "sm-source-a756f71ad6f549bd"
+          },
+          {
+            "path": [
+              "provenance",
+              "pointer"
+            ],
+            "expected": "/html/body/div/div[1]/div[3]/div[2]/div[8]/div[2]/div[2]/div[3]"
+          },
+          {
+            "path": [
+              "data",
+              "title"
+            ],
+            "expected": "Righteous Fury (Once per battle, per army)"
+          },
+          {
+            "path": [
+              "provenance",
+              "sourceId"
+            ],
+            "expected": "space-marines-waha-11e-2026-10-20"
+          },
+          {
+            "path": [
+              "provenance",
+              "document"
+            ],
+            "expected": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html"
+          },
+          {
+            "path": [
+              "provenance",
+              "sha256"
+            ],
+            "expected": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-sm-10396cd2726045a8"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "VERIFY_CURRENT",
+      "expectedBefore": "Righteous Fury (Once per battle, per army): In the Fight phase, you can use this ability. If you do, this unit’s melee attacks have +1 S, and when this unit has fought:\n- This model heals D3 wounds.\n- Or: If this model destroyed an enemy model this phase, this model heals 2D3 wounds.",
+      "after": "Righteous Fury (Once per battle, per army): In the Fight phase, you can use this ability. If you do, this unit’s melee attacks have +1 S, and when this unit has fought:\n- This model heals D3 wounds.\n- Or: If this model destroyed an enemy model this phase, this model heals 2D3 wounds.",
+      "provenance": {
+        "sourceId": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "page": 1,
+        "bbox": [
+          42,
+          250,
+          292,
+          328
+        ],
+        "textSha256": "B159BD9ADB5D9119468BECA57B16F41B86E33AA389A784992B5ADE822B835F46",
+        "authority": "AUTHORITATIVE_CURRENT",
+        "sourceText": "Captain Titus, Righteous Fury Ability\nChange to:\n‘In the Fight phase, you can use this ability. If you do, this unit’s melee\nattacks have +1 S, and when this unit has fought:\n▪ This model heals D3 wounds.\n▪ Or: If this model destroyed an enemy model this phase, this model\nheals 2D3 wounds.’"
+      },
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "text"
+          ],
+          "value": {
+            "sourceId": "space-marines-printed-product-updates-v1.1",
+            "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+            "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+            "page": 1,
+            "bbox": [
+              42,
+              250,
+              292,
+              328
+            ],
+            "textSha256": "B159BD9ADB5D9119468BECA57B16F41B86E33AA389A784992B5ADE822B835F46",
+            "authority": "AUTHORITATIVE_CURRENT",
+            "sourceText": "Captain Titus, Righteous Fury Ability\nChange to:\n‘In the Fight phase, you can use this ability. If you do, this unit’s melee\nattacks have +1 S, and when this unit has fought:\n▪ This model heals D3 wounds.\n▪ Or: If this model destroyed an enemy model this phase, this model\nheals 2D3 wounds.’"
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "space-marines-official-v1.1:captain-titus-righteous-fury",
+            "group": "DATASHEET_UPDATE",
+            "status": "VERIFY_CURRENT",
+            "operation": "REPLACE_BODY",
+            "targetIds": [
+              "ability-sm-c2f9109d902c4546"
+            ],
+            "field": "text",
+            "beforeSha256": "4AD6D8944D84946DF01EF824EBDE7E01131961D5F9C5AE6E7BEEA39573CD3084",
+            "afterSha256": "4AD6D8944D84946DF01EF824EBDE7E01131961D5F9C5AE6E7BEEA39573CD3084",
+            "sourceText": "Captain Titus, Righteous Fury Ability\nChange to:\n‘In the Fight phase, you can use this ability. If you do, this unit’s melee\nattacks have +1 S, and when this unit has fought:\n▪ This model heals D3 wounds.\n▪ Or: If this model destroyed an enemy model this phase, this model\nheals 2D3 wounds.’",
+            "provenance": {
+              "sourceId": "space-marines-printed-product-updates-v1.1",
+              "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+              "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+              "page": 1,
+              "bbox": [
+                42,
+                250,
+                292,
+                328
+              ],
+              "textSha256": "B159BD9ADB5D9119468BECA57B16F41B86E33AA389A784992B5ADE822B835F46",
+              "authority": "AUTHORITATIVE_CURRENT",
+              "sourceText": "Captain Titus, Righteous Fury Ability\nChange to:\n‘In the Fight phase, you can use this ability. If you do, this unit’s melee\nattacks have +1 S, and when this unit has fought:\n▪ This model heals D3 wounds.\n▪ Or: If this model destroyed an enemy model this phase, this model\nheals 2D3 wounds.’"
+            },
+            "qualification": "The instruction replaces only the ability body. The accepted source heading retains Once per battle, per army; the printed instruction does not remove that frequency."
+          }
+        }
+      ]
+    },
+    {
+      "id": "space-marines-official-v1.1:iron-father-feirros-iron-father",
+      "source": {
+        "id": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "locator": "space-marines-official-v1.1:iron-father-feirros-iron-father"
+      },
+      "target": {
+        "id": "ability-sm-ebcbb0d456104dcd",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_ABILITY"
+          },
+          {
+            "path": [
+              "bookId"
+            ],
+            "expected": "space-marines"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "sm-source-972dc321135945da"
+          },
+          {
+            "path": [
+              "provenance",
+              "pointer"
+            ],
+            "expected": "/html/body/div/div[1]/div[3]/div[2]/div[16]/div[2]/div[2]/div[4]"
+          },
+          {
+            "path": [
+              "data",
+              "title"
+            ],
+            "expected": "Iron Father"
+          },
+          {
+            "path": [
+              "provenance",
+              "sourceId"
+            ],
+            "expected": "space-marines-waha-11e-2026-10-20"
+          },
+          {
+            "path": [
+              "provenance",
+              "document"
+            ],
+            "expected": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html"
+          },
+          {
+            "path": [
+              "provenance",
+              "sha256"
+            ],
+            "expected": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-sm-f8bea3d5b0fa44a6"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Iron Father: While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE unit, this model has Lone Operative",
+      "after": "Iron Father: While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE unit, this model has Lone Operative.",
+      "provenance": {
+        "sourceId": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "page": 1,
+        "bbox": [
+          42,
+          338,
+          292,
+          382
+        ],
+        "textSha256": "2DDC6FDCB37030C9606196D469064EBF8C12F8426722B27AC5728D9BAD2A1658",
+        "authority": "AUTHORITATIVE_CURRENT",
+        "sourceText": "Iron Father Feirros, Iron Father Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’"
+      },
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "text"
+          ],
+          "value": {
+            "sourceId": "space-marines-printed-product-updates-v1.1",
+            "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+            "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+            "page": 1,
+            "bbox": [
+              42,
+              338,
+              292,
+              382
+            ],
+            "textSha256": "2DDC6FDCB37030C9606196D469064EBF8C12F8426722B27AC5728D9BAD2A1658",
+            "authority": "AUTHORITATIVE_CURRENT",
+            "sourceText": "Iron Father Feirros, Iron Father Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’"
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "space-marines-official-v1.1:iron-father-feirros-iron-father",
+            "group": "DATASHEET_UPDATE",
+            "status": "APPLIED",
+            "operation": "REPLACE_BODY",
+            "targetIds": [
+              "ability-sm-ebcbb0d456104dcd"
+            ],
+            "field": "text",
+            "beforeSha256": "AC049BE3EC248ED7F17403B2B571CD67A668BE2C2C64BC9B796287714EE38FE4",
+            "afterSha256": "6474F9F61D555B89C5593DA26909B9D3216632FFD34CD3D9DA672D4B2D8D56C3",
+            "sourceText": "Iron Father Feirros, Iron Father Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’",
+            "provenance": {
+              "sourceId": "space-marines-printed-product-updates-v1.1",
+              "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+              "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+              "page": 1,
+              "bbox": [
+                42,
+                338,
+                292,
+                382
+              ],
+              "textSha256": "2DDC6FDCB37030C9606196D469064EBF8C12F8426722B27AC5728D9BAD2A1658",
+              "authority": "AUTHORITATIVE_CURRENT",
+              "sourceText": "Iron Father Feirros, Iron Father Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "space-marines-official-v1.1:kayvaan-shrike-keywords",
+      "source": {
+        "id": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "locator": "space-marines-official-v1.1:kayvaan-shrike-keywords"
+      },
+      "target": {
+        "id": "unit-sm-55f195878fab446f",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          },
+          {
+            "path": [
+              "bookId"
+            ],
+            "expected": "space-marines"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "sm-source-cddfaaf8743c4c15"
+          },
+          {
+            "path": [
+              "provenance",
+              "pointer"
+            ],
+            "expected": "/html/body/div/div[1]/div[3]/div[2]/div[20]"
+          },
+          {
+            "path": [
+              "data",
+              "title"
+            ],
+            "expected": "Kayvaan Shrike"
+          },
+          {
+            "path": [
+              "provenance",
+              "sourceId"
+            ],
+            "expected": "space-marines-waha-11e-2026-10-20"
+          },
+          {
+            "path": [
+              "provenance",
+              "document"
+            ],
+            "expected": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html"
+          },
+          {
+            "path": [
+              "provenance",
+              "sha256"
+            ],
+            "expected": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D"
+          },
+          {
+            "path": [
+              "data",
+              "sourceAnchor"
+            ],
+            "expected": "Kayvaan-Shrike"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "VERIFY_CURRENT",
+      "expectedBefore": [
+        "INFANTRY",
+        "CAPTAIN",
+        "CHARACTER",
+        "EPIC HERO",
+        "EXPLOSIVES",
+        "FLY",
+        "IMPERIUM",
+        "JUMP PACK",
+        "PHOBOS",
+        "SMOKE"
+      ],
+      "after": [
+        "INFANTRY",
+        "CAPTAIN",
+        "CHARACTER",
+        "EPIC HERO",
+        "EXPLOSIVES",
+        "FLY",
+        "IMPERIUM",
+        "JUMP PACK",
+        "PHOBOS",
+        "SMOKE"
+      ],
+      "provenance": {
+        "sourceId": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "page": 1,
+        "bbox": [
+          42,
+          393,
+          292,
+          417
+        ],
+        "textSha256": "8003576192B2F9C8EFC31ADC1E9FA99A8A3964358F26A2BE63B79185A989B198",
+        "authority": "AUTHORITATIVE_CURRENT",
+        "sourceText": "Kayvaan Shrike, Keywords Section\nAdd ‘CHARACTER’ and ‘EPIC HERO’."
+      },
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "keywords"
+          ],
+          "value": {
+            "sourceId": "space-marines-printed-product-updates-v1.1",
+            "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+            "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+            "page": 1,
+            "bbox": [
+              42,
+              393,
+              292,
+              417
+            ],
+            "textSha256": "8003576192B2F9C8EFC31ADC1E9FA99A8A3964358F26A2BE63B79185A989B198",
+            "authority": "AUTHORITATIVE_CURRENT",
+            "sourceText": "Kayvaan Shrike, Keywords Section\nAdd ‘CHARACTER’ and ‘EPIC HERO’."
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "space-marines-official-v1.1:kayvaan-shrike-keywords",
+            "group": "DATASHEET_UPDATE",
+            "status": "VERIFY_CURRENT",
+            "operation": "REQUIRE_KEYWORDS",
+            "targetIds": [
+              "unit-sm-55f195878fab446f"
+            ],
+            "field": "keywords",
+            "beforeSha256": "056C1AEEB602A514FF3D17A44608A37CD1E3448F5BF89603C480C56F34E112D4",
+            "afterSha256": "056C1AEEB602A514FF3D17A44608A37CD1E3448F5BF89603C480C56F34E112D4",
+            "sourceText": "Kayvaan Shrike, Keywords Section\nAdd ‘CHARACTER’ and ‘EPIC HERO’.",
+            "provenance": {
+              "sourceId": "space-marines-printed-product-updates-v1.1",
+              "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+              "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+              "page": 1,
+              "bbox": [
+                42,
+                393,
+                292,
+                417
+              ],
+              "textSha256": "8003576192B2F9C8EFC31ADC1E9FA99A8A3964358F26A2BE63B79185A989B198",
+              "authority": "AUTHORITATIVE_CURRENT",
+              "sourceText": "Kayvaan Shrike, Keywords Section\nAdd ‘CHARACTER’ and ‘EPIC HERO’."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "space-marines-official-v1.1:librarian-terminator-keywords",
+      "source": {
+        "id": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "locator": "space-marines-official-v1.1:librarian-terminator-keywords"
+      },
+      "target": {
+        "id": "unit-sm-1330b7672f934fd8",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          },
+          {
+            "path": [
+              "bookId"
+            ],
+            "expected": "space-marines"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "sm-source-fbcd5943ab074e20"
+          },
+          {
+            "path": [
+              "provenance",
+              "pointer"
+            ],
+            "expected": "/html/body/div/div[1]/div[3]/div[10]/div[36]"
+          },
+          {
+            "path": [
+              "data",
+              "title"
+            ],
+            "expected": "Librarian In Terminator Armour"
+          },
+          {
+            "path": [
+              "provenance",
+              "sourceId"
+            ],
+            "expected": "space-marines-waha-11e-2026-10-20"
+          },
+          {
+            "path": [
+              "provenance",
+              "document"
+            ],
+            "expected": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html"
+          },
+          {
+            "path": [
+              "provenance",
+              "sha256"
+            ],
+            "expected": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D"
+          },
+          {
+            "path": [
+              "data",
+              "sourceAnchor"
+            ],
+            "expected": "Librarian-In-Terminator-Armour"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "VERIFY_CURRENT",
+      "expectedBefore": [
+        "INFANTRY",
+        "CHARACTER",
+        "IMPERIUM",
+        "PSYKER",
+        "TERMINATOR, DEATHWING"
+      ],
+      "after": [
+        "INFANTRY",
+        "CHARACTER",
+        "IMPERIUM",
+        "PSYKER",
+        "TERMINATOR, DEATHWING"
+      ],
+      "provenance": {
+        "sourceId": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "page": 1,
+        "bbox": [
+          42,
+          426,
+          292,
+          450
+        ],
+        "textSha256": "9942303B69CC83CB6848EC4782885C067B5020272964AC45E6601B4802F2A62A",
+        "authority": "AUTHORITATIVE_CURRENT",
+        "sourceText": "Librarian in Terminator Armour, Keywords Section\nAdd ‘CHARACTER’."
+      },
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "keywords"
+          ],
+          "value": {
+            "sourceId": "space-marines-printed-product-updates-v1.1",
+            "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+            "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+            "page": 1,
+            "bbox": [
+              42,
+              426,
+              292,
+              450
+            ],
+            "textSha256": "9942303B69CC83CB6848EC4782885C067B5020272964AC45E6601B4802F2A62A",
+            "authority": "AUTHORITATIVE_CURRENT",
+            "sourceText": "Librarian in Terminator Armour, Keywords Section\nAdd ‘CHARACTER’."
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "space-marines-official-v1.1:librarian-terminator-keywords",
+            "group": "DATASHEET_UPDATE",
+            "status": "VERIFY_CURRENT",
+            "operation": "REQUIRE_KEYWORDS",
+            "targetIds": [
+              "unit-sm-1330b7672f934fd8"
+            ],
+            "field": "keywords",
+            "beforeSha256": "5491DBC437459D57DC9435981BF94725BB5789220AB028F3C82D6212A109D863",
+            "afterSha256": "5491DBC437459D57DC9435981BF94725BB5789220AB028F3C82D6212A109D863",
+            "sourceText": "Librarian in Terminator Armour, Keywords Section\nAdd ‘CHARACTER’.",
+            "provenance": {
+              "sourceId": "space-marines-printed-product-updates-v1.1",
+              "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+              "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+              "page": 1,
+              "bbox": [
+                42,
+                426,
+                292,
+                450
+              ],
+              "textSha256": "9942303B69CC83CB6848EC4782885C067B5020272964AC45E6601B4802F2A62A",
+              "authority": "AUTHORITATIVE_CURRENT",
+              "sourceText": "Librarian in Terminator Armour, Keywords Section\nAdd ‘CHARACTER’."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "space-marines-official-v1.1:techmarine-techmarine",
+      "source": {
+        "id": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "locator": "space-marines-official-v1.1:techmarine-techmarine"
+      },
+      "target": {
+        "id": "ability-sm-e2f0c3ceeb42424d",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_ABILITY"
+          },
+          {
+            "path": [
+              "bookId"
+            ],
+            "expected": "space-marines"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "sm-source-c414f82efda749e5"
+          },
+          {
+            "path": [
+              "provenance",
+              "pointer"
+            ],
+            "expected": "/html/body/div/div[1]/div[3]/div[10]/div[44]/div[2]/div[2]/div[2]"
+          },
+          {
+            "path": [
+              "data",
+              "title"
+            ],
+            "expected": "Techmarine"
+          },
+          {
+            "path": [
+              "provenance",
+              "sourceId"
+            ],
+            "expected": "space-marines-waha-11e-2026-10-20"
+          },
+          {
+            "path": [
+              "provenance",
+              "document"
+            ],
+            "expected": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html"
+          },
+          {
+            "path": [
+              "provenance",
+              "sha256"
+            ],
+            "expected": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-sm-1d09de3e7281438a"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "VERIFY_CURRENT",
+      "expectedBefore": "Techmarine: While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE unit, this model has Lone Operative.",
+      "after": "Techmarine: While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE unit, this model has Lone Operative.",
+      "provenance": {
+        "sourceId": "space-marines-printed-product-updates-v1.1",
+        "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+        "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+        "page": 1,
+        "bbox": [
+          42,
+          459,
+          292,
+          503
+        ],
+        "textSha256": "0BBDD37910412D6673FB5EB817802E92C0AE6163E34CD18C62B53FFF00E4552D",
+        "authority": "AUTHORITATIVE_CURRENT",
+        "sourceText": "Techmarine, Techmarine Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’"
+      },
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "text"
+          ],
+          "value": {
+            "sourceId": "space-marines-printed-product-updates-v1.1",
+            "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+            "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+            "page": 1,
+            "bbox": [
+              42,
+              459,
+              292,
+              503
+            ],
+            "textSha256": "0BBDD37910412D6673FB5EB817802E92C0AE6163E34CD18C62B53FFF00E4552D",
+            "authority": "AUTHORITATIVE_CURRENT",
+            "sourceText": "Techmarine, Techmarine Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’"
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "space-marines-official-v1.1:techmarine-techmarine",
+            "group": "DATASHEET_UPDATE",
+            "status": "VERIFY_CURRENT",
+            "operation": "REPLACE_BODY",
+            "targetIds": [
+              "ability-sm-e2f0c3ceeb42424d"
+            ],
+            "field": "text",
+            "beforeSha256": "3E60B6CF1B8783503A0E5E2E983128412683D8DE20CF6672213B1B98101FA348",
+            "afterSha256": "3E60B6CF1B8783503A0E5E2E983128412683D8DE20CF6672213B1B98101FA348",
+            "sourceText": "Techmarine, Techmarine Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’",
+            "provenance": {
+              "sourceId": "space-marines-printed-product-updates-v1.1",
+              "document": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+              "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+              "page": 1,
+              "bbox": [
+                42,
+                459,
+                292,
+                503
+              ],
+              "textSha256": "0BBDD37910412D6673FB5EB817802E92C0AE6163E34CD18C62B53FFF00E4552D",
+              "authority": "AUTHORITATIVE_CURRENT",
+              "sourceText": "Techmarine, Techmarine Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

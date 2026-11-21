@@ -1,0 +1,174 @@
+[
+  {
+    "bookId": "tau-empire",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "unit-no-scope:volley-fire",
+        "book": "tau-empire",
+        "rule": "Volley Fire",
+        "leader": "Cadre Fireblade",
+        "bodyguard": "Strike Team",
+        "owner": "Cadre Fireblade",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Cadre Fireblade (0 pts)\n• 1x Cadre Fireblade\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n",
+        "quote": "Volley Fire: While this model is leading a unit, add 1 to the Attacks characteristic of ranged weapons equipped by models in that unit.",
+        "canonical": {
+          "ruleId": "datasheet-cadre-fireblade:section:1",
+          "text": "Volley Fire: While this model is leading a unit, add 1 to the Attacks characteristic of ranged weapons equipped by models in that unit.",
+          "sourcePath": [
+            "blocks",
+            0,
+            "text"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "bookId": "space-marines",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "unit-no-scope:tactical-precision",
+        "book": "space-marines",
+        "rule": "Tactical Precision",
+        "leader": "Lieutenant in Phobos Armour",
+        "bodyguard": "Infiltrator Squad",
+        "owner": "Lieutenant in Phobos Armour",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Lieutenant In Phobos Armour (0 pts)\n• 1x Lieutenant in Phobos Armour\n5x Infiltrator Squad (0 pts)\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n5x Infiltrator Squad (0 pts)\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n",
+        "quote": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE].",
+        "canonical": {
+          "ruleId": "ability-sm-7a9a925615614019",
+          "text": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE].",
+          "sourcePath": [
+            "text"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "bookId": "chaos-space-marines",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "unit-no-scope:daemonkin",
+        "book": "chaos-space-marines",
+        "rule": "Daemonkin (Psychic)",
+        "leader": "Master of Possession",
+        "bodyguard": "Legionaries",
+        "owner": "Master of Possession",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon",
+        "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit.",
+        "canonical": {
+          "ruleId": "datasheet-master-of-possession:section:1:block:0:text",
+          "text": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit.",
+          "sourcePath": [
+            "text"
+          ]
+        }
+      },
+      {
+        "id": "unit-no-scope:physical-terrorglut",
+        "book": "chaos-space-marines",
+        "rule": "Terrorglut Parasite",
+        "leader": "Chaos Lord",
+        "bodyguard": "Legionaries",
+        "owner": "Chaos Lord",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Nightmare Hunt\n1x Chaos Lord (95 pts)\nEnhancement: Terrorglut Parasite\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon",
+        "quote": "HERETIC ASTARTES model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer must take a Battle-shock test, subtracting 1 from the result.",
+        "canonical": {
+          "ruleId": "detachment-nightmare-hunt:enhancement:3",
+          "text": "HERETIC ASTARTES model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer must take a Battle-shock test, subtracting 1 from the result.",
+          "sourcePath": [
+            "text"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "bookId": "emperors-children",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "unit-no-scope:tears-of-phoenix",
+        "book": "emperors-children",
+        "rule": "Tears of the Phoenix",
+        "leader": "Lord Exultant",
+        "bodyguard": "Infractors",
+        "owner": "Lord Exultant",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Court of the Phoenician\n+ WARLORD: Char1: Lord Exultant\nChar1: 1x Lord Exultant (95 pts): Bolt pistol, Plasma pistol, Phoenix power spear, Close combat weapon\nEnhancement: Tears of the Phoenix\n5x Infractors (95 pts)\n• 1x Obsessionist: Bolt pistol, Power sword\n• 4x Infractor: Bolt pistol, Duelling sabre\n5x Infractors (95 pts)\n• 1x Obsessionist: Bolt pistol, Power sword\n• 4x Infractor: Bolt pistol, Duelling sabre\nCreated with newrecruit.eu\n",
+        "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll.",
+        "canonical": {
+          "ruleId": "detachment-court-of-the-phoenician:enhancement:1",
+          "text": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll.",
+          "sourcePath": [
+            "text"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "bookId": "tyranids",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "unit-no-scope:vicious-insight",
+        "book": "tyranids",
+        "rule": "Vicious Insight",
+        "leader": "Broodlord",
+        "bodyguard": "Genestealers",
+        "owner": "Broodlord",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Invasion Fleet\n1x Broodlord (80 pts)\n• 1x Broodlord: Broodlord claws and talons\n5x Genestealers (75 pts)\n• 5x Genestealers: Genestealer claws and talons\n5x Genestealers (75 pts)\n• 5x Genestealers: Genestealer claws and talons",
+        "quote": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability.",
+        "canonical": {
+          "ruleId": "datasheet-broodlord:section:1",
+          "text": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability.",
+          "sourcePath": [
+            "blocks",
+            0,
+            "text"
+          ]
+        }
+      }
+    ]
+  }
+]

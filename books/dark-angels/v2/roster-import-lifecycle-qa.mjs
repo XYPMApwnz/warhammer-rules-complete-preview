@@ -1,6 +1,8 @@
 /** Focused source/input ownership and persistence regressions, constructed NR. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
+import {sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import {buildDarkAngelsImportBook} from './roster-import-build.mjs';
 import {createDarkAngelsRosterService} from './roster-import.mjs';
 import {renderRosterPointsStatus} from '../../shared/army-book-app-v2/roster.mjs';
@@ -23,7 +25,7 @@ check('unit-paid-inventory-never-guesses-model-bearer',()=>{
  assert.ok(service.projection.units[0].profiles.every(model=>model.profile.stats.W==='3'));
  assert.ok(!service.projection.units[0].applied.some(trace=>trace.ruleId===shieldRule));
  const selection=service.state.units[0].selections[0];assert.equal(selection.sourceEquipmentIdentity,shieldRule);
- assert.deepEqual(selection.sourceEquipmentProvenance,index.get(shieldRule).provenance);assert.equal(selection.physicalQuantity,1);
+ assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(index.get(shieldRule)));assert.equal(selection.physicalQuantity,1);
 });
 check('confirmed-model-equipment-effect-isolated-from-other-models-and-unit-copy',()=>{
  const service=createDarkAngelsRosterService(book),text=header+unitText(shieldUnit,{modelGear:'1x Storm Shield'})+unitText(shieldUnit,{unitGear:'1x Storm Shield'});
@@ -69,7 +71,7 @@ check('unknown-and-resolved-points-feed-existing-warning-renderer',()=>{
  const document={createElement:element},service=createDarkAngelsRosterService(book),id='unit-da-9f8f2ccbdb7d4c72857c';
  ready(service,header+unitText(id));assert.equal(service.points.status,'UNRESOLVED');assert.equal(service.points.totalPoints,null);
  const warning=renderRosterPointsStatus(document,{service,titleForId:key=>index.get(key)?.data.title});
- assert.match(warning.textContent,/Points cannot be calculated reliably/);assert.match(warning.textContent,/Cyclone/i);
+ assert.match(warning.textContent,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);assert.doesNotMatch(warning.textContent,/Points cannot be calculated reliably/);assert.match(warning.textContent,/Cyclone/i);
  const saved=service.snapshot(),forged=clone(saved);forged.units[0].equipmentContextKnown=true;
  assert.throws(()=>service.load(forged));assert.deepEqual(service.snapshot(),saved);
  ready(service,header+unitText(id,{unitGear:'1x Cyclone Missile Launcher'}),{}, {replaceExisting:true});
@@ -82,7 +84,7 @@ check('quantity-identity-and-owner-mutations-cannot-replace-saved-roster',()=>{
  for(const corrupt of [
   value=>{value.units[0].modelRows[0].selections[0].physicalQuantity+=1;},
   value=>{value.units[0].modelRows[0].selections[0].sourceEquipmentIdentity='wrong-id';},
-  value=>{value.units[0].modelRows[0].selections[0].sourceEquipmentProvenance.sha256='00';},
+  value=>{sourceFixture(value.units[0].modelRows[0].selections[0]).sourceEquipmentProvenance.sha256='00';},
   value=>{value.units[0].modelRows[0].selections[0].canonicalFieldPaths[shieldRule]=['/wrong'];},
   value=>{value.units[0].modelRows[0].selections.push(clone(value.units[0].modelRows[0].selections[0]));},
   value=>{value.units[0].mfmUnitRecordId='foreign-price';},

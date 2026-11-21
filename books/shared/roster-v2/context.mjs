@@ -1,4 +1,7 @@
 /** Roster UNIT instances. Composition/profile scopes are not individual-model simulations. */
+import {getRecordedSourceIdentity,registerBookSources} from '../source-refs-v2/source-refs.mjs';
+import {epicHeroUnitIds} from './compatibility-context.mjs';
+import {createKeywordAccess,keywordValues,requiredKeywordField,keywordField} from './keywords.mjs';
 const copy = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 const positive = value => Number.isSafeInteger(value) && value > 0;
@@ -40,6 +43,7 @@ export function withRosterDetachments(api) {
       conditions.map(node=>bind(node,node.subject==='ROSTER'?{...context,subject:'ROSTER'}:context)),context)};
 }
 export function validateRoster(book, state, policies) {
+  registerBookSources(book);
   state = normalizeDetachments(state);
   assert(state?.schema === 'roster-v2/roster' && state.bookId === book.bookId, 'Invalid roster domain');
   assert(typeof state.rosterId === 'string' && state.rosterId.length, 'Missing physical namespace');
@@ -121,7 +125,7 @@ export function validateRoster(book, state, policies) {
             const ownCaption=selection.canonicalEquipmentIds.includes(reference.entityId)&&
               selection.canonicalFieldPaths?.[reference.entityId]?.includes(reference.path);
             const linkedCaption=record?.kind==='WARGEAR_OPTION'&&reference.path==='/text'&&
-              record.provenance?.sourceId&&selected?.provenance?.sourceId&&selected.kind==='DATASHEET_SECTION'&&
+              getRecordedSourceIdentity(record,{book})&&getRecordedSourceIdentity(selected,{book})&&selected.kind==='DATASHEET_SECTION'&&
               selected.parentId===canonical.id&&selection.canonicalProfileIds.length===0&&
               (book.rosterEquipmentCaptionBindings||[]).some(binding=>{
                 const paths=binding.canonicalFieldPaths?.[selectedId],actual=selection.canonicalFieldPaths?.[selectedId];
@@ -185,6 +189,33 @@ export function validateRoster(book, state, policies) {
 export function selections(unit) {
   return [...(unit.selections || []), ...(unit.modelRows || []).flatMap(row => [...(row.selections || []), ...(row.loadouts || []).flatMap(loadout => loadout.selections || [])])];
 }
+/** Read the exact selected source occurrences of one physical UNIT. Positive
+ * UNIT, MODEL-row and loadout quantities share this presentation predicate;
+ * equipment names, recipients and other formed components are not evidence. */
+export function createSelectedSourceFieldPredicate(unit) {
+  const selected=selections(unit).filter(selection=>selection.physicalQuantity>0);
+  const fields=new Set(selected
+    .flatMap(selection=>(selection.sourceReferences||[]).map(reference=>JSON.stringify([reference.entityId,reference.path]))));
+  const items=new Set(selected.flatMap(selection=>[...(selection.canonicalEquipmentIds||[]),...(selection.canonicalProfileIds||[])]));
+  return (entityId,sourcePath,equipmentIds=[],memberIds=[])=>{
+    if(memberIds.length){
+      const modelRows=(unit.modelRows||[]).filter(row=>row.quantity>0&&memberIds.includes(row.compositionMemberId||row.canonicalProfileId));
+      return createSelectedSourceFieldPredicate({modelRows})(entityId,sourcePath,equipmentIds);
+    }
+    return typeof entityId==='string'&&typeof sourcePath==='string'&&fields.has(JSON.stringify([entityId,sourcePath]))||equipmentIds.some(id=>items.has(id));
+  };
+}
+/** Optional blocks require their exact occurrence. Standalone equipment
+ * abilities may instead cite an already declared canonical equipment owner. */
+export function sourceEquipmentSelected(rule,sourcePath,selectedField,clause) {
+  const path=sourcePath[0]==='blocks'?['blocks',sourcePath[1],'text']:sourcePath;
+  if(rule.data.blocks?.[path[1]]?.wargearAbility===true&&path[0]==='blocks')
+    return selectedField(rule.id,'/'+path.join('/'));
+  if(rule.data.wargearAbility!==true)return true;
+  const clauses=clause?[clause]:rule.ruleContract?.clauses||[];
+  const equipmentIds=clauses.map(value=>value.canonicalEquipmentRequirement?.entityId).filter(Boolean);
+  return selectedField(rule.id,'/'+path.join('/'),equipmentIds.length?equipmentIds:[rule.id]);
+}
 export function attachmentCheck(book, state, policies, leaderInstanceId, bodyguardInstanceId) {
   const bad = reason => ({valid:false, reason});
   const source = state.units.find(u => u.instanceId === leaderInstanceId), target = state.units.find(u => u.instanceId === bodyguardInstanceId);
@@ -235,15 +266,17 @@ export function formRoster(book, state) {
       const unit = records.get(binding.unitId), profile = records.get(binding.profileId);
       assert(unit?.kind === 'DATASHEET' && profile?.kind === 'PROFILE' && profile.parentId === unit.id &&
         unit.data.profileIds.includes(profile.id) && !profileBindings.has(profile.id) &&
-        Array.isArray(binding.intrinsicKeywords) && binding.intrinsicKeywords.every(key => typeof key === 'string' && key),
+        Array.isArray(requiredKeywordField(binding, "intrinsicKeywords")) && requiredKeywordField(binding, "intrinsicKeywords").every(key => typeof key === 'string' && key),
         'Unresolved or duplicate intrinsic MODEL binding');
       profileBindings.set(profile.id, binding);
     }
     for (const unit of book.entities.filter(e => e.kind === 'DATASHEET'))
       assert(unit.data.profileIds.every(id => profileBindings.has(id)), 'Incomplete intrinsic MODEL bindings');
   }
+  const epicOwners=epicHeroUnitIds(book);
+  const keywordAccess=createKeywordAccess(book,{entities:records});
   const units = state.units.map(raw => {
-    const canonical = records.get(raw.canonicalUnitId), keywords = [...canonical.data.keywords,...canonical.data.factionKeywords];
+    const canonical = records.get(raw.canonicalUnitId), keywords = keywordAccess.allUnitKeywords(canonical);
     // One semantic MODEL profile per imported composition/loadout group. Quantity
     // never creates physical infantry IDs. Singleton units already identify their
     // sole model; explicit one-model rows can additionally identify that row.
@@ -265,16 +298,17 @@ export function formRoster(book, state) {
         });
         return {subject:'MODEL',scopeId,quantity:group.quantity,modelInstanceId,unitInstanceId:raw.instanceId,
           canonicalProfileId:row.canonicalProfileId,canonicalUnitId:raw.canonicalUnitId,
-          ...(profileBindings ? {intrinsicKeywords:[...profileBindings.get(row.canonicalProfileId).intrinsicKeywords]} : {}),
-          keywords:[...(profileBindings?.get(row.canonicalProfileId).intrinsicKeywords || keywords)],
+          ...(profileBindings ? {intrinsicKeywords:keywordValues(profileBindings.get(row.canonicalProfileId),'intrinsicKeywords')} : {}),
+          keywords:profileBindings?keywordValues(profileBindings.get(row.canonicalProfileId),'intrinsicKeywords'):keywordAccess.modelKeywords(canonical,row.canonicalProfileId),
           profile:copy(records.get(row.canonicalProfileId).data),abilities:canonical.data.ruleReferenceIds.flatMap(id=>copy(book.rosterReferenceSemantics?.[id]?.abilities || [])),metrics:{},
           selections:copy(selected),weapons};
       });
     });
-    const modelVocabulary = profileBindings ? new Set(canonical.data.profileIds.flatMap(id => profileBindings.get(id).intrinsicKeywords)) : null;
+    const modelVocabulary = profileBindings ? new Set(canonical.data.profileIds.flatMap(id => keywordValues(profileBindings.get(id),'intrinsicKeywords'))) : null;
     const unitKeywords = modelVocabulary ? [...new Set([...keywords.filter(key => !modelVocabulary.has(key)),
-      ...profiles.flatMap(profile => profile.keywords)])].sort() : [...keywords];
-    return {...copy(raw),subject:'UNIT',intrinsicKeywords:[...keywords],keywords:unitKeywords,profiles,metrics:{},applied:[],conditional:[],
+      ...profiles.flatMap(profile => requiredKeywordField(profile))])].sort() : [...keywords];
+    // Preserve imported ownership and costs in state; only executable projection is gated.
+    return {...copy(raw),...(epicOwners.has(raw.canonicalUnitId)?{enhancementIds:[],...(raw.enhancementAssignments?{enhancementAssignments:[]}:{})}:{}),subject:'UNIT',intrinsicKeywords:[...keywords],keywords:unitKeywords,profiles,metrics:{},applied:[],conditional:[],
       weapons:(raw.selections || []).flatMap(s => s.physicalQuantity ? s.canonicalProfileIds.map(id => ({modelInstanceId:raw.startingStrength===1?raw.instanceId:null,canonicalProfileId:id,physicalQuantity:s.physicalQuantity,selectionKey:s.selectionKey,data:copy(records.get(id).data)})) : [])};
   });
   const formedUnits = [];
@@ -291,7 +325,7 @@ export function formRoster(book, state) {
   return projection;
 }
 export function refreshFormedKeywords(projection) {
-  for (const group of projection.formedUnits) group.keywords = [...new Set(group.memberInstanceIds.flatMap(id=>projection.units.find(u=>u.instanceId===id).keywords))].sort();
+  for (const group of projection.formedUnits) group.keywords = [...new Set(group.memberInstanceIds.flatMap(id=>requiredKeywordField(projection.units.find(u=>u.instanceId===id))))].sort();
 }
 export function predicateContext(state, projection, unitId, subject, modelId, extra = {}) {
   if (subject === 'ROSTER') return {subject,roster:{detachmentIds:[...state.detachmentIds],...extra},battle:{}};
@@ -304,8 +338,8 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
   const members = group ? projection.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)) : [unit];
   const roster = {detachmentIds:[...state.detachmentIds],leading:Boolean(group?.leaderInstanceIds.includes(unitId)),attached:Boolean(group),
     bodyguardId:group ? projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId : null,
-    characterModelCount:members.reduce((n,u)=>n+u.profiles.filter(m=>m.keywords.includes('CHARACTER')).reduce((count,m)=>count+m.quantity,0),0),
-    hasFriendlyCharacterLeader:Boolean(group?.leaderInstanceIds.some(id=>projection.units.find(u=>u.instanceId===id).intrinsicKeywords.includes('CHARACTER'))),
+    characterModelCount:members.reduce((n,u)=>n+u.profiles.filter(m=>requiredKeywordField(m).includes('CHARACTER')).reduce((count,m)=>count+m.quantity,0),0),
+    hasFriendlyCharacterLeader:Boolean(group?.leaderInstanceIds.some(id=>requiredKeywordField(projection.units.find(u=>u.instanceId===id), "intrinsicKeywords").includes('CHARACTER'))),
     hasAtLeastTwoLeaderUnits:(group?.leaderInstanceIds.length || 0)>=2,
     modelFromYourArmy:true,isBodyguardModel:Boolean(group&&group.bodyguardInstanceId===unitId),
     ...extra};
@@ -318,8 +352,8 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
   return {subject,instanceId:unit.instanceId,formedUnitId:group?.formedUnitId||null,
     ...(subject==='MODEL'?{modelScopeId:model.scopeId,modelInstanceId:model.modelInstanceId}:{}),
     unitId:subject==='MODEL'?unit.canonicalUnitId:group?projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId:unit.canonicalUnitId,
-    owner:{unitId:unit.canonicalUnitId,keywords:new Set(subject==='MODEL'?model.keywords:unit.keywords),unknownKeywords:new Set()},
-    modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(subject==='MODEL' ? model.intrinsicKeywords || unit.intrinsicKeywords : unit.intrinsicKeywords),keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
+    owner:{unitId:unit.canonicalUnitId,keywords:new Set(subject==='MODEL'?requiredKeywordField(model):requiredKeywordField(unit)),unknownKeywords:new Set()},
+    modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(subject==='MODEL' ? requiredKeywordField(model, "intrinsicKeywords") || requiredKeywordField(unit, "intrinsicKeywords") : requiredKeywordField(unit, "intrinsicKeywords")),keywords:new Set(subject==='MODEL'?keywordField(model):group?requiredKeywordField(group):requiredKeywordField(unit)),abilities:new Set(abilityNames),roster,battle:{}};
 }
 
 // Typed, book-bound roster prerequisites. This checks attachment permission;
@@ -327,12 +361,12 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
 export function attachmentPermission(book,state,policy,source,target) {
   const detachedIds=state.detachmentIds||[];
   if(policy.availability&&!policy.availability.some(requirement=>
-    detachedIds.includes(requirement.detachmentId)&&source.enhancementIds.includes(requirement.enhancementId)))return false;
+    detachedIds.includes(requirement.detachmentId)&&!epicHeroUnitIds(book).has(source.canonicalUnitId)&&source.enhancementIds.includes(requirement.enhancementId)))return false;
   if(!book.rosterAttachmentConstraints?.length)return true;
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
+  const keywordAccess=createKeywordAccess(book,{entities:records});
   const keywords=(unit,constraint)=>{
-    const data=records.get(unit.canonicalUnitId).data;
-    return new Set([...data.keywords,...data.factionKeywords,
+    return new Set([...keywordAccess.allUnitKeywords(unit.canonicalUnitId),
       ...selections(unit).flatMap(selection=>(selection.canonicalOptionIds||[]).map(id=>constraint.optionKeywords[id]).filter(Boolean))]);
   };
   for(const constraint of book.rosterAttachmentConstraints||[]) {

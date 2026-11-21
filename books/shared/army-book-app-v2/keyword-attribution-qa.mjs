@@ -3,6 +3,8 @@
  * existing source-owned contracts and constructed physical selections. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
+import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import {projectEffectiveInstance} from '../roster-v2/effective-instance.mjs';
 import {projectInstanceCards,projectPersonalBook} from './personal.mjs';
 import {createSyntheticPersonalFixture} from './personal-datasheet-qa.mjs';
@@ -11,15 +13,15 @@ import {createAdMechRosterRuntime} from '../../adeptus-mechanicus/v2/roster-runt
 import {createSpaceMarinesRosterRuntime} from '../../space-marines/v2/roster-runtime.mjs';
 import {createTauBrowserRoster} from '../../tau-empire/v2/roster-boot.mjs';
 import {createTyranidsBrowserRoster} from '../../tyranids/v2/roster-boot.mjs';
-const clone=structuredClone,read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8'));
+const clone=structuredClone,read=p=>parseSourceFixtureJSON(fs.readFileSync(new URL(p,import.meta.url),'utf8'));
 let checks=0,mutations=0;
 function fixture(nested){
  const f=createSyntheticPersonalFixture('keyword-source-'+nested,nested),{id}=f;
  for(const entity of f.model.entities.filter(e=>e.kind==='DATASHEET'))Object.assign(entity.data,{title:entity.data.name,sectionIds:[],ruleReferenceIds:[],weaponIds:[],wargearOptionIds:[]});
  const rule=f.model.entities.find(e=>e.id===id('equipment-rule'));
- rule.provenance={sourceId:id('source')};
- const effect={id:id('effect'),operation:'GRANT_UNIT_KEYWORD',keyword:'GRANTED',targetSubject:'UNIT',unitScope:'PHYSICAL'};
- rule.ruleContract={clauses:[{id:'grant',rosterEffects:[effect]}]};
+ sourceFixture(rule).provenance={sourceId:id('source')};
+ const effect={id:id('effect'),operation:'GRANT_UNIT_KEYWORD',keyword:'GRANTED',recipientId:'keyword-recipient'};
+ rule.ruleContract={clauses:[{id:'grant',recipientStatus:'RECORDED',recipients:[{id:'keyword-recipient',who:'UNIT',side:'FRIENDLY',from:'SOURCE_UNIT',scope:'PHYSICAL',how:'ROSTER'}],rosterEffects:[effect]}]};
  const make=(unit,effective)=>({...clone(unit),intrinsicKeywords:['INFANTRY','SYNTHETIC'],keywords:[...effective.keywords],weapons:[],applied:[],conditional:[],
   profiles:effective.profiles.map(p=>({...clone(p),canonicalProfileId:p.id,profile:clone(f.model.entities.find(e=>e.id===p.id).data),intrinsicKeywords:[...p.keywords],weapons:[]}))});
  const raw=make(f.unit,f.effective),peer=make(f.duplicate.unit,f.duplicate.effective);
@@ -45,14 +47,15 @@ for(const nested of [false,true]){
  f.raw.keywords=f.raw.keywords.filter(word=>word!=='GRANTED');
  assert.equal(projectEffectiveInstance(f.model,f.projection,f.raw.instanceId).keywordSources,undefined);checks++;
  for(const alter of [x=>x.trace.effectId='missing',x=>x.trace.clauseId='missing',x=>x.trace.targetInstanceId=x.peer.instanceId,
-  x=>x.effect.referencedRuleId='missing',x=>{x.effect.referencedRuleId=x.rule.id;x.effect.provenance={canonicalRuleId:'contradiction'};}]){
+  x=>x.effect.referencedRuleId='missing',x=>{x.effect.referencedRuleId=x.rule.id;sourceFixture(x.effect).provenance={canonicalRuleId:'contradiction'};}]){
   const bad=fixture(nested);alter(bad);
   assert.throws(()=>projectEffectiveInstance(bad.model,bad.projection,bad.raw.instanceId),/keyword grant/);mutations++;
  }
 }
 {
  const f=fixture(true),profile=f.raw.profiles[0];
- Object.assign(f.effect,{operation:'GRANT_MODEL_KEYWORD',targetSubject:'MODEL'});delete f.effect.unitScope;
+ f.effect.operation='GRANT_MODEL_KEYWORD';
+ Object.assign(f.rule.ruleContract.clauses[0].recipients[0],{who:'MODEL',from:'SOURCE_UNIT_MODELS'});delete f.rule.ruleContract.clauses[0].recipients[0].scope;
  Object.assign(f.trace,{operation:f.effect.operation,targetCompositionId:profile.scopeId,targetProfileId:profile.canonicalProfileId,targetModelInstanceId:profile.modelInstanceId});
  profile.keywords.push('GRANTED');
  const effective=projectEffectiveInstance(f.model,f.projection,f.raw.instanceId);
@@ -102,10 +105,10 @@ function native(runtime,book,payload,s,keyword,origin){
  assert.equal(runtime.import(`+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Mont'ka\n1x Commander In Coldstar Battlesuit (100 pts)\n• 1x Commander in Coldstar Battlesuit: 1x Marker Drone\n1x Commander In Coldstar Battlesuit (100 pts)\n• 1x Commander in Coldstar Battlesuit\n`).status,'READY');
  const e=native(runtime,b,p,runtime.snapshot(),'MARKERLIGHT','drone-marker-drone');
  assert.notEqual(e.keywordSources[0].canonicalRuleId,e.keywordSources[0].ruleId,'Canonical grant definition, not equipment-selection permission');
- assert.ok(e.keywordSources[0].effectProvenance.sourceEvidence);checks++;
+ assert.ok(sourceSnapshot(e.keywordSources[0],{slot:'effectProvenance'}).sourceEvidence);checks++;
  const snapshot=runtime.snapshot();
  assert.ok(projectPersonalBook(p,snapshot).allowedIds.has('drone-marker-drone'),'Canonical equipment source is readable without bypassing reference guards');checks++;
- for(const alter of [s=>s.physicalQuantity=0,s=>s.sourceEquipmentProvenance.sha256='foreign',s=>s.canonicalEquipmentIds=['missing'],s=>s.sourceEquipmentIdentity='drone-shield-drone']){
+ for(const alter of [s=>s.physicalQuantity=0,s=>sourceFixture(s).sourceEquipmentProvenance.sha256='foreign',s=>s.canonicalEquipmentIds=['missing'],s=>s.sourceEquipmentIdentity='drone-shield-drone']){
   const bad=clone(snapshot),selection=bad.units[0].modelRows[0].selections[0];alter(selection);
   assert.ok(!projectPersonalBook(p,bad).allowedIds.has('drone-marker-drone'));mutations++;
  }

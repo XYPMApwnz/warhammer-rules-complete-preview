@@ -20,7 +20,6 @@
     "warpstrike-champions|akshur-s-binding-runes": "enhancement-akshurs-binding-runes"
   },
   "sharedArmyBookApp": true,
-  "compatibleRulesMatrix": true,
   "classifiedAbilityPresentation": true,
   "glossaryV2CompatibilityTerms": true,
   "rosterCatalog": {
@@ -69,13 +68,17 @@
     "codexParity": "content/chaos-space-marines-codex-parity.en.json",
     "effectContracts": "sources/chaos-space-marines-effect-contracts.v1.json",
     "wargearOptionContracts": "sources/chaos-space-marines-wargear-option-contracts.v1.json",
-    "mfmCurrentCapture": "sources/official-mfm-v1.5.json",
+    "mfmCurrentCapture": "../../mfm/sources/v1.6/chaos-space-marines.json",
     "wahaCurrentCorpus": "sources/waha-11e-current-2026-09-29/corpus.json",
     "mfmCrossFactionDependencies": [
       "sources/official-mfm-v1.5-khorne-berzerkers.json",
       "sources/official-mfm-v1.5-world-eaters-csm-dependency.html",
       "sources/official-mfm-v1.5-rubric-marines.json",
       "sources/official-mfm-v1.5-thousand-sons-csm-dependency.html"
+    ],
+    "mfmAlliedCaptures": [
+      "../../mfm/sources/v1.6/csm-khorne-berzerkers.json",
+      "../../mfm/sources/v1.6/csm-rubric-marines.json"
     ]
   },
   "generatedOutputs": [
@@ -88,16 +91,214 @@
       "required": true,
       "tracked": true,
       "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/chaos-space-marines/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
     }
-  ]
+  ],
+  "passport": {
+    "schema": "army-book-passport/v1",
+    "edition": "11E",
+    "sources": {
+      "enrollment": "books/chaos-space-marines/v2/sources/enrollment.json",
+      "effective": "books/chaos-space-marines/v2/generated/effective.json",
+      "manifest": "books/chaos-space-marines/sources/source-manifest.json",
+      "inputs": [
+        {
+          "role": "factionPack",
+          "path": "books/chaos-space-marines/content/chaos-space-marines-faction-pack.en.json"
+        },
+        {
+          "role": "codexDatasheets",
+          "path": "books/chaos-space-marines/content/chaos-space-marines-codex-datasheets.en.json"
+        },
+        {
+          "role": "codexWargear",
+          "path": "books/chaos-space-marines/content/chaos-space-marines-codex-wargear.en.json"
+        },
+        {
+          "role": "relatedRules",
+          "path": "books/chaos-space-marines/content/chaos-space-marines-related-rules.en.json"
+        },
+        {
+          "role": "manifest",
+          "path": "books/chaos-space-marines/sources/source-manifest.json"
+        },
+        {
+          "role": "codexParity",
+          "path": "books/chaos-space-marines/content/chaos-space-marines-codex-parity.en.json"
+        },
+        {
+          "role": "effectContracts",
+          "path": "books/chaos-space-marines/sources/chaos-space-marines-effect-contracts.v1.json"
+        },
+        {
+          "role": "wargearOptionContracts",
+          "path": "books/chaos-space-marines/sources/chaos-space-marines-wargear-option-contracts.v1.json"
+        },
+        {
+          "role": "currentMfmRelease",
+          "path": "mfm/current.json"
+        },
+        {
+          "role": "wahaCurrentCorpus",
+          "path": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json"
+        },
+        {
+          "role": "mfmCrossFactionDependencies",
+          "path": "books/chaos-space-marines/sources/official-mfm-v1.5-khorne-berzerkers.json"
+        },
+        {
+          "role": "mfmCrossFactionDependencies",
+          "path": "books/chaos-space-marines/sources/official-mfm-v1.5-world-eaters-csm-dependency.html"
+        },
+        {
+          "role": "mfmCrossFactionDependencies",
+          "path": "books/chaos-space-marines/sources/official-mfm-v1.5-rubric-marines.json"
+        },
+        {
+          "role": "mfmCrossFactionDependencies",
+          "path": "books/chaos-space-marines/sources/official-mfm-v1.5-thousand-sons-csm-dependency.html"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/chaos-space-marines/v2/official-updates.json"
+        }
+      ]
+    },
+    "build": {
+      "steps": [
+        {
+          "book": "chaos-space-marines",
+          "producer": "books/chaos-space-marines/v2/build.py",
+          "args": [],
+          "runtime": "python",
+          "outputs": [
+            "books/chaos-space-marines/v2/generated/base.json",
+            "books/chaos-space-marines/v2/generated/effective.json",
+            "books/chaos-space-marines/v2/generated/factual-census.json"
+          ]
+        },
+        {
+          "book": "chaos-space-marines",
+          "producer": "books/chaos-space-marines/v2/rule-contract-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/chaos-space-marines/v2/generated/rule-contracts.json",
+            "books/chaos-space-marines/v2/generated/rule-contract-census.json",
+            "books/chaos-space-marines/v2/generated/rule-contract-blockers.json",
+            "books/chaos-space-marines/v2/generated/rule-contract-compatibility.json"
+          ]
+        },
+        {
+          "book": "chaos-space-marines",
+          "producer": "books/chaos-space-marines/v2/roster-import-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/chaos-space-marines/v2/generated/roster-import.json"
+          ]
+        },
+        {
+          "book": "chaos-space-marines",
+          "producer": "books/chaos-space-marines/v2/roster-runtime-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/chaos-space-marines/v2/generated/roster-runtime.json"
+          ]
+        },
+        {
+          "book": "chaos-space-marines",
+          "producer": "books/chaos-space-marines/v2/app-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/chaos-space-marines/v2/generated/app-presentation.json"
+          ]
+        }
+      ],
+      "postBuildSteps": [
+        {
+          "phase": "model-aliases",
+          "step": {
+            "book": "chaos-space-marines",
+            "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+            "outputs": [
+              "books/chaos-space-marines/v2/model-name-aliases.json"
+            ],
+            "args": [
+              "--book=chaos-space-marines",
+              "--write"
+            ],
+            "runtime": "node"
+          }
+        }
+      ]
+    },
+    "qa": {
+      "script": "qa:csm",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
+    },
+    "mfm": {
+      "currentRelease": "mfm/current.json",
+      "bindingPath": null,
+      "scope": "chaos-space-marines"
+    },
+    "runtime": {
+      "executionArtifact": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "conditionArtifact": "books/chaos-space-marines/v2/generated/roster-runtime.json"
+    },
+    "canonical": {
+      "enhancementIdentity": {
+        "strategy": "item-id",
+        "builtInExact": true
+      }
+    },
+    "modelNames": {
+      "enabled": true,
+      "artifact": "books/chaos-space-marines/v2/generated/roster-import.json",
+      "metadata": {
+        "mode": "module-export",
+        "path": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+        "exportName": "buildImportBindings"
+      },
+      "sourceDocument": "books/chaos-space-marines/sources/bsdata-chaos-space-marines-11e.json",
+      "joins": "books/chaos-space-marines/v2/model-name-source-bindings.json"
+    },
+    "official": {
+      "input": "books/chaos-space-marines/v2/official-updates.json",
+      "stage": "source-corpus"
+    },
+    "inheritance": {
+      "owners": []
+    },
+    "publication": {
+      "manifest": "tools/pages-runtime-manifest.json"
+    },
+    "audit": {
+      "conditionSchemas": [
+        "books/chaos-space-marines/v2/rule-contract-build.mjs"
+      ],
+      "originalSchema": {
+        "mode": "embedded-only",
+        "sourcePath": null,
+        "auxiliaryPath": null,
+        "constantName": null
+      },
+      "fieldExports": [],
+      "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/chaos-space-marines/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      },
+      "metadataPins": []
+    },
+    "keywords": {
+      "format": "composition-memberships"
+    }
+  }
 }

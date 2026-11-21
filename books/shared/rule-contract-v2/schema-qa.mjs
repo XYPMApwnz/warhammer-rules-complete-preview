@@ -1,9 +1,12 @@
+// The isolated guard child allocates no temporary files and imports no repository helper.
+const {createQaTempDir,cleanupQaTempDir}=process.argv.includes('--isolated')?{}:await import('../../../tests/helpers/qa-temp.mjs');
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {createRuleContractSchema,subjects,levels,publicResult,predicateTypes} from './schema.mjs';
+import {compileBookRecipients} from './recipients.mjs';
 
 // These synthetic books deliberately share a field name with incompatible
 // definitions. Neither their facts nor their registries come from a real book.
@@ -37,10 +40,10 @@ function check(name,run){run();checks.push(name);}
 const evaluate=(node,extra={})=>a.evaluatePredicate(node,context(node?.subject,extra));
 
 check('independent canonical owners and schema IDs',()=>{
-  assert.deepEqual(a.validateContracts(amber),{rules:1,status:'PASS'});
-  assert.deepEqual(b.validateContracts(blue),{rules:1,status:'PASS'});
-  assert.throws(()=>a.validateContracts(blue),/unknown contract schema/);
-  assert.throws(()=>b.validateContracts(amber),/unknown contract schema/);
+  assert.deepEqual(a.validateContractDeclarations(amber),{rules:1,status:'PASS'});
+  assert.deepEqual(b.validateContractDeclarations(blue),{rules:1,status:'PASS'});
+  assert.throws(()=>a.validateContractDeclarations(blue),/unknown contract schema/);
+  assert.throws(()=>b.validateContractDeclarations(amber),/unknown contract schema/);
   const validate=node=>a.validatePredicate(node,node.subject,amber,amber.entities[0]);
   for(const [predicate,subject,id] of [['MODEL_ID','MODEL','amber:profile'],['UNIT_ID','UNIT','amber:unit'],
     ['UNIT_ID','FORMED_ATTACHED_UNIT','amber:unit'],['BODYGUARD_ID','UNIT','amber:unit'],['DETACHMENT','ROSTER','amber:detachment']]) {
@@ -50,10 +53,22 @@ check('independent canonical owners and schema IDs',()=>{
   }
   assert.throws(()=>validate(atom('MODEL_ID','MODEL','STATIC',{id:'amber:unit'})),/impossible identity subject/);
   const poisoned=structuredClone(amber);poisoned.entities[0].ruleContract.sourceId='wrong-source';
-  assert.throws(()=>a.validateContracts(poisoned),/provenance/);
+  assert.throws(()=>a.validateContractDeclarations(poisoned),/provenance/);
   poisoned.entities[0].ruleContract=structuredClone(amber.entities[0].ruleContract);
   poisoned.entities.push(structuredClone(poisoned.entities[0]));
-  assert.throws(()=>a.validateContracts(poisoned),/duplicate independent semantic owner/);
+  assert.throws(()=>a.validateContractDeclarations(poisoned),/duplicate independent semantic owner/);
+});
+
+check('public contract validation requires canonical recipients',()=>{
+  const declaration=structuredClone(amber);
+  declaration.entities[0].ruleContract.clauses.push({id:'source-clause',sourceFields:[['text']],
+    roles:[],conditions:[],rosterClassification:'DISPLAY_ONLY',effectRecipientRoleIds:[]});
+  assert.deepEqual(a.validateContractDeclarations(declaration),{rules:1,status:'PASS'});
+  assert.throws(()=>a.validateContracts(declaration),/missing canonical recipient declaration/);
+  const canonical=compileBookRecipients(declaration);
+  assert.deepEqual(a.validateContracts(canonical),{rules:1,status:'PASS'});
+  canonical.entities[0].ruleContract.clauses[0].effectRecipientRoleIds=[];
+  assert.throws(()=>a.validateContracts(canonical),/legacy clause recipient addresses/);
 });
 
 check('MODEL UNIT FORMED_ATTACHED_UNIT ROSTER stay distinct',()=>{
@@ -172,19 +187,18 @@ check('malformed predicates fail closed instead of becoming UNKNOWN',()=>{
     assert.throws(()=>createRuleContractSchema({stateFields}));
 });
 
-// Run the same guard with only these two files present. This catches accidental
+// Run the same guard with only the shared schema and recipient modules present. This catches accidental
 // factual imports without depending on real book data or its regression QA.
 if(!process.argv.includes('--isolated')) {
-  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'rule-contract-kernel-'));
-  const files=['schema.mjs','schema-qa.mjs'];
+  const directory=createQaTempDir('rule-contract-kernel-');
+  const files=['schema.mjs','recipients.mjs','schema-qa.mjs'];
   try {
     for(const file of files)fs.copyFileSync(new URL(file,import.meta.url),path.join(directory,file));
     const output=execFileSync(process.execPath,[path.join(directory,'schema-qa.mjs'),'--isolated'],{encoding:'utf8',cwd:directory});
     assert.equal(JSON.parse(output).status,'PASS');
     checks.push('guards run with no book files present');
   } finally {
-    for(const file of files)if(fs.existsSync(path.join(directory,file)))fs.unlinkSync(path.join(directory,file));
-    fs.rmdirSync(directory);
+    cleanupQaTempDir(directory);
   }
 }
 console.log(JSON.stringify({status:'PASS',sharedGuards:checks.length,checks}));

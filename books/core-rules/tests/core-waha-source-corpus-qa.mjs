@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const sourceDir = existsSync(join(here, 'waha-core-corpus.v1.json'))
   ? here
-  : join(here, '..', 'sources', 'waha-core-2026-09-25');
+  : join(here, '..', 'sources', 'waha-core-2026-11-11');
 const corpusPath = process.argv[2] ?? join(sourceDir, 'waha-core-corpus.v1.json');
 const manifestPath = process.argv[3] ?? join(sourceDir, 'waha-core-corpus.manifest.json');
 const defectsPath = join(sourceDir, 'known-source-defects.v1.json');
@@ -19,11 +19,11 @@ const golden = JSON.parse(corpusRaw);
 const manifest = JSON.parse(manifestRaw);
 const defects = JSON.parse(readFileSync(defectsPath));
 
-const EXPECTED_FINGERPRINT = '7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F';
+const EXPECTED_FINGERPRINT = '2E39280BEB3D0C92F87F4F3DB231CA3BC40192C12575AF998E5D2A2DB684C14A';
 const EXPECTED = {
-  core: { numbered: 177, faq: 66, errata: 6, uru: 0, total: 249 },
-  appendix: { numbered: 106, faq: 0, errata: 1, uru: 5, total: 112 },
-  effective: { numbered: 275, faq: 66, errata: 7, uru: 5, total: 353, numberedOverlap: 8 },
+  core: { numbered: 185, faq: 73, errata: 7, uru: 0, total: 265 },
+  appendix: { numbered: 108, faq: 0, errata: 1, uru: 5, total: 114 },
+  effective: { numbered: 282, faq: 73, errata: 8, uru: 5, total: 368, numberedOverlap: 11 },
 };
 
 function canonical(value) {
@@ -130,7 +130,7 @@ assert.deepEqual(
 verify(golden);
 assert.equal(defects.schema,'waha-core-known-source-defects/v1');
 assert.equal(defects.corpusBinding.corpusFingerprint,EXPECTED_FINGERPRINT);
-assert.deepEqual(defects.defects.map(item=>item.kind).sort(),['KNOWN_SOURCE_MARKUP_DEFECT','KNOWN_SOURCE_NAVIGATION_DEFECT','KNOWN_SOURCE_SEMANTIC_ANOMALY']);
+assert.deepEqual(defects.defects.map(item=>item.kind).sort(),['KNOWN_SOURCE_MARKUP_DEFECT','KNOWN_SOURCE_NAVIGATION_DEFECT']);
 for(const defect of defects.defects){
   const unit=golden.pages.flatMap(page=>[...page.numbered,...page.faqs,...page.errata,...page.universalRulesUpdates]).find(item=>item.id===defect.source.unitId);
   assert(unit,`${defect.id}: missing bound source unit`);

@@ -1,3 +1,4 @@
+import {parseProducerJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Source-reviewed SM bridges into the existing central MFM owner. Prices are
  * never copied into Army facts. Only resolved physical selections are charged;
  * neither a Datasheet nor a permission to select equipment proves a purchase. */
@@ -6,9 +7,10 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {verifyFrozenSource} from '../../shared/tools/source-ingestion-contract.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone;
 // Persistent identities were checked against the accepted source occurrences,
 // replacement clauses, equipment FIELDs and weapon tables, not title equality.
@@ -46,15 +48,17 @@ export const paidOptionReview=[
 ];
 
 export function createSpaceMarinesPaidOptionBindings({facts=read('./generated/effective.json'),catalog=createEffectiveMfmCatalog().catalog}={}){
+  facts=prepareSourceProducer(facts);
  const entities=new Map(facts.entities.map(row=>[row.id,row])),hashes=new Map();
- const snapshot=catalog.sourceSnapshots.find(row=>row.sourceId==='space-marines-mfm-v1.6');
+ const selected=getCurrentMfmSource('space-marines');
+ const snapshot=catalog.sourceSnapshots.find(row=>row.sourceId===selected.sourceId&&!row.historical);
  assert.ok(snapshot,'Missing accepted MFM source');
  const captureBytes=fs.readFileSync(new URL('../../../'+snapshot.sourcePath,import.meta.url));
  const verification=verifyFrozenSource(snapshot.sourceId,{repoRoot:fileURLToPath(new URL('../../../',import.meta.url))});
  assert.equal(verification.aggregateArtifactHash,snapshot.acceptedArtifactHash,'Accepted MFM capture changed');
- const capture=JSON.parse(captureBytes);
+ const capture=parseProducerJSON(captureBytes);
  const factsById=new Map(catalog.paidUpgradeRecords.map(row=>[row.id,row]));
- const actual=catalog.paidUpgradeRecords.filter(row=>row.factionId==='space-marines'&&row.provenance.sourceId==='space-marines-mfm-v1.6');
+ const actual=catalog.paidUpgradeRecords.filter(row=>row.factionId==='space-marines'&&row.provenance.sourceId===selected.sourceId);
  assert.deepEqual(actual.map(row=>row.id).sort(),paidOptionReview.map(row=>row.costRecordId).sort(),'Paid option review incomplete');
  const prove=entity=>{
   assert.ok(entity,'Missing canonical paid option proof');
@@ -70,8 +74,8 @@ export function createSpaceMarinesPaidOptionBindings({facts=read('./generated/ef
   assert.ok((source.data.text||source.data.name).includes(review.quote),'Paid option source clause changed');
   const unitReference=catalog.unitReferences.find(row=>row.id===cost.unitReferenceId);
   assert.equal(unitReference?.armyBinding?.bindingStatus,'BOUND');assert.equal(unitReference.armyBinding.armyUnitId,unit.id);
-  assert.equal(cost.factionId,'space-marines');assert.equal(cost.provenance.sourceVersion,'v1.6');
-  assert.equal(cost.provenance.sourceId,'space-marines-mfm-v1.6');assert.ok(Number.isFinite(cost.value)&&cost.value>=0);
+  assert.equal(cost.factionId,'space-marines');assert.equal(cost.provenance.sourceVersion,selected.version);
+  assert.equal(cost.provenance.sourceId,selected.sourceId);assert.ok(Number.isFinite(cost.value)&&cost.value>=0);
   const locator=cost.provenance.sourceLocator,sourceUnit=capture.units.find(row=>row.title===locator.sourceTitle);
   const sourcePrice=sourceUnit?.paidOptions?.find(row=>row.sourceGroup===locator.sourceGroup&&row.sourceLabel===locator.sourceLabel);
   assert.ok(sourcePrice,'Missing accepted MFM paid option occurrence');assert.equal(cost.value,sourcePrice.value,'Paid price differs from accepted MFM source');

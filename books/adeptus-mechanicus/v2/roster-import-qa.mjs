@@ -1,9 +1,11 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createAdMechRosterImport,loadRosterImport} from './roster-import.mjs';
 import {selections} from '../../shared/roster-v2/context.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const book=read('./generated/effective.json'),metadata=read('./roster-import-aliases.json');
 const fixtures=read('./roster-import-fixtures.json').fixtures,original=structuredClone(book);
 const records=new Map(book.entities.map(entity=>[entity.id,entity]));
@@ -19,12 +21,12 @@ let positive=0,negative=0,entries=0;
 for (const fixture of fixtures) {
   for (const evidence of fixture.sourceEvidence) {
     const entity=records.get(evidence.entityId);assert(entity,fixture.id);
-    assert.deepEqual(entity.provenance,evidence.provenance,fixture.id);
-    const sourceText=fs.readFileSync(new URL('../../../'+evidence.provenance.sourcePath,import.meta.url),'utf8');
-    if (!evidence.provenance.sourcePath.endsWith('.json')) {assert(sourceText.length>0);continue;}
+    assert.deepEqual(sourceSnapshot(entity),sourceSnapshot(evidence),fixture.id);
+    const sourceText=fs.readFileSync(new URL('../../../'+sourceSnapshot(evidence).sourcePath,import.meta.url),'utf8');
+    if (!sourceSnapshot(evidence).sourcePath.endsWith('.json')) {assert(sourceText.length>0);continue;}
     const source=JSON.parse(sourceText);
     let value=source;
-    for (const part of evidence.provenance.pointer.slice(1).split('/').map(part=>part.replaceAll('~1','/').replaceAll('~0','~'))) value=value?.[part];
+    for (const part of sourceSnapshot(evidence).pointer.slice(1).split('/').map(part=>part.replaceAll('~1','/').replaceAll('~0','~'))) value=value?.[part];
     assert.notEqual(value,undefined,'Severed accepted source '+fixture.id);
   }
   const service=make(),result=service.import(fixture.text),expected=fixture.expected;

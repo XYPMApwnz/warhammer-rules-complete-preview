@@ -167,6 +167,7 @@ def census():
             nodes.extend(scope.xpath('.//div[@class="str11Text"][b[normalize-space(.)="TARGET:"]]'))
     assert set(tree.getpath(node) for node in nodes) == set(identities), 'Source card identity coverage differs'
     enrollment = json.loads((HERE / 'sources/source-enrollment.json').read_text('utf8'))
+    official_updates = json.loads((HERE / 'official-updates.json').read_text('utf8'))
     raw_captures = {capture['path']: capture for capture in enrollment['acceptedRawCaptures']}
     hub_path = str(HUB.relative_to(ROOT)).replace('\\', '/')
     assert hashlib.sha256(raw).hexdigest().upper() == raw_captures[hub_path]['sha256'], 'Accepted hub bytes changed'
@@ -190,10 +191,10 @@ def census():
         assert {'WHEN', 'TARGET', 'EFFECT'} <= set(fields), rule_id
         subject, conditions, antecedents = expected(fields['TARGET'], fields['WHEN'])
         official = []
-        for operation in enrollment['overlayOperations']:
-            if operation.get('targetId') != rule_id:
+        for operation in official_updates['entries']:
+            if operation['target'].get('id') != rule_id:
                 continue
-            field = operation['field']
+            field = operation['target']['field']
             if field == ['lines'] or field == ['lines', 1, 'text']:
                 proof = operation['provenance']
                 page = pdf_pages[proof['documentPath']][proof['page'] - 1]

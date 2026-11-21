@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {canonicalRosterModelsFor,canonicalWargearAbilityId,canonicalWeaponProfileId} from './build-roster-catalog.mjs';
@@ -200,7 +201,7 @@ const composition=unit=>unit.compositionText
   :Array.isArray(unit.composition)
     ?`<ul>${unit.composition.map(model=>`<li>${model.min}${model.max!==model.min?`–${model.max}`:''} ${esc(model.name)}</li>`).join('')}</ul>`
     :`<p>${decorateComposition(unit.composition,unit)}</p>`;
-const modelKeywords=unit=>canonicalRosterModelsFor(unit).filter(model=>model.intrinsicKeywords?.length).map(model=>`<p class="model-keywords" data-roster-model-id="${esc(model.id)}"><b>${esc(model.title)}</b> only: ${model.intrinsicKeywords.map(keyword=>`<span data-model-keyword="${esc(keyword)}">${esc(keyword)}</span>`).join(', ')}</p>`).join('');
+const modelKeywords=unit=>canonicalRosterModelsFor(unit).filter(model=>requiredKeywordField(model, "intrinsicKeywords")?.length).map(model=>`<p class="model-keywords" data-roster-model-id="${esc(model.id)}"><b>${esc(model.title)}</b> only: ${requiredKeywordField(model, "intrinsicKeywords").map(keyword=>`<span data-model-keyword="${esc(keyword)}">${esc(keyword)}</span>`).join(', ')}</p>`).join('');
 const unitCard=unit=>{
   const slug=unit.id.replace('unit-','');
   const grouped={core:[],faction:[],datasheet:[],relation:[],damaged:[],transport:[]};
@@ -221,7 +222,7 @@ const unitCard=unit=>{
     ...grouped.damaged.map(item=>['Damaged',`${slug}-damaged`,`<div class="ability-list">${abilityCard(item,unit)}</div>`]),
     ...(wargear.length?[['Wargear Options',`${slug}-wargear-options`,`<ul>${wargear.map(x=>`<li>${decorate(x,unit.id)}</li>`).join('')}</ul>`]]:[]),
     ...(wargearAbilities.length?[['Wargear Abilities',`${slug}-wargear-abilities`,`<p class="unit-note">These abilities apply only while the corresponding wargear is equipped.</p><div class="ability-list">${wargearAbilities.map((item,index)=>abilityCard(item,unit,canonicalWargearAbilityId(unit,item,index))).join('')}</div>`]]:[]),
-    ['Keywords',`${slug}-keywords`,`<div class="keyword-list">${unit.keywords.map(x=>`<span data-source-field="keywords.${esc(slugKey(x))}">${esc(x)}</span>`).join('')}</div>${modelKeywords(unit)}`]
+    ['Keywords',`${slug}-keywords`,`<div class="keyword-list">${requiredKeywordField(unit).map(x=>`<span data-source-field="keywords.${esc(slugKey(x))}">${esc(x)}</span>`).join('')}</div>${modelKeywords(unit)}`]
   ];
   const tabs=parts.map(([label,id])=>`<button class="local-tab" data-journey-target="${id}" data-journey-type="datasheet">${label}</button>`).join('');
   const sections=parts.map(([label,id,body])=>`<section class="unit-part" id="${id}"><h4>${label}</h4>${body}</section>`).join('');

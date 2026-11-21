@@ -1,4 +1,9 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 /** Bounded, typed applicability predicates. This module never reads source prose. */
+import {validateBookRecipients,recipientDeclarationView} from './recipients.mjs';
+import {conditionSpec,isCanonicalCondition,findConditionValue,declarationFieldArguments,translateFieldArguments} from './conditions.mjs';
+import {compileConditionSchema,validateBookConditions} from './conditions-build.mjs';
+import {getRecordedSourceIdentity} from '../source-refs-v2/source-refs.mjs';
 export const subjects = Object.freeze(['MODEL','UNIT','FORMED_ATTACHED_UNIT','ROSTER']);
 export const levels = Object.freeze(['STATIC','ROSTER','BATTLE']);
 export const publicResult = Object.freeze({TRUE:'MATCH',FALSE:'NO_MATCH',UNKNOWN:'CONDITIONAL',INVALID:'INVALID'});
@@ -16,7 +21,7 @@ const fail = message => { throw new Error(`Rule Contract V2: ${message}`); };
 const get = (object, fields) => fields.reduce((value,key)=>value?.[key],object);
 const text = value => typeof value==='string'?value:JSON.stringify(value);
 /** Each factory owns a snapshot of its book's reviewed context and ability vocabulary. */
-export function createRuleContractSchema({stateFields = {}, modelAbilities = [], contractSchema = 'rule-contract/v2'} = {}) {
+export function createRuleContractSchema({stateFields = {}, conditionFields = [], modelAbilities = [], contractSchema = 'rule-contract/v2'} = {}) {
   if (!stateFields || typeof stateFields!=='object' || Array.isArray(stateFields) ||
       typeof contractSchema!=='string' || !contractSchema || !Array.isArray(modelAbilities) ||
       modelAbilities.some(name=>typeof name!=='string'||!name)) fail('invalid schema configuration');
@@ -29,6 +34,22 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
       {intrinsicAllKeywords:Object.freeze([...spec.intrinsicAllKeywords])}:{})})];
   })));
   const acceptedAbilities=new Set(modelAbilities);
+  const registeredFields=Object.fromEntries(Object.entries(stateFields).filter(([key])=>{
+    try{translateFieldArguments({key});return true;}catch{return false;}
+  }));
+  const normalizedFields=compileConditionSchema(registeredFields).conditionFields;
+  const fieldSpec=args=>{
+    if(!isCanonicalCondition(args))return stateFields[args?.key];
+    const definition=conditionSpec(args);
+    const matches=[...conditionFields,...normalizedFields].filter(row=>row.key===args.key&&
+      Object.entries(row.arguments||{}).every(([key,value])=>JSON.stringify(args[key])===JSON.stringify(value)));
+    let declaration=matches[0];
+    if(!declaration){
+      const legacy=declarationFieldArguments(args);
+      declaration=stateFields[legacy.key]||stateFields[args.key];
+    }
+    return declaration?{...definition,...declaration}:undefined;
+  };
   function validatePredicate(node, subject, model, entity, fieldTypes = {}) {
     if (!node || typeof node!=='object') fail('malformed predicate');
     if (node.op) {
@@ -46,7 +67,8 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
     if (node.predicate==='MODEL_ABILITY'&&!acceptedAbilities.has(args.ability)) fail('unknown static ability');
     if (node.predicate==='FIELD') {
       if (!args.key||!Object.hasOwn(args,'equals')||node.contextLevel==='STATIC') fail('contextual field misclassified or missing');
-      if(!stateFields[args.key]||stateFields[args.key].contextLevel!==node.contextLevel||stateFields[args.key].valueType!==typeof args.equals) fail('unknown field, wrong type or context');
+      const spec=fieldSpec(args);
+      if(!spec||spec.contextLevel!==node.contextLevel||spec.valueType!==typeof args.equals) fail('unknown field, wrong type or context');
       if (fieldTypes[args.key]&&fieldTypes[args.key]!==node.contextLevel) fail(`field context drift ${args.key}`);
     }
     if (['MODEL_ID','UNIT_ID','BODYGUARD_ID','DETACHMENT'].includes(node.predicate)) {
@@ -67,14 +89,14 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
     checkBinding(node);
     validatePredicate(node,role.subject,model,entity);
   }
-  function validateContracts(model) {
+  function validateContractDeclarations(model) {
     const seen=new Set();
     for (const entity of model.entities.filter(record=>record.ruleContract)) {
       const contract=entity.ruleContract;
       if(contract.schema!==contractSchema) fail('unknown contract schema');
       if (seen.has(contract.ruleId)||contract.ruleId!==entity.id) fail('duplicate independent semantic owner or changed rule ID');
       seen.add(contract.ruleId);
-      if (!entity.provenance?.sourceId||contract.sourceId!==entity.provenance.sourceId||contract.ownerId!==(entity.parentId||model.bookId)) fail('source provenance/owner severed');
+      if (!getRecordedSourceIdentity(entity,{book:model})||getRecordedSourceIdentity(contract,{book:model,slot:'sourceId'})!==getRecordedSourceIdentity(entity,{book:model})||contract.ownerId!==(entity.parentId||model.bookId)) fail('source provenance/owner severed');
       if (!levels.includes(contract.contextLevel)||!Array.isArray(contract.roles)) fail('invalid contract shape');
       if(!['ARMY_RULE','DATASHEET_ABILITY','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','FAQ_ERRATA_RULE','OTHER_RULE'].includes(contract.kind)||!['SOURCE_DIRECTIVE','DATASHEET_DECLARATION','RULE_DECLARATION','DECLARATIVE_APPLICABILITY','BATTLE_ACTION'].includes(contract.executionMode))fail('unknown kind or execution mode');
       if(contract.detachmentId&&(contract.detachmentId!==entity.parentId||model.entities.find(record=>record.id===contract.detachmentId)?.kind!=='DETACHMENT'))fail('invalid Detachment scope');
@@ -227,7 +249,7 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
     const available=(bag,key,compare)=>!bag||!Object.hasOwn(bag,key)?'UNKNOWN':compare(bag[key]);
     switch(node.predicate) {
       case 'ALWAYS': return 'TRUE';
-      case 'MODEL_KEYWORD': case 'UNIT_KEYWORD': return context.keywords instanceof Set?(context.keywords.has(a.keyword)?'TRUE':node.predicate==='UNIT_KEYWORD'&&context.unknownKeywords?.has(a.keyword)?'UNKNOWN':'FALSE'):'INVALID';
+      case 'MODEL_KEYWORD': case 'UNIT_KEYWORD': return requiredKeywordField(context) instanceof Set?(requiredKeywordField(context).has(a.keyword)?'TRUE':node.predicate==='UNIT_KEYWORD'&&requiredKeywordField(context, "unknownKeywords")?.has(a.keyword)?'UNKNOWN':'FALSE'):'INVALID';
       case 'MODEL_ABILITY': return acceptedAbilities.has(a.ability)&&context.abilities instanceof Set?truth(context.abilities.has(a.ability)):'INVALID';
       case 'MODEL_ID': return context.modelId?truth(context.modelId===a.id):'INVALID';
       case 'UNIT_ID': return context.unitId?truth(context.unitId===a.id):'INVALID';
@@ -258,7 +280,7 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
         return available(context.roster,'characterModelCount',value=>truth(value>=(a.min??0)&&value<=(a.max??Infinity)));
       }
       case 'FIELD': {
-        const spec=stateFields[a.key];
+        const spec=fieldSpec(a);
         if(!spec||spec.contextLevel!==node.contextLevel||spec.valueType!==typeof a.equals)return 'INVALID';
         if(a.key==='attached'&&!Object.hasOwn(context.roster||{},a.key)&&context.capabilities) {
           if(typeof context.capabilities.canBeAttached!=='boolean')return 'INVALID';
@@ -268,10 +290,15 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
         // inherited from an Attached Unit. Unknown roster state stays unknown
         // only after this prerequisite has been met.
         if(spec.intrinsicAllKeywords) {
-          if(!(context.intrinsicKeywords instanceof Set))return 'INVALID';
-          if(!spec.intrinsicAllKeywords.every(keyword=>context.intrinsicKeywords.has(keyword)))return truth(false===a.equals);
+          if(!(requiredKeywordField(context, "intrinsicKeywords") instanceof Set))return 'INVALID';
+          if(!spec.intrinsicAllKeywords.every(keyword=>requiredKeywordField(context, "intrinsicKeywords").has(keyword)))return truth(false===a.equals);
         }
-        return available(context[node.contextLevel==='BATTLE'?'battle':'roster'],a.key,value=>typeof value!==spec.valueType?'INVALID':truth(value===a.equals));
+        const bag=context[node.contextLevel==='BATTLE'?'battle':'roster'];
+        if(isCanonicalCondition(a)){
+          const found=findConditionValue(bag,a);
+          return !found.present?'UNKNOWN':typeof found.value!==spec.valueType?'INVALID':truth(found.value===a.equals);
+        }
+        return available(bag,a.key,value=>typeof value!==spec.valueType?'INVALID':truth(value===a.equals));
       }
       default: return 'INVALID';
     }
@@ -281,5 +308,10 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
     return combine([evaluatePredicate(role.selector,context),...(role.conditions||[]).map(node=>evaluatePredicate(node,context)),...conditions.map(node=>evaluatePredicate(node,node.subject==='ROSTER'?{...context,subject:'ROSTER'}:context))],'ALL');
   }
 
-  return Object.freeze({subjects,levels,publicResult,predicateTypes,validatePredicate,validateContracts,evaluatePredicate,evaluateRole});
+  function validateContracts(model) {
+    validateBookRecipients(model);
+    if(model.conditionSchema)validateBookConditions(model);
+    return validateContractDeclarations(recipientDeclarationView(model));
+  }
+  return Object.freeze({subjects,levels,publicResult,predicateTypes,validatePredicate,validateContracts,validateContractDeclarations,evaluatePredicate,evaluateRole});
 }

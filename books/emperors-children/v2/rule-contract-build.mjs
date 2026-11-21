@@ -1,3 +1,10 @@
+import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
+import {recordReviewedDetachmentRecipients} from '../../shared/rule-contract-v2/reviewed-detachment-recipients.mjs';
+import {recordReviewedStratagemTargets} from '../../shared/rule-contract-v2/reviewed-stratagem-targets.mjs';
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
+import {appendReviewedTextCoverage} from '../../shared/rule-contract-v2/reviewed-text-coverage.mjs';
 /** EC-owned bounded Rule Contract overlay. No importer, service or UI wiring.
  * The shared engine consumes a disposable view of the existing factual owner. */
 import fs from 'node:fs';
@@ -7,7 +14,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createECRuleSchema} from './rule-contract-schema.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
-import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
@@ -20,7 +27,7 @@ import {aegisBinding,bindShiningAegis} from './rule-contract-aegis-bindings.mjs'
 import {instrumentBindings,bindInstruments} from './rule-contract-instrument-bindings.mjs';
 
 const directory=path.dirname(fileURLToPath(import.meta.url));
-const read=file=>JSON.parse(fs.readFileSync(path.join(directory,file),'utf8'));
+const read=file=>parseProducerJSON(fs.readFileSync(path.join(directory,file),'utf8'));
 const clone=structuredClone;
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex').toUpperCase();
 const all=args=>args.length===1?args[0]:{op:'ALL',args};
@@ -28,6 +35,7 @@ const at=(value,field)=>field.reduce((value,key)=>value?.[key],value);
 const subject=binding=>['SOURCE_UNIT','ROSTER_UNITS'].includes(binding)?'UNIT':'MODEL';
 
 export function buildECContracts({facts=read('generated/effective.json'),inputs=declarations,permissionInputs=permissionDeclarations,formationInputs=formationBindings,finalInputs=finalBindings,aegisInputs=[aegisBinding],instrumentInputs=formationInputs.length?instrumentBindings:[]}={}) {
+  facts=prepareSourceProducer(facts);
   const before=JSON.stringify(facts),book=clone(facts),index=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(index.size,book.entities.length,'Duplicate canonical identity');
   assert.equal(inputs.length,10,'Only the reviewed ten-rule scope is implemented');
@@ -191,8 +199,17 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
     maxModels:unit.data.compositionMemberIds.map(id=>index.get(id)).filter(member=>member.data.modelProfileId===profileId)
       .reduce((n,member)=>n+member.data.quantity.max,0)})));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
-  schema.validateContracts(book);
-  validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
+  const textCoverage=appendReviewedTextCoverage({book,facts,review:read('text-rule-review.json'),contracts,
+    currentness:{acceptedBaseHead:'c0fab930a4f45ba05c33b66834fbf979518d91ef',currentOfficialSource:'gw-ec-faction-pack-v1.3-2026-09-30'}});
+  recordReviewedStratagemTargets(book,read('stratagem-target-declarations.json'),{contracts});
+  recordReviewedTextRecipients(book,read('recipient-declarations.json'));
+  schema.validateContractDeclarations(book);
+  validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
+  book.conditionBindingOptions={...book.conditionBindingOptions,selectedUpgradeMode:'VALIDATED_EQUIPPED_WEAPON'};
+  recordReviewedDetachmentRecipients(book,read('./detachment-recipient-declarations.json'));
+  assertBookOfficialEffectReviews(book);
+  finalizeRecipientBook(book);
+  schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),before,'Factual input mutated');
   const scope={implementedRules:10+permissionInputs.length+additions.length+finals.length+aegis.length,directReuseRules:10,bindingAdaptationRules:permissionInputs.length,
     formationRuleFamilies:additions.length?5:0,formationSourceOwners:additions.length,
@@ -202,7 +219,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
     remainingLegacyContracts:'NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD'};
   return {book,schema,contracts,scope,
     artifact:{schema:'ec-v2-rule-contract-foundation/v1',authority:'BOOK_OWNED_DERIVED_CONTRACT_OVERLAY',
-      scope,
+      scope,textCoverage,
       sourceFingerprint:sha(JSON.stringify(facts)),declarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-declarations.mjs',import.meta.url))),
       permissionDeclarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-permission-declarations.mjs',import.meta.url))),
       formationBindingFingerprint:sha(fs.readFileSync(new URL('./rule-contract-formation-bindings.mjs',import.meta.url))),
@@ -217,7 +234,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href) {
-  const {artifact}=buildECContracts(),file=path.join(directory,'generated/rule-contracts.json'),bytes=JSON.stringify(artifact,null,2)+'\n';
+  const {artifact}=buildECContracts(),file=path.join(directory,'generated/rule-contracts.json'),bytes=serializeSourceJSON(artifact);
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale EC Rule Contract output');
   else fs.writeFileSync(file,bytes);
   console.log(JSON.stringify({status:'PASS',contracts:artifact.contracts.length,

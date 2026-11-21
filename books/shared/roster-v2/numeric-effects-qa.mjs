@@ -1,3 +1,4 @@
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Independent synthetic controls for the existing typed numeric-effect domain.
  * Profiles are imported composition scopes, never synthetic infantry owners.
  * This suite loads no Army Book data or source grammar.
@@ -5,8 +6,9 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments} from './context.mjs';
-import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {executeRosterEffects} from './effects.mjs';
 import {projectEffectiveInstance} from './effective-instance.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 
 const clone=value=>structuredClone(value),id=name=>'synthetic-numeric:'+name;
 const evidence={field:['text'],quote:'Reviewed synthetic characteristic and recipient evidence.'};
@@ -53,7 +55,7 @@ function rule(book,state,name,{owner='alpha',parent='mixed',targetSubject='MODEL
   const ownerRole={id:'owner',subject:'UNIT',allegiance:'FRIENDLY',selector:atom('UNIT_ID','UNIT',{id:id(parent)}),conditions:[]};
   const effect={id:name+'/effect',operation:'MODIFY_STAT',targetSubject,targetBinding,field,mode,value,
     ...(weaponMode?{weaponMode}:{}),conditions:clone(conditions),evidence:clone(evidence),sourceFields:[['text']],lifetime:'ROSTER',...extra};
-  entity.ruleContract={schema:'rule-contract/v2',ruleId:entity.id,ownerId:entity.parentId,sourceId:entity.provenance.sourceId,
+  entity.ruleContract={schema:'rule-contract/v2',ruleId:entity.id,ownerId:entity.parentId,sourceId:sourceSnapshot(entity).sourceId,
     kind:'ENHANCEMENT',executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',detachmentId:id('main'),roles:[ownerRole],conditions:[],
     assignment:{ownerRoleId:'owner',selector:clone(ownerRole.selector)},sourceFields:[['text']],
     clauses:[{id:name+'/clause',roles:[],conditions:[],sourceFields:[['text']],rosterClassification:'ROSTER_EXECUTABLE',rosterEffects:[effect]}]};
@@ -61,15 +63,15 @@ function rule(book,state,name,{owner='alpha',parent='mixed',targetSubject='MODEL
 }
 function execute(book,state,options={}) {
   const baseBook=clone(book),baseState=clone(state);
-  evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),{...evaluator,...options});
+  const canonical=compileRecipientFixture(book,evaluator);
+  const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),{...evaluator,...options});
   assert.deepEqual(book,baseBook,'Numeric operation mutated canonical facts');assert.deepEqual(state,baseState,'Numeric operation mutated imported state');
   return result;
 }
 function canonicalContribution(book) {
   const entity={id:id('canonical-contribution'),parentId:id('main'),kind:'ARMY_RULE',
     provenance:{sourceId:id('source/contribution')},data:{title:'Canonical synthetic contribution',text:evidence.quote}};
-  entity.ruleContract={schema:'rule-contract/v2',ruleId:entity.id,ownerId:entity.parentId,sourceId:entity.provenance.sourceId,kind:'ARMY_RULE',
+  entity.ruleContract={schema:'rule-contract/v2',ruleId:entity.id,ownerId:entity.parentId,sourceId:sourceSnapshot(entity).sourceId,kind:'ARMY_RULE',
     executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'BATTLE',roles:[],conditions:[],sourceFields:[['text']],
     clauses:['first','second'].map(name=>({id:'canonical/'+name,roles:[],conditions:[],sourceFields:[['text']],rosterClassification:'BATTLE_ONLY',
       rosterClassificationNote:{reason:'Activation is not simulated by the current product.'},rosterEffects:[]}))};

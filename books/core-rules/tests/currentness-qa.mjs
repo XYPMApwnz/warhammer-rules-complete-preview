@@ -38,7 +38,7 @@ const oldRevival=older.records.find(record=>record.code==='01.02.03');
 const oldCp=older.records.find(record=>record.code==='08.02.01');
 oldRevival.text=source.ruleOverrides.find(update=>update.code==='01.02.03').previousLine;
 oldRevival.lists=[];
-oldCp.text=oldCp.text.replace(/\s*In addition[^\n]*single extra CP per battle round\.?/i,'');
+oldCp.text=oldCp.text.replace(source.ruleOverrides.find(update=>update.code==='08.02.01').currentLine,'');
 const repaired=applyCoreCurrentOfficial(older,source);
 assert(recordText(repaired.records.find(record=>record.code==='01.02.03')).includes('returns on its own as a unit of one'),'later GW override must defeat older secondary revival text');
 assert(!recordText(repaired.records.find(record=>record.code==='01.02.03')).includes('still part of that attached unit'),'superseded revival semantics must disappear');

@@ -1,3 +1,6 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
+import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Native vocabulary/physical bindings over the closed DA consumer projection.
  * Common facts and reviewed import joins retain their Space Marines owner. */
 import fs from 'node:fs';
@@ -13,6 +16,7 @@ import {buildDetachmentReferences} from './detachment-reference-build.mjs';
 const clone=structuredClone;
 const evidence=(entityId,path)=>({entityId,path});
 export function buildDarkAngelsImportBook({built=buildDarkAngelsContracts()}={}){
+  built={...built,book:prepareSourceProducer(built.book),...(built.facts?{facts:prepareSourceProducer(built.facts)}:{}),...(built.native?{native:{...built.native,model:prepareSourceProducer(built.native.model),payload:prepareSourceProducer(built.native.payload)}}:{})};
  const book=clone(built.book),before=JSON.stringify(built.book),index=new Map(book.entities.map(entity=>[entity.id,entity]));
  const admitted=new Set(index.keys()),sm=buildSpaceMarinesImportBook({built:built.sm}).importBindings;
  const compositions=clone(sm.compositions.filter(row=>admitted.has(row.ownerId)));
@@ -70,6 +74,7 @@ export function buildDarkAngelsImportBook({built=buildDarkAngelsContracts()}={})
   partitions:Object.fromEntries(['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings'].map(key=>[key,clone(book.mfm[key])])),
   nativePoints:clone(built.native.points),referenceOnlyRelationTargets:clone(built.native.consumed.referenceOnlyRelationTargets)};
  book.mfmPhysicalPaidOptions=createDarkAngelsPaidOptionBindings({book});
+  appendModelNameAliases(identityAliases,modelNames,compositions);
  book.importBindings={schema:'dark-angels-v2/import-bindings/v1',identityAliases,compositions,unresolvedCompositions,
   weaponSelections,equipmentSelections,enhancements,
   nativeReferenceBindings:book.entities.filter(row=>row.kind==='RULE_REFERENCE').map(row=>({id:row.id,ownerId:row.parentId,
@@ -90,12 +95,13 @@ export function buildDarkAngelsImportBook({built=buildDarkAngelsContracts()}={})
  book.mfmImportReferences.nativePoints.detachments.push(clone(allied.points));
  book.rosterDetachmentReferenceReview=clone(allied.review);
  // Exact exported army label is not a physical Chapter keyword grant.
- book.importBindings.factionIdentityLabels=['Imperium - Adeptus Astartes - Dark Angels'];
+ book.importBindings.factionIdentityLabels=['Dark Angels','Space Marines','Adeptus Astartes','Imperium - Adeptus Astartes - Dark Angels'];
+ book.importBindings.allowNormalizedEmptyFaction=true;
  assert.equal(JSON.stringify(built.book),before,'Import bindings changed the canonical consumer');
  return book;
 }
 export function writeDarkAngelsImportBook({check=false}={}){
- const book=buildDarkAngelsImportBook(),target=new URL('./generated/roster-import.json',import.meta.url),bytes=JSON.stringify(book,null,2)+'\n';
+ const book=buildDarkAngelsImportBook(),target=new URL('./generated/roster-import.json',import.meta.url),bytes=serializeSourceJSON(book);
  if(check)assert.equal(fs.readFileSync(target,'utf8'),bytes,'Stale DA import output');else fs.writeFileSync(target,bytes);
  return {status:'PASS',datasheets:83,compositions:book.importBindings.compositions.length,
   unresolvedCompositions:book.importBindings.unresolvedCompositions.length,paidOptions:8,relations:book.rosterRelationReview.coverage,

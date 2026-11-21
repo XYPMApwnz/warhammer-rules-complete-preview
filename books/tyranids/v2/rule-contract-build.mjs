@@ -1,22 +1,31 @@
+import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
+import {recordReviewedDetachmentRecipients} from '../../shared/rule-contract-v2/reviewed-detachment-recipients.mjs';
+import {recordReviewedStratagemTargets} from '../../shared/rule-contract-v2/reviewed-stratagem-targets.mjs';
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
+import {appendReviewedTextCoverage} from '../../shared/rule-contract-v2/reviewed-text-coverage.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {buildTyranidsImportBook} from './roster-import-build.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {declarations,conditionalCandidates} from './rule-contract-declarations.mjs';
 import {createTyranidsRuleSchema} from './roster-source-choices.mjs';
 export {createTyranidsRuleSchema} from './roster-source-choices.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
-import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 
 const clone=structuredClone,sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 
 /** Book-owned lowering over the existing import/factual owner. No new facts. */
 export function buildTyranidsContracts({facts=read('./generated/effective.json'),inputs=declarations}={}){
+  facts=prepareSourceProducer(facts);
   const before=JSON.stringify(facts),book=buildTyranidsImportBook(facts),index=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(inputs.length,19,'Bounded reviewed executable inventory: eighteen owners plus explicit Surprise Assault choice');
   assert.equal(new Set(inputs.map(d=>d.id)).size,19,'Duplicate semantic owner');
@@ -96,7 +105,7 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
         ...(input.upgrade?{classification:'UNIT_UPGRADE'}:{})};
       const bridge=book.mfmImportReferences.partitions.enhancementBindings.find(b=>b.entityId===input.id),record=resolveOwnedFact(bridge?.mfmRecordId);
       assert.deepEqual(record.qualifierIds,[],'Unlowered central eligibility qualifier');
-      assert.equal(record.provenance.sourceVersion,'v1.6');
+      assert.equal(record.provenance.sourceVersion,getCurrentMfmSource('tyranids').version);
       declaration.mfmReferences={enhancementId:record.id,detachmentId:record.detachmentId,qualifierIds:[],provenance:clone(record.provenance)};
     }
     const addConditional=(id,path,quote,reason)=>{
@@ -163,18 +172,27 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
   const composition=book.rosterProfileBindings.map(binding=>({...clone(binding),maxModels:book.importBindings.compositions
     .filter(c=>c.profileId===binding.profileId).reduce((sum,c)=>sum+c.quantity.max,0)}));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
+  const textCoverage=appendReviewedTextCoverage({book,facts,review:read('./text-rule-review.json'),contracts,
+    currentness:{acceptedBaseHead:'c0fab930a4f45ba05c33b66834fbf979518d91ef',currentOfficialSource}});
+  recordReviewedStratagemTargets(book,read('./stratagem-target-declarations.json'),{contracts});
+  recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
+  schema.validateContractDeclarations(book);
+  validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
+  recordReviewedDetachmentRecipients(book,read('./detachment-recipient-declarations.json'));
+  assertBookOfficialEffectReviews(book);
+  finalizeRecipientBook(book);
   schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),before,'Factual input changed');
   const artifact={schema:'tyranids-v2-rule-contracts/v1',authority:'BOOK_OWNED_DERIVED_OVERLAY',
-    factualFingerprint:sha(JSON.stringify(facts)),importFingerprint:sha(JSON.stringify(buildTyranidsImportBook(facts))),
+    factualFingerprint:sha(JSON.stringify(facts)),importFingerprint:sha(JSON.stringify(prepareSourceProducer(buildTyranidsImportBook(facts)))),
     declarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-declarations.mjs',import.meta.url))),
-    currentOfficialSource,contracts,deferred,nativeReferenceSemantics:clone(book.rosterReferenceSemantics),
+    currentOfficialSource,contracts,deferred,textCoverage,nativeReferenceSemantics:clone(book.rosterReferenceSemantics),
     attachmentPolicies:clone(book.rosterAttachmentPolicies),compatibilityFeasibility:clone(book.compatibilityFeasibility)};
   return {book,schema,contracts,deferred,artifact};
 }
 
 if(process.argv[1]&&fileURLToPath(import.meta.url)===fs.realpathSync(process.argv[1])){
-  const {artifact}=buildTyranidsContracts(),target=new URL('./generated/rule-contracts.json',import.meta.url),bytes=JSON.stringify(artifact,null,2)+'\n';
+  const {artifact}=buildTyranidsContracts(),target=new URL('./generated/rule-contracts.json',import.meta.url),bytes=serializeSourceJSON(artifact);
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(target,'utf8'),bytes,'Stale Tyranids Rule Contracts');
   else fs.writeFileSync(target,bytes);
   console.log(JSON.stringify({status:'PASS',contracts:artifact.contracts.length,deferred:artifact.deferred.length,

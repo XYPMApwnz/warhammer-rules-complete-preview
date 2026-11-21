@@ -1,3 +1,6 @@
+import {assertRelatedPanelSnapshot} from '../../../tests/helpers/related-panel-assertions.mjs';
+import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Focused application assembly guard. Independent source identities and values
  * stay on the accepted factual owner; this verifies their presentation routes. */
 import fs from 'node:fs';
@@ -6,17 +9,22 @@ import crypto from 'node:crypto';
 import {buildApp,writeApp,assertSpaceMarinesAppSourceReview} from './app-build.mjs';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 import {registration} from './registration.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
-const facts=read('./generated/effective.json'),payload=buildApp(),native=buildGameplayPresentation();
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+// Compare the publication JSON domain: undefined constructor placeholders are
+// omitted by the existing JSON writer; every recorded value is retained.
+const publicationView=value=>JSON.parse(JSON.stringify(sourceDeclarationView(value)));
+const facts=read('./generated/effective.json'),payload=buildApp(),native=publicationView(buildGameplayPresentation());
 const cards=new Map(payload.cards.map(card=>[card.id,card])),original=new Map(native.cards.map(card=>[card.id,card]));
 assert.equal(cards.size,payload.cards.length);
 // Native publication and the resolution closure of imported references are
 // separate sets. These exact references retain their existing canonical owners.
 const referenceIds=['detachment-dw-c015c08e99c14972','detachment-rule-dw-b41deacc51464866','mfm-detachment-68a77cb979c24615'];
-const referenceSource=read('./generated/deathwatch-mfm-presentation.json');
+const referenceSource=publicationView(read('./generated/deathwatch-mfm-presentation.json'));
 const cross=read('./generated/cross-owner-references.json'),importBook=read('./generated/roster-import.json');
-assert.equal(original.size,2325);
+assert.equal(original.size,2339); // 1954 unchanged native book cards + 385 canonical Core cards.
 function assertReferenceBoundary(view,book=importBook){
+  view=publicationView(view);book=sourceDeclarationView(book);
   const index=new Map(view.cards.map(card=>[card.id,card]));
   assert.equal(index.size,view.cards.length,'Duplicate app identity');
   assert.deepEqual(view.cards.filter(card=>original.has(card.id)),native.cards,'Native presentation changed');
@@ -29,7 +37,7 @@ function assertReferenceBoundary(view,book=importBook){
   for(const id of referenceIds){
     const card=index.get(id),source=referenceSource.cards.find(row=>row.id===id);
     assert.deepEqual(card.identity,{registryId:id===referenceIds[2]?'mfm':'deathwatch',canonicalId:id});
-    for(const key of ['kind','parentId','provenance','fields'])assert.deepEqual(card[key],source[key],'Reference source changed: '+key);
+    for(const key of ['kind','parentId','provenance','fields'])assert.deepEqual(key==='provenance'?sourceSnapshot(card):card[key],key==='provenance'?sourceSnapshot(source):source[key],'Reference source changed: '+key);
     assert.deepEqual(card.children,source.children.filter(child=>referenceIds.includes(child)));
     assert.deepEqual(card.links,source.links.filter(link=>referenceIds.includes(link.targetId)));
     assert.ok(!card.ruleContract,'Executable reference card');
@@ -45,7 +53,7 @@ function assertReferenceBoundary(view,book=importBook){
   for(const id of referenceIds.slice(0,2)){
     const entity=book.entities.find(row=>row.id===id),source=cross.entities.find(row=>row.id===id);
     assert.equal(entity.bookId,'deathwatch');assert.equal(entity.kind,source.kind);
-    assert.equal(entity.sourceEntityId,source.sourceEntityId);assert.deepEqual(entity.provenance,source.provenance);
+    assert.equal(entity.sourceEntityId,source.sourceEntityId);assert.deepEqual(sourceSnapshot(entity),sourceSnapshot(source));
     assert.ok(!entity.ruleContract,'Executable reference entity');
     const record=view.bookPresentation.records[id];
     assert.ok(!record.enhancementIds?.length&&!record.stratagemIds?.length,'Foreign assignments enrolled');
@@ -59,7 +67,12 @@ assertReferenceBoundary(payload);
 // fixture, canonical fact or pre-existing gameplay expectation is changed.
 let negativeGuards=0;
 const reject=(view,book)=>{assert.throws(()=>assertReferenceBoundary(view,book),assert.AssertionError);negativeGuards++;};
-const changeCard=(id,patch)=>({...payload,cards:payload.cards.map(card=>card.id===id?{...card,...patch}:card)});
+const changeCard=(id,patch)=>({...payload,cards:payload.cards.map(card=>{
+  if(card.id!==id)return card;
+  const changed=structuredClone(card),ordinary={...patch};
+  if(Object.hasOwn(ordinary,'provenance')){sourceFixture(changed).provenance=ordinary.provenance;delete ordinary.provenance;}
+  return {...changed,...ordinary};
+})});
 reject({...payload,cards:payload.cards.filter(card=>card.id!==native.cards[0].id)});
 reject(changeCard(native.cards[0].id,{title:'Unreviewed native change'}));
 for(const kind of ['DATASHEET','ENHANCEMENT','STRATAGEM','DETACHMENT_RULE'])
@@ -74,7 +87,7 @@ reject(payload,{...importBook,canonicalMembership:importBook.canonicalMembership
 reject(payload,{...importBook,entities:importBook.entities.map(row=>row.id===referenceIds[1]?{...row,ruleContract:{unreviewed:true}}:row)});
 for(const entity of facts.entities){
   const card=cards.get(entity.id);assert.ok(card,'Missing canonical app card '+entity.id);
-  assert.equal(card.parentId,entity.parentId);assert.deepEqual(card.provenance,entity.provenance);
+  assert.equal(card.parentId,entity.parentId);assert.deepEqual(sourceSnapshot(card),sourceSnapshot(entity));
   for(const field of card.fields)assert.ok(field.source?.entityId&&field.source?.path,'Unowned field');
 }
 const expected={DATASHEET:85,DETACHMENT:21,DETACHMENT_RULE:24,STRATAGEM:84};
@@ -96,11 +109,12 @@ assert.equal(payload.groups.find(group=>group.id==='source-conditions').itemIds.
 assert.equal(payload.relatedRules.rows.length,85*(47+9+84));
 for(const row of payload.relatedRules.rows){
   assert.equal(cards.get(row.ruleId).parentId,row.detachmentId);
-  assert.equal(row.state,'UNKNOWN');assert.equal(row.selectedDetachment.state,'UNKNOWN');
+
 }
+assertRelatedPanelSnapshot(payload);
 const costCards=payload.cards.filter(card=>card.kind==='MFM_PAID_UPGRADE');assert.equal(costCards.length,8);
 for(const card of costCards)assert.ok(card.fields.some(field=>field.source.path==='/value'&&Number.isFinite(field.value)));
-assert.equal(payload.book.mfmVersion,'v1.6');
+assert.equal(payload.book.mfmVersion,getCurrentMfmSource('space-marines').version);
 assert.equal(payload.sourceCompleteness.status,'PARTIAL');assert.equal(payload.sourceCompleteness.semanticCompleteness,'NOT_PROVEN');
 assert.deepEqual(assertSpaceMarinesAppSourceReview(),payload.sourceCompleteness);
 assert.equal(payload.rulePresentationLimitations.realNewRecruitExportTested,false);

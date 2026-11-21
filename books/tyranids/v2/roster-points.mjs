@@ -34,5 +34,5 @@ export function resolveImportedPoints(book,state){
       exportedPoints:unit.raw.points,provenance:point.provenance});
   }
   const known=units.every(u=>u.total!==null);
-  return {status:known?'KNOWN':'UNKNOWN',sourceVersion:'v1.6',units,total:known?units.reduce((sum,u)=>sum+u.total,0):null,legality:'NOT_ASSESSED'};
+  return {status:known?'KNOWN':'UNKNOWN',sourceVersion:projection.source.version,units,total:known?units.reduce((sum,u)=>sum+u.total,0):null,legality:'NOT_ASSESSED'};
 }

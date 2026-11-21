@@ -1,3 +1,4 @@
+import {createQaTempDir,cleanupQaTempDir} from '../../../tests/helpers/qa-temp.mjs';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -126,8 +127,8 @@ const isolation=poison=>{const result=spawnSync(process.execPath,[fileURLToPath(
 const baseline=isolation(false),legacyPoison=isolation(true);assert.deepEqual(baseline.forbiddenReads,[]);assert.deepEqual(legacyPoison.forbiddenReads,[]);assert.equal(baseline.hash,legacyPoison.hash);
 // Actually delete a disposable output, rebuild twice from the same authority,
 // and compare exact bytes. This fixture never writes any historical worktree.
-const temp=fs.mkdtempSync(path.join(os.tmpdir(),'dg-related-rules-determinism-'));
-try{const file=path.join(temp,'index.json'),text=JSON.stringify(index,null,2)+'\n';fs.writeFileSync(file,text);fs.unlinkSync(file);fs.writeFileSync(file,JSON.stringify(buildRelatedRules(model),null,2)+'\n');assert.equal(fs.readFileSync(file,'utf8'),text);}finally{const file=path.join(temp,'index.json');if(fs.existsSync(file))fs.unlinkSync(file);fs.rmdirSync(temp);}
+const temp=createQaTempDir('dg-related-rules-determinism-');
+try{const file=path.join(temp,'index.json'),text=JSON.stringify(index,null,2)+'\n';fs.writeFileSync(file,text);fs.unlinkSync(file);fs.writeFileSync(file,JSON.stringify(buildRelatedRules(model),null,2)+'\n');assert.equal(fs.readFileSync(file,'utf8'),text);}finally{cleanupQaTempDir(temp);}
 writeRelatedRules({check:true,model});
 const core=JSON.parse(fs.readFileSync(new URL('../../core-rules/content/core-rules.digital-11e.json',import.meta.url),'utf8'));
 assert.ok(!core.records.some(record=>record.ruleContract||record.applicability),'Core exposes structured applicability; defer must be revisited');

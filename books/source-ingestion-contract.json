@@ -15,7 +15,7 @@
       "authority": "bsdata-snapshot",
       "sourceType": "bsdata-snapshot",
       "acceptedRevision": "fa30730fca11fbfe87be90684d481d50e0efaf66",
-      "acceptedHash": "c1f98f9ba0e0a8e248a729553d2a130a8593ff1827701b2279c903313e48d223",
+      "acceptedHash": "00215dc052a2d63bf5d183792aeaae2bbacc17da758419b5629c9b323601205d",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
@@ -31,7 +31,7 @@
         {
           "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-codex-datasheets.en.json",
           "normalization": "lf",
-          "sha256": "8745f76dfa0d2019e96ec4d22248d4c66055932cfc9cf8fab6f248a4da4ace12"
+          "sha256": "e69d67e9a800acf29a1d61143a3529371b405f709a7e2f86159ce0938a31e8d3"
         }
       ],
       "notes": "Enrolled factual owner for datasheets, profiles, points-structure."
@@ -104,50 +104,6 @@
     },
     {
       "book": "adeptus-mechanicus",
-      "sourceId": "adeptus-mechanicus-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "accepted-2026-09-14",
-      "acceptedHash": "9db49911faf2b1e9e9251ea90a21fb2e5a32105a9b635cb5d98cba4acc0bd044",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "REPOSITORY_ARTIFACT",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/adeptus-mechanicus/sources/compatible-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "9db49911faf2b1e9e9251ea90a21fb2e5a32105a9b635cb5d98cba4acc0bd044"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "adeptus-mechanicus",
-      "sourceId": "adeptus-mechanicus-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08",
-      "acceptedHash": "a2ed9b5f1be1300ff6ae16eb6f20dd29560f22019b367e469dea25d1069dbd30",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/adeptus-mechanicus/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "a2ed9b5f1be1300ff6ae16eb6f20dd29560f22019b367e469dea25d1069dbd30"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
-    },
-    {
-      "book": "adeptus-mechanicus",
       "sourceId": "adeptus-mechanicus-attachment-group-constraints",
       "authority": "structured-contract",
       "sourceType": "structured-contract",
@@ -174,7 +130,7 @@
       "authority": "structured-contract",
       "sourceType": "structured-contract",
       "acceptedRevision": "effect-contracts-v1-2026-09-24",
-      "acceptedHash": "1fa1d13840daa48f105819fbf2305cd20dfae37b862d5841e84995aaf93bc05f",
+      "acceptedHash": "2dc41d3581f35cea5b95f6f0655c073004ef18f46e3866778bff63dc3a05b43c",
       "lastChecked": "2026-09-24",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -185,7 +141,7 @@
         {
           "path": "books/adeptus-mechanicus/sources/adeptus-mechanicus-effect-contracts.v1.json",
           "normalization": "lf",
-          "sha256": "1fa1d13840daa48f105819fbf2305cd20dfae37b862d5841e84995aaf93bc05f"
+          "sha256": "2dc41d3581f35cea5b95f6f0655c073004ef18f46e3866778bff63dc3a05b43c"
         }
       ],
       "notes": "Accepted structured ownership for source-derived gameplay effect contracts; per-record confidence remains authoritative."
@@ -407,7 +363,7 @@
       "authority": "structured-contract",
       "sourceType": "structured-contract",
       "acceptedRevision": "effect-contracts-v1-2026-09-14",
-      "acceptedHash": "7baeec409dc89c8e6a1043fa8cc9e4dfa65cd53a96ca0259ac6a1675f41b4244",
+      "acceptedHash": "612ef11d6a9669dccbda8665c96ac137f9c98c91d861588896cc88aeaf70eb47",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -418,7 +374,7 @@
         {
           "path": "books/chaos-space-marines/sources/chaos-space-marines-effect-contracts.v1.json",
           "normalization": "lf",
-          "sha256": "7baeec409dc89c8e6a1043fa8cc9e4dfa65cd53a96ca0259ac6a1675f41b4244"
+          "sha256": "612ef11d6a9669dccbda8665c96ac137f9c98c91d861588896cc88aeaf70eb47"
         }
       ],
       "notes": "Accepted structured ownership for source-derived gameplay effect contracts; per-record confidence remains authoritative."
@@ -717,55 +673,11 @@
     },
     {
       "book": "death-guard",
-      "sourceId": "death-guard-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "accepted-2026-09-14",
-      "acceptedHash": "a45758a5893ad3c3e83a5a9c62283c5e10a046083cf105b9478c9f89e5f2bf7b",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "REPOSITORY_ARTIFACT",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/death-guard/scripts/related-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "a45758a5893ad3c3e83a5a9c62283c5e10a046083cf105b9478c9f89e5f2bf7b"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "death-guard",
-      "sourceId": "death-guard-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08",
-      "acceptedHash": "4d8a9ec918f5c8dbe0ba99655fab17b1e5b6b92ff7a8220d0014b88cbd083af8",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/death-guard/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "4d8a9ec918f5c8dbe0ba99655fab17b1e5b6b92ff7a8220d0014b88cbd083af8"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
-    },
-    {
-      "book": "death-guard",
       "sourceId": "death-guard-effect-contracts",
       "authority": "structured-contract",
       "sourceType": "structured-contract",
       "acceptedRevision": "effect-contracts-v1-2026-09-14",
-      "acceptedHash": "1b05e32b0dadbf96406849ee2ed2404a987b2ea7e0535d10ca2f03a5054c9f9f",
+      "acceptedHash": "d6cf321156de19e9a57dfd0440d05f316d9c07b98c6ee0cef6360dcd56861c33",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -776,19 +688,19 @@
         {
           "path": "books/death-guard/sources/death-guard-effect-contracts.v1.json",
           "normalization": "lf",
-          "sha256": "1b05e32b0dadbf96406849ee2ed2404a987b2ea7e0535d10ca2f03a5054c9f9f"
+          "sha256": "d6cf321156de19e9a57dfd0440d05f316d9c07b98c6ee0cef6360dcd56861c33"
         }
       ],
       "notes": "Accepted structured ownership for source-derived gameplay effect contracts; per-record confidence remains authoritative."
     },
     {
       "book": "death-guard",
-      "sourceId": "death-guard-enhancement-owner-matrix",
+      "sourceId": "death-guard-wargear-option-contracts",
       "authority": "structured-contract",
       "sourceType": "structured-contract",
-      "acceptedRevision": "accepted-2026-09-14",
-      "acceptedHash": "f29fc9f3cff6897655470720dc425f401c82f749fda5664dfd6b7ada468a3fe9",
-      "lastChecked": "2026-09-14",
+      "acceptedRevision": "c111b854ec7f865e3b1eb7389f792655d89477ba",
+      "acceptedHash": "77517420555b232d3e37dfc59b4d7d48030b6970b3394f87c254e19389cca418",
+      "lastChecked": "2026-09-26",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
       "status": "VERIFIED_FROZEN",
@@ -796,12 +708,12 @@
       "reproducible": "repository-artifact",
       "artifacts": [
         {
-          "path": "books/death-guard/sources/enhancement-owner-matrix.json",
+          "path": "books/death-guard/sources/death-guard-wargear-option-contracts.v1.json",
           "normalization": "lf",
-          "sha256": "f29fc9f3cff6897655470720dc425f401c82f749fda5664dfd6b7ada468a3fe9"
+          "sha256": "77517420555b232d3e37dfc59b4d7d48030b6970b3394f87c254e19389cca418"
         }
       ],
-      "notes": "Enrolled factual owner for enhancement-owner-membership."
+      "notes": "Byte-identical to the accepted wargear-option contract introduced by c111b854; consumed by the DG canonical/effective adapter and native V2 comparison QA. No upstream currentness claim."
     },
     {
       "book": "death-guard",
@@ -924,7 +836,7 @@
       "authority": "legacy-normalized-secondary",
       "sourceType": "legacy-normalized-secondary",
       "acceptedRevision": "legacy-normalized-2026-08-08",
-      "acceptedHash": "51bec45f16fe8c164913e0b46e69549c1b93ad5b9887b70dab60d3ff99a7cff1",
+      "acceptedHash": "a1545473d1b299861eaddcc7f11e8885df4d30d21f4f205ba8a56b8486e10508",
       "lastChecked": "2026-08-08",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
@@ -935,7 +847,7 @@
         {
           "path": "books/emperors-children/content/emperors-children-codex-parity.en.json",
           "normalization": "lf",
-          "sha256": "51bec45f16fe8c164913e0b46e69549c1b93ad5b9887b70dab60d3ff99a7cff1"
+          "sha256": "a1545473d1b299861eaddcc7f11e8885df4d30d21f4f205ba8a56b8486e10508"
         }
       ],
       "notes": "Enrolled factual owner for codex-rule-parity."
@@ -946,7 +858,7 @@
       "authority": "bsdata-snapshot",
       "sourceType": "bsdata-snapshot",
       "acceptedRevision": "fa30730fca11fbfe87be90684d481d50e0efaf66",
-      "acceptedHash": "c88799d7c54dc7d8c3e6bed6c78b6791547a6cd0cda9b70b467c175ae0ef8ce7",
+      "acceptedHash": "f751e92f4a8ed944fcfe81c5f6fdf6b9896931de04d36200ed3a1eced2d3637d",
       "lastChecked": "2026-08-08",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
@@ -962,54 +874,10 @@
         {
           "path": "books/emperors-children/content/emperors-children-codex-datasheets.en.json",
           "normalization": "lf",
-          "sha256": "d6279131a5071c7f78a6598e193ef4d178e0361da497d6b0000fa76462ef3102"
+          "sha256": "35f118a6a1b5cdbddab574552310c10e2e1df3c2f153b7b156b5e76828b90794"
         }
       ],
       "notes": "Enrolled factual owner for datasheets, profiles, points-structure."
-    },
-    {
-      "book": "emperors-children",
-      "sourceId": "emperors-children-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "editorial-review-2026-08-02",
-      "acceptedHash": "6ad3e75ec5712f876eacc15733d10cb14d4320a41078ad7fa239707f16676259",
-      "lastChecked": "2026-08-02",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "USER_ACCEPTED_EDITORIAL_DECISION",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/emperors-children/sources/compatible-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "6ad3e75ec5712f876eacc15733d10cb14d4320a41078ad7fa239707f16676259"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "emperors-children",
-      "sourceId": "emperors-children-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08-09",
-      "acceptedHash": "dbb1551a036284f27f221bb10c2b62e7197293b327c66863df6cb977fd2d2802",
-      "lastChecked": "2026-08-09",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/emperors-children/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "dbb1551a036284f27f221bb10c2b62e7197293b327c66863df6cb977fd2d2802"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
     },
     {
       "book": "emperors-children",
@@ -1017,7 +885,7 @@
       "authority": "structured-contract",
       "sourceType": "structured-contract",
       "acceptedRevision": "effect-contracts-v1-2026-09-14",
-      "acceptedHash": "1ba14f7d14762bfbdde75dd4f62546298427485168c9faf7f33e0361e587ce6f",
+      "acceptedHash": "67aa273714c5a7ca8b74bcbbd64d986e7f4f7c01df1f49394b3188bf77e024c2",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -1028,7 +896,7 @@
         {
           "path": "books/emperors-children/sources/emperors-children-effect-contracts.v1.json",
           "normalization": "lf",
-          "sha256": "1ba14f7d14762bfbdde75dd4f62546298427485168c9faf7f33e0361e587ce6f"
+          "sha256": "67aa273714c5a7ca8b74bcbbd64d986e7f4f7c01df1f49394b3188bf77e024c2"
         }
       ],
       "notes": "Accepted structured ownership for source-derived gameplay effect contracts; per-record confidence remains authoritative."
@@ -1383,7 +1251,7 @@
       "authority": "structured-contract",
       "sourceType": "structured-contract",
       "acceptedRevision": "v1",
-      "acceptedHash": "964fd459977fa84536c0f8e297409bb385864dee80e17b319b446f73229f4c5c",
+      "acceptedHash": "b834970dd5b7a85a9c82bc93f47861b09015883164c307698abce56ed663d309",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -1394,7 +1262,7 @@
         {
           "path": "books/space-marines/sources/space-marines-related-rules-contracts.v1.json",
           "normalization": "lf",
-          "sha256": "964fd459977fa84536c0f8e297409bb385864dee80e17b319b446f73229f4c5c"
+          "sha256": "b834970dd5b7a85a9c82bc93f47861b09015883164c307698abce56ed663d309"
         }
       ],
       "notes": "Enrolled factual owner for enhancement-owner-contracts, upgrade-contracts."
@@ -1494,50 +1362,6 @@
     },
     {
       "book": "tau-empire",
-      "sourceId": "tau-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "editorial-review-2026-08-02",
-      "acceptedHash": "68153d9cfb0b9d92faaaa68e4ad76cac80c726eca5225e3e955a4c78a5f96f96",
-      "lastChecked": "2026-08-02",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "USER_ACCEPTED_EDITORIAL_DECISION",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/tau-empire/sources/compatible-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "68153d9cfb0b9d92faaaa68e4ad76cac80c726eca5225e3e955a4c78a5f96f96"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "tau-empire",
-      "sourceId": "tau-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08-02",
-      "acceptedHash": "66fe9c38dcf13cc29c1949063cb47a307aec3efc2a6b4c4c2e38b40623de74da",
-      "lastChecked": "2026-09-28",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/tau-empire/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "66fe9c38dcf13cc29c1949063cb47a307aec3efc2a6b4c4c2e38b40623de74da"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
-    },
-    {
-      "book": "tau-empire",
       "sourceId": "tau-empire-attachment-group-constraints",
       "authority": "structured-contract",
       "sourceType": "structured-contract",
@@ -1564,7 +1388,7 @@
       "authority": "structured-contract",
       "sourceType": "structured-contract",
       "acceptedRevision": "effect-contracts-v1-2026-09-14",
-      "acceptedHash": "efcdf5ffa4588c0093e2ae054a572694df97a3ab4060d9ed7f9deffbb25a1754",
+      "acceptedHash": "e48bb085215a01fb3cfac4e1f19e1963168b031bb96bd115e2934fdfee715688",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -1575,7 +1399,7 @@
         {
           "path": "books/tau-empire/sources/tau-empire-effect-contracts.v1.json",
           "normalization": "lf",
-          "sha256": "efcdf5ffa4588c0093e2ae054a572694df97a3ab4060d9ed7f9deffbb25a1754"
+          "sha256": "e48bb085215a01fb3cfac4e1f19e1963168b031bb96bd115e2934fdfee715688"
         }
       ],
       "notes": "Accepted structured ownership for source-derived gameplay effect contracts; per-record confidence remains authoritative."
@@ -1728,7 +1552,7 @@
       "authority": "bsdata-snapshot",
       "sourceType": "bsdata-snapshot",
       "acceptedRevision": "fa30730fca11fbfe87be90684d481d50e0efaf66",
-      "acceptedHash": "21e8f4f3ed0dc87fb7651ad6571219340207a64634b0b03c5d2bc5f183f979f7",
+      "acceptedHash": "c137b4cb41afc17ba562f4b7fb6036609c2a44ec23e275569fbb8f3b3390e41c",
       "lastChecked": "2026-09-27",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
@@ -1744,7 +1568,7 @@
         {
           "path": "books/tyranids/content/tyranids-codex-datasheets.en.json",
           "normalization": "lf",
-          "sha256": "12e853ed4e67f6cd468f02518a37f4eef25494b30c706efa9c52abc188ec5bdb"
+          "sha256": "f00ce399dbbcd94c66fd6acd115c43ce23720ccd9e668dcedbcf202f2e59729c"
         }
       ],
       "notes": "Pinned BSData structure plus the source-backed canonical Tyranids datasheet projection certified against the current Waha 11E operational corpus and stronger enrolled official evidence."
@@ -1773,55 +1597,11 @@
     },
     {
       "book": "tyranids",
-      "sourceId": "tyranids-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "accepted-2026-09-14",
-      "acceptedHash": "f1cde8e14c35c5cfa7f0f9e35cbff7cd665ec1fe13f91b2f7847f1db9f3e9cb0",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "REPOSITORY_ARTIFACT",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/tyranids/sources/compatible-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "f1cde8e14c35c5cfa7f0f9e35cbff7cd665ec1fe13f91b2f7847f1db9f3e9cb0"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "tyranids",
-      "sourceId": "tyranids-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08-13",
-      "acceptedHash": "49e8915077224c22713afac75a183bed316e4115c158068382a658bd9a4bee25",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/tyranids/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "49e8915077224c22713afac75a183bed316e4115c158068382a658bd9a4bee25"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
-    },
-    {
-      "book": "tyranids",
       "sourceId": "tyranids-effect-contracts",
       "authority": "structured-contract",
       "sourceType": "structured-contract",
       "acceptedRevision": "effect-contracts-v1-2026-09-14",
-      "acceptedHash": "d2dd884810fdb03512208746a9fbb13d2ae9a53ef97549bdf896ea6615a15011",
+      "acceptedHash": "0699ecac277a78f100b70a1767805c2f854cb16ec9095a5b9a3f3a327fe55ace",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -1832,7 +1612,7 @@
         {
           "path": "books/tyranids/sources/tyranids-effect-contracts.v1.json",
           "normalization": "lf",
-          "sha256": "d2dd884810fdb03512208746a9fbb13d2ae9a53ef97549bdf896ea6615a15011"
+          "sha256": "0699ecac277a78f100b70a1767805c2f854cb16ec9095a5b9a3f3a327fe55ace"
         }
       ],
       "notes": "Accepted structured ownership for source-derived gameplay effect contracts; per-record confidence remains authoritative."
@@ -1897,7 +1677,7 @@
       "authority": "structured-contract",
       "sourceType": "structured-contract",
       "acceptedRevision": "accepted-2026-09-14",
-      "acceptedHash": "136bfed588f8da7dfef5986df3caa7cf137905943e713c9670109578a2f4c63a",
+      "acceptedHash": "16da70f2a0d07e409bbf6d2eab5f780fc3de776d88027a55576e9036e7af7cb2",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -1908,7 +1688,7 @@
         {
           "path": "books/tyranids/content/tyranids-related-rules.en.json",
           "normalization": "lf",
-          "sha256": "136bfed588f8da7dfef5986df3caa7cf137905943e713c9670109578a2f4c63a"
+          "sha256": "16da70f2a0d07e409bbf6d2eab5f780fc3de776d88027a55576e9036e7af7cb2"
         }
       ],
       "notes": "Enrolled factual owner for related-rule-selectors, enhancement-ownership."
@@ -1975,7 +1755,7 @@
       "authority": "community-secondary-operational-baseline",
       "sourceType": "deterministic-web-corpus",
       "acceptedRevision": "current-capture-2026-09-25",
-      "acceptedHash": "28d59094946fc0e371b45727f4767e1e9d2f123649695e9f65da8bfb4fede441",
+      "acceptedHash": "acb906424f0ba938bc1452211a42ccfaee6249d02833b314a42ce869843495eb",
       "lastChecked": "2026-09-25",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -1987,12 +1767,12 @@
         {
           "path": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
           "normalization": "bytes",
-          "sha256": "6c1ae25df0fcdcfe87e40764b71321b63c69c0fdb1a0af983ef8f0dcc7d1e582"
+          "sha256": "8ddc937999e6e84ccb9f149f385a477d91191549639f472a1995006ba9ec0fcf"
         },
         {
           "path": "books/death-guard/sources/waha-11e-current-2026-09-25/source-defects.json",
           "normalization": "bytes",
-          "sha256": "17b2d0bf3b3b918425afd718780ced3504203bf2879fcc928218ee09fc01f255"
+          "sha256": "788bd1d5c7d2ae18be8312023c79fe9456d014e9ebac87326e12e5098d4ec2a0"
         }
       ],
       "notes": "Frozen secondary 11E Death Guard corpus captured for complete source-to-canonical certification at the 2026-09-22 currentness cutoff."
@@ -2299,7 +2079,7 @@
       "authority": "community-secondary-operational-baseline",
       "sourceType": "deterministic-web-corpus",
       "acceptedRevision": "current-capture-2026-09-25",
-      "acceptedHash": "1eea9803315f4c5a01165ae33583c203f837426341ce988df364f8a71d5dad12",
+      "acceptedHash": "b207cd0523656af841e0b56a7c1a363a6cd9375f44db376f196b5597671e286b",
       "lastChecked": "2026-09-25",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -2311,7 +2091,7 @@
         {
           "path": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
           "normalization": "bytes",
-          "sha256": "977dce523fe59b95bc3251c7d53145a0ffa7d14fbd670ce4091de5c6fd75454d"
+          "sha256": "b779fbc93da3383aedae78a506750b6aced8c84b2566187f171dff717cc58d17"
         },
         {
           "path": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/source-defects.json",
@@ -2327,7 +2107,7 @@
       "authority": "community-secondary-operational-baseline",
       "sourceType": "deterministic-web-corpus",
       "acceptedRevision": "current-capture-2026-09-27",
-      "acceptedHash": "c4425e4b1e133ffe452f692de5861ea180d4ff298e968cac9affd70522dd9945",
+      "acceptedHash": "c4ab8a1d5d1b66d1b45fb51aaf99c2886a3538c372c401a01bbf0110cb6f30b0",
       "lastChecked": "2026-09-27",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -2339,12 +2119,12 @@
         {
           "path": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
           "normalization": "bytes",
-          "sha256": "bdb6b4e438a2fc6a079dee12263056737874e7d4bc73b0a74552de57d2005744"
+          "sha256": "79c7ddc234934a619d24aa486acea0af149b6ab1c203b464bcef12af69d611f3"
         },
         {
           "path": "books/tyranids/sources/waha-11e-current-2026-09-27/source-defects.json",
           "normalization": "bytes",
-          "sha256": "94fa9a970978de9b97f6745911bd27c6a5221143a6e7b2eb21c6aa0bcf0133e9"
+          "sha256": "018b6f6dce64429589437247443b536f3e7895608263ea4c89053640525f20ba"
         }
       ],
       "notes": "Frozen secondary 11E Tyranids corpus captured for complete source-to-canonical certification on 2026-09-27."
@@ -2355,7 +2135,7 @@
       "authority": "community-secondary-operational-baseline",
       "sourceType": "deterministic-web-corpus",
       "acceptedRevision": "current-capture-2026-09-28",
-      "acceptedHash": "b73bf630507986d9d3792f3f667d8869b88c31c2a53c650e188f2a913e2607ed",
+      "acceptedHash": "99d79cfbbbd8427f0ecc8a450d8a5c5aebfc55d1e820c629c902d200162be139",
       "lastChecked": "2026-09-28",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -2367,7 +2147,7 @@
         {
           "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/corpus.json",
           "normalization": "bytes",
-          "sha256": "613c17fdea940ca662620c8e5ddf1bb865f4d12f719bebc89f8a37a976063c7b"
+          "sha256": "04b6261cf7740977f385d8df0b76f37e9d0358354780563ff11e0ad5154f1721"
         },
         {
           "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/source-defects.json",
@@ -2383,7 +2163,7 @@
       "authority": "community-secondary-operational-baseline",
       "sourceType": "deterministic-web-corpus",
       "acceptedRevision": "current-capture-2026-09-28",
-      "acceptedHash": "8f65bf69c68cfbaa4740cb10e98cdba35cea79b8d0a469fda0638a3a3c21228d",
+      "acceptedHash": "2224ff4a5f30d216be77f0c1298699a145281837ad89a6c3ab229fc43b32a1e3",
       "lastChecked": "2026-09-28",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "N/A",
@@ -2395,7 +2175,7 @@
         {
           "path": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
           "normalization": "bytes",
-          "sha256": "a5fdb9334b18a3dba29d94ad930f6d611f9079529d602796ce6ea42d25a1a1d3"
+          "sha256": "ed0c7577998aea4b0dfa6f39ef6cde523bb8b4aee6cf36a9c69e04ceaa14131e"
         },
         {
           "path": "books/emperors-children/sources/waha-11e-current-2026-09-28/source-defects.json",
@@ -3078,17 +2858,122 @@
         }
       ],
       "notes": "Targeted offline enrollment from the already saved SHA-pinned official 2026-10-22 DOM using the existing MFM capture schema/DOM extraction pattern. The six-faction standalone live producer was not run. BA-owned partition only; SM/Deathwatch facts remain with their existing owners. Publication/effective date is not established."
+    },
+    {
+      "book": "chaos-space-marines",
+      "sourceId": "chaos-space-marines-wargear-option-contracts",
+      "authority": "structured-contract",
+      "sourceType": "structured-contract",
+      "acceptedRevision": "97a3508b3291850e3881f6ddb52dff31983ec024",
+      "acceptedHash": "f5d68c72f1d0a43f9c5be45904d7b81f760f5faf3029bd475f165dc8a74203e5",
+      "lastChecked": "2026-11-04",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "REPOSITORY_ARTIFACT",
+      "reproducible": "repository-artifact",
+      "artifacts": [
+        {
+          "path": "books/chaos-space-marines/sources/chaos-space-marines-wargear-option-contracts.v1.json",
+          "normalization": "lf",
+          "sha256": "f5d68c72f1d0a43f9c5be45904d7b81f760f5faf3029bd475f165dc8a74203e5"
+        }
+      ],
+      "notes": "Accepted by owner on 2026-11-04 as an existing project build input. No upstream currentness claim."
+    },
+    {
+      "book": "emperors-children",
+      "sourceId": "emperors-children-wargear-option-contracts",
+      "authority": "structured-contract",
+      "sourceType": "structured-contract",
+      "acceptedRevision": "9f2ef644cacc1e8760aade2ca023bedc250b1927",
+      "acceptedHash": "a6d234555af5b1fd990c8c688e680e9a031345d08ae0deacdb5e6d5d8f200295",
+      "lastChecked": "2026-11-04",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "REPOSITORY_ARTIFACT",
+      "reproducible": "repository-artifact",
+      "artifacts": [
+        {
+          "path": "books/emperors-children/sources/emperors-children-wargear-option-contracts.v1.json",
+          "normalization": "lf",
+          "sha256": "a6d234555af5b1fd990c8c688e680e9a031345d08ae0deacdb5e6d5d8f200295"
+        }
+      ],
+      "notes": "Accepted by owner on 2026-11-04 as an existing project build input. No upstream currentness claim."
+    },
+    {
+      "book": "emperors-children",
+      "sourceId": "emperors-children-codex-wargear",
+      "authority": "structured-contract",
+      "sourceType": "structured-contract",
+      "acceptedRevision": "2c30fc03ffa188d7948c6fbe32d30b2271359130",
+      "acceptedHash": "5b23a9c7a89099cd9fe160318f0413f099ae58742d00bae2197c5c0057232fc1",
+      "lastChecked": "2026-11-04",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "REPOSITORY_ARTIFACT",
+      "reproducible": "repository-artifact",
+      "artifacts": [
+        {
+          "path": "books/emperors-children/content/emperors-children-codex-wargear.en.json",
+          "normalization": "lf",
+          "sha256": "5b23a9c7a89099cd9fe160318f0413f099ae58742d00bae2197c5c0057232fc1"
+        }
+      ],
+      "notes": "Accepted by owner on 2026-11-04 as an existing project build input. No upstream currentness claim."
+    },
+    {
+      "book": "tau-empire",
+      "sourceId": "tau-empire-wargear-option-contracts",
+      "authority": "structured-contract",
+      "sourceType": "structured-contract",
+      "acceptedRevision": "95276cf43fa61cb8c03adbb0089e184b6384be84",
+      "acceptedHash": "dcf5ab4cbbc9d54ebfeb0dd8cbdfadf3725fc1448efa87af19d29c03601aa986",
+      "lastChecked": "2026-11-04",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "REPOSITORY_ARTIFACT",
+      "reproducible": "repository-artifact",
+      "artifacts": [
+        {
+          "path": "books/tau-empire/sources/tau-empire-wargear-option-contracts.v1.json",
+          "normalization": "lf",
+          "sha256": "dcf5ab4cbbc9d54ebfeb0dd8cbdfadf3725fc1448efa87af19d29c03601aa986"
+        }
+      ],
+      "notes": "Accepted by owner on 2026-11-04 as an existing project build input. No upstream currentness claim."
+    },
+    {
+      "book": "tyranids",
+      "sourceId": "tyranids-wargear-option-contracts",
+      "authority": "structured-contract",
+      "sourceType": "structured-contract",
+      "acceptedRevision": "a5409b38023461350449bb1b37b5fcd6f03df622",
+      "acceptedHash": "5f4ca271907fe6d0248785982cc7f717df47f41f86db627b63a4d3ae036620bc",
+      "lastChecked": "2026-11-04",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "REPOSITORY_ARTIFACT",
+      "reproducible": "repository-artifact",
+      "artifacts": [
+        {
+          "path": "books/tyranids/sources/tyranids-wargear-option-contracts.v1.json",
+          "normalization": "lf",
+          "sha256": "5f4ca271907fe6d0248785982cc7f717df47f41f86db627b63a4d3ae036620bc"
+        }
+      ],
+      "notes": "Accepted by owner on 2026-11-04 as an existing project build input. No upstream currentness claim."
     }
   ],
   "dormantLiveTools": [
     "books/adeptus-mechanicus/tools/extract-codex-rules.cjs",
     "books/adeptus-mechanicus/tools/extract-wargear.cjs",
-    "books/adeptus-mechanicus/tools/import-wahapedia-compatible-rules.mjs",
-    "books/death-guard/tools/import-wahapedia-compatible-rules.mjs",
-    "books/emperors-children/tools/import-wahapedia-compatible-rules.mjs",
     "books/tyranids/tools/extract-codex-parity.cjs",
-    "books/tyranids/tools/extract-wargear.cjs",
-    "books/tyranids/tools/import-wahapedia-compatible-rules.mjs",
-    "books/tau-empire/tools/import-wahapedia-compatible-rules.mjs"
+    "books/tyranids/tools/extract-wargear.cjs"
   ]
 }

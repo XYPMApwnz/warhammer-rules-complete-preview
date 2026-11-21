@@ -1,3 +1,4 @@
+import {createQaTempDir,getQaTmpRoot,cleanupQaTempDir} from '../../../tests/helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -233,13 +234,13 @@ if(process.argv[1]===ownFile) {
   const isolation=poison=>{const p=spawnSync(process.execPath,[ownFile,'--isolation',...(poison?['--poison']:[])],{encoding:'utf8',maxBuffer:12*1024*1024});assert.equal(p.status,0,p.stderr);return JSON.parse(p.stdout);};
   const clean=isolation(false),poisoned=isolation(true);
   assert.deepEqual(clean.legacyReads,[]);assert.deepEqual(poisoned.legacyReads,[]);assert.deepEqual(clean.disposableIndexReads,[]);assert.deepEqual(poisoned.disposableIndexReads,[]);assert.equal(clean.hash,poisoned.hash,'Legacy/generated index poison changed the canonical build');
-  const tempRoot=process.env.GLOSSARY_V2_QA_TMPDIR||os.tmpdir();fs.mkdirSync(tempRoot,{recursive:true});
-  const temporary=fs.mkdtempSync(path.join(tempRoot,'glossary-v2-')),outputPath=path.join(temporary,'glossary-index.json');
+  const tempRoot=getQaTmpRoot();fs.mkdirSync(tempRoot,{recursive:true});
+  const temporary=createQaTempDir('glossary-v2-'),outputPath=path.join(temporary,'glossary-index.json');
   try {
     writeGlossary({outputPath});const first=fs.readFileSync(outputPath,'utf8');
     fs.unlinkSync(outputPath);writeGlossary({outputPath});assert.equal(fs.readFileSync(outputPath,'utf8'),first,'Deleted disposable index did not regenerate deterministically');
     fs.writeFileSync(outputPath,'{"POISONED_DISPOSABLE_INDEX":true}');writeGlossary({outputPath});assert.equal(fs.readFileSync(outputPath,'utf8'),first,'Disposable index poison retained competing facts');
     writeGlossary({check:true,outputPath});
-  } finally {if(fs.existsSync(outputPath))fs.unlinkSync(outputPath);fs.rmdirSync(temporary);}
+  } finally {cleanupQaTempDir(temporary);}
   console.log(JSON.stringify({status:'PASS',...result,mutations,canonicalIdentityDespiteTitleCollisions:'PASS',sourceOrderIndependent:'PASS',canonicalDgAbilityPoison:'REFLECTED',canonicalCoreDefinitionPoison:'REFLECTED',legacyGlossaryReads:0,disposableIndexReads:0,legacyPoison:'PASS',indexDeletionRebuild:'PASS',definitionsInIndex:0},null,2));
 }

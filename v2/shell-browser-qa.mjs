@@ -1,13 +1,13 @@
+import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 /** Independent full-payload integration checks for the unified V2 entry point. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {createRequire} from 'node:module';
 import {decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 import {armyBooks} from './army-books.mjs';
-import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
+import {isApplicationTestDependency,allowApplicationTestDependencies} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const requests=[],forbidden=[],errors=[],results=[];
@@ -22,8 +22,26 @@ const isAllowedResource=address=>registeredHomeResources.has(address)||isApplica
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
     /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address);
+const startupTestResources=new Map([
+  ['/books/shared/application-v2/source-metadata.mjs','text/javascript'],
+  ['/books/shared/army-book-app-v2/import-notices.mjs','text/javascript'],
+  ['/books/shared/application-v2/generated/source-metadata.v1.json','application/json']
+]);
+const declaredTestResources=new Map();allowApplicationTestDependencies(declaredTestResources);
+for(const [address,mime]of startupTestResources){
+  assert.equal(isApplicationTestDependency(address),true,'The startup resource is an exact shared test dependency: '+address);
+  assert.equal(isAllowedResource(address),true,'The shell QA server must serve the startup resource: '+address);
+  assert.equal(declaredTestResources.get(address),mime,'The startup test resource has the exact MIME type: '+address);
+}
+for(const address of ['/mfm/next.json','/books/core-rules/content/core-rules.candidate-11e.json',
+  '/mfm/current.json','/books/core-rules/content/core-rules.digital-11e.json']){
+  assert.equal(isApplicationTestDependency(address),false,'An undeclared source lookalike is not a shared test dependency: '+address);
+  assert.equal(isAllowedResource(address),false,'The shell QA server must deny an undeclared source lookalike: '+address);
+}
 assert.equal(isAllowedResource('/books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp'),true);
 assert.equal(isAllowedResource('/books/emperors-children/assets/emperors-children-cover-480.webp'),true);
+assert.equal(isAllowedResource('/books/shared/source-refs-v2/source-refs.mjs'),true,'The shared browser source reader is a declared dependency');
+for(const module of ['producer-io','source-registry'])assert.equal(isAllowedResource(`/books/shared/source-refs-v2/${module}.mjs`),false,'Node-only source tooling must not be served');
 for(const address of ['/books/chaos-space-marines/assets/chaos-space-marines-cover-800.webp',
   '/books/chaos-space-marines/assets/unknown.webp','/books/chaos-space-marines/scripts/data.js',
   '/books/emperors-children/assets/unknown.webp','/books/tyranids/v2/app.html'])assert.equal(isAllowedResource(address),false,'Unexpected resource admitted: '+address);
@@ -137,10 +155,7 @@ async function released(page){
 
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`,entry=origin+'/v2/app.html';
-const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
-const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
-const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchChromium();
 const screenshot=async(page,name)=>{if(process.env.V2_SHELL_SCREENSHOTS){fs.mkdirSync(process.env.V2_SHELL_SCREENSHOTS,{recursive:true});
   await page.screenshot({path:path.join(process.env.V2_SHELL_SCREENSHOTS,name+'.png'),fullPage:false});}};
 try{
@@ -191,12 +206,26 @@ try{
       }
       await page.evaluate(()=>window.ArmyBookAppV2.openPersonalGuide());await page.waitForSelector('main [data-roster-nav-instance-id]');
       await page.evaluate(()=>window.ArmyBookAppV2.openInstance('parsed-unit-1'));await page.waitForSelector('main .unit-card');await geometry(page);
-      await page.locator('main .ds-related-rules-button').first().click();await page.waitForSelector('dialog.v2-related-dialog[open]');
+      const physicalUrl=page.url();
+      const relatedUnitId=await page.evaluate(()=>window.ArmyBookAppV2.roster.state.units.find(unit=>unit.instanceId==='parsed-unit-1').canonicalUnitId);
+      assert.equal(await page.locator('main .ds-related-rules-button').count(),0,'Roster cards omit the compatible rules button');
+      assert.equal(await page.getByRole('button',{name:'Compatible Stratagems & Enhancements',exact:true,includeHidden:true}).count(),0,'Removed roster label is absent');
+      const fullBookControl=page.getByRole('button',{name:'Full Army Book',exact:true});
+      const bookMenu=page.locator('#navMenu');
+      if(!await fullBookControl.isVisible())await bookMenu.click();
+      await fullBookControl.click();await active(page,book);
+      if(await bookMenu.isVisible()&&await bookMenu.getAttribute('aria-expanded')==='true')await bookMenu.click();
+      await page.locator(`main .unit-card[data-card-id="${relatedUnitId}"] .ds-related-rules-button`).first().click();await page.waitForSelector('dialog.v2-related-dialog[open]');
       await popupGeometry(page,'dialog.v2-related-dialog[open] .related-rules-dialog');
       await page.locator('dialog.v2-related-dialog[open] button[data-kind="enhancements"]').click();
       assert.equal(await page.locator('dialog.v2-related-dialog[open] button[data-kind="enhancements"]').getAttribute('aria-pressed'),'true');
       await screenshot(page,`shell-${book}-related-${device}`);
       await page.getByRole('button',{name:'Close compatible rules',exact:true}).click();await page.waitForSelector('dialog.v2-related-dialog[open]',{state:'hidden'});
+      await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await active(page,book);
+      const restoredOwner=page.locator('.v2-roster-instance[data-roster-instance-id="parsed-unit-1"]');
+      assert.equal(await restoredOwner.getByRole('button',{name:'Effective datasheet',exact:true,includeHidden:true}).count(),0,'Removed card label is absent');
+      await restoredOwner.getByRole('button',{name:'Open card',exact:true}).click();await page.waitForSelector('main .unit-card');
+      assert.equal(page.url(),physicalUrl,'Returning from the Full Army Book restores the exact physical URL');
       assert.equal(new URL(page.url()).searchParams.get('instance'),'parsed-unit-1');
       const link=page.locator(`main .weapon-name a[data-target-id="${c.weapon}"]`).first();
       const href=await link.getAttribute('href'),url=new URL(href);urls[book]=href;
@@ -205,7 +234,17 @@ try{
       await page.goBack();await page.waitForSelector('dialog[open]',{state:'hidden'});await page.waitForSelector('main .unit-card');
       await page.goForward();await page.waitForSelector('dialog[open]');await fact(page,c,true);
       await page.goBack();await page.waitForSelector('dialog[open]',{state:'hidden'});
-      const opening=context.waitForEvent('page');await link.click({modifiers:['Control']});const tab=await opening;await ready(tab);await active(tab,book);await fact(tab,c);await tab.reload();await ready(tab);await fact(tab,c);await tab.close();
+      const opening=context.waitForEvent('page');
+      await link.click({modifiers:['Control']});
+      const tab=await opening;
+      await tab.bringToFront();
+      // The Page event can precede the actual document. Use the exact native
+      // route and document load, then keep the original bounded app predicate.
+      // app.html already guards boot.mjs with WHOfflineStatus.ready.
+      await tab.waitForURL(href,{waitUntil:'load'});
+      assert.equal(tab.url(),href,'Native new tab lost the exact reference route');
+      await ready(tab);await active(tab,book);await fact(tab,c);
+      await tab.reload();await ready(tab);await fact(tab,c);await tab.close();
       await page.goto(href);await ready(page);await active(page,book);await fact(page,c);await page.reload();await ready(page);await fact(page,c);
       await page.evaluate(()=>window.ArmyBookAppV2.openGlossary());await page.waitForSelector('.v2-glossary-result');
       const glossary=page.locator('.v2-glossary-result').first();
@@ -243,7 +282,8 @@ try{
     results.push({device,home:true,integratedDestinations:true,booklessRoster:true,import:true,attachment:true,personalGuide:true,
       physicalReference:true,nativeNewTab:true,directReload:true,retiredAdaptersAbsent:true,backForward:true,lifecycle:true,theme:true,
       neutralPrimaryNavigation:true,bookContentsPreserved:true,sectionNavigation:true,relatedRules:true,popupViewport:true,longCorePopup:true,
-      homeCovers:true,lazyLoading:true,resourceNegativeControls:5,overflow:false});
+      homeCovers:true,lazyLoading:true,resourceNegativeControls:5,startupDependencyPositiveControls:3,
+      startupDependencyNegativeControls:4,startupDependencyMimeChecks:3,overflow:false});
     await context.close();
   }
   assert.deepEqual(forbidden,[],'Shell requested a legacy or unexpected resource');

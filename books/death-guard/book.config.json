@@ -16,14 +16,14 @@
     "legends": "content/death-guard-legends.en.json",
     "officialUpdates": "content/official-update-ledger.en.json",
     "manifest": "sources/source-manifest.json",
-    "points": "sources/official-mfm-v1.5.json",
+    "points": "../../mfm/sources/v1.6/death-guard.json",
     "presentation": "sources/canonical-presentation-contract.json",
     "runtimeRelatedTerms": "sources/runtime-related-terms.json",
     "unitImages": "presentation/unit-images.json",
     "coreRules": "books/core-rules/content/core-rules.digital-11e.json",
     "effectContracts": "sources/death-guard-effect-contracts.v1.json",
     "wargearOptionContracts": "sources/death-guard-wargear-option-contracts.v1.json",
-    "mfmCurrentCapture": "sources/official-mfm-v1.5.json"
+    "mfmCurrentCapture": "../../mfm/sources/v1.6/death-guard.json"
   },
   "expected": {
     "datasheets": 36,
@@ -59,28 +59,7 @@
     "mode": "authoritative-runtime-source",
     "path": "mobile/related-rules.inc"
   },
-  "generatedOutputs": [
-    {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/death-guard/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "QA_CAPTURE_REPORT",
-      "producer": "books/death-guard/tools/import-wahapedia-compatible-rules.mjs",
-      "paths": [
-        "reports/compatible-rules-import-report.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "QA_CAPTURE_OUTPUT"
-    }
-  ],
+  "generatedOutputs": [],
   "rosterCatalog": {
     "enforceCompositionConstraints": true,
     "weaponFamilyMemberships": [
@@ -94,5 +73,194 @@
         ]
       }
     ]
+  },
+  "passport": {
+    "schema": "army-book-passport/v1",
+    "edition": "11E",
+    "sources": {
+      "enrollment": "books/death-guard/v2/sources/source-enrollment.json",
+      "effective": "books/death-guard/v2/generated/effective.json",
+      "manifest": "books/death-guard/sources/source-manifest.json",
+      "inputs": [
+        {
+          "role": "canonical",
+          "path": "books/death-guard/content/death-guard-rules.en.json"
+        },
+        {
+          "role": "legends",
+          "path": "books/death-guard/content/death-guard-legends.en.json"
+        },
+        {
+          "role": "officialUpdates",
+          "path": "books/death-guard/content/official-update-ledger.en.json"
+        },
+        {
+          "role": "manifest",
+          "path": "books/death-guard/sources/source-manifest.json"
+        },
+        {
+          "role": "currentMfmRelease",
+          "path": "mfm/current.json"
+        },
+        {
+          "role": "presentation",
+          "path": "books/death-guard/sources/canonical-presentation-contract.json"
+        },
+        {
+          "role": "runtimeRelatedTerms",
+          "path": "books/death-guard/sources/runtime-related-terms.json"
+        },
+        {
+          "role": "unitImages",
+          "path": "books/death-guard/presentation/unit-images.json"
+        },
+        {
+          "role": "coreRules",
+          "path": "books/core-rules/content/core-rules.digital-11e.json"
+        },
+        {
+          "role": "effectContracts",
+          "path": "books/death-guard/sources/death-guard-effect-contracts.v1.json"
+        },
+        {
+          "role": "wargearOptionContracts",
+          "path": "books/death-guard/sources/death-guard-wargear-option-contracts.v1.json"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/death-guard/v2/official-updates.json"
+        }
+      ]
+    },
+    "build": {
+      "steps": [
+        {
+          "book": "death-guard",
+          "producer": "books/death-guard/v2/build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/death-guard/v2/generated/base.json",
+            "books/death-guard/v2/generated/effective.json",
+            "books/death-guard/v2/generated/comparison.json"
+          ]
+        },
+        {
+          "book": "death-guard",
+          "producer": "books/death-guard/v2/rule-contract-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/death-guard/v2/generated/rule-contract-effective.json",
+            "books/death-guard/v2/generated/compatibility-v2.json",
+            "books/death-guard/v2/generated/rule-contract-closure.json"
+          ]
+        },
+        {
+          "book": "death-guard",
+          "producer": "books/death-guard/v2/roster-contract-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/death-guard/v2/generated/roster-contract-closure.json"
+          ]
+        },
+        {
+          "book": "death-guard",
+          "producer": "books/death-guard/v2/related-rules-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/death-guard/v2/generated/related-rules-v2.json"
+          ]
+        },
+        {
+          "book": "death-guard",
+          "producer": "books/death-guard/v2/glossary-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/death-guard/v2/generated/glossary-v2.json"
+          ]
+        },
+        {
+          "book": "death-guard",
+          "producer": "books/death-guard/v2/app-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/death-guard/v2/generated/app-presentation.json"
+          ]
+        }
+      ],
+      "postBuildSteps": []
+    },
+    "qa": {
+      "script": "qa:dg",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
+    },
+    "mfm": {
+      "currentRelease": "mfm/current.json",
+      "bindingPath": "books/death-guard/v2/mfm-bindings.json",
+      "scope": "death-guard"
+    },
+    "runtime": {
+      "executionArtifact": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "conditionArtifact": "books/death-guard/v2/generated/rule-contract-effective.json"
+    },
+    "canonical": {
+      "enhancementIdentity": {
+        "strategy": "owner-record",
+        "builtInExact": false
+      }
+    },
+    "modelNames": {
+      "enabled": false,
+      "artifact": "books/death-guard/v2/generated/roster-import.json",
+      "metadata": {
+        "mode": "embedded",
+        "path": null,
+        "exportName": null
+      },
+      "sourceDocument": null,
+      "joins": null
+    },
+    "official": {
+      "input": "books/death-guard/v2/official-updates.json",
+      "stage": "canonical-facts"
+    },
+    "inheritance": {
+      "owners": []
+    },
+    "publication": {
+      "manifest": "tools/pages-runtime-manifest.json"
+    },
+    "audit": {
+      "conditionSchemas": [
+        "books/death-guard/v2/rule-contract-schema.mjs",
+        "books/death-guard/v2/rule-contract-state-fields.mjs"
+      ],
+      "originalSchema": {
+        "mode": "frozen-json",
+        "sourcePath": "books/death-guard/v2/rule-contract-state-fields.mjs",
+        "auxiliaryPath": null,
+        "constantName": null
+      },
+      "fieldExports": [],
+      "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/death-guard/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      },
+      "metadataPins": []
+    },
+    "keywords": {
+      "format": "flat"
+    }
   }
 }

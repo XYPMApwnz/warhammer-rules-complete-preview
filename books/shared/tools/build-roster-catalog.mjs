@@ -1,3 +1,4 @@
+import {requiredKeywordField,keywordField} from '../keyword-values.mjs';
 import {assignCanonicalChildIdentities,requireCanonicalChildIdentity} from './canonical-join-contract.mjs';
 import {canonicalBaseStatsForUnit,canonicalStatProfilesForUnit} from './canonical-unit-stats.mjs';
 import {projectUnitRosterWeaponFacts} from './canonical-weapon-profile-facts.mjs';
@@ -70,7 +71,7 @@ const dependencyRecords=config=>{
 const singularModelTitle=(value,max)=>{const title=String(value||'').replace(/\s+[\u2013\u2014-]\s+EPIC HERO\s*$/i,'').trim();return Number(max)>1&&/s$/i.test(title)&&!/(ss|us)$/i.test(title)?title.slice(0,-1):title;};
 const canonicalCompositionModelsFor=unit=>{
   const structured=values(unit.composition);
-  if(structured.length)return structured.map(model=>({name:model.name||'',aliases:values(model.aliases),identityFacts:{sourceModels:values(model.models),min:model.min??null,max:model.max??null},...(model.intrinsicKeywords===undefined?{}:{intrinsicKeywords:model.intrinsicKeywords})})).filter(model=>model.name);
+  if(structured.length)return structured.map(model=>({name:model.name||'',aliases:values(model.aliases),identityFacts:{sourceModels:values(model.models),min:model.min??null,max:model.max??null},...(requiredKeywordField(model, "intrinsicKeywords")===undefined?{}:{intrinsicKeywords:requiredKeywordField(model, "intrinsicKeywords")})})).filter(model=>model.name);
   const section=values(unit.subsections).find(item=>normalize(item?.title)==='unit composition');
   const text=typeof unit.composition==='string'?unit.composition:values(section?.blocks).filter(block=>block?.type==='p').map(block=>block.text||'').join(' ');
   if(!text.trim())return [];
@@ -102,7 +103,7 @@ const assertMatchingAbilityRecords=(unit,abilities,wargearAbilities)=>{
   }
 };
 export const canonicalRosterModelsFor=(unit,{enforceCompositionConstraints=false}={})=>assignCanonicalChildIdentities(unit,canonicalCompositionModelsFor(unit),{kind:'model',titleOf:model=>model.name,semanticOf:model=>({...model.identityFacts,sourceName:model.name}),legacyIdOf:(model,index)=>`${unit.id}-model-${slug(model.name)}${index?'-'+(index+1):''}`}).map(model=>{
-  const keywords=model.intrinsicKeywords;
+  const keywords=requiredKeywordField(model, "intrinsicKeywords");
   if(keywords!==undefined&&(!Array.isArray(keywords)||keywords.some(keyword=>typeof keyword!=='string'||!keyword.trim())||new Set(keywords.map(normalize)).size!==keywords.length))throw new Error(`${unit.id}: invalid model-scoped intrinsic keywords for ${model.name}`);
   const bounds={};
   if(enforceCompositionConstraints){
@@ -215,7 +216,7 @@ const validateSelectionProjection=(unitId,gameSelections)=>{
     }
   }
 };
-const canonicalIntrinsicKeywords=unit=>[...new Set(values(unit.intrinsicKeywords).length?unit.intrinsicKeywords:values(unit.keywords).length?unit.keywords:values((unit.ruleFacts||unit.facts||{}).intrinsicKeywords).length?(unit.ruleFacts||unit.facts).intrinsicKeywords:values((unit.ruleFacts||unit.facts||{}).keywords))];
+const canonicalIntrinsicKeywords=unit=>[...new Set(values(requiredKeywordField(unit, "intrinsicKeywords")).length?requiredKeywordField(unit, "intrinsicKeywords"):values(requiredKeywordField(unit)).length?requiredKeywordField(unit):values(requiredKeywordField(unit.ruleFacts||unit.facts||{}, "intrinsicKeywords")).length?requiredKeywordField(unit.ruleFacts||unit.facts, "intrinsicKeywords"):values(requiredKeywordField(unit.ruleFacts||unit.facts||{})))];
 
 export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false,projectStatProfiles=false,preserveMultipartStatProfiles=false}={}){
   const sourceById=new Map(values(units).map(unit=>[unit.id,unit])),seen=new Set();
@@ -239,7 +240,7 @@ export function assertRosterUnitGameplayProjection(units,relationGraphs,catalogU
   const projected=projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label,enforceCompositionConstraints,projectStatProfiles,preserveMultipartStatProfiles});
   for(let index=0;index<projected.length;index++){
     const expected=projected[index],actual=catalogUnits[index],partitions=[
-      ['intrinsicKeywords',expected.intrinsicKeywords,actual?.intrinsicKeywords],['relations',expected.relations,actual?.relations],
+      ['intrinsicKeywords',requiredKeywordField(expected, "intrinsicKeywords"),keywordField(actual, "intrinsicKeywords")],['relations',expected.relations,actual?.relations],
       ['statProfiles',expected.gameSelections.statProfiles||[],actual?.gameSelections?.statProfiles||[]],['abilities',expected.gameSelections.abilities,actual?.gameSelections?.abilities],['wargearAbilities',expected.gameSelections.wargearAbilities,actual?.gameSelections?.wargearAbilities],['models',expected.gameSelections.models,actual?.gameSelections?.models],['compositionRules',expected.gameSelections.compositionRules||[],actual?.gameSelections?.compositionRules||[]],['wargearDefaults',expected.gameSelections.wargearDefaults||[],actual?.gameSelections?.wargearDefaults||[]],['wargearOptionContracts',expected.gameSelections.wargearOptionContracts||[],actual?.gameSelections?.wargearOptionContracts||[]],['wargearSharedCaps',expected.gameSelections.wargearSharedCaps||[],actual?.gameSelections?.wargearSharedCaps||[]],['wargearDeclarations',expected.gameSelections.wargearDeclarations||[],actual?.gameSelections?.wargearDeclarations||[]]
     ];
     for(const [partition,left,right] of partitions)if(!sameFact(left,right))throw new Error(`${label}: ${expected.id} has conflicting canonical ${partition} facts`);
@@ -340,7 +341,7 @@ export function createRosterCatalog({config,units=[],alliedUnits=[],detachments=
     if(!Array.isArray(keywords)||!keywords.length||keywords.some(value=>typeof value!=='string'||!value.trim()))throw new Error(`${config.id}: unit compatibility ${unitId} requires non-empty chapter keywords`);
     if(new Set(keywords.map(normalize)).size!==keywords.length)throw new Error(`${config.id}: unit compatibility ${unitId} contains duplicate chapter keywords`);
   }
-  const catalogUnits=units.map(unit=>{const facts=rosterCatalog.includeRuleFacts===false?{}:unit.ruleFacts||unit.facts||{},compatibleChapterKeywords=compatibilityByUnit[unit.id]||[];return {id:unit.id,title:unit.title,sourceBookId:unit.dependencyBook||unit.sourceBookId||config.id,sourceLayer:unit.sourceLayer||unit.status||'current',intrinsicKeywords:[...new Set(values(unit.intrinsicKeywords).length?unit.intrinsicKeywords:values(unit.keywords).length?unit.keywords:values(facts.intrinsicKeywords).length?facts.intrinsicKeywords:values(facts.keywords))],...(compatibleChapterKeywords.length?{compatibleChapterKeywords:[...compatibleChapterKeywords]}:{}),relations:relationsFor(relationGraphs,unit.id),ruleFacts:{...facts,relations:relationsFor(relationGraphs,unit.id)},gameSelections:gameSelectionsFor(unit,{...rosterCatalog,effectContracts})};});
+  const catalogUnits=units.map(unit=>{const facts=rosterCatalog.includeRuleFacts===false?{}:unit.ruleFacts||unit.facts||{},compatibleChapterKeywords=compatibilityByUnit[unit.id]||[];return {id:unit.id,title:unit.title,sourceBookId:unit.dependencyBook||unit.sourceBookId||config.id,sourceLayer:unit.sourceLayer||unit.status||'current',intrinsicKeywords:[...new Set(values(requiredKeywordField(unit, "intrinsicKeywords")).length?requiredKeywordField(unit, "intrinsicKeywords"):values(requiredKeywordField(unit)).length?requiredKeywordField(unit):values(requiredKeywordField(facts, "intrinsicKeywords")).length?requiredKeywordField(facts, "intrinsicKeywords"):values(requiredKeywordField(facts)))],...(compatibleChapterKeywords.length?{compatibleChapterKeywords:[...compatibleChapterKeywords]}:{}),relations:relationsFor(relationGraphs,unit.id),ruleFacts:{...facts,relations:relationsFor(relationGraphs,unit.id)},gameSelections:gameSelectionsFor(unit,{...rosterCatalog,effectContracts})};});
   const catalogAlliedUnits=alliedUnits.map(unit=>({id:unit.id,title:unit.title,sourceBookId:unit.sourceBookId,sourceLayer:unit.sourceLayer||'centralized-mfm-allied-dependency',intrinsicKeywords:[],relations:{canLead:[],canSupport:[],canBeLedBy:[],canBeSupportedBy:[]},ruleFacts:{relations:{canLead:[],canSupport:[],canBeLedBy:[],canBeSupportedBy:[]}},gameSelections:{musterOnly:true,models:[],compositionRules:[],selections:[],weaponProfiles:[],abilities:[],wargearAbilities:[]},points:unit.points,mfmRecordId:unit.mfmRecordId,unitReferenceId:unit.unitReferenceId}));
   if(new Set([...catalogUnits,...catalogAlliedUnits].map(item=>item.id)).size!==catalogUnits.length+catalogAlliedUnits.length)throw new Error(`${config.id}: allied roster identity collides with published unit`);
   const grantByDetachment=new Map((Array.isArray(keywordGrants)?keywordGrants.map(record=>[record.detachmentId||record.id,record]):Object.entries(keywordGrants).map(([detachmentId,grants])=>[detachmentId,{detachmentId,grants:values(grants)}])));

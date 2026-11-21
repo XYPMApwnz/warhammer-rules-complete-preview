@@ -3,10 +3,12 @@
  * state is returned: every loadout/option below passes through text import.
  */
 import assert from 'node:assert/strict';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 import {buildCSMContracts} from './rule-contract-build.mjs';
 import {buildCSMRosterEffectBook,executableClauses} from './roster-effect-build.mjs';
 import {clauseFixture} from './roster-effect-fixture.mjs';
 import {buildImportBindings} from './roster-import-bindings.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 import {buildCSMImportBook} from './roster-import-build.mjs';
 
 // Reviewed canonical equipment from each source's Unit Composition. Rows are
@@ -36,7 +38,7 @@ const selectedWeapons={
 
 export function buildImportedEffectFixtures(book=buildCSMRosterEffectBook(),built=buildCSMContracts()) {
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
-  const importBindings=buildImportBindings(buildCSMImportBook());
+  const importBindings=buildImportBindings(buildCSMImportBook(),{modelNames});
   const weaponNames=(unitId,ordinals)=>{
     const unit=records.get(unitId),ids=ordinals.map(ordinal=>`${unitId.replace(/^unit-/,'datasheet-')}:weapon:${ordinal}`);
     ids.forEach(id=>assert.ok(unit.data.weaponIds.includes(id),'Unknown fixture weapon: '+id));
@@ -96,7 +98,7 @@ export function buildImportedEffectFixtures(book=buildCSMRosterEffectBook(),buil
     return {id:`${rule.id}::${clause.id}`,owner:rule.id,clauseId:clause.id,text,
       sourceCanonicalUnitId:source.canonicalUnitId,sourceOrdinal:1,
       bearerProfileId:witness.profileId,
-      sourceEvidence:structuredClone(rule.provenance.sourceEvidence),
+      sourceEvidence:structuredClone(sourceSnapshot(rule,{book}).sourceEvidence),
       sourceClause:structuredClone(clause.evidence),sourceFields:structuredClone(sourceFields),
       units,attachments,
       ...(source.canonicalUnitId==='unit-fabius-bile'?{initialAttachments:structuredClone(attachments)}:{}),

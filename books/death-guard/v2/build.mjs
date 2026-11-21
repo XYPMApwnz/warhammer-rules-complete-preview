@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -5,19 +6,20 @@ import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {normalizeDeathGuardCorpus} from './normalize.mjs';
 import {preserveFoundationFacts} from './foundation-facts.mjs';
-import {applyOverlays,sourceCurrentness} from './overlay-engine.mjs';
+import {sourceCurrentness,validateRegistry} from './overlay-engine.mjs';
+import {applyBookOfficialUpdates} from '../../shared/official-updates-v1/book.mjs';
 import {consumeMfm,assertNoMfmValues} from './mfm-boundary.mjs';
 import {createEffectiveMfmArmyProjection} from '../../shared/tools/effective-mfm-army-projection.mjs';
 import {compareV1Facts,loadV1ComparisonModel} from './compare-v1.mjs';
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(directory,'../../..');
-const read = file => JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
+const read = file => parseProducerJSON(fs.readFileSync(path.join(root,file),'utf8'));
 const sha = value => createHash('sha256').update(value).digest('hex').toUpperCase();
 const corpusPath = 'books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json';
 const hubPath = 'books/death-guard/v2/sources/accepted-waha-pages/death-guard.html';
 
-export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/source-enrollment.json')} = {}) {
+export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/source-enrollment.json'),officialUpdates} = {}) {
   const corpus = read(corpusPath), rawHubHtml = fs.readFileSync(path.join(root,hubPath));
   assert.equal(enrollment.acceptedBase?.path,corpusPath,'Explicit accepted base identity required');
   const baseSource = {id:'dg-waha-2026-09-25',type:'WAHA_CAPTURE',versionOrDate:corpus.captureDate,authority:'ACCEPTED_WAHA',
@@ -25,7 +27,7 @@ export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/
     url:corpus.pages.find(page => page.file === 'death-guard.html').url,provenance:{corpusFingerprint:corpus.corpusFingerprint},reconciled:true};
   const mfmMetadata = createEffectiveMfmArmyProjection('death-guard').sourceMetadata;
   const mfmSource = {id:`centralized-death-guard-mfm-${mfmMetadata.version}`,type:'CENTRALIZED_MFM_REFERENCE',versionOrDate:mfmMetadata.version,authority:'CENTRALIZED_MFM',
-    ...(mfmMetadata.version==='v1.6'?{effectiveDate:null,verifiedAt:mfmMetadata.verifiedAt,currentnessCutoff:mfmMetadata.currentnessCutoff}:
+    ...(Object.hasOwn(mfmMetadata,'effectiveDate')?{effectiveDate:mfmMetadata.effectiveDate,verifiedAt:mfmMetadata.verifiedAt,currentnessCutoff:mfmMetadata.currentnessCutoff}:
       {effectiveFrom:mfmMetadata.currentnessCutoff}),
     status:'CURRENT',url:'https://mfm.warhammer-community.com/en/death-guard',provenance:{module:'books/shared/tools/effective-mfm-army-projection.mjs'},reconciled:true};
   const sources = [baseSource,mfmSource,...enrollment.sources];
@@ -43,7 +45,8 @@ export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/
   const foundationRawSources=Object.fromEntries([...foundationPaths].map(file=>[file,fs.readFileSync(path.join(root,file))]));
   const base=preserveFoundationFacts(normalized,{ledger,rawSources:foundationRawSources,profileSelectionEvidence});
   assertNoMfmValues(base.entities);
-  const projected = applyOverlays(base,sources,enrollment.overlayOperations);
+  validateRegistry(sources);
+  const projected = applyBookOfficialUpdates('death-guard',base,{root,sources,document:officialUpdates}).model;
   assertNoMfmValues(projected.entities);
   const mfm = consumeMfm(projected.entities);
   assert.equal(mfm.source.version,mfmSource.versionOrDate,'Central MFM source version must match enrolled reference');
@@ -70,7 +73,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const outputDir = path.join(directory,'generated');
   if (!check) fs.mkdirSync(outputDir,{recursive:true});
   for (const [name,value] of Object.entries(result)) {
-    const file = path.join(outputDir,`${name}.json`), text = JSON.stringify(value,null,2)+'\n';
+    const file = path.join(outputDir,`${name}.json`), text = serializeSourceJSON(value);
     if (check) assert.equal(fs.readFileSync(file,'utf8'),text,`${name}: deterministic output drift`); else fs.writeFileSync(file,text);
   }
   console.log(JSON.stringify({canonicalEntities:result.base.entities.length,overlayOperations:result.effective.appliedOverlays.length,

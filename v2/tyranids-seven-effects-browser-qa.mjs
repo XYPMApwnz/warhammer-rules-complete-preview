@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 /** Focused player flows through unchanged main application HTTP bytes.
  * Constructed supported New Recruit text. All writes are ordinary visible UI
  * actions; evaluate is used only to inspect state, rendered facts and geometry. */
@@ -11,7 +13,7 @@ import {sevenEffectFixtures as fixtures} from '../books/tyranids/v2/seven-effect
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
-const out=process.env.TYRANIDS_SEVEN_SCREENSHOTS||'E:/Warhammer/qa-artifacts/tyranids-seven-effects-4edfabbd-20261016/browser';
+const out=process.env.TYRANIDS_SEVEN_SCREENSHOTS||createQaEvidenceDir('tyranids-seven-effects-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const requestedDevice=process.env.TYRANIDS_SEVEN_BROWSER_DEVICE;
 assert.ok(!requestedDevice||['desktop','mobile'].includes(requestedDevice));
@@ -49,7 +51,7 @@ const server=http.createServer((request,response)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`,{chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const snapshot=page=>page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
 async function ready(page){
   await page.waitForFunction(()=>!!window.WarhammerAppV2);
@@ -62,10 +64,10 @@ async function geometry(page){
 }
 async function roster(page){
   await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await ready(page);
-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();
+  await page.locator('[data-roster-view]').waitFor();
 }
 async function imported(page,fixture,text=fixture.text){
-  await roster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
+  await roster(page);await openImportForm(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
   await page.locator('[data-roster-action="review-import"]').click();
   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
   assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./);
@@ -329,4 +331,11 @@ try{
   console.log(JSON.stringify({status:report.status,devices:devices.length,checks:results.length,jsErrors:errors.length,missing:missing.length,
     forbidden:forbidden.length,httpErrors:httpErrors.length,requestFailures:requestFailures.length,realNewRecruitExportTested:false,
     report:path.join(out,'tyranids-seven-effects-browser-report.json')}));
+}
+
+async function openImportForm(page){
+  await page.locator('[data-roster-view]').waitFor();
+  const raw=page.locator('[data-roster-input="raw-text"]');
+  if(!await raw.isVisible())await page.locator('details[data-roster-import] > summary').filter({hasText:/^Import another roster$/}).click();
+  await raw.waitFor();
 }

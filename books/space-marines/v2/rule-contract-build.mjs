@@ -1,3 +1,9 @@
+import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
+import {recordReviewedDetachmentRecipients} from '../../shared/rule-contract-v2/reviewed-detachment-recipients.mjs';
+import {recordReviewedStratagemTargets} from '../../shared/rule-contract-v2/reviewed-stratagem-targets.mjs';
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from './reviewed-text-recipients.mjs';
 /** Book-owned typed declarations over native source facts. Shared V2 validators
  * and executor own behaviour. No importer, V1 dependency or source interpreter.
  */
@@ -9,13 +15,13 @@ import {buildNativeMfmBook} from './mfm-build.mjs';
 import {declarations,enhancementEligibility,pendingPhysicalBindings,weaponQualifierBindings,permanentDoctrineSources} from './rule-contract-declarations.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
 import {bindNativeAbilities,bindNativeBaseProfiles,bindNativeKeywords} from './native-ability-bindings.mjs';
-import {physicalStaticBindings} from './roster-static-model-bindings.mjs';
+import {physicalStaticBindings,prepareSpaceMarinesStaticModels} from './roster-static-model-bindings.mjs';
 import {readSpaceMarinesRosterCorrections} from './roster-source-review.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
 const clone=structuredClone,at=(data,path)=>path.reduce((value,key)=>value?.[key],data);
 const atom=(predicate,subject,args,evidence,contextLevel='STATIC')=>({predicate,subject,arguments:args,contextLevel,evidence:clone(evidence)});
@@ -24,6 +30,9 @@ const any=nodes=>nodes.length===1?nodes[0]:{op:'ANY',args:nodes};
 
 export function buildSpaceMarinesContracts({facts=read('./generated/effective.json'),base,cross,
   review=read('./rule-clause-review.json'),inputs=declarations}={}){
+  facts=prepareSourceProducer(facts);
+  base=prepareSourceProducer(base);
+  cross=prepareSourceProducer(cross);
   const original=JSON.stringify(facts),native=buildNativeMfmBook({facts,base,cross}),book=clone(native.model);
   assert.equal(sha(original),review.factualFingerprint,'Unreviewed factual source');
   const index=new Map(book.entities.map(entity=>[entity.id,entity]));
@@ -157,17 +166,29 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
     contracts.push(entity.ruleContract);
   }
   assert.equal(executed.length,inputs.length,'Orphan executable declaration');
-  const schema=createSpaceMarinesRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
+  book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'sm',equipmentBearerMode:'POSITIVE_SELECTION'};
+  recordReviewedStratagemTargets(book,read('./stratagem-target-declarations.json'),{contracts});
+  recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
+  recordReviewedDetachmentRecipients(book,read('./detachment-recipient-declarations.json'));
+  assertBookOfficialEffectReviews(book);
+  finalizeRecipientBook(book);
+ const schema=createSpaceMarinesRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),original,'Canonical source mutated');
   const artifact={factualFingerprint:sha(original),contracts,executed,physicalBindingTemplates:clone(physicalStaticBindings),nativeAbilities:nativeAbilities.bindings,nativeProfiles:nativeProfiles.bindings,
     pending:clone(pendingPhysicalBindings.filter(row=>!reviewedScopes.has(row.ruleId))),nativeKeywords,coverage:clone(review.coverage),reviewFingerprint:sha(JSON.stringify(review)),
     physicalImportImplemented:true,realNewRecruitExportTested:false,frontendVerified:false};
   return {book,schema,artifact,native,consumed:native.consumed};
 }
+/** Runtime-specific producer view; BA/DA inherit only buildSpaceMarinesContracts. */
+export function buildSpaceMarinesRuntimeContracts(options){
+  const built=buildSpaceMarinesContracts(options);
+  return {...built,book:prepareSpaceMarinesStaticModels(built.book)};
+}
+
 export function writeSpaceMarinesContracts({check=false}={}){
   const result=buildSpaceMarinesContracts();
   for(const [name,value]of [['rule-contracts',result.artifact],['roster-runtime',result.book]]){
-    const path=new URL('./generated/'+name+'.json',import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+    const path=new URL('./generated/'+name+'.json',import.meta.url),bytes=serializeSourceJSON(value);
     if(check)assert.equal(fs.readFileSync(path,'utf8'),bytes,'Stale SM native contract output '+name);else fs.writeFileSync(path,bytes);
   }
   return result;

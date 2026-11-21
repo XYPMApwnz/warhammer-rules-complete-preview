@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {getCurrentMfmSource,isModernMfmVersion} from '../../../mfm/content/current-mfm-release.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 
 const clone=value=>structuredClone(value);
@@ -5,8 +8,64 @@ const edgeKey=edge=>`${edge.role}\0${edge.sourceId}\0${edge.targetId}`;
 const v15Books=new Set(['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines']);
 const sourceMetadataFor=snapshot=>{
   if(!snapshot)throw new Error('MFM source snapshot is required for Army projection');
-  return Object.freeze({label:`Official MFM ${snapshot.version}`,version:snapshot.version,currentnessCutoff:snapshot.currentnessCutoff,verifiedAt:snapshot.verifiedAt??snapshot.currentnessCutoff,authority:snapshot.authority,...(snapshot.version==='v1.6'?{observedAt:snapshot.observedAt,effectiveDate:snapshot.effectiveDate,...Object.fromEntries(['capturedAt','sourceUpdatedAt','currentnessEvidence'].filter(key=>snapshot[key]!==undefined).map(key=>[key,clone(snapshot[key])]))}:{})});
+  return Object.freeze({label:`Official MFM ${snapshot.version}`,version:snapshot.version,currentnessCutoff:snapshot.currentnessCutoff,verifiedAt:snapshot.verifiedAt??snapshot.currentnessCutoff,authority:snapshot.authority,...(isModernMfmVersion(snapshot.version)?{observedAt:snapshot.observedAt,effectiveDate:snapshot.effectiveDate,...Object.fromEntries(['capturedAt','sourceUpdatedAt','currentnessEvidence'].filter(key=>snapshot[key]!==undefined).map(key=>[key,clone(snapshot[key])]))}:{})});
 };
+
+
+/** Keep authored identity reviews immutable while selecting current price evidence.
+ * Stable central record IDs establish the bridge; titles only address an already
+ * authenticated occurrence inside its accepted capture, never resolve identity.
+ */
+export function projectCurrentMfmBookBindings(bookId,declared,{owner=createEffectiveMfmCatalog()}={}){
+  const selected=getCurrentMfmSource(bookId),result=clone(declared);
+  const snapshot=owner.catalog.sourceSnapshots.find(row=>row.sourceId===selected.sourceId&&!row.historical);
+  assert.ok(snapshot,`${bookId}: missing selected current MFM snapshot`);
+  assert.equal(snapshot.version,selected.version,`${bookId}: selected MFM version differs`);
+  assert.equal(snapshot.sourcePath,selected.capturePath,`${bookId}: selected MFM capture differs`);
+  let capture;
+  const occurrence=locator=>{
+    capture??=JSON.parse(fs.readFileSync(new URL('../../../'+snapshot.sourcePath,import.meta.url),'utf8'));
+    const rows=[];
+    if(locator.partition==='units')for(const [index,row]of capture.units.entries()){
+      if(row.title===locator.sourceTitle&&(locator.sourceGroup===undefined||row.sourceGroup===locator.sourceGroup)&&
+        (locator.status===undefined||String(row.status).toUpperCase()===locator.status))rows.push({row,pointer:`/units/${index}`});
+    }
+    else if(locator.partition==='detachments')for(const [index,row]of capture.detachments.entries()){
+      if(row.title===locator.sourceTitle)rows.push({row,pointer:`/detachments/${index}`});
+    }
+    else if(locator.partition==='detachments.enhancements')for(const [index,detachment]of capture.detachments.entries()){
+      if(detachment.title!==locator.detachmentSourceTitle)continue;
+      for(const [child,row]of detachment.enhancements.entries())if(row.title===locator.sourceTitle)rows.push({row,pointer:`/detachments/${index}/enhancements/${child}`});
+    }
+    assert.equal(rows.length,1,`${bookId}: selected MFM source occurrence is missing or ambiguous: ${JSON.stringify(locator)}`);
+    return rows[0];
+  };
+  for(const [key,value]of Object.entries(result)){
+    if(!Array.isArray(value))continue;
+    for(const binding of value){
+      if(!binding?.mfmRecordId)continue;
+      const fact=owner.getById(binding.mfmRecordId);
+      assert.equal(fact?.factionId,bookId,`${bookId}: unresolved current MFM bridge ${binding.mfmRecordId}`);
+      assert.equal(fact.provenance.sourceId,selected.sourceId,`${bookId}: historical MFM bridge ${binding.mfmRecordId}`);
+      const changed=(binding.sourceId!==undefined&&binding.sourceId!==selected.sourceId)||
+        (binding.proof?.mfm&&(binding.proof.mfm.sourceId!==selected.sourceId||binding.proof.mfm.captureSha256!==snapshot.captureSha256));
+      if(!changed)continue;
+      if(Object.hasOwn(binding,'sourceId'))binding.sourceId=selected.sourceId;
+      binding.sourceLocator=clone(fact.provenance.sourceLocator);
+      if(binding.proof?.mfm){
+        const pointed=occurrence(binding.sourceLocator);
+        binding.proof.identityMfm??=clone(binding.proof.mfm);
+        binding.proof.mfm={sourceId:selected.sourceId,sourcePath:snapshot.sourcePath,captureSha256:snapshot.captureSha256,
+          jsonPointer:pointed.pointer,sourceLocator:clone(binding.sourceLocator),rawSha256:capture.rawArtifacts[0].sha256};
+      }
+    }
+  }
+  for(const [key,value]of Object.entries({sourceId:selected.sourceId,sourceVersion:selected.version,
+    sourceCaptureSha256:snapshot.captureSha256,currentnessCutoff:selected.currentnessCutoff,effectiveDate:selected.effectiveDate})){
+    if(Object.hasOwn(result,key))result[key]=value;
+  }
+  return result;
+}
 
 const armyRelationOverlays=Object.freeze({
   'death-guard':new Set([
@@ -77,7 +136,7 @@ export function createEffectiveMfmArmyProjection(bookId,{canonicalFacts}={}){
         detachmentPoints:item.detachmentPoints,dp:String(item.detachmentPoints),forceDisposition,disposition:forceDisposition,mfmRecordId:item.id,
         mfmQualifiers:clone(qualifierByOwner.get(`DETACHMENT\0${armyBookId}\0${item.armyDetachmentId}`)||[])
       };
-      return v15Books.has(bookId)||sourceMetadata.version==='v1.6'?{...common,forceDispositions,forceDispositionIds:clone(item.forceDispositionIds),mfmForceDispositionIds:clone(item.mfmForceDispositionIds),missionForceDispositionIds:clone(item.missionForceDispositionIds)}:{...common,mfmForceDispositionId:item.mfmForceDispositionIds[0],missionForceDispositionId:item.missionForceDispositionIds[0],forceDispositionId:item.forceDispositionIds[0]};
+      return v15Books.has(bookId)||isModernMfmVersion(sourceMetadata.version)?{...common,forceDispositions,forceDispositionIds:clone(item.forceDispositionIds),mfmForceDispositionIds:clone(item.mfmForceDispositionIds),missionForceDispositionIds:clone(item.missionForceDispositionIds)}:{...common,mfmForceDispositionId:item.mfmForceDispositionIds[0],missionForceDispositionId:item.missionForceDispositionIds[0],forceDispositionId:item.forceDispositionIds[0]};
     });
     const enhancements=factionEnhancements.filter(item=>item.armyBookId===armyBookId).map(item=>({
       id:item.armyEnhancementId,canonicalEnhancementId:item.armyEnhancementId,detachmentId:item.armyDetachmentId,canonicalDetachmentId:item.armyDetachmentId,

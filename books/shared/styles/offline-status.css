@@ -17,3 +17,9 @@
 
 /* Optional SW support must not cover reader controls in an online-only browser. */
 .pwa-update-panel[data-unavailable="true"]{display:none}
+
+/* Bootstrap recovery is readable before the application theme is mounted. */
+body[data-pwa-bootstrap-state]{margin:0;background:#101210;color:#e5e0d2;font:16px/1.6 system-ui,sans-serif}
+body[data-pwa-bootstrap-state] [data-v2-loading]{box-sizing:border-box;max-width:760px;margin:48px auto;padding:24px}
+body[data-pwa-bootstrap-state]>.pwa-update-panel{background:#171b17;color:#e5e0d2;border-bottom:1px solid #746445}
+body[data-pwa-bootstrap-state]>.pwa-update-panel button{color:#e5e0d2;border-color:#b8994f}

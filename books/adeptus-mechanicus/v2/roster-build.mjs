@@ -1,3 +1,5 @@
+import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
@@ -11,6 +13,7 @@ import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 /** Disposable input adapter. Facts, declarations and their provenance remain
  * book-owned; the shared interpreter receives the existing typed operations. */
 export function buildRosterRuntimeBook(built=buildAdMechContracts()) {
+  built={...built,book:prepareSourceProducer(built.book),...(built.facts?{facts:prepareSourceProducer(built.facts)}:{}),...(built.native?{native:{...built.native,model:prepareSourceProducer(built.native.model),payload:prepareSourceProducer(built.native.payload)}}:{})};
   const canonicalBefore=structuredClone(built.book);
   const {book,policies}=buildRosterAttachmentInputs(built.book,readJson('roster-attachment-bindings.json'));
   const {composition}=compilerInputs(built.book);
@@ -29,13 +32,14 @@ export function buildRosterRuntimeBook(built=buildAdMechContracts()) {
       clause.rosterClassification='BATTLE_ONLY';clause.rosterEffects=[];
     }
   }
+  finalizeRecipientBook(book);
   built.schema.evaluator.validateContracts(book);
   validateRosterEffects(book,built.schema.evaluator.validatePredicate,built.schema.evaluator.evaluatePredicate);
   assert.deepEqual(built.book,canonicalBefore,'Runtime input build mutated canonical records');
   return book;
 }
 export function writeRosterRuntime({check=false}={}) {
-  const book=buildRosterRuntimeBook(),value=JSON.stringify(book,null,2)+'\n';
+  const book=buildRosterRuntimeBook(),value=serializeSourceJSON(book);
   const location=new URL('./generated/roster-runtime.json',import.meta.url);
   if(check)assert.equal(fs.readFileSync(location,'utf8'),value,'Stale disposable roster runtime input');else fs.writeFileSync(location,value);
   return book;

@@ -1,3 +1,7 @@
+import {buildBloodAngelsContracts} from './rule-contract-build.mjs';
+import {qaProgress} from '../../../tests/helpers/qa-progress.mjs';
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Source/input-first acceptance of constructed text through the real shared
  * physical importer. These fixtures are not authentic New Recruit exports or
  * source-valid complete armies; no browser acceptance is claimed. */
@@ -17,8 +21,9 @@ import {projectInstanceCards,projectPersonalBook} from '../../shared/army-book-a
 import {renderRosterPointsStatus} from '../../shared/army-book-app-v2/roster.mjs';
 import {projectAbilityPresentation} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 import {verifyFrozenSource} from '../../shared/tools/source-ingestion-contract.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 
-const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8')),clone=structuredClone;
+const read=p=>parseSourceFixtureJSON(fs.readFileSync(new URL(p,import.meta.url),'utf8')),clone=structuredClone;
 const own=read('./generated/effective.json'),sm=read('../../space-marines/v2/generated/effective.json'),ledger=read('./inherited-sm-references.json');
 const accepted=new Set(ledger.references.map(r=>r.canonicalId));
 const sourceUnits=[...own.entities.filter(e=>e.kind==='DATASHEET'),...sm.entities.filter(e=>e.kind==='DATASHEET'&&accepted.has(e.id))];
@@ -40,7 +45,8 @@ const PAID=[
  ['mfm-paid-upgrade-f0d7680f02efab10','REPULSOR EXECUTIONER','per Heavy Laser Destroyer',10],
  ['mfm-paid-upgrade-fe9bdd5878ada46f','TERMINATOR ASSAULT SQUAD','per Storm Shield',5]
 ];
-const captures={'blood-angels':read('../../../mfm/sources/v1.6/blood-angels.json'),'space-marines':read('../../../mfm/sources/v1.6/space-marines.json')};
+const captureSources=Object.fromEntries(['blood-angels','space-marines'].map(id=>[id,getCurrentMfmSource(id)]));
+const captures=Object.fromEntries(Object.entries(captureSources).map(([id,source])=>[id,read('../../../'+source.capturePath)]));
 const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
 const verifiedCaptures=new Set();
@@ -48,25 +54,52 @@ const verifyCapture=owner=>{
  if(verifiedCaptures.has(owner))return;const capture=captures[owner],{captureSha256,...payload}=capture;
  // captureSha256 identifies the stable JSON payload, not serialized file bytes.
  // Frozen-source acceptance and raw artifact pins separately verify file bytes.
- verifyFrozenSource(owner+'-mfm-v1.6');assert.equal(sha(JSON.stringify(stable(payload))),captureSha256);
- for(const artifact of capture.rawArtifacts){const bytes=fs.readFileSync(new URL('../../../mfm/sources/v1.6/'+artifact.path,import.meta.url));assert.equal(sha(bytes),artifact.sha256);assert.equal(bytes.length,artifact.bytes);}
+ verifyFrozenSource(captureSources[owner].sourceId);assert.equal(sha(JSON.stringify(stable(payload))),captureSha256);
+ for(const artifact of capture.rawArtifacts){const bytes=fs.readFileSync(new URL(artifact.path,new URL('../../../'+captureSources[owner].capturePath,import.meta.url)));assert.equal(sha(bytes),artifact.sha256);assert.equal(bytes.length,artifact.bytes);}
  verifiedCaptures.add(owner);
 };
 const pricing=[...read('./mfm-bindings.json').unitBindings,...read('../../space-marines/v2/mfm-bindings.json').unitBindings];
+const historicalCaptures=new Map();
+function reviewedMfmUnit(binding,owner){
+ assert.ok(binding,'Missing reviewed unit MFM binding');
+ assert.ok(binding.sourceLocator,'Missing reviewed MFM source locator');
+ const locator=binding.sourceLocator,proof=binding.proof.mfm;
+ assert.equal(locator.partition,'units','MFM fixture locator must address units');
+ assert.equal(locator.factionId,owner,'MFM fixture locator has a foreign faction');
+ let historical=historicalCaptures.get(proof.sourcePath);
+ if(!historical){
+  historical=read('../../../'+proof.sourcePath);verifyFrozenSource(proof.sourceId);
+  const {captureSha256,...payload}=historical;
+  assert.equal(sha(JSON.stringify(stable(payload))),captureSha256,'Historical MFM capture fingerprint changed');
+  historicalCaptures.set(proof.sourcePath,historical);
+ }
+ assert.equal(historical.captureSha256,proof.captureSha256,'Historical reviewed MFM capture changed');
+ assert.equal(historical.factionId,owner,'Historical MFM proof has a foreign faction');
+ const oldRow=proof.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],historical);
+ assert.deepEqual([oldRow.title,oldRow.sourceGroup,oldRow.status],[locator.sourceTitle,locator.sourceGroup,locator.status],'Historical pointer no longer proves the reviewed source locator');
+ verifyCapture(owner);
+ assert.equal(captures[owner].factionId,owner,'Current MFM capture has a foreign faction');
+ const matches=captures[owner].units.filter(row=>row.title===locator.sourceTitle&&row.sourceGroup===locator.sourceGroup&&row.status===locator.status);
+ assert.equal(matches.length,1,'Current MFM source locator must resolve exactly once: '+JSON.stringify(locator)+'; matches='+matches.length);
+ return matches[0];
+}
 const sourceBase=(id,count,copy=1)=>{
  const binding=pricing.find(r=>r.entityId===id),owner=sources.get(id).bookId;
- verifyCapture(owner);assert.equal(captures[owner].captureSha256,binding.proof.mfm.captureSha256);
- assert.ok(binding);const source=binding.proof.mfm.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],captures[owner]);
+ const source=reviewedMfmUnit(binding,owner);
  const values=source.pointSchedules.filter(s=>(s.minCopies===undefined||copy>=s.minCopies)&&(s.maxCopies===undefined||copy<=s.maxCopies))
   .flatMap(s=>s.entries).filter(e=>count>=e.minModels&&count<=e.maxModels);
  return values.length===1?values[0].value:null;
 };
+const missingMfmLocator={...pricing.find(binding=>binding.bookId==='blood-angels'),sourceLocator:null};
+assert.throws(()=>reviewedMfmUnit(missingMfmLocator,missingMfmLocator.bookId),/Missing reviewed MFM source locator/);
 
 export function runBloodAngelsRosterQA({onlyGroups=null}={}){
- const produced=buildBloodAngelsRosterBook(),book=produced.book||produced,index=new Map(book.entities.map(e=>[e.id,e]));
- const before=JSON.stringify([...sources.values()]),payload=buildGameplayPresentation(),cards=new Map(payload.cards.map(c=>[c.id,c]));
+ const progress=qaProgress('BA roster');
+ const built=buildBloodAngelsContracts();progress('contracts built');
+ const produced=buildBloodAngelsRosterBook({built}),book=produced.book||produced,index=new Map(book.entities.map(e=>[e.id,e]));
+ const before=JSON.stringify([...sources.values()]),payload=buildGameplayPresentation(built),cards=new Map(payload.cards.map(c=>[c.id,c]));
  const checks=[],physical=[],weaponEvidence=[],assignments=[],paidEvidence=[],mutations=[];
- const check=(id,fn)=>{if(onlyGroups&&!onlyGroups.includes(id))return;fn();checks.push({id,status:'PASS'});process.stderr.write(id+' PASS\n');};
+ const check=(id,fn)=>{progress(id,checks.length);if(onlyGroups&&!onlyGroups.includes(id))return;fn();checks.push({id,status:'PASS'});process.stderr.write(id+' PASS\n');};
  const header=(dets=[DEFAULT])=>'+ FACTION KEYWORD: Blood Angels\n'+dets.map(id=>'+ DETACHMENT: '+sources.get(id).data.title+'\n').join('');
  const fixture=(id,{weapon,unitGear='',modelGear='',optional=true}={})=>{
   const unit=sources.get(id),members=[...sources.values()].filter(e=>e.kind==='COMPOSITION_MEMBER'&&e.parentId===id&&(optional||e.data.quantity.min>0));assert.ok(members.length);
@@ -83,7 +116,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
    assert.equal(service.points.units[0].basePoints,sourceBase(unit.id,input.count),'Official MFM tier parity '+unit.id);
    for(const [n,row]of actual.modelRows.entries()){const expected=input.rows[n];assert.equal(row.quantity,expected.quantity);assert.equal(row.compositionMemberId,expected.id);
     assert.equal(row.canonicalProfileId,expected.profileId,'Independent source composition/profile mapping');assert.equal(row.selections.length,0,'Omitted equipment was invented');profileIds.add(row.canonicalProfileId);}
-   assert.deepEqual(index.get(unit.id).provenance,unit.provenance);assert.equal(index.get(unit.id).bookId,unit.bookId);
+   assert.deepEqual(sourceSnapshot(index.get(unit.id)),sourceSnapshot(unit));assert.equal(index.get(unit.id).bookId,unit.bookId);
    const effective=service.effective(actual.instanceId),variants=projectInstanceCards(cards,actual,effective);assert.ok(variants.get(unit.id)?.length);assert.equal(projectPersonalBook(payload,service.state).instances.length,1);
    physical.push({canonicalId:unit.id,owner:unit.bookId,models:input.count,status:'PASS',scope:'EXPLICIT_COMPOSITION_OMITTED_LOADOUT_UNKNOWN'});modelOccurrences+=input.count;
   }
@@ -128,10 +161,12 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
    detachments:[{instanceId:'det',canonicalDetachmentId:det}],detachmentIds:[det],attachments:[],warlordInstanceId:null,
    units:[{instanceId:'probe',canonicalUnitId:input.id,startingStrength:input.count,selections:[],warlord:null,enhancementIds:[],
     modelRows:input.rows.map((r,n)=>({rowId:'row'+n,canonicalProfileId:r.profileId,quantity:r.quantity,compositionScope:'MODEL_ROW',selections:[]}))}]});
+  // Reviewed physical Epic Hero IDs at f7500b43, including own MODEL keyword scopes; no formation keywords.
+  const epicBearerIds=new Set(["unit-ba-3483c88a4df4495ca2e2","unit-ba-4ea9a8226a61470fa157","unit-ba-7f57bc2e255748b09903","unit-ba-92fdb23a526b4c328367","unit-ba-d84ea7c581874feca80b"]);
   for(const binding of book.importBindings.enhancements){let chosen;
    const expectedScope=corrections.scopeCorrections.find(r=>r.entityId===binding.id)?.scope||sources.get(binding.id).data.scope;
    assert.equal(binding.scope,expectedScope,'Source-owned assignment scope changed');assert.equal(binding.eligibilityText,sources.get(binding.id).data.eligibilityText);
-   for(const source of sourceUnits){const input=fixture(source.id,{optional:false}),state=rawState(input,binding.detachmentId),projection=formRoster(book,state),contract=index.get(binding.id).ruleContract;
+   for(const source of sourceUnits.filter(source=>!epicBearerIds.has(source.id))){const input=fixture(source.id,{optional:false}),state=rawState(input,binding.detachmentId),projection=formRoster(book,state),contract=index.get(binding.id).ruleContract;
     const predicate=binding.assignmentReference?.selector||{predicate:'UNIT_KEYWORD',subject:'UNIT',contextLevel:'STATIC',arguments:{keyword:'ADEPTUS ASTARTES'}};
     const contexts=binding.scope==='UNIT'?[predicateContext(state,projection,'probe','UNIT')]:projection.units[0].profiles.filter(p=>p.quantity===1).map(p=>predicateContext(state,projection,'probe','MODEL',p.scopeId));
     if(contexts.some(c=>createBloodAngelsRuleSchema().evaluatePredicate(predicate,enhancementOwnerContext(contract,c))==='TRUE')){chosen=input;break;}
@@ -147,7 +182,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
  check('7-paid-options-official-prices-physical-counts-and-total-parity',()=>{
   assert.deepEqual(book.mfmPhysicalPaidOptions.map(r=>r.costRecordId).sort(),PAID.map(r=>r[0]).sort());
   for(const [id,owner,label,price]of PAID){const binding=book.mfmPhysicalPaidOptions.find(r=>r.costRecordId===id);assert.equal(binding.value,price);
-   assert.equal(binding.provenance.sourceLocator.sourceTitle,owner);assert.equal(binding.provenance.sourceLocator.sourceLabel,label);assert.equal(binding.provenance.sourceId,'space-marines-mfm-v1.6');
+   assert.equal(sourceSnapshot(binding).sourceLocator.sourceTitle,owner);assert.equal(sourceSnapshot(binding).sourceLocator.sourceLabel,label);assert.equal(sourceSnapshot(binding).sourceId,captureSources['space-marines'].sourceId);
    const service=createBloodAngelsRosterService(book),bare=fixture(binding.ownerUnitId);ready(service,header()+bare.text);
    assert.equal(service.points.status,'UNRESOLVED');assert.equal(service.points.totalPoints,null);
    // Redemptor RAW proves Heavy Onslaught OR Macro; an independent Icarus
@@ -244,7 +279,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
  check('unknown-points-use-existing-visible-warning-without-false-final-total',()=>{
   const element=tag=>({tag,children:[],dataset:{},value:'',attributes:{},set textContent(v){this.value=String(v);this.children=[];},get textContent(){return this.value+this.children.map(c=>c.textContent).join('');},get childElementCount(){return this.children.length;},append(...v){this.children.push(...v);},setAttribute(k,v){this.attributes[k]=v;}}),document={createElement:element};
   const b=book.mfmPhysicalPaidOptions[0],service=createBloodAngelsRosterService(book);ready(service,header()+fixture(b.ownerUnitId).text);
-  assert.equal(service.points.totalPoints,null);assert.equal(service.points.status,'UNRESOLVED');const warning=renderRosterPointsStatus(document,{service,titleForId:id=>sources.get(id)?.data.title});assert.match(warning.textContent,/Points cannot be calculated reliably/);
+  assert.equal(service.points.totalPoints,null);assert.equal(service.points.status,'UNRESOLVED');const warning=renderRosterPointsStatus(document,{service,titleForId:id=>sources.get(id)?.data.title});assert.match(warning.textContent,/The app cannot calculate a reliable total\. Check the issues below before using these points\./);assert.doesNotMatch(warning.textContent,/Points cannot be calculated reliably/);
   ready(service,header()+fixture(b.ownerUnitId,{unitGear:'1x '+PAID.find(r=>r[0]===b.costRecordId)[2].replace(/^per /,'')}).text,{}, {replaceExisting:true});assert.equal(service.points.status,'RESOLVED');assert.equal(renderRosterPointsStatus(document,{service}),null);
  });
  check('eight-static-lowerings-through-physical-import-effective-and-guide',()=>{
@@ -253,7 +288,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
   const present=(service,id,rule,sourceId=id)=>{
    const effective=service.effective(id),raw=service.state.units.find(u=>u.instanceId===id),variants=projectInstanceCards(cards,raw,effective);
    assert.ok(variants.get(raw.canonicalUnitId)?.length);assert.ok(effective.applied.some(t=>t.ruleId===rule&&t.sourceInstanceId===sourceId),'Imported source trace absent '+rule+' on '+id+' from '+sourceId);
-   assert.ok(cards.has(rule));assert.deepEqual(cards.get(rule).provenance,sources.get(rule).provenance);
+   assert.ok(cards.has(rule));assert.deepEqual(sourceSnapshot(cards.get(rule)),sourceSnapshot(sources.get(rule)));
    assert.equal(projectPersonalBook(payload,service.state).instances.length,service.state.units.length);
    return {effective,variants};
   };
@@ -298,11 +333,20 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
    assert.equal(trace(peer,rule).length,0);stableProjection(service);
   }
   {const rule='ability-ba-da87d6022de8416d9040',service=createBloodAngelsRosterService(book);assert.ok(sources.get(rule).data.text.includes('This model has +1 W.'));
-   ready(service,header()+fixture(ID.jumpCaptain,{modelGear:'1x Relic Shield, 1x Chainsword'}).text+fixture(ID.jumpCaptain,{unitGear:'1x Relic Shield',weapon:'Chainsword'}).text);
-   const selected=unit(service,'parsed-unit-1'),unknown=unit(service,'parsed-unit-2'),display=present(service,selected.instanceId,rule);
-   for(const p of selected.profiles){const expected=String(Number(sources.get(p.canonicalProfileId).data.stats.W)+1);assert.equal(String(p.profile.stats.W),expected);
-    assert.ok(display.variants.get(p.canonicalProfileId).find(c=>c.scopeId===p.scopeId).fields.some(f=>f.source?.path==='/stats/W'&&String(f.value)===expected));}
-   assert.equal(trace(unknown,rule).length,0);for(const p of unknown.profiles)assert.equal(p.profile.stats.W,sources.get(p.canonicalProfileId).data.stats.W);stableProjection(service);
+   ready(service,header()+fixture(ID.jumpCaptain,{modelGear:'1x Relic Shield, 1x Chainsword'}).text+fixture(ID.jumpCaptain,{unitGear:'1x Relic Shield',weapon:'Chainsword'}).text+fixture(ID.jumpCaptain,{weapon:'Chainsword'}).text);
+   // Both spellings prove the same sole physical MODEL. Absence and pooled
+   // equipment on multiple MODELs remain independent negative controls.
+   for(const id of ['parsed-unit-1','parsed-unit-2']){
+    const selected=unit(service,id),display=present(service,id,rule);assert.equal(trace(selected,rule).length,1);
+    for(const p of selected.profiles){const expected=String(Number(sources.get(p.canonicalProfileId).data.stats.W)+1);assert.equal(String(p.profile.stats.W),expected);
+     assert.ok(display.variants.get(p.canonicalProfileId).find(c=>c.scopeId===p.scopeId).fields.some(f=>f.source?.path==='/stats/W'&&String(f.value)===expected));}
+   }
+   const absent=unit(service,'parsed-unit-3');assert.equal(trace(absent,rule).length,0);
+   for(const p of absent.profiles)assert.equal(p.profile.stats.W,sources.get(p.canonicalProfileId).data.stats.W);stableProjection(service);
+   const many=createBloodAngelsRosterService(book),name=sources.get(ID.jumpCaptain).data.title;
+   ready(many,header()+'2x '+name+' (9999 pts): 1x Relic Shield\n• 1x '+name+': 1x Chainsword\n• 1x '+name+': 1x Chainsword\n');
+   const unbound=unit(many,'parsed-unit-1');assert.equal(trace(unbound,rule).length,0);
+   for(const p of unbound.profiles)assert.equal(p.profile.stats.W,sources.get(p.canonicalProfileId).data.stats.W);stableProjection(many);
   }
   {const rule='enhancement-ba-c6832a51a86e4ae784ba',source=sources.get(rule),name=sources.get(ID.dcCaptain).data.title,weapon='Master-crafted Chainsword';assert.ok(source.data.text.includes('This model’s melee attacks have +2 A.'));
    const text=header([source.parentId])+'2x '+name+' (9999 pts)\n• 1x '+name+': 1x '+weapon+'\n• 1x '+name+': 1x '+weapon+'\nEnhancement: '+source.data.title+'\n'+fixture(ID.dcCaptain,{weapon}).text;
@@ -316,6 +360,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
  });
  assert.equal(JSON.stringify([...sources.values()]),before,'Importer mutated accepted facts');
  if(onlyGroups)assert.deepEqual(checks.map(c=>c.id).sort(),[...onlyGroups].sort(),'Unknown targeted QA group');
+ progress.close();
  return {status:'PASS',validationScope:onlyGroups?{mode:'TARGETED_GROUPS',groups:onlyGroups}:{mode:'FULL_DEFAULT'},checks,physical,weaponEvidence,assignments,paidEvidence,mutations,
   counts:{bareDatasheetsImportable:physical.length,totalDatasheets:81,modelProfiles:profileIds.size,physicalModelOccurrences:modelOccurrences,explicitWeaponProfiles:weaponEvidence.length,weaponPermissionAmbiguitiesNotProven:2,paidOptions:7,sourceAssignmentItems:40,baLeaderEdges:12,baSupportEdges:8,incomingSmEdges:3},
   limitations:{fixtures:'CONSTRUCTED_PHYSICAL_DIAGNOSTICS_NOT_ARMY_LEGALITY',realNewRecruitExportTested:false,browserVerified:false,weaponPermissionAliases:'NOT_PROVEN',chapterKeywords:'NO_AUTOMATIC_BLOOD_ANGELS',blackRagePositions:'NOT_PROVEN',mfmReferenceOnly:10}};

@@ -1,3 +1,4 @@
+import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Presentation-only import bindings quote the selected item's own canonical
  * source field. Ability headings remain independent gameplay content. */
 const equipment = [
@@ -15,7 +16,7 @@ export function buildImportBindings(book) {
     const ownerId = `unit-${slug}`, id = `datasheet-${slug}:wargear:${ordinal}`;
     const entity = records.get(id), text = entity?.data.text;
     if (records.get(ownerId)?.kind !== 'DATASHEET' || entity?.kind !== 'WARGEAR_OPTION' ||
-        entity.parentId !== ownerId || !entity.provenance?.sourceId || typeof text !== 'string')
+        entity.parentId !== ownerId || !getRecordedSourceIdentity(entity,{book}) || typeof text !== 'string')
       throw new TypeError('Missing canonical DG equipment caption owner: ' + id);
     const start = text.indexOf(label);
     if (start < 0 || text.indexOf(label, start + label.length) !== -1)

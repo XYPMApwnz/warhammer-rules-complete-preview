@@ -1,0 +1,2362 @@
+[
+  {
+    "ruleId": "detachment-montka:stratagem:1",
+    "title": "PINPOINT COUNTER-OFFENSIVE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE unit (excluding KROOT units) from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "T’AU EMPIRE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE unit (excluding KROOT units) from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+            }
+          },
+          {
+            "op": "NOT",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "KROOT"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One T’AU EMPIRE unit (excluding KROOT units) from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE unit (excluding KROOT units) from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE unit (excluding KROOT units) from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-montka:stratagem:2",
+    "title": "AGGRESSIVE MOBILITY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE unit from your army that has not been selected to move this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "T’AU EMPIRE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One T’AU EMPIRE unit from your army that has not been selected to move this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE unit from your army that has not been selected to move this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE unit from your army that has not been selected to move this phase."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-montka:stratagem:3",
+    "title": "FOCUSED FIRE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "Two T’AU EMPIRE units from your army that have not been selected to shoot this phase, and one enemy unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "T’AU EMPIRE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "Two T’AU EMPIRE units from your army that have not been selected to shoot this phase, and one enemy unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Two T’AU EMPIRE units from your army that have not been selected to shoot this phase, and one enemy unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Two T’AU EMPIRE units from your army that have not been selected to shoot this phase, and one enemy unit."
+      }
+    },
+    "reviewNote": "Two friendly targets share the same static eligibility; the enemy target does not restrict a friendly unit card."
+  },
+  {
+    "ruleId": "detachment-montka:stratagem:4",
+    "title": "COMBAT DEBARKATION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE INFANTRY unit from your army that disembarked from a TRANSPORT this turn.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "T’AU EMPIRE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE INFANTRY unit from your army that disembarked from a TRANSPORT this turn."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE INFANTRY unit from your army that disembarked from a TRANSPORT this turn."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE INFANTRY unit from your army that disembarked from a TRANSPORT this turn."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE INFANTRY unit from your army that disembarked from a TRANSPORT this turn."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-montka:stratagem:5",
+    "title": "PULSE ONSLAUGHT",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE INFANTRY unit (excluding KROOT units) from your army that has just shot, and one enemy unit (excluding MONSTERS and VEHICLES) hit by one or more of those attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "T’AU EMPIRE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE INFANTRY unit (excluding KROOT units) from your army that has just shot, and one enemy unit (excluding MONSTERS and VEHICLES) hit by one or more of those attacks."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE INFANTRY unit (excluding KROOT units) from your army that has just shot, and one enemy unit (excluding MONSTERS and VEHICLES) hit by one or more of those attacks."
+            }
+          },
+          {
+            "op": "NOT",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "KROOT"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One T’AU EMPIRE INFANTRY unit (excluding KROOT units) from your army that has just shot, and one enemy unit (excluding MONSTERS and VEHICLES) hit by one or more of those attacks."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE INFANTRY unit (excluding KROOT units) from your army that has just shot, and one enemy unit (excluding MONSTERS and VEHICLES) hit by one or more of those attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE INFANTRY unit (excluding KROOT units) from your army that has just shot, and one enemy unit (excluding MONSTERS and VEHICLES) hit by one or more of those attacks."
+      }
+    },
+    "reviewNote": "MONSTERS/VEHICLES exclusions belong only to the enemy target and are deliberately not applied to the friendly target."
+  },
+  {
+    "ruleId": "detachment-montka:stratagem:6",
+    "title": "COUNTERFIRE DEFENCE SYSTEMS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "T’AU EMPIRE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One T’AU EMPIRE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-retaliation-cadre:stratagem:1",
+    "title": "FAIL-SAFE DETONATOR",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That destroyed model’s unit. You can use this Stratagem on that unit even if that unit was just destroyed.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "FIELD",
+        "subject": "UNIT",
+        "contextLevel": "BATTLE",
+        "arguments": {
+          "key": "battleConditionSatisfied",
+          "equals": true
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That destroyed model’s unit. You can use this Stratagem on that unit even if that unit was just destroyed."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That destroyed model’s unit. You can use this Stratagem on that unit even if that unit was just destroyed."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That destroyed model’s unit. You can use this Stratagem on that unit even if that unit was just destroyed."
+      }
+    },
+    "reviewNote": "FALLBACK: literal TARGET gives no static identity/keyword; BATTLESUIT is only in WHEN, which is not used as new target evidence."
+  },
+  {
+    "ruleId": "detachment-retaliation-cadre:stratagem:2",
+    "title": "STIMM INJECTORS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "T’AU EMPIRE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BATTLESUIT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-retaliation-cadre:stratagem:3",
+    "title": "THE SHORTENED BLADE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that is arriving using the Deep Strike ability this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "T’AU EMPIRE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that is arriving using the Deep Strike ability this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BATTLESUIT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that is arriving using the Deep Strike ability this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that is arriving using the Deep Strike ability this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that is arriving using the Deep Strike ability this phase."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-retaliation-cadre:stratagem:4",
+    "title": "THE ARRO’KON PROTOCOL",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that has not been selected to shoot this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "T’AU EMPIRE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that has not been selected to shoot this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BATTLESUIT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that has not been selected to shoot this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that has not been selected to shoot this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that has not been selected to shoot this phase."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-retaliation-cadre:stratagem:5",
+    "title": "THE TORCHSTAR GAMBIT",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that can FLY whose attacks have been resolved this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "T’AU EMPIRE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that can FLY whose attacks have been resolved this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BATTLESUIT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that can FLY whose attacks have been resolved this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "FLY"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that can FLY whose attacks have been resolved this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that can FLY whose attacks have been resolved this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that can FLY whose attacks have been resolved this phase."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-retaliation-cadre:stratagem:6",
+    "title": "GRAV-INHIBITOR FIELD",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as a target of that charge.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "T’AU EMPIRE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as a target of that charge."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BATTLESUIT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as a target of that charge."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as a target of that charge."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE BATTLESUIT unit from your army that was selected as a target of that charge."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kauyon:stratagem:1",
+    "title": "A TEMPTING TRAP",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE unit from your army that has not been selected to shoot this phase. The first time you use this Stratagem, you must also select one objective marker that is not in your opponent’s deployment zone; until the end of the battle, this becomes your Trap objective marker.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "T’AU EMPIRE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One T’AU EMPIRE unit from your army that has not been selected to shoot this phase. The first time you use this Stratagem, you must also select one objective marker that is not in your opponent’s deployment zone; until the end of the battle, this becomes your Trap objective marker."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE unit from your army that has not been selected to shoot this phase. The first time you use this Stratagem, you must also select one objective marker that is not in your opponent’s deployment zone; until the end of the battle, this becomes your Trap objective marker."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE unit from your army that has not been selected to shoot this phase. The first time you use this Stratagem, you must also select one objective marker that is not in your opponent’s deployment zone; until the end of the battle, this becomes your Trap objective marker."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kauyon:stratagem:2",
+    "title": "POINT-BLANK AMBUSH",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE unit from your army that has not been selected to shoot this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "T’AU EMPIRE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One T’AU EMPIRE unit from your army that has not been selected to shoot this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE unit from your army that has not been selected to shoot this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE unit from your army that has not been selected to shoot this phase."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kauyon:stratagem:3",
+    "title": "COORDINATE TO ENGAGE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE unit from your army that has just been selected as an Observer unit (see For the Greater Good).",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "T’AU EMPIRE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One T’AU EMPIRE unit from your army that has just been selected as an Observer unit (see For the Greater Good)."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE unit from your army that has just been selected as an Observer unit (see For the Greater Good)."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE unit from your army that has just been selected as an Observer unit (see For the Greater Good)."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kauyon:stratagem:4",
+    "title": "COMBAT EMBARKATION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE INFANTRY unit from your army that was selected as one of the targets of that charge, and one friendly TRANSPORT.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "T’AU EMPIRE"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One T’AU EMPIRE INFANTRY unit from your army that was selected as one of the targets of that charge, and one friendly TRANSPORT."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One T’AU EMPIRE INFANTRY unit from your army that was selected as one of the targets of that charge, and one friendly TRANSPORT."
+                }
+              }
+            ]
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TRANSPORT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE INFANTRY unit from your army that was selected as one of the targets of that charge, and one friendly TRANSPORT."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE INFANTRY unit from your army that was selected as one of the targets of that charge, and one friendly TRANSPORT."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE INFANTRY unit from your army that was selected as one of the targets of that charge, and one friendly TRANSPORT."
+      }
+    },
+    "reviewNote": "Both friendly targets are relevant: primary INFANTRY OR secondary TRANSPORT. Range/embarkation are unknown battle context, not static NO_MATCH."
+  },
+  {
+    "ruleId": "detachment-kauyon:stratagem:5",
+    "title": "PHOTON GRENADES",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One T’AU EMPIRE GRENADES unit from your army that was selected as one of the targets of that charge.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "T’AU EMPIRE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE GRENADES unit from your army that was selected as one of the targets of that charge."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "GRENADES"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One T’AU EMPIRE GRENADES unit from your army that was selected as one of the targets of that charge."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One T’AU EMPIRE GRENADES unit from your army that was selected as one of the targets of that charge."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One T’AU EMPIRE GRENADES unit from your army that was selected as one of the targets of that charge."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kauyon:stratagem:6",
+    "title": "WALL OF MIRRORS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One STEALTH, GHOSTKEEL or COMMANDER SHADOWSUN unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "STEALTH"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One STEALTH, GHOSTKEEL or COMMANDER SHADOWSUN unit from your army."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "GHOSTKEEL"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One STEALTH, GHOSTKEEL or COMMANDER SHADOWSUN unit from your army."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "COMMANDER SHADOWSUN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One STEALTH, GHOSTKEEL or COMMANDER SHADOWSUN unit from your army."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One STEALTH, GHOSTKEEL or COMMANDER SHADOWSUN unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One STEALTH, GHOSTKEEL or COMMANDER SHADOWSUN unit from your army."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kroot-hunting-pack:stratagem:1",
+    "title": "JOIN THE HUNT",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One KROOT INFANTRY or KROOT HOUNDS unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "KROOT"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One KROOT INFANTRY or KROOT HOUNDS unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One KROOT INFANTRY or KROOT HOUNDS unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+                }
+              }
+            ]
+          },
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-kroot-hounds"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One KROOT INFANTRY or KROOT HOUNDS unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One KROOT INFANTRY or KROOT HOUNDS unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One KROOT INFANTRY or KROOT HOUNDS unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kroot-hunting-pack:stratagem:2",
+    "title": "A TRAP WELL LAID",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One KROOT unit from your army that has not been selected to shoot or fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "KROOT"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One KROOT unit from your army that has not been selected to shoot or fight this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One KROOT unit from your army that has not been selected to shoot or fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One KROOT unit from your army that has not been selected to shoot or fight this phase."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kroot-hunting-pack:stratagem:3",
+    "title": "EMP GRENADES",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One KROOT GRENADES unit from your army within 8\" of that enemy VEHICLE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "KROOT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One KROOT GRENADES unit from your army within 8\" of that enemy VEHICLE unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "GRENADES"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One KROOT GRENADES unit from your army within 8\" of that enemy VEHICLE unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One KROOT GRENADES unit from your army within 8\" of that enemy VEHICLE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One KROOT GRENADES unit from your army within 8\" of that enemy VEHICLE unit."
+      }
+    },
+    "reviewNote": "VEHICLE describes the triggering enemy, not the friendly KROOT target."
+  },
+  {
+    "ruleId": "detachment-kroot-hunting-pack:stratagem:4",
+    "title": "THE GRISLY FEAST",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One KROOT unit from your army that destroyed one or more enemy units this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "KROOT"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One KROOT unit from your army that destroyed one or more enemy units this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One KROOT unit from your army that destroyed one or more enemy units this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One KROOT unit from your army that destroyed one or more enemy units this phase."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kroot-hunting-pack:stratagem:5",
+    "title": "GUERRILLA WARRIORS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That KROOT unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "KROOT"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That KROOT unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That KROOT unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That KROOT unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-kroot-hunting-pack:stratagem:6",
+    "title": "HIDDEN HUNTERS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One KROOT unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "KROOT"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One KROOT unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One KROOT unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One KROOT unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-auxiliary-cadre:stratagem:1",
+    "title": "EXPERIMENTAL MODIFICATIONS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That KROOT/VESPID STINGWINGS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "KROOT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That KROOT/VESPID STINGWINGS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VESPID STINGWINGS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That KROOT/VESPID STINGWINGS unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That KROOT/VESPID STINGWINGS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That KROOT/VESPID STINGWINGS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-auxiliary-cadre:stratagem:2",
+    "title": "ALIEN EXPERTISE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That KROOT/VESPID STINGWINGS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "KROOT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That KROOT/VESPID STINGWINGS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VESPID STINGWINGS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That KROOT/VESPID STINGWINGS unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That KROOT/VESPID STINGWINGS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That KROOT/VESPID STINGWINGS unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-auxiliary-cadre:stratagem:3",
+    "title": "GUIDED FIRE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That T’AU EMPIRE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "T’AU EMPIRE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That T’AU EMPIRE unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That T’AU EMPIRE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That T’AU EMPIRE unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-experimental-prototype-cadre:stratagem:1",
+    "title": "EXPERIMENTAL AMMUNITION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That BATTLESUIT CHARACTER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BATTLESUIT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That BATTLESUIT CHARACTER unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CHARACTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That BATTLESUIT CHARACTER unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That BATTLESUIT CHARACTER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That BATTLESUIT CHARACTER unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "detachment-advanced-acquisition-cadre:stratagem:1",
+    "title": "MARKER BEACON",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-pathfinder-team"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-stealth-battlesuits"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+      }
+    },
+    "reviewNote": "Exact canonical named UNIT alternatives: STEALTH BATTLESUITS is a source title, while its accepted keyword is STEALTH. No keyword alias is invented."
+  },
+  {
+    "ruleId": "detachment-advanced-acquisition-cadre:stratagem:2",
+    "title": "MICRODRONE SUPPORT",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-pathfinder-team"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-stealth-battlesuits"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+      }
+    },
+    "reviewNote": "Exact canonical named UNIT alternatives; retain accepted source names/identities."
+  },
+  {
+    "ruleId": "detachment-advanced-acquisition-cadre:stratagem:3",
+    "title": "AUTOREACTIVE CAMOUFLAGE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-pathfinder-team"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-stealth-battlesuits"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That PATHFINDER TEAM/STEALTH BATTLESUITS unit."
+      }
+    },
+    "reviewNote": "Exact canonical named UNIT alternatives; retain accepted source names/identities."
+  }
+]

@@ -1,3 +1,4 @@
+import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Existing native card/presenter pipeline; no UI registration or Mega Glossary. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -10,9 +11,10 @@ import {buildGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 const clone=structuredClone;
 export function buildGameplayPresentation(built=buildDarkAngelsContracts()){
+  built={...built,book:prepareSourceProducer(built.book),...(built.facts?{facts:prepareSourceProducer(built.facts)}:{}),...(built.native?{native:{...built.native,model:prepareSourceProducer(built.native.model),payload:prepareSourceProducer(built.native.payload)}}:{})};
  const before=JSON.stringify(built.book),payload=clone(built.native.payload),sm=smPresentation(built.sm);
  const central=createEffectiveMfmCatalog(),records=new Map(Object.values(central.catalog).filter(Array.isArray).flat().filter(row=>row?.id).map(row=>[row.id,row]));
- const projected=projectArmyBook(built.book,records,{title:'Dark Angels',edition:'11th Edition'});
+ const projected=prepareSourceProducer(projectArmyBook(built.book,records,{title:'Dark Angels',edition:'11th Edition'}));
  const cards=new Map(payload.cards.map(card=>[card.id,card])),fresh=new Map(projected.cards.map(card=>[card.id,card]));
  const smCards=new Map(sm.cards.map(card=>[card.id,card]));
  for(const card of payload.cards){
@@ -24,7 +26,7 @@ export function buildGameplayPresentation(built=buildDarkAngelsContracts()){
  }
  // Use the established Core projector's complete canonical closure, including
  // FAQ/relationship targets whose identities do not start with core-*.
- const glossary=buildGlossary({model:built.book,coreCatalog:createEffectiveCoreCatalog()});
+ const glossary=prepareSourceProducer(buildGlossary({model:built.book,coreCatalog:createEffectiveCoreCatalog()}));
  for(const card of glossary.coreCards.filter(card=>!cards.has(card.id))){
   payload.cards.push(clone(card));cards.set(card.id,payload.cards.at(-1));
  }
@@ -51,7 +53,7 @@ export function buildGameplayPresentation(built=buildDarkAngelsContracts()){
  return payload;
 }
 export function writeGameplayPresentation({check=false}={}){
- const payload=buildGameplayPresentation(),file=new URL('./generated/gameplay-presentation.json',import.meta.url),bytes=JSON.stringify(payload,null,2)+'\n';
+ const payload=buildGameplayPresentation(),file=new URL('./generated/gameplay-presentation.json',import.meta.url),bytes=serializeSourceJSON(payload);
  if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale DA gameplay presentation');else fs.writeFileSync(file,bytes);
  return payload;
 }

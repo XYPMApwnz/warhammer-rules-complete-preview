@@ -1,14 +1,19 @@
+import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Native New Recruit boundary over the established shared parser, physical
  * import service, attachment graph and runtime commit. No army legality rules. */
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel,importModelLabelCandidates} from '../../shared/roster-v2/import.mjs';
 import {formRoster,predicateContext,validateRoster,selections} from '../../shared/roster-v2/context.mjs';
-import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
-import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
+import {enhancementOwnerContext,epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
+import {createRosterService,rosterImportBindings,retainRosterBearerBindings} from '../../shared/roster-v2/runtime.mjs';
 import {createBloodAngelsRosterRuntime} from './roster-runtime.mjs';
 import {createBloodAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {projectBloodAngelsPaidOptions} from './roster-paid-options.mjs';
+import {sameSourceEvidence,copySourceEvidence,mergeSourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
+const runtimeProofs=new WeakMap();
+const validatedSnapshot=value=>{const snapshot=structuredClone(value),proof=runtimeProofs.get(value);if(proof)runtimeProofs.set(snapshot,proof);return snapshot;};
 const clone=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
 const ordered=value=>Array.isArray(value)?value.map(ordered):value&&typeof value==='object'
@@ -29,9 +34,11 @@ const sourcePredicate=(binding,index)=>{
 };
 
 export function createBloodAngelsRosterImport(book){
-  const metadata=book.importBindings,index=new Map(book.entities.map(entity=>[entity.id,entity]));
+  const metadata=book.importBindings,index=new Map(book.entities.map(entity=>[entity.id,entity])),epicOwners=epicHeroUnitIds(book);
   requireValue(book.bookId==='blood-angels'&&metadata?.schema==='blood-angels-v2/import-bindings/v1','Invalid native BA import domain');
-  const shared=()=>createRosterImportService(book,metadata),schema=createBloodAngelsRuleSchema();
+  const acceptsFaction=createExportFactionCheck(metadata);
+  let sharedImport;
+  const shared=()=>sharedImport??=createRosterImportService(book,metadata),schema=createBloodAngelsRuleSchema();
   shared();let saved=null;
   function bind(input,{draft,bindings={}}={}){
     let state=clone(input);const needs=[],errors=[];
@@ -40,13 +47,19 @@ export function createBloodAngelsRosterImport(book){
       if(Object.hasOwn(object,key)&&!same(object[key],value))error('CONFLICTING_SOURCE_BINDING',key,'Stored source/physical binding changed');
       else object[key]=clone(value);
     };
+    const checkedSource=(object,key,source)=>{
+      if((Object.hasOwn(object,key)||object.sourceBindings?.[key])&&!sameSourceEvidence(object,source,{book,slot:key,otherSlot:'provenance'}))
+        error('CONFLICTING_SOURCE_BINDING',key,'Stored source/physical binding changed');
+      else {
+        const prior=Object.keys(object.sourceBindings||{}).filter(slot=>!slot.startsWith('$')).map(slot=>copySourceEvidence(object,{book,slot}));
+        delete object[key];Object.assign(object,mergeSourceEvidence(...prior,copySourceEvidence(source,{book,targetSlot:key})));
+      }
+    };
     try{
       const graph=state.attachments;state=validateRoster(book,{...state,attachments:[]},[]);state.attachments=graph;
       if(draft){
         state.importEvidence=clone(draft.metadata);
-        const faction=normalizeImportLabel(draft.metadata.faction);
-        const declaredFaction=(metadata.factionIdentityLabels||[]).some(label=>normalizeImportLabel(label)===faction);
-        if(faction&&faction!=='blood angels'&&faction!=='space marines'&&faction!=='adeptus astartes'&&!declaredFaction)error('FOREIGN_FACTION_EXPORT','faction','Export identifies a different Army Book');
+        if(!acceptsFaction(draft.metadata.faction))error('FOREIGN_FACTION_EXPORT','faction','Export identifies a different Army Book');
       }
       if(bindings.modelBearers!==undefined&&(!bindings.modelBearers||typeof bindings.modelBearers!=='object'||Array.isArray(bindings.modelBearers)))
         error('INVALID_MODEL_BINDINGS','modelBearers','Expected physical UNIT/Enhancement/MODEL dictionary');
@@ -85,7 +98,7 @@ export function createBloodAngelsRosterImport(book){
               if(matched.length===1){
                 const source=matched[0],id=source.canonicalEquipmentIds[0];
                 if(!same(selection.sourceReferences||[],source.sourceReferences||[]))error('WRONG_EQUIPMENT_REFERENCE',selection.selectionKey,'Source equipment caption differs');
-                checked(selection,'sourceEquipmentIdentity',id);checked(selection,'sourceEquipmentProvenance',index.get(id).provenance);
+                checked(selection,'sourceEquipmentIdentity',id);checkedSource(selection,'sourceEquipmentProvenance',index.get(id));
               }else if(selection.canonicalEquipmentIds.some(id=>index.get(id)?.kind!=='WARGEAR_OPTION'))
                 error('UNREVIEWED_EQUIPMENT_BINDING',selection.selectionKey,'Unknown source equipment occurrence');
             }
@@ -112,6 +125,7 @@ export function createBloodAngelsRosterImport(book){
           }
         }
         for(const id of unit.enhancementIds){
+          if(epicOwners.has(unit.canonicalUnitId))continue;
           const binding=metadata.enhancements.find(row=>row.id===id),contract=index.get(id).ruleContract;
           requireValue(binding&&!binding.unresolved,'Unresolved source assignment scope');
           const predicate=sourcePredicate(binding,index),context=(subject,scope)=>enhancementOwnerContext(contract,predicateContext(state,physical,unit.instanceId,subject,scope));
@@ -131,7 +145,7 @@ export function createBloodAngelsRosterImport(book){
         }
       }
       checked(state,'mfmDetachmentRecordIds',state.detachmentIds.map(id=>book.mfmImportReferences.partitions.detachmentBindings.find(row=>row.entityId===id)?.mfmRecordId));
-      if(!errors.length&&!needs.length)createBloodAngelsRosterRuntime(book).load(state);
+      if(!errors.length&&!needs.length){const verified=createBloodAngelsRosterRuntime(book);verified.load(state);runtimeProofs.set(state,verified);}
     }catch(caught){error('INVALID_PHYSICAL_STATE','roster',caught.message);}
     return {state,needs,errors};
   }
@@ -150,17 +164,17 @@ export function createBloodAngelsRosterImport(book){
         for(const proof of metadata.unsupportedSelectionBindings||[])if(ids.includes(proof.ownerId))
           for(const selection of selections)if(normalizeImportLabel(selection.label)===normalizeImportLabel(proof.label))
             blocked.push({kind:'SELECTION',key:selection.key,rawLabel:selection.label,ownerId:proof.ownerId,
-              reason:proof.reason,message:proof.message,sourceIssueId:proof.sourceIssueId,sourceProvenance:clone(proof.sourceProvenance),candidateIds:[]});
+              reason:proof.reason,message:proof.message,sourceIssueId:proof.sourceIssueId,...copySourceEvidence(proof,{book,slot:'sourceProvenance'}),candidateIds:[]});
       }
       if(blocked.length)return {...result,status:result.status==='INVALID'?'INVALID':'NEEDS_BINDINGS',roster:null,
         needsBindings:[...result.needsBindings.filter(row=>!blocked.some(need=>need.key===row.key)),...blocked],legality:'NOT_ASSESSED'};
       if(result.status!=='READY')return {...result,legality:'NOT_ASSESSED'};
       const bound=bind(result.roster,{draft:result.draft,bindings}),status=bound.errors.length?'INVALID':bound.needs.length?'NEEDS_BINDINGS':'READY';
       if(status==='READY')saved=bound.state;
-      return {...result,status,roster:status==='READY'?clone(saved):null,...(status==='READY'?{}:{candidateRoster:bound.state}),
+      return {...result,status,roster:status==='READY'?validatedSnapshot(saved):null,...(status==='READY'?{}:{candidateRoster:bound.state}),
         needsBindings:[...result.needsBindings,...bound.needs],errors:[...result.errors,...bound.errors],legality:'NOT_ASSESSED'};
     },
-    load(snapshot){const result=bind(snapshot);requireValue(!result.needs.length&&!result.errors.length,JSON.stringify(result));saved=result.state;return clone(saved);},
+    load(snapshot){const result=bind(snapshot);requireValue(!result.needs.length&&!result.errors.length,JSON.stringify(result));saved=result.state;return validatedSnapshot(saved);},
     snapshot(){requireValue(saved,'No imported native roster');return clone(saved);}};
 }
 
@@ -191,30 +205,32 @@ export function projectBloodAngelsRosterPoints(book,state){
 }
 
 export function createBloodAngelsRosterService(book){
-  let runtime=createBloodAngelsRosterRuntime(book);const imports=createBloodAngelsRosterImport(book);
-  const service={get catalog(){return runtime.catalog;},get state(){return runtime.state;},get projection(){return runtime.projection;},
-    get groups(){return runtime.projection?.formedUnits||[];},get points(){return runtime.state?projectBloodAngelsRosterPoints(book,runtime.state):null;},
-    draft:imports.draft,
-    import(text,choices={},options){
-      try{
-        const bindings=clone(choices);bindings.modelBearers??={};
-        for(const [key,value]of Object.entries(bindings.enhancementBearers||{})){const [unit,id]=JSON.parse(key);(bindings.modelBearers[unit]??={})[id]=value;}
-        delete bindings.enhancementBearers;
-        let result=createBloodAngelsRosterImport(book).import(text,bindings);
-        if(result.status==='NEEDS_BINDINGS'&&result.candidateRoster&&runtime.state&&
-          result.needsBindings.every(need=>need.kind==='ENHANCEMENT_BEARER')&&physicalInput(result.candidateRoster)===physicalInput(runtime.state)){
-          for(const unit of runtime.state.units)if(unit.enhancementAssignments?.length)bindings.modelBearers[unit.instanceId]=Object.fromEntries(unit.enhancementAssignments.map(row=>[row.enhancementId,row.modelScopeId]));
-          result=createBloodAngelsRosterImport(book).import(text,bindings);
-        }
-        const committed=commitRosterImport(result,runtime.state,service.load,options);
-        return {...committed,...(committed.status==='READY'?{points:service.points}:{})};
-      }catch(caught){return {status:'INVALID',roster:null,needsBindings:[],errors:[{code:'INVALID_IMPORT_COMMIT',key:'roster',message:caught.message}],legality:'NOT_ASSESSED'};}
+  const runtime=createBloodAngelsRosterRuntime(book),imports=createBloodAngelsRosterImport(book);
+  return createRosterService({
+    runtime,draft:imports.draft,
+    importCandidate(text,choices={},current){
+      const bindings=rosterImportBindings(choices);
+      let result=imports.import(text,bindings);
+      if(result.status==='NEEDS_BINDINGS'&&result.candidateRoster&&retainRosterBearerBindings(result,current.state,bindings,physicalInput))
+        result=imports.import(text,bindings);
+      return result;
     },
-    load(snapshot){const verified=createBloodAngelsRosterImport(book).load(snapshot),next=createBloodAngelsRosterRuntime(book);next.load(verified);
-      projectBloodAngelsRosterPoints(book,verified);runtime=next;return service.state;},
-    snapshot:()=>runtime.snapshot(),effective:id=>runtime.effective(id),context:(...args)=>runtime.context(...args),
-    related:(...args)=>runtime.related(...args),candidates:id=>runtime.candidates(id),
-    attach:(...args)=>runtime.attach(...args),detach:id=>runtime.detach(id),reattach:(...args)=>runtime.reattach(...args),
-    recompute:()=>service.load(runtime.snapshot())};
-  return service;
+    prepareImport(result){
+      const proof=runtimeProofs.get(result.roster),candidateBytes=proof?JSON.stringify(result.roster):null;
+      return proof?candidate=>{
+        if(JSON.stringify(candidate)!==candidateBytes)return null;
+        projectBloodAngelsRosterPoints(book,candidate);return proof;
+      }:null;
+    },
+    prepareRuntime(snapshot){
+      const verified=imports.load(snapshot),proof=runtimeProofs.get(verified),next=proof||createBloodAngelsRosterRuntime(book);if(!proof)next.load(verified);
+      projectBloodAngelsRosterPoints(book,verified);return next;
+    },
+    decorateImport:(result,service)=>({...result,...(result.status==='READY'?{points:service.points}:{})}),
+    importError:caught=>({status:'INVALID',roster:null,needsBindings:[],errors:[{code:'INVALID_IMPORT_COMMIT',key:'roster',message:caught.message}],legality:'NOT_ASSESSED'}),
+    view:(current,service)=>({
+      get points(){return current().state?projectBloodAngelsRosterPoints(book,current().state):null;},
+      recompute:()=>service.load(service.snapshot())
+    })
+  });
 }

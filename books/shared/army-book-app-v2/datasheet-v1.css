@@ -113,6 +113,9 @@
 }
 .unit-card .v2-card-title { color: var(--ink); }
 .unit-card > .local-nav { display: none; }
+@media (min-width: 901px) {
+  .unit-card.ds-roster-card > .local-nav { display:flex; flex-wrap:wrap; gap:7px; padding:12px 18px; border-bottom:1px solid var(--line); }
+}
 .unit-card .local-tab {
   min-height: 42px;
   padding: 8px 13px;
@@ -217,6 +220,22 @@
 }
 .unit-card .weapon-row .ds-modifier-breakdown { font-size: 8px; }
 .unit-card .statline .ds-modifier-breakdown { margin-top: 4px; font-size: 8px; }
+
+/* A narrow two-column card must not clip the last weapon statistic. Keep the
+   weapon name flexible while reserving enough room for the full Range value. */
+@container (min-width: 761px) and (max-width: 900px) {
+  .unit-card .weapon-row {
+    grid-template-columns: minmax(0, 2.35fr) minmax(56px, .56fr) repeat(5, minmax(44px, .56fr));
+  }
+  .unit-card .weapon-row > div { padding-inline: 6px; font-size: 13px; }
+  .unit-card .weapon-row:not(.weapon-head) > div:first-child { font-size: 15px; }
+  .unit-card .weapon-head > div { font-size: 10px; }
+}
+.unit-card .weapon-row .ds-effective-value {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
 
 /* Personal-roster state remains part of the datasheet header rather than
    becoming a second card below the V1 presentation. */
@@ -579,7 +598,8 @@
   padding: 0;
   background: none;
 }
-.unit-card .weapon-name .weapon-button {
+.unit-card .weapon-name .weapon-button,
+.unit-card .ds-selected-loadout .ds-equipment-link {
   padding: 0;
   border: 0;
   background: none;
@@ -595,3 +615,55 @@
 .unit-card .ds-option-cost { display: inline-block; margin-left: 8px; color: var(--ink); white-space: nowrap; }
 .unit-card .ds-bound-weapon-ability { padding: 10px; border-left: 2px solid var(--green); background: color-mix(in srgb,var(--green) 7%,transparent); }
 .unit-card .ds-bound-weapon-ability p { margin: 0; }
+.unit-card .ds-enhancement-restriction {
+  margin: 8px 0;
+  padding: 6px 9px;
+  border-left: 2px solid var(--green);
+  color: var(--muted);
+  font-size: 12px;
+}
+.unit-card .ds-source-text > p { margin: 0; white-space: pre-line; }
+.unit-card .ds-source-text-list { margin: 8px 0; padding-left: 18px; list-style: none; }
+.unit-card .ds-source-text-list > li { white-space: pre-line; }
+
+/* Physical roster gains use one accent; canonical Full Army Book cards retain
+   their original layout. The plus sign carries meaning without color. */
+.ds-roster-card { --ds-gained-accent: #c7ae75; }
+.ds-roster-card .ability, .ds-roster-card .ability:nth-child(even),
+.ds-roster-card .ds-bound-weapon-ability { border-left: 0; }
+.ds-roster-card .ds-composition-scope { color: var(--muted); }
+.ds-roster-card .ds-gained-legend { margin: 8px 14px; color: var(--muted); font-size: 11px; }
+.ds-roster-card .ds-gained-overview { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 8px 14px; }
+.ds-roster-card .ds-gained-overview .ds-effective-unit-metric { margin: 0; }
+.ds-roster-card .ds-gained-recipient { display: inline; margin-left: 6px; color: var(--muted); font: 500 11px/1.5 var(--ds-ui); overflow-wrap: anywhere; }
+.ds-roster-card .ds-gained-control { position: relative; display: inline-flex; align-items: baseline; max-width: 100%; }
+.ds-roster-card .ds-gained-chip { display: inline-block; min-height: 0; padding: 3px 5px; border: 1px solid currentColor; border-radius: 0; background: transparent; color: var(--ds-gained-accent); font: 700 9px/1.2 var(--ds-data); letter-spacing: .025em; text-align: left; white-space: nowrap; }
+.ds-roster-card button.ds-gained-chip { cursor: pointer; }
+.ds-roster-card .ds-gained-chip:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.ds-roster-card .ds-gained-tooltip:not([hidden]) { display: block; position: absolute; left: 0; top: 100%; z-index: 40; width: max-content; max-width: min(280px, 75vw); padding: 10px; border: 1px solid var(--ds-gained-accent); border-radius: 5px; background: var(--panel, #161a19); color: var(--ink); font: 500 12px/1.6 var(--ds-ui); white-space: normal; overflow-wrap: anywhere; box-shadow: 0 5px 15px #0006; }
+.ds-roster-card .ds-gained-tooltip[hidden], .ds-roster-card [hidden] { display: none !important; }
+.ds-roster-card .ds-gained-tooltip p { margin: 0; }
+.ds-roster-card .ds-gained-value { color: var(--ds-gained-accent); }
+.ds-roster-card .ds-gained-weapon-summary { margin: 5px 0 10px; color: var(--ds-gained-accent); font: 600 12px/1.6 var(--ds-ui); }
+.ds-roster-card .weapon-tags { display: flex; flex-wrap: wrap; gap: 5px; overflow: visible; }
+.ds-roster-card .ds-instance-price { display: block; font-size: 16px; }
+.ds-roster-card .ds-instance-enhancement-price { display: block; font-size: 12px; line-height: 1.6; }
+.ds-roster-card .ds-gained-source { padding: 12px; margin: 10px 0; border-left: 3px solid var(--ds-gained-accent); }
+.ds-roster-card .ds-gained-source-heading { margin: 0 0 8px; color: var(--ds-gained-accent); font: 700 14px/1.6 var(--ds-ui); }
+.ds-roster-card details.ds-gained-source > summary { cursor: pointer; }
+.ds-roster-card .ds-attached-rule { margin: 10px 0; }
+.ds-roster-card .ds-attached-rule > h5 { display: inline; }
+.ds-roster-card .ds-attached-rule > h5::after { content: ': '; }
+.ds-roster-card .ds-attached-rule > [data-attached-rule-text] { margin-top: 4px; }
+
+.ds-roster-card .ds-gained-chip .v2-field-value { color: var(--ds-gained-accent); font: inherit; }
+.ds-roster-card .ds-gained-chip > .ds-modifier-breakdown { display: inline; margin: 0; font: inherit; }
+.ds-roster-card .statline .stat .ds-gained-control { display: inline-flex; margin-top: 0; }
+.ds-roster-card .statline .stat .ds-gained-chip { margin-top: 0; color: var(--ds-gained-accent); font: 700 11px/1.5 var(--ds-ui); }
+.ds-roster-card .statline .stat .ds-gained-tooltip:not([hidden]) { margin-top: 0; color: var(--ink); font: 500 12px/1.6 var(--ds-ui); }
+.ds-roster-card .ds-enhancement-restriction { border-left-color: var(--ds-gained-accent); }
+
+.ds-roster-card .ds-gained-chip > a.v2-reference{color:inherit;background:transparent;border:0;padding:0;font:inherit}
+/* The full roster Stratagem reference is populated on first opening. */
+.unit-card details.ds-roster-stratagems > summary { cursor:pointer; }
+.unit-card details.ds-roster-stratagems > summary h4 { display:inline; }

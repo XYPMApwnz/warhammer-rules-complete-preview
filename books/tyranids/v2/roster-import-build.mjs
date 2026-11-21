@@ -1,3 +1,6 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -5,19 +8,20 @@ import {fileURLToPath} from 'node:url';
 import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
 import {addTyranidsSourceChoices} from './roster-source-choices.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const copy=structuredClone;
 const valueAt=(value,path)=>path.slice(1).split('/').reduce((item,key)=>item?.[key],value);
 const normalize=value=>String(value).replace(/[’‘]/g,"'").toUpperCase();
 
 /** Disposable shared-import view. Existing effective entities remain owners. */
 export function buildTyranidsImportBook(facts=read('./generated/effective.json')){
+  facts=prepareSourceProducer(facts);
   const original=JSON.stringify(facts),book=copy(facts),index=new Map(book.entities.map(row=>[row.id,row]));
   assert.equal(book.bookId,'tyranids');
   const source=read('./roster-import-source-bindings.json');
   const bytes=fs.readFileSync(new URL('../../../'+source.exportSource.document,import.meta.url));
   assert.equal(createHash('sha256').update(bytes).digest('hex').toUpperCase(),source.exportSource.sha256,'Export vocabulary integrity');
-  const exportDocument=JSON.parse(bytes);
+  const exportDocument=parseProducerJSON(bytes);
   const verifyExport=proof=>{
     const item=valueAt(exportDocument,proof.path);
     assert.equal(proof.document,source.exportSource.document);assert.equal(item?.id,proof.entryId);
@@ -100,7 +104,8 @@ export function buildTyranidsImportBook(facts=read('./generated/effective.json')
   });
   for(const profile of book.entities)if(profile.kind==='MODEL_PROFILE')profile.kind='PROFILE';
   book.importSourceEvidence=copy(source.exportSource);
-  book.importBindings={schema:'tyranids-v2/import-bindings/v1',identityAliases,weaponSelections,
+  appendModelNameAliases(identityAliases,modelNames,compositions);
+  book.importBindings={schema:'tyranids-v2/import-bindings/v1',factionIdentityLabels:['Tyranids',exportDocument.documents[0].data.catalogue.name],identityAliases,weaponSelections,
     equipmentSelections:copy(source.equipmentSelections),compositions,enhancements,nativeReferenceBindings,
     paidSelectionGroups:[{unitId:'unit-tyrannofex',optionProfileIds:['datasheet-tyrannofex:weapon:1',
       'datasheet-tyrannofex:weapon:2','datasheet-tyrannofex:weapon:3'],
@@ -124,7 +129,7 @@ export function buildTyranidsImportBook(facts=read('./generated/effective.json')
 }
 
 if(process.argv[1]&&fileURLToPath(import.meta.url)===fs.realpathSync(process.argv[1])){
-  const value=JSON.stringify(buildTyranidsImportBook(),null,2)+'\n',target=new URL('./generated/roster-import.json',import.meta.url);
+  const value=serializeSourceJSON(buildTyranidsImportBook()),target=new URL('./generated/roster-import.json',import.meta.url);
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(target,'utf8'),value,'Stale Tyranids import input');
   else fs.writeFileSync(target,value);
   console.log('Tyranids import input: PASS (52 datasheets, 57 composition members, 133 profiles)');

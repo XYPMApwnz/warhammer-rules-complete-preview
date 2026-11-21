@@ -10,5 +10,5 @@ export const registration=Object.freeze({
     const response=await fetch(new URL('./generated/app-presentation.json',import.meta.url));
     if(!response.ok)throw new Error('Army Book unavailable');return response.json();
   },
-  async createRoster(){return (await import('./roster-runtime.mjs')).createBrowserRoster();}
+  async createRoster(options){return (await import('./roster-runtime.mjs')).createBrowserRoster(options);}
 });

@@ -4,12 +4,18 @@ import copy
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 from urllib.parse import urlparse
 from lxml import html
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(ROOT/'books/shared/tools'))
+from source_refs_output import serialized_source_outputs
+sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
+from bridge import apply_book_official_updates
 SOURCE = 'books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25'
 SOURCE_ID = 'am-waha-11e-2026-09-25'
 sha = lambda value: hashlib.sha256(value).hexdigest().upper()
@@ -258,9 +264,22 @@ def build():
                     record.setdefault('fieldProvenance', {})['sourceTypeLabel'] = {'sourcePath': SOURCE+'/adeptus-mechanicus.html', 'sha256': page_info['adeptus-mechanicus.html']['sha256'], 'xpath': hub.getroottree().getpath(type_labels[0])}
     for i, erratum in enumerate(corpus['errata']):
         add(erratum['sourceId'], 'SOURCE_ERRATUM', None, omit(erratum, ['sourceId']), '/errata/'+str(i))
-    official_updates = read('books/adeptus-mechanicus/v2/sources/official-v1.4-updates.json')
-    official_id = official_updates['sourceId']
-    assert official_id == enrollment['currentOfficialSourceId']
+    official_updates = read(read('books/adeptus-mechanicus/book.config.json')['passport']['official']['input'])
+    official_id = enrollment['currentOfficialSourceId']
+    for entry in official_updates['entries']:
+        source = entry['source']
+        assert source['id'] == official_id, 'Official update source identity changed'
+        accepted = enrollment['sourceIds'][official_id]
+        artifact = next(item for item in enrollment['artifacts'] if item['path'] == accepted['sourcePath'])
+        assert source['document'] == accepted['sourcePath'] and source['version'] == accepted['version']
+        assert source['sha256'] == artifact['sha256'] and source['effectiveFrom'] == accepted['effectiveFrom']
+        assert 2 <= source['page'] <= 19, 'Official update outside accepted non-Legends scope'
+        assert entry.get('annotations', {}).get('phase', 'effective') in ('base', 'effective'), 'Unknown official update phase'
+
+    def apply_official_phase(model, phase):
+        document = {**official_updates, 'entries': [entry for entry in official_updates['entries']
+                                                  if entry.get('annotations', {}).get('phase', 'effective') == phase]}
+        return apply_book_official_updates('adeptus-mechanicus', model, ROOT, document=document)['model']
 
     def official_evidence(source_id, page):
         source_path = enrollment['sourceIds'][source_id]['sourcePath']
@@ -268,9 +287,9 @@ def build():
         assert 2 <= page <= 19, 'Official update outside accepted non-Legends scope'
         return {'sourceId': source_id, 'sourcePath': source_path, 'sha256': artifact['sha256'], 'page': page}
 
-    for record in official_updates['records']:
-        added = add(record['id'], record['kind'], None, record['data'])
-        added['provenance'] = official_evidence(official_id, record['page'])
+    # The FAQ belongs to BASE; all updates still use the same interpreter.
+    entities = apply_official_phase({'entities': entities}, 'base')['entities']
+    ids.update(record['id'] for record in entities)
     # References are explicitly metadata, never executable rules or authority for
     # unit×rule answers. Excluded-mode navigation stays in source accounting only.
     for i, reference in enumerate(corpus['references']):
@@ -340,18 +359,7 @@ def build():
         target.setdefault('fieldProvenance', {})['/'.join(map(str, operation['field']))] = evidence
         effective['appliedSourceAdjudications'].append(copy.deepcopy(operation))
     effective['appliedOfficialUpdates'] = []
-    for operation in official_updates['operations']:
-        target = index[operation['targetId']]
-        owner = target['data']
-        for key in operation['field'][:-1]:
-            owner = owner[key]
-        key = operation['field'][-1]
-        assert owner[key] == operation['before'], 'Official update does not match accepted prior field'
-        owner[key] = operation['after']
-        target.setdefault('fieldProvenance', {})['/'.join(map(str, operation['field']))] = {
-            **official_evidence(official_id, operation['page']),
-            'supersedes': copy.deepcopy(target['provenance'])}
-        effective['appliedOfficialUpdates'].append(copy.deepcopy(operation))
+    effective = apply_official_phase(effective, 'effective')
     return {'base': base, 'effective': effective}
 
 
@@ -363,8 +371,7 @@ def main():
     target = HERE/'generated'
     if not args.check:
         target.mkdir(exist_ok=True)
-    for name, value in output.items():
-        data = (json.dumps(value, indent=2, ensure_ascii=False)+'\n').encode('utf8')
+    for name, data in serialized_source_outputs(output, ROOT).items():
         file = target/(name+'.json')
         if args.check:
             assert file.read_bytes() == data, 'Non-deterministic generated projection: '+name

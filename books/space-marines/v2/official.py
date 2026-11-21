@@ -1,4 +1,4 @@
-"""Book-owned, fail-closed application of the accepted SM printed update.
+"""Source verification around the one shared official-update interpreter.
 
 The PDF supplies the instruction and replacement body. Explicit source XPath
 bindings identify records; display titles only assert that a binding still owns
@@ -6,16 +6,18 @@ the reviewed source field. This module does not create gameplay contracts.
 """
 from __future__ import annotations
 
-import copy
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 
 import pdfplumber
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
+from bridge import apply_book_official_updates
 
 
 def value_sha(value):
@@ -59,18 +61,15 @@ def _target(entities, binding):
     return target
 
 
-def apply_official(base, root=ROOT):
-    """Return a deep-cloned effective document with five checked instructions."""
+def verify_official_source(base, root=ROOT):
+    """Authenticate all accepted PDF instructions without changing any facts."""
     root = Path(root)
     declarations = json.loads((root / 'books/space-marines/v2/official-bindings.json').read_text(encoding='utf-8'))
     document = declarations['sourceDocument']
     pdf_path = root / document
     if _sha(pdf_path.read_bytes()) != declarations['sourceSha256']:
         raise ValueError('Accepted official PDF changed')
-    effective = copy.deepcopy(base)
-    effective['schema'] = 'space-marines-v2-effective/v1'
-    entities = effective['entities']
-    updates = []
+    entities = base['entities']
     with pdfplumber.open(pdf_path) as pdf:
         if len(pdf.pages) != declarations['sourcePageCount']:
             raise ValueError('Official PDF page inventory changed')
@@ -88,10 +87,6 @@ def apply_official(base, root=ROOT):
             before = target['data'][field]
             if value_sha(before) != item['beforeSha256']:
                 raise ValueError('Official target field changed: ' + item['id'])
-            proof = {'sourceId': declarations['sourceId'], 'document': document,
-                'sha256': declarations['sourceSha256'], 'page': box['page'],
-                'bbox': box['bbox'], 'textSha256': box['textSha256'],
-                'authority': 'AUTHORITATIVE_CURRENT', 'sourceText': text}
             operation = item['operation']
             if operation == 'REPLACE_BODY':
                 body = text.split('Change to:', 1)[1].strip()
@@ -103,29 +98,19 @@ def apply_official(base, root=ROOT):
                 prefix = target['data']['title'] + ':'
                 if not before.startswith(prefix):
                     raise ValueError('Official ability heading is not preserved')
-                current_body = before[len(prefix):].strip()
-                if _body_norm(current_body) == _body_norm(body):
-                    after = before
-                else:
-                    # Preserve the complete source heading, including frequency.
-                    body = re.sub(r'\n(?!▪\s)', ' ', body)
-                    body = re.sub(r'(?m)^▪\s*', '- ', body)
-                    after = prefix + ' ' + body
             elif operation == 'REQUIRE_KEYWORDS':
                 if not isinstance(before, list) or not all(isinstance(v, str) for v in before):
                     raise ValueError('Official keywords are not a native string array')
                 if any('‘' + keyword + '’' not in text for keyword in item['requiredKeywords']):
                     raise ValueError('Official keyword instruction changed')
-                after = before + [v for v in item['requiredKeywords'] if v not in before]
             else:
                 raise ValueError('Unknown official operation: ' + operation)
-            target['data'][field] = after
-            target.setdefault('fieldProvenance', {})[field] = copy.deepcopy(proof)
-            updates.append({'id': item['id'], 'group': 'DATASHEET_UPDATE',
-                'status': 'VERIFY_CURRENT' if before == after else 'APPLIED',
-                'operation': operation, 'targetIds': [target['id']], 'field': field,
-                'beforeSha256': value_sha(before), 'afterSha256': value_sha(after),
-                'sourceText': text, 'provenance': proof,
-                **({'qualification': item['qualification']} if 'qualification' in item else {})})
-    effective['officialUpdates'] = updates
+
+
+def apply_official(base, root=ROOT):
+    """Return the shared transaction after authenticating accepted evidence."""
+    root = Path(root)
+    verify_official_source(base, root)
+    effective = apply_book_official_updates('space-marines', base, root)['model']
+    effective['schema'] = 'space-marines-v2-effective/v1'
     return effective

@@ -213,10 +213,10 @@ export function runBloodAngelsGameplayQA(built=buildBloodAngelsContracts()){
    for(const w of weapons(u).filter(w=>w.data.mode==='melee')){const before=weapons(base).find(b=>b.selectionKey===w.selectionKey&&b.scopeId===w.scopeId&&b.canonicalProfileId===w.canonicalProfileId);
     assert.equal(Number.parseFloat(w.data.strength),number(before.data.strength,delta));assert.equal(Number.parseFloat(w.data.ap),number(before.data.ap,-delta));}
   };
-  assert.equal(service.context('dante').roster.smPermanentAssaultSource,true);assert.equal(service.context('peer').roster.smPermanentAssaultSource,false);verifyDelta(1);
-  service.attach('dante','bodyguard');assert.equal(service.context('bodyguard').roster.smPermanentAssaultSource,true);verifyDelta(2);
+  assert.equal(service.context('dante').roster.permanentDoctrineSourcePresent,true);assert.equal(service.context('peer').roster.permanentDoctrineSourcePresent,false);verifyDelta(1);
+  service.attach('dante','bodyguard');assert.equal(service.context('bodyguard').roster.permanentDoctrineSourcePresent,true);verifyDelta(2);
   const formed=clone(service.projection);service.recompute();assert.deepEqual(service.projection,formed);service.load(JSON.parse(JSON.stringify(service.snapshot())));assert.deepEqual(service.projection,formed);
-  service.detach('dante');assert.equal(service.context('bodyguard').roster.smPermanentAssaultSource,false);verifyDelta(1);
+  service.detach('dante');assert.equal(service.context('bodyguard').roster.permanentDoctrineSourcePresent,false);verifyDelta(1);
   service.reattach('dante','bodyguard');verifyDelta(2);
  });
  check('native-invulnerable-model-scope',()=>{

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createCompatibilityCompiler} from '../../shared/rule-contract-v2/compatibility.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
+import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
 
 /** Ephemeral shape adapter. Scope IDs come from canonical profile bindings;
  * no first-profile fallback, title matching or legacy catalogs participate. */
@@ -33,7 +34,7 @@ export function compilerInputs(book,{abilityReferences}={}) {
       assert.equal(rows.length,1,'Missing/duplicate explicit profile composition binding');
       const binding=rows[0];
       assert.equal(binding.compositionSourceId,compositionOwner.id);
-      assert.equal(binding.sourceId,compositionOwner.provenance.sourceId);
+      assert.equal(binding.sourceId,getRecordedSourceIdentity(compositionOwner,{book:view}));
       const source=binding.field.reduce((value,key)=>value?.[key],compositionOwner.data);
       assert.equal(typeof source,'string');
       const lines=source.split('\n');

@@ -1,21 +1,23 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {buildGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 
 export function readGlossaryInputs() {
-  return {model: JSON.parse(fs.readFileSync(new URL('./generated/rule-contract-effective.json', import.meta.url), 'utf8')),
+  return {model: parseProducerJSON(fs.readFileSync(new URL('./generated/rule-contract-effective.json', import.meta.url), 'utf8')),
     coreCatalog: createEffectiveCoreCatalog()};
 }
 
 export function buildGlossaryProjection(model, coreCatalog) {
-  return buildGlossary({model, coreCatalog});
+  model=prepareSourceProducer(model);
+  return prepareSourceProducer(buildGlossary({model, coreCatalog}));
 }
 
 export function writeGlossary({check = false, outputPath, inputs = readGlossaryInputs()} = {}) {
-  const result = buildGlossary(inputs);
+  const result = prepareSourceProducer(buildGlossary(inputs));
   const filename = outputPath || fileURLToPath(new URL('./generated/glossary-v2.json', import.meta.url));
-  const bytes = JSON.stringify(result.index, null, 2) + '\n';
+  const bytes = serializeSourceJSON(result.index);
   if (check) {
     if (!fs.existsSync(filename) || fs.readFileSync(filename, 'utf8') !== bytes) throw new Error('Glossary projection drift');
   } else {

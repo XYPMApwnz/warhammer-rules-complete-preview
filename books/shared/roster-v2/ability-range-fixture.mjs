@@ -2,6 +2,7 @@
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {createRosterRuntime} from './runtime.mjs';
 import {buildAttachmentFeasibility} from './compatibility-feasibility.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 export const rangeId=name=>'synthetic-range:'+name;
 export function createAbilityRangeFixture({value=2,targetId=rangeId('ability-a')}={}) {
   const id=rangeId,clone=structuredClone;
@@ -45,6 +46,6 @@ export function createAbilityRangeFixture({value=2,targetId=rangeId('ability-a')
     detachments:[{instanceId:'d',canonicalDetachmentId:id('detachment')}],detachmentIds:[id('detachment')],
     units:[unit('a','mixed',true),unit('b','mixed'),unit('leader','leader')],attachments:[],warlordInstanceId:null};
   const api=createRuleContractSchema({stateFields:{leading:{contextLevel:'ROSTER',valueType:'boolean'}}});
-  const runtime=()=>{const service=createRosterRuntime(book,api);service.load(state);return service;};
+  const runtime=()=>{const service=createRosterRuntime(compileRecipientFixture(book,api,{validateContracts:false}),api);service.load(state);return service;};
   return {book,state,effect,api,runtime,canonicalText:text};
 }
