@@ -1,0 +1,185 @@
+{
+  "schema": "fast-first-load-historical-update/v1",
+  "status": "PASS",
+  "old": {
+    "root": "E:\\Warhammer\\qa-tmp\\fast-first-load\\package-base",
+    "source": "e3db1b345eca989436eea7af758900eee7795203 (runtime-identical base)",
+    "contentSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909",
+    "revision": "d08e23b961b6f507"
+  },
+  "candidate": {
+    "root": "E:\\Warhammer\\qa-tmp\\fast-first-load\\package-final-c4",
+    "contentSha256": "32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b",
+    "revision": "9445e8293bc10c1c"
+  },
+  "privacy": "No raw import, storage, trace, or browser profile is written to evidence.",
+  "scenarios": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "imports": [
+        {
+          "file": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+          "sha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+          "accepted": true,
+          "book": "death-guard",
+          "version": "v37.25",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        },
+        {
+          "file": "books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt",
+          "sha256": "77adceda3ee79ff89352a364a535df3b0d58d9aa246e3491930bf5a64bb7fb6f",
+          "accepted": true,
+          "book": "space-marines",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        }
+      ],
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "started": "2026-11-21T18:48:52.878Z",
+      "oldOffline": {
+        "revision": "d08e23b961b6f507",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "dgAcceptedVersion": "v37.25",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "workingScreen": {
+        "banner": true,
+        "noAutoReload": true,
+        "draftUnchanged": true
+      },
+      "updateToWorkingMs": 4724,
+      "startupToWorkingMs": 2437,
+      "savedOnline": {
+        "death-guard": {
+          "units": 8,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "newOffline": {
+        "revision": "9445e8293bc10c1c",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "savedOffline": {
+        "death-guard": {
+          "units": 8,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "offlineHome": true
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "imports": [
+        {
+          "file": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+          "sha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+          "accepted": true,
+          "book": "death-guard",
+          "version": "v37.25",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        },
+        {
+          "file": "books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt",
+          "sha256": "77adceda3ee79ff89352a364a535df3b0d58d9aa246e3491930bf5a64bb7fb6f",
+          "accepted": true,
+          "book": "space-marines",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        }
+      ],
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "started": "2026-11-21T18:49:45.296Z",
+      "oldOffline": {
+        "revision": "d08e23b961b6f507",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "dgAcceptedVersion": "v37.25",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "workingScreen": {
+        "banner": true,
+        "noAutoReload": true,
+        "draftUnchanged": true
+      },
+      "updateToWorkingMs": 4645,
+      "startupToWorkingMs": 2315,
+      "savedOnline": {
+        "death-guard": {
+          "units": 8,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "newOffline": {
+        "revision": "9445e8293bc10c1c",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "savedOffline": {
+        "death-guard": {
+          "units": 8,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "offlineHome": true
+    }
+  ],
+  "requests": {
+    "total": 1522,
+    "historical": 1002,
+    "candidate": 520,
+    "failed": 0
+  },
+  "notes": [
+    "Exact localStorage proof covers all origin keys, not only DG/SM. Contents exist only in browser and Node memory.",
+    "Old DG v37.25 is attempted first, then actual v37.15. Failed attempts remain in the report. If both fail, the unchanged DERIVED dg-short-derived-labelled fixture from the prior actual-old preview audit is attempted with exact SHA and provenance. No input is converted.",
+    "This recipe checks two actual historical origins separately; it does not replace the separate revision-switch-during-background negative control.",
+    "Offline assertion covers home and the warmed saved DG/SM rosters. Large untouched books are lazy in the accepted model.",
+    "Profiles remain in the named qa-tmp scratch folder for owner-approved cleanup; no preview or package file is changed."
+  ]
+}

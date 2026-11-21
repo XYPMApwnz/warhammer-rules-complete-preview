@@ -1,0 +1,2041 @@
+{
+  "status": "PASS",
+  "revision": "9445e8293bc10c1c",
+  "precacheUrls": 221,
+  "startupCore": [
+    "./",
+    "./index.html",
+    "./v2/app.html",
+    "./books/shared/offline-status.js?v=4",
+    "./books/shared/offline-status.js?wh-pwa=9445e8293bc10c1c",
+    "./books/shared/styles/offline-status.css",
+    "./v2/boot.mjs"
+  ],
+  "modulesParsed": 135,
+  "staticImports": 392,
+  "literalDynamicImports": 12,
+  "nonliteralDynamicImports": [],
+  "opaqueClassicGlossaryParsed": false,
+  "imports": [
+    {
+      "owner": "books/adeptus-mechanicus/v2/registration.mjs",
+      "target": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/model-name-aliases.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "target": "books/shared/source-refs-v2/source-catalog.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/parser.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "target": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/registration.mjs",
+      "target": "books/blood-angels/v2/roster-boot.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-boot.mjs",
+      "target": "books/blood-angels/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/export-faction.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/blood-angels/v2/roster-runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/blood-angels/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-import.mjs",
+      "target": "books/blood-angels/v2/roster-paid-options.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-paid-options.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-runtime.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-runtime.mjs",
+      "target": "books/blood-angels/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/blood-angels/v2/rule-contract-schema.mjs",
+      "target": "books/space-marines/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/registration.mjs",
+      "target": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-attachments.mjs",
+      "target": "books/shared/roster-v2/attachment-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-attachments.mjs",
+      "target": "books/chaos-space-marines/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-attachments.mjs",
+      "target": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "target": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "target": "books/chaos-space-marines/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "target": "books/chaos-space-marines/v2/roster-effect-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "target": "books/chaos-space-marines/v2/roster-presentation.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/effective-instance.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/related.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/enhancement-bearers.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-effect-context.mjs",
+      "target": "books/shared/roster-v2/condition-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "target": "books/shared/roster-v2/model-name-aliases.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-import.mjs",
+      "target": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-import.mjs",
+      "target": "books/shared/source-refs-v2/source-catalog.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-presentation.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "target": "books/chaos-space-marines/v2/roster-attachments.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "target": "books/chaos-space-marines/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "target": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "target": "books/chaos-space-marines/v2/roster-effect-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/effects.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/core-rules/reader/mount.mjs",
+      "target": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/core-rules/reader/mount.mjs",
+      "target": "books/shared/army-book-app-v2/route-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/core-rules/reader/mount.mjs",
+      "target": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/core-rules/reader/mount.mjs",
+      "target": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/physical-chapter.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/physical-chapter.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/registration.mjs",
+      "target": "books/dark-angels/v2/roster-boot.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-boot.mjs",
+      "target": "books/dark-angels/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/export-faction.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/dark-angels/v2/roster-runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/dark-angels/v2/roster-paid-options.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-import.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-paid-options.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-runtime.mjs",
+      "target": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "target": "books/dark-angels/v2/rule-contract-declarations.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "target": "books/dark-angels/v2/physical-chapter.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/instrument-selections.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/instrument-selections.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/registration.mjs",
+      "target": "books/death-guard/v2/roster-boot.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-boot.mjs",
+      "target": "books/death-guard/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/parser.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-boot.mjs",
+      "target": "books/death-guard/v2/roster-import-bindings.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-boot.mjs",
+      "target": "books/death-guard/v2/instrument-selections.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/export-faction.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/roster-import-bindings.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/rule-contract-schema.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/death-guard/v2/rule-contract-schema.mjs",
+      "target": "books/death-guard/v2/rule-contract-state-fields.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/registration.mjs",
+      "target": "books/emperors-children/v2/roster-boot.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-attachments.mjs",
+      "target": "books/shared/roster-v2/attachment-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-attachments.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-attachments.mjs",
+      "target": "books/shared/roster-v2/condition-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-attachments.mjs",
+      "target": "books/shared/roster-v2/effective-instance.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-attachments.mjs",
+      "target": "books/emperors-children/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-attachments.mjs",
+      "target": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-attachments.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-boot.mjs",
+      "target": "books/emperors-children/v2/roster-attachments.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-boot.mjs",
+      "target": "books/emperors-children/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-boot.mjs",
+      "target": "books/emperors-children/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-boot.mjs",
+      "target": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/related.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-equipment-context.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/export-faction.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-import.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/roster-import.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/rule-contract-choice-context.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/rule-contract-choice-context.mjs",
+      "target": "books/emperors-children/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "target": "books/emperors-children/v2/rule-contract-choice-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "target": "books/emperors-children/v2/roster-equipment-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/rule-contract-schema.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/emperors-children/v2/rule-contract-schema.mjs",
+      "target": "books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/glossary.mjs",
+      "target": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/glossary.mjs",
+      "target": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/glossary.mjs",
+      "target": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/glossary.mjs",
+      "target": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/glossary.mjs",
+      "target": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/glossary.mjs",
+      "target": "books/shared/army-book-app-v2/route-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/glossary.mjs",
+      "target": "books/shared/army-book-app-v2/popup-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/glossary.mjs",
+      "target": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/home.mjs",
+      "target": "books/shared/application-v2/routes.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/home.mjs",
+      "target": "books/shared/application-v2/source-metadata.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/routes.mjs",
+      "target": "books/shared/army-book-app-v2/route-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/shared/source-refs-v2/source-catalog.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/shared/application-v2/routes.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/shared/application-v2/home.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/shared/application-v2/glossary.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/personal.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/shared/application-v2/source-metadata.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/core-rules/reader/mount.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/shared/application-v2/runtime.mjs",
+      "target": "books/core-rules/reader/mount.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/book-v1.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/book-v1.mjs",
+      "target": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/book-v1.mjs",
+      "target": "books/shared/army-book-app-v2/source-table.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "target": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "target": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/equipment-reference.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/rule-popup.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/roster.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "target": "books/shared/army-book-app-v2/personal.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "target": "books/shared/army-book-app-v2/personal.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "target": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "target": "books/shared/army-book-app-v2/glossary.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/glossary.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "target": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "target": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "target": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "target": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "target": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/personal.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/personal.mjs",
+      "target": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/personal.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/personal.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "target": "books/shared/army-book-app-v2/glossary.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "target": "books/shared/army-book-app-v2/source-table.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/roster.mjs",
+      "target": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/roster.mjs",
+      "target": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/roster.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/roster.mjs",
+      "target": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/roster.mjs",
+      "target": "books/shared/army-book-app-v2/import-notices.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/glossary.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/route-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/roster.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/personal.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/book-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/related-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/popup-v1.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/rule-popup.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/rule-term-links.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/roster-labels.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/army-book-app-v2/runtime.mjs",
+      "target": "books/shared/application-v2/source-metadata.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/keyword-values.mjs",
+      "target": "books/shared/rule-facts.js",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/attached-rule-text.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/attached-rule-text.mjs",
+      "target": "books/shared/rule-contract-v2/recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/attached-rule-text.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/attached-rule-text.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/attached-rule-text.mjs",
+      "target": "books/shared/roster-v2/effects.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/attached-rule-text.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/attached-rule-text.mjs",
+      "target": "books/shared/roster-v2/physical-static-model.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/attached-rule-text.mjs",
+      "target": "books/shared/roster-v2/text-roster-facts.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/attachment-service.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/compatibility-context.mjs",
+      "target": "books/shared/roster-v2/keywords.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "target": "books/shared/rule-contract-v2/recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-binding.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-binding.mjs",
+      "target": "books/shared/rule-contract-v2/conditions.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-binding.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-binding.mjs",
+      "target": "books/shared/roster-v2/condition-computations.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-binding.mjs",
+      "target": "books/shared/roster-v2/physical-condition-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-computations.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-computations.mjs",
+      "target": "books/shared/roster-v2/keywords.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-context.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-context.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-context.mjs",
+      "target": "books/shared/rule-contract-v2/conditions.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-context.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-context.mjs",
+      "target": "books/shared/roster-v2/effects.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-context.mjs",
+      "target": "books/shared/roster-v2/condition-computations.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/condition-context.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/conditional-policy.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/conditional-policy.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/conditional-policy.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/conditional-policy.mjs",
+      "target": "books/shared/rule-contract-v2/recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/conditional-policy.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/context.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/context.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/context.mjs",
+      "target": "books/shared/roster-v2/keywords.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effective-instance.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effective-instance.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effective-instance.mjs",
+      "target": "books/shared/roster-v2/conditional-policy.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effective-instance.mjs",
+      "target": "books/shared/roster-v2/recipient-execution.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effective-instance.mjs",
+      "target": "books/shared/roster-v2/physical-choice.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effective-instance.mjs",
+      "target": "books/shared/rule-contract-v2/recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effective-instance.mjs",
+      "target": "books/shared/roster-v2/attached-rule-text.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effective-instance.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effects.mjs",
+      "target": "books/shared/roster-v2/conditional-policy.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effects.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effects.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effects.mjs",
+      "target": "books/shared/roster-v2/keywords.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effects.mjs",
+      "target": "books/shared/rule-contract-v2/recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effects.mjs",
+      "target": "books/shared/roster-v2/recipient-execution.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effects.mjs",
+      "target": "books/shared/roster-v2/physical-choice.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effects.mjs",
+      "target": "books/shared/roster-v2/physical-static-model.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/effects.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/enhancement-bearers.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/enhancement-bearers.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/export-faction.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/import-service.mjs",
+      "target": "books/shared/roster-v2/parser.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/import-service.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/import-service.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/import-service.mjs",
+      "target": "books/shared/roster-v2/singleton-model-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/import-service.mjs",
+      "target": "books/shared/roster-v2/export-faction.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/import-service.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/import.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/keyword-scopes.mjs",
+      "target": "books/shared/roster-v2/keywords.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/keywords.mjs",
+      "target": "books/shared/source-refs-v2/source-catalog.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/keywords.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-choice.mjs",
+      "target": "books/shared/roster-v2/recipient-execution.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-choice.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-choice.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-choice.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-condition-context.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-condition-context.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-condition-context.mjs",
+      "target": "books/shared/rule-contract-v2/conditions.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-condition-context.mjs",
+      "target": "books/shared/roster-v2/keywords.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-static-model.mjs",
+      "target": "books/shared/roster-v2/recipient-execution.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/physical-static-model.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/recipient-execution.mjs",
+      "target": "books/shared/rule-contract-v2/recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/recipient-execution.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/related.mjs",
+      "target": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/related.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/runtime.mjs",
+      "target": "books/shared/roster-v2/effective-instance.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/runtime.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/runtime.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/runtime.mjs",
+      "target": "books/shared/roster-v2/effects.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/runtime.mjs",
+      "target": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/runtime.mjs",
+      "target": "books/shared/roster-v2/related.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/runtime.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/runtime.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/text-roster-facts.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/roster-v2/text-roster-facts.mjs",
+      "target": "books/shared/rule-contract-v2/conditions.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "target": "books/shared/rule-contract-v2/conditions.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "target": "books/shared/rule-contract-v2/recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "target": "books/shared/roster-v2/conditional-policy.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "target": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/recipients.mjs",
+      "target": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/recipients.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/schema.mjs",
+      "target": "books/shared/keyword-values.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/schema.mjs",
+      "target": "books/shared/rule-contract-v2/recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/schema.mjs",
+      "target": "books/shared/rule-contract-v2/conditions.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/schema.mjs",
+      "target": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/rule-contract-v2/schema.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/shared/source-refs-v2/source-refs.mjs",
+      "target": "books/shared/source-refs-v2/source-catalog.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/registration.mjs",
+      "target": "books/space-marines/v2/roster-boot.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-boot.mjs",
+      "target": "books/space-marines/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/export-faction.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/space-marines/v2/roster-runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/space-marines/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-import.mjs",
+      "target": "books/space-marines/v2/roster-paid-options.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-paid-options.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-runtime.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-runtime.mjs",
+      "target": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-runtime.mjs",
+      "target": "books/space-marines/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-static-model-bindings.mjs",
+      "target": "books/shared/rule-contract-v2/recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-static-model-bindings.mjs",
+      "target": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/roster-static-model-bindings.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/rule-contract-schema.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/space-marines/v2/rule-contract-schema.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/registration.mjs",
+      "target": "books/tau-empire/v2/roster-boot.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-boot.mjs",
+      "target": "books/tau-empire/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-boot.mjs",
+      "target": "books/tau-empire/v2/roster-source-choices.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-boot.mjs",
+      "target": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-boot.mjs",
+      "target": "books/tau-empire/v2/rule-contract-declarations.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/export-faction.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/singleton-model-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/tau-empire/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/tau-empire/v2/roster-source-choices.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-import.mjs",
+      "target": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-source-choices.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-source-choices.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-source-choices.mjs",
+      "target": "books/tau-empire/v2/rule-contract-schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-source-choices.mjs",
+      "target": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-source-choices.mjs",
+      "target": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-source-choices.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "target": "books/tau-empire/v2/rule-contract-declarations.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/rule-contract-schema.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tau-empire/v2/rule-contract-schema.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/registration.mjs",
+      "target": "books/tyranids/v2/roster-boot.mjs",
+      "kind": "literal-dynamic-ast"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-boot.mjs",
+      "target": "books/tyranids/v2/roster-import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-boot.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-boot.mjs",
+      "target": "books/tyranids/v2/roster-source-choices.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/compatibility-context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/export-faction.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/import.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/attachment-service.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-import.mjs",
+      "target": "books/shared/roster-v2/parser.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-import.mjs",
+      "target": "books/tyranids/v2/roster-source-choices.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-source-choices.mjs",
+      "target": "books/shared/roster-v2/context.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-source-choices.mjs",
+      "target": "books/shared/rule-contract-v2/schema.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-source-choices.mjs",
+      "target": "books/shared/roster-v2/condition-binding.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "books/tyranids/v2/roster-source-choices.mjs",
+      "target": "books/shared/source-refs-v2/source-refs.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/army-books.mjs",
+      "target": "books/death-guard/v2/registration.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/army-books.mjs",
+      "target": "books/adeptus-mechanicus/v2/registration.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/army-books.mjs",
+      "target": "books/chaos-space-marines/v2/registration.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/army-books.mjs",
+      "target": "books/emperors-children/v2/registration.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/army-books.mjs",
+      "target": "books/tyranids/v2/registration.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/army-books.mjs",
+      "target": "books/tau-empire/v2/registration.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/army-books.mjs",
+      "target": "books/space-marines/v2/registration.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/army-books.mjs",
+      "target": "books/dark-angels/v2/registration.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/army-books.mjs",
+      "target": "books/blood-angels/v2/registration.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/boot.mjs",
+      "target": "books/shared/application-v2/registry.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/boot.mjs",
+      "target": "books/shared/application-v2/runtime.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/boot.mjs",
+      "target": "v2/army-books.mjs",
+      "kind": "static-v8"
+    },
+    {
+      "owner": "v2/app.html#inline-module",
+      "target": "v2/boot.mjs",
+      "kind": "literal-dynamic-ast"
+    }
+  ]
+}

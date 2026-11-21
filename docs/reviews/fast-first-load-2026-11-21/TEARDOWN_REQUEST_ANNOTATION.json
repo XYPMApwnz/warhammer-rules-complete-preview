@@ -1,0 +1,49 @@
+{
+  "status": "EXPLAINED_NOT_REMOVED",
+  "observedCancellation": "CANCELLED after measurement window; no numeric net_error recorded",
+  "results": [
+    {
+      "observation": "after-fast4g-dg-book-1-warm",
+      "request": "service-worker.js",
+      "readyMs": 3142,
+      "requestStartMs": 3912,
+      "requestSendMs": 3912,
+      "measurementEndMs": 3948,
+      "requestEndMs": 3960,
+      "status": null,
+      "encodedBytes": 0,
+      "requestStartsAfterInteractive": true,
+      "errors": [
+        {
+          "event": "CANCELLED",
+          "epoch": 1795285871972,
+          "netError": null,
+          "afterMeasurementMs": 12
+        }
+      ],
+      "classification": "Post-interactive background SW update check canceled by measurement profile teardown; original transaction and delta retained"
+    },
+    {
+      "observation": "after-fast4g-dg-book-2-warm",
+      "request": "service-worker.js",
+      "readyMs": 3108,
+      "requestStartMs": 3900,
+      "requestSendMs": 3900,
+      "measurementEndMs": 3902,
+      "requestEndMs": 3917,
+      "status": null,
+      "encodedBytes": 0,
+      "requestStartsAfterInteractive": true,
+      "errors": [
+        {
+          "event": "CANCELLED",
+          "epoch": 1795285956849,
+          "netError": null,
+          "afterMeasurementMs": 14
+        }
+      ],
+      "classification": "Post-interactive background SW update check canceled by measurement profile teardown; original transaction and delta retained"
+    }
+  ],
+  "boundary": "No observation was discarded, resampled or numerically corrected. Original reduced validation arrays keep two failures/deltas; no application/asset failure, page exception or lost response body."
+}

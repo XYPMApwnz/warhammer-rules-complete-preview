@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "runtimeContentSha256": "32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b",
+  "targets": [
+    "safari15",
+    "chrome100",
+    "firefox102"
+  ],
+  "modules": 142,
+  "inlineScripts": 3,
+  "scope": "Exact published bodies and inline scripts; existing target guard reused, no transpilation. Runtime API/actual Safari engine validation is separate."
+}

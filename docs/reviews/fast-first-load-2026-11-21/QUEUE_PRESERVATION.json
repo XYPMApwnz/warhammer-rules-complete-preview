@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "beforeJobs": 203,
+  "afterJobs": 209,
+  "oldJobsPreservedInOrder": true,
+  "matchedOldJobs": 203,
+  "addedJobs": [
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/fast-first-load-cache-qa.mjs"
+      ],
+      "id": "tests/fast-first-load-cache-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/helper-offline-status-instance-qa.mjs"
+      ],
+      "id": "tests/helper-offline-status-instance-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/runtime-url-stamps-qa.mjs"
+      ],
+      "id": "tests/runtime-url-stamps-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/packaged-bootstrap-qa.mjs",
+        "--self-test"
+      ],
+      "id": "tests/packaged-bootstrap-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser/fast-first-load.mjs"
+      ],
+      "id": "tests/browser/fast-first-load.mjs"
+    }
+  ],
+  "normalization": "Only source checkout absolute roots are replaced by <SOURCE>; command and every argument otherwise compared exactly."
+}

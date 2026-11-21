@@ -1,0 +1,189 @@
+{
+  "status": "PASS",
+  "scenarios": [
+    {
+      "old": "1fd0b279051d76f1a262f7c8f117e35551b7de39",
+      "width": 390,
+      "status": "PASS",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 18915,
+        "sha256": "ea5fee9ea118da1b0eebbc125cd7b825df6c617c2f6b6adbf51c9bd89cd1383d"
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 18915,
+        "sha256": "ea5fee9ea118da1b0eebbc125cd7b825df6c617c2f6b6adbf51c9bd89cd1383d"
+      },
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "consoleMessages": [
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:64908/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:64908/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=death-guard#view-roster"
+        },
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:64908/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:64908/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=space-marines#view-roster"
+        }
+      ],
+      "classification": "Expected failed network-first freshness probes during intentional offline operation; cached verified publication and saved native rosters still work."
+    },
+    {
+      "old": "1fd0b279051d76f1a262f7c8f117e35551b7de39",
+      "width": 1440,
+      "status": "PASS",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 18915,
+        "sha256": "ea5fee9ea118da1b0eebbc125cd7b825df6c617c2f6b6adbf51c9bd89cd1383d"
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 18915,
+        "sha256": "ea5fee9ea118da1b0eebbc125cd7b825df6c617c2f6b6adbf51c9bd89cd1383d"
+      },
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "consoleMessages": [
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:64908/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:64908/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=death-guard#view-roster"
+        },
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:64908/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:64908/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=space-marines#view-roster"
+        }
+      ],
+      "classification": "Expected failed network-first freshness probes during intentional offline operation; cached verified publication and saved native rosters still work."
+    },
+    {
+      "old": "e3db1b345eca989436eea7af758900eee7795203 (runtime-identical base)",
+      "width": 390,
+      "status": "PASS",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "consoleMessages": [
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:50128/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:50128/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=death-guard#view-roster"
+        },
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:50128/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:50128/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=space-marines#view-roster"
+        }
+      ],
+      "classification": "Expected failed network-first freshness probes during intentional offline operation; cached verified publication and saved native rosters still work."
+    },
+    {
+      "old": "e3db1b345eca989436eea7af758900eee7795203 (runtime-identical base)",
+      "width": 1440,
+      "status": "PASS",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "consoleMessages": [
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:50128/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:50128/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=death-guard#view-roster"
+        },
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:50128/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:50128/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=space-marines#view-roster"
+        }
+      ],
+      "classification": "Expected failed network-first freshness probes during intentional offline operation; cached verified publication and saved native rosters still work."
+    }
+  ]
+}

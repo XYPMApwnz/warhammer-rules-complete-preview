@@ -1,0 +1,47 @@
+[
+  {
+    "file": "books/adeptus-mechanicus/v2/roster-import.mjs",
+    "kind": "dynamic-import-meta-resource",
+    "expression": "new URL(path,import.meta.url)"
+  },
+  {
+    "file": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+    "kind": "dynamic-import-meta-resource",
+    "expression": "new URL(path,import.meta.url)"
+  },
+  {
+    "file": "books/chaos-space-marines/v2/roster-attachments.mjs",
+    "kind": "dynamic-import-meta-resource",
+    "expression": "new URL(path,import.meta.url)"
+  },
+  {
+    "file": "books/chaos-space-marines/v2/roster-boot.mjs",
+    "kind": "dynamic-import-meta-resource",
+    "expression": "new URL(path,import.meta.url)"
+  },
+  {
+    "file": "books/chaos-space-marines/v2/roster-runtime.mjs",
+    "kind": "dynamic-import-meta-resource",
+    "expression": "new URL(path,import.meta.url)"
+  },
+  {
+    "file": "books/shared/application-v2/glossary.mjs",
+    "kind": "dynamic-import-meta-resource",
+    "expression": "new URL(file,import.meta.url)"
+  },
+  {
+    "file": "books/shared/application-v2/home.mjs",
+    "kind": "dynamic-import-meta-resource",
+    "expression": "new URL(`../../../assets/${name}`,import.meta.url)"
+  },
+  {
+    "file": "books/shared/army-book-app-v2/runtime.mjs",
+    "kind": "dynamic-import-meta-resource",
+    "expression": "new URL(name,import.meta.url)"
+  },
+  {
+    "file": "books/shared/source-refs-v2/source-catalog.mjs",
+    "kind": "dynamic-import-meta-resource",
+    "expression": "new URL(input,import.meta.url)"
+  }
+]

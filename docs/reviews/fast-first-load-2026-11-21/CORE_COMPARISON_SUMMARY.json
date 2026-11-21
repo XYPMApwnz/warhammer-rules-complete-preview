@@ -1,0 +1,381 @@
+{
+  "status": "TIMEOUT_NOT_REPRODUCED; cause undetermined",
+  "fullPreff": {
+    "passed": 208,
+    "failed": 1,
+    "elapsedMs": 7920385,
+    "failedJob": "v2/core-reader-browser-qa.mjs",
+    "error": "page.waitForFunction: Timeout 15000ms exceeded. at assertCorePopup:42, caller:103"
+  },
+  "comparison": {
+    "status": "COMPLETE",
+    "sourceTestSha256": "cd0b92cfdfd6dd3a421781910a1e77f34ed48bd83b791ceadfdede6c42f58a00",
+    "assertions": "Unchanged repository test, external diagnostic loader only; tracing overhead is not used as performance evidence.",
+    "runs": [
+      {
+        "side": "base",
+        "repetition": 1,
+        "exitCode": 0,
+        "status": "PASS",
+        "elapsedMs": 103095,
+        "sha": "8579a7a77c7f5e8dad291afc11b27aab3cd9d73a",
+        "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\base-1\\stdout.log",
+        "observer": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\base-1\\observer"
+      },
+      {
+        "side": "head",
+        "repetition": 1,
+        "exitCode": 0,
+        "status": "PASS",
+        "elapsedMs": 100938,
+        "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+        "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\head-1\\stdout.log",
+        "observer": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\head-1\\observer"
+      },
+      {
+        "side": "base",
+        "repetition": 2,
+        "exitCode": 0,
+        "status": "PASS",
+        "elapsedMs": 102088,
+        "sha": "8579a7a77c7f5e8dad291afc11b27aab3cd9d73a",
+        "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\base-2\\stdout.log",
+        "observer": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\base-2\\observer"
+      },
+      {
+        "side": "head",
+        "repetition": 2,
+        "exitCode": 0,
+        "status": "PASS",
+        "elapsedMs": 100119,
+        "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+        "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\head-2\\stdout.log",
+        "observer": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\head-2\\observer"
+      },
+      {
+        "side": "base",
+        "repetition": 3,
+        "exitCode": 0,
+        "status": "PASS",
+        "elapsedMs": 103242,
+        "sha": "8579a7a77c7f5e8dad291afc11b27aab3cd9d73a",
+        "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\base-3\\stdout.log",
+        "observer": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\base-3\\observer"
+      },
+      {
+        "side": "head",
+        "repetition": 3,
+        "exitCode": 0,
+        "status": "PASS",
+        "elapsedMs": 99963,
+        "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+        "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\head-3\\stdout.log",
+        "observer": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\core-popup-comparison\\head-3\\observer"
+      }
+    ],
+    "counts": {
+      "base": {
+        "PASS": 3,
+        "FAIL": 0
+      },
+      "head": {
+        "PASS": 3,
+        "FAIL": 0
+      }
+    }
+  },
+  "popupObservations": [
+    {
+      "side": "base",
+      "repetition": 1,
+      "stage": "success",
+      "elapsedMs": 2174,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 1,
+      "stage": "success",
+      "elapsedMs": 2174,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 1,
+      "stage": "success",
+      "elapsedMs": 2128,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 1,
+      "stage": "success",
+      "elapsedMs": 2228,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 1,
+      "stage": "success",
+      "elapsedMs": 2153,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 1,
+      "stage": "success",
+      "elapsedMs": 2186,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 1,
+      "stage": "success",
+      "elapsedMs": 2162,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 1,
+      "stage": "success",
+      "elapsedMs": 2203,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 2,
+      "stage": "success",
+      "elapsedMs": 1298,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 2,
+      "stage": "success",
+      "elapsedMs": 2089,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 2,
+      "stage": "success",
+      "elapsedMs": 2158,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 2,
+      "stage": "success",
+      "elapsedMs": 2193,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 2,
+      "stage": "success",
+      "elapsedMs": 2155,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 2,
+      "stage": "success",
+      "elapsedMs": 2204,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 2,
+      "stage": "success",
+      "elapsedMs": 1362,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 2,
+      "stage": "success",
+      "elapsedMs": 2086,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 3,
+      "stage": "success",
+      "elapsedMs": 2130,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 3,
+      "stage": "success",
+      "elapsedMs": 2192,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 3,
+      "stage": "success",
+      "elapsedMs": 2148,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "base",
+      "repetition": 3,
+      "stage": "success",
+      "elapsedMs": 2215,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 3,
+      "stage": "success",
+      "elapsedMs": 2154,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 3,
+      "stage": "success",
+      "elapsedMs": 1335,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 3,
+      "stage": "success",
+      "elapsedMs": 2180,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    },
+    {
+      "side": "head",
+      "repetition": 3,
+      "stage": "success",
+      "elapsedMs": 2171,
+      "visibility": "visible",
+      "urlMatches": true,
+      "frameUrlMatches": true,
+      "frameReadyState": "complete",
+      "glossary": true,
+      "sections": 1
+    }
+  ],
+  "repositoryTestUnchanged": true,
+  "runtimeEditsAfterPreff": false,
+  "additionalFullRun": "OWNER_PERMISSION_REQUESTED; NOT_STARTED",
+  "previewSwitched": false
+}

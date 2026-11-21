@@ -1,0 +1,1692 @@
+{
+  "schema": "generated-rebuild-check/v1",
+  "root": "E:\\Warhammer\\worktrees\\fast-first-load-v1",
+  "head": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "files": [
+    "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+    "books/adeptus-mechanicus/v2/generated/base.json",
+    "books/adeptus-mechanicus/v2/generated/effective.json",
+    "books/adeptus-mechanicus/v2/generated/factual-census.json",
+    "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+    "books/adeptus-mechanicus/v2/generated/rule-contract-census.json",
+    "books/adeptus-mechanicus/v2/generated/rule-contract-compatibility.json",
+    "books/adeptus-mechanicus/v2/generated/rule-contracts.json",
+    "books/adeptus-mechanicus/v2/model-name-aliases.json",
+    "books/blood-angels/v2/generated/app-presentation.json",
+    "books/blood-angels/v2/generated/base.json",
+    "books/blood-angels/v2/generated/effective.json",
+    "books/blood-angels/v2/generated/factual-census.json",
+    "books/blood-angels/v2/generated/gameplay-presentation.json",
+    "books/blood-angels/v2/generated/mfm-coverage.json",
+    "books/blood-angels/v2/generated/mfm-presentation.json",
+    "books/blood-angels/v2/generated/mixed-owner-book.json",
+    "books/blood-angels/v2/generated/mixed-owner-coverage.json",
+    "books/blood-angels/v2/generated/mixed-owner-points.json",
+    "books/blood-angels/v2/generated/mixed-owner-presentation.json",
+    "books/blood-angels/v2/generated/native-mfm-book.json",
+    "books/blood-angels/v2/generated/roster-import.json",
+    "books/blood-angels/v2/generated/roster-runtime.json",
+    "books/blood-angels/v2/generated/rule-contracts.json",
+    "books/blood-angels/v2/model-name-aliases.json",
+    "books/chaos-space-marines/v2/generated/app-presentation.json",
+    "books/chaos-space-marines/v2/generated/base.json",
+    "books/chaos-space-marines/v2/generated/effective.json",
+    "books/chaos-space-marines/v2/generated/factual-census.json",
+    "books/chaos-space-marines/v2/generated/roster-import.json",
+    "books/chaos-space-marines/v2/generated/roster-runtime.json",
+    "books/chaos-space-marines/v2/generated/rule-contract-blockers.json",
+    "books/chaos-space-marines/v2/generated/rule-contract-census.json",
+    "books/chaos-space-marines/v2/generated/rule-contract-compatibility.json",
+    "books/chaos-space-marines/v2/generated/rule-contracts.json",
+    "books/chaos-space-marines/v2/model-name-aliases.json",
+    "books/core-rules/content/core-effective-bindings.v1.json",
+    "books/core-rules/content/core-identities.v1.json",
+    "books/core-rules/content/core-official-source-registry.en.json",
+    "books/core-rules/content/core-rules.digital-11e.json",
+    "books/core-rules/reader/actions.html",
+    "books/core-rules/reader/aircraft.html",
+    "books/core-rules/reader/attached-units.html",
+    "books/core-rules/reader/attack-sequence.html",
+    "books/core-rules/reader/battle-round-overview.html",
+    "books/core-rules/reader/charge-phase.html",
+    "books/core-rules/reader/command-phase.html",
+    "books/core-rules/reader/core-abilities.html",
+    "books/core-rules/reader/core-concepts.html",
+    "books/core-rules/reader/datasheets.html",
+    "books/core-rules/reader/fight-phase.html",
+    "books/core-rules/reader/flying-surging.html",
+    "books/core-rules/reader/index.html",
+    "books/core-rules/reader/introduction.html",
+    "books/core-rules/reader/making-attacks.html",
+    "books/core-rules/reader/monsters-vehicles.html",
+    "books/core-rules/reader/movement-phase.html",
+    "books/core-rules/reader/moving.html",
+    "books/core-rules/reader/muster-armies.html",
+    "books/core-rules/reader/objectives.html",
+    "books/core-rules/reader/other-concepts.html",
+    "books/core-rules/reader/other-rules-abilities.html",
+    "books/core-rules/reader/search-index.json",
+    "books/core-rules/reader/shooting-phase.html",
+    "books/core-rules/reader/stratagems.html",
+    "books/core-rules/reader/strategic-reserves.html",
+    "books/core-rules/reader/terrain.html",
+    "books/core-rules/reader/transports.html",
+    "books/core-rules/sources/waha-core-2026-11-11/core-rules.candidate.v1.json",
+    "books/core-rules/sources/waha-core-2026-11-11/known-source-defects.v1.json",
+    "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.census.json",
+    "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.manifest.json",
+    "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json",
+    "books/core-rules/sources/waha-core-2026-11-11/waha-core-player-visible-reference-census.v1.json",
+    "books/dark-angels/v2/generated/app-presentation.json",
+    "books/dark-angels/v2/generated/base.json",
+    "books/dark-angels/v2/generated/effective.json",
+    "books/dark-angels/v2/generated/factual-census.json",
+    "books/dark-angels/v2/generated/gameplay-presentation.json",
+    "books/dark-angels/v2/generated/mfm-coverage.json",
+    "books/dark-angels/v2/generated/mfm-presentation.json",
+    "books/dark-angels/v2/generated/mixed-owner-book.json",
+    "books/dark-angels/v2/generated/mixed-owner-coverage.json",
+    "books/dark-angels/v2/generated/mixed-owner-points.json",
+    "books/dark-angels/v2/generated/mixed-owner-presentation.json",
+    "books/dark-angels/v2/generated/native-mfm-book.json",
+    "books/dark-angels/v2/generated/roster-import.json",
+    "books/dark-angels/v2/generated/roster-runtime.json",
+    "books/dark-angels/v2/generated/rule-contracts.json",
+    "books/dark-angels/v2/model-name-aliases.json",
+    "books/death-guard/v2/generated/app-presentation.json",
+    "books/death-guard/v2/generated/base.json",
+    "books/death-guard/v2/generated/comparison.json",
+    "books/death-guard/v2/generated/compatibility-v2.json",
+    "books/death-guard/v2/generated/effective.json",
+    "books/death-guard/v2/generated/glossary-v2.json",
+    "books/death-guard/v2/generated/related-rules-v2.json",
+    "books/death-guard/v2/generated/roster-contract-closure.json",
+    "books/death-guard/v2/generated/rule-contract-closure.json",
+    "books/death-guard/v2/generated/rule-contract-effective.json",
+    "books/emperors-children/v2/generated/app-presentation.json",
+    "books/emperors-children/v2/generated/base.json",
+    "books/emperors-children/v2/generated/effective.json",
+    "books/emperors-children/v2/generated/factual-census.json",
+    "books/emperors-children/v2/generated/roster-attachments.json",
+    "books/emperors-children/v2/generated/roster-import.json",
+    "books/emperors-children/v2/generated/rule-contracts.json",
+    "books/emperors-children/v2/model-name-aliases.json",
+    "books/shared/application-v2/generated/source-metadata.v1.json",
+    "books/shared/source-refs-v2/source-catalog.json",
+    "books/space-marines/content/space-marines-related-rules.en.json",
+    "books/space-marines/v2/generated/app-presentation.json",
+    "books/space-marines/v2/generated/base.json",
+    "books/space-marines/v2/generated/book-presentation.json",
+    "books/space-marines/v2/generated/cross-owner-references.json",
+    "books/space-marines/v2/generated/datasheet-presentation.json",
+    "books/space-marines/v2/generated/deathwatch-mfm-presentation.json",
+    "books/space-marines/v2/generated/deathwatch-presentation.json",
+    "books/space-marines/v2/generated/effective.json",
+    "books/space-marines/v2/generated/factual-census.json",
+    "books/space-marines/v2/generated/gameplay-presentation.json",
+    "books/space-marines/v2/generated/mfm-coverage.json",
+    "books/space-marines/v2/generated/mfm-presentation.json",
+    "books/space-marines/v2/generated/native-book.json",
+    "books/space-marines/v2/generated/native-datasheets.json",
+    "books/space-marines/v2/generated/native-mfm-book.json",
+    "books/space-marines/v2/generated/roster-import.json",
+    "books/space-marines/v2/generated/roster-runtime.json",
+    "books/space-marines/v2/generated/rule-contracts.json",
+    "books/space-marines/v2/generated/source-ledger-coverage.json",
+    "books/space-marines/v2/model-name-aliases.json",
+    "books/tau-empire/v2/generated/app-presentation.json",
+    "books/tau-empire/v2/generated/base.json",
+    "books/tau-empire/v2/generated/effective.json",
+    "books/tau-empire/v2/generated/factual-census.json",
+    "books/tau-empire/v2/generated/roster-import.json",
+    "books/tau-empire/v2/generated/rule-contracts.json",
+    "books/tau-empire/v2/model-name-aliases.json",
+    "books/tyranids/v2/generated/app-presentation.json",
+    "books/tyranids/v2/generated/base.json",
+    "books/tyranids/v2/generated/effective.json",
+    "books/tyranids/v2/generated/factual-census.json",
+    "books/tyranids/v2/generated/roster-import.json",
+    "books/tyranids/v2/generated/roster-runtime.json",
+    "books/tyranids/v2/generated/rule-contracts.json",
+    "books/tyranids/v2/model-name-aliases.json",
+    "glossary/v2/generated/index.en.js",
+    "glossary/v2/generated/index.en.json"
+  ],
+  "excluded": [
+    {
+      "file": "books/blood-angels/mobile/related-rules.inc",
+      "reason": "Retired V1 markup: the declared shared CLI now delegates to native app-build and no longer emits this file. No V1 producer is restored."
+    },
+    {
+      "file": "books/chaos-space-marines/mobile/related-rules.inc",
+      "reason": "Retired V1 markup: the declared shared CLI now delegates to native app-build and no longer emits this file. No V1 producer is restored."
+    },
+    {
+      "file": "books/dark-angels/mobile/related-rules.inc",
+      "reason": "Retired V1 markup: the declared shared CLI now delegates to native app-build and no longer emits this file. No V1 producer is restored."
+    },
+    {
+      "file": "books/shared/points/points-data.js",
+      "reason": "Retired V1 points catalog: not in the V2 runtime allowlist; V2 reads native MFM points; stale since 4a8b9a29 / 88441ee8. Removal is a separate cleanup task."
+    },
+    {
+      "file": "glossary/generated/cache-revision.js",
+      "reason": "Release stamp: regenerated by tools/pages-runtime-package.mjs:83 for every package; the committed copy is a seed"
+    },
+    {
+      "file": "v2/app.html",
+      "reason": "Release stamp: regenerated by tools/pages-runtime-package.mjs:83 for every package; the committed copy is a seed"
+    }
+  ],
+  "steps": [
+    {
+      "book": "core-candidate",
+      "runtime": "python",
+      "producer": "books/core-rules/tools/build_waha_core_corpus.py",
+      "args": [
+        "--write"
+      ],
+      "outputs": [
+        "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json",
+        "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.manifest.json",
+        "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.census.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/core-rules/tools/build_waha_core_corpus.py",
+        "--write"
+      ],
+      "rebuild": "python books/core-rules/tools/build_waha_core_corpus.py --write",
+      "elapsedMs": 4702,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\01-core-candidate-build_waha_core_corpus.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "core-candidate",
+      "runtime": "python",
+      "producer": "books/core-rules/tools/build_core_candidate.py",
+      "args": [
+        "--write"
+      ],
+      "outputs": [
+        "books/core-rules/sources/waha-core-2026-11-11/core-rules.candidate.v1.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/core-rules/tools/build_core_candidate.py",
+        "--write"
+      ],
+      "rebuild": "python books/core-rules/tools/build_core_candidate.py --write",
+      "elapsedMs": 6758,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\02-core-candidate-build_core_candidate.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "core",
+      "runtime": "python",
+      "producer": "books/core-rules/tools/publish_core_candidate.py",
+      "args": [
+        "--write"
+      ],
+      "outputs": [
+        "books/core-rules/content/core-rules.digital-11e.json",
+        "books/core-rules/content/core-identities.v1.json",
+        "books/core-rules/content/core-effective-bindings.v1.json",
+        "books/core-rules/content/core-official-source-registry.en.json",
+        "books/core-rules/sources/waha-core-2026-11-11/known-source-defects.v1.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/core-rules/tools/publish_core_candidate.py",
+        "--write"
+      ],
+      "rebuild": "python books/core-rules/tools/publish_core_candidate.py --write",
+      "elapsedMs": 487,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\03-core-publish_core_candidate.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/space-marines/v2/build.py",
+      "args": [],
+      "runtime": "python",
+      "outputs": [
+        "books/space-marines/v2/generated/base.json",
+        "books/space-marines/v2/generated/effective.json",
+        "books/space-marines/v2/generated/cross-owner-references.json",
+        "books/space-marines/v2/generated/factual-census.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/space-marines/v2/build.py"
+      ],
+      "rebuild": "python books/space-marines/v2/build.py",
+      "elapsedMs": 4768,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\04-space-marines-build.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/space-marines/v2/datasheet-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/space-marines/v2/generated/native-datasheets.json",
+        "books/space-marines/v2/generated/datasheet-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/space-marines/v2/datasheet-build.mjs"
+      ],
+      "rebuild": "node books/space-marines/v2/datasheet-build.mjs",
+      "elapsedMs": 2220,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\05-space-marines-datasheet-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/space-marines/v2/book-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/space-marines/v2/generated/native-book.json",
+        "books/space-marines/v2/generated/book-presentation.json",
+        "books/space-marines/v2/generated/deathwatch-presentation.json",
+        "books/space-marines/v2/generated/source-ledger-coverage.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/space-marines/v2/book-build.mjs"
+      ],
+      "rebuild": "node books/space-marines/v2/book-build.mjs",
+      "elapsedMs": 2879,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\06-space-marines-book-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/space-marines/v2/mfm-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/space-marines/v2/generated/native-mfm-book.json",
+        "books/space-marines/v2/generated/mfm-presentation.json",
+        "books/space-marines/v2/generated/deathwatch-mfm-presentation.json",
+        "books/space-marines/v2/generated/mfm-coverage.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/space-marines/v2/mfm-build.mjs"
+      ],
+      "rebuild": "node books/space-marines/v2/mfm-build.mjs",
+      "elapsedMs": 3790,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\07-space-marines-mfm-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/space-marines/v2/rule-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/space-marines/v2/generated/rule-contracts.json",
+        "books/space-marines/v2/generated/roster-runtime.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/space-marines/v2/rule-contract-build.mjs"
+      ],
+      "rebuild": "node books/space-marines/v2/rule-contract-build.mjs",
+      "elapsedMs": 4995,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\08-space-marines-rule-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/space-marines/v2/gameplay-presentation-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/space-marines/v2/generated/gameplay-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/space-marines/v2/gameplay-presentation-build.mjs"
+      ],
+      "rebuild": "node books/space-marines/v2/gameplay-presentation-build.mjs",
+      "elapsedMs": 6023,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\09-space-marines-gameplay-presentation-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/space-marines/v2/roster-import-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/space-marines/v2/generated/roster-import.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/space-marines/v2/roster-import-build.mjs"
+      ],
+      "rebuild": "node books/space-marines/v2/roster-import-build.mjs",
+      "elapsedMs": 6132,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\10-space-marines-roster-import-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/space-marines/v2/app-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/space-marines/v2/generated/app-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/space-marines/v2/app-build.mjs"
+      ],
+      "rebuild": "node books/space-marines/v2/app-build.mjs",
+      "elapsedMs": 23108,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\11-space-marines-app-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "blood-angels",
+      "producer": "books/blood-angels/v2/build.py",
+      "args": [],
+      "runtime": "python",
+      "outputs": [
+        "books/blood-angels/v2/generated/base.json",
+        "books/blood-angels/v2/generated/effective.json",
+        "books/blood-angels/v2/generated/factual-census.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/blood-angels/v2/build.py"
+      ],
+      "rebuild": "python books/blood-angels/v2/build.py",
+      "elapsedMs": 4374,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\12-blood-angels-build.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "blood-angels",
+      "producer": "books/blood-angels/v2/book-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/blood-angels/v2/generated/mixed-owner-book.json",
+        "books/blood-angels/v2/generated/mixed-owner-presentation.json",
+        "books/blood-angels/v2/generated/mixed-owner-points.json",
+        "books/blood-angels/v2/generated/mixed-owner-coverage.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/blood-angels/v2/book-build.mjs"
+      ],
+      "rebuild": "node books/blood-angels/v2/book-build.mjs",
+      "elapsedMs": 5036,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\13-blood-angels-book-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "blood-angels",
+      "producer": "books/blood-angels/v2/mfm-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/blood-angels/v2/generated/native-mfm-book.json",
+        "books/blood-angels/v2/generated/mfm-presentation.json",
+        "books/blood-angels/v2/generated/mfm-coverage.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/blood-angels/v2/mfm-build.mjs"
+      ],
+      "rebuild": "node books/blood-angels/v2/mfm-build.mjs",
+      "elapsedMs": 875,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\14-blood-angels-mfm-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "blood-angels",
+      "producer": "books/blood-angels/v2/rule-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/blood-angels/v2/generated/rule-contracts.json",
+        "books/blood-angels/v2/generated/roster-runtime.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/blood-angels/v2/rule-contract-build.mjs"
+      ],
+      "rebuild": "node books/blood-angels/v2/rule-contract-build.mjs",
+      "elapsedMs": 9049,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\15-blood-angels-rule-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "blood-angels",
+      "producer": "books/blood-angels/v2/gameplay-presentation-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/blood-angels/v2/generated/gameplay-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/blood-angels/v2/gameplay-presentation-build.mjs"
+      ],
+      "rebuild": "node books/blood-angels/v2/gameplay-presentation-build.mjs",
+      "elapsedMs": 11779,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\16-blood-angels-gameplay-presentation-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "blood-angels",
+      "producer": "books/blood-angels/v2/roster-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/blood-angels/v2/generated/roster-import.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/blood-angels/v2/roster-build.mjs"
+      ],
+      "rebuild": "node books/blood-angels/v2/roster-build.mjs",
+      "elapsedMs": 11349,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\17-blood-angels-roster-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "blood-angels",
+      "producer": "books/blood-angels/v2/app-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/blood-angels/v2/generated/app-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/blood-angels/v2/app-build.mjs"
+      ],
+      "rebuild": "node books/blood-angels/v2/app-build.mjs",
+      "elapsedMs": 38438,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\18-blood-angels-app-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "dark-angels",
+      "producer": "books/dark-angels/v2/build.py",
+      "args": [],
+      "runtime": "python",
+      "outputs": [
+        "books/dark-angels/v2/generated/base.json",
+        "books/dark-angels/v2/generated/effective.json",
+        "books/dark-angels/v2/generated/factual-census.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/dark-angels/v2/build.py"
+      ],
+      "rebuild": "python books/dark-angels/v2/build.py",
+      "elapsedMs": 4429,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\19-dark-angels-build.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "dark-angels",
+      "producer": "books/dark-angels/v2/book-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/dark-angels/v2/generated/mixed-owner-book.json",
+        "books/dark-angels/v2/generated/mixed-owner-presentation.json",
+        "books/dark-angels/v2/generated/mixed-owner-points.json",
+        "books/dark-angels/v2/generated/mixed-owner-coverage.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/dark-angels/v2/book-build.mjs"
+      ],
+      "rebuild": "node books/dark-angels/v2/book-build.mjs",
+      "elapsedMs": 5071,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\20-dark-angels-book-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "dark-angels",
+      "producer": "books/dark-angels/v2/mfm-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/dark-angels/v2/generated/native-mfm-book.json",
+        "books/dark-angels/v2/generated/mfm-presentation.json",
+        "books/dark-angels/v2/generated/mfm-coverage.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/dark-angels/v2/mfm-build.mjs"
+      ],
+      "rebuild": "node books/dark-angels/v2/mfm-build.mjs",
+      "elapsedMs": 912,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\21-dark-angels-mfm-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "dark-angels",
+      "producer": "books/dark-angels/v2/rule-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/dark-angels/v2/generated/rule-contracts.json",
+        "books/dark-angels/v2/generated/roster-runtime.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/dark-angels/v2/rule-contract-build.mjs"
+      ],
+      "rebuild": "node books/dark-angels/v2/rule-contract-build.mjs",
+      "elapsedMs": 9278,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\22-dark-angels-rule-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "dark-angels",
+      "producer": "books/dark-angels/v2/gameplay-presentation-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/dark-angels/v2/generated/gameplay-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/dark-angels/v2/gameplay-presentation-build.mjs"
+      ],
+      "rebuild": "node books/dark-angels/v2/gameplay-presentation-build.mjs",
+      "elapsedMs": 11763,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\23-dark-angels-gameplay-presentation-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "dark-angels",
+      "producer": "books/dark-angels/v2/roster-import-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/dark-angels/v2/generated/roster-import.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/dark-angels/v2/roster-import-build.mjs"
+      ],
+      "rebuild": "node books/dark-angels/v2/roster-import-build.mjs",
+      "elapsedMs": 11288,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\24-dark-angels-roster-import-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "dark-angels",
+      "producer": "books/dark-angels/v2/app-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/dark-angels/v2/generated/app-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/dark-angels/v2/app-build.mjs"
+      ],
+      "rebuild": "node books/dark-angels/v2/app-build.mjs",
+      "elapsedMs": 40443,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\25-dark-angels-app-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "producer": "books/adeptus-mechanicus/v2/build.py",
+      "args": [],
+      "runtime": "python",
+      "outputs": [
+        "books/adeptus-mechanicus/v2/generated/base.json",
+        "books/adeptus-mechanicus/v2/generated/effective.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/adeptus-mechanicus/v2/build.py"
+      ],
+      "rebuild": "python books/adeptus-mechanicus/v2/build.py",
+      "elapsedMs": 8105,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\26-adeptus-mechanicus-build.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "producer": "books/adeptus-mechanicus/v2/factual-qa.py",
+      "args": [
+        "--write-census"
+      ],
+      "runtime": "python",
+      "outputs": [
+        "books/adeptus-mechanicus/v2/generated/factual-census.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/adeptus-mechanicus/v2/factual-qa.py",
+        "--write-census"
+      ],
+      "rebuild": "python books/adeptus-mechanicus/v2/factual-qa.py --write-census",
+      "elapsedMs": 62496,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\27-adeptus-mechanicus-factual-qa.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "producer": "books/adeptus-mechanicus/v2/rule-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/adeptus-mechanicus/v2/generated/rule-contracts.json",
+        "books/adeptus-mechanicus/v2/generated/rule-contract-compatibility.json",
+        "books/adeptus-mechanicus/v2/generated/rule-contract-census.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/adeptus-mechanicus/v2/rule-contract-build.mjs"
+      ],
+      "rebuild": "node books/adeptus-mechanicus/v2/rule-contract-build.mjs",
+      "elapsedMs": 3970,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\28-adeptus-mechanicus-rule-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "producer": "books/adeptus-mechanicus/v2/app-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+        "books/adeptus-mechanicus/v2/generated/app-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/adeptus-mechanicus/v2/app-build.mjs"
+      ],
+      "rebuild": "node books/adeptus-mechanicus/v2/app-build.mjs",
+      "elapsedMs": 8345,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\29-adeptus-mechanicus-app-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "chaos-space-marines",
+      "producer": "books/chaos-space-marines/v2/build.py",
+      "args": [],
+      "runtime": "python",
+      "outputs": [
+        "books/chaos-space-marines/v2/generated/base.json",
+        "books/chaos-space-marines/v2/generated/effective.json",
+        "books/chaos-space-marines/v2/generated/factual-census.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/chaos-space-marines/v2/build.py"
+      ],
+      "rebuild": "python books/chaos-space-marines/v2/build.py",
+      "elapsedMs": 17642,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\30-chaos-space-marines-build.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "chaos-space-marines",
+      "producer": "books/chaos-space-marines/v2/rule-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/chaos-space-marines/v2/generated/rule-contracts.json",
+        "books/chaos-space-marines/v2/generated/rule-contract-census.json",
+        "books/chaos-space-marines/v2/generated/rule-contract-blockers.json",
+        "books/chaos-space-marines/v2/generated/rule-contract-compatibility.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/chaos-space-marines/v2/rule-contract-build.mjs"
+      ],
+      "rebuild": "node books/chaos-space-marines/v2/rule-contract-build.mjs",
+      "elapsedMs": 309182,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\31-chaos-space-marines-rule-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "chaos-space-marines",
+      "producer": "books/chaos-space-marines/v2/roster-import-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/chaos-space-marines/v2/generated/roster-import.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/chaos-space-marines/v2/roster-import-build.mjs"
+      ],
+      "rebuild": "node books/chaos-space-marines/v2/roster-import-build.mjs",
+      "elapsedMs": 1016,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\32-chaos-space-marines-roster-import-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "chaos-space-marines",
+      "producer": "books/chaos-space-marines/v2/roster-runtime-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/chaos-space-marines/v2/generated/roster-runtime.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/chaos-space-marines/v2/roster-runtime-build.mjs"
+      ],
+      "rebuild": "node books/chaos-space-marines/v2/roster-runtime-build.mjs",
+      "elapsedMs": 3732,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\33-chaos-space-marines-roster-runtime-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "chaos-space-marines",
+      "producer": "books/chaos-space-marines/v2/app-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/chaos-space-marines/v2/generated/app-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/chaos-space-marines/v2/app-build.mjs"
+      ],
+      "rebuild": "node books/chaos-space-marines/v2/app-build.mjs",
+      "elapsedMs": 219250,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\34-chaos-space-marines-app-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "death-guard",
+      "producer": "books/death-guard/v2/build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/death-guard/v2/generated/base.json",
+        "books/death-guard/v2/generated/effective.json",
+        "books/death-guard/v2/generated/comparison.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/death-guard/v2/build.mjs"
+      ],
+      "rebuild": "node books/death-guard/v2/build.mjs",
+      "elapsedMs": 1896,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\35-death-guard-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "death-guard",
+      "producer": "books/death-guard/v2/rule-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/death-guard/v2/generated/rule-contract-effective.json",
+        "books/death-guard/v2/generated/compatibility-v2.json",
+        "books/death-guard/v2/generated/rule-contract-closure.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/death-guard/v2/rule-contract-build.mjs"
+      ],
+      "rebuild": "node books/death-guard/v2/rule-contract-build.mjs",
+      "elapsedMs": 3750,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\36-death-guard-rule-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "death-guard",
+      "producer": "books/death-guard/v2/roster-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/death-guard/v2/generated/roster-contract-closure.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/death-guard/v2/roster-contract-build.mjs"
+      ],
+      "rebuild": "node books/death-guard/v2/roster-contract-build.mjs",
+      "elapsedMs": 626,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\37-death-guard-roster-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "death-guard",
+      "producer": "books/death-guard/v2/related-rules-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/death-guard/v2/generated/related-rules-v2.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/death-guard/v2/related-rules-build.mjs"
+      ],
+      "rebuild": "node books/death-guard/v2/related-rules-build.mjs",
+      "elapsedMs": 1481,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\38-death-guard-related-rules-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "death-guard",
+      "producer": "books/death-guard/v2/glossary-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/death-guard/v2/generated/glossary-v2.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/death-guard/v2/glossary-build.mjs"
+      ],
+      "rebuild": "node books/death-guard/v2/glossary-build.mjs",
+      "elapsedMs": 797,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\39-death-guard-glossary-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "death-guard",
+      "producer": "books/death-guard/v2/app-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/death-guard/v2/generated/app-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/death-guard/v2/app-build.mjs"
+      ],
+      "rebuild": "node books/death-guard/v2/app-build.mjs",
+      "elapsedMs": 4762,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\40-death-guard-app-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tau-empire",
+      "producer": "books/tau-empire/v2/build.py",
+      "args": [],
+      "runtime": "python",
+      "outputs": [
+        "books/tau-empire/v2/generated/base.json",
+        "books/tau-empire/v2/generated/effective.json",
+        "books/tau-empire/v2/generated/factual-census.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/tau-empire/v2/build.py"
+      ],
+      "rebuild": "python books/tau-empire/v2/build.py",
+      "elapsedMs": 11756,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\41-tau-empire-build.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tau-empire",
+      "producer": "books/tau-empire/v2/rule-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/tau-empire/v2/generated/rule-contracts.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/tau-empire/v2/rule-contract-build.mjs"
+      ],
+      "rebuild": "node books/tau-empire/v2/rule-contract-build.mjs",
+      "elapsedMs": 1551,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\42-tau-empire-rule-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tau-empire",
+      "producer": "books/tau-empire/v2/roster-import-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/tau-empire/v2/generated/roster-import.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/tau-empire/v2/roster-import-build.mjs"
+      ],
+      "rebuild": "node books/tau-empire/v2/roster-import-build.mjs",
+      "elapsedMs": 2059,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\43-tau-empire-roster-import-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tau-empire",
+      "producer": "books/tau-empire/v2/app-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/tau-empire/v2/generated/app-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/tau-empire/v2/app-build.mjs"
+      ],
+      "rebuild": "node books/tau-empire/v2/app-build.mjs",
+      "elapsedMs": 4450,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\44-tau-empire-app-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tyranids",
+      "producer": "books/tyranids/v2/build.py",
+      "args": [],
+      "runtime": "python",
+      "outputs": [
+        "books/tyranids/v2/generated/base.json",
+        "books/tyranids/v2/generated/effective.json",
+        "books/tyranids/v2/generated/factual-census.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/tyranids/v2/build.py"
+      ],
+      "rebuild": "python books/tyranids/v2/build.py",
+      "elapsedMs": 8456,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\45-tyranids-build.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tyranids",
+      "producer": "books/tyranids/v2/roster-import-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/tyranids/v2/generated/roster-import.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/tyranids/v2/roster-import-build.mjs"
+      ],
+      "rebuild": "node books/tyranids/v2/roster-import-build.mjs",
+      "elapsedMs": 975,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\46-tyranids-roster-import-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tyranids",
+      "producer": "books/tyranids/v2/rule-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/tyranids/v2/generated/rule-contracts.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/tyranids/v2/rule-contract-build.mjs"
+      ],
+      "rebuild": "node books/tyranids/v2/rule-contract-build.mjs",
+      "elapsedMs": 1673,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\47-tyranids-rule-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tyranids",
+      "producer": "books/tyranids/v2/app-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/tyranids/v2/generated/roster-runtime.json",
+        "books/tyranids/v2/generated/app-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/tyranids/v2/app-build.mjs"
+      ],
+      "rebuild": "node books/tyranids/v2/app-build.mjs",
+      "elapsedMs": 5384,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\48-tyranids-app-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "emperors-children",
+      "producer": "books/emperors-children/v2/build.py",
+      "args": [],
+      "runtime": "python",
+      "outputs": [
+        "books/emperors-children/v2/generated/base.json",
+        "books/emperors-children/v2/generated/effective.json",
+        "books/emperors-children/v2/generated/factual-census.json"
+      ],
+      "command": [
+        "C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "books/emperors-children/v2/build.py"
+      ],
+      "rebuild": "python books/emperors-children/v2/build.py",
+      "elapsedMs": 7816,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\49-emperors-children-build.py.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "emperors-children",
+      "producer": "books/emperors-children/v2/rule-contract-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/emperors-children/v2/generated/rule-contracts.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/emperors-children/v2/rule-contract-build.mjs"
+      ],
+      "rebuild": "node books/emperors-children/v2/rule-contract-build.mjs",
+      "elapsedMs": 1290,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\50-emperors-children-rule-contract-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "emperors-children",
+      "producer": "books/emperors-children/v2/roster-import-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/emperors-children/v2/generated/roster-import.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/emperors-children/v2/roster-import-build.mjs"
+      ],
+      "rebuild": "node books/emperors-children/v2/roster-import-build.mjs",
+      "elapsedMs": 948,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\51-emperors-children-roster-import-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "emperors-children",
+      "producer": "books/emperors-children/v2/roster-attachment-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/emperors-children/v2/generated/roster-attachments.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/emperors-children/v2/roster-attachment-build.mjs"
+      ],
+      "rebuild": "node books/emperors-children/v2/roster-attachment-build.mjs",
+      "elapsedMs": 1838,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\52-emperors-children-roster-attachment-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "emperors-children",
+      "producer": "books/emperors-children/v2/app-build.mjs",
+      "args": [],
+      "runtime": "node",
+      "outputs": [
+        "books/emperors-children/v2/generated/app-presentation.json"
+      ],
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/emperors-children/v2/app-build.mjs"
+      ],
+      "rebuild": "node books/emperors-children/v2/app-build.mjs",
+      "elapsedMs": 5132,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\53-emperors-children-app-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "outputs": [
+        "books/space-marines/v2/model-name-aliases.json"
+      ],
+      "args": [
+        "--book=space-marines",
+        "--write"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/shared/tools/build-new-recruit-model-names.mjs",
+        "--book=space-marines",
+        "--write"
+      ],
+      "rebuild": "node books/shared/tools/build-new-recruit-model-names.mjs --book=space-marines --write",
+      "elapsedMs": 2162,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\54-space-marines-build-new-recruit-model-names.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "blood-angels",
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "outputs": [
+        "books/blood-angels/v2/model-name-aliases.json"
+      ],
+      "args": [
+        "--book=blood-angels",
+        "--write"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/shared/tools/build-new-recruit-model-names.mjs",
+        "--book=blood-angels",
+        "--write"
+      ],
+      "rebuild": "node books/shared/tools/build-new-recruit-model-names.mjs --book=blood-angels --write",
+      "elapsedMs": 2306,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\55-blood-angels-build-new-recruit-model-names.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "dark-angels",
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "outputs": [
+        "books/dark-angels/v2/model-name-aliases.json"
+      ],
+      "args": [
+        "--book=dark-angels",
+        "--write"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/shared/tools/build-new-recruit-model-names.mjs",
+        "--book=dark-angels",
+        "--write"
+      ],
+      "rebuild": "node books/shared/tools/build-new-recruit-model-names.mjs --book=dark-angels --write",
+      "elapsedMs": 2281,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\56-dark-angels-build-new-recruit-model-names.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "outputs": [
+        "books/adeptus-mechanicus/v2/model-name-aliases.json"
+      ],
+      "args": [
+        "--book=adeptus-mechanicus",
+        "--write"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/shared/tools/build-new-recruit-model-names.mjs",
+        "--book=adeptus-mechanicus",
+        "--write"
+      ],
+      "rebuild": "node books/shared/tools/build-new-recruit-model-names.mjs --book=adeptus-mechanicus --write",
+      "elapsedMs": 427,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\57-adeptus-mechanicus-build-new-recruit-model-names.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "chaos-space-marines",
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "outputs": [
+        "books/chaos-space-marines/v2/model-name-aliases.json"
+      ],
+      "args": [
+        "--book=chaos-space-marines",
+        "--write"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/shared/tools/build-new-recruit-model-names.mjs",
+        "--book=chaos-space-marines",
+        "--write"
+      ],
+      "rebuild": "node books/shared/tools/build-new-recruit-model-names.mjs --book=chaos-space-marines --write",
+      "elapsedMs": 1364,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\58-chaos-space-marines-build-new-recruit-model-names.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tau-empire",
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "outputs": [
+        "books/tau-empire/v2/model-name-aliases.json"
+      ],
+      "args": [
+        "--book=tau-empire",
+        "--write"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/shared/tools/build-new-recruit-model-names.mjs",
+        "--book=tau-empire",
+        "--write"
+      ],
+      "rebuild": "node books/shared/tools/build-new-recruit-model-names.mjs --book=tau-empire --write",
+      "elapsedMs": 756,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\59-tau-empire-build-new-recruit-model-names.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "tyranids",
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "outputs": [
+        "books/tyranids/v2/model-name-aliases.json"
+      ],
+      "args": [
+        "--book=tyranids",
+        "--write"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/shared/tools/build-new-recruit-model-names.mjs",
+        "--book=tyranids",
+        "--write"
+      ],
+      "rebuild": "node books/shared/tools/build-new-recruit-model-names.mjs --book=tyranids --write",
+      "elapsedMs": 600,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\60-tyranids-build-new-recruit-model-names.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "emperors-children",
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "outputs": [
+        "books/emperors-children/v2/model-name-aliases.json"
+      ],
+      "args": [
+        "--book=emperors-children",
+        "--write"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/shared/tools/build-new-recruit-model-names.mjs",
+        "--book=emperors-children",
+        "--write"
+      ],
+      "rebuild": "node books/shared/tools/build-new-recruit-model-names.mjs --book=emperors-children --write",
+      "elapsedMs": 560,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\61-emperors-children-build-new-recruit-model-names.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "space-marines",
+      "producer": "books/space-marines/tools/build-related-rules.mjs",
+      "outputs": [
+        "books/space-marines/content/space-marines-related-rules.en.json"
+      ],
+      "args": [],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/space-marines/tools/build-related-rules.mjs"
+      ],
+      "rebuild": "node books/space-marines/tools/build-related-rules.mjs",
+      "elapsedMs": 595,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\62-space-marines-build-related-rules.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "source-metadata",
+      "producer": "books/shared/tools/build-source-metadata.mjs",
+      "outputs": [
+        "books/shared/application-v2/generated/source-metadata.v1.json"
+      ],
+      "args": [],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/shared/tools/build-source-metadata.mjs"
+      ],
+      "rebuild": "node books/shared/tools/build-source-metadata.mjs",
+      "elapsedMs": 86,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\63-source-metadata-build-source-metadata.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "core",
+      "producer": "books/core-rules/reader/build.mjs",
+      "outputs": [
+        "books/core-rules/reader/actions.html",
+        "books/core-rules/reader/aircraft.html",
+        "books/core-rules/reader/attached-units.html",
+        "books/core-rules/reader/attack-sequence.html",
+        "books/core-rules/reader/battle-round-overview.html",
+        "books/core-rules/reader/charge-phase.html",
+        "books/core-rules/reader/command-phase.html",
+        "books/core-rules/reader/core-abilities.html",
+        "books/core-rules/reader/core-concepts.html",
+        "books/core-rules/reader/datasheets.html",
+        "books/core-rules/reader/fight-phase.html",
+        "books/core-rules/reader/flying-surging.html",
+        "books/core-rules/reader/index.html",
+        "books/core-rules/reader/introduction.html",
+        "books/core-rules/reader/making-attacks.html",
+        "books/core-rules/reader/monsters-vehicles.html",
+        "books/core-rules/reader/movement-phase.html",
+        "books/core-rules/reader/moving.html",
+        "books/core-rules/reader/muster-armies.html",
+        "books/core-rules/reader/objectives.html",
+        "books/core-rules/reader/other-concepts.html",
+        "books/core-rules/reader/other-rules-abilities.html",
+        "books/core-rules/reader/search-index.json",
+        "books/core-rules/reader/shooting-phase.html",
+        "books/core-rules/reader/stratagems.html",
+        "books/core-rules/reader/strategic-reserves.html",
+        "books/core-rules/reader/terrain.html",
+        "books/core-rules/reader/transports.html"
+      ],
+      "args": [],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/core-rules/reader/build.mjs"
+      ],
+      "rebuild": "node books/core-rules/reader/build.mjs",
+      "elapsedMs": 1178,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\64-core-build.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "glossary",
+      "producer": "glossary/v2/tools/build-glossary-v2.mjs",
+      "outputs": [
+        "glossary/v2/generated/index.en.json",
+        "glossary/v2/generated/index.en.js"
+      ],
+      "args": [],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "glossary/v2/tools/build-glossary-v2.mjs"
+      ],
+      "rebuild": "node glossary/v2/tools/build-glossary-v2.mjs",
+      "elapsedMs": 241522,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\65-glossary-build-glossary-v2.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "core",
+      "producer": "books/core-rules/tests/core-waha-player-visible-reference-census-qa.mjs",
+      "outputs": [
+        "books/core-rules/sources/waha-core-2026-11-11/waha-core-player-visible-reference-census.v1.json"
+      ],
+      "args": [
+        "--write"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "books/core-rules/tests/core-waha-player-visible-reference-census-qa.mjs",
+        "--write"
+      ],
+      "rebuild": "node books/core-rules/tests/core-waha-player-visible-reference-census-qa.mjs --write",
+      "elapsedMs": 1027,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\66-core-core-waha-player-visible-reference-census-qa.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "source-registry",
+      "producer": "tools/audit/build-source-catalog-additions.mjs",
+      "outputs": [],
+      "args": [
+        "--check"
+      ],
+      "runtime": "node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "tools/audit/build-source-catalog-additions.mjs",
+        "--check"
+      ],
+      "rebuild": "node tools/audit/build-source-catalog-additions.mjs --check",
+      "elapsedMs": 17965,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\67-source-registry-build-source-catalog-additions.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    },
+    {
+      "book": "source-registry",
+      "producer": "tools/audit/build-source-catalog.mjs",
+      "outputs": [
+        "books/shared/source-refs-v2/source-catalog.json"
+      ],
+      "args": [
+        "--check"
+      ],
+      "runtime": "node",
+      "preserveOutputSeeds": true,
+      "reason": "registry: binding definitions are authored here; append-only; integrity and old-entry bytes checked before writes",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "tools/audit/build-source-catalog.mjs",
+        "--check"
+      ],
+      "rebuild": "node tools/audit/build-source-catalog.mjs --check",
+      "elapsedMs": 8381,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\68-source-registry-build-source-catalog.mjs.log",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "differences": []
+    }
+  ],
+  "checkout": {
+    "head": "e08ec20df980d4e6700c32b65069de983b250e03",
+    "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff\\162-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-q4oWgZ\\checkout.log",
+    "elapsedMs": 10356
+  },
+  "elapsedMs": 1222525,
+  "status": "PASS"
+}

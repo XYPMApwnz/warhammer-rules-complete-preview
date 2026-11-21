@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "feature": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "preffPackageEqualsMeasuredPackage": true,
+  "contentSha256": "32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b",
+  "manifestSha256": "2ece5e21d59f11d4f1adca7d680a0b3e9fe6fb60ef5cb847d98bac7970154f2e",
+  "cacheRevision": "9445e8293bc10c1c",
+  "inventoryFiles": 456,
+  "runtimeBytes": 282878160,
+  "precacheUrls": 221,
+  "startupCore": [
+    "./",
+    "./index.html",
+    "./v2/app.html",
+    "./books/shared/offline-status.js?v=4",
+    "./books/shared/offline-status.js?wh-pwa=9445e8293bc10c1c",
+    "./books/shared/styles/offline-status.css",
+    "./v2/boot.mjs"
+  ],
+  "urlStamping": {
+    "schema": "runtime-url-literal-stamps/v1",
+    "revision": "9445e8293bc10c1c",
+    "files": 143,
+    "rewrites": 655,
+    "helperIntegrity": "sha256-WoxKv5EZ7pJULbfbe4hQStoUgQ40TVyNRf/iKsA9gyo="
+  }
+}

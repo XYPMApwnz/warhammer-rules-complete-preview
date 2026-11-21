@@ -1,0 +1,210 @@
+diff --git a/tests/browser/cold-offline.mjs b/tests/browser/cold-offline.mjs
+index 7250646c..9ba28f8d 100644
+--- a/tests/browser/cold-offline.mjs
++++ b/tests/browser/cold-offline.mjs
+@@ -8,6 +8,7 @@ import http from 'node:http';
+ import {fileURLToPath} from 'node:url';
+ import {buildPagesRuntimePackage} from '../../tools/pages-runtime-package.mjs';
+ import {launchChromium} from '../helpers/browser-launch.mjs';
++import {waitForPreparedOffline} from '../helpers/prepared-offline.mjs';
+ 
+ const source=fileURLToPath(new URL('../../',import.meta.url));
+ const out=path.resolve(process.env.WH_PWA_QA_OUT||createQaEvidenceDir('wh-v2-cold-'));
+@@ -31,6 +32,7 @@ async function views(p){await go(p,'?v2=ROSTER&book=space-marines');await poll(p
+ const browser=await launchChromium();
+ try{for(const width of [1440,390]){const context=await browser.newContext({viewport:{width,height:width===390?844:900},isMobile:width===390,hasTouch:width===390,serviceWorkers:'allow'}),p=await context.newPage(),r={width,errors:[]};report.results.push(r);p.setDefaultTimeout(30000);p.on('console',message=>{if(message.type()==='error')console.error('PWA browser console '+message.text());});p.on('pageerror',error=>console.error('PWA page error '+error.stack));p.on('pageerror',e=>r.errors.push(e.message));try{
+ const start=requests.length;await p.goto(base);await ready(p);assert.equal(new URL(p.url()).pathname,prefix+'v2/app.html');assert.equal(await p.locator('[data-v2-book]').count(),9);await poll(p,()=>!!navigator.serviceWorker.controller);await poll(p,()=>navigator.serviceWorker.getRegistration().then(r=>r?.active?.state==='activated'&&!r.installing&&!r.waiting));r.lazyRequests=requests.slice(start).filter(x=>/\/books\/[^/]+\/v2\/generated\/.*\.json$|\/glossary\/v2\/generated\//.test(x));assert.deepEqual(r.lazyRequests,[],'Fresh install must not download large book or glossary data');r.freshCacheBytes=await p.evaluate(async()=>{let n=0;for(const name of await caches.keys()){const cache=await caches.open(name);for(const q of await cache.keys())n+=(await(await cache.match(q)).arrayBuffer()).byteLength;}return n;});r.revision=await p.evaluate(()=>WHPwaExpectedRevision);await p.screenshot({path:path.join(out,`${width}-home.png`),fullPage:true});
++await waitForPreparedOffline(p);
+ console.log('STAGE SM import '+width);await go(p,'?v2=ROSTER&book=space-marines');await openImportForm(p);await p.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));await p.getByRole('button',{name:'Import roster',exact:true}).click();await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);r.points=await p.evaluate(()=>ArmyBookAppV2.roster.points);assert.equal(r.points.status,'RESOLVED');assert.equal(r.points.totalPoints,490);assert.deepEqual(r.points.units.map(u=>u.totalPoints),[130,170,190]);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.state.units.reduce((n,u)=>n+u.startingStrength,0)),4);const snapshot=await p.evaluate(()=>ArmyBookAppV2.roster.snapshot());await p.reload({waitUntil:'load'});await ready(p);assert.deepEqual(await p.evaluate(()=>ArmyBookAppV2.roster.snapshot()),snapshot);await go(p,'?v2=ROSTER&book=space-marines');await openImportForm(p);await p.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));await p.getByRole('button',{name:'Import roster',exact:true}).click();await poll(p,()=>window.ArmyBookAppV2?.roster?.state?.units.length===3);assert.deepEqual(await p.evaluate(()=>ArmyBookAppV2.roster.snapshot()),snapshot);r.reloadAndReimport=true;console.log('STAGE online views '+width);await views(p);console.log('STAGE online Core '+width);await core(p);console.log('STAGE online Mega '+width);await mega(p);r.onlineCSS=await sheet(p,'death-guard','unit-lord-of-contagion');await sheet(p,'tyranids','unit-hive-tyrant');
+ r.storage=await p.evaluate(()=>Object.fromEntries(Object.entries(localStorage).sort()));r.cacheBytes=await p.evaluate(async()=>{let sum=0;for(const name of await caches.keys()){const cache=await caches.open(name);for(const request of await cache.keys())sum+=(await(await cache.match(request)).arrayBuffer()).byteLength;}return sum;});
+ if(report.mutation)await p.evaluate(async mutation=>{for(const name of await caches.keys()){const cache=await caches.open(name);for(const request of await cache.keys())if(mutation==='drop-css'&&/\/(datasheet-system|unit-art)\.css/.test(request.url)||mutation==='drop-core-glossary'&&request.url.includes('/glossary/v2/generated/index.en.js'))await cache.delete(request);}},report.mutation);
+diff --git a/tests/browser/pwa-bootstrap-update.mjs b/tests/browser/pwa-bootstrap-update.mjs
+index 51adf4f5..9d7894d8 100644
+--- a/tests/browser/pwa-bootstrap-update.mjs
++++ b/tests/browser/pwa-bootstrap-update.mjs
+@@ -10,6 +10,7 @@ import {fileURLToPath} from 'node:url';
+ import {buildPagesRuntimePackage} from '../../tools/pages-runtime-package.mjs';
+ import {readCacheRevision,writeCacheRevision} from '../../tools/cache-revision.mjs';
+ import {launchChromium} from '../helpers/browser-launch.mjs';
++import {waitForPreparedOffline} from '../helpers/prepared-offline.mjs';
+ import {createQaEvidenceDir,createQaTempDir} from '../helpers/qa-temp.mjs';
+ 
+ const args=process.argv.slice(2),rootFlag=args.indexOf('--product-root');
+@@ -27,6 +28,9 @@ const staleRevision='cccccccccccccccc';assert(![aRevision,bRevision].includes(st
+ const report={source,publication,aRevision,bRevision,results:[]},prefix='/warhammer-rules-complete-preview/';
+ let generation='A',failBoot=false,holdBoot=false,staleHtmlResponses=0,staleHtmlServed=0,staleDeclaredRevision=staleRevision,browser;
+ const heldBoot=[];
++const startupDependency='books/shared/application-v2/runtime.mjs';
++assert(fs.readFileSync(path.join(A,'v2/boot.mjs'),'utf8').includes('../'+startupDependency),
++  'The fault target must be a real direct boot import, not an optional screen resource');
+ const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.webmanifest':'application/manifest+json'};
+ const server=http.createServer((request,response)=>{
+   const url=new URL(request.url,'http://localhost');
+@@ -40,8 +44,8 @@ const server=http.createServer((request,response)=>{
+     let file=path.resolve(root,url.pathname.slice(prefix.length));
+     assert(file===root||file.startsWith(root+path.sep));
+     if(fs.statSync(file).isDirectory())file=path.join(file,'index.html');
+-    if(holdBoot&&url.pathname.endsWith('/v2/boot.mjs')){heldBoot.push({response,file});return;}
+-    if(failBoot&&url.pathname.endsWith('/v2/boot.mjs')){
++    if(holdBoot&&url.pathname.endsWith('/'+startupDependency)){heldBoot.push({response,file});return;}
++    if(failBoot&&url.pathname.endsWith('/'+startupDependency)){
+       response.writeHead(503,{'content-type':'text/plain','cache-control':'no-store'});response.end('Injected startup module outage');return;
+     }
+     let bytes=fs.readFileSync(file);
+@@ -125,14 +129,36 @@ async function seed(context){
+   generation='A';failBoot=false;
+   const page=await context.newPage();page.setDefaultTimeout(15000);
+   await go(page);await workerIs(page,aRevision);
++  await waitForPreparedOffline(page);
+   await page.evaluate(()=>{localStorage.setItem('pwa-bootstrap-settings',JSON.stringify({theme:'dark',language:'en',size:17}));localStorage.setItem('pwa-bootstrap-sentinel','preserve all local data');});
+   return page;
+ }
+ async function prepareB(page){
+   generation='B';await page.evaluate(async()=>{const registration=await navigator.serviceWorker.getRegistration();await registration.update();});
+   const state=await workerIs(page,bRevision,{waiting:true});
++  await waitForPreparedOffline(page,{waiting:true});
+   assert.equal(state.active,aRevision,'A working screen must keep its active publication');
+ }
++// A verified cached boot correctly survives a network outage. To exercise
++// the existing startup-failure assertions, make one non-core boot dependency
++// genuinely unavailable without invalidating the verified activation core.
++async function removePreparedStartupDependency(page){
++  const removed=await page.evaluate(async ({revision,relative})=>{
++    const waiting=(await navigator.serviceWorker.getRegistration()).waiting;
++    if(!waiting)throw Error('Fault requires the prepared waiting publication');
++    const version=await new Promise(resolve=>{
++      const channel=new MessageChannel();channel.port1.onmessage=event=>{channel.port1.close();resolve(event.data);};
++      waiting.postMessage({type:'GET_VERSION'},[channel.port2]);
++    });
++    if(version.revision!==revision||!version.cacheName)throw Error('Fault publication is not the expected B');
++    const cache=await caches.open(version.cacheName);let count=0;
++    for(const request of await cache.keys())if(new URL(request.url).pathname.endsWith('/'+relative)){
++      if(await cache.delete(request))count++;
++    }
++    return count;
++  },{revision:bRevision,relative:startupDependency});
++  assert.equal(removed,1,'Fault must remove exactly the prepared non-core startup dependency');
++}
+ async function assertFailure(page,label,timeout=15000){
+   await poll(page,()=>document.body.dataset.pwaBootstrapState==='failed',undefined,timeout);
+   assert.equal(await page.locator('[data-pwa-updater]').getAttribute('data-state'),'startup_failed',label);
+@@ -152,14 +178,31 @@ try{
+       await installer.goto(entry.replace('/v2/app.html','/installation-probe.html'));
+       await installer.evaluate(async()=>{await navigator.serviceWorker.register('./service-worker.js',{updateViaCache:'none'});await navigator.serviceWorker.ready;localStorage.setItem('pwa-fresh-install-setting','preserve before first application start');});
+       await workerIs(installer,aRevision);const before=await storage(installer);
++      await waitForPreparedOffline(installer);
++      await installer.evaluate(async revision=>{
++        const worker=(await navigator.serviceWorker.getRegistration()).active;
++        const version=await new Promise(resolve=>{const channel=new MessageChannel();channel.port1.onmessage=event=>{channel.port1.close();resolve(event.data);};worker.postMessage({type:'GET_VERSION'},[channel.port2]);});
++        if(version.revision!==revision)throw Error('Positive boot control requires the current active revision');
++        const cache=await caches.open(version.cacheName),url=new URL('./v2/boot.mjs',location.href);
++        const response=await cache.match(url);
++        if(!response)throw Error('Positive boot control requires a prepared boot.mjs');
++        const source=await(await fetch('./glossary/generated/cache-revision.js',{cache:'no-store'})).text();
++        const inventory=JSON.parse(source.match(/self\.WH40K_RUNTIME_ASSETS=(.*);\n/)[1]);
++        const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',await response.arrayBuffer()))].map(value=>value.toString(16).padStart(2,'0')).join('');
++        if(hash!==inventory['v2/boot.mjs'].sha256)throw Error('Positive boot control requires hash-verified boot.mjs');
++      },aRevision);
+       assert.equal(await installer.evaluate(()=>typeof window.WarhammerAppV2),'undefined','Installation must not warm the application module graph online');
+       await context.setOffline(true);
+-      const page=await context.newPage();await page.goto(entry,{waitUntil:'load'});await ready(page);await workerIs(page,aRevision);
++      const page=await context.newPage();let cachedBootServed=false;
++      page.on('response',response=>{const url=new URL(response.url());if(url.pathname.endsWith('/v2/boot.mjs')&&url.searchParams.get('wh-pwa')===aRevision&&response.status()===200&&response.fromServiceWorker())cachedBootServed=true;});
++      await page.goto(entry,{waitUntil:'load'});await ready(page);await workerIs(page,aRevision);
++      assert(cachedBootServed,'Verified current-revision boot.mjs must start the application with the network unavailable');
+       await page.locator('[data-v2-destination="ROSTER"]').click();await page.evaluate(()=>WarhammerAppV2.ready);
+       assert.equal(await page.locator('[data-v2-book]').count(),9,'The first offline launch must offer all nine books without fetching lazy book payloads');
+       assert.deepEqual(await storage(page),before);assert.deepEqual((await observations(page)).activations,[]);
+       await page.screenshot({path:path.join(out,'fresh-install-first-offline-startup-390.png'),fullPage:true});
+       report.results.push({case:'fresh installation only, no online app warmup, then first offline Home and nine-book chooser startup',status:'PASS'});
++      report.results.push({case:'hash-verified boot.mjs of the current revision starts the site with the network unavailable',status:'PASS'});
+     }finally{await context.close();}
+   }
+   {
+@@ -377,7 +420,7 @@ try{
+     const context=await contextFor();
+     try{
+       const page=await seed(context),before=await storage(page);await prepareB(page);
+-      holdBoot=true;await page.reload({waitUntil:'commit'});
++      await removePreparedStartupDependency(page);holdBoot=true;await page.reload({waitUntil:'commit'});
+       await poll(page,()=>document.body.dataset.pwaBootstrapState==='failed',null,40000);
+       await assertFailure(page,'boot-module-stalled');await workerIs(page,bRevision);
+       const failed=await observations(page);assert.deepEqual(failed.activations,[bRevision]);
+@@ -397,7 +440,7 @@ try{
+     const context=await contextFor();
+     try{
+       const page=await seed(context),before=await storage(page);await prepareB(page);
+-      failBoot=true;await page.reload({waitUntil:'load'});await assertFailure(page,'boot-module-unavailable');await workerIs(page,bRevision);
++      await removePreparedStartupDependency(page);failBoot=true;await page.reload({waitUntil:'load'});await assertFailure(page,'boot-module-unavailable');await workerIs(page,bRevision);
+       const log=await observations(page);assert.deepEqual(log.activations,[bRevision]);
+       failBoot=false;await page.locator('[data-pwa-update-action]').click();await ready(page);
+       assert.equal((await observations(page)).activations.length,1,'Retrying a failed module must not reactivate the same worker');
+diff --git a/tests/browser/pwa-update-flow.mjs b/tests/browser/pwa-update-flow.mjs
+index e1cba4fb..8b7ff853 100644
+--- a/tests/browser/pwa-update-flow.mjs
++++ b/tests/browser/pwa-update-flow.mjs
+@@ -11,6 +11,7 @@ import {fileURLToPath} from 'node:url';
+ import {buildPagesRuntimePackage} from '../../tools/pages-runtime-package.mjs';
+ import {writeCacheRevision,readCacheRevision} from '../../tools/cache-revision.mjs';
+ import {launchChromium} from '../helpers/browser-launch.mjs';
++import {waitForPreparedOffline} from '../helpers/prepared-offline.mjs';
+ 
+ const source=fileURLToPath(new URL('../../',import.meta.url)),out=path.resolve(process.env.WH_PWA_QA_OUT||createQaEvidenceDir('wh-v2-update-'));
+ fs.mkdirSync(out,{recursive:true});
+@@ -22,9 +23,11 @@ fs.appendFileSync(path.join(B,'books/tyranids/v2/generated/app-presentation.json
+ const mutation=process.env.WH_PWA_QA_MUTATION||null;
+ if(mutation==='erase-storage'){const app=path.join(B,'v2/app.html');fs.writeFileSync(app,fs.readFileSync(app,'utf8').replace('<head>','<head><script>localStorage.removeItem("army-book-app-v2:roster:space-marines");localStorage.removeItem("pwa-test-sentinel");</script>'));}
+ const bRevision=writeCacheRevision({root:B}),aRevision=readCacheRevision({root:A});assert.notEqual(aRevision,bRevision);
+-let generation='A',failInstall=false;const prefix='/warhammer-rules-complete-preview/',report={publication,aRevision,bRevision,mutation,results:[]};
++let generation='A',failInstall=false,failedCoreRequests=0;const prefix='/warhammer-rules-complete-preview/',report={publication,aRevision,bRevision,mutation,results:[]};
+ const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.webmanifest':'application/manifest+json'};
+-const server=http.createServer((q,s)=>{const u=new URL(q.url,'http://localhost');try{assert(u.pathname.startsWith(prefix));const root=generation==='A'?A:B;let file=path.resolve(root,u.pathname.slice(prefix.length));assert(file===root||file.startsWith(root+path.sep));if(fs.statSync(file).isDirectory())file=path.join(file,'index.html');if(failInstall&&generation==='B'&&u.pathname.endsWith('/books/shared/datasheet-system.css')){s.writeHead(503);s.end('Test mandatory-resource outage');return;}let bytes=fs.readFileSync(file);if(mutation==='auto-activate'&&generation==='B'&&u.pathname.endsWith('/service-worker.js'))bytes=Buffer.concat([bytes,Buffer.from('\nself.addEventListener("install",event=>event.waitUntil(self.skipWaiting()));\n')]);s.writeHead(200,{'content-type':mime[path.extname(file)]||'application/octet-stream','cache-control':'no-store'});s.end(bytes);}catch{console.error('PWA missing resource '+u.pathname);s.writeHead(404);s.end('Missing runtime resource');}});
++// boot.mjs is in the verified activation core. Refusing it before B has
++// cached it preserves the failed-install control under staged preparation.
++const server=http.createServer((q,s)=>{const u=new URL(q.url,'http://localhost');try{assert(u.pathname.startsWith(prefix));const root=generation==='A'?A:B;let file=path.resolve(root,u.pathname.slice(prefix.length));assert(file===root||file.startsWith(root+path.sep));if(fs.statSync(file).isDirectory())file=path.join(file,'index.html');if(failInstall&&generation==='B'&&u.pathname.endsWith('/v2/boot.mjs')){failedCoreRequests++;s.writeHead(503);s.end('Test mandatory-resource outage');return;}let bytes=fs.readFileSync(file);if(mutation==='auto-activate'&&generation==='B'&&u.pathname.endsWith('/service-worker.js'))bytes=Buffer.concat([bytes,Buffer.from('\nself.addEventListener("install",event=>event.waitUntil(self.skipWaiting()));\n')]);s.writeHead(200,{'content-type':mime[path.extname(file)]||'application/octet-stream','cache-control':'no-store'});s.end(bytes);}catch{console.error('PWA missing resource '+u.pathname);s.writeHead(404);s.end('Missing runtime resource');}});
+ await new Promise(r=>server.listen(0,'127.0.0.1',r));
+ const base=`http://127.0.0.1:${server.address().port}${prefix}`,entry=base+'v2/app.html',sleep=ms=>new Promise(r=>setTimeout(r,ms));
+ async function poll(p,fn,arg,timeout=60000){const end=Date.now()+timeout;while(Date.now()<end){try{const value=await p.evaluate(fn,arg);if(value)return value;}catch(e){if(!/context|navigation/.test(e.message))throw e;}await sleep(150);}throw Error('Browser condition timed out: '+fn.toString().slice(0,150));}
+@@ -43,10 +46,17 @@ try{
+ const context=await browser.newContext({viewport:{width:1440,height:900},serviceWorkers:'allow'}),p=await context.newPage();p.setDefaultTimeout(30000);p.on('console',message=>{if(message.type()==='error')console.error('PWA browser console '+message.text());});p.on('pageerror',error=>console.error('PWA page error '+error.stack));
+ try{generation='A';console.log('STAGE A install');await go(p);await waitWorker(p,aRevision);await go(p,'?v2=ARMY_BOOK&book=tyranids');await poll(p,()=>window.ArmyBookAppV2?.payload?.book?.id==='tyranids');await core(p);await mega(p);console.log('STAGE import');const before=await imported(p);console.log('STAGE imported');const sibling=await context.newPage();await go(sibling,'?v2=ROSTER&book=space-marines');await openImportForm(sibling);await sibling.locator('[data-roster-input="raw-text"]').fill('Sibling unfinished draft');await sibling.evaluate(()=>window.pwaDocumentSentinel='sibling A');
+ console.log('STAGE B check');generation='B';await p.evaluate(()=>WHOfflineStatus.check());const end=Date.now()+60000;let waiting;while(Date.now()<end){waiting=await worker(p);if(waiting.waiting?.revision===bRevision||waiting.active?.revision===bRevision)break;await sleep(200);}assert.equal(waiting.waiting?.revision,bRevision,'B must wait for manual confirmation');assert.equal(waiting.active?.revision,aRevision,'Update must not auto-activate before consent');assert.deepEqual(await state(p),before,'Waiting update must preserve current native state');await poll(p,()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='ready'||document.querySelector('[data-pwa-update-action]')?.textContent==='Install and restart');await p.locator('[data-pwa-update-action]').click();await poll(p,expected=>window.WHPwaExpectedRevision===expected,bRevision);await ready(p);await waitWorker(p,bRevision);await poll(p,()=>!!window.ArmyBookAppV2?.roster);await p.evaluate(()=>ArmyBookAppV2.openRoster());await poll(p,draft=>document.querySelector('[data-roster-input="raw-text"]')?.value===draft,draft);const after=await state(p);assert.deepEqual(after.storage,before.storage,'Confirmed update must preserve all localStorage');assert.deepEqual(after.snapshot,before.snapshot,'Confirmed update must preserve native roster');assert.equal(after.draft,draft);assert.equal(await sibling.evaluate(()=>window.pwaDocumentSentinel),'sibling A','Sibling tab must not automatically reload');assert.equal(await sibling.locator('[data-roster-input="raw-text"]').inputValue(),'Sibling unfinished draft');
+-await context.setOffline(true);report.offlineCSS=await offlineRoster(p);await core(p);await mega(p);await go(p);await p.locator('[data-v2-book="tyranids"]').click();await poll(p,()=>/unavailable|not available|Reconnect/i.test(document.querySelector('main')?.textContent||''));const unavailable=await p.locator('main').innerText();assert.match(unavailable,/unavailable|not available|Reconnect/i);assert(!await p.locator('main .unit-card').count(),'Changed offline data must never mount stale cards');await p.screenshot({path:path.join(out,'changed-book-offline.png'),fullPage:true});report.results.push({case:'manual A→B, sibling, roster, draft, changed-book unavailable',status:'PASS',unavailable});
++await waitForPreparedOffline(p);await context.setOffline(true);report.offlineCSS=await offlineRoster(p);await core(p);await mega(p);await go(p);await p.locator('[data-v2-book="tyranids"]').click();await poll(p,()=>/unavailable|not available|Reconnect/i.test(document.querySelector('main')?.textContent||''));const unavailable=await p.locator('main').innerText();assert.match(unavailable,/unavailable|not available|Reconnect/i);assert(!await p.locator('main .unit-card').count(),'Changed offline data must never mount stale cards');await p.screenshot({path:path.join(out,'changed-book-offline.png'),fullPage:true});report.results.push({case:'manual A→B, sibling, roster, draft, changed-book unavailable',status:'PASS',unavailable});
+ }finally{await context.close();}
+ 
+-if(!mutation){generation='A';failInstall=false;const context=await browser.newContext({serviceWorkers:'allow'}),p=await context.newPage();p.setDefaultTimeout(30000);p.on('console',message=>{if(message.type()==='error')console.error('PWA browser console '+message.text());});p.on('pageerror',error=>console.error('PWA page error '+error.stack));try{await go(p);await waitWorker(p,aRevision);await core(p);await mega(p);console.log('STAGE import');const before=await imported(p);console.log('STAGE imported');generation='B';failInstall=true;await p.evaluate(()=>WHOfflineStatus.check());await poll(p,()=>document.querySelector('[data-pwa-update-action]')?.textContent==='Retry');const failed=await worker(p);assert.equal(failed.active?.revision,aRevision);assert.equal(failed.controller?.revision,aRevision);assert.deepEqual(await state(p),before,'Failed mandatory shell install must leave live native app and data untouched');report.results.push({case:'failed B install preserves A and user state',status:'PASS'});}finally{await context.close();}}
++if(!mutation){generation='A';failInstall=false;const context=await browser.newContext({serviceWorkers:'allow'}),p=await context.newPage();p.setDefaultTimeout(30000);p.on('console',message=>{if(message.type()==='error')console.error('PWA browser console '+message.text());});p.on('pageerror',error=>console.error('PWA page error '+error.stack));try{await go(p);await waitWorker(p,aRevision);await core(p);await mega(p);console.log('STAGE import');const before=await imported(p);console.log('STAGE imported');generation='B';failInstall=true;await p.evaluate(()=>WHOfflineStatus.check());await poll(p,()=>document.querySelector('[data-pwa-update-action]')?.textContent==='Retry');const failed=await worker(p);assert.equal(failed.active?.revision,aRevision);assert.equal(failed.controller?.revision,aRevision);assert.deepEqual(await state(p),before,'Failed mandatory shell install must leave live native app and data untouched');report.results.push({case:'failed B install preserves A and user state',status:'PASS'});
++assert(failedCoreRequests>0,'The new activation core must actually request the unavailable boot.mjs; a prepared cache hit would not test an install outage');
++failInstall=false;await p.getByRole('button',{name:'Retry',exact:true}).click();
++await poll(p,()=>navigator.serviceWorker.getRegistration().then(r=>r?.waiting?.state==='installed'));
++const recovered=await worker(p);assert.equal(recovered.waiting?.revision,bRevision);assert.equal(recovered.active?.revision,aRevision);assert.equal(recovered.controller?.revision,aRevision);
++assert.deepEqual(await state(p),before,'Restored connectivity must prepare B without changing the live roster, draft or saved values');
++await poll(p,()=>document.querySelector('[data-pwa-update-action]')?.textContent==='Install and restart');
++report.results.push({case:'failed core retries after connectivity is restored, B waits for consent, A and exact user state remain intact',status:'PASS'});}finally{await context.close();}}
+ report.status='PASS';console.log('Native V2 update browser PASS');
+ }catch(error){report.status='FAIL';report.error=error.stack;console.error(error.stack);process.exitCode=1;}finally{await browser.close();await new Promise(r=>server.close(r));fs.writeFileSync(path.join(out,'REPORT.json'),JSON.stringify(report,null,2));console.log('Evidence '+out);}
+ 
+diff --git a/tools/pages-runtime-package-qa.mjs b/tools/pages-runtime-package-qa.mjs
+index 038a9dcd..32203c85 100644
+--- a/tools/pages-runtime-package-qa.mjs
++++ b/tools/pages-runtime-package-qa.mjs
+@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
+ import {buildPagesRuntimePackage,validateRuntimeManifest} from './pages-runtime-package.mjs';
+ import {checkSourceClosureTree} from '../books/shared/source-refs-v2/source-closure-qa.mjs';
+ import {createQaTempDir,createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
++import {checkPackagedBootstrap} from '../tests/packaged-bootstrap-qa.mjs';
+ 
+ const args=process.argv.slice(2),value=key=>args[args.indexOf(key)+1];
+ const sourceRoot=value('--source'),published=value('--published'),reportDirectory=value('--work');
+@@ -22,6 +23,10 @@ check('published-output-verbatim-and-fresh',()=>{
+   first=buildPagesRuntimePackage({sourceRoot,outRoot:published,check:true});
+   assert.equal(checkSourceClosureTree(published,{packaged:true}).status,'PASS');
+ });
++check('independent-packaged-startup-core-and-module-revision-guards',()=>{
++  const result=checkPackagedBootstrap(published);
++  fs.writeFileSync(path.join(reportDirectory,'PACKAGED_BOOTSTRAP.json'),JSON.stringify(result,null,2)+'\n');
++});
+ const rebuilt=path.join(work,'rebuilt');
+ check('independent-deterministic-build',()=>{
+   second=buildPagesRuntimePackage({sourceRoot,outRoot:rebuilt});

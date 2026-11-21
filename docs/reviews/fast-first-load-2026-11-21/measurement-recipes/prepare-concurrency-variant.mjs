@@ -1,0 +1,37 @@
+/** Measurement-only package copy. Never edit source, owner preview or a prior package. */
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {pathToFileURL} from 'node:url';
+const option=name=>process.argv.find(arg=>arg.startsWith(name+'='))?.slice(name.length+1);
+const taskRoot=path.resolve('E:/Warhammer/qa-tmp/fast-first-load');
+const input=path.resolve(option('--package')||taskRoot+'/packages/after'),output=option('--out')&&path.resolve(option('--out'));
+const source=path.resolve(option('--source')||'E:/Warhammer/worktrees/fast-first-load-v1'),concurrency=Number(option('--concurrency'));
+assert([4,6,8].includes(concurrency),'Pass --concurrency=4,6 or8');assert(output,'Pass an explicit --out inside the task temporary directory');
+assert(output.startsWith(taskRoot+path.sep),'Variant output escapes the task temporary root');assert(output!==input&&!output.startsWith(input+path.sep),'Do not overwrite or nest inside the input package');
+assert(!fs.existsSync(output),'Refusing to overwrite any prior variant');
+fs.mkdirSync(taskRoot,{recursive:true});let parent=path.dirname(output);while(!fs.existsSync(parent))parent=path.dirname(parent);
+assert(fs.realpathSync(parent).toLowerCase().startsWith(fs.realpathSync(taskRoot).toLowerCase()),'Variant parent resolves outside the task root');
+const variantSource=output+'-input';assert(!fs.existsSync(variantSource),'Refusing to overwrite a prior variant input');
+const original=JSON.parse(fs.readFileSync(input+'/PAGES_RUNTIME_MANIFEST.json'));
+const before={self:{}};vm.runInNewContext(fs.readFileSync(input+'/glossary/generated/cache-revision.js','utf8'),before);
+const normalize=urls=>Array.from(urls,url=>url.replace(/([?&]wh-pwa=)[a-f0-9]{16}/g,'$1__REVISION__')).sort();
+const worker=fs.readFileSync(input+'/service-worker.js','utf8'),matches=[...worker.matchAll(/(const\s+APP_SHELL_BATCH_SIZE\s*=\s*)4(\s*;)/g)];
+assert.equal(matches.length,1,'Variant input must declare APP_SHELL_BATCH_SIZE=4 exactly once');
+for(const row of original.files){assert(!row.path.includes('..')&&!path.isAbsolute(row.path),'Unsafe runtime path');const target=path.join(variantSource,row.path);fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(input,row.path),target);}
+fs.writeFileSync(variantSource+'/service-worker.js',worker.replace(/(const\s+APP_SHELL_BATCH_SIZE\s*=\s*)4(\s*;)/g,(_all,start,end)=>start+concurrency+end));
+const {buildPagesRuntimePackage}=await import(pathToFileURL(source+'/tools/pages-runtime-package.mjs').href);
+const manifestFile=source+'/tools/pages-runtime-manifest.json';
+buildPagesRuntimePackage({sourceRoot:variantSource,outRoot:output,manifestFile});
+buildPagesRuntimePackage({sourceRoot:variantSource,outRoot:output,manifestFile,check:true});
+const {verifyCacheRevision}=await import(pathToFileURL(source+'/tools/cache-revision.mjs').href);
+const report=JSON.parse(fs.readFileSync(output+'/PAGES_RUNTIME_MANIFEST.json'));
+const cache=verifyCacheRevision({root:output,manifest:report});
+assert.equal(cache.urls.length,221);assert.deepEqual(normalize(cache.urls),normalize(before.self.WH40K_PRECACHE),'Mandatory URL composition changed');
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+for(const row of original.files)if(row.path.endsWith('.json'))assert.equal(hash(fs.readFileSync(path.join(output,row.path))),row.sha256,'Variant changed factual JSON: '+row.path);
+if(concurrency===4)assert.equal(report.contentSha256,original.contentSha256,'Restamping the4-slot package must be idempotent');
+fs.writeFileSync(output+'.experiment.json',JSON.stringify({sourcePackageContentSha256:original.contentSha256,variantSource,output,concurrency,sourcePackageUnchanged:true,sourceRepoUnchanged:true,notForPublication:true,normalPackageCheck:'PASS',contentSha256:report.contentSha256},null,2)+'\n');
+console.log(JSON.stringify({variantSource,output,concurrency,cacheRevision:cache.revision,contentSha256:report.contentSha256,files:report.files.length,precacheUrls:221,normalPackageCheck:'PASS',notForPublication:true}));

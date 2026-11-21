@@ -1,0 +1,31 @@
+{
+  "base": {
+    "mandatoryUrls": 221,
+    "mandatoryEntryRawBytes": 5139186,
+    "mandatoryUniqueBodies": 219,
+    "normalizedMandatoryUrlSha256": "c6e6a3382e03eb602c68b8a43de83f9a8bc43a11913f0cd86b427636f2644f52"
+  },
+  "after": {
+    "mandatoryUrls": 221,
+    "mandatoryEntryRawBytes": 5183834,
+    "mandatoryUniqueBodies": 219,
+    "startupUrls": [
+      "./",
+      "./index.html",
+      "./v2/app.html",
+      "./books/shared/offline-status.js?v=4",
+      "./books/shared/offline-status.js?wh-pwa=9445e8293bc10c1c",
+      "./books/shared/styles/offline-status.css",
+      "./v2/boot.mjs"
+    ],
+    "startupEntryRawBytes": 83363,
+    "startupUniqueBodyRawBytes": 45178,
+    "normalizedMandatoryUrlSha256": "c6e6a3382e03eb602c68b8a43de83f9a8bc43a11913f0cd86b427636f2644f52"
+  },
+  "membershipComparison": {
+    "equal": true,
+    "normalization": "Only the 16-hex wh-pwa revision token; all other paths/query strings compared exactly.",
+    "removed": [],
+    "added": []
+  }
+}

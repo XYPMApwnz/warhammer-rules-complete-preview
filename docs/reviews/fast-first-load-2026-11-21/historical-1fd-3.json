@@ -1,0 +1,229 @@
+{
+  "schema": "fast-first-load-historical-update/v1",
+  "status": "PASS",
+  "old": {
+    "root": "E:\\Warhammer\\qa-tmp\\preview-v1\\package-old",
+    "source": "1fd0b279051d76f1a262f7c8f117e35551b7de39",
+    "contentSha256": "d389549067279096e9a645bab8dbaa6be682967190155ce1f8ec37db8eaf35d3",
+    "revision": "c3dffaf3c592a3c4"
+  },
+  "candidate": {
+    "root": "E:\\Warhammer\\qa-tmp\\fast-first-load\\package-final-c4",
+    "contentSha256": "32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b",
+    "revision": "9445e8293bc10c1c"
+  },
+  "privacy": "No raw import, storage, trace, or browser profile is written to evidence.",
+  "scenarios": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "imports": [
+        {
+          "file": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+          "sha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+          "accepted": false,
+          "book": "death-guard",
+          "version": "v37.25",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        },
+        {
+          "file": "v2/fixtures/new-recruit-v37.15-owner-death-guard.txt",
+          "sha256": "2db0c83b5c2f0e422719a14261a1470ceb2e974e91ff6aff791f974cfe518940",
+          "accepted": false,
+          "book": "death-guard",
+          "version": "v37.15",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        },
+        {
+          "file": "E:\\Warhammer\\qa-evidence\\preview-v1-2026-11-14\\FIXTURES.json",
+          "recordId": "dg-short-derived-labelled",
+          "sha256": "ab88387de19a9020f96668c16198cb5ec87ab4c6c35670d8075aac8964300b1f",
+          "archiveSha256": "79477f41118b68f62d5d932cb0bc61e4530958a5aa46de2c70957d8f0703b171",
+          "kind": "DERIVED_NOT_REAL_EXPORT",
+          "source": "source-old/books/death-guard/v2/fixtures/omega-megaroster.txt",
+          "derivation": "First 5-model Plague Marines block and first Manreaper Lord of Contagion block; remove Enhancement lines; retain physical model/equipment lines and zero-point fixture declarations; labelled Virulent Vectorium header only.",
+          "expectedUnitEntries": 2,
+          "acceptanceEvidence": "E:/Warhammer/qa-evidence/preview-v1-2026-11-14/UPDATE-OBSERVATIONS-V3/OBSERVATIONS.md:11-15",
+          "fallbackReason": "Both unchanged authentic owner plain exports were unsupported by this historical runtime.",
+          "accepted": true,
+          "book": "death-guard"
+        },
+        {
+          "file": "books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt",
+          "sha256": "77adceda3ee79ff89352a364a535df3b0d58d9aa246e3491930bf5a64bb7fb6f",
+          "accepted": true,
+          "book": "space-marines",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        }
+      ],
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "started": "2026-11-21T18:47:12.631Z",
+      "oldOffline": {
+        "revision": "c3dffaf3c592a3c4",
+        "completed": 182,
+        "total": 182,
+        "controlled": true
+      },
+      "dgAcceptedVersion": "DERIVED_NOT_REAL_EXPORT: dg-short-derived-labelled (unchanged prior preview fixture)",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 18915,
+        "sha256": "ea5fee9ea118da1b0eebbc125cd7b825df6c617c2f6b6adbf51c9bd89cd1383d"
+      },
+      "workingScreen": {
+        "banner": true,
+        "noAutoReload": true,
+        "draftUnchanged": true
+      },
+      "updateToWorkingMs": 4269,
+      "startupToWorkingMs": 1994,
+      "savedOnline": {
+        "death-guard": {
+          "units": 2,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "newOffline": {
+        "revision": "9445e8293bc10c1c",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "savedOffline": {
+        "death-guard": {
+          "units": 2,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 18915,
+        "sha256": "ea5fee9ea118da1b0eebbc125cd7b825df6c617c2f6b6adbf51c9bd89cd1383d"
+      },
+      "offlineHome": true
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "imports": [
+        {
+          "file": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+          "sha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+          "accepted": false,
+          "book": "death-guard",
+          "version": "v37.25",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        },
+        {
+          "file": "v2/fixtures/new-recruit-v37.15-owner-death-guard.txt",
+          "sha256": "2db0c83b5c2f0e422719a14261a1470ceb2e974e91ff6aff791f974cfe518940",
+          "accepted": false,
+          "book": "death-guard",
+          "version": "v37.15",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        },
+        {
+          "file": "E:\\Warhammer\\qa-evidence\\preview-v1-2026-11-14\\FIXTURES.json",
+          "recordId": "dg-short-derived-labelled",
+          "sha256": "ab88387de19a9020f96668c16198cb5ec87ab4c6c35670d8075aac8964300b1f",
+          "archiveSha256": "79477f41118b68f62d5d932cb0bc61e4530958a5aa46de2c70957d8f0703b171",
+          "kind": "DERIVED_NOT_REAL_EXPORT",
+          "source": "source-old/books/death-guard/v2/fixtures/omega-megaroster.txt",
+          "derivation": "First 5-model Plague Marines block and first Manreaper Lord of Contagion block; remove Enhancement lines; retain physical model/equipment lines and zero-point fixture declarations; labelled Virulent Vectorium header only.",
+          "expectedUnitEntries": 2,
+          "acceptanceEvidence": "E:/Warhammer/qa-evidence/preview-v1-2026-11-14/UPDATE-OBSERVATIONS-V3/OBSERVATIONS.md:11-15",
+          "fallbackReason": "Both unchanged authentic owner plain exports were unsupported by this historical runtime.",
+          "accepted": true,
+          "book": "death-guard"
+        },
+        {
+          "file": "books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt",
+          "sha256": "77adceda3ee79ff89352a364a535df3b0d58d9aa246e3491930bf5a64bb7fb6f",
+          "accepted": true,
+          "book": "space-marines",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        }
+      ],
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "started": "2026-11-21T18:48:03.109Z",
+      "oldOffline": {
+        "revision": "c3dffaf3c592a3c4",
+        "completed": 182,
+        "total": 182,
+        "controlled": true
+      },
+      "dgAcceptedVersion": "DERIVED_NOT_REAL_EXPORT: dg-short-derived-labelled (unchanged prior preview fixture)",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 18915,
+        "sha256": "ea5fee9ea118da1b0eebbc125cd7b825df6c617c2f6b6adbf51c9bd89cd1383d"
+      },
+      "workingScreen": {
+        "banner": true,
+        "noAutoReload": true,
+        "draftUnchanged": true
+      },
+      "updateToWorkingMs": 4432,
+      "startupToWorkingMs": 2059,
+      "savedOnline": {
+        "death-guard": {
+          "units": 2,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "newOffline": {
+        "revision": "9445e8293bc10c1c",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "savedOffline": {
+        "death-guard": {
+          "units": 2,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 18915,
+        "sha256": "ea5fee9ea118da1b0eebbc125cd7b825df6c617c2f6b6adbf51c9bd89cd1383d"
+      },
+      "offlineHome": true
+    }
+  ],
+  "requests": {
+    "total": 1225,
+    "historical": 695,
+    "candidate": 530,
+    "failed": 0
+  },
+  "notes": [
+    "Exact localStorage proof covers all origin keys, not only DG/SM. Contents exist only in browser and Node memory.",
+    "Old DG v37.25 is attempted first, then actual v37.15. Failed attempts remain in the report. If both fail, the unchanged DERIVED dg-short-derived-labelled fixture from the prior actual-old preview audit is attempted with exact SHA and provenance. No input is converted.",
+    "This recipe checks two actual historical origins separately; it does not replace the separate revision-switch-during-background negative control.",
+    "Offline assertion covers home and the warmed saved DG/SM rosters. Large untouched books are lazy in the accepted model.",
+    "Profiles remain in the named qa-tmp scratch folder for owner-approved cleanup; no preview or package file is changed."
+  ]
+}

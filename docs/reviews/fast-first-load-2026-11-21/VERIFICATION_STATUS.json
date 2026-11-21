@@ -1,0 +1,50 @@
+{
+  "status": "BLOCKED_PENDING_OWNER_PERMISSION",
+  "readyForReview": false,
+  "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "headAfter": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "worktreeStatus": "",
+  "runtimeContentSha256": "32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b",
+  "runtimeOrTestEditsAfterFullPreff": false,
+  "diffStatAfterPreff": "",
+  "preff": {
+    "fullRunNumber": 1,
+    "passed": 208,
+    "failed": 1,
+    "elapsedMs": 7920385,
+    "failedJob": "v2/core-reader-browser-qa.mjs",
+    "report": "preff/RESULTS.json"
+  },
+  "generated": {
+    "status": "PASS",
+    "files": 148,
+    "steps": 68,
+    "differences": 0
+  },
+  "ab": {
+    "status": "PASS",
+    "cases": 199,
+    "frames": 507,
+    "differences": 0
+  },
+  "census": {
+    "status": "PASS",
+    "N": 2724,
+    "counts": {
+      "EXECUTED": 812,
+      "RECIPIENTS_ONLY": 1478,
+      "TEXT_ONLY_INTENDED": 419,
+      "GAP": 0,
+      "UNKNOWN": 15
+    }
+  },
+  "coreTargetedObserver": {
+    "base": "3/3 PASS",
+    "head": "3/3 PASS",
+    "cause": "undetermined; timeout not reproduced"
+  },
+  "additionalFullPreff": "Requested through owner input; not authorized or started",
+  "previewSwitched": false,
+  "featurePushed": true,
+  "protectedBranchesTouched": false
+}

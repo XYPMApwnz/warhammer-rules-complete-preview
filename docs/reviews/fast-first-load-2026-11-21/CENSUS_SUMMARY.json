@@ -1,0 +1,657 @@
+{
+  "schema": "markup-census-report/v1",
+  "status": "PASS",
+  "N": 2724,
+  "counts": {
+    "EXECUTED": 812,
+    "RECIPIENTS_ONLY": 1478,
+    "TEXT_ONLY_INTENDED": 419,
+    "GAP": 0,
+    "UNKNOWN": 15
+  },
+  "partial": 126,
+  "resolved": {
+    "count": 2709,
+    "total": 2724,
+    "percent": 99.44933920704845
+  },
+  "debt": {
+    "original": 217,
+    "active": 15,
+    "closed": 202
+  },
+  "summary": [
+    {
+      "book": "adeptus-mechanicus",
+      "kind": "ARMY_RULE",
+      "N": 3,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 3,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "kind": "DETACHMENT_RULE",
+      "N": 18,
+      "EXECUTED": 5,
+      "RECIPIENTS_ONLY": 12,
+      "TEXT_ONLY_INTENDED": 1,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "kind": "ENHANCEMENT",
+      "N": 34,
+      "EXECUTED": 19,
+      "RECIPIENTS_ONLY": 13,
+      "TEXT_ONLY_INTENDED": 2,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "kind": "STRATAGEM",
+      "N": 51,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 51,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "kind": "ABILITY",
+      "N": 65,
+      "EXECUTED": 6,
+      "RECIPIENTS_ONLY": 45,
+      "TEXT_ONLY_INTENDED": 14,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "kind": "WARGEAR_ABILITY",
+      "N": 12,
+      "EXECUTED": 6,
+      "RECIPIENTS_ONLY": 2,
+      "TEXT_ONLY_INTENDED": 4,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "kind": "CORE_ABILITY",
+      "N": 32,
+      "EXECUTED": 32,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "blood-angels",
+      "kind": "ARMY_RULE",
+      "N": 3,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 1,
+      "GAP": 0,
+      "UNKNOWN": 2
+    },
+    {
+      "book": "blood-angels",
+      "kind": "DETACHMENT_RULE",
+      "N": 19,
+      "EXECUTED": 2,
+      "RECIPIENTS_ONLY": 12,
+      "TEXT_ONLY_INTENDED": 4,
+      "GAP": 0,
+      "UNKNOWN": 1
+    },
+    {
+      "book": "blood-angels",
+      "kind": "ENHANCEMENT",
+      "N": 40,
+      "EXECUTED": 14,
+      "RECIPIENTS_ONLY": 20,
+      "TEXT_ONLY_INTENDED": 6,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "blood-angels",
+      "kind": "STRATAGEM",
+      "N": 60,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 59,
+      "TEXT_ONLY_INTENDED": 1,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "blood-angels",
+      "kind": "ABILITY",
+      "N": 136,
+      "EXECUTED": 16,
+      "RECIPIENTS_ONLY": 83,
+      "TEXT_ONLY_INTENDED": 37,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "blood-angels",
+      "kind": "WARGEAR_ABILITY",
+      "N": 12,
+      "EXECUTED": 10,
+      "RECIPIENTS_ONLY": 2,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "blood-angels",
+      "kind": "CORE_ABILITY",
+      "N": 122,
+      "EXECUTED": 108,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 14,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "chaos-space-marines",
+      "kind": "ARMY_RULE",
+      "N": 2,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 1,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 1
+    },
+    {
+      "book": "chaos-space-marines",
+      "kind": "DETACHMENT_RULE",
+      "N": 25,
+      "EXECUTED": 6,
+      "RECIPIENTS_ONLY": 16,
+      "TEXT_ONLY_INTENDED": 3,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "chaos-space-marines",
+      "kind": "ENHANCEMENT",
+      "N": 62,
+      "EXECUTED": 25,
+      "RECIPIENTS_ONLY": 26,
+      "TEXT_ONLY_INTENDED": 11,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "chaos-space-marines",
+      "kind": "STRATAGEM",
+      "N": 93,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 93,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "chaos-space-marines",
+      "kind": "ABILITY",
+      "N": 103,
+      "EXECUTED": 5,
+      "RECIPIENTS_ONLY": 78,
+      "TEXT_ONLY_INTENDED": 20,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "chaos-space-marines",
+      "kind": "WARGEAR_ABILITY",
+      "N": 7,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 7,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "chaos-space-marines",
+      "kind": "CORE_ABILITY",
+      "N": 60,
+      "EXECUTED": 42,
+      "RECIPIENTS_ONLY": 18,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "dark-angels",
+      "kind": "ARMY_RULE",
+      "N": 5,
+      "EXECUTED": 2,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 1,
+      "GAP": 0,
+      "UNKNOWN": 2
+    },
+    {
+      "book": "dark-angels",
+      "kind": "DETACHMENT_RULE",
+      "N": 19,
+      "EXECUTED": 3,
+      "RECIPIENTS_ONLY": 11,
+      "TEXT_ONLY_INTENDED": 4,
+      "GAP": 0,
+      "UNKNOWN": 1
+    },
+    {
+      "book": "dark-angels",
+      "kind": "ENHANCEMENT",
+      "N": 40,
+      "EXECUTED": 13,
+      "RECIPIENTS_ONLY": 21,
+      "TEXT_ONLY_INTENDED": 6,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "dark-angels",
+      "kind": "STRATAGEM",
+      "N": 60,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 60,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "dark-angels",
+      "kind": "ABILITY",
+      "N": 144,
+      "EXECUTED": 17,
+      "RECIPIENTS_ONLY": 89,
+      "TEXT_ONLY_INTENDED": 38,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "dark-angels",
+      "kind": "WARGEAR_ABILITY",
+      "N": 14,
+      "EXECUTED": 10,
+      "RECIPIENTS_ONLY": 4,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "dark-angels",
+      "kind": "CORE_ABILITY",
+      "N": 115,
+      "EXECUTED": 101,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 14,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "death-guard",
+      "kind": "ARMY_RULE",
+      "N": 6,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 6,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "death-guard",
+      "kind": "DETACHMENT_RULE",
+      "N": 9,
+      "EXECUTED": 3,
+      "RECIPIENTS_ONLY": 4,
+      "TEXT_ONLY_INTENDED": 2,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "death-guard",
+      "kind": "ENHANCEMENT",
+      "N": 30,
+      "EXECUTED": 10,
+      "RECIPIENTS_ONLY": 18,
+      "TEXT_ONLY_INTENDED": 2,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "death-guard",
+      "kind": "STRATAGEM",
+      "N": 45,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 45,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "death-guard",
+      "kind": "ABILITY",
+      "N": 72,
+      "EXECUTED": 7,
+      "RECIPIENTS_ONLY": 29,
+      "TEXT_ONLY_INTENDED": 36,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "death-guard",
+      "kind": "WARGEAR_ABILITY",
+      "N": 6,
+      "EXECUTED": 4,
+      "RECIPIENTS_ONLY": 2,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "death-guard",
+      "kind": "CORE_ABILITY",
+      "N": 53,
+      "EXECUTED": 16,
+      "RECIPIENTS_ONLY": 37,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "emperors-children",
+      "kind": "ARMY_RULE",
+      "N": 2,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 2,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "emperors-children",
+      "kind": "DETACHMENT_RULE",
+      "N": 15,
+      "EXECUTED": 2,
+      "RECIPIENTS_ONLY": 7,
+      "TEXT_ONLY_INTENDED": 6,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "emperors-children",
+      "kind": "ENHANCEMENT",
+      "N": 34,
+      "EXECUTED": 16,
+      "RECIPIENTS_ONLY": 11,
+      "TEXT_ONLY_INTENDED": 7,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "emperors-children",
+      "kind": "STRATAGEM",
+      "N": 51,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 51,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "emperors-children",
+      "kind": "ABILITY",
+      "N": 46,
+      "EXECUTED": 3,
+      "RECIPIENTS_ONLY": 31,
+      "TEXT_ONLY_INTENDED": 12,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "emperors-children",
+      "kind": "WARGEAR_ABILITY",
+      "N": 7,
+      "EXECUTED": 5,
+      "RECIPIENTS_ONLY": 2,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "emperors-children",
+      "kind": "CORE_ABILITY",
+      "N": 31,
+      "EXECUTED": 6,
+      "RECIPIENTS_ONLY": 25,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "space-marines",
+      "kind": "ARMY_RULE",
+      "N": 5,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 3,
+      "GAP": 0,
+      "UNKNOWN": 2
+    },
+    {
+      "book": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "N": 25,
+      "EXECUTED": 3,
+      "RECIPIENTS_ONLY": 15,
+      "TEXT_ONLY_INTENDED": 6,
+      "GAP": 0,
+      "UNKNOWN": 1
+    },
+    {
+      "book": "space-marines",
+      "kind": "ENHANCEMENT",
+      "N": 56,
+      "EXECUTED": 23,
+      "RECIPIENTS_ONLY": 23,
+      "TEXT_ONLY_INTENDED": 10,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "space-marines",
+      "kind": "STRATAGEM",
+      "N": 84,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 84,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "space-marines",
+      "kind": "ABILITY",
+      "N": 151,
+      "EXECUTED": 19,
+      "RECIPIENTS_ONLY": 86,
+      "TEXT_ONLY_INTENDED": 43,
+      "GAP": 0,
+      "UNKNOWN": 3
+    },
+    {
+      "book": "space-marines",
+      "kind": "WARGEAR_ABILITY",
+      "N": 12,
+      "EXECUTED": 9,
+      "RECIPIENTS_ONLY": 3,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "space-marines",
+      "kind": "CORE_ABILITY",
+      "N": 122,
+      "EXECUTED": 110,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 12,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tau-empire",
+      "kind": "ARMY_RULE",
+      "N": 1,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 1,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tau-empire",
+      "kind": "DETACHMENT_RULE",
+      "N": 11,
+      "EXECUTED": 2,
+      "RECIPIENTS_ONLY": 8,
+      "TEXT_ONLY_INTENDED": 1,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tau-empire",
+      "kind": "ENHANCEMENT",
+      "N": 23,
+      "EXECUTED": 10,
+      "RECIPIENTS_ONLY": 8,
+      "TEXT_ONLY_INTENDED": 5,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tau-empire",
+      "kind": "STRATAGEM",
+      "N": 31,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 31,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tau-empire",
+      "kind": "ABILITY",
+      "N": 83,
+      "EXECUTED": 6,
+      "RECIPIENTS_ONLY": 52,
+      "TEXT_ONLY_INTENDED": 25,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tau-empire",
+      "kind": "WARGEAR_ABILITY",
+      "N": 24,
+      "EXECUTED": 13,
+      "RECIPIENTS_ONLY": 3,
+      "TEXT_ONLY_INTENDED": 8,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tau-empire",
+      "kind": "CORE_ABILITY",
+      "N": 74,
+      "EXECUTED": 74,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tyranids",
+      "kind": "ARMY_RULE",
+      "N": 2,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 2,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tyranids",
+      "kind": "DETACHMENT_RULE",
+      "N": 11,
+      "EXECUTED": 3,
+      "RECIPIENTS_ONLY": 7,
+      "TEXT_ONLY_INTENDED": 1,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tyranids",
+      "kind": "ENHANCEMENT",
+      "N": 34,
+      "EXECUTED": 11,
+      "RECIPIENTS_ONLY": 15,
+      "TEXT_ONLY_INTENDED": 7,
+      "GAP": 0,
+      "UNKNOWN": 1
+    },
+    {
+      "book": "tyranids",
+      "kind": "STRATAGEM",
+      "N": 51,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 51,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tyranids",
+      "kind": "ABILITY",
+      "N": 93,
+      "EXECUTED": 5,
+      "RECIPIENTS_ONLY": 47,
+      "TEXT_ONLY_INTENDED": 40,
+      "GAP": 0,
+      "UNKNOWN": 1
+    },
+    {
+      "book": "tyranids",
+      "kind": "WARGEAR_ABILITY",
+      "N": 1,
+      "EXECUTED": 0,
+      "RECIPIENTS_ONLY": 0,
+      "TEXT_ONLY_INTENDED": 1,
+      "GAP": 0,
+      "UNKNOWN": 0
+    },
+    {
+      "book": "tyranids",
+      "kind": "CORE_ABILITY",
+      "N": 67,
+      "EXECUTED": 10,
+      "RECIPIENTS_ONLY": 57,
+      "TEXT_ONLY_INTENDED": 0,
+      "GAP": 0,
+      "UNKNOWN": 0
+    }
+  ],
+  "inputFingerprint": "a7b4ed12efecd8961ceb6d43ddf2d601ab7247448c5925a125411081a68889b5",
+  "elapsedMs": 12324.042
+}

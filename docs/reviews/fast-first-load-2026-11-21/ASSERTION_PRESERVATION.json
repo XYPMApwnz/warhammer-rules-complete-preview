@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "base": "8579a7a77c7f5e8dad291afc11b27aab3cd9d73a",
+  "boundary": "Independent AST comparison: each old assert call including exact arguments/messages remains an ordered subsequence; new assertions may be added. This does not replace browser behavioral checks.",
+  "results": [
+    {
+      "file": "tests/browser/pwa-bootstrap-update.mjs",
+      "oldAssertions": 111,
+      "currentAssertions": 114,
+      "oldAssertionsPreservedInOrder": true,
+      "oldAssertionsSha256": "77e2b157984b6a8b2c505a4783f7032b47267a8a19d7a2ba7d59f4711846c3a6"
+    },
+    {
+      "file": "tests/browser/pwa-update-flow.mjs",
+      "oldAssertions": 26,
+      "currentAssertions": 31,
+      "oldAssertionsPreservedInOrder": true,
+      "oldAssertionsSha256": "816ca05ae32b6329e5cae47672655b740d08b71e0736577e6e42ec2070f0d24c"
+    },
+    {
+      "file": "tests/browser/cold-offline.mjs",
+      "oldAssertions": 24,
+      "currentAssertions": 24,
+      "oldAssertionsPreservedInOrder": true,
+      "oldAssertionsSha256": "bb79218bdca0008081326b0fc894ab8c60e0539e16c49dac382239b622e68472"
+    },
+    {
+      "file": "tools/pages-runtime-package-qa.mjs",
+      "oldAssertions": 15,
+      "currentAssertions": 15,
+      "oldAssertionsPreservedInOrder": true,
+      "oldAssertionsSha256": "30927fa8b7327b7a572ff5ea8407959ed3cc8c4fb13d49b85fe23302e146af6e"
+    }
+  ]
+}
