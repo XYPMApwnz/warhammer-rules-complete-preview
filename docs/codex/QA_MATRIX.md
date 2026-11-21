@@ -52,6 +52,12 @@ permission to add a new recipient later without review.
 The dated scope clarification exempts actual ARMY_RULE/DETACHMENT_RULE sources
 from the foreign-recipient prohibition. Their eligible army/Detachment units keep
 the existing text; source kind and reviewed scope are checked exactly.
+`npm run test:markup-unknown` runs in pre-FF (about 11 seconds locally). It validates the owner's
+exact 171-entry review, 156 annotation closures, 15 source-fingerprinted next
+steps, unchanged historical debt and physical owner isolation. Negative controls
+reject changed approvals, missing/stale sources, forged scope, a foreign receiver,
+an executable path and unrelated closure evidence. This does not change runtime
+coverage or replace the existing owner-only regression controls.
 `test:pwa-update` includes both working-screen manual updates and the initial
 bootstrap auto-update regression (`test:pwa-bootstrap`), with once-per-version
 failure recovery, saved-state retention, prepared offline startup and offline reopening controls.

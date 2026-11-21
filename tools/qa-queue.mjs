@@ -51,6 +51,7 @@ node('tools/markup-census.mjs',['--check']);
 node('tests/markup-census-qa.mjs');
 node('tests/markup-evidence-qa.mjs');
 node('tests/markup-owner-only-qa.mjs');
+if(mode==='pre-ff')node('tests/markup-unknown-qa.mjs');
 expand(pkg.scripts['test:polish-6']);
 node('books/death-guard/v2/insectile-recipient-qa.mjs');
 node('v2/executable-detachment-source-qa.mjs');

@@ -1,6 +1,6 @@
 {
   "schema": "markup-decisions/v1",
-  "sourceReview": "codex/markup-census-evidence a854d1735ebc780ed587b6be86d2a6581584c7b6; Insectile closure authorized by markup-gate-v1 item 2",
+  "sourceReview": "codex/markup-census-evidence a854d1735ebc780ed587b6be86d2a6581584c7b6; Insectile closure authorized by markup-gate-v1 item 2; f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json (owner approval 2026-11-21; annotation only)",
   "records": [
     {
       "book": "adeptus-mechanicus",
@@ -15892,12 +15892,15 @@
         ]
       ],
       "sourceFingerprint": "c2097e403946343a6eb2c3226391aee4ff1f4085ad3be60af26c9038a154277d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-0392756f7c5a4d57",
+        "tests/markup-unknown-qa.mjs#ability-sm-0392756f7c5a4d57"
       ],
       "partial": false,
       "proof": {
@@ -15920,7 +15923,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -15936,12 +15940,15 @@
         ]
       ],
       "sourceFingerprint": "5756425a26cbcdca81265757c94222520efe20d3ea7e7bb25c61ab3daccb3cc1",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-06f3f2b2b22b48a4",
+        "tests/markup-unknown-qa.mjs#ability-sm-06f3f2b2b22b48a4"
       ],
       "partial": false,
       "proof": {
@@ -15964,7 +15971,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -15980,12 +15988,15 @@
         ]
       ],
       "sourceFingerprint": "7b2fb77a26dd46f0d5e8b1f98faabf9cef49f4800824c2769dd4c746ed738c14",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-085c2275cf994ee9",
+        "tests/markup-unknown-qa.mjs#ability-sm-085c2275cf994ee9"
       ],
       "partial": false,
       "proof": {
@@ -16010,7 +16021,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -16146,12 +16158,15 @@
         ]
       ],
       "sourceFingerprint": "18d889e35df7850e473e96e5ca9ae774289d7ad05347c81f70123a51d4ed9f8f",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-0ddc39d588604fde",
+        "tests/markup-unknown-qa.mjs#ability-sm-0ddc39d588604fde"
       ],
       "partial": false,
       "proof": {
@@ -16175,7 +16190,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -16191,12 +16207,15 @@
         ]
       ],
       "sourceFingerprint": "0ab0c8110c24e67eb63df6656532e7eee76f65416f3e892746679de26cf1d131",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-0f4892fe36c747b8",
+        "tests/markup-unknown-qa.mjs#ability-sm-0f4892fe36c747b8"
       ],
       "partial": false,
       "proof": {
@@ -16219,7 +16238,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -16235,12 +16255,15 @@
         ]
       ],
       "sourceFingerprint": "96a57dab671c5a20a03f278833acf86fed84159bebb89e1b3c3dbe2a424b8d1e",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-11a0d9920bb0418a",
+        "tests/markup-unknown-qa.mjs#ability-sm-11a0d9920bb0418a"
       ],
       "partial": false,
       "proof": {
@@ -16263,7 +16286,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -16323,12 +16347,15 @@
         ]
       ],
       "sourceFingerprint": "4acbdc361202d3ddf800ce2974ba734eda93733b8c69b9e67132dc7557190439",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-19685137f0e6497a",
+        "tests/markup-unknown-qa.mjs#ability-sm-19685137f0e6497a"
       ],
       "partial": false,
       "proof": {
@@ -16351,7 +16378,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -16367,12 +16395,15 @@
         ]
       ],
       "sourceFingerprint": "c5eee43ac1c11fa3cf32433d4c6f336afa6cb8b7b6d3930f1f436777ad0f471f",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-1bc852ceb33c42c2",
+        "tests/markup-unknown-qa.mjs#ability-sm-1bc852ceb33c42c2"
       ],
       "partial": false,
       "proof": {
@@ -16398,7 +16429,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -16591,12 +16623,15 @@
         ]
       ],
       "sourceFingerprint": "d291750ef0a66dce91b343714eb9a1c2f9f5fbeb08ea53ab29ce5a2f6015c187",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-2910eaf9f6b14351",
+        "tests/markup-unknown-qa.mjs#ability-sm-2910eaf9f6b14351"
       ],
       "partial": false,
       "proof": {
@@ -16619,7 +16654,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -16768,12 +16804,15 @@
         ]
       ],
       "sourceFingerprint": "912526ee97f291d741fb27ed174684a3952d8138a4e08c247ac5c141fcd71177",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-34322896f9c94867",
+        "tests/markup-unknown-qa.mjs#ability-sm-34322896f9c94867"
       ],
       "partial": false,
       "proof": {
@@ -16798,7 +16837,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -17112,12 +17152,15 @@
         ]
       ],
       "sourceFingerprint": "19e2eaae1faddba3dbba7c30d55194242617440557ab15b19234a50ab3016b15",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-51d60a67f0f24993",
+        "tests/markup-unknown-qa.mjs#ability-sm-51d60a67f0f24993"
       ],
       "partial": false,
       "proof": {
@@ -17140,7 +17183,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -17202,12 +17246,15 @@
         ]
       ],
       "sourceFingerprint": "6e6a49d6cf4955c9642933ac7519a27cfe45fd074cc89b31366396aaeccd24ea",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-570683b0864b41f2",
+        "tests/markup-unknown-qa.mjs#ability-sm-570683b0864b41f2"
       ],
       "partial": false,
       "proof": {
@@ -17232,7 +17279,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -17295,12 +17343,15 @@
         ]
       ],
       "sourceFingerprint": "3b25d3efbccde5e8e7bb104bc24f86225dae0e0b619fb0f0538f33be047bd971",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-5b1332b320d84c1d",
+        "tests/markup-unknown-qa.mjs#ability-sm-5b1332b320d84c1d"
       ],
       "partial": false,
       "proof": {
@@ -17323,7 +17374,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -17518,12 +17570,15 @@
         ]
       ],
       "sourceFingerprint": "87affae4cdca43f6e48c25ce37cebabd135b5d1a2d6ed0945e48f369186ba924",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-61b7b22212e64e8d",
+        "tests/markup-unknown-qa.mjs#ability-sm-61b7b22212e64e8d"
       ],
       "partial": false,
       "proof": {
@@ -17546,7 +17601,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -17684,12 +17740,15 @@
         ]
       ],
       "sourceFingerprint": "f4a87188181383f256e155ce68f7acf5f8b28dfc1de496517ab90a4b08c22dac",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-65002253aef041ec",
+        "tests/markup-unknown-qa.mjs#ability-sm-65002253aef041ec"
       ],
       "partial": false,
       "proof": {
@@ -17714,7 +17773,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -17730,12 +17790,15 @@
         ]
       ],
       "sourceFingerprint": "5409f8a921bdef00d65d1b2e482db3f2c2711af096ed4d133966546ac17f67dc",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-672cd084d5ba41f0",
+        "tests/markup-unknown-qa.mjs#ability-sm-672cd084d5ba41f0"
       ],
       "partial": false,
       "proof": {
@@ -17758,7 +17821,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -17835,12 +17899,15 @@
         ]
       ],
       "sourceFingerprint": "0660b5f65240a53fe26316a752cae1e6c739d3766a94ae7abb36f2b2cbbd6cc3",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-688ad5dccd464866",
+        "tests/markup-unknown-qa.mjs#ability-sm-688ad5dccd464866"
       ],
       "partial": false,
       "proof": {
@@ -17866,7 +17933,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -17965,12 +18033,15 @@
         ]
       ],
       "sourceFingerprint": "94061642b224b20cbbcf695fb4c4e6d661d16e180d39ff8249dd8dba5536d220",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-6ac11fadb7fd4996",
+        "tests/markup-unknown-qa.mjs#ability-sm-6ac11fadb7fd4996"
       ],
       "partial": false,
       "proof": {
@@ -17995,7 +18066,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -18011,12 +18083,15 @@
         ]
       ],
       "sourceFingerprint": "f96af21582924dc345abd85da216cb832ac465451ab80d52a0e6a4755f166ebd",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-73199edf642245f5",
+        "tests/markup-unknown-qa.mjs#ability-sm-73199edf642245f5"
       ],
       "partial": false,
       "proof": {
@@ -18039,7 +18114,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -18481,12 +18557,15 @@
         ]
       ],
       "sourceFingerprint": "1b8227a5335050f619e0a4216014d9fc1a8521dfc84bb8f1150a8ab2380300e9",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-8af7e9233ac44749",
+        "tests/markup-unknown-qa.mjs#ability-sm-8af7e9233ac44749"
       ],
       "partial": false,
       "proof": {
@@ -18511,7 +18590,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -18649,12 +18729,15 @@
         ]
       ],
       "sourceFingerprint": "9dac4f46833d8d207b1f3d41aac4e8a9a9d5ea51f36ffe28fa1076ebd7871b2f",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-937c10c6fda940f7",
+        "tests/markup-unknown-qa.mjs#ability-sm-937c10c6fda940f7"
       ],
       "partial": false,
       "proof": {
@@ -18677,7 +18760,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -18693,12 +18777,15 @@
         ]
       ],
       "sourceFingerprint": "fe18f0365be4e9d40e48a9566db7c03dfce111ba6d7d9df8a0a5ff3761cd8d94",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-998a121477614f78",
+        "tests/markup-unknown-qa.mjs#ability-sm-998a121477614f78"
       ],
       "partial": false,
       "proof": {
@@ -18721,7 +18808,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -19055,12 +19143,15 @@
         ]
       ],
       "sourceFingerprint": "6c9b6d82945c3187d762594f02192b33363ae1328b19bc4f499077b0e1ce6dfa",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-a5d5e1d025e7462d",
+        "tests/markup-unknown-qa.mjs#ability-sm-a5d5e1d025e7462d"
       ],
       "partial": false,
       "proof": {
@@ -19083,7 +19174,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -19398,12 +19490,15 @@
         ]
       ],
       "sourceFingerprint": "c37a7b7d7dca86e444d63fa349851b822c10f95b549115c0fa7381878b5c42a5",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-ad7f3276300c45e2",
+        "tests/markup-unknown-qa.mjs#ability-sm-ad7f3276300c45e2"
       ],
       "partial": false,
       "proof": {
@@ -19429,7 +19524,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -19515,12 +19611,15 @@
         ]
       ],
       "sourceFingerprint": "91ae683e61e39b1a6acba6810b60ecbff96af347eee1dc8bf57e561729024f7d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-b493244f85db49ad",
+        "tests/markup-unknown-qa.mjs#ability-sm-b493244f85db49ad"
       ],
       "partial": false,
       "proof": {
@@ -19543,7 +19642,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -19603,12 +19703,15 @@
         ]
       ],
       "sourceFingerprint": "e43386d27b0ab9152ca95fc6455b366efc30d6af892755e61368b62428b1228d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-b8da66f5bd13419b",
+        "tests/markup-unknown-qa.mjs#ability-sm-b8da66f5bd13419b"
       ],
       "partial": false,
       "proof": {
@@ -19632,7 +19735,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -19739,12 +19843,15 @@
         ]
       ],
       "sourceFingerprint": "cff2f5e491025102b347eb0fba273867943ea069ccf2fafb99eed6703307891d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-bea60cd2a4c4448f",
+        "tests/markup-unknown-qa.mjs#ability-sm-bea60cd2a4c4448f"
       ],
       "partial": false,
       "proof": {
@@ -19769,7 +19876,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -20010,12 +20118,15 @@
         ]
       ],
       "sourceFingerprint": "76a307189438f5314fdb03801e4427744e8e97c4a216c3bb8e139e67c806c1ea",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-c4f67b7dd73c4764",
+        "tests/markup-unknown-qa.mjs#ability-sm-c4f67b7dd73c4764"
       ],
       "partial": false,
       "proof": {
@@ -20038,7 +20149,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -20463,12 +20575,15 @@
         ]
       ],
       "sourceFingerprint": "31abb28ff4dd2a4653c3f93208789c9245144e6b271f7e893ffbf4ee8a7f4a5d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-d38d7600e5de4546",
+        "tests/markup-unknown-qa.mjs#ability-sm-d38d7600e5de4546"
       ],
       "partial": false,
       "proof": {
@@ -20493,7 +20608,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -20509,12 +20625,15 @@
         ]
       ],
       "sourceFingerprint": "f405e10f4a1a2359d1a5f243dd194584b32287e8b5c7b618397e1bcd0e2707d7",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-d4eec98d015844a3",
+        "tests/markup-unknown-qa.mjs#ability-sm-d4eec98d015844a3"
       ],
       "partial": false,
       "proof": {
@@ -20539,7 +20658,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -20675,12 +20795,15 @@
         ]
       ],
       "sourceFingerprint": "e23edf90261aaea88798219d32a313a6dc16663d820b2f43633341e5a7df1325",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-dd8aeb693b58472c",
+        "tests/markup-unknown-qa.mjs#ability-sm-dd8aeb693b58472c"
       ],
       "partial": false,
       "proof": {
@@ -20704,7 +20827,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -21169,12 +21293,15 @@
         ]
       ],
       "sourceFingerprint": "688442e2f89e761476e0f98fb690af9b826b5d7370e5e8087c3fc4f539d1a4ca",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-ef122532fb1244f3",
+        "tests/markup-unknown-qa.mjs#ability-sm-ef122532fb1244f3"
       ],
       "partial": false,
       "proof": {
@@ -21197,7 +21324,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -21213,12 +21341,15 @@
         ]
       ],
       "sourceFingerprint": "b4badee34e08776e0897058293cff13d7fcd50ed9455f9b1f6fa4cd953c178ad",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-f2faaceb1f904510",
+        "tests/markup-unknown-qa.mjs#ability-sm-f2faaceb1f904510"
       ],
       "partial": false,
       "proof": {
@@ -21241,7 +21372,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -21396,12 +21528,15 @@
         ]
       ],
       "sourceFingerprint": "79784e91f53f09d23433c8db2d486bc18a6c174e80e5e9f02c2378c7f2332893",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Battle-round CP-gain process tied to the source-defined WARLORD; retain army reference text without CP automation or a physical receiver.",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#army-rule-sm-940f2057cc7c4551",
+        "tests/markup-unknown-qa.mjs#army-rule-sm-940f2057cc7c4551"
       ],
       "partial": false,
       "proof": {
@@ -21804,12 +21939,15 @@
         ]
       ],
       "sourceFingerprint": "ae5de59ed06b22cd82f5af48a395ee1b18f34272db32acc157d67c0a2c18b344",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-07f085c819ea4835",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-07f085c819ea4835"
       ],
       "partial": false,
       "proof": {
@@ -21848,12 +21986,15 @@
         ]
       ],
       "sourceFingerprint": "f7bf7e0b7b901776e76c4c5ff55e48b8602302914c6c2340f5ace7cf9c089585",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-35102c2d34334220",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-35102c2d34334220"
       ],
       "partial": false,
       "proof": {
@@ -22162,12 +22303,15 @@
         ]
       ],
       "sourceFingerprint": "ddc76a4f7e6985ce78799e58d367272304c739a51b4dc16a928960f825889e03",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-9684d98e8f664479",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-9684d98e8f664479"
       ],
       "partial": false,
       "proof": {
@@ -22340,12 +22484,15 @@
         ]
       ],
       "sourceFingerprint": "df9bc4792b0b45aa3a129167b9a6f350c9bcddea3b1d58c01c90f4e6db043440",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-e16b0f9b19fd4c33",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-e16b0f9b19fd4c33"
       ],
       "partial": false,
       "proof": {
@@ -22970,12 +23117,15 @@
         ]
       ],
       "sourceFingerprint": "de1449204a3e1b24c83d99113a0d4bed5b928a8320547cc198e741ef3c23f398",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-10ccd3b868bf41e2",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-10ccd3b868bf41e2"
       ],
       "partial": false,
       "proof": {
@@ -23003,7 +23153,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -23075,12 +23226,15 @@
         ]
       ],
       "sourceFingerprint": "4c91bc61cbfaa185dcee86ee897b4c6dbffc7622b345fea28b382605b14abc7b",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-28614fb697744ed6",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-28614fb697744ed6"
       ],
       "partial": false,
       "proof": {
@@ -23107,7 +23261,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -23631,12 +23786,15 @@
         ]
       ],
       "sourceFingerprint": "b2a6e61f7a0f7e26b489424f1781c6c9a30770d3d644e9ca1f40d09be96c880e",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-7b4f677483594724",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-7b4f677483594724"
       ],
       "partial": false,
       "proof": {
@@ -23663,7 +23821,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -24006,12 +24165,15 @@
         ]
       ],
       "sourceFingerprint": "f7cf3b5027c3cbe52ea0f809b562bb5bb6ff41ae59a6edfd42bc252317cb518f",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-9c7f16cb33a54e71",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-9c7f16cb33a54e71"
       ],
       "partial": false,
       "proof": {
@@ -24038,7 +24200,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -24214,12 +24377,15 @@
         ]
       ],
       "sourceFingerprint": "2f3447f446f210e56a790e33b6bc3bbce60d4035a135ae4496156351df0cffea",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-a9b5f170cd214ef8",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-a9b5f170cd214ef8"
       ],
       "partial": false,
       "proof": {
@@ -24248,7 +24414,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -24318,12 +24485,15 @@
         ]
       ],
       "sourceFingerprint": "3a068b47043129469fc9541dfc2e060bd1981d5a525dd8ec245c85faf3cde28d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/blood-angels/v2/generated/roster-import.json",
         "books/blood-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-d79a770177054671",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-d79a770177054671"
       ],
       "partial": false,
       "proof": {
@@ -24351,7 +24521,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "blood-angels",
@@ -60460,12 +60631,15 @@
         ]
       ],
       "sourceFingerprint": "ae5c165777c4f90d098d18fc5269e3d94151e6191191fe5a114a21c2693aecf6",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/dark-angels/v2/rule-clause-review.json"
+        "books/dark-angels/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-da-2dcf2635fcfc4fe5a1f3",
+        "tests/markup-unknown-qa.mjs#ability-da-2dcf2635fcfc4fe5a1f3"
       ],
       "partial": false,
       "proof": {
@@ -60488,7 +60662,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -60593,12 +60768,15 @@
         ]
       ],
       "sourceFingerprint": "f46a797d1b3be044cafbf81e0aa09522dc5e61150c379ffbc6baea7e4c51ae1b",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/dark-angels/v2/rule-clause-review.json"
+        "books/dark-angels/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-da-3d563ca06064460bbff9",
+        "tests/markup-unknown-qa.mjs#ability-da-3d563ca06064460bbff9"
       ],
       "partial": false,
       "proof": {
@@ -60621,7 +60799,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62065,12 +62244,15 @@
         ]
       ],
       "sourceFingerprint": "7a4f40ce8908ae94e85ce80d71b55e23e10e428bfc457458d2994712f28b7143",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/dark-angels/v2/rule-clause-review.json"
+        "books/dark-angels/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-da-d6a1f281b0734391a1f9",
+        "tests/markup-unknown-qa.mjs#ability-da-d6a1f281b0734391a1f9"
       ],
       "partial": false,
       "proof": {
@@ -62094,7 +62276,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62154,12 +62337,15 @@
         ]
       ],
       "sourceFingerprint": "242bc044e29c13ebdf65cdf68b1772101307ecff08dd35f1e4e49ad0b0a59261",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/dark-angels/v2/rule-clause-review.json"
+        "books/dark-angels/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-da-f8c4613ca22b427a8f80",
+        "tests/markup-unknown-qa.mjs#ability-da-f8c4613ca22b427a8f80"
       ],
       "partial": false,
       "proof": {
@@ -62184,7 +62370,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62246,12 +62433,15 @@
         ]
       ],
       "sourceFingerprint": "ec4764dc6ac23fa678d538cf6296c7516335fb38228a32e6d66dad879eb0af8b",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-0392756f7c5a4d57",
+        "tests/markup-unknown-qa.mjs#ability-sm-0392756f7c5a4d57"
       ],
       "partial": false,
       "proof": {
@@ -62274,7 +62464,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62290,12 +62481,15 @@
         ]
       ],
       "sourceFingerprint": "e115186c5be3622d3aa53884c996999c9dd41f615415eddfbb07eb8514a4dee3",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-06f3f2b2b22b48a4",
+        "tests/markup-unknown-qa.mjs#ability-sm-06f3f2b2b22b48a4"
       ],
       "partial": false,
       "proof": {
@@ -62318,7 +62512,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62334,12 +62529,15 @@
         ]
       ],
       "sourceFingerprint": "f386ccdc928df9a79e972fffbacc12b8c3486c6b571bbd623ced356618f80750",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-085c2275cf994ee9",
+        "tests/markup-unknown-qa.mjs#ability-sm-085c2275cf994ee9"
       ],
       "partial": false,
       "proof": {
@@ -62364,7 +62562,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62500,12 +62699,15 @@
         ]
       ],
       "sourceFingerprint": "b0e58a422632d87b5369ed15149888e64a44b4d44f2f94ec85718f77f5b1fd21",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-0ddc39d588604fde",
+        "tests/markup-unknown-qa.mjs#ability-sm-0ddc39d588604fde"
       ],
       "partial": false,
       "proof": {
@@ -62529,7 +62731,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62545,12 +62748,15 @@
         ]
       ],
       "sourceFingerprint": "0b80d4c1779e84149e200c62d5e268b878860debc8be00b6838c74fa8f7a9103",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-0f4892fe36c747b8",
+        "tests/markup-unknown-qa.mjs#ability-sm-0f4892fe36c747b8"
       ],
       "partial": false,
       "proof": {
@@ -62573,7 +62779,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62589,12 +62796,15 @@
         ]
       ],
       "sourceFingerprint": "0206ac0c65c95be816c5b04a3f7305b5bbb007a312d0f3220765a07f07049649",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-11a0d9920bb0418a",
+        "tests/markup-unknown-qa.mjs#ability-sm-11a0d9920bb0418a"
       ],
       "partial": false,
       "proof": {
@@ -62617,7 +62827,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62677,12 +62888,15 @@
         ]
       ],
       "sourceFingerprint": "75a473c83d062c84cf77f84bb68b1aebbb13392e2c134cc8ad9a68f5c32e58d0",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-19685137f0e6497a",
+        "tests/markup-unknown-qa.mjs#ability-sm-19685137f0e6497a"
       ],
       "partial": false,
       "proof": {
@@ -62705,7 +62919,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62721,12 +62936,15 @@
         ]
       ],
       "sourceFingerprint": "10ec8e9c5200c3fa24658ad3a8e7e3c065fa7c4e6ff25c1dc9639c5260aa5c94",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-1bc852ceb33c42c2",
+        "tests/markup-unknown-qa.mjs#ability-sm-1bc852ceb33c42c2"
       ],
       "partial": false,
       "proof": {
@@ -62752,7 +62970,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -62945,12 +63164,15 @@
         ]
       ],
       "sourceFingerprint": "8cec62e6d52a7cdddadd06994851d5717df2413288f28dad4f1c28e243b25750",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-2910eaf9f6b14351",
+        "tests/markup-unknown-qa.mjs#ability-sm-2910eaf9f6b14351"
       ],
       "partial": false,
       "proof": {
@@ -62973,7 +63195,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -63122,12 +63345,15 @@
         ]
       ],
       "sourceFingerprint": "a0e311b2c6b0e052694384c41c4e6cd41cca58054251a93619bfa884d77c78b0",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-34322896f9c94867",
+        "tests/markup-unknown-qa.mjs#ability-sm-34322896f9c94867"
       ],
       "partial": false,
       "proof": {
@@ -63152,7 +63378,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -63466,12 +63693,15 @@
         ]
       ],
       "sourceFingerprint": "fe97478784689d0a13d57b45520b8248d925adcc44f897aa250d025b19ee4976",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-51d60a67f0f24993",
+        "tests/markup-unknown-qa.mjs#ability-sm-51d60a67f0f24993"
       ],
       "partial": false,
       "proof": {
@@ -63494,7 +63724,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -63556,12 +63787,15 @@
         ]
       ],
       "sourceFingerprint": "b43a0b58a0d52673becb015aa89cc110cfcc2126b06f82a4f8943c4a13f57d49",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-570683b0864b41f2",
+        "tests/markup-unknown-qa.mjs#ability-sm-570683b0864b41f2"
       ],
       "partial": false,
       "proof": {
@@ -63586,7 +63820,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -63649,12 +63884,15 @@
         ]
       ],
       "sourceFingerprint": "c63780ffc3fbf9675a96cbe22446e929b2bcd9fdab0ee4ed829265dd80b2ebea",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-5b1332b320d84c1d",
+        "tests/markup-unknown-qa.mjs#ability-sm-5b1332b320d84c1d"
       ],
       "partial": false,
       "proof": {
@@ -63677,7 +63915,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -63872,12 +64111,15 @@
         ]
       ],
       "sourceFingerprint": "a9df226faa16bd10487d37b86811f0dd68d40b68e93a238e4c2cdd7195b50f95",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-61b7b22212e64e8d",
+        "tests/markup-unknown-qa.mjs#ability-sm-61b7b22212e64e8d"
       ],
       "partial": false,
       "proof": {
@@ -63900,7 +64142,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -64038,12 +64281,15 @@
         ]
       ],
       "sourceFingerprint": "10b677f88cdc198bcbdad2d0a30e53d168c241519743cf330effc1b0ef8e900d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-65002253aef041ec",
+        "tests/markup-unknown-qa.mjs#ability-sm-65002253aef041ec"
       ],
       "partial": false,
       "proof": {
@@ -64068,7 +64314,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -64084,12 +64331,15 @@
         ]
       ],
       "sourceFingerprint": "8f7bd52cb527a342d9cbfac84b4c5619149c03a2d67682c2fd5a5fcfe8347e30",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-672cd084d5ba41f0",
+        "tests/markup-unknown-qa.mjs#ability-sm-672cd084d5ba41f0"
       ],
       "partial": false,
       "proof": {
@@ -64112,7 +64362,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -64189,12 +64440,15 @@
         ]
       ],
       "sourceFingerprint": "f0f38fd7d4bb7a1a47ce7aa318cc88e8059d77bee525799bb67129ed28703bab",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-688ad5dccd464866",
+        "tests/markup-unknown-qa.mjs#ability-sm-688ad5dccd464866"
       ],
       "partial": false,
       "proof": {
@@ -64220,7 +64474,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -64319,12 +64574,15 @@
         ]
       ],
       "sourceFingerprint": "d34aa24c2fd5dfe2ae6fc59d0a2673085802551da47bf5a52512129a7d9720a9",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-6ac11fadb7fd4996",
+        "tests/markup-unknown-qa.mjs#ability-sm-6ac11fadb7fd4996"
       ],
       "partial": false,
       "proof": {
@@ -64349,7 +64607,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -64365,12 +64624,15 @@
         ]
       ],
       "sourceFingerprint": "80c86493df45c79b965f766e46b0285317660f9ea54be2a5fd56c21c140b8ad8",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-73199edf642245f5",
+        "tests/markup-unknown-qa.mjs#ability-sm-73199edf642245f5"
       ],
       "partial": false,
       "proof": {
@@ -64393,7 +64655,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -64835,12 +65098,15 @@
         ]
       ],
       "sourceFingerprint": "e5b4779434c604840a5687d2c4ce0729fc86dbe4a6d99236ed47282a964635d6",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-8af7e9233ac44749",
+        "tests/markup-unknown-qa.mjs#ability-sm-8af7e9233ac44749"
       ],
       "partial": false,
       "proof": {
@@ -64865,7 +65131,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -65003,12 +65270,15 @@
         ]
       ],
       "sourceFingerprint": "41929f68523e53bf5999bbe3d85531ca6f453366ed2e0309124543847dc18358",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-937c10c6fda940f7",
+        "tests/markup-unknown-qa.mjs#ability-sm-937c10c6fda940f7"
       ],
       "partial": false,
       "proof": {
@@ -65031,7 +65301,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -65047,12 +65318,15 @@
         ]
       ],
       "sourceFingerprint": "c0964e2eb8e3f8f7bbb435190d4bde4860f0ead39710b5aca01beb794eb63eab",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-998a121477614f78",
+        "tests/markup-unknown-qa.mjs#ability-sm-998a121477614f78"
       ],
       "partial": false,
       "proof": {
@@ -65075,7 +65349,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -65409,12 +65684,15 @@
         ]
       ],
       "sourceFingerprint": "940494a858f360c0113efb4a79bbb40413920691147cb9241c08ca7c0b2bd8cc",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-a5d5e1d025e7462d",
+        "tests/markup-unknown-qa.mjs#ability-sm-a5d5e1d025e7462d"
       ],
       "partial": false,
       "proof": {
@@ -65437,7 +65715,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -65752,12 +66031,15 @@
         ]
       ],
       "sourceFingerprint": "5248bdb2c00c443a2422430624e421f141a47d0c3fd774d84321fba930fccab8",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-ad7f3276300c45e2",
+        "tests/markup-unknown-qa.mjs#ability-sm-ad7f3276300c45e2"
       ],
       "partial": false,
       "proof": {
@@ -65783,7 +66065,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -65869,12 +66152,15 @@
         ]
       ],
       "sourceFingerprint": "62fbcac3ef947a1a2972c2b9d443ccb9e372ca5c01ce98d538c4fa4482c76b18",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-b493244f85db49ad",
+        "tests/markup-unknown-qa.mjs#ability-sm-b493244f85db49ad"
       ],
       "partial": false,
       "proof": {
@@ -65897,7 +66183,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -65957,12 +66244,15 @@
         ]
       ],
       "sourceFingerprint": "da7408ba890b24d7dc48d67b3920bc43b709e22d595f47c2231472923ccd7f14",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-b8da66f5bd13419b",
+        "tests/markup-unknown-qa.mjs#ability-sm-b8da66f5bd13419b"
       ],
       "partial": false,
       "proof": {
@@ -65986,7 +66276,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -66093,12 +66384,15 @@
         ]
       ],
       "sourceFingerprint": "ad9cd26942a91ad7fbb050ecab501ca3517565f612ef59b4b70c39c2899856ee",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-bea60cd2a4c4448f",
+        "tests/markup-unknown-qa.mjs#ability-sm-bea60cd2a4c4448f"
       ],
       "partial": false,
       "proof": {
@@ -66123,7 +66417,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -66364,12 +66659,15 @@
         ]
       ],
       "sourceFingerprint": "be1401a567e5166a9835d4a8a6524bd7e1288bd827062db235be4bf7f6c56c18",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-c4f67b7dd73c4764",
+        "tests/markup-unknown-qa.mjs#ability-sm-c4f67b7dd73c4764"
       ],
       "partial": false,
       "proof": {
@@ -66392,7 +66690,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -66817,12 +67116,15 @@
         ]
       ],
       "sourceFingerprint": "d64f537b98a986d1caa397cecbc93332a5fc982d74b33314dac7b14aa9fa9b69",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-d38d7600e5de4546",
+        "tests/markup-unknown-qa.mjs#ability-sm-d38d7600e5de4546"
       ],
       "partial": false,
       "proof": {
@@ -66847,7 +67149,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -66863,12 +67166,15 @@
         ]
       ],
       "sourceFingerprint": "42a999c5523c7c6657f82af1828d6a3fd09aa29de95dcaa48f2a958423e4b37b",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-d4eec98d015844a3",
+        "tests/markup-unknown-qa.mjs#ability-sm-d4eec98d015844a3"
       ],
       "partial": false,
       "proof": {
@@ -66893,7 +67199,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -67029,12 +67336,15 @@
         ]
       ],
       "sourceFingerprint": "3323641c6bcfd35dad5212b658aa68a401648d4e94b75f330477861d85aa708d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-dd8aeb693b58472c",
+        "tests/markup-unknown-qa.mjs#ability-sm-dd8aeb693b58472c"
       ],
       "partial": false,
       "proof": {
@@ -67058,7 +67368,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -67523,12 +67834,15 @@
         ]
       ],
       "sourceFingerprint": "63d119da0520494f9301120a7236ef78cecafec9b27dd9c524feb71c5cc97ac2",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-ef122532fb1244f3",
+        "tests/markup-unknown-qa.mjs#ability-sm-ef122532fb1244f3"
       ],
       "partial": false,
       "proof": {
@@ -67551,7 +67865,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -67567,12 +67882,15 @@
         ]
       ],
       "sourceFingerprint": "fc54b3ebe3db2a6b3cf2a97f5ab84efb7dc10c40ed5f2f496962459bf5ff21d4",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-f2faaceb1f904510",
+        "tests/markup-unknown-qa.mjs#ability-sm-f2faaceb1f904510"
       ],
       "partial": false,
       "proof": {
@@ -67595,7 +67913,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -67912,12 +68231,15 @@
         ]
       ],
       "sourceFingerprint": "cdcca9c7bbdf126c389e532fef6c27f4940df2e90f3c6e4299279a9baf295e64",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Battle-round CP-gain process tied to the source-defined WARLORD; retain army reference text without CP automation or a physical receiver.",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#army-rule-sm-940f2057cc7c4551",
+        "tests/markup-unknown-qa.mjs#army-rule-sm-940f2057cc7c4551"
       ],
       "partial": false,
       "proof": {
@@ -68268,12 +68590,15 @@
         ]
       ],
       "sourceFingerprint": "63fe251482290d0ddd1b6a59888435c1f0366b4eb68e7e1479aa8091a6096c51",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-07f085c819ea4835",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-07f085c819ea4835"
       ],
       "partial": false,
       "proof": {
@@ -68312,12 +68637,15 @@
         ]
       ],
       "sourceFingerprint": "3864d966fa17dd12f6bb020bbccfc9d2807115e77266c78e0ba254e1f06eada4",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-35102c2d34334220",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-35102c2d34334220"
       ],
       "partial": false,
       "proof": {
@@ -68626,12 +68954,15 @@
         ]
       ],
       "sourceFingerprint": "2cbf64661735f84bff70f7eefaf17968bd4c7f393e633d4b637fcd35e059313a",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-9684d98e8f664479",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-9684d98e8f664479"
       ],
       "partial": false,
       "proof": {
@@ -68804,12 +69135,15 @@
         ]
       ],
       "sourceFingerprint": "23cd8571bf8451398510199addef792c587a442dedd3a74ba815a68f49930510",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-e16b0f9b19fd4c33",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-e16b0f9b19fd4c33"
       ],
       "partial": false,
       "proof": {
@@ -69362,12 +69696,15 @@
         ]
       ],
       "sourceFingerprint": "4bea8b8fea22927bf2e0d025290e96558987f6c15055814d20646fe327fcb0dc",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-10ccd3b868bf41e2",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-10ccd3b868bf41e2"
       ],
       "partial": false,
       "proof": {
@@ -69395,7 +69732,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -69467,12 +69805,15 @@
         ]
       ],
       "sourceFingerprint": "b684835c992ae9b61946fd9c6808bfe05e4fe68754b26945f899d7611293a9c8",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-28614fb697744ed6",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-28614fb697744ed6"
       ],
       "partial": false,
       "proof": {
@@ -69499,7 +69840,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -70023,12 +70365,15 @@
         ]
       ],
       "sourceFingerprint": "5a829de5fab4495fce5295a41996964109a0cd205cfdfb6da1fb5be8faa36f97",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-7b4f677483594724",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-7b4f677483594724"
       ],
       "partial": false,
       "proof": {
@@ -70055,7 +70400,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -70398,12 +70744,15 @@
         ]
       ],
       "sourceFingerprint": "18b81241ff1756dbd8b5e98e82b90b6ac2319f3e8f3b21b0765b5416ca8546f9",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-9c7f16cb33a54e71",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-9c7f16cb33a54e71"
       ],
       "partial": false,
       "proof": {
@@ -70430,7 +70779,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -70606,12 +70956,15 @@
         ]
       ],
       "sourceFingerprint": "173cc7cd0cb3a673f50935a90eb9730b4394987e2a5e84827edd70c768ad3796",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-a9b5f170cd214ef8",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-a9b5f170cd214ef8"
       ],
       "partial": false,
       "proof": {
@@ -70640,7 +70993,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -70710,12 +71064,15 @@
         ]
       ],
       "sourceFingerprint": "5f6d36e8f4dc52fff6cfba7c772594af4159ef42ec6b393f6099d824b850165f",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-d79a770177054671",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-d79a770177054671"
       ],
       "partial": false,
       "proof": {
@@ -70743,7 +71100,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "dark-angels",
@@ -75876,12 +76234,15 @@
         ]
       ],
       "sourceFingerprint": "725c6e8a96016ef90d6689486cf52ae41a80e2db278179ec3d0d660955093aef",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Muster-legality text by product boundary: retain the mandatory WARLORD statement; no automatic assignment or new legality operation.",
       "evidence": [
         "books/dark-angels/v2/generated/roster-import.json",
         "books/dark-angels/v2/roster-runtime.mjs",
-        "books/dark-angels/v2/rule-clause-review.json"
+        "books/dark-angels/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#section-da-c36cec25932b4675ab25",
+        "tests/markup-unknown-qa.mjs#section-da-c36cec25932b4675ab25"
       ],
       "partial": false,
       "proof": {
@@ -86081,12 +86442,15 @@
         ]
       ],
       "sourceFingerprint": "7b6bd8d97f7c5292fdb936dd0ff1cab11a1b39fa542e7e3b932bfca5cf19702d",
-      "category": "UNKNOWN",
-      "reason": "Independent review proves only actor ability-use permission, not that an effect recipient is required or recorded. Scope/intended-text decision remains pending; do not invent a hard recipient GAP from actor-only wording.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/death-guard/v2/generated/rule-contract-effective.json",
         "books/death-guard/v2/generated/rule-contract-effective.json entity=datasheet-mortarion:section:3 clause=source-clause-1",
-        "books/death-guard/v2/recipient-enrollment-qa.json:883"
+        "books/death-guard/v2/recipient-enrollment-qa.json:883",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#datasheet-mortarion:section:3#/blocks/0/text",
+        "tests/markup-unknown-qa.mjs#datasheet-mortarion:section:3"
       ],
       "partial": false,
       "proof": {
@@ -86108,7 +86472,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "death-guard",
@@ -106742,12 +107107,15 @@
         ]
       ],
       "sourceFingerprint": "59d15fa99b158935900fa3ab02f885957a92dd20a04b2d24166f7251fd1d7690",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-0392756f7c5a4d57",
+        "tests/markup-unknown-qa.mjs#ability-sm-0392756f7c5a4d57"
       ],
       "partial": false,
       "proof": {
@@ -106770,7 +107138,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -106929,12 +107298,15 @@
         ]
       ],
       "sourceFingerprint": "6a5a7df328a4fc6347276ab579d9e0df843bfd8b842316dbdb0d4dc102991ec6",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-06f3f2b2b22b48a4",
+        "tests/markup-unknown-qa.mjs#ability-sm-06f3f2b2b22b48a4"
       ],
       "partial": false,
       "proof": {
@@ -106957,7 +107329,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -106973,12 +107346,15 @@
         ]
       ],
       "sourceFingerprint": "7390e9a3452c4433af6beca1a49859ed9c49dbf74ad98bc7cd84b8672dfea1ea",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-085c2275cf994ee9",
+        "tests/markup-unknown-qa.mjs#ability-sm-085c2275cf994ee9"
       ],
       "partial": false,
       "proof": {
@@ -107003,7 +107379,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -107139,12 +107516,15 @@
         ]
       ],
       "sourceFingerprint": "5dfc7edfe836410104b76d2444aaf1e9993af831a085ac799377ca55cc239ad5",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-0ddc39d588604fde",
+        "tests/markup-unknown-qa.mjs#ability-sm-0ddc39d588604fde"
       ],
       "partial": false,
       "proof": {
@@ -107168,7 +107548,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -107184,12 +107565,15 @@
         ]
       ],
       "sourceFingerprint": "4178c2e019aaf26621f2c4c2ffcb18e094fa88860a86fc0ce23843bc3a151904",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-0f4892fe36c747b8",
+        "tests/markup-unknown-qa.mjs#ability-sm-0f4892fe36c747b8"
       ],
       "partial": false,
       "proof": {
@@ -107212,7 +107596,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -107228,12 +107613,15 @@
         ]
       ],
       "sourceFingerprint": "a193330b374b608a9145e13e4b51ec952a103efb74205139de46b7f631197ea3",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-11a0d9920bb0418a",
+        "tests/markup-unknown-qa.mjs#ability-sm-11a0d9920bb0418a"
       ],
       "partial": false,
       "proof": {
@@ -107256,7 +107644,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -107316,12 +107705,15 @@
         ]
       ],
       "sourceFingerprint": "26f9dcb0b5773fe3b4bf9d4564b64f4b15295a2cdb5305d0dc6eb888c7e08e7f",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-14a8bf872f2a46b5",
+        "tests/markup-unknown-qa.mjs#ability-sm-14a8bf872f2a46b5"
       ],
       "partial": false,
       "proof": {
@@ -107344,7 +107736,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -107474,12 +107867,15 @@
         ]
       ],
       "sourceFingerprint": "4072f3027e4190447d4a1e601675e38ecbb5bb2afa765f32f10824b5d3513a05",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-19685137f0e6497a",
+        "tests/markup-unknown-qa.mjs#ability-sm-19685137f0e6497a"
       ],
       "partial": false,
       "proof": {
@@ -107502,7 +107898,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -107518,12 +107915,15 @@
         ]
       ],
       "sourceFingerprint": "d414ff2d13d536473fd1406db5010c4720f67442b121e9e664d55a5d7223be18",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-1bc852ceb33c42c2",
+        "tests/markup-unknown-qa.mjs#ability-sm-1bc852ceb33c42c2"
       ],
       "partial": false,
       "proof": {
@@ -107549,7 +107949,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -107918,12 +108319,15 @@
         ]
       ],
       "sourceFingerprint": "41218814d2e846a9c5ec87eac7eebeb98d9a479d0417f1777fab3502541e1019",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-2910eaf9f6b14351",
+        "tests/markup-unknown-qa.mjs#ability-sm-2910eaf9f6b14351"
       ],
       "partial": false,
       "proof": {
@@ -107946,7 +108350,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -108188,12 +108593,15 @@
         ]
       ],
       "sourceFingerprint": "5b1e4c7d3535eded45f3a59b630fc75f39de47c070197d40521fec8b95cf2c70",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-34322896f9c94867",
+        "tests/markup-unknown-qa.mjs#ability-sm-34322896f9c94867"
       ],
       "partial": false,
       "proof": {
@@ -108218,7 +108626,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -108667,12 +109076,15 @@
         ]
       ],
       "sourceFingerprint": "e4701c558d0c087df27fa5a203b2c70c588d063872bbb0b44bf052f35e224594",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-51d60a67f0f24993",
+        "tests/markup-unknown-qa.mjs#ability-sm-51d60a67f0f24993"
       ],
       "partial": false,
       "proof": {
@@ -108695,7 +109107,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -108757,12 +109170,15 @@
         ]
       ],
       "sourceFingerprint": "a945646547ebbf3481438565841c8ae7f95d9a2a2d83e63f4201b0fda63b9ba5",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-570683b0864b41f2",
+        "tests/markup-unknown-qa.mjs#ability-sm-570683b0864b41f2"
       ],
       "partial": false,
       "proof": {
@@ -108787,7 +109203,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -108896,12 +109313,15 @@
         ]
       ],
       "sourceFingerprint": "19f3d3adeefc047f5b3c6b3f11658031fc628bea7d0b8a68f49d30b2746d915d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-5b1332b320d84c1d",
+        "tests/markup-unknown-qa.mjs#ability-sm-5b1332b320d84c1d"
       ],
       "partial": false,
       "proof": {
@@ -108924,7 +109344,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -109254,12 +109675,15 @@
         ]
       ],
       "sourceFingerprint": "0d8e06c46cc9f9ba50c09a5e68ef28fb4e3fe1b1ccc916830dda257eee6e70c5",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-61b7b22212e64e8d",
+        "tests/markup-unknown-qa.mjs#ability-sm-61b7b22212e64e8d"
       ],
       "partial": false,
       "proof": {
@@ -109282,7 +109706,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -109298,12 +109723,15 @@
         ]
       ],
       "sourceFingerprint": "cf0f6dd5e6cfcc76b927753c0cd671d9140ae94ff1bc67a249f163ce8cc157a3",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-638ae3ccccef4192",
+        "tests/markup-unknown-qa.mjs#ability-sm-638ae3ccccef4192"
       ],
       "partial": false,
       "proof": {
@@ -109327,7 +109755,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -109509,12 +109938,15 @@
         ]
       ],
       "sourceFingerprint": "63cbc123d129f426174646d5b09607baacb83ea2f6eb1ec71fc50a1d646a10f4",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-65002253aef041ec",
+        "tests/markup-unknown-qa.mjs#ability-sm-65002253aef041ec"
       ],
       "partial": false,
       "proof": {
@@ -109539,7 +109971,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -109555,12 +109988,15 @@
         ]
       ],
       "sourceFingerprint": "0dc855c33cba7a11e614940a73d0ce0097aeb44930d2a30393321bed517c2151",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-672cd084d5ba41f0",
+        "tests/markup-unknown-qa.mjs#ability-sm-672cd084d5ba41f0"
       ],
       "partial": false,
       "proof": {
@@ -109583,7 +110019,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -109660,12 +110097,15 @@
         ]
       ],
       "sourceFingerprint": "7654fd04cf4fec0fdd9a893aadfda688d166d6fb1bed48965b90bcae20dc537d",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-688ad5dccd464866",
+        "tests/markup-unknown-qa.mjs#ability-sm-688ad5dccd464866"
       ],
       "partial": false,
       "proof": {
@@ -109691,7 +110131,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -109836,12 +110277,15 @@
         ]
       ],
       "sourceFingerprint": "646afe282316a50de48da55e9644212805484c61c6c69083cc8e25a2db4ad892",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-6ac11fadb7fd4996",
+        "tests/markup-unknown-qa.mjs#ability-sm-6ac11fadb7fd4996"
       ],
       "partial": false,
       "proof": {
@@ -109866,7 +110310,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -109928,12 +110373,15 @@
         ]
       ],
       "sourceFingerprint": "f82ed246ac025298118b2cce7ff99e0a10d82e36d39ddd1fd0681452fba207fd",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-73199edf642245f5",
+        "tests/markup-unknown-qa.mjs#ability-sm-73199edf642245f5"
       ],
       "partial": false,
       "proof": {
@@ -109956,7 +110404,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -110065,12 +110514,15 @@
         ]
       ],
       "sourceFingerprint": "d8b32f17b5479dfdf415783e2066da95df1134a6a4ac8c2727c2df79207773b6",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-797e426bbf7a4f27",
+        "tests/markup-unknown-qa.mjs#ability-sm-797e426bbf7a4f27"
       ],
       "partial": false,
       "proof": {
@@ -110095,7 +110547,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -110490,12 +110943,15 @@
         ]
       ],
       "sourceFingerprint": "90f428fd2df3f6e8fd5504d236f1ed500024d9ab9a89c436295a06ae0f215573",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-8af7e9233ac44749",
+        "tests/markup-unknown-qa.mjs#ability-sm-8af7e9233ac44749"
       ],
       "partial": false,
       "proof": {
@@ -110520,7 +110976,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -110658,12 +111115,15 @@
         ]
       ],
       "sourceFingerprint": "30b831bdeca795d445c4e9fbf1e84c22dc95546cd41f74ebb03513e2ff2125a0",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-8f0fe745c329485e",
+        "tests/markup-unknown-qa.mjs#ability-sm-8f0fe745c329485e"
       ],
       "partial": false,
       "proof": {
@@ -110687,7 +111147,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -110748,12 +111209,15 @@
         ]
       ],
       "sourceFingerprint": "d81e9de71b7a34b4eb8e161b3916f2ee0ec069880099384a635bb916618ace80",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-937c10c6fda940f7",
+        "tests/markup-unknown-qa.mjs#ability-sm-937c10c6fda940f7"
       ],
       "partial": false,
       "proof": {
@@ -110776,7 +111240,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -110792,12 +111257,15 @@
         ]
       ],
       "sourceFingerprint": "a7604113e8f9dc5f9c8fa54f5d51238ba155747b00447428ed1d7b5495d290e1",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-998a121477614f78",
+        "tests/markup-unknown-qa.mjs#ability-sm-998a121477614f78"
       ],
       "partial": false,
       "proof": {
@@ -110820,7 +111288,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -111242,12 +111711,15 @@
         ]
       ],
       "sourceFingerprint": "c7e370243a3d532c603043c04583036b7b7bd9d9c0b25b555a9d0db1f7b58987",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-a5d5e1d025e7462d",
+        "tests/markup-unknown-qa.mjs#ability-sm-a5d5e1d025e7462d"
       ],
       "partial": false,
       "proof": {
@@ -111270,7 +111742,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -111497,12 +111970,15 @@
         ]
       ],
       "sourceFingerprint": "0f2b578559508a3cde3f1fe0d95129cbbd79a6eb90f48e36ffb23bbe7cf8aa1c",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-ab47bfc3e39c4777",
+        "tests/markup-unknown-qa.mjs#ability-sm-ab47bfc3e39c4777"
       ],
       "partial": false,
       "proof": {
@@ -111529,7 +112005,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -111633,12 +112110,15 @@
         ]
       ],
       "sourceFingerprint": "e16d8b486b86054621f69280e467de4bd9350260c20d540268f1f7d49d2d678a",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-ad7f3276300c45e2",
+        "tests/markup-unknown-qa.mjs#ability-sm-ad7f3276300c45e2"
       ],
       "partial": false,
       "proof": {
@@ -111664,7 +112144,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -111750,12 +112231,15 @@
         ]
       ],
       "sourceFingerprint": "a1f0dd518591b25b692959ede82bb5943d56b1443d04ac1fbdc5f5bd3d86e1c9",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-b493244f85db49ad",
+        "tests/markup-unknown-qa.mjs#ability-sm-b493244f85db49ad"
       ],
       "partial": false,
       "proof": {
@@ -111778,7 +112262,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -111794,12 +112279,15 @@
         ]
       ],
       "sourceFingerprint": "7667da8effdb167a6ea91b9a65bc43e0458f6f5ea50fe7a6148f38563deb61d7",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-b67c5ff6ac7d4436",
+        "tests/markup-unknown-qa.mjs#ability-sm-b67c5ff6ac7d4436"
       ],
       "partial": false,
       "proof": {
@@ -111823,7 +112311,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -111883,12 +112372,15 @@
         ]
       ],
       "sourceFingerprint": "ab20a8ec188ea66370aa5ed9f06dd10f75fc32e4b5c708a062166bc14574b973",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-b8da66f5bd13419b",
+        "tests/markup-unknown-qa.mjs#ability-sm-b8da66f5bd13419b"
       ],
       "partial": false,
       "proof": {
@@ -111912,7 +112404,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -112019,12 +112512,15 @@
         ]
       ],
       "sourceFingerprint": "b5c48a25e361468a68ff7e09e15d01fe0ce0ff7a9debd1f0775deb7ab73ad937",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-bea60cd2a4c4448f",
+        "tests/markup-unknown-qa.mjs#ability-sm-bea60cd2a4c4448f"
       ],
       "partial": false,
       "proof": {
@@ -112049,7 +112545,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -112493,12 +112990,15 @@
         ]
       ],
       "sourceFingerprint": "002a6a0f01bc1851d914e750d9091629a9a479eb7ac70a500a23bb178df021f2",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-c475beedbe5748cd",
+        "tests/markup-unknown-qa.mjs#ability-sm-c475beedbe5748cd"
       ],
       "partial": false,
       "proof": {
@@ -112522,7 +113022,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -112538,12 +113039,15 @@
         ]
       ],
       "sourceFingerprint": "90a44bbd9d8f62a7c34d6b874ef60afdcb63a221ae7e0dc8b70f0ed4d5acb3fd",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-c4f67b7dd73c4764",
+        "tests/markup-unknown-qa.mjs#ability-sm-c4f67b7dd73c4764"
       ],
       "partial": false,
       "proof": {
@@ -112566,7 +113070,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -113035,12 +113540,15 @@
         ]
       ],
       "sourceFingerprint": "431c70d0c6432b3e061f05cade0fd198e2ced0cb35b15443e5cef65a6e3626f1",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-d38d7600e5de4546",
+        "tests/markup-unknown-qa.mjs#ability-sm-d38d7600e5de4546"
       ],
       "partial": false,
       "proof": {
@@ -113065,7 +113573,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -113081,12 +113590,15 @@
         ]
       ],
       "sourceFingerprint": "8cef670263863017e0890b8b872eb7212fa7a1d6ca4aa432576e55e756dc3acc",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-d4eec98d015844a3",
+        "tests/markup-unknown-qa.mjs#ability-sm-d4eec98d015844a3"
       ],
       "partial": false,
       "proof": {
@@ -113111,7 +113623,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -113294,12 +113807,15 @@
         ]
       ],
       "sourceFingerprint": "bbd456a1e79ad70d3de5eb77b12beeda3121aadb949caa042936d154fba56762",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-dd8aeb693b58472c",
+        "tests/markup-unknown-qa.mjs#ability-sm-dd8aeb693b58472c"
       ],
       "partial": false,
       "proof": {
@@ -113323,7 +113839,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -113747,12 +114264,15 @@
         ]
       ],
       "sourceFingerprint": "1b13b44618ec6ca9b4ba821bb25a908f7e5b55e7dfa1e575cdb232d47a985eb4",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-e39391c12ebf4783",
+        "tests/markup-unknown-qa.mjs#ability-sm-e39391c12ebf4783"
       ],
       "partial": false,
       "proof": {
@@ -113777,7 +114297,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -113837,12 +114358,15 @@
         ]
       ],
       "sourceFingerprint": "323b953b953c854c4b78faf0ff5b4c15b2970bd6463f277856d4258a6675b2fc",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-e4d56c22d796448a",
+        "tests/markup-unknown-qa.mjs#ability-sm-e4d56c22d796448a"
       ],
       "partial": false,
       "proof": {
@@ -113866,7 +114390,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -114107,12 +114632,15 @@
         ]
       ],
       "sourceFingerprint": "3df95b24393a7330b4e1e752291361791be7d752617c6130b277a605cb4ffab3",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-ef122532fb1244f3",
+        "tests/markup-unknown-qa.mjs#ability-sm-ef122532fb1244f3"
       ],
       "partial": false,
       "proof": {
@@ -114135,7 +114663,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -114151,12 +114680,15 @@
         ]
       ],
       "sourceFingerprint": "c79031f0629cddc27a67a34b9c58caedc583a439d0ee5ec25e12c5ceca7e1ec8",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#ability-sm-f2faaceb1f904510",
+        "tests/markup-unknown-qa.mjs#ability-sm-f2faaceb1f904510"
       ],
       "partial": false,
       "proof": {
@@ -114179,7 +114711,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -114334,12 +114867,15 @@
         ]
       ],
       "sourceFingerprint": "bc7bbb61d8aa9737144762dc3b1fbc6008845fc6b9effab0d30593e78987a75c",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Muster-legality text by product boundary: New Recruit owns army construction; no chapter validator is introduced.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#army-rule-sm-0fc8f686c793466d",
+        "tests/markup-unknown-qa.mjs#army-rule-sm-0fc8f686c793466d"
       ],
       "partial": false,
       "proof": {
@@ -114380,12 +114916,15 @@
         ]
       ],
       "sourceFingerprint": "2d314d9a1f3e554874e0ef064945639b270ac22f40b527202cc52b5150843356",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Battle-round CP-gain process tied to the source-defined WARLORD; retain army reference text without CP automation or a physical receiver.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#army-rule-sm-940f2057cc7c4551",
+        "tests/markup-unknown-qa.mjs#army-rule-sm-940f2057cc7c4551"
       ],
       "partial": false,
       "proof": {
@@ -114470,12 +115009,15 @@
         ]
       ],
       "sourceFingerprint": "42ce39a7e63f896e5111d5228072ef04966c8920de1bac0e37204c0181e8a1f3",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Battle move/disembark reference: preserve source eligibility and timing without assuming battlefield transport membership.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#army-rule-sm-d89535ff956e42f4",
+        "tests/markup-unknown-qa.mjs#army-rule-sm-d89535ff956e42f4"
       ],
       "partial": false,
       "proof": {
@@ -114664,12 +115206,15 @@
         ]
       ],
       "sourceFingerprint": "8287c540749e987aeb7fb4b182953088d57ece0aa250b2bef786fc977f683bc4",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-07f085c819ea4835",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-07f085c819ea4835"
       ],
       "partial": false,
       "proof": {
@@ -114708,12 +115253,15 @@
         ]
       ],
       "sourceFingerprint": "5f758a6e8aad62e5acea859878a21992a3d72c8019c3325090b9de0b2517d32b",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-35102c2d34334220",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-35102c2d34334220"
       ],
       "partial": false,
       "proof": {
@@ -115118,12 +115666,15 @@
         ]
       ],
       "sourceFingerprint": "9969f3a73d3b59463a90a2bc88c2d18948569e61de5b6690a4b9b1465bcaddd6",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-9684d98e8f664479",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-9684d98e8f664479"
       ],
       "partial": false,
       "proof": {
@@ -115350,12 +115901,15 @@
         ]
       ],
       "sourceFingerprint": "cd3d2698a6b7590fbec7a97637682f27756c178fa0d9838238f821ba4c0ee292",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-c3bc7e5bc3614044",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-c3bc7e5bc3614044"
       ],
       "partial": false,
       "proof": {
@@ -115440,12 +115994,15 @@
         ]
       ],
       "sourceFingerprint": "ca59e21d75bd100fb261bc59bdfc7e0c0fd5f49341d43b21d229d9b43017e3e8",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-e16b0f9b19fd4c33",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-e16b0f9b19fd4c33"
       ],
       "partial": false,
       "proof": {
@@ -115673,12 +116230,15 @@
         ]
       ],
       "sourceFingerprint": "e04f8b8abb2bb20a12f9e1b08a34ecd9f82d4dc84fd7d596ef230ee4d376b0ca",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Selected army/detachment process permission: deliberate existing reference text; no physical UNIT result or new execution is asserted.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#detachment-rule-sm-fde58708196e49d6",
+        "tests/markup-unknown-qa.mjs#detachment-rule-sm-fde58708196e49d6"
       ],
       "partial": false,
       "proof": {
@@ -115875,12 +116435,15 @@
         ]
       ],
       "sourceFingerprint": "60ff8917d05dfce90f029c41902e283a56452fb0d189e52b7b1cb8de40c4f433",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-10ccd3b868bf41e2",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-10ccd3b868bf41e2"
       ],
       "partial": false,
       "proof": {
@@ -115908,7 +116471,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -116084,12 +116648,15 @@
         ]
       ],
       "sourceFingerprint": "d204675321e3985a528a05e14dfdaae91516ff1b101f97811c311a59ad4d0e56",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-28614fb697744ed6",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-28614fb697744ed6"
       ],
       "partial": false,
       "proof": {
@@ -116116,7 +116683,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -116346,12 +116914,15 @@
         ]
       ],
       "sourceFingerprint": "0aa27c32774d6b88cc5836bbdac5d6c76dad785f9381e0ed1835e8b832503a80",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-342e2e30f21f4ea7",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-342e2e30f21f4ea7"
       ],
       "partial": false,
       "proof": {
@@ -116379,7 +116950,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -117130,12 +117702,15 @@
         ]
       ],
       "sourceFingerprint": "d35ac804521e0003fbce64f568d16a4ff45fd6eba7b2aef5d929f9ce55adbb44",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-7b4f677483594724",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-7b4f677483594724"
       ],
       "partial": false,
       "proof": {
@@ -117162,7 +117737,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -117665,12 +118241,15 @@
         ]
       ],
       "sourceFingerprint": "c231327b3c82c4f3aa20fd1c0494a7c694a44cf8b0c18f1d0778e10533aa866f",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-9c7f16cb33a54e71",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-9c7f16cb33a54e71"
       ],
       "partial": false,
       "proof": {
@@ -117697,7 +118276,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -117975,12 +118555,15 @@
         ]
       ],
       "sourceFingerprint": "72223c3af22f90dd6f1cedf3102a8c8e69c4fad47bdbf59ea870cf1e6c9aac4c",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-a9b5f170cd214ef8",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-a9b5f170cd214ef8"
       ],
       "partial": false,
       "proof": {
@@ -118009,7 +118592,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -118028,12 +118612,15 @@
         ]
       ],
       "sourceFingerprint": "fa77493bfe042b38c1d4a700ee422f73508e1b65231f44a8d9a3eb0113cc4dce",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-b83286afe07645eb",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-b83286afe07645eb"
       ],
       "partial": false,
       "proof": {
@@ -118061,7 +118648,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -118187,12 +118775,15 @@
         ]
       ],
       "sourceFingerprint": "7cebf4f40ec2c309a4dd44597ef027b667eded3632c68d124c253474eb74c0e7",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-cb0f3a594ea44264",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-cb0f3a594ea44264"
       ],
       "partial": false,
       "proof": {
@@ -118220,7 +118811,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -118290,12 +118882,15 @@
         ]
       ],
       "sourceFingerprint": "d284e4846f01493f7d9f26a6495270d5369979de6bc4421c37567f46c3714cac",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-d79a770177054671",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-d79a770177054671"
       ],
       "partial": false,
       "proof": {
@@ -118323,7 +118918,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -118681,12 +119277,15 @@
         ]
       ],
       "sourceFingerprint": "a7b443362efcc5fed6f52790ffa6d763902abd7ba213cec61b990fbb899c7654",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "battlefield-dependent; owner-only (owner decision 2026-11-20)",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#enhancement-sm-fb4229dbc220421a",
+        "tests/markup-unknown-qa.mjs#enhancement-sm-fb4229dbc220421a"
       ],
       "partial": false,
       "proof": {
@@ -118714,7 +119313,8 @@
         "attachmentPermission": false,
         "providedWeapon": false,
         "physicalComputers": []
-      }
+      },
+      "presentationScope": "OWNER_ONLY"
     },
     {
       "book": "space-marines",
@@ -123854,12 +124454,15 @@
         ]
       ],
       "sourceFingerprint": "e5ecdb34965643dcc1bf3cf9a01420f4c8938273b960e51d1d742b5822c58081",
-      "category": "UNKNOWN",
-      "reason": "No deliberate text-only decision or complete supported native execution/recipient evidence established.",
+      "category": "TEXT_ONLY_INTENDED",
+      "reason": "Muster-legality text by product boundary: retain the mandatory WARLORD statement; no automatic assignment or new legality operation.",
       "evidence": [
         "books/space-marines/v2/generated/roster-import.json",
         "books/space-marines/v2/roster-runtime.mjs",
-        "books/space-marines/v2/rule-clause-review.json"
+        "books/space-marines/v2/rule-clause-review.json",
+        "f8694aefa39e996b9a3d4e0e14072b62b8c3e9e1:docs/reviews/markup-unknown-2026-11-21/PROPOSALS.json",
+        "tools/markup-census/unknown-review.v1.json#section-sm-9343b4749f1f4c4c",
+        "tests/markup-unknown-qa.mjs#section-sm-9343b4749f1f4c4c"
       ],
       "partial": false,
       "proof": {

@@ -152,6 +152,18 @@ route for a unit/model owner-only decision fails the census and requires owner
 review. Existing transferred texts in the separate recipient audit are unchanged
 and await the owner's review; this closure does not silently repair them.
 
+The owner-approved UNKNOWN review of 2026-11-21 records 156 deliberate text-only
+decisions without changing Army Book data, effects or presentation.
+`tools/markup-census/unknown-review.v1.json` preserves the exact reviewed source
+and binding fingerprints, physical scope, reasons and remaining 15 named next
+steps. The census JSON/Markdown report exposes those next steps separately from
+the immutable historical debt rows. Do not overwrite the original baseline or
+the remaining debt reasons/actions. `UNKNOWN_REVIEW_CHANGED` or
+`UNKNOWN_REVIEW_MISMATCH` requires a new source/decision review; never repin the
+approval fingerprint to silence a failure. Run `npm run test:markup-unknown`
+with the existing census and owner-only controls. The review closes annotation
+debt, not battle automation or a new recipient route.
+
 ## What the command selects
 
 `--book=<id>` runs the declared book chain and its declared dependants. `--all`
