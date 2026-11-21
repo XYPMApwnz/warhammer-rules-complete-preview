@@ -193,6 +193,14 @@ reconstructs the exact old full fingerprint. All other factual bytes stay pinned
 a rule, characteristic or unrelated metadata change still requires explicit
 review. This does not refresh source-review acceptance or rewrite rule clauses.
 
+On a player's first visit, the working screen opens before the offline package
+finishes downloading. “Preparing offline access…” becomes “Ready for offline
+use” when all mandatory files of that revision have been verified. Ask players
+to wait for Ready before disconnecting. “Offline access not ready — will retry”
+means the current screen can still be used online; reconnect to resume the
+download. Previously opened books and saved rosters remain subject to browser
+storage retention. Updates on a working screen still require confirmation.
+
 `--out=E:/Warhammer/qa-evidence/my-update` retains Markdown, JSON and child logs
 outside the checkout. Scratch files use the project's QA temporary directory;
 `QA_TMP_ROOT` may select another external project directory. `--help` lists the

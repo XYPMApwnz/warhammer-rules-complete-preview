@@ -112,6 +112,14 @@ For independent unified V2 certification of Core, DG, AdMech and CSM, follow the
 
 ## Expansion rules
 
+- First-load/offline changes: quick and pre-ff include revision-scoped cache,
+  package URL-stamp, coherent-core and visible-unit-art negative controls.
+  Runtime packaging QA independently checks native module links, core hashes
+  and the update helper's HTML integrity attribute. Browser tests distinguish
+  interactive readiness from complete verified offline preparation; assertions
+  about offline behavior wait for the latter explicitly. Targeted commands:
+  `npm run test:fast-first-load` and `npm run test:fast-first-load-browser`.
+
 - Import/Attachment Setup copy: `npm run test:import-messages` checks all nine books, exact native choice values, saved-state preservation and player-facing messages at 390/1440. The unit and browser checks also run sequentially in pre-FF. Browser negative controls: `node v2/import-messages-browser-qa.mjs --book=death-guard --widths=390 --mutation=label` (or `--mutation=option`) must fail the visible-copy guard.
 
 - SM changes expand to DA/BA only when inherited facts, exclusions, overrides, relations, effects, points, or publication membership can change.

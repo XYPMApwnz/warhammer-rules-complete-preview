@@ -2,8 +2,9 @@
   "name": "warhammer-rules-complete-preview",
   "private": true,
   "devDependencies": {
-    "playwright": "1.61.1",
-    "esbuild": "0.28.2"
+    "acorn": "8.19.0",
+    "esbuild": "0.28.2",
+    "playwright": "1.61.1"
   },
   "scripts": {
     "test:polish-6": "node tests/source-metadata-build-qa.mjs && node books/shared/application-v2/source-metadata-qa.mjs && node books/shared/army-book-app-v2/model-base-caption-qa.mjs && node books/shared/army-book-app-v2/import-notices-qa.mjs && node books/shared/army-book-app-v2/rule-term-visibility-qa.mjs && node books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
@@ -31,7 +32,9 @@
     "architecture:check": "node tests/architecture-conformance-gate.mjs",
     "test:core-drawer": "node tests/browser/core-drawer-accessibility.mjs",
     "test:pwa": "node tests/minimal-pwa-cache-qa.mjs && node v2/pwa-transition-qa.mjs",
-    "test:pwa-update": "node tests/browser/pwa-update-flow.mjs && npm run test:pwa-bootstrap && npm run test:startup-precache",
+    "test:pwa-update": "node tests/browser/pwa-update-flow.mjs && npm run test:pwa-bootstrap && npm run test:startup-precache && npm run test:fast-first-load-browser",
+    "test:fast-first-load": "node tests/fast-first-load-cache-qa.mjs && node tests/helper-offline-status-instance-qa.mjs && node tests/runtime-url-stamps-qa.mjs && node tests/packaged-bootstrap-qa.mjs --self-test && node books/shared/army-book-app-v2/unit-art-visibility-qa.mjs",
+    "test:fast-first-load-browser": "node tests/browser/fast-first-load.mjs",
     "test:pwa-bootstrap": "node tests/browser/pwa-bootstrap-update.mjs",
     "test:startup-precache": "node tests/startup-precache-qa.mjs",
     "test:sweep-polish": "node v2/sweep-polish-qa.mjs && node v2/sweep-polish-browser-qa.mjs",

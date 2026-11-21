@@ -10,6 +10,7 @@ import {fileURLToPath} from 'node:url';
 import {buildPagesRuntimePackage} from '../../tools/pages-runtime-package.mjs';
 import {readCacheRevision,writeCacheRevision} from '../../tools/cache-revision.mjs';
 import {launchChromium} from '../helpers/browser-launch.mjs';
+import {waitForPreparedOffline} from '../helpers/prepared-offline.mjs';
 import {createQaEvidenceDir,createQaTempDir} from '../helpers/qa-temp.mjs';
 
 const args=process.argv.slice(2),rootFlag=args.indexOf('--product-root');
@@ -27,6 +28,9 @@ const staleRevision='cccccccccccccccc';assert(![aRevision,bRevision].includes(st
 const report={source,publication,aRevision,bRevision,results:[]},prefix='/warhammer-rules-complete-preview/';
 let generation='A',failBoot=false,holdBoot=false,staleHtmlResponses=0,staleHtmlServed=0,staleDeclaredRevision=staleRevision,browser;
 const heldBoot=[];
+const startupDependency='books/shared/application-v2/runtime.mjs';
+assert(fs.readFileSync(path.join(A,'v2/boot.mjs'),'utf8').includes('../'+startupDependency),
+  'The fault target must be a real direct boot import, not an optional screen resource');
 const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.webmanifest':'application/manifest+json'};
 const server=http.createServer((request,response)=>{
   const url=new URL(request.url,'http://localhost');
@@ -40,8 +44,8 @@ const server=http.createServer((request,response)=>{
     let file=path.resolve(root,url.pathname.slice(prefix.length));
     assert(file===root||file.startsWith(root+path.sep));
     if(fs.statSync(file).isDirectory())file=path.join(file,'index.html');
-    if(holdBoot&&url.pathname.endsWith('/v2/boot.mjs')){heldBoot.push({response,file});return;}
-    if(failBoot&&url.pathname.endsWith('/v2/boot.mjs')){
+    if(holdBoot&&url.pathname.endsWith('/'+startupDependency)){heldBoot.push({response,file});return;}
+    if(failBoot&&url.pathname.endsWith('/'+startupDependency)){
       response.writeHead(503,{'content-type':'text/plain','cache-control':'no-store'});response.end('Injected startup module outage');return;
     }
     let bytes=fs.readFileSync(file);
@@ -125,13 +129,35 @@ async function seed(context){
   generation='A';failBoot=false;
   const page=await context.newPage();page.setDefaultTimeout(15000);
   await go(page);await workerIs(page,aRevision);
+  await waitForPreparedOffline(page);
   await page.evaluate(()=>{localStorage.setItem('pwa-bootstrap-settings',JSON.stringify({theme:'dark',language:'en',size:17}));localStorage.setItem('pwa-bootstrap-sentinel','preserve all local data');});
   return page;
 }
 async function prepareB(page){
   generation='B';await page.evaluate(async()=>{const registration=await navigator.serviceWorker.getRegistration();await registration.update();});
   const state=await workerIs(page,bRevision,{waiting:true});
+  await waitForPreparedOffline(page,{waiting:true});
   assert.equal(state.active,aRevision,'A working screen must keep its active publication');
+}
+// A verified cached boot correctly survives a network outage. To exercise
+// the existing startup-failure assertions, make one non-core boot dependency
+// genuinely unavailable without invalidating the verified activation core.
+async function removePreparedStartupDependency(page){
+  const removed=await page.evaluate(async ({revision,relative})=>{
+    const waiting=(await navigator.serviceWorker.getRegistration()).waiting;
+    if(!waiting)throw Error('Fault requires the prepared waiting publication');
+    const version=await new Promise(resolve=>{
+      const channel=new MessageChannel();channel.port1.onmessage=event=>{channel.port1.close();resolve(event.data);};
+      waiting.postMessage({type:'GET_VERSION'},[channel.port2]);
+    });
+    if(version.revision!==revision||!version.cacheName)throw Error('Fault publication is not the expected B');
+    const cache=await caches.open(version.cacheName);let count=0;
+    for(const request of await cache.keys())if(new URL(request.url).pathname.endsWith('/'+relative)){
+      if(await cache.delete(request))count++;
+    }
+    return count;
+  },{revision:bRevision,relative:startupDependency});
+  assert.equal(removed,1,'Fault must remove exactly the prepared non-core startup dependency');
 }
 async function assertFailure(page,label,timeout=15000){
   await poll(page,()=>document.body.dataset.pwaBootstrapState==='failed',undefined,timeout);
@@ -152,14 +178,31 @@ try{
       await installer.goto(entry.replace('/v2/app.html','/installation-probe.html'));
       await installer.evaluate(async()=>{await navigator.serviceWorker.register('./service-worker.js',{updateViaCache:'none'});await navigator.serviceWorker.ready;localStorage.setItem('pwa-fresh-install-setting','preserve before first application start');});
       await workerIs(installer,aRevision);const before=await storage(installer);
+      await waitForPreparedOffline(installer);
+      await installer.evaluate(async revision=>{
+        const worker=(await navigator.serviceWorker.getRegistration()).active;
+        const version=await new Promise(resolve=>{const channel=new MessageChannel();channel.port1.onmessage=event=>{channel.port1.close();resolve(event.data);};worker.postMessage({type:'GET_VERSION'},[channel.port2]);});
+        if(version.revision!==revision)throw Error('Positive boot control requires the current active revision');
+        const cache=await caches.open(version.cacheName),url=new URL('./v2/boot.mjs',location.href);
+        const response=await cache.match(url);
+        if(!response)throw Error('Positive boot control requires a prepared boot.mjs');
+        const source=await(await fetch('./glossary/generated/cache-revision.js',{cache:'no-store'})).text();
+        const inventory=JSON.parse(source.match(/self\.WH40K_RUNTIME_ASSETS=(.*);\n/)[1]);
+        const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',await response.arrayBuffer()))].map(value=>value.toString(16).padStart(2,'0')).join('');
+        if(hash!==inventory['v2/boot.mjs'].sha256)throw Error('Positive boot control requires hash-verified boot.mjs');
+      },aRevision);
       assert.equal(await installer.evaluate(()=>typeof window.WarhammerAppV2),'undefined','Installation must not warm the application module graph online');
       await context.setOffline(true);
-      const page=await context.newPage();await page.goto(entry,{waitUntil:'load'});await ready(page);await workerIs(page,aRevision);
+      const page=await context.newPage();let cachedBootServed=false;
+      page.on('response',response=>{const url=new URL(response.url());if(url.pathname.endsWith('/v2/boot.mjs')&&url.searchParams.get('wh-pwa')===aRevision&&response.status()===200&&response.fromServiceWorker())cachedBootServed=true;});
+      await page.goto(entry,{waitUntil:'load'});await ready(page);await workerIs(page,aRevision);
+      assert(cachedBootServed,'Verified current-revision boot.mjs must start the application with the network unavailable');
       await page.locator('[data-v2-destination="ROSTER"]').click();await page.evaluate(()=>WarhammerAppV2.ready);
       assert.equal(await page.locator('[data-v2-book]').count(),9,'The first offline launch must offer all nine books without fetching lazy book payloads');
       assert.deepEqual(await storage(page),before);assert.deepEqual((await observations(page)).activations,[]);
       await page.screenshot({path:path.join(out,'fresh-install-first-offline-startup-390.png'),fullPage:true});
       report.results.push({case:'fresh installation only, no online app warmup, then first offline Home and nine-book chooser startup',status:'PASS'});
+      report.results.push({case:'hash-verified boot.mjs of the current revision starts the site with the network unavailable',status:'PASS'});
     }finally{await context.close();}
   }
   {
@@ -377,7 +420,7 @@ try{
     const context=await contextFor();
     try{
       const page=await seed(context),before=await storage(page);await prepareB(page);
-      holdBoot=true;await page.reload({waitUntil:'commit'});
+      await removePreparedStartupDependency(page);holdBoot=true;await page.reload({waitUntil:'commit'});
       await poll(page,()=>document.body.dataset.pwaBootstrapState==='failed',null,40000);
       await assertFailure(page,'boot-module-stalled');await workerIs(page,bRevision);
       const failed=await observations(page);assert.deepEqual(failed.activations,[bRevision]);
@@ -397,7 +440,7 @@ try{
     const context=await contextFor();
     try{
       const page=await seed(context),before=await storage(page);await prepareB(page);
-      failBoot=true;await page.reload({waitUntil:'load'});await assertFailure(page,'boot-module-unavailable');await workerIs(page,bRevision);
+      await removePreparedStartupDependency(page);failBoot=true;await page.reload({waitUntil:'load'});await assertFailure(page,'boot-module-unavailable');await workerIs(page,bRevision);
       const log=await observations(page);assert.deepEqual(log.activations,[bRevision]);
       failBoot=false;await page.locator('[data-pwa-update-action]').click();await ready(page);
       assert.equal((await observations(page)).activations.length,1,'Retrying a failed module must not reactivate the same worker');
