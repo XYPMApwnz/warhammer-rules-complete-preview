@@ -1,0 +1,14 @@
+docs/UPDATING.md                           |   12 +
+ docs/codex/QA_MATRIX.md                    |    6 +
+ package.json                               |    1 +
+ tests/markup-unknown-qa.mjs                |  954 +++++
+ tools/markup-census.mjs                    |    7 +-
+ tools/markup-census/check.mjs              |    2 +-
+ tools/markup-census/closures.v1.json       | 2964 +++++++++++++++
+ tools/markup-census/debt.v1.json           | 1316 +------
+ tools/markup-census/decisions.v1.json      | 1811 ++++++---
+ tools/markup-census/evidence.mjs           |    2 +
+ tools/markup-census/unknown-review.mjs     |   70 +
+ tools/markup-census/unknown-review.v1.json | 5518 ++++++++++++++++++++++++++++
+ tools/qa-queue.mjs                         |    1 +
+ 13 files changed, 10776 insertions(+), 1888 deletions(-)

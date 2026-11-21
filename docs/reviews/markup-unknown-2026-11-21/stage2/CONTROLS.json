@@ -1,0 +1,378 @@
+{
+  "status": "PASS",
+  "total": 62,
+  "controls": [
+    {
+      "suite": "unknown-review",
+      "name": "missing reviewed named source",
+      "code": "UNKNOWN_REVIEW_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "duplicate source identity",
+      "code": "DUPLICATE_ID",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "stale review source fingerprint",
+      "code": "UNKNOWN_REVIEW_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "changed exact source field",
+      "code": "UNKNOWN_REVIEW_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "missing approved UNKNOWN next step",
+      "code": "UNKNOWN_NEXT_STEP",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "arbitrary UNKNOWN next step",
+      "code": "UNKNOWN_REVIEW_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "owner-only forged army scope",
+      "code": "UNKNOWN_REVIEW_SCOPE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "missing exact current category",
+      "code": "UNCLASSIFIED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "stale actual native source",
+      "code": "STALE_DECISION",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "review cannot authorize another category",
+      "code": "UNKNOWN_REVIEW_MISMATCH",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "owner-only foreign physical receiver",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "text-only approval cannot add an executable operation",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "closed source silently retained as active debt",
+      "code": "UNKNOWN_DEBT_MISMATCH",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "forged owner-review authority",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "forged approval source",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "wrong canonical source",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "wrong clause identity",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "unknown-review",
+      "name": "wrong binding fingerprint",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "missing reviewed category",
+      "code": "UNCLASSIFIED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "stale accepted source fingerprint",
+      "code": "STALE_DECISION",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "new GAP outside exact named debt",
+      "code": "NEW_DEBT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "actual INITIAL_ATTACHMENT computer removed from EXECUTED",
+      "code": "MISSING_COMPUTER",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "actual physical-equipment binder removed from EXECUTED",
+      "code": "MISSING_COMPUTER",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "actual accepted source text field lost",
+      "code": "SOURCE_FIELD_LOSS",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "new named rule cannot hide in a known excluded native kind",
+      "code": "INCOMPLETE_DENOMINATOR",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "new source rule field outside the recognized blocks is not omitted",
+      "code": "INCOMPLETE_DENOMINATOR",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "new native rule without decision",
+      "code": "UNCLASSIFIED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "duplicate physical rule occurrence",
+      "code": "DUPLICATE_ID",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "accepted rule disappears without retirement",
+      "code": "SOURCE_FIELD_LOSS",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "historical debt item deleted to improve percentage",
+      "code": "BASELINE_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "active debt removed without evidence",
+      "code": "UNEXPLAINED_DEBT_REMOVAL",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "closure without a fixture",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "unrelated test cannot close debt",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-census",
+      "name": "real unrelated test/common-word identity cannot close debt",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "owner-only cannot be relabelled recipients-only",
+      "code": "OWNER_ONLY_CATEGORY",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "physical ability cannot forge army recipient scope",
+      "code": "OWNER_ONLY_SCOPE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "reviewed presentation scope cannot disappear",
+      "code": "OWNER_ONLY_SCOPE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "forged army kind cannot bypass the actual native ability kind",
+      "code": "IDENTITY_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "army-owned rule cannot silently lose its clarified recipient scope",
+      "code": "OWNER_ONLY_SCOPE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "missing native diagnostic is not assumed owner-only",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "real canonical UNIT FORMED recipient admitted even after proof refresh",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "actual source-model radius admission added to canonical clause",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "foreign related-target route cannot inherit owner-only review",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "new F1 recipient path requires review",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "separate roster conditional-policy consumer is also guarded",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "additional declaration effect cannot hide behind dormant ROLE admission",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "text-only review does not authorize executable leakage",
+      "code": "OWNER_ONLY_RECIPIENT",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "actual consumer necessary admission gate changes",
+      "code": "OWNER_ONLY_CONSUMER_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "actual private leaves helper changes",
+      "code": "OWNER_ONLY_CONSUMER_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "missing or ambiguous private helper fails closed",
+      "code": "OWNER_ONLY_CONSUMER_CHANGED",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "wrong decision date",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "stale source fingerprint",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "wrong exact source field",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "wrong exact clause set",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "wrong canonical source identity",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "duplicate reviewed identity",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "owner-only false for a physical ability",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "forged fixture presentation scope",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "forged fixture army kind",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "missing fixture scope clarification",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "wrong decision authority",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    },
+    {
+      "suite": "existing-owner-only",
+      "name": "missing reviewed source manifest",
+      "code": "MISSING_CLOSURE_EVIDENCE",
+      "status": "DETECTED"
+    }
+  ]
+}

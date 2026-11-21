@@ -1,0 +1,54 @@
+[
+  {
+    "id": "unknown-review",
+    "command": [
+      "node",
+      "tests/markup-unknown-qa.mjs"
+    ],
+    "status": "PASS",
+    "elapsedMs": 11069,
+    "exitCode": 0
+  },
+  {
+    "id": "census",
+    "command": [
+      "node",
+      "tools/markup-census.mjs",
+      "--check",
+      "--report=E:/Warhammer/qa-evidence/markup-unknown-v1-2026-11-21/stage2/CENSUS_AFTER.json"
+    ],
+    "status": "PASS",
+    "elapsedMs": 9828,
+    "exitCode": 0
+  },
+  {
+    "id": "existing-census",
+    "command": [
+      "node",
+      "tests/markup-census-qa.mjs"
+    ],
+    "status": "PASS",
+    "elapsedMs": 12201,
+    "exitCode": 0
+  },
+  {
+    "id": "existing-evidence",
+    "command": [
+      "node",
+      "tests/markup-evidence-qa.mjs"
+    ],
+    "status": "PASS",
+    "elapsedMs": 218,
+    "exitCode": 0
+  },
+  {
+    "id": "existing-owner-only",
+    "command": [
+      "node",
+      "tests/markup-owner-only-qa.mjs"
+    ],
+    "status": "PASS",
+    "elapsedMs": 11531,
+    "exitCode": 0
+  }
+]
