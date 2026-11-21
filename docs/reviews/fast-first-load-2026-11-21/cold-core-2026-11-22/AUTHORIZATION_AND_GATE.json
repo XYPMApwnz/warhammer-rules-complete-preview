@@ -1,0 +1,130 @@
+{
+  "status": "PASS",
+  "decision": "PROCEED_AUTHORIZED_FULL_PREF_F_RUN_2",
+  "sourceSha": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "sourceTree": "da8c50ac5d749149e7f46572db8282c91bed43b1",
+  "originalFullRun": {
+    "passed": 208,
+    "failed": 1,
+    "path": "preff/RESULTS.json"
+  },
+  "ownerAuthorization": "One additional full qa:pre-ff on exact e08ec20d after cold Fast4G comparison; STOP without pre-FF if branch worse. If full again fails only Core timeout, STOP; no third full run.",
+  "authorizedAdditionalRuns": 1,
+  "fullRunNumber": 2,
+  "gateValidatedAt": "2026-11-21T22:49:29.316191+00:00",
+  "comparison": [
+    {
+      "width": 1440,
+      "base": {
+        "attempts": 10,
+        "pass": 10,
+        "fail": 0,
+        "medianMs": 5576.0850830078125,
+        "maxMs": 5656.76220703125,
+        "successfulLatenciesMs": [
+          5576.051513671875,
+          5499.474853515625,
+          5477.81494140625,
+          5607.54443359375,
+          5605.45703125,
+          5656.76220703125,
+          5613.208984375,
+          5559.46923828125,
+          5522.535400390625,
+          5576.11865234375
+        ],
+        "backgroundAtCoreClick": 0,
+        "backgroundUnknown": 0
+      },
+      "head": {
+        "attempts": 10,
+        "pass": 10,
+        "fail": 0,
+        "medianMs": 2805.378662109375,
+        "maxMs": 2826.8076171875,
+        "successfulLatenciesMs": [
+          2804.598388671875,
+          2801.677490234375,
+          2806.49853515625,
+          2826.8076171875,
+          2802.60107421875,
+          2806.158935546875,
+          2802.1953125,
+          2826.529296875,
+          2802.657958984375,
+          2810.3017578125
+        ],
+        "backgroundAtCoreClick": 10,
+        "backgroundUnknown": 0
+      },
+      "comparison": {
+        "failuresWorse": false,
+        "medianWorse": false,
+        "maxWorse": false,
+        "modeIncomplete": false,
+        "unresolvedFailures": false,
+        "deltaMedianMs": -2770.7064208984375,
+        "deltaMaxMs": -2829.95458984375
+      }
+    },
+    {
+      "width": 390,
+      "base": {
+        "attempts": 10,
+        "pass": 10,
+        "fail": 0,
+        "medianMs": 5387.70849609375,
+        "maxMs": 5531.322509765625,
+        "successfulLatenciesMs": [
+          5341.231689453125,
+          5336.658935546875,
+          5349.894775390625,
+          5396.267578125,
+          5379.1494140625,
+          5360.291015625,
+          5418.566650390625,
+          5531.322509765625,
+          5506.526123046875,
+          5445.535400390625
+        ],
+        "backgroundAtCoreClick": 0,
+        "backgroundUnknown": 0
+      },
+      "head": {
+        "attempts": 10,
+        "pass": 10,
+        "fail": 0,
+        "medianMs": 2832.2733154296875,
+        "maxMs": 2951.58447265625,
+        "successfulLatenciesMs": [
+          2823.001953125,
+          2833.0068359375,
+          2831.539794921875,
+          2852.82373046875,
+          2838.167236328125,
+          2823.456298828125,
+          2628.238037109375,
+          2824.08544921875,
+          2951.58447265625,
+          2846.521240234375
+        ],
+        "backgroundAtCoreClick": 10,
+        "backgroundUnknown": 0
+      },
+      "comparison": {
+        "failuresWorse": false,
+        "medianWorse": false,
+        "maxWorse": false,
+        "modeIncomplete": false,
+        "unresolvedFailures": false,
+        "deltaMedianMs": -2555.4351806640625,
+        "deltaMaxMs": -2579.738037109375
+      }
+    }
+  ],
+  "branchBackgroundAtCoreAndPopup": 20,
+  "comparisonNoTolerance": true,
+  "harnessIncident": "First incomplete series retained separately as HARNESS_ERROR: unhandled transport socket reset before candidate page existed; external v2 lifecycle handler records socket errors without changing shaping or application assertions.",
+  "codeAndExistingTestsUnchanged": true,
+  "preffOutput": "preff-final"
+}

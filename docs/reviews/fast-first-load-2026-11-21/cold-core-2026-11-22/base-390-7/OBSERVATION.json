@@ -1,0 +1,602 @@
+{
+  "side": "base",
+  "width": 390,
+  "repetition": 7,
+  "status": "PASS",
+  "browserVersion": "154.0.8037.58",
+  "started": "2026-11-21T22:45:35.497Z",
+  "stage": "popup",
+  "events": [
+    {
+      "type": "home-core-click",
+      "epoch": 1795301158334.5,
+      "href": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html?v2=CORE_RULES&registry=core-rules",
+      "target": "",
+      "visibility": "visible",
+      "offline": {
+        "epoch": 1795301156804.4,
+        "status": "ready",
+        "completed": 221,
+        "total": 221,
+        "revision": "d08e23b961b6f507",
+        "sequence": 58
+      },
+      "expectedRevision": "d08e23b961b6f507",
+      "pageURL": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html"
+    },
+    {
+      "type": "section-popup-click",
+      "epoch": 1795301163034.4,
+      "href": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html?v2=CORE_RULES&registry=core-rules&chapter=fight-phase&section=rule-12-01#core-rule-12-01-start-of-fight-phase",
+      "target": "_top",
+      "visibility": "visible",
+      "offline": {
+        "epoch": 1795301156804.4,
+        "status": "ready",
+        "completed": 221,
+        "total": 221,
+        "revision": "d08e23b961b6f507",
+        "sequence": 58
+      },
+      "expectedRevision": "d08e23b961b6f507",
+      "pageURL": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html?v2=CORE_RULES&registry=core-rules&chapter=fight-phase&section=rule-12-08#core-rule-12-08-consolidation-move"
+    }
+  ],
+  "consoleMessages": [],
+  "pageErrors": [],
+  "networkFailures": [
+    {
+      "url": "https://127.0.0.1:58807/favicon.ico",
+      "error": "net::ERR_ABORTED",
+      "epoch": 1795301158508.8096
+    }
+  ],
+  "homeActionableEpoch": 1795301158301.6184,
+  "coreReadyEpoch": 1795301161581.4272,
+  "expectedHref": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html?v2=CORE_RULES&registry=core-rules&chapter=fight-phase&section=rule-12-01#core-rule-12-01-start-of-fight-phase",
+  "expectedReaderPath": "/warhammer-rules-complete-preview/books/core-rules/reader/fight-phase.html",
+  "nodeClickStartEpoch": 1795301162851.6194,
+  "pageEventEpoch": 1795301163059.417,
+  "predicateReadyEpoch": 1795301168452.9666,
+  "assertionCompleteEpoch": 1795301168458.5713,
+  "windowState": {
+    "url": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html?v2=CORE_RULES&registry=core-rules&chapter=fight-phase&section=rule-12-01#core-rule-12-01-start-of-fight-phase",
+    "visibility": "visible",
+    "frames": 1,
+    "frameClass": "v2-core-reader",
+    "frameTitle": "Core Rules reader",
+    "hostHidden": false,
+    "frameURL": "https://127.0.0.1:58807/warhammer-rules-complete-preview/books/core-rules/reader/fight-phase.html#rule-12-01",
+    "frameReady": "complete",
+    "frameVisibility": "visible",
+    "main": true,
+    "glossary": true,
+    "app": true,
+    "body": "Home\nCore Rules\nArmy Books\nRoster\nMega Glossary"
+  },
+  "finalOffline": {
+    "controlled": true,
+    "active": "activated",
+    "version": {
+      "type": "VERSION",
+      "revision": "d08e23b961b6f507",
+      "cacheName": "warhammer-rules-fe1d435-d08e23b961b6f507-db62ef97554520a2"
+    },
+    "revisionMatches": true,
+    "present": 220,
+    "total": 221
+  },
+  "passiveOffline": [
+    {
+      "epoch": 1795301136809.2,
+      "status": "preparing",
+      "completed": 0,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 1
+    },
+    {
+      "epoch": 1795301137211.7,
+      "status": "preparing",
+      "completed": 4,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 2
+    },
+    {
+      "epoch": 1795301137785.5,
+      "status": "preparing",
+      "completed": 8,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 3
+    },
+    {
+      "epoch": 1795301138390.5,
+      "status": "preparing",
+      "completed": 12,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 4
+    },
+    {
+      "epoch": 1795301138886.2,
+      "status": "preparing",
+      "completed": 16,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 5
+    },
+    {
+      "epoch": 1795301139257.7998,
+      "status": "preparing",
+      "completed": 20,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 6
+    },
+    {
+      "epoch": 1795301139599.7,
+      "status": "preparing",
+      "completed": 24,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 7
+    },
+    {
+      "epoch": 1795301139940.5,
+      "status": "preparing",
+      "completed": 28,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 8
+    },
+    {
+      "epoch": 1795301140312.7998,
+      "status": "preparing",
+      "completed": 32,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 9
+    },
+    {
+      "epoch": 1795301140653.9,
+      "status": "preparing",
+      "completed": 36,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 10
+    },
+    {
+      "epoch": 1795301140994.9,
+      "status": "preparing",
+      "completed": 40,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 11
+    },
+    {
+      "epoch": 1795301141335.5999,
+      "status": "preparing",
+      "completed": 44,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 12
+    },
+    {
+      "epoch": 1795301141676.9,
+      "status": "preparing",
+      "completed": 48,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 13
+    },
+    {
+      "epoch": 1795301142048.5,
+      "status": "preparing",
+      "completed": 52,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 14
+    },
+    {
+      "epoch": 1795301142420.9,
+      "status": "preparing",
+      "completed": 56,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 15
+    },
+    {
+      "epoch": 1795301142761.5999,
+      "status": "preparing",
+      "completed": 60,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 16
+    },
+    {
+      "epoch": 1795301143102.4,
+      "status": "preparing",
+      "completed": 64,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 17
+    },
+    {
+      "epoch": 1795301143489.9,
+      "status": "preparing",
+      "completed": 68,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 18
+    },
+    {
+      "epoch": 1795301143876.9,
+      "status": "preparing",
+      "completed": 72,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 19
+    },
+    {
+      "epoch": 1795301144218.7,
+      "status": "preparing",
+      "completed": 76,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 20
+    },
+    {
+      "epoch": 1795301144559.7998,
+      "status": "preparing",
+      "completed": 80,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 21
+    },
+    {
+      "epoch": 1795301144900.7,
+      "status": "preparing",
+      "completed": 84,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 22
+    },
+    {
+      "epoch": 1795301145242.2,
+      "status": "preparing",
+      "completed": 88,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 23
+    },
+    {
+      "epoch": 1795301145645,
+      "status": "preparing",
+      "completed": 92,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 24
+    },
+    {
+      "epoch": 1795301145985.7,
+      "status": "preparing",
+      "completed": 96,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 25
+    },
+    {
+      "epoch": 1795301146326.7998,
+      "status": "preparing",
+      "completed": 100,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 26
+    },
+    {
+      "epoch": 1795301146667.2998,
+      "status": "preparing",
+      "completed": 104,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 27
+    },
+    {
+      "epoch": 1795301147008.4,
+      "status": "preparing",
+      "completed": 108,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 28
+    },
+    {
+      "epoch": 1795301147350.4,
+      "status": "preparing",
+      "completed": 112,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 29
+    },
+    {
+      "epoch": 1795301147690.2998,
+      "status": "preparing",
+      "completed": 116,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 30
+    },
+    {
+      "epoch": 1795301148062.4,
+      "status": "preparing",
+      "completed": 120,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 31
+    },
+    {
+      "epoch": 1795301148404,
+      "status": "preparing",
+      "completed": 124,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 32
+    },
+    {
+      "epoch": 1795301148744.5,
+      "status": "preparing",
+      "completed": 128,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 33
+    },
+    {
+      "epoch": 1795301149084.9,
+      "status": "preparing",
+      "completed": 132,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 34
+    },
+    {
+      "epoch": 1795301149426,
+      "status": "preparing",
+      "completed": 136,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 35
+    },
+    {
+      "epoch": 1795301149767.0999,
+      "status": "preparing",
+      "completed": 140,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 36
+    },
+    {
+      "epoch": 1795301150108.0999,
+      "status": "preparing",
+      "completed": 144,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 37
+    },
+    {
+      "epoch": 1795301150448.7998,
+      "status": "preparing",
+      "completed": 148,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 38
+    },
+    {
+      "epoch": 1795301150790.2,
+      "status": "preparing",
+      "completed": 152,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 39
+    },
+    {
+      "epoch": 1795301151130.9,
+      "status": "preparing",
+      "completed": 156,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 40
+    },
+    {
+      "epoch": 1795301151472.4,
+      "status": "preparing",
+      "completed": 160,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 41
+    },
+    {
+      "epoch": 1795301151813.0999,
+      "status": "preparing",
+      "completed": 164,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 42
+    },
+    {
+      "epoch": 1795301152154.2,
+      "status": "preparing",
+      "completed": 168,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 43
+    },
+    {
+      "epoch": 1795301152495.2,
+      "status": "preparing",
+      "completed": 172,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 44
+    },
+    {
+      "epoch": 1795301152836.5999,
+      "status": "preparing",
+      "completed": 176,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 45
+    },
+    {
+      "epoch": 1795301153177.7,
+      "status": "preparing",
+      "completed": 180,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 46
+    },
+    {
+      "epoch": 1795301153519.4,
+      "status": "preparing",
+      "completed": 184,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 47
+    },
+    {
+      "epoch": 1795301153859.7,
+      "status": "preparing",
+      "completed": 188,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 48
+    },
+    {
+      "epoch": 1795301154248.2998,
+      "status": "preparing",
+      "completed": 192,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 49
+    },
+    {
+      "epoch": 1795301154587.5999,
+      "status": "preparing",
+      "completed": 196,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 50
+    },
+    {
+      "epoch": 1795301154928.7998,
+      "status": "preparing",
+      "completed": 200,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 51
+    },
+    {
+      "epoch": 1795301155269.9,
+      "status": "preparing",
+      "completed": 204,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 52
+    },
+    {
+      "epoch": 1795301155610.2,
+      "status": "preparing",
+      "completed": 208,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 53
+    },
+    {
+      "epoch": 1795301155951.7,
+      "status": "preparing",
+      "completed": 212,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 54
+    },
+    {
+      "epoch": 1795301156296.7998,
+      "status": "preparing",
+      "completed": 216,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 55
+    },
+    {
+      "epoch": 1795301156633.4,
+      "status": "preparing",
+      "completed": 220,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 56
+    },
+    {
+      "epoch": 1795301156804.2,
+      "status": "preparing",
+      "completed": 221,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 57
+    },
+    {
+      "epoch": 1795301156804.4,
+      "status": "ready",
+      "completed": 221,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 58
+    }
+  ],
+  "homeClick": {
+    "type": "home-core-click",
+    "epoch": 1795301158334.5,
+    "href": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html?v2=CORE_RULES&registry=core-rules",
+    "target": "",
+    "visibility": "visible",
+    "offline": {
+      "epoch": 1795301156804.4,
+      "status": "ready",
+      "completed": 221,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 58
+    },
+    "expectedRevision": "d08e23b961b6f507",
+    "pageURL": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html"
+  },
+  "popupClick": {
+    "type": "section-popup-click",
+    "epoch": 1795301163034.4,
+    "href": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html?v2=CORE_RULES&registry=core-rules&chapter=fight-phase&section=rule-12-01#core-rule-12-01-start-of-fight-phase",
+    "target": "_top",
+    "visibility": "visible",
+    "offline": {
+      "epoch": 1795301156804.4,
+      "status": "ready",
+      "completed": 221,
+      "total": 221,
+      "revision": "d08e23b961b6f507",
+      "sequence": 58
+    },
+    "expectedRevision": "d08e23b961b6f507",
+    "pageURL": "https://127.0.0.1:58807/warhammer-rules-complete-preview/v2/app.html?v2=CORE_RULES&registry=core-rules&chapter=fight-phase&section=rule-12-08#core-rule-12-08-consolidation-move"
+  },
+  "homeReadyMs": 22799.75439453125,
+  "homeToCoreClickMs": 32.881591796875,
+  "clickToWindowMs": 5418.566650390625,
+  "pageEventToWindowMs": 5393.549560546875,
+  "clickToFailureMs": null,
+  "backgroundAtCoreClick": false,
+  "backgroundAtPopupClick": false,
+  "transportErrors": {
+    "proxy": [],
+    "origin": []
+  },
+  "totalMs": 32966.314453125,
+  "finished": "2026-11-21T22:46:08.468Z"
+}

@@ -1,0 +1,19 @@
+async function assertCorePopup(tab,href,readerPath){
+  const target=new URL(href);
+  const section=target.searchParams.get('section');
+  const readerURL=new URL(readerPath,target.origin);
+  readerURL.hash=section;
+  const proof=await tab.waitForFunction(({href,readerURL,section})=>{
+    if(location.href!==href)return false;
+    const frames=document.querySelectorAll('iframe');
+    if(frames.length!==1||!frames[0].matches('iframe.v2-core-reader[title="Core Rules reader"]'))return false;
+    const frame=frames[0],doc=frame.contentDocument;
+    if(frame.closest('.v2-core-host')?.hidden||!doc||doc.readyState!=='complete'
+        ||doc.URL!==readerURL||!doc.querySelector('main.main')||!frame.contentWindow.WH40K_GLOSSARY)return false;
+    return {url:location.href,path:location.pathname,frameURL:doc.URL,
+      sections:[...doc.querySelectorAll('[id]')].filter(node=>node.id===section).length};
+  },{href:target.href,readerURL:readerURL.href,section});
+  try{
+    assert.deepEqual(await proof.jsonValue(),{url:target.href,path:'/v2/app.html',frameURL:readerURL.href,sections:1});
+  }finally{await proof.dispose();}
+}

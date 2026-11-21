@@ -4,7 +4,7 @@ Feature: `codex/fast-first-load-v1` at `e08ec20df980d4e6700c32b65069de983b250e03
 
 Runtime preview only. No release candidate, source fast-forward, release update or Pages deployment is authorized by this task.
 
-**Status: NOT READY FOR REVIEW — the single complete pre-FF has 208 PASS / 1 Core popup timeout. Additional full-run permission has been requested; no second full run or preview switch has occurred.**
+**Status: final verification in progress. The owner-approved cold Core check passed without regression; one authorized second full pre-FF is running on the unchanged feature SHA. Preview has not been switched. See the [22 November follow-up](cold-core-2026-11-22/REPORT.md).**
 
 ## Result
 
@@ -150,11 +150,11 @@ The original full run failed only `v2/core-reader-browser-qa.mjs:103`, calling `
 
 A sequential base/head/base/head/base/head comparison with an external diagnostic observer passes 3/3 on each side. All 46 original assertions, wait predicates and arguments remain exact. There are 24 successful popup observations; all are visible and satisfy the expected document/frame/glossary state, maximum 2.228 seconds. Tracing changes timing and is not treated as a clean performance baseline. The earlier background-rAF and changing-href hypotheses were not demonstrated; the cause of the original timeout remains undetermined. See `CORE_OBSERVER_ASSURANCE.json` and `CORE_COMPARISON_SUMMARY.json`.
 
-Core reader, native application runtime, boot, HTML and the Core test are unchanged against the base. The relevant blocked-service-worker fallback difference installs a fetch revision marker; the source test server ignores queries and returns the same bytes. This inspection does not prove the absence of a timing regression. An additional full run on the unchanged feature SHA requires the owner’s explicit permission under this task.
+Core reader, native application runtime, boot, HTML and the Core test are unchanged against the base. The relevant blocked-service-worker fallback difference installs a fetch revision marker; the source test server ignores queries and returns the same bytes. This inspection does not prove the absence of a timing regression. The owner subsequently authorized one additional full run after the cold Fast-4G comparison; that condition passed and the second run is in progress. See the linked follow-up for all 40 observations.
 
 ## Gates and artifacts
 
-Full pre-FF: 209/209 completed; 1 failed jobs; elapsed 132.01 minutes. Only one full run has been started.
+Full pre-FF: 209/209 completed; 1 failed jobs; elapsed 132.01 minutes. This is the first-run record. The owner has now authorized one additional full run after the cold comparison; that second run is in progress, with results kept separately.
 
 - Runtime package/check/determinism/boundary: 15 PASS; 456 inventory files / 282,878,160 bytes, plus the 308,073-byte manifest (457 files / 283,186,233 bytes on disk); 221 mandatory keys.
 - Runtime content SHA-256: `32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b`; revision `9445e8293bc10c1c`.
@@ -172,7 +172,7 @@ Full results remain in the local task evidence root. Private NetLogs are additio
 
 Use `npm run test:fast-first-load`, `npm run test:fast-first-load-browser` and the existing PWA update/offline commands. Timing recipes in `measurement-recipes/README.md` use already-built immutable packages, fresh profiles, matched controls and sequential execution. The accompanying source recipes preserve the actual observer and NetLog reducer used for the tables. Six/eight variants are explicitly not for publication. No heavy verification runs overlap.
 
-The feature has been pushed at the SHA above for review; this report does not declare READY. Preview was not switched: PID 4068 still serves the base-equivalent runtime `0fab482c…` from the previously accepted b0aa1273 package, and `http://192.168.1.124:8765/` returns HTTP 200. Source remains `8579a7a7…`; release remains `e3db1b34…`. No fast-forward or Pages action occurred.
+The feature has been pushed at the SHA above for review; this report does not yet declare READY; the second full run is still in progress. Preview was not switched: PID 4068 still serves the base-equivalent runtime `0fab482c…` from the previously accepted b0aa1273 package, and `http://192.168.1.124:8765/` returns HTTP 200. Source remains `8579a7a7…`; release remains `e3db1b34…`. No fast-forward or Pages action occurred.
 
 Automatic approval review rejected the cleanup command with `blocked by policy` before process creation. Zero deletion operations ran. `E:/Warhammer/qa-tmp/fast-first-load` remains, including the owned base worktree and its dependency junction; no workaround was attempted. See `CLEANUP.json` and `PREVIEW_UNCHANGED.json`.
 

@@ -1,5 +1,5 @@
 {
-  "status": "BLOCKED_PENDING_OWNER_PERMISSION",
+  "status": "AUTHORIZED_SECOND_FULL_PREF_F_IN_PROGRESS",
   "readyForReview": false,
   "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
   "headAfter": "e08ec20df980d4e6700c32b65069de983b250e03",
@@ -43,8 +43,16 @@
     "head": "3/3 PASS",
     "cause": "undetermined; timeout not reproduced"
   },
-  "additionalFullPreff": "Requested through owner input; not authorized or started",
+  "additionalFullPreff": "Owner authorized one on unchanged e08 after cold comparison; gate passed, run 2 in progress at local preff-final/RESULTS.json",
   "previewSwitched": false,
   "featurePushed": true,
-  "protectedBranchesTouched": false
+  "protectedBranchesTouched": false,
+  "coldCoreComparison": {
+    "observations": 40,
+    "basePerWidth": "10/10",
+    "headPerWidth": "10/10",
+    "branchBackgroundCoreAndPopup": 20,
+    "regression": false,
+    "report": "cold-core-2026-11-22/REPORT.md"
+  }
 }
