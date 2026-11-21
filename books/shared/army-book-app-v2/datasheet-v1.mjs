@@ -1,6 +1,7 @@
 import {requiredKeywordField} from '../keyword-values.mjs';
 import {createEquipmentReferenceResolver} from './equipment-reference.mjs';
 import {focusedRuleField} from './rule-popup.mjs';
+import {createVisibleUnitArtLoader} from './datasheet-v1-layout.mjs';
 import {sourceSnapshot,sameSourceEvidence} from '../source-refs-v2/source-refs.mjs';
 import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy,physicalUnitCaption,physicalModelCaption,rosterBasePoints} from './cosmetics.mjs';
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
@@ -108,6 +109,7 @@ export function hasInlineUnitMetricSource(root,source,cards){
 
 export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL,related,roster,navigateSection,renderCanonicalRule,presentationRuleSources=new Map(),linkTerms=()=>{}}) {
   const listen=(node,type,callback)=>lifecycle?lifecycle.listen(node,type,callback):node.addEventListener(type,callback);
+  const loadUnitArt=createVisibleUnitArtLoader(document.defaultView,{lifecycle});
   const config=payload.datasheetPresentation;
   const physicalCards=prepareRosterPresentationCards(cards,payload.rosterPresentation);
   const boundFields=new Map([...cards.values()].flatMap(card=>card.fields.map(field=>[field.id,field])));
@@ -957,7 +959,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const background=art.presentation.mode==='background';root.classList.add(background?'has-unit-art-background':'has-unit-art');
       const figure=el('figure',background?'unit-art-background':'unit-art');figure.setAttribute('aria-hidden','true');
       for(const [device,settings] of Object.entries({desktop:art.presentation.desktop,phone:art.presentation.phone}))for(const [key,value] of Object.entries(settings))figure.style.setProperty(`--unit-art${background?'-background':''}${device==='phone'?'-phone':''}-${key}`,value);
-      const img=el('img');img.src=assetBaseURL?new URL(`../${art.asset}`,assetBaseURL).href:`../${art.asset}`;img.width=art.width;img.height=art.height;img.alt='';img.loading='lazy';img.decoding='async';figure.append(img);head.append(figure);
+      const img=el('img');img.width=art.width;img.height=art.height;img.alt='';figure.append(img);head.append(figure);
+      loadUnitArt(img,assetBaseURL?new URL(`../${art.asset}`,assetBaseURL).href:`../${art.asset}`);
     }
     const cost=el('div','points ds-cost'),costGrid=el('div','ds-cost-grid');
     for(const price of children.filter(c=>c.kind==='MFM_UNIT_POINTS')){
