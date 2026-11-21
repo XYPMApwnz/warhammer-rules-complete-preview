@@ -1,0 +1,499 @@
+{
+  "schema": "release-candidate-browser-smoke/v3",
+  "status": "PASS",
+  "candidate": "e3db1b345eca989436eea7af758900eee7795203",
+  "started": "2026-11-21T00:44:14.698Z",
+  "package": {
+    "aggregateSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909",
+    "cacheRevision": "d08e23b961b6f507",
+    "prefix": "/warhammer-rules-complete-preview/"
+  },
+  "fixture": {
+    "path": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+    "sha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+    "encoding": "UTF-8 without BOM; LF; final newline"
+  },
+  "cases": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "steps": [
+        {
+          "name": "fresh-home-and-install",
+          "status": "PASS",
+          "elapsedMs": 1663,
+          "result": {
+            "books": [
+              "space-marines",
+              "dark-angels",
+              "blood-angels",
+              "adeptus-mechanicus",
+              "death-guard",
+              "chaos-space-marines",
+              "emperors-children",
+              "tyranids",
+              "tau-empire"
+            ],
+            "worker": {
+              "type": "VERSION",
+              "revision": "d08e23b961b6f507",
+              "cacheName": "warhammer-rules-fe1d435-d08e23b961b6f507-db62ef97554520a2"
+            }
+          }
+        },
+        {
+          "name": "open-death-guard",
+          "status": "PASS",
+          "elapsedMs": 2045,
+          "result": {
+            "book": "death-guard",
+            "title": "Death Guard",
+            "expected": 53,
+            "shown": 53
+          }
+        },
+        {
+          "name": "open-adeptus-mechanicus",
+          "status": "PASS",
+          "elapsedMs": 1631,
+          "result": {
+            "book": "adeptus-mechanicus",
+            "title": "Adeptus Mechanicus",
+            "expected": 69,
+            "shown": 69
+          }
+        },
+        {
+          "name": "open-chaos-space-marines",
+          "status": "PASS",
+          "elapsedMs": 2712,
+          "result": {
+            "book": "chaos-space-marines",
+            "title": "Chaos Space Marines",
+            "expected": 139,
+            "shown": 139
+          }
+        },
+        {
+          "name": "open-emperors-children",
+          "status": "PASS",
+          "elapsedMs": 1291,
+          "result": {
+            "book": "emperors-children",
+            "title": "Emperor’s Children",
+            "expected": 81,
+            "shown": 81
+          }
+        },
+        {
+          "name": "open-tyranids",
+          "status": "PASS",
+          "elapsedMs": 1584,
+          "result": {
+            "book": "tyranids",
+            "title": "Tyranids",
+            "expected": 92,
+            "shown": 92
+          }
+        },
+        {
+          "name": "open-tau-empire",
+          "status": "PASS",
+          "elapsedMs": 1780,
+          "result": {
+            "book": "tau-empire",
+            "title": "T’au Empire",
+            "expected": 69,
+            "shown": 69
+          }
+        },
+        {
+          "name": "open-space-marines",
+          "status": "PASS",
+          "elapsedMs": 2606,
+          "result": {
+            "book": "space-marines",
+            "title": "Space Marines",
+            "expected": 111,
+            "shown": 111
+          }
+        },
+        {
+          "name": "open-dark-angels",
+          "status": "PASS",
+          "elapsedMs": 2633,
+          "result": {
+            "book": "dark-angels",
+            "title": "Dark Angels",
+            "expected": 106,
+            "shown": 106
+          }
+        },
+        {
+          "name": "open-blood-angels",
+          "status": "PASS",
+          "elapsedMs": 2469,
+          "result": {
+            "book": "blood-angels",
+            "title": "Blood Angels",
+            "expected": 102,
+            "shown": 102
+          }
+        },
+        {
+          "name": "import-owner-DG-v37.25",
+          "status": "PASS",
+          "elapsedMs": 2130,
+          "result": {
+            "status": "READY",
+            "units": 8,
+            "savedBytes": 17820,
+            "savedSha256": "c7b1c452102482095c581a26f7a9bd5c30c3e050dad00c6471d95bf809ac4e98"
+          }
+        },
+        {
+          "name": "fresh-process-offline-home",
+          "status": "PASS",
+          "elapsedMs": 645,
+          "result": {
+            "offline": true,
+            "freshBrowserProcess": true
+          }
+        },
+        {
+          "name": "offline-saved-DG",
+          "status": "PASS",
+          "elapsedMs": 2173,
+          "result": {
+            "units": 8,
+            "savedByteIdentical": true,
+            "snapshotDeepEqual": true
+          }
+        }
+      ],
+      "books": [
+        {
+          "book": "death-guard",
+          "title": "Death Guard",
+          "expected": 53,
+          "shown": 53
+        },
+        {
+          "book": "adeptus-mechanicus",
+          "title": "Adeptus Mechanicus",
+          "expected": 69,
+          "shown": 69
+        },
+        {
+          "book": "chaos-space-marines",
+          "title": "Chaos Space Marines",
+          "expected": 139,
+          "shown": 139
+        },
+        {
+          "book": "emperors-children",
+          "title": "Emperor’s Children",
+          "expected": 81,
+          "shown": 81
+        },
+        {
+          "book": "tyranids",
+          "title": "Tyranids",
+          "expected": 92,
+          "shown": 92
+        },
+        {
+          "book": "tau-empire",
+          "title": "T’au Empire",
+          "expected": 69,
+          "shown": 69
+        },
+        {
+          "book": "space-marines",
+          "title": "Space Marines",
+          "expected": 111,
+          "shown": 111
+        },
+        {
+          "book": "dark-angels",
+          "title": "Dark Angels",
+          "expected": 106,
+          "shown": 106
+        },
+        {
+          "book": "blood-angels",
+          "title": "Blood Angels",
+          "expected": 102,
+          "shown": 102
+        }
+      ],
+      "screenshots": [
+        "390-home.jpg",
+        "390-death-guard.jpg",
+        "390-adeptus-mechanicus.jpg",
+        "390-chaos-space-marines.jpg",
+        "390-emperors-children.jpg",
+        "390-tyranids.jpg",
+        "390-tau-empire.jpg",
+        "390-space-marines.jpg",
+        "390-dark-angels.jpg",
+        "390-blood-angels.jpg",
+        "390-owner-DG-import.jpg",
+        "390-offline-home.jpg",
+        "390-offline-DG.jpg"
+      ],
+      "errors": [],
+      "console": [],
+      "failedRequests": [],
+      "ownerImport": {
+        "status": "READY",
+        "units": 8,
+        "savedBytes": 17820,
+        "savedSha256": "c7b1c452102482095c581a26f7a9bd5c30c3e050dad00c6471d95bf809ac4e98"
+      }
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "steps": [
+        {
+          "name": "fresh-home-and-install",
+          "status": "PASS",
+          "elapsedMs": 1411,
+          "result": {
+            "books": [
+              "space-marines",
+              "dark-angels",
+              "blood-angels",
+              "adeptus-mechanicus",
+              "death-guard",
+              "chaos-space-marines",
+              "emperors-children",
+              "tyranids",
+              "tau-empire"
+            ],
+            "worker": {
+              "type": "VERSION",
+              "revision": "d08e23b961b6f507",
+              "cacheName": "warhammer-rules-fe1d435-d08e23b961b6f507-db62ef97554520a2"
+            }
+          }
+        },
+        {
+          "name": "open-death-guard",
+          "status": "PASS",
+          "elapsedMs": 1895,
+          "result": {
+            "book": "death-guard",
+            "title": "Death Guard",
+            "expected": 53,
+            "shown": 53
+          }
+        },
+        {
+          "name": "open-adeptus-mechanicus",
+          "status": "PASS",
+          "elapsedMs": 1636,
+          "result": {
+            "book": "adeptus-mechanicus",
+            "title": "Adeptus Mechanicus",
+            "expected": 69,
+            "shown": 69
+          }
+        },
+        {
+          "name": "open-chaos-space-marines",
+          "status": "PASS",
+          "elapsedMs": 2616,
+          "result": {
+            "book": "chaos-space-marines",
+            "title": "Chaos Space Marines",
+            "expected": 139,
+            "shown": 139
+          }
+        },
+        {
+          "name": "open-emperors-children",
+          "status": "PASS",
+          "elapsedMs": 1323,
+          "result": {
+            "book": "emperors-children",
+            "title": "Emperor’s Children",
+            "expected": 81,
+            "shown": 81
+          }
+        },
+        {
+          "name": "open-tyranids",
+          "status": "PASS",
+          "elapsedMs": 1588,
+          "result": {
+            "book": "tyranids",
+            "title": "Tyranids",
+            "expected": 92,
+            "shown": 92
+          }
+        },
+        {
+          "name": "open-tau-empire",
+          "status": "PASS",
+          "elapsedMs": 1739,
+          "result": {
+            "book": "tau-empire",
+            "title": "T’au Empire",
+            "expected": 69,
+            "shown": 69
+          }
+        },
+        {
+          "name": "open-space-marines",
+          "status": "PASS",
+          "elapsedMs": 2701,
+          "result": {
+            "book": "space-marines",
+            "title": "Space Marines",
+            "expected": 111,
+            "shown": 111
+          }
+        },
+        {
+          "name": "open-dark-angels",
+          "status": "PASS",
+          "elapsedMs": 2433,
+          "result": {
+            "book": "dark-angels",
+            "title": "Dark Angels",
+            "expected": 106,
+            "shown": 106
+          }
+        },
+        {
+          "name": "open-blood-angels",
+          "status": "PASS",
+          "elapsedMs": 2417,
+          "result": {
+            "book": "blood-angels",
+            "title": "Blood Angels",
+            "expected": 102,
+            "shown": 102
+          }
+        },
+        {
+          "name": "import-owner-DG-v37.25",
+          "status": "PASS",
+          "elapsedMs": 2185,
+          "result": {
+            "status": "READY",
+            "units": 8,
+            "savedBytes": 17820,
+            "savedSha256": "c7b1c452102482095c581a26f7a9bd5c30c3e050dad00c6471d95bf809ac4e98"
+          }
+        },
+        {
+          "name": "fresh-process-offline-home",
+          "status": "PASS",
+          "elapsedMs": 693,
+          "result": {
+            "offline": true,
+            "freshBrowserProcess": true
+          }
+        },
+        {
+          "name": "offline-saved-DG",
+          "status": "PASS",
+          "elapsedMs": 2152,
+          "result": {
+            "units": 8,
+            "savedByteIdentical": true,
+            "snapshotDeepEqual": true
+          }
+        }
+      ],
+      "books": [
+        {
+          "book": "death-guard",
+          "title": "Death Guard",
+          "expected": 53,
+          "shown": 53
+        },
+        {
+          "book": "adeptus-mechanicus",
+          "title": "Adeptus Mechanicus",
+          "expected": 69,
+          "shown": 69
+        },
+        {
+          "book": "chaos-space-marines",
+          "title": "Chaos Space Marines",
+          "expected": 139,
+          "shown": 139
+        },
+        {
+          "book": "emperors-children",
+          "title": "Emperor’s Children",
+          "expected": 81,
+          "shown": 81
+        },
+        {
+          "book": "tyranids",
+          "title": "Tyranids",
+          "expected": 92,
+          "shown": 92
+        },
+        {
+          "book": "tau-empire",
+          "title": "T’au Empire",
+          "expected": 69,
+          "shown": 69
+        },
+        {
+          "book": "space-marines",
+          "title": "Space Marines",
+          "expected": 111,
+          "shown": 111
+        },
+        {
+          "book": "dark-angels",
+          "title": "Dark Angels",
+          "expected": 106,
+          "shown": 106
+        },
+        {
+          "book": "blood-angels",
+          "title": "Blood Angels",
+          "expected": 102,
+          "shown": 102
+        }
+      ],
+      "screenshots": [
+        "1440-home.jpg",
+        "1440-death-guard.jpg",
+        "1440-adeptus-mechanicus.jpg",
+        "1440-chaos-space-marines.jpg",
+        "1440-emperors-children.jpg",
+        "1440-tyranids.jpg",
+        "1440-tau-empire.jpg",
+        "1440-space-marines.jpg",
+        "1440-dark-angels.jpg",
+        "1440-blood-angels.jpg",
+        "1440-owner-DG-import.jpg",
+        "1440-offline-home.jpg",
+        "1440-offline-DG.jpg"
+      ],
+      "errors": [],
+      "console": [],
+      "failedRequests": [],
+      "ownerImport": {
+        "status": "READY",
+        "units": 8,
+        "savedBytes": 17820,
+        "savedSha256": "c7b1c452102482095c581a26f7a9bd5c30c3e050dad00c6471d95bf809ac4e98"
+      }
+    }
+  ],
+  "finished": "2026-11-21T00:45:07.332Z",
+  "network": {
+    "requests": 1554,
+    "httpErrors": []
+  }
+}

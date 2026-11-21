@@ -1,0 +1,698 @@
+{
+  "schema": "release-candidate-review-archive/v3",
+  "candidate": "e3db1b345eca989436eea7af758900eee7795203",
+  "totalBytes": 7247096,
+  "files": [
+    {
+      "path": "ACCEPTANCE.json",
+      "bytes": 778,
+      "sha256": "15e03cd8f5c9a4ca550b559e22a8f4c0317a9e04d6d85f68b0ca405afc1db4dd",
+      "sourceArchiveInput": {
+        "bytes": 778,
+        "sha256": "15e03cd8f5c9a4ca550b559e22a8f4c0317a9e04d6d85f68b0ca405afc1db4dd"
+      }
+    },
+    {
+      "path": "ACCEPTED_AB.json",
+      "bytes": 130993,
+      "sha256": "f803db6bbacc52d428ded966df7f8dd0b26917f51b192e5defa7b1496adc87b6",
+      "sourceArchiveInput": {
+        "bytes": 130993,
+        "sha256": "f803db6bbacc52d428ded966df7f8dd0b26917f51b192e5defa7b1496adc87b6"
+      }
+    },
+    {
+      "path": "ACCEPTED_CENSUS.json",
+      "bytes": 2808050,
+      "sha256": "ad7d5cff20d292cc5fb43962bdd6236be684efb4f0af9d2c644b51f0a41678ff",
+      "sourceArchiveInput": {
+        "bytes": 2808050,
+        "sha256": "ad7d5cff20d292cc5fb43962bdd6236be684efb4f0af9d2c644b51f0a41678ff"
+      }
+    },
+    {
+      "path": "ACCEPTED_PRE_FF.json",
+      "bytes": 408,
+      "sha256": "bb2cc8ef5a2c5472a63d407eb05414b2ef506f2de84e198c42365b24bfbfa5da",
+      "sourceArchiveInput": {
+        "bytes": 408,
+        "sha256": "bb2cc8ef5a2c5472a63d407eb05414b2ef506f2de84e198c42365b24bfbfa5da"
+      }
+    },
+    {
+      "path": "BROWSER_SMOKE.log",
+      "bytes": 1019,
+      "sha256": "a04e884ff54c9616692fcab316ed734fadc5359ea2c48ce5031265534283aec5",
+      "sourceArchiveInput": {
+        "bytes": 1046,
+        "sha256": "2db306ab95df864b6eb5005cc403ec526b98bcb33abe719705a01577428fa9f4"
+      }
+    },
+    {
+      "path": "CANDIDATE.json",
+      "bytes": 624,
+      "sha256": "95e5f9d9d25bb3cc113ebc99d401394b8b1ebf5902a8f8611c9ad6e2ba967ecd",
+      "sourceArchiveInput": {
+        "bytes": 638,
+        "sha256": "daa6df304fa97b6e3a030214668a2cf9ee60ca852bd4938a500a1d5aceffc1fd"
+      }
+    },
+    {
+      "path": "GALLERY.html",
+      "bytes": 8534,
+      "sha256": "ae2c7dc6758d4f1a51f8ce72acf5636d61a2eba2a181882276cc0d491864b391",
+      "sourceArchiveInput": {
+        "bytes": 8534,
+        "sha256": "ae2c7dc6758d4f1a51f8ce72acf5636d61a2eba2a181882276cc0d491864b391"
+      }
+    },
+    {
+      "path": "PACKAGE_BUILD.log",
+      "bytes": 210,
+      "sha256": "3e5871442b43dec62c6ab40fbd2779916361fa957f45a5381f1b86f316dffb2b",
+      "sourceArchiveInput": {
+        "bytes": 211,
+        "sha256": "347764cced601968cf93e105b6833bc73251fa6137dc88e67b54498e54b6e78e"
+      }
+    },
+    {
+      "path": "PACKAGE_CHECK.log",
+      "bytes": 209,
+      "sha256": "65bc7556d41ab135fccf3bd9dbab0f0dfd6f09a24f5737a66b1894bf2beb8ad1",
+      "sourceArchiveInput": {
+        "bytes": 210,
+        "sha256": "b44e5060766d2c2733d06615f25ee3e2f68257dc1162a99586ad759d3ec54d34"
+      }
+    },
+    {
+      "path": "PACKAGE_METRICS.json",
+      "bytes": 62017,
+      "sha256": "74c176f590ce2c1d9fd010c1dcc5727fa70f80ca1e767e43805262c2a33b2534",
+      "sourceArchiveInput": {
+        "bytes": 62017,
+        "sha256": "74c176f590ce2c1d9fd010c1dcc5727fa70f80ca1e767e43805262c2a33b2534"
+      }
+    },
+    {
+      "path": "PACKAGE_QA.json",
+      "bytes": 1501,
+      "sha256": "74d33baea667fc9b18c577cf837058c1bc69ec735900da3440dffe4516f43ea8",
+      "sourceArchiveInput": {
+        "bytes": 1501,
+        "sha256": "74d33baea667fc9b18c577cf837058c1bc69ec735900da3440dffe4516f43ea8"
+      }
+    },
+    {
+      "path": "PACKAGE_QA.log",
+      "bytes": 1652,
+      "sha256": "1ea49544dba1a671c83b38e7f0e991360e1cfee870783e5675d81a267882606d",
+      "sourceArchiveInput": {
+        "bytes": 1667,
+        "sha256": "a9fa80dee898e3ff99bf8de8bf018d81bceac8435a48a02c3b9142584450ecc0"
+      }
+    },
+    {
+      "path": "PAGES_RUNTIME_MANIFEST.json",
+      "bytes": 144511,
+      "sha256": "615a0834ea9032a19ae163acc4dd4454dc847fb574110849a0eb5a6ec4f1805c",
+      "sourceArchiveInput": {
+        "bytes": 144511,
+        "sha256": "615a0834ea9032a19ae163acc4dd4454dc847fb574110849a0eb5a6ec4f1805c"
+      }
+    },
+    {
+      "path": "PROTECTED_REFS.json",
+      "bytes": 606,
+      "sha256": "f0e0674d26ccade65828046dc5a286745511541e30ba65320edbf69dbab4ec85",
+      "sourceArchiveInput": {
+        "bytes": 622,
+        "sha256": "8a801e109237b45110e744301bdb8a4997d2a30f9ebc5f58248721cc0daf64d7"
+      }
+    },
+    {
+      "path": "RECIPES/archive-evidence.mjs",
+      "bytes": 4529,
+      "sha256": "6326226945c5cf2a9cc53494fdad3c13d3698001a8c47a024410165577c5f0bb",
+      "sourceArchiveInput": {
+        "bytes": 4529,
+        "sha256": "6326226945c5cf2a9cc53494fdad3c13d3698001a8c47a024410165577c5f0bb"
+      }
+    },
+    {
+      "path": "RECIPES/browser-smoke.mjs",
+      "bytes": 9436,
+      "sha256": "d1b57846f02add952c3f1d5c3fd83b85581933bd1fedc1bf6431468a739454da",
+      "sourceArchiveInput": {
+        "bytes": 9436,
+        "sha256": "d1b57846f02add952c3f1d5c3fd83b85581933bd1fedc1bf6431468a739454da"
+      }
+    },
+    {
+      "path": "RECIPES/package-metrics.mjs",
+      "bytes": 2702,
+      "sha256": "686b4fb61b22832303f926c68a0c8e0afbbd33a73dc3742b465c8a76d40ffdfd",
+      "sourceArchiveInput": {
+        "bytes": 2702,
+        "sha256": "686b4fb61b22832303f926c68a0c8e0afbbd33a73dc3742b465c8a76d40ffdfd"
+      }
+    },
+    {
+      "path": "RECIPES/prepare-report.mjs",
+      "bytes": 14287,
+      "sha256": "f7c0fa26f6d44635e47d0197b85563ded9eff75f35b0ea6cfee908f918dd94f5",
+      "sourceArchiveInput": {
+        "bytes": 14287,
+        "sha256": "f7c0fa26f6d44635e47d0197b85563ded9eff75f35b0ea6cfee908f918dd94f5"
+      }
+    },
+    {
+      "path": "RECIPES/runtime-server.mjs",
+      "bytes": 5496,
+      "sha256": "8f5789b906b161fe4c2d3d6a21ee85ed1d32620d164d7167c5e982b171cf455b",
+      "sourceArchiveInput": {
+        "bytes": 5496,
+        "sha256": "8f5789b906b161fe4c2d3d6a21ee85ed1d32620d164d7167c5e982b171cf455b"
+      }
+    },
+    {
+      "path": "RECIPES/update-path.mjs",
+      "bytes": 15343,
+      "sha256": "bc44d10fa877b311280af4718d53c4eb51f3fc5fd646e94e2dd7b44b20b01cc3",
+      "sourceArchiveInput": {
+        "bytes": 15343,
+        "sha256": "bc44d10fa877b311280af4718d53c4eb51f3fc5fd646e94e2dd7b44b20b01cc3"
+      }
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 9414,
+      "sha256": "9ee27701407c492dd44032e5cc6310f4cadb1a9ec4479ad45076e44f9330e7e8",
+      "sourceArchiveInput": {
+        "bytes": 9414,
+        "sha256": "9ee27701407c492dd44032e5cc6310f4cadb1a9ec4479ad45076e44f9330e7e8"
+      }
+    },
+    {
+      "path": "ROLLBACK_COMMANDS.md",
+      "bytes": 4623,
+      "sha256": "00e88aa58513c5b3aba9876f7086516ebeae2e5b6f7680575b41d66d9286ed5c",
+      "sourceArchiveInput": {
+        "bytes": 4623,
+        "sha256": "00e88aa58513c5b3aba9876f7086516ebeae2e5b6f7680575b41d66d9286ed5c"
+      }
+    },
+    {
+      "path": "STAGE1_DIFF_STAT.txt",
+      "bytes": 253,
+      "sha256": "e1ebfc27da6be22c1d3c5b967d5e6ddd64de51a8c8ee1b6fa554a81237de2d6e",
+      "sourceArchiveInput": {
+        "bytes": 258,
+        "sha256": "5b8aa41f34b11fce96e6947a89382e42e0ecebf04cb52db0603f527b827d9f27"
+      }
+    },
+    {
+      "path": "STAGE1_QUICK.json",
+      "bytes": 321,
+      "sha256": "59397e52ab3bcfd1cedbb8302c16fc35adabecfba1660c0fcd770ff39cf829fb",
+      "sourceArchiveInput": {
+        "bytes": 333,
+        "sha256": "dc4704c392fbedef14b080cbcddc8b8170dd6e600cfc16f9d70ebb08f27323cb"
+      }
+    },
+    {
+      "path": "UPDATE_PATH.log",
+      "bytes": 814,
+      "sha256": "ed59a2c6142bf80442e8c405db022d850974fc362544eab9563d175883d4ab0a",
+      "sourceArchiveInput": {
+        "bytes": 831,
+        "sha256": "7e8da7c9cd8938a4af76ec755d1b3ac1fa7c063834ef337049ed752d8f7201a2"
+      }
+    },
+    {
+      "path": "browser/1440-adeptus-mechanicus.jpg",
+      "bytes": 97579,
+      "sha256": "1c06c973e952ff3840e947b90bdc357a6db6b808126de6f17d88ef878cd9caae",
+      "sourceArchiveInput": {
+        "bytes": 97579,
+        "sha256": "1c06c973e952ff3840e947b90bdc357a6db6b808126de6f17d88ef878cd9caae"
+      }
+    },
+    {
+      "path": "browser/1440-blood-angels.jpg",
+      "bytes": 85484,
+      "sha256": "81a0959dd408347f75832340030b4f3cf15d7a90dbc63707621a773dbab65752",
+      "sourceArchiveInput": {
+        "bytes": 85484,
+        "sha256": "81a0959dd408347f75832340030b4f3cf15d7a90dbc63707621a773dbab65752"
+      }
+    },
+    {
+      "path": "browser/1440-chaos-space-marines.jpg",
+      "bytes": 78857,
+      "sha256": "3fa2b241aded5d126b5b6f850353b0a86c78311c17fa10eca2779acc1517fc46",
+      "sourceArchiveInput": {
+        "bytes": 78857,
+        "sha256": "3fa2b241aded5d126b5b6f850353b0a86c78311c17fa10eca2779acc1517fc46"
+      }
+    },
+    {
+      "path": "browser/1440-dark-angels.jpg",
+      "bytes": 88999,
+      "sha256": "5592816d3cb017c83f8c7f534be5ca7aa72516b235bcec7fb55823142a728988",
+      "sourceArchiveInput": {
+        "bytes": 88999,
+        "sha256": "5592816d3cb017c83f8c7f534be5ca7aa72516b235bcec7fb55823142a728988"
+      }
+    },
+    {
+      "path": "browser/1440-death-guard.jpg",
+      "bytes": 76848,
+      "sha256": "81eb965649e6509575b3a8774363d06bd585c099f26d0e55682f1f7d6caf1308",
+      "sourceArchiveInput": {
+        "bytes": 76848,
+        "sha256": "81eb965649e6509575b3a8774363d06bd585c099f26d0e55682f1f7d6caf1308"
+      }
+    },
+    {
+      "path": "browser/1440-emperors-children.jpg",
+      "bytes": 100755,
+      "sha256": "fc464ad9315d051259fa7a9561f58517f8dbab4766e2c9edabfddf31019fcd22",
+      "sourceArchiveInput": {
+        "bytes": 100755,
+        "sha256": "fc464ad9315d051259fa7a9561f58517f8dbab4766e2c9edabfddf31019fcd22"
+      }
+    },
+    {
+      "path": "browser/1440-home.jpg",
+      "bytes": 85914,
+      "sha256": "750bb1e2b4b93d03ad0f66088edb2989f79487fea0053d3156302a45b9b9c0f4",
+      "sourceArchiveInput": {
+        "bytes": 85914,
+        "sha256": "750bb1e2b4b93d03ad0f66088edb2989f79487fea0053d3156302a45b9b9c0f4"
+      }
+    },
+    {
+      "path": "browser/1440-offline-DG.jpg",
+      "bytes": 81798,
+      "sha256": "1b3f3b3e2c3cc4ed6340309ca5bc3b10e997d4b08c875a638f5baff6bcfdcc43",
+      "sourceArchiveInput": {
+        "bytes": 81798,
+        "sha256": "1b3f3b3e2c3cc4ed6340309ca5bc3b10e997d4b08c875a638f5baff6bcfdcc43"
+      }
+    },
+    {
+      "path": "browser/1440-offline-home.jpg",
+      "bytes": 86050,
+      "sha256": "28f13484a5e7f17956ba60e3a2d085dd82bdc375ff30ff1ab35ee0380635c613",
+      "sourceArchiveInput": {
+        "bytes": 86050,
+        "sha256": "28f13484a5e7f17956ba60e3a2d085dd82bdc375ff30ff1ab35ee0380635c613"
+      }
+    },
+    {
+      "path": "browser/1440-owner-DG-import.jpg",
+      "bytes": 83849,
+      "sha256": "7fed3229833db2f455c5428540de1afeadfa5c103e12264459a2666bed03dd5b",
+      "sourceArchiveInput": {
+        "bytes": 83849,
+        "sha256": "7fed3229833db2f455c5428540de1afeadfa5c103e12264459a2666bed03dd5b"
+      }
+    },
+    {
+      "path": "browser/1440-space-marines.jpg",
+      "bytes": 97000,
+      "sha256": "39cc9f82b276d9f90af07290af3dfcb462990a37246a8bd4a5a6e157fee35b87",
+      "sourceArchiveInput": {
+        "bytes": 97000,
+        "sha256": "39cc9f82b276d9f90af07290af3dfcb462990a37246a8bd4a5a6e157fee35b87"
+      }
+    },
+    {
+      "path": "browser/1440-tau-empire.jpg",
+      "bytes": 85917,
+      "sha256": "b9b4b553174937222131acc880d7872ead7f7e745b3f567ab8050c00df4e0392",
+      "sourceArchiveInput": {
+        "bytes": 85917,
+        "sha256": "b9b4b553174937222131acc880d7872ead7f7e745b3f567ab8050c00df4e0392"
+      }
+    },
+    {
+      "path": "browser/1440-tyranids.jpg",
+      "bytes": 89034,
+      "sha256": "440775eeb0fbbb448cd007216cfd2b6728286f55878aafdf4e5b747c553f7cdb",
+      "sourceArchiveInput": {
+        "bytes": 89034,
+        "sha256": "440775eeb0fbbb448cd007216cfd2b6728286f55878aafdf4e5b747c553f7cdb"
+      }
+    },
+    {
+      "path": "browser/390-adeptus-mechanicus.jpg",
+      "bytes": 38919,
+      "sha256": "7c1d15e06582937de429611faecdc47dd686b54b1b87b6b367558f09ca7b6899",
+      "sourceArchiveInput": {
+        "bytes": 38919,
+        "sha256": "7c1d15e06582937de429611faecdc47dd686b54b1b87b6b367558f09ca7b6899"
+      }
+    },
+    {
+      "path": "browser/390-blood-angels.jpg",
+      "bytes": 34274,
+      "sha256": "a6ac50399105c403dba3d5c915ea1406185f0afb5837532f331cad678638b98a",
+      "sourceArchiveInput": {
+        "bytes": 34274,
+        "sha256": "a6ac50399105c403dba3d5c915ea1406185f0afb5837532f331cad678638b98a"
+      }
+    },
+    {
+      "path": "browser/390-chaos-space-marines.jpg",
+      "bytes": 35217,
+      "sha256": "c74d07572e92c42e45f2fe0910351a4742ec2aea4fbeb278f38394b72763c2b9",
+      "sourceArchiveInput": {
+        "bytes": 35217,
+        "sha256": "c74d07572e92c42e45f2fe0910351a4742ec2aea4fbeb278f38394b72763c2b9"
+      }
+    },
+    {
+      "path": "browser/390-dark-angels.jpg",
+      "bytes": 35904,
+      "sha256": "1aedb5c36eee24fdc41aada019ec9da3c96f9d7c457c8f52f79f0e56beaef60e",
+      "sourceArchiveInput": {
+        "bytes": 35904,
+        "sha256": "1aedb5c36eee24fdc41aada019ec9da3c96f9d7c457c8f52f79f0e56beaef60e"
+      }
+    },
+    {
+      "path": "browser/390-death-guard.jpg",
+      "bytes": 33566,
+      "sha256": "7ed2328e7c675112c6ee289dd7512e419a16ec6d2b940b4f2e179b0c2df65310",
+      "sourceArchiveInput": {
+        "bytes": 33566,
+        "sha256": "7ed2328e7c675112c6ee289dd7512e419a16ec6d2b940b4f2e179b0c2df65310"
+      }
+    },
+    {
+      "path": "browser/390-emperors-children.jpg",
+      "bytes": 40626,
+      "sha256": "e939f0008077e5130c441d8c8721bb6c8d6180c4375ca7863ccd08db1a556521",
+      "sourceArchiveInput": {
+        "bytes": 40626,
+        "sha256": "e939f0008077e5130c441d8c8721bb6c8d6180c4375ca7863ccd08db1a556521"
+      }
+    },
+    {
+      "path": "browser/390-home.jpg",
+      "bytes": 44641,
+      "sha256": "151b470702141aa04663a51c077bb4c7029793b515e7af25479b85fe7bad2680",
+      "sourceArchiveInput": {
+        "bytes": 44641,
+        "sha256": "151b470702141aa04663a51c077bb4c7029793b515e7af25479b85fe7bad2680"
+      }
+    },
+    {
+      "path": "browser/390-offline-DG.jpg",
+      "bytes": 30191,
+      "sha256": "7695f9cd41e24aaec764a1221fd2197c1d2fb0bc3543e21297afd110c5ce405c",
+      "sourceArchiveInput": {
+        "bytes": 30191,
+        "sha256": "7695f9cd41e24aaec764a1221fd2197c1d2fb0bc3543e21297afd110c5ce405c"
+      }
+    },
+    {
+      "path": "browser/390-offline-home.jpg",
+      "bytes": 44672,
+      "sha256": "162693bcd64930c441ad87365e596a6b108893530d59bffdf58c680851caeda2",
+      "sourceArchiveInput": {
+        "bytes": 44672,
+        "sha256": "162693bcd64930c441ad87365e596a6b108893530d59bffdf58c680851caeda2"
+      }
+    },
+    {
+      "path": "browser/390-owner-DG-import.jpg",
+      "bytes": 31191,
+      "sha256": "685aadf9c7322a30711d461ccb1f641f5e0f40f4551d47931ae294cfdb2e3b2e",
+      "sourceArchiveInput": {
+        "bytes": 31191,
+        "sha256": "685aadf9c7322a30711d461ccb1f641f5e0f40f4551d47931ae294cfdb2e3b2e"
+      }
+    },
+    {
+      "path": "browser/390-space-marines.jpg",
+      "bytes": 38268,
+      "sha256": "5b4f3439c249ba8f0d96527073e93136836be323970c1b6d2ab2872ac2752beb",
+      "sourceArchiveInput": {
+        "bytes": 38268,
+        "sha256": "5b4f3439c249ba8f0d96527073e93136836be323970c1b6d2ab2872ac2752beb"
+      }
+    },
+    {
+      "path": "browser/390-tau-empire.jpg",
+      "bytes": 36687,
+      "sha256": "2c66aab3692d02050aacb65de2dbb86fbc2261e7c668d3e4acf629e26883ea83",
+      "sourceArchiveInput": {
+        "bytes": 36687,
+        "sha256": "2c66aab3692d02050aacb65de2dbb86fbc2261e7c668d3e4acf629e26883ea83"
+      }
+    },
+    {
+      "path": "browser/390-tyranids.jpg",
+      "bytes": 35724,
+      "sha256": "53f76bf6386e033d5e4c6eb6695a75d039393713e838864f5219442a7a971801",
+      "sourceArchiveInput": {
+        "bytes": 35724,
+        "sha256": "53f76bf6386e033d5e4c6eb6695a75d039393713e838864f5219442a7a971801"
+      }
+    },
+    {
+      "path": "browser/RESULTS.json",
+      "bytes": 12995,
+      "sha256": "90a6094bc969e57da3d4f1a372922bf0a4ce702441af8d34d46677c088fab68b",
+      "sourceArchiveInput": {
+        "bytes": 12995,
+        "sha256": "90a6094bc969e57da3d4f1a372922bf0a4ce702441af8d34d46677c088fab68b"
+      }
+    },
+    {
+      "path": "metadata/DEPLOYMENT_INVENTORY.json",
+      "bytes": 14411,
+      "sha256": "11677b06ae8ce7b91e3617785c5d856d006395a57f11492bc043946d3f4f6f8a",
+      "sourceArchiveInput": {
+        "bytes": 14764,
+        "sha256": "efd5aa8b88e7c738f20bc34092ac85fd1e57355ddee118bb799e636e6c6c169f"
+      }
+    },
+    {
+      "path": "metadata/KNOWN_PLAYER_LIMITATIONS.md",
+      "bytes": 5226,
+      "sha256": "ea55e80c02d3835079e73e3ce38908f576f196e2f3efbc4325b0bb0aae8dae0c",
+      "sourceArchiveInput": {
+        "bytes": 5226,
+        "sha256": "ea55e80c02d3835079e73e3ce38908f576f196e2f3efbc4325b0bb0aae8dae0c"
+      }
+    },
+    {
+      "path": "metadata/LIMITATIONS_PROVENANCE.json",
+      "bytes": 713,
+      "sha256": "b0d86fc55d298c30d3a262772eb656ab7ec7cbf5aeb8539b7465973915bcff90",
+      "sourceArchiveInput": {
+        "bytes": 734,
+        "sha256": "0d9773b878220387ce258fe4a7e7b6307364c7c62ae7149577b90f765b4a25ed"
+      }
+    },
+    {
+      "path": "metadata/PAGES_ROLLBACK_METADATA.json",
+      "bytes": 9509,
+      "sha256": "4bed62742ff23950e5d55461130bc87f3b46e7b45e0b8a5edaae73858c8c8c8c",
+      "sourceArchiveInput": {
+        "bytes": 9752,
+        "sha256": "275beb602ac68af67e21028005a5862e1d0812e05ec50ed634b8d04186518993"
+      }
+    },
+    {
+      "path": "update-path/1440-network.json",
+      "bytes": 270751,
+      "sha256": "5f5591bbdef7cc171248d813f234d2a6f9fb9d8cab46cfda4f2eee997e52ef41",
+      "sourceArchiveInput": {
+        "bytes": 270751,
+        "sha256": "5f5591bbdef7cc171248d813f234d2a6f9fb9d8cab46cfda4f2eee997e52ef41"
+      }
+    },
+    {
+      "path": "update-path/1440-new-death-guard.jpg",
+      "bytes": 85470,
+      "sha256": "eeeb8dab58952c495ab694350f32f53d59385ac235460784bd0b8c8a74a9cc96",
+      "sourceArchiveInput": {
+        "bytes": 85470,
+        "sha256": "eeeb8dab58952c495ab694350f32f53d59385ac235460784bd0b8c8a74a9cc96"
+      }
+    },
+    {
+      "path": "update-path/1440-new-space-marines.jpg",
+      "bytes": 104925,
+      "sha256": "42f663f308767de238331b41425db875e3b7cd085cd959d8333e5239727f5144",
+      "sourceArchiveInput": {
+        "bytes": 104925,
+        "sha256": "42f663f308767de238331b41425db875e3b7cd085cd959d8333e5239727f5144"
+      }
+    },
+    {
+      "path": "update-path/1440-offline-death-guard.jpg",
+      "bytes": 85470,
+      "sha256": "eeeb8dab58952c495ab694350f32f53d59385ac235460784bd0b8c8a74a9cc96",
+      "sourceArchiveInput": {
+        "bytes": 85470,
+        "sha256": "eeeb8dab58952c495ab694350f32f53d59385ac235460784bd0b8c8a74a9cc96"
+      }
+    },
+    {
+      "path": "update-path/1440-offline-space-marines.jpg",
+      "bytes": 104925,
+      "sha256": "42f663f308767de238331b41425db875e3b7cd085cd959d8333e5239727f5144",
+      "sourceArchiveInput": {
+        "bytes": 104925,
+        "sha256": "42f663f308767de238331b41425db875e3b7cd085cd959d8333e5239727f5144"
+      }
+    },
+    {
+      "path": "update-path/1440-old-death-guard.jpg",
+      "bytes": 82589,
+      "sha256": "d06b81a642500ead6af1b823b4b66664964a096977a3849189473d3c4a9c8be6",
+      "sourceArchiveInput": {
+        "bytes": 82589,
+        "sha256": "d06b81a642500ead6af1b823b4b66664964a096977a3849189473d3c4a9c8be6"
+      }
+    },
+    {
+      "path": "update-path/1440-old-home.jpg",
+      "bytes": 97300,
+      "sha256": "d3e83866b98ae17e4b8bf4695cd1e4e31386db846f6e84e79bf43dc25f7ff96d",
+      "sourceArchiveInput": {
+        "bytes": 97300,
+        "sha256": "d3e83866b98ae17e4b8bf4695cd1e4e31386db846f6e84e79bf43dc25f7ff96d"
+      }
+    },
+    {
+      "path": "update-path/1440-old-space-marines.jpg",
+      "bytes": 90906,
+      "sha256": "7cd2926c137c826505a7877b834a70539ed8c78a6bfb5f30ec01159554b61430",
+      "sourceArchiveInput": {
+        "bytes": 90906,
+        "sha256": "7cd2926c137c826505a7877b834a70539ed8c78a6bfb5f30ec01159554b61430"
+      }
+    },
+    {
+      "path": "update-path/1440-reload-1.jpg",
+      "bytes": 98085,
+      "sha256": "5f5cde9c57eb9da2081e96e6943aea16f464bda34f6f5d114945477b820b2027",
+      "sourceArchiveInput": {
+        "bytes": 98085,
+        "sha256": "5f5cde9c57eb9da2081e96e6943aea16f464bda34f6f5d114945477b820b2027"
+      }
+    },
+    {
+      "path": "update-path/390-network.json",
+      "bytes": 270489,
+      "sha256": "450c46c79f3bff45000bba76a1bb7d5a0dafe7919afc695a4fe32a3f3d3270e4",
+      "sourceArchiveInput": {
+        "bytes": 270489,
+        "sha256": "450c46c79f3bff45000bba76a1bb7d5a0dafe7919afc695a4fe32a3f3d3270e4"
+      }
+    },
+    {
+      "path": "update-path/390-new-death-guard.jpg",
+      "bytes": 33737,
+      "sha256": "fbf5a0b4baa037dfe725144523a0af29f9819b879bf69250bc11df9b363c89b3",
+      "sourceArchiveInput": {
+        "bytes": 33737,
+        "sha256": "fbf5a0b4baa037dfe725144523a0af29f9819b879bf69250bc11df9b363c89b3"
+      }
+    },
+    {
+      "path": "update-path/390-new-space-marines.jpg",
+      "bytes": 35381,
+      "sha256": "f32212d1628bfae5c7906e24f25dad5edff13808b63a5dc293e8052e2402d750",
+      "sourceArchiveInput": {
+        "bytes": 35381,
+        "sha256": "f32212d1628bfae5c7906e24f25dad5edff13808b63a5dc293e8052e2402d750"
+      }
+    },
+    {
+      "path": "update-path/390-offline-death-guard.jpg",
+      "bytes": 33737,
+      "sha256": "fbf5a0b4baa037dfe725144523a0af29f9819b879bf69250bc11df9b363c89b3",
+      "sourceArchiveInput": {
+        "bytes": 33737,
+        "sha256": "fbf5a0b4baa037dfe725144523a0af29f9819b879bf69250bc11df9b363c89b3"
+      }
+    },
+    {
+      "path": "update-path/390-offline-space-marines.jpg",
+      "bytes": 35381,
+      "sha256": "f32212d1628bfae5c7906e24f25dad5edff13808b63a5dc293e8052e2402d750",
+      "sourceArchiveInput": {
+        "bytes": 35381,
+        "sha256": "f32212d1628bfae5c7906e24f25dad5edff13808b63a5dc293e8052e2402d750"
+      }
+    },
+    {
+      "path": "update-path/390-old-death-guard.jpg",
+      "bytes": 29046,
+      "sha256": "25c0c3d895b44a39ccf7293ed147e78e9e85efcad4576a7f569d12d959479560",
+      "sourceArchiveInput": {
+        "bytes": 29046,
+        "sha256": "25c0c3d895b44a39ccf7293ed147e78e9e85efcad4576a7f569d12d959479560"
+      }
+    },
+    {
+      "path": "update-path/390-old-home.jpg",
+      "bytes": 51108,
+      "sha256": "e5f6d946e57b2632b6e15cf521279d9e8e11fdd0e01463d062a924fe85b4f9bf",
+      "sourceArchiveInput": {
+        "bytes": 51108,
+        "sha256": "e5f6d946e57b2632b6e15cf521279d9e8e11fdd0e01463d062a924fe85b4f9bf"
+      }
+    },
+    {
+      "path": "update-path/390-old-space-marines.jpg",
+      "bytes": 31556,
+      "sha256": "ca5b355b14229d4fb1c429b183c40d6f569d25dc82dd62346608ddb13d526760",
+      "sourceArchiveInput": {
+        "bytes": 31556,
+        "sha256": "ca5b355b14229d4fb1c429b183c40d6f569d25dc82dd62346608ddb13d526760"
+      }
+    },
+    {
+      "path": "update-path/390-reload-1.jpg",
+      "bytes": 50941,
+      "sha256": "1a9b5bcbaa714bede1018c122ed0f0931b8bd2d0e65c033d1565c2038cb6f232",
+      "sourceArchiveInput": {
+        "bytes": 50941,
+        "sha256": "1a9b5bcbaa714bede1018c122ed0f0931b8bd2d0e65c033d1565c2038cb6f232"
+      }
+    },
+    {
+      "path": "update-path/RESULTS.json",
+      "bytes": 766151,
+      "sha256": "ac2b3a8b43c1e43ec9e8ef4cccf3bf9cb809c7ab3e2fb6273f51627fd32f74cd",
+      "sourceArchiveInput": {
+        "bytes": 766151,
+        "sha256": "ac2b3a8b43c1e43ec9e8ef4cccf3bf9cb809c7ab3e2fb6273f51627fd32f74cd"
+      }
+    }
+  ],
+  "ignoredLogs": [
+    "docs/reviews/release-candidate-v3-2026-11-21/BROWSER_SMOKE.log",
+    "docs/reviews/release-candidate-v3-2026-11-21/PACKAGE_BUILD.log",
+    "docs/reviews/release-candidate-v3-2026-11-21/PACKAGE_CHECK.log",
+    "docs/reviews/release-candidate-v3-2026-11-21/PACKAGE_QA.log",
+    "docs/reviews/release-candidate-v3-2026-11-21/UPDATE_PATH.log"
+  ],
+  "excludes": [
+    "browser profiles",
+    "runtime package bodies",
+    "RAW sources",
+    "trace ZIPs",
+    "full source catalog",
+    "owner email"
+  ],
+  "textNewlines": "LF; original input hashes retained"
+}

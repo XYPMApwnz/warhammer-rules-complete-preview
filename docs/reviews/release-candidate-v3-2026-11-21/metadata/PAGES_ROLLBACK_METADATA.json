@@ -1,0 +1,244 @@
+{
+  "schema": "release-candidate-rollback-metadata/v1",
+  "recordedAt": "2026-11-21T00:40:46.7343964Z",
+  "repository": "XYPMApwnz/warhammer-rules-complete-preview",
+  "reviewedSource": "6f2e5fb23643fc0041efcd7006f3e150bd5ce4be",
+  "releaseBefore": "1fd0b279051d76f1a262f7c8f117e35551b7de39",
+  "readOnly": true,
+  "remoteMutationPerformed": false,
+  "workflowDispatched": false,
+  "pages": {
+    "build_type": "workflow",
+    "html_url": "https://xypmapwnz.github.io/warhammer-rules-complete-preview/",
+    "https_enforced": true,
+    "source": {
+      "branch": "unified-v2-release",
+      "path": "/"
+    },
+    "status": "built"
+  },
+  "latestSuccessfulDeployment": {
+    "created_at": "2026-10-27T11:27:01Z",
+    "environment": "github-pages",
+    "id": 7357185549,
+    "ref": "unified-v2-release",
+    "sha": "1fd0b279051d76f1a262f7c8f117e35551b7de39",
+    "statuses_url": "https://api.github.com/repos/XYPMApwnz/warhammer-rules-complete-preview/deployments/7357185549/statuses",
+    "updated_at": "2026-10-27T11:27:21Z"
+  },
+  "deploymentStatuses": [
+    {
+      "created_at": "2026-10-27T11:27:21Z",
+      "environment": "github-pages",
+      "environment_url": "https://xypmapwnz.github.io/warhammer-rules-complete-preview/",
+      "id": 20717615246,
+      "log_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122162230181",
+      "state": "success",
+      "target_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122162230181",
+      "updated_at": "2026-10-27T11:27:21Z"
+    },
+    {
+      "created_at": "2026-10-27T11:27:06Z",
+      "environment": "github-pages",
+      "environment_url": "",
+      "id": 20717596872,
+      "log_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122162230181",
+      "state": "in_progress",
+      "target_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122162230181",
+      "updated_at": "2026-10-27T11:27:06Z"
+    },
+    {
+      "created_at": "2026-10-27T11:27:03Z",
+      "environment": "github-pages",
+      "environment_url": "",
+      "id": 20717593178,
+      "log_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122162230181",
+      "state": "queued",
+      "target_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122162230181",
+      "updated_at": "2026-10-27T11:27:03Z"
+    },
+    {
+      "created_at": "2026-10-27T11:27:02Z",
+      "environment": "github-pages",
+      "environment_url": "",
+      "id": 20717591968,
+      "log_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122162230181",
+      "state": "waiting",
+      "target_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122162230181",
+      "updated_at": "2026-10-27T11:27:02Z"
+    }
+  ],
+  "latestSuccessfulRun": {
+    "conclusion": "success",
+    "created_at": "2026-10-27T11:25:56Z",
+    "event": "push",
+    "head_branch": "unified-v2-release",
+    "head_sha": "1fd0b279051d76f1a262f7c8f117e35551b7de39",
+    "html_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519",
+    "id": 40496093519,
+    "name": "Unified V2 runtime Pages",
+    "path": ".github/workflows/pages-runtime.yml",
+    "run_attempt": 1,
+    "status": "completed",
+    "updated_at": "2026-10-27T11:27:21Z"
+  },
+  "jobs": {
+    "jobs": [
+      {
+        "completed_at": "2026-10-27T11:27:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122161784765",
+        "id": 122161784765,
+        "name": "build",
+        "started_at": "2026-10-27T11:25:59Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-10-27T11:26:02Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-10-27T11:26:00Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:26:31Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7",
+            "number": 2,
+            "started_at": "2026-10-27T11:26:02Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:26:32Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7",
+            "number": 3,
+            "started_at": "2026-10-27T11:26:31Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:26:36Z",
+            "conclusion": "success",
+            "name": "Build explicit runtime publication",
+            "number": 4,
+            "started_at": "2026-10-27T11:26:32Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:26:51Z",
+            "conclusion": "success",
+            "name": "Verify package and deterministic boundary tests",
+            "number": 5,
+            "started_at": "2026-10-27T11:26:36Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:26:56Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-pages-artifact@v4",
+            "number": 6,
+            "started_at": "2026-10-27T11:26:51Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:26:56Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7",
+            "number": 11,
+            "started_at": "2026-10-27T11:26:56Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:26:56Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7",
+            "number": 12,
+            "started_at": "2026-10-27T11:26:56Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:26:56Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "started_at": "2026-10-27T11:26:56Z",
+            "status": "completed"
+          }
+        ]
+      },
+      {
+        "completed_at": "2026-10-27T11:27:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/job/122162230181",
+        "id": 122162230181,
+        "name": "deploy",
+        "started_at": "2026-10-27T11:27:05Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-10-27T11:27:06Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-10-27T11:27:06Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:27:07Z",
+            "conclusion": "success",
+            "name": "Run actions/configure-pages@v5",
+            "number": 2,
+            "started_at": "2026-10-27T11:27:06Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:27:19Z",
+            "conclusion": "success",
+            "name": "Deploy reviewed runtime artifact",
+            "number": 3,
+            "started_at": "2026-10-27T11:27:07Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-27T11:27:19Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 4,
+            "started_at": "2026-10-27T11:27:19Z",
+            "status": "completed"
+          }
+        ]
+      }
+    ],
+    "total_count": 2
+  },
+  "artifactAvailability": {
+    "status": "UNAVAILABLE",
+    "runId": 40496093519,
+    "api": {
+      "artifacts": [],
+      "total_count": 0
+    },
+    "connectorIndependentlyConfirmedEmpty": true,
+    "reason": "Run artifacts endpoint currently returns zero artifacts. Expiration/deletion cause is not inferred.",
+    "rollbackMethod": "New commit-tree with tree of 1fd0b279051d76f1a262f7c8f117e35551b7de39 and sole parent equal to current release; review and separate owner authorization required before FF release."
+  },
+  "selection": {
+    "deploymentQuery": "GET /deployments?environment=github-pages&per_page=15",
+    "deploymentRowsObserved": 15,
+    "releaseRunQuery": "GET /actions/runs?branch=unified-v2-release&per_page=15",
+    "releaseRunTotal": 15,
+    "releaseRunRowsObserved": 15,
+    "latestDeploymentShaEqualsLatestSuccessfulWorkflowSha": true,
+    "deploymentJobUrlMatchesRun": true
+  },
+  "endpoints": [
+    "https://api.github.com/repos/XYPMApwnz/warhammer-rules-complete-preview/pages",
+    "https://api.github.com/repos/XYPMApwnz/warhammer-rules-complete-preview/deployments?environment=github-pages&per_page=15",
+    "https://api.github.com/repos/XYPMApwnz/warhammer-rules-complete-preview/deployments/7357185549/statuses",
+    "https://api.github.com/repos/XYPMApwnz/warhammer-rules-complete-preview/actions/runs?branch=unified-v2-release&per_page=15",
+    "https://api.github.com/repos/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/jobs",
+    "https://api.github.com/repos/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/artifacts"
+  ]
+}

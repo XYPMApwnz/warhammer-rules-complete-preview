@@ -1,0 +1,1576 @@
+{
+  "status": "PASS",
+  "root": "E:/Warhammer/qa-tmp/release-candidate/runtime-e3db1b34",
+  "candidate": "e3db1b345eca989436eea7af758900eee7795203",
+  "runtimeFiles": 456,
+  "physicalFiles": 457,
+  "runtimeBytes": 282837773,
+  "manifestBytes": 144511,
+  "publishedBytes": 282982284,
+  "aggregateSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909",
+  "manifestFileSha256": "615a0834ea9032a19ae163acc4dd4454dc847fb574110849a0eb5a6ec4f1805c",
+  "cacheRevision": "d08e23b961b6f507",
+  "precache": {
+    "urls": 221,
+    "urlBodyBytes": 5139186,
+    "urlBodyGzipBytes": 2153544,
+    "uniqueBodies": 219,
+    "uniqueBytes": 5113769,
+    "uniqueGzipBytes": 2146459,
+    "gzipLevel": 9,
+    "entries": [
+      {
+        "url": "./",
+        "path": "index.html",
+        "bytes": 359,
+        "gzipBytes": 245,
+        "sha256": "fdd6a5c466645b49e0b44b1f23fcb9cb2d09ce73ba7b62e6190fd231349b7dc0"
+      },
+      {
+        "url": "./assets/adeptus-mechanicus-cover-480.webp",
+        "path": "assets/adeptus-mechanicus-cover-480.webp",
+        "bytes": 52998,
+        "gzipBytes": 53036,
+        "sha256": "97dcb130c2e4886b8c4c2b27ef9f1b2bc1767bb40bfc5d4299263e530bf7bd5e"
+      },
+      {
+        "url": "./assets/apple-touch-icon.png",
+        "path": "assets/apple-touch-icon.png",
+        "bytes": 9134,
+        "gzipBytes": 8843,
+        "sha256": "b47a8522ebf7b50c401d77ecb427060c026d819e1d6eaec4d3777a84d6483290"
+      },
+      {
+        "url": "./assets/core-rules-cover-480.webp",
+        "path": "assets/core-rules-cover-480.webp",
+        "bytes": 53074,
+        "gzipBytes": 53112,
+        "sha256": "0ae7b10709305b01d038e4b3d59e8406acf245368ef2522e69cf607e1b603141"
+      },
+      {
+        "url": "./assets/core-rules-cover-fallback.jpg",
+        "path": "assets/core-rules-cover-fallback.jpg",
+        "bytes": 185826,
+        "gzipBytes": 185755,
+        "sha256": "4c35e035c32d64425df82767edeb57fc6128bc5d9d1d67fa0b9965f4820efc29"
+      },
+      {
+        "url": "./assets/death-guard-cover-480.webp",
+        "path": "assets/death-guard-cover-480.webp",
+        "bytes": 32960,
+        "gzipBytes": 32993,
+        "sha256": "3415e706a7ef964ce492379eb7e4619be8b3a1f6bd90b2525bf76c7957d9a647"
+      },
+      {
+        "url": "./assets/games-workshop-logo.png",
+        "path": "assets/games-workshop-logo.png",
+        "bytes": 53556,
+        "gzipBytes": 49262,
+        "sha256": "71633ad147c01c50a15bc609c3f3cf2f732d77f1d400e980842caf9e4eaf7798"
+      },
+      {
+        "url": "./assets/icon-192.png",
+        "path": "assets/icon-192.png",
+        "bytes": 9631,
+        "gzipBytes": 9343,
+        "sha256": "da8fe780d7a6defcae5f572c86fcc75c56e0c1436e836c302a138251c9fa66b2"
+      },
+      {
+        "url": "./assets/icon-512.png",
+        "path": "assets/icon-512.png",
+        "bytes": 54730,
+        "gzipBytes": 52394,
+        "sha256": "412d27a533e0ea10751202eb591fddc7a98bb6167f5d562350777cb97b4de458"
+      },
+      {
+        "url": "./assets/icon-maskable-512.png",
+        "path": "assets/icon-maskable-512.png",
+        "bytes": 39165,
+        "gzipBytes": 37097,
+        "sha256": "c9977c1b30ca0af106a15dda1718a76a66290618bd0fc9cb8d5fee4905da1b49"
+      },
+      {
+        "url": "./assets/tyranids-cover-480.webp",
+        "path": "assets/tyranids-cover-480.webp",
+        "bytes": 54430,
+        "gzipBytes": 54468,
+        "sha256": "1e023fd77c6bd8f91ff5f7fd10bfa7f4089e146726139c68a820c9e8d3ac60cc"
+      },
+      {
+        "url": "./assets/tyranids-cover-fallback.jpg",
+        "path": "assets/tyranids-cover-fallback.jpg",
+        "bytes": 197170,
+        "gzipBytes": 197215,
+        "sha256": "4e19586dd819514cc6045221d0b84d1f1f34930f3c1f9810db04dae07b2b1b10"
+      },
+      {
+        "url": "./assets/warhammer-40000-logo-optimized.png",
+        "path": "assets/warhammer-40000-logo-optimized.png",
+        "bytes": 63522,
+        "gzipBytes": 63560,
+        "sha256": "87c11244d0d2ef5eaef946f467d752fdbb9463da44b15a4f72d90ab004c15f4a"
+      },
+      {
+        "url": "./books/adeptus-mechanicus/assets/mechanicus-logo.png",
+        "path": "books/adeptus-mechanicus/assets/mechanicus-logo.png",
+        "bytes": 132575,
+        "gzipBytes": 131805,
+        "sha256": "e606091d46eefaa16d657d7ef1c56281efb455f32bc624a278119eb681281080"
+      },
+      {
+        "url": "./books/adeptus-mechanicus/book.config.json",
+        "path": "books/adeptus-mechanicus/book.config.json",
+        "bytes": 8967,
+        "gzipBytes": 2016,
+        "sha256": "8ae1fd6b8078ec15cb47b06233dc0d298178936d3b9023b76a0fead7171cbf0e"
+      },
+      {
+        "url": "./books/adeptus-mechanicus/v2/registration.mjs",
+        "path": "books/adeptus-mechanicus/v2/registration.mjs",
+        "bytes": 931,
+        "gzipBytes": 507,
+        "sha256": "48b20dac60cc9dfb97e28f5d70809b80f058f21b14e9d868711a092382c55ff0"
+      },
+      {
+        "url": "./books/adeptus-mechanicus/v2/roster-import.mjs",
+        "path": "books/adeptus-mechanicus/v2/roster-import.mjs",
+        "bytes": 3732,
+        "gzipBytes": 1553,
+        "sha256": "873f26b3e99b25f6b62e806fb21657c682c1ba3d0fbd5355b74d65eac3e7f6c7"
+      },
+      {
+        "url": "./books/adeptus-mechanicus/v2/roster-runtime.mjs",
+        "path": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+        "bytes": 2892,
+        "gzipBytes": 1097,
+        "sha256": "2db57365224e9dcb282013cc31edf119f8ba7d165702b267ce2dccc70a8c62cd"
+      },
+      {
+        "url": "./books/adeptus-mechanicus/v2/theme.css",
+        "path": "books/adeptus-mechanicus/v2/theme.css",
+        "bytes": 1329,
+        "gzipBytes": 653,
+        "sha256": "e3c887d7c74e745a82a6d4b1160ae34f4e4a1189cfdcf850c95db355552bb035"
+      },
+      {
+        "url": "./books/blood-angels/assets/blood-angels-cover-480.webp",
+        "path": "books/blood-angels/assets/blood-angels-cover-480.webp",
+        "bytes": 61496,
+        "gzipBytes": 61534,
+        "sha256": "bc935f15f339c123cb265a375a6919903d2baf21b2ff8c9ed4436c1d12f59369"
+      },
+      {
+        "url": "./books/blood-angels/book.config.json",
+        "path": "books/blood-angels/book.config.json",
+        "bytes": 18551,
+        "gzipBytes": 3151,
+        "sha256": "267d909379e4b9322e69301ae853dc52f43cb1f5349d5cf0d019d60feae4430b"
+      },
+      {
+        "url": "./books/blood-angels/v2/registration.mjs",
+        "path": "books/blood-angels/v2/registration.mjs",
+        "bytes": 929,
+        "gzipBytes": 501,
+        "sha256": "a5322d6c83dc27d051132b2a4ab888421bb29f790126b7ad3bca6c54a709d302"
+      },
+      {
+        "url": "./books/blood-angels/v2/roster-boot.mjs",
+        "path": "books/blood-angels/v2/roster-boot.mjs",
+        "bytes": 685,
+        "gzipBytes": 359,
+        "sha256": "d51243390dde9b8cd35544b9aa007559ca8853903640db69eaf4692c15edc926"
+      },
+      {
+        "url": "./books/blood-angels/v2/roster-import.mjs",
+        "path": "books/blood-angels/v2/roster-import.mjs",
+        "bytes": 19312,
+        "gzipBytes": 5924,
+        "sha256": "84035502e7fae20cd80f3810b6dc7e48eb92bf0522db26dc1b3fb1f4d34f3b9d"
+      },
+      {
+        "url": "./books/blood-angels/v2/roster-paid-options.mjs",
+        "path": "books/blood-angels/v2/roster-paid-options.mjs",
+        "bytes": 6634,
+        "gzipBytes": 2255,
+        "sha256": "1ea7177f75bcfc15a8164d12c2740d4a16aa8afb00e1ce88abc15fbb2be69eb5"
+      },
+      {
+        "url": "./books/blood-angels/v2/roster-runtime.mjs",
+        "path": "books/blood-angels/v2/roster-runtime.mjs",
+        "bytes": 2330,
+        "gzipBytes": 925,
+        "sha256": "18ea0b018c76b177409c4d39b96832682ececb6b76b7719c99be0a9655d5034c"
+      },
+      {
+        "url": "./books/blood-angels/v2/rule-contract-schema.mjs",
+        "path": "books/blood-angels/v2/rule-contract-schema.mjs",
+        "bytes": 341,
+        "gzipBytes": 238,
+        "sha256": "752b1038e38af9d073ef5e3c10cb3cd7607b9722d066b63343bbd08188fb56fd"
+      },
+      {
+        "url": "./books/blood-angels/v2/theme.css",
+        "path": "books/blood-angels/v2/theme.css",
+        "bytes": 998,
+        "gzipBytes": 467,
+        "sha256": "efa306e57b8fc9fecb52a5c02ca3c78402d6589a16c46d127c4fe13e2d7ebb74"
+      },
+      {
+        "url": "./books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp",
+        "path": "books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp",
+        "bytes": 59770,
+        "gzipBytes": 59808,
+        "sha256": "52908a1f0c5db1cfaca1da7d4b29aaf5d671b6176d9ecdf3df62ec9593721d77"
+      },
+      {
+        "url": "./books/chaos-space-marines/book.config.json",
+        "path": "books/chaos-space-marines/book.config.json",
+        "bytes": 10333,
+        "gzipBytes": 2213,
+        "sha256": "e2d381279d4594b72695c13354a9ad27ecf753a94c944ef3d47a58bfcb29be59"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/registration.mjs",
+        "path": "books/chaos-space-marines/v2/registration.mjs",
+        "bytes": 888,
+        "gzipBytes": 498,
+        "sha256": "eb16b55d8cd0f5b17ea3675270effca82ceb1141cf9aabf395f06b6fcd3caa8e"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/roster-attachment-build.mjs",
+        "path": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+        "bytes": 5301,
+        "gzipBytes": 1841,
+        "sha256": "4ecdf18696639ddf1aad890bc446e43e10f7e5ae5123c115a70b10f61461327c"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/roster-attachments.mjs",
+        "path": "books/chaos-space-marines/v2/roster-attachments.mjs",
+        "bytes": 1040,
+        "gzipBytes": 479,
+        "sha256": "7080aab6e666a6fc0a85b1556fb83197fe790bb97369ff4164e86797efba1771"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/roster-boot.mjs",
+        "path": "books/chaos-space-marines/v2/roster-boot.mjs",
+        "bytes": 3589,
+        "gzipBytes": 1204,
+        "sha256": "87daaf5593361edbdcd36a960ee798c36d0475894d21059352c51db4a4af768d"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/roster-effect-context.mjs",
+        "path": "books/chaos-space-marines/v2/roster-effect-context.mjs",
+        "bytes": 3316,
+        "gzipBytes": 1227,
+        "sha256": "0d66c7af6ef3c2600ff6c4fb5ce422dea18a4627686ed89825d97cfd090d22fc"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/roster-import-bindings.mjs",
+        "path": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+        "bytes": 9898,
+        "gzipBytes": 3556,
+        "sha256": "c7e8889b469de9540780f4b1c6334621586f4ef7d2e90a01ae40e3fb547459bd"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/roster-import.mjs",
+        "path": "books/chaos-space-marines/v2/roster-import.mjs",
+        "bytes": 1269,
+        "gzipBytes": 641,
+        "sha256": "135762589df1eea97b8bec344ef65c971f50defa1aafbcd444d89f7ea21d8344"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/roster-presentation.mjs",
+        "path": "books/chaos-space-marines/v2/roster-presentation.mjs",
+        "bytes": 3236,
+        "gzipBytes": 1327,
+        "sha256": "61fa93029c1324c13a2d5bbaa40c4fd7edc9b022a58f79b2f33b715dafb3c561"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/roster-runtime.mjs",
+        "path": "books/chaos-space-marines/v2/roster-runtime.mjs",
+        "bytes": 3386,
+        "gzipBytes": 1148,
+        "sha256": "e7fcddfe45ca7bd9af1adaeac7eec01674bb8f637ba20adf2e518709d71fe127"
+      },
+      {
+        "url": "./books/chaos-space-marines/v2/theme.css",
+        "path": "books/chaos-space-marines/v2/theme.css",
+        "bytes": 1130,
+        "gzipBytes": 517,
+        "sha256": "bde342e2e057cf1cecfd89ac05742a886f05caa4ec2d2fa272f89bf362c5db23"
+      },
+      {
+        "url": "./books/core-rules/reader/actions.html",
+        "path": "books/core-rules/reader/actions.html",
+        "bytes": 22073,
+        "gzipBytes": 5179,
+        "sha256": "03b57b42ca54adcbb874cb507680ec0fe6c5c92f42fe17415def7b6df2ea1bbf"
+      },
+      {
+        "url": "./books/core-rules/reader/aircraft.html",
+        "path": "books/core-rules/reader/aircraft.html",
+        "bytes": 18214,
+        "gzipBytes": 5142,
+        "sha256": "1e5fb6d2478f924a95c7cc7c46717800f3c27a5a1ea559c473ac8300d0f0e023"
+      },
+      {
+        "url": "./books/core-rules/reader/app.js?v=18",
+        "path": "books/core-rules/reader/app.js",
+        "bytes": 13201,
+        "gzipBytes": 3917,
+        "sha256": "bfa9c55dcb740590dfa2f20833fe5c6da9fadbafb11dbff76a948b3583bfba02"
+      },
+      {
+        "url": "./books/core-rules/reader/attached-units.html",
+        "path": "books/core-rules/reader/attached-units.html",
+        "bytes": 44939,
+        "gzipBytes": 7325,
+        "sha256": "a4129f0c8ec9462f08b64644833f35961402d7c8399f2bbcb8990067bf9dfd35"
+      },
+      {
+        "url": "./books/core-rules/reader/attack-sequence.html",
+        "path": "books/core-rules/reader/attack-sequence.html",
+        "bytes": 92872,
+        "gzipBytes": 13445,
+        "sha256": "10ec70186d2fa82b7e8de5a8cef41cda26cadd2ac647d4ddcd62af5243cf1f16"
+      },
+      {
+        "url": "./books/core-rules/reader/battle-round-overview.html",
+        "path": "books/core-rules/reader/battle-round-overview.html",
+        "bytes": 15099,
+        "gzipBytes": 4278,
+        "sha256": "dcd8b1746a36f3612dcab68385493dd115075f31061109464abe560431ca86fe"
+      },
+      {
+        "url": "./books/core-rules/reader/charge-phase.html",
+        "path": "books/core-rules/reader/charge-phase.html",
+        "bytes": 52562,
+        "gzipBytes": 9203,
+        "sha256": "1f8d492ff385e6718c902022fc2cdb5422aea9daa9b5aff57b0364b19f79776d"
+      },
+      {
+        "url": "./books/core-rules/reader/command-phase.html",
+        "path": "books/core-rules/reader/command-phase.html",
+        "bytes": 30632,
+        "gzipBytes": 7394,
+        "sha256": "f040223a1430acd071fe9e5c7beda7a2b430352853681614733404b0d9aab6c2"
+      },
+      {
+        "url": "./books/core-rules/reader/core-abilities.html",
+        "path": "books/core-rules/reader/core-abilities.html",
+        "bytes": 189703,
+        "gzipBytes": 28968,
+        "sha256": "eefd2068615ae7ed02bb57b9db62b8cbcdb1326ddb04c52d27a4ee20db961551"
+      },
+      {
+        "url": "./books/core-rules/reader/core-concepts.html",
+        "path": "books/core-rules/reader/core-concepts.html",
+        "bytes": 98069,
+        "gzipBytes": 18240,
+        "sha256": "fbbd016d0f38c722c600bbd2ef40f40c3635640c2afba19ab21afd49cce6c472"
+      },
+      {
+        "url": "./books/core-rules/reader/datasheets.html",
+        "path": "books/core-rules/reader/datasheets.html",
+        "bytes": 100482,
+        "gzipBytes": 14220,
+        "sha256": "abf4be12cb7f14ff45149464711e558622b507f4e9fd4b2d5d7324c7a7833035"
+      },
+      {
+        "url": "./books/core-rules/reader/fight-phase.html",
+        "path": "books/core-rules/reader/fight-phase.html",
+        "bytes": 87741,
+        "gzipBytes": 11604,
+        "sha256": "5ce47e4045a172e3a7d56ad432de2965342055a941ffcae2320aaa4d0a415fba"
+      },
+      {
+        "url": "./books/core-rules/reader/flying-surging.html",
+        "path": "books/core-rules/reader/flying-surging.html",
+        "bytes": 33268,
+        "gzipBytes": 7199,
+        "sha256": "b0b778f701e20323ebebd8e7b9a8c06c31747cba37625049d62f6d738579f5a3"
+      },
+      {
+        "url": "./books/core-rules/reader/index.html",
+        "path": "books/core-rules/reader/index.html",
+        "bytes": 284302,
+        "gzipBytes": 37632,
+        "sha256": "9b6c3b1b74abebc129d068665e168c80a89a62bce60b6ab82c24bda382afd1a0"
+      },
+      {
+        "url": "./books/core-rules/reader/introduction.html",
+        "path": "books/core-rules/reader/introduction.html",
+        "bytes": 9827,
+        "gzipBytes": 3674,
+        "sha256": "e3f5d8393b165e5b617a36ddea7ab4e012300d8127c0a06222e280d89cc01f5b"
+      },
+      {
+        "url": "./books/core-rules/reader/making-attacks.html",
+        "path": "books/core-rules/reader/making-attacks.html",
+        "bytes": 68545,
+        "gzipBytes": 12956,
+        "sha256": "5de8e49c9421b57449a950b0e6de27c83c78d8b45640c19ee2e04ab404bd0e13"
+      },
+      {
+        "url": "./books/core-rules/reader/monsters-vehicles.html",
+        "path": "books/core-rules/reader/monsters-vehicles.html",
+        "bytes": 36306,
+        "gzipBytes": 6138,
+        "sha256": "ce685014a8ab0109c45165ac0c74121552fd8768fc7e001b176c1ad56f897b65"
+      },
+      {
+        "url": "./books/core-rules/reader/mount.mjs",
+        "path": "books/core-rules/reader/mount.mjs",
+        "bytes": 12065,
+        "gzipBytes": 3938,
+        "sha256": "2c26e03a4afadc6e17a5fd2e4d9ac47a19b6ea3b5479bc7e4aafdeb3b7b966eb"
+      },
+      {
+        "url": "./books/core-rules/reader/movement-phase.html",
+        "path": "books/core-rules/reader/movement-phase.html",
+        "bytes": 62367,
+        "gzipBytes": 10352,
+        "sha256": "a0627e501347b3de1a19864934eedaffb85b8ab84ddf3d57c6a6de61e50c041c"
+      },
+      {
+        "url": "./books/core-rules/reader/moving.html",
+        "path": "books/core-rules/reader/moving.html",
+        "bytes": 76014,
+        "gzipBytes": 13464,
+        "sha256": "c562d04233adacbf0afbdc0462448e91a0aa5aeb535579ba3b10839a3704a702"
+      },
+      {
+        "url": "./books/core-rules/reader/muster-armies.html",
+        "path": "books/core-rules/reader/muster-armies.html",
+        "bytes": 32066,
+        "gzipBytes": 5801,
+        "sha256": "69ca2be82e7cf7de9fc0307958aa7dfd09f149253874712bb1d090a4345ae1d1"
+      },
+      {
+        "url": "./books/core-rules/reader/objectives.html",
+        "path": "books/core-rules/reader/objectives.html",
+        "bytes": 36904,
+        "gzipBytes": 6296,
+        "sha256": "c79b5414db688773ee03b89bc34c615fc7bf67389c2a8040cb2c2810ddb6da9a"
+      },
+      {
+        "url": "./books/core-rules/reader/other-concepts.html",
+        "path": "books/core-rules/reader/other-concepts.html",
+        "bytes": 44626,
+        "gzipBytes": 5741,
+        "sha256": "92e363ca7ce7e34c046422763ce245f0324912766b95c2121b2c26ebc718eab1"
+      },
+      {
+        "url": "./books/core-rules/reader/other-rules-abilities.html",
+        "path": "books/core-rules/reader/other-rules-abilities.html",
+        "bytes": 11697,
+        "gzipBytes": 3720,
+        "sha256": "4608d7b3185cad25c17569ed5dd32c927f5f84cc3341e5e3ef502b2da27c5d47"
+      },
+      {
+        "url": "./books/core-rules/reader/search-index.json",
+        "path": "books/core-rules/reader/search-index.json",
+        "bytes": 235076,
+        "gzipBytes": 57451,
+        "sha256": "6c7704cd4c644afa82a475505c676f05a781727667bd742e7283bda20f98fa29"
+      },
+      {
+        "url": "./books/core-rules/reader/shooting-phase.html",
+        "path": "books/core-rules/reader/shooting-phase.html",
+        "bytes": 58706,
+        "gzipBytes": 8076,
+        "sha256": "9b5a6a961fd1c4d76683a05d3477b3582e9e8fc627e05bf4a26660046f24f265"
+      },
+      {
+        "url": "./books/core-rules/reader/stratagems.html",
+        "path": "books/core-rules/reader/stratagems.html",
+        "bytes": 75550,
+        "gzipBytes": 14083,
+        "sha256": "e5bd5c741efa0587b762ef089178c3ce4eca7c321d2496f662bf7f8d531ec78d"
+      },
+      {
+        "url": "./books/core-rules/reader/strategic-reserves.html",
+        "path": "books/core-rules/reader/strategic-reserves.html",
+        "bytes": 36323,
+        "gzipBytes": 6832,
+        "sha256": "2bcb0e57e37b3f4ae9b5ee8773a9ab8ff3d8513899512bfe1ca3796cd31b6262"
+      },
+      {
+        "url": "./books/core-rules/reader/styles.css?v=16",
+        "path": "books/core-rules/reader/styles.css",
+        "bytes": 21777,
+        "gzipBytes": 5213,
+        "sha256": "764ce3f3d6045ad73da91ee1be51fd94f9bd0f06586256380250bd75a51fbf30"
+      },
+      {
+        "url": "./books/core-rules/reader/terrain.html",
+        "path": "books/core-rules/reader/terrain.html",
+        "bytes": 69394,
+        "gzipBytes": 10349,
+        "sha256": "f121e3a76a1aa1863e81aaf5c4120be79feb630b2f1270648ddb0d835c52f560"
+      },
+      {
+        "url": "./books/core-rules/reader/transports.html",
+        "path": "books/core-rules/reader/transports.html",
+        "bytes": 74428,
+        "gzipBytes": 10150,
+        "sha256": "43aa31527b1202d62a173e4721358f133d9aeec505da899e6d3a17ebfea1e5d2"
+      },
+      {
+        "url": "./books/dark-angels/assets/dark-angels-cover-480.webp",
+        "path": "books/dark-angels/assets/dark-angels-cover-480.webp",
+        "bytes": 71096,
+        "gzipBytes": 71139,
+        "sha256": "828dae4e0f351ed5d8d874feb6d1b97e497223af02bdfcc63a74c3dc4766faf5"
+      },
+      {
+        "url": "./books/dark-angels/book.config.json",
+        "path": "books/dark-angels/book.config.json",
+        "bytes": 23740,
+        "gzipBytes": 3772,
+        "sha256": "62ec05a4e0ac0108f689d60a439fd5e47af5dcd2018664c93ee1675a42b9afb9"
+      },
+      {
+        "url": "./books/dark-angels/v2/physical-chapter.mjs",
+        "path": "books/dark-angels/v2/physical-chapter.mjs",
+        "bytes": 4162,
+        "gzipBytes": 1590,
+        "sha256": "3cd365237848568383f84184c8d0d3f4009da334b7776d3141d134148bbb910f"
+      },
+      {
+        "url": "./books/dark-angels/v2/registration.mjs",
+        "path": "books/dark-angels/v2/registration.mjs",
+        "bytes": 923,
+        "gzipBytes": 502,
+        "sha256": "5af8162f4bfb73c2b8a6b0c8886aea373b2a21103e789d5288b97cb626d5fc8c"
+      },
+      {
+        "url": "./books/dark-angels/v2/roster-boot.mjs",
+        "path": "books/dark-angels/v2/roster-boot.mjs",
+        "bytes": 675,
+        "gzipBytes": 356,
+        "sha256": "167b8c8cba87f8b44d30fe7ffc4519fe161b07655120388a3e9e7b02d7ddc351"
+      },
+      {
+        "url": "./books/dark-angels/v2/roster-import.mjs",
+        "path": "books/dark-angels/v2/roster-import.mjs",
+        "bytes": 17561,
+        "gzipBytes": 5425,
+        "sha256": "70a7e8d021b967b1240880d92950f7b9e6a6cb304925350d41bcc46d378caa84"
+      },
+      {
+        "url": "./books/dark-angels/v2/roster-paid-options.mjs",
+        "path": "books/dark-angels/v2/roster-paid-options.mjs",
+        "bytes": 5931,
+        "gzipBytes": 2098,
+        "sha256": "922cc91a402aafebac65023687b8904ad65cd03a32b8c4738719de76b82c7da7"
+      },
+      {
+        "url": "./books/dark-angels/v2/roster-runtime.mjs",
+        "path": "books/dark-angels/v2/roster-runtime.mjs",
+        "bytes": 2682,
+        "gzipBytes": 1070,
+        "sha256": "dcb07d8082e0b8cf2c49a3d61cec3dee622d9a23ed021a1bfdd587de3a4ff9a5"
+      },
+      {
+        "url": "./books/dark-angels/v2/rule-contract-declarations.mjs",
+        "path": "books/dark-angels/v2/rule-contract-declarations.mjs",
+        "bytes": 5077,
+        "gzipBytes": 2049,
+        "sha256": "74c11f7bf00e9ce7ca57ab228c39b9dbaf2cd06a72dc03cca454fd7e361527bb"
+      },
+      {
+        "url": "./books/dark-angels/v2/rule-contract-schema.mjs",
+        "path": "books/dark-angels/v2/rule-contract-schema.mjs",
+        "bytes": 1670,
+        "gzipBytes": 744,
+        "sha256": "7ef1c9e2acfb244b85e734c9c762823ccf3de0f3a96933bf0bae6e32752e3890"
+      },
+      {
+        "url": "./books/dark-angels/v2/theme.css",
+        "path": "books/dark-angels/v2/theme.css",
+        "bytes": 997,
+        "gzipBytes": 463,
+        "sha256": "0d2174427891d9048af2100bb936f800725010c0dbcd0079b1c04f277632bbdf"
+      },
+      {
+        "url": "./books/death-guard/book.config.json",
+        "path": "books/death-guard/book.config.json",
+        "bytes": 8275,
+        "gzipBytes": 1844,
+        "sha256": "7e7116a996ec226612faed971baca82b7231fc86871d61cb5b81532b31059985"
+      },
+      {
+        "url": "./books/death-guard/v2/instrument-selections.mjs",
+        "path": "books/death-guard/v2/instrument-selections.mjs",
+        "bytes": 3882,
+        "gzipBytes": 1472,
+        "sha256": "49c98f41061c9df1948613d19f38892d7f12361b177f2fe3371fc488edcee8b3"
+      },
+      {
+        "url": "./books/death-guard/v2/registration.mjs",
+        "path": "books/death-guard/v2/registration.mjs",
+        "bytes": 879,
+        "gzipBytes": 512,
+        "sha256": "2dced74e32c880ef0cac1c5577af252a5256df0e51616bffe5e912743e77f30b"
+      },
+      {
+        "url": "./books/death-guard/v2/roster-boot.mjs",
+        "path": "books/death-guard/v2/roster-boot.mjs",
+        "bytes": 3100,
+        "gzipBytes": 1180,
+        "sha256": "2d5f58090793cd9c51ff2f6227f5f1044b0b8f6e389f681425f85e0b9fcbc7bc"
+      },
+      {
+        "url": "./books/death-guard/v2/roster-import-bindings.mjs",
+        "path": "books/death-guard/v2/roster-import-bindings.mjs",
+        "bytes": 1685,
+        "gzipBytes": 810,
+        "sha256": "8d1ecba6fafd9f6500d83e57429005b3bf39caa180c430d6afd3d817fe3dfcb2"
+      },
+      {
+        "url": "./books/death-guard/v2/rule-contract-schema.mjs",
+        "path": "books/death-guard/v2/rule-contract-schema.mjs",
+        "bytes": 543,
+        "gzipBytes": 317,
+        "sha256": "e2d78cb82ba0734ab83935801df8befde97f291dab242503ced0fc2c47ada143"
+      },
+      {
+        "url": "./books/death-guard/v2/rule-contract-state-fields.mjs",
+        "path": "books/death-guard/v2/rule-contract-state-fields.mjs",
+        "bytes": 15724,
+        "gzipBytes": 1979,
+        "sha256": "bc60bdd819fccd229d0bf198f8b0a833a4491f1a253ca16ebe6ad2bd33c3e100"
+      },
+      {
+        "url": "./books/emperors-children/assets/emperors-children-cover-480.webp",
+        "path": "books/emperors-children/assets/emperors-children-cover-480.webp",
+        "bytes": 90072,
+        "gzipBytes": 90120,
+        "sha256": "602da046f3a03da1c519f8dd543a03226b8307270df616caaba12ad2c42ba7b9"
+      },
+      {
+        "url": "./books/emperors-children/book.config.json",
+        "path": "books/emperors-children/book.config.json",
+        "bytes": 11844,
+        "gzipBytes": 2735,
+        "sha256": "8654b3be548e82f6f1e7f37578e40a48ab7d1ba4daa026b0d72ba16bfb26cbc9"
+      },
+      {
+        "url": "./books/emperors-children/v2/registration.mjs",
+        "path": "books/emperors-children/v2/registration.mjs",
+        "bytes": 903,
+        "gzipBytes": 499,
+        "sha256": "bbd39fa14bf5be23a66a6cc4f93829ce9a0d07f8a348d06f9113babfbbe91abd"
+      },
+      {
+        "url": "./books/emperors-children/v2/roster-attachments.mjs",
+        "path": "books/emperors-children/v2/roster-attachments.mjs",
+        "bytes": 3722,
+        "gzipBytes": 1367,
+        "sha256": "67f09bb77701aa261ea9fda5d761b36800e0cc75cc073b6501bfd2fe7c96336e"
+      },
+      {
+        "url": "./books/emperors-children/v2/roster-boot.mjs",
+        "path": "books/emperors-children/v2/roster-boot.mjs",
+        "bytes": 5742,
+        "gzipBytes": 2189,
+        "sha256": "38d212a14feae7d6fa57005ae7782f605cc680a03850563eccffdcaa037cf4da"
+      },
+      {
+        "url": "./books/emperors-children/v2/roster-equipment-context.mjs",
+        "path": "books/emperors-children/v2/roster-equipment-context.mjs",
+        "bytes": 2102,
+        "gzipBytes": 840,
+        "sha256": "94e0637b96424d2087231c0f28f59f5628af0180c34005f272864427e7551f96"
+      },
+      {
+        "url": "./books/emperors-children/v2/roster-import.mjs",
+        "path": "books/emperors-children/v2/roster-import.mjs",
+        "bytes": 17199,
+        "gzipBytes": 5434,
+        "sha256": "404c9b00ef8873f5c70510850581d5d765a74fbc3e7690e4928a4ac4e3eb4b55"
+      },
+      {
+        "url": "./books/emperors-children/v2/rule-contract-choice-context.mjs",
+        "path": "books/emperors-children/v2/rule-contract-choice-context.mjs",
+        "bytes": 1083,
+        "gzipBytes": 560,
+        "sha256": "7d0bdb548382ced1ff755a224a82645ab159a46813d463ba44e6fd687bb41602"
+      },
+      {
+        "url": "./books/emperors-children/v2/rule-contract-formation-context.mjs",
+        "path": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+        "bytes": 875,
+        "gzipBytes": 485,
+        "sha256": "9a779179db0695f5612d98d2f0af457cefb5375449e4a0af9fb3b60c603fa711"
+      },
+      {
+        "url": "./books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+        "path": "books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+        "bytes": 4188,
+        "gzipBytes": 1286,
+        "sha256": "15606f87e278adae304540c6e9bc30a3d2e5c52fa0e29668e42cfd797fc226ff"
+      },
+      {
+        "url": "./books/emperors-children/v2/rule-contract-schema.mjs",
+        "path": "books/emperors-children/v2/rule-contract-schema.mjs",
+        "bytes": 1118,
+        "gzipBytes": 483,
+        "sha256": "f2e43d36193b49325b60c5c847fbf8bf317fdb4c22fc291c04538422af81ebb0"
+      },
+      {
+        "url": "./books/emperors-children/v2/theme.css",
+        "path": "books/emperors-children/v2/theme.css",
+        "bytes": 1077,
+        "gzipBytes": 498,
+        "sha256": "98846a6a2205455c7a682712d8efd1a0be97059165dd6fbabfc5780283ec3a6a"
+      },
+      {
+        "url": "./books/shared/application-v2/generated/source-metadata.v1.json",
+        "path": "books/shared/application-v2/generated/source-metadata.v1.json",
+        "bytes": 1003,
+        "gzipBytes": 405,
+        "sha256": "d27f4b10e255d3cc6fb67743a83e9f766f6d30b6ace02a85e383c67d0bd01f66"
+      },
+      {
+        "url": "./books/shared/application-v2/glossary.css",
+        "path": "books/shared/application-v2/glossary.css",
+        "bytes": 3031,
+        "gzipBytes": 947,
+        "sha256": "bbefc00d088a94e525d92a68e81cb28a29db4a267ff75d4e1c50e20270f27d97"
+      },
+      {
+        "url": "./books/shared/application-v2/glossary.mjs",
+        "path": "books/shared/application-v2/glossary.mjs",
+        "bytes": 8016,
+        "gzipBytes": 2745,
+        "sha256": "f983a36c26c27e098256f7050a645f915b513bccdd84b11bc1e2a071f7b8a458"
+      },
+      {
+        "url": "./books/shared/application-v2/home.css",
+        "path": "books/shared/application-v2/home.css",
+        "bytes": 5991,
+        "gzipBytes": 1925,
+        "sha256": "6e265228d80ec4b510da9a060c9b3a78c74fd07822ba639671077f09f9605c2a"
+      },
+      {
+        "url": "./books/shared/application-v2/home.mjs",
+        "path": "books/shared/application-v2/home.mjs",
+        "bytes": 7486,
+        "gzipBytes": 2799,
+        "sha256": "ee4f99d7f1465293d865a1bebf80d9ec43383872ec2690137f0b893ad9a2c993"
+      },
+      {
+        "url": "./books/shared/application-v2/registry.mjs",
+        "path": "books/shared/application-v2/registry.mjs",
+        "bytes": 1307,
+        "gzipBytes": 584,
+        "sha256": "2c59f1a793f1d34de664857999c81d6ac3f664750ed1b2ed79c76cca37811a38"
+      },
+      {
+        "url": "./books/shared/application-v2/routes.mjs",
+        "path": "books/shared/application-v2/routes.mjs",
+        "bytes": 2042,
+        "gzipBytes": 901,
+        "sha256": "8747bd983725a3a566fe870f7b81e894e41e62d60d994ca17eae9ba7e81b17c2"
+      },
+      {
+        "url": "./books/shared/application-v2/runtime.mjs",
+        "path": "books/shared/application-v2/runtime.mjs",
+        "bytes": 16227,
+        "gzipBytes": 4696,
+        "sha256": "7a6dfa91f7456c0511d3be0ff4e85161e6f167f30ffc7f5d46b52a416c2f3fbb"
+      },
+      {
+        "url": "./books/shared/application-v2/shell.css",
+        "path": "books/shared/application-v2/shell.css",
+        "bytes": 6079,
+        "gzipBytes": 1717,
+        "sha256": "b260bf170140b9b6589ffcda64f99d749791c8b5882ebb7dc46cf8c856361120"
+      },
+      {
+        "url": "./books/shared/application-v2/source-metadata.mjs",
+        "path": "books/shared/application-v2/source-metadata.mjs",
+        "bytes": 3526,
+        "gzipBytes": 1441,
+        "sha256": "ac426c0b8efa4cc1042d2a7f766feae82f6eab89f250bfb552a630bc1c2a615e"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/ability-presentation.mjs",
+        "path": "books/shared/army-book-app-v2/ability-presentation.mjs",
+        "bytes": 7837,
+        "gzipBytes": 2585,
+        "sha256": "a55f8c8f5c0fdc3d0d08ff758eeba7b0ec970dec2ebad1a678e6f6361efe3170"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/book-v1.css",
+        "path": "books/shared/army-book-app-v2/book-v1.css",
+        "bytes": 22047,
+        "gzipBytes": 5362,
+        "sha256": "fd753c9baad9ab9609fbdcec31839cfd1b17dc216d0b98c6af5ff59bcff61a0b"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/book-v1.mjs",
+        "path": "books/shared/army-book-app-v2/book-v1.mjs",
+        "bytes": 14434,
+        "gzipBytes": 4486,
+        "sha256": "f0007f4c85e9558d5911a2f9b7b7e21ab0e66e52fe4ec12e6e9effb67d18059c"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/cosmetics.mjs",
+        "path": "books/shared/army-book-app-v2/cosmetics.mjs",
+        "bytes": 46464,
+        "gzipBytes": 10834,
+        "sha256": "990af42139c4e4c57a1abbd8bd422f12aa957d48d8d6073b03b2548e0840d690"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+        "path": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+        "bytes": 9038,
+        "gzipBytes": 2708,
+        "sha256": "8f9a1db29afd4be9657bb3d9144b1cf079789ab1d6e0663087b5fd04dd8f7e89"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/datasheet-v1.css",
+        "path": "books/shared/army-book-app-v2/datasheet-v1.css",
+        "bytes": 27618,
+        "gzipBytes": 6197,
+        "sha256": "7db5c20028c647997e1d7d98e36c69c016d239db1046e47e2eaf52cfdd1c6e32"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/datasheet-v1.mjs",
+        "path": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+        "bytes": 133526,
+        "gzipBytes": 33557,
+        "sha256": "6aabee489b8378c9ab38adad84d906ceba97d3a4a65bedb039853426377112f0"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+        "path": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+        "bytes": 16034,
+        "gzipBytes": 5282,
+        "sha256": "d9020b9963420a068dd32364de359dd983ae544e378d5b083634607009c2ba71"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/equipment-reference.mjs",
+        "path": "books/shared/army-book-app-v2/equipment-reference.mjs",
+        "bytes": 3105,
+        "gzipBytes": 1221,
+        "sha256": "78273af5de45318bca62e92b03ab87c25fdca796346f0244f27e77bdc14268cb"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+        "path": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+        "bytes": 788,
+        "gzipBytes": 422,
+        "sha256": "64cafda707879913f280f002a245bf1f06d518d8f311795fbce12a6bf2ce5c8c"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/global-glossary-content.mjs",
+        "path": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+        "bytes": 48896,
+        "gzipBytes": 13759,
+        "sha256": "6cc76679bf1e5c2693a03a4f6b29d972b265d8b3f6c726016f60793018b2aaf9"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/global-glossary.mjs",
+        "path": "books/shared/army-book-app-v2/global-glossary.mjs",
+        "bytes": 8982,
+        "gzipBytes": 2909,
+        "sha256": "ae485a66eedabae36ca90e253b4a12e2824cbefbdd32933ac6198663aee62ace"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/glossary-v1.mjs",
+        "path": "books/shared/army-book-app-v2/glossary-v1.mjs",
+        "bytes": 3269,
+        "gzipBytes": 1227,
+        "sha256": "c232c1c1f4b37d6a0796c8108e2182abf8c5fbb53bfd9b92b375e6cd1d62caa7"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/glossary.mjs",
+        "path": "books/shared/army-book-app-v2/glossary.mjs",
+        "bytes": 10843,
+        "gzipBytes": 3559,
+        "sha256": "9cb7bc59df3203b2f45f91d6e2712dc72fae02b9eec5e21599bbb0dabc50c0bd"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/import-notices.mjs",
+        "path": "books/shared/army-book-app-v2/import-notices.mjs",
+        "bytes": 3609,
+        "gzipBytes": 1569,
+        "sha256": "1bb56576b5b74bf12d48c41481c93ecd37d0f84dead89e049fe3d2514a32900c"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/lifecycle.mjs",
+        "path": "books/shared/army-book-app-v2/lifecycle.mjs",
+        "bytes": 2023,
+        "gzipBytes": 743,
+        "sha256": "934bed96c0e21c5301c51c9016c3b5a8a09dc8e77f7fc9c2a614290fef1e4ee4"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+        "path": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+        "bytes": 23183,
+        "gzipBytes": 5701,
+        "sha256": "22a8fe82821dda9d9bd1cb0e2637ce00c3d4af813c30872edce549fd2605a039"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+        "path": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+        "bytes": 2571,
+        "gzipBytes": 930,
+        "sha256": "80ba9d6ad5f55312e1ed3a5d1ea05be0867fc6dd1864c597675ee8b116b554b7"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/navigation-v1.css",
+        "path": "books/shared/army-book-app-v2/navigation-v1.css",
+        "bytes": 13769,
+        "gzipBytes": 3389,
+        "sha256": "ceb513026337af8a0718f4dfac61652a8205b7d7c72b29b36baf6e34fef210cc"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/navigation-v1.mjs",
+        "path": "books/shared/army-book-app-v2/navigation-v1.mjs",
+        "bytes": 18901,
+        "gzipBytes": 5925,
+        "sha256": "b8c6c2b60452b23a46baaf64da910138ccb8b09bb95f8500640a95dc5bd6fab2"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+        "path": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+        "bytes": 5467,
+        "gzipBytes": 1706,
+        "sha256": "d20d6cf2619cf826b4e89a6c525148da0ebc019890646f2227b92937a011eee5"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/personal.mjs",
+        "path": "books/shared/army-book-app-v2/personal.mjs",
+        "bytes": 49535,
+        "gzipBytes": 13496,
+        "sha256": "879aa190ab2a23969eac85abe35f9eab030434db0cadea2a6611e1930efde134"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/popup-v1.css",
+        "path": "books/shared/army-book-app-v2/popup-v1.css",
+        "bytes": 12394,
+        "gzipBytes": 3375,
+        "sha256": "4fa628131a00f43d224aa3b7c5ef3c9db69e178b333ad2821423736c6c8b08d9"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/popup-v1.mjs",
+        "path": "books/shared/army-book-app-v2/popup-v1.mjs",
+        "bytes": 1634,
+        "gzipBytes": 645,
+        "sha256": "6e7f587b0882543b382d9c8e35a926a85eea2e5856cbf93d2535da16e75ddae5"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/reference-contract.mjs",
+        "path": "books/shared/army-book-app-v2/reference-contract.mjs",
+        "bytes": 10074,
+        "gzipBytes": 3561,
+        "sha256": "194c513155b49583f5ec208c33ee655b9bdd201499e3fe854a4b99126ec90a8d"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/reference-v1.css",
+        "path": "books/shared/army-book-app-v2/reference-v1.css",
+        "bytes": 3337,
+        "gzipBytes": 970,
+        "sha256": "f01ae39726446786bac0d779d690783113489244b7b2ab968cad6bcc9b0d5e6e"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/reference-v1.mjs",
+        "path": "books/shared/army-book-app-v2/reference-v1.mjs",
+        "bytes": 6097,
+        "gzipBytes": 2285,
+        "sha256": "247fda3515ad1c0e0920b0b2c45c84b1cb296ee76d7bec8d1af1b885127c2050"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/related-v1.mjs",
+        "path": "books/shared/army-book-app-v2/related-v1.mjs",
+        "bytes": 4315,
+        "gzipBytes": 1568,
+        "sha256": "0ff818ffafeaf0e907eec216779167eae6bface1a7483d90fd3305b8115c1eed"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/roster-labels.mjs",
+        "path": "books/shared/army-book-app-v2/roster-labels.mjs",
+        "bytes": 2594,
+        "gzipBytes": 1126,
+        "sha256": "43aaf1fb3e2cd8d8a11236882791f971643d880d745fccbec50533e41fb362c8"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/roster.mjs",
+        "path": "books/shared/army-book-app-v2/roster.mjs",
+        "bytes": 54082,
+        "gzipBytes": 13990,
+        "sha256": "4668d37ae3250ccd1accac453c76d15bf388859e43a1e2457386874e9c05910b"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/route-context.mjs",
+        "path": "books/shared/army-book-app-v2/route-context.mjs",
+        "bytes": 4231,
+        "gzipBytes": 1386,
+        "sha256": "969228df85c6a74cb84f2d9d8057ecaa1a08e98f1ba68043371ff0eb1e952784"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/rule-popup.mjs",
+        "path": "books/shared/army-book-app-v2/rule-popup.mjs",
+        "bytes": 5315,
+        "gzipBytes": 2003,
+        "sha256": "f8f79c5a4aed43f4037b2f16cfbf98c493845a90b313f7fe5a3d833ab93c4343"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/rule-term-links.mjs",
+        "path": "books/shared/army-book-app-v2/rule-term-links.mjs",
+        "bytes": 10531,
+        "gzipBytes": 3900,
+        "sha256": "5375b7b18d480ee7f6aabeef0e831c6ff827cf9b4461b3d587823ff4af6d5792"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/runtime.mjs",
+        "path": "books/shared/army-book-app-v2/runtime.mjs",
+        "bytes": 72254,
+        "gzipBytes": 18731,
+        "sha256": "d8bbc51f09d0a50aaae0242b8a564b2236be210a208639196572dcb47b9b70f6"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/source-table.mjs",
+        "path": "books/shared/army-book-app-v2/source-table.mjs",
+        "bytes": 1976,
+        "gzipBytes": 840,
+        "sha256": "fddde70a69f5d9ff94c5ce2d7cd4d6db438d8db0f11b1809529ee1392d8eda1f"
+      },
+      {
+        "url": "./books/shared/army-book-app-v2/styles.css",
+        "path": "books/shared/army-book-app-v2/styles.css",
+        "bytes": 21198,
+        "gzipBytes": 5274,
+        "sha256": "c3181bac6a6bcdfb9aea80a702337a47c9ad0816d91224420551f0472417eb24"
+      },
+      {
+        "url": "./books/shared/datasheet-system.css",
+        "path": "books/shared/datasheet-system.css",
+        "bytes": 22590,
+        "gzipBytes": 4406,
+        "sha256": "da524eee52ad85819422753e98678c6356078b0a998d61de1184a8897b1677c2"
+      },
+      {
+        "url": "./books/shared/keyword-values.mjs",
+        "path": "books/shared/keyword-values.mjs",
+        "bytes": 462,
+        "gzipBytes": 286,
+        "sha256": "00f25c852b3abfb27c803d54b8bcedf27fb30cf008036fb7ca0327fc10810fbf"
+      },
+      {
+        "url": "./books/shared/offline-status.js?v=4",
+        "path": "books/shared/offline-status.js",
+        "bytes": 25058,
+        "gzipBytes": 6840,
+        "sha256": "68e1159ea67aa6e4855d1a3ab2f65cc679ffe4466e2fc60c990b6237b69a7528"
+      },
+      {
+        "url": "./books/shared/offline-status.js?wh-pwa=d08e23b961b6f507",
+        "path": "books/shared/offline-status.js",
+        "bytes": 25058,
+        "gzipBytes": 6840,
+        "sha256": "68e1159ea67aa6e4855d1a3ab2f65cc679ffe4466e2fc60c990b6237b69a7528"
+      },
+      {
+        "url": "./books/shared/roster-v2/attached-rule-text.mjs",
+        "path": "books/shared/roster-v2/attached-rule-text.mjs",
+        "bytes": 18131,
+        "gzipBytes": 5405,
+        "sha256": "7eb487f94d4ca4916a14b2165cbe2cc8cbeb651dedeeedda40c0a5a3f69d09ba"
+      },
+      {
+        "url": "./books/shared/roster-v2/attachment-service.mjs",
+        "path": "books/shared/roster-v2/attachment-service.mjs",
+        "bytes": 3433,
+        "gzipBytes": 1289,
+        "sha256": "325f24db73e57d4a655e4f185c475a67c48289f545981fa54ba85af3a09b019e"
+      },
+      {
+        "url": "./books/shared/roster-v2/compatibility-context.mjs",
+        "path": "books/shared/roster-v2/compatibility-context.mjs",
+        "bytes": 2580,
+        "gzipBytes": 1209,
+        "sha256": "83857cd0d7730aa6add42f9d5fb0e701f51726a6862db44bbf0ffcbb14bc3677"
+      },
+      {
+        "url": "./books/shared/roster-v2/compatibility-feasibility.mjs",
+        "path": "books/shared/roster-v2/compatibility-feasibility.mjs",
+        "bytes": 14002,
+        "gzipBytes": 4237,
+        "sha256": "c51bdd59c068c6b2861f5bb2a4b3bfaefa13a26bf11e863e21c2f7714e3c88c2"
+      },
+      {
+        "url": "./books/shared/roster-v2/condition-binding.mjs",
+        "path": "books/shared/roster-v2/condition-binding.mjs",
+        "bytes": 8164,
+        "gzipBytes": 2752,
+        "sha256": "adc35502c3a2eb5f8ee2363f4713bbd4a56c930b4a4fbb48e5ca4624a87ebff6"
+      },
+      {
+        "url": "./books/shared/roster-v2/condition-computations.mjs",
+        "path": "books/shared/roster-v2/condition-computations.mjs",
+        "bytes": 4089,
+        "gzipBytes": 1607,
+        "sha256": "a95500735777cc2ad737e0869ca9a06212bb265f03e8fff0efb432f99516de44"
+      },
+      {
+        "url": "./books/shared/roster-v2/condition-context.mjs",
+        "path": "books/shared/roster-v2/condition-context.mjs",
+        "bytes": 5247,
+        "gzipBytes": 1903,
+        "sha256": "69553042f8ec919b67ea8363d601b9b60176e82fa9e8278aaed57504beceff96"
+      },
+      {
+        "url": "./books/shared/roster-v2/conditional-policy.mjs",
+        "path": "books/shared/roster-v2/conditional-policy.mjs",
+        "bytes": 29957,
+        "gzipBytes": 8432,
+        "sha256": "0b2ab41d151943c1b0ceaf05ff2f45ebc6ebc10bfdde9b47e33d1b7996a34f07"
+      },
+      {
+        "url": "./books/shared/roster-v2/context.mjs",
+        "path": "books/shared/roster-v2/context.mjs",
+        "bytes": 32221,
+        "gzipBytes": 8782,
+        "sha256": "2e13da19c73e0f583b13ea6657e4ad9d62183edd3870c580eaa3dc59e93a7ac7"
+      },
+      {
+        "url": "./books/shared/roster-v2/effective-instance.mjs",
+        "path": "books/shared/roster-v2/effective-instance.mjs",
+        "bytes": 18328,
+        "gzipBytes": 5000,
+        "sha256": "db99895a8e082778bd9095291bae8dc4e62c6ffc6c3e89bea137651086b2e898"
+      },
+      {
+        "url": "./books/shared/roster-v2/effects.mjs",
+        "path": "books/shared/roster-v2/effects.mjs",
+        "bytes": 55043,
+        "gzipBytes": 13245,
+        "sha256": "6c645732df7245399dbbacd0f8282408356769d90d82709aeb38ddc12b18e3fa"
+      },
+      {
+        "url": "./books/shared/roster-v2/enhancement-bearers.mjs",
+        "path": "books/shared/roster-v2/enhancement-bearers.mjs",
+        "bytes": 2336,
+        "gzipBytes": 998,
+        "sha256": "486b89950276226621caeb2c9268fcf59eff3398fc4311445ded69a67241de5a"
+      },
+      {
+        "url": "./books/shared/roster-v2/export-faction.mjs",
+        "path": "books/shared/roster-v2/export-faction.mjs",
+        "bytes": 1342,
+        "gzipBytes": 677,
+        "sha256": "753c0bfbab124e245bcdc3417e660ab9ad7bea3af1ebd0c1bafb15f210083cb0"
+      },
+      {
+        "url": "./books/shared/roster-v2/import-service.mjs",
+        "path": "books/shared/roster-v2/import-service.mjs",
+        "bytes": 9900,
+        "gzipBytes": 3201,
+        "sha256": "1eed3bb20cf0f139b2247b136c7444c7fab906226c5640483db8784d37b2601d"
+      },
+      {
+        "url": "./books/shared/roster-v2/import.mjs",
+        "path": "books/shared/roster-v2/import.mjs",
+        "bytes": 37195,
+        "gzipBytes": 11147,
+        "sha256": "3015ea235643564a9a5ffcb3fea85c7c7978933e0301b785ae73adc62838c37e"
+      },
+      {
+        "url": "./books/shared/roster-v2/keyword-scopes.mjs",
+        "path": "books/shared/roster-v2/keyword-scopes.mjs",
+        "bytes": 135,
+        "gzipBytes": 130,
+        "sha256": "732d59d77b90f5f02fd3f71060a8cfe693373d4d64b81337a3637c0e283d9df9"
+      },
+      {
+        "url": "./books/shared/roster-v2/keywords.mjs",
+        "path": "books/shared/roster-v2/keywords.mjs",
+        "bytes": 1333,
+        "gzipBytes": 490,
+        "sha256": "10be31278d40aaa8ad7da570b5f0ed53e44cd99d04f630a4ec7ea15386d7bd91"
+      },
+      {
+        "url": "./books/shared/roster-v2/model-name-aliases.mjs",
+        "path": "books/shared/roster-v2/model-name-aliases.mjs",
+        "bytes": 1279,
+        "gzipBytes": 624,
+        "sha256": "782ec8fa271b7921ed75903eb11cbbec1e901d48b1568ee2aba68557e84a240e"
+      },
+      {
+        "url": "./books/shared/roster-v2/parser.mjs",
+        "path": "books/shared/roster-v2/parser.mjs",
+        "bytes": 15459,
+        "gzipBytes": 4612,
+        "sha256": "9221e95f32e755e3e87baa53d8c7e3ab8dfb9a1236d41937a00d78264745fce6"
+      },
+      {
+        "url": "./books/shared/roster-v2/physical-choice.mjs",
+        "path": "books/shared/roster-v2/physical-choice.mjs",
+        "bytes": 13239,
+        "gzipBytes": 3774,
+        "sha256": "25a53ef662c04d3fc35218efc6aceb1f2943f9a903aa076b2ed82cc1383d1882"
+      },
+      {
+        "url": "./books/shared/roster-v2/physical-condition-context.mjs",
+        "path": "books/shared/roster-v2/physical-condition-context.mjs",
+        "bytes": 11987,
+        "gzipBytes": 3737,
+        "sha256": "88bdbdd39f200c3254b28269e9c74bf98c29b51629f93ce073fe6ebed2dcea8d"
+      },
+      {
+        "url": "./books/shared/roster-v2/physical-static-model.mjs",
+        "path": "books/shared/roster-v2/physical-static-model.mjs",
+        "bytes": 4768,
+        "gzipBytes": 1741,
+        "sha256": "1df03f088649ef591d6b281fe88473a7b819191a94a80b35cedc9e712462cc39"
+      },
+      {
+        "url": "./books/shared/roster-v2/recipient-execution.mjs",
+        "path": "books/shared/roster-v2/recipient-execution.mjs",
+        "bytes": 11223,
+        "gzipBytes": 3642,
+        "sha256": "dd80ea53b711ddeb35369c6d123a77a1dcf80953430b2b7d05f468e919abab78"
+      },
+      {
+        "url": "./books/shared/roster-v2/related.mjs",
+        "path": "books/shared/roster-v2/related.mjs",
+        "bytes": 2683,
+        "gzipBytes": 1071,
+        "sha256": "f3c1827140f4485e485786bd207357d78e10f2e86ec3be4f4b3112bb42923b30"
+      },
+      {
+        "url": "./books/shared/roster-v2/runtime.mjs",
+        "path": "books/shared/roster-v2/runtime.mjs",
+        "bytes": 10456,
+        "gzipBytes": 3559,
+        "sha256": "64268409db2a3e51f21c9a95e742973bbeb6bfc404506f0b443744026059b829"
+      },
+      {
+        "url": "./books/shared/roster-v2/singleton-model-import.mjs",
+        "path": "books/shared/roster-v2/singleton-model-import.mjs",
+        "bytes": 2953,
+        "gzipBytes": 1182,
+        "sha256": "76a18809a0a0a031bb4c4e370007feaaacf8c44fc8e734fc2b64295e0124a696"
+      },
+      {
+        "url": "./books/shared/roster-v2/text-roster-facts.mjs",
+        "path": "books/shared/roster-v2/text-roster-facts.mjs",
+        "bytes": 6254,
+        "gzipBytes": 2222,
+        "sha256": "a99ceed85c2d4d669117fd44c42b85985f1d646b74bd023c7c32b7554fe800a4"
+      },
+      {
+        "url": "./books/shared/rule-contract-v2/conditions-build.mjs",
+        "path": "books/shared/rule-contract-v2/conditions-build.mjs",
+        "bytes": 8120,
+        "gzipBytes": 2511,
+        "sha256": "e6ec19f4e7be7c9630947ace044f5bcb7cf435d4f86d971410d23db3fa2dbb24"
+      },
+      {
+        "url": "./books/shared/rule-contract-v2/conditions.mjs",
+        "path": "books/shared/rule-contract-v2/conditions.mjs",
+        "bytes": 28077,
+        "gzipBytes": 7698,
+        "sha256": "60f876fca2f91c1eef8819645b8a0dabc5960543fd6c53ea5fc897e87ea8e829"
+      },
+      {
+        "url": "./books/shared/rule-contract-v2/finalize-recipients.mjs",
+        "path": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+        "bytes": 2559,
+        "gzipBytes": 953,
+        "sha256": "01913e924d33f6a65bfab1be876bb13dfaf339018ff7626fd8637977dfb1c6b7"
+      },
+      {
+        "url": "./books/shared/rule-contract-v2/recipients.mjs",
+        "path": "books/shared/rule-contract-v2/recipients.mjs",
+        "bytes": 36074,
+        "gzipBytes": 8609,
+        "sha256": "2e97abd326f717bbffb1842b6dc4598bb8d89cc0d5084fbe991343be4a6c95ca"
+      },
+      {
+        "url": "./books/shared/rule-contract-v2/schema.mjs",
+        "path": "books/shared/rule-contract-v2/schema.mjs",
+        "bytes": 23859,
+        "gzipBytes": 6407,
+        "sha256": "4919a42c198a1bf3aa3707e233936d296b761e7f14b734ec7020237e6e6f83c3"
+      },
+      {
+        "url": "./books/shared/rule-facts.js",
+        "path": "books/shared/rule-facts.js",
+        "bytes": 19741,
+        "gzipBytes": 5380,
+        "sha256": "625ace571caf77093110077eafbddb4b22e9e4b0f7a8da0683318e82092db950"
+      },
+      {
+        "url": "./books/shared/source-refs-v2/source-catalog.mjs",
+        "path": "books/shared/source-refs-v2/source-catalog.mjs",
+        "bytes": 3467,
+        "gzipBytes": 1366,
+        "sha256": "c77b6203e5027a23f6d5c510626d536e8645c775b10149b764f61fa7a6724d41"
+      },
+      {
+        "url": "./books/shared/source-refs-v2/source-refs.mjs",
+        "path": "books/shared/source-refs-v2/source-refs.mjs",
+        "bytes": 39606,
+        "gzipBytes": 10232,
+        "sha256": "6dfae66e205029154cf6ea21efa04485d74e14b954b99bbf387ad402714e719a"
+      },
+      {
+        "url": "./books/shared/stratagem-presentation.mjs",
+        "path": "books/shared/stratagem-presentation.mjs",
+        "bytes": 2324,
+        "gzipBytes": 973,
+        "sha256": "07690856ec31fb309680b5774f86104c37a0555570e1d3fdc694bb77b77201b7"
+      },
+      {
+        "url": "./books/shared/styles/offline-status.css",
+        "path": "books/shared/styles/offline-status.css",
+        "bytes": 4276,
+        "gzipBytes": 1644,
+        "sha256": "aa99999af1f63388914b528db77814fde3ab32f099a009dbb52e89b6cb0c8886"
+      },
+      {
+        "url": "./books/shared/unit-art.css",
+        "path": "books/shared/unit-art.css",
+        "bytes": 2643,
+        "gzipBytes": 804,
+        "sha256": "80e87a543be5946438af69e0286e0497fa196e11455f9764367d2d6be9e48980"
+      },
+      {
+        "url": "./books/space-marines/assets/space-marines-cover-480.webp",
+        "path": "books/space-marines/assets/space-marines-cover-480.webp",
+        "bytes": 70640,
+        "gzipBytes": 70683,
+        "sha256": "4c94202f3e94dc09a30f0b4bea0282e8ba63743fbbbdcad879fecb40020b3ced"
+      },
+      {
+        "url": "./books/space-marines/book.config.json",
+        "path": "books/space-marines/book.config.json",
+        "bytes": 19335,
+        "gzipBytes": 3103,
+        "sha256": "a0ae7b12060e32bb49dc8702483351fe69aaca5a328cbd1f7edb66a28bf2da04"
+      },
+      {
+        "url": "./books/space-marines/v2/registration.mjs",
+        "path": "books/space-marines/v2/registration.mjs",
+        "bytes": 935,
+        "gzipBytes": 506,
+        "sha256": "244b49ff1a6879f24e990178b85496964c3e2a3a179b1e72a061c8b9f3c17b2f"
+      },
+      {
+        "url": "./books/space-marines/v2/roster-boot.mjs",
+        "path": "books/space-marines/v2/roster-boot.mjs",
+        "bytes": 758,
+        "gzipBytes": 404,
+        "sha256": "d82c6c52ea598b22e941e0614f72f20647aa20c8daecb6a29e76bbe4dc56a542"
+      },
+      {
+        "url": "./books/space-marines/v2/roster-import.mjs",
+        "path": "books/space-marines/v2/roster-import.mjs",
+        "bytes": 17478,
+        "gzipBytes": 5420,
+        "sha256": "3f00af3dbeac07a607a71ac449a488e0ff2cce0ddddf40ca79d9e39669ae84bf"
+      },
+      {
+        "url": "./books/space-marines/v2/roster-paid-options.mjs",
+        "path": "books/space-marines/v2/roster-paid-options.mjs",
+        "bytes": 5887,
+        "gzipBytes": 2066,
+        "sha256": "445abc532d75b6c65d350b1f3526a419515954116eb570341c112f5a92984fe6"
+      },
+      {
+        "url": "./books/space-marines/v2/roster-runtime.mjs",
+        "path": "books/space-marines/v2/roster-runtime.mjs",
+        "bytes": 5057,
+        "gzipBytes": 1820,
+        "sha256": "9dc6b9cde08069dc44efb04491cdd4a6a38586e07f63586ab8620e455f42bf70"
+      },
+      {
+        "url": "./books/space-marines/v2/roster-static-model-bindings.mjs",
+        "path": "books/space-marines/v2/roster-static-model-bindings.mjs",
+        "bytes": 4210,
+        "gzipBytes": 1910,
+        "sha256": "d7befc34ee33ba86dbbc90955d23eaa0bb146c981f6df09fd512d93b90fe2622"
+      },
+      {
+        "url": "./books/space-marines/v2/rule-contract-schema.mjs",
+        "path": "books/space-marines/v2/rule-contract-schema.mjs",
+        "bytes": 988,
+        "gzipBytes": 428,
+        "sha256": "66155eaacb8763194230014e6fcb92a523edffad4ce49f5345c506bf29866d7d"
+      },
+      {
+        "url": "./books/space-marines/v2/theme.css",
+        "path": "books/space-marines/v2/theme.css",
+        "bytes": 1045,
+        "gzipBytes": 483,
+        "sha256": "541f46caf2c129fafbe9636bd588849cbf0f1e158c1d296d7c8c1c9e05806bbc"
+      },
+      {
+        "url": "./books/tau-empire/book.config.json",
+        "path": "books/tau-empire/book.config.json",
+        "bytes": 9296,
+        "gzipBytes": 2396,
+        "sha256": "8ecbe9c0c3e64609791df8644d9037d7e80a2869b804b1fdcd6f8b6427c6cde4"
+      },
+      {
+        "url": "./books/tau-empire/v2/registration.mjs",
+        "path": "books/tau-empire/v2/registration.mjs",
+        "bytes": 896,
+        "gzipBytes": 505,
+        "sha256": "48d63d1b201295a656a1892afbe2a9e7ca126c1c935e3ec6229bc0c8882103d0"
+      },
+      {
+        "url": "./books/tau-empire/v2/roster-boot.mjs",
+        "path": "books/tau-empire/v2/roster-boot.mjs",
+        "bytes": 7003,
+        "gzipBytes": 2416,
+        "sha256": "5000eb085c537cb78d3e37809fc712d663288cc013c97b2807d3222263cf1c79"
+      },
+      {
+        "url": "./books/tau-empire/v2/roster-import.mjs",
+        "path": "books/tau-empire/v2/roster-import.mjs",
+        "bytes": 15301,
+        "gzipBytes": 4646,
+        "sha256": "05d6a1667b5c1fd698d7cb951134336b175dfc9f9baefe11951b018f73e3ca3e"
+      },
+      {
+        "url": "./books/tau-empire/v2/roster-source-choices.mjs",
+        "path": "books/tau-empire/v2/roster-source-choices.mjs",
+        "bytes": 12270,
+        "gzipBytes": 3851,
+        "sha256": "a2bf8194521018757cd1fe2601c95b681658bb8f3f48eefb8e821bfbe5de6933"
+      },
+      {
+        "url": "./books/tau-empire/v2/roster-weapon-choices.mjs",
+        "path": "books/tau-empire/v2/roster-weapon-choices.mjs",
+        "bytes": 10218,
+        "gzipBytes": 3145,
+        "sha256": "b52a013cf2d57577c03a1457c530975397803e1c63f1821e157c55750f09e193"
+      },
+      {
+        "url": "./books/tau-empire/v2/rule-contract-declarations.mjs",
+        "path": "books/tau-empire/v2/rule-contract-declarations.mjs",
+        "bytes": 20021,
+        "gzipBytes": 2883,
+        "sha256": "86eafc3b2c5685e054b3e81ef8631ca553faab01fe80a97db7b7566f6cedc1b5"
+      },
+      {
+        "url": "./books/tau-empire/v2/rule-contract-schema.mjs",
+        "path": "books/tau-empire/v2/rule-contract-schema.mjs",
+        "bytes": 951,
+        "gzipBytes": 425,
+        "sha256": "b18eee8ad2a5ec896192a01ef197961b1c2d602ea754ab91506dc7bf97e6ed7f"
+      },
+      {
+        "url": "./books/tau-empire/v2/theme.css",
+        "path": "books/tau-empire/v2/theme.css",
+        "bytes": 1046,
+        "gzipBytes": 492,
+        "sha256": "5b9c87ecd01c89a37cf76b876f62f0d795b601d19fb3ab61d1d1ff7046299c14"
+      },
+      {
+        "url": "./books/tyranids/book.config.json",
+        "path": "books/tyranids/book.config.json",
+        "bytes": 8120,
+        "gzipBytes": 2090,
+        "sha256": "5c058a6d3c9796f4bf4d9cdc8aba26c80769108794fef44d65270ba5c595c464"
+      },
+      {
+        "url": "./books/tyranids/v2/registration.mjs",
+        "path": "books/tyranids/v2/registration.mjs",
+        "bytes": 903,
+        "gzipBytes": 498,
+        "sha256": "70443e388e318ba02779ba452785ce02c964d94143d3793239795808726c43fe"
+      },
+      {
+        "url": "./books/tyranids/v2/roster-boot.mjs",
+        "path": "books/tyranids/v2/roster-boot.mjs",
+        "bytes": 5594,
+        "gzipBytes": 2091,
+        "sha256": "64974e85656272e86195be13383555896b7310fd96a2c0aeef051d449b181836"
+      },
+      {
+        "url": "./books/tyranids/v2/roster-import.mjs",
+        "path": "books/tyranids/v2/roster-import.mjs",
+        "bytes": 20309,
+        "gzipBytes": 5977,
+        "sha256": "aa205ccaa08abac2a34adb15ffdf46b69e68878f5f9c6b083372bb4d64f40b80"
+      },
+      {
+        "url": "./books/tyranids/v2/roster-source-choices.mjs",
+        "path": "books/tyranids/v2/roster-source-choices.mjs",
+        "bytes": 7136,
+        "gzipBytes": 2501,
+        "sha256": "ec9cb19347f091b362a901fe84fbc83259cc35fbb3c73e25322cbe2487370217"
+      },
+      {
+        "url": "./books/tyranids/v2/theme.css",
+        "path": "books/tyranids/v2/theme.css",
+        "bytes": 1068,
+        "gzipBytes": 487,
+        "sha256": "5a5a70f2a2e21d31dd391f0394f94ba4e73f856f4fa87f129090b8ca44cc569d"
+      },
+      {
+        "url": "./glossary-return.js?v=5",
+        "path": "glossary-return.js",
+        "bytes": 10671,
+        "gzipBytes": 3318,
+        "sha256": "ff3f63d027533a1fb3d687443a87f2dd807a9d9b9616c09ac00b81035496805b"
+      },
+      {
+        "url": "./glossary/v2/runtime/glossary-v2-runtime.js?v=1",
+        "path": "glossary/v2/runtime/glossary-v2-runtime.js",
+        "bytes": 48543,
+        "gzipBytes": 13365,
+        "sha256": "2a62f5ba5212146c8626d7175b7c604dd6a220fb1df6b83e8e54c9c8c3358835"
+      },
+      {
+        "url": "./index.html",
+        "path": "index.html",
+        "bytes": 359,
+        "gzipBytes": 245,
+        "sha256": "fdd6a5c466645b49e0b44b1f23fcb9cb2d09ce73ba7b62e6190fd231349b7dc0"
+      },
+      {
+        "url": "./manifest.webmanifest",
+        "path": "manifest.webmanifest",
+        "bytes": 730,
+        "gzipBytes": 305,
+        "sha256": "12a5232dcee199c7d4a9f93b915d37bff75d1c424db13cd3e73dc8541164d7fb"
+      },
+      {
+        "url": "./v2/app.html",
+        "path": "v2/app.html",
+        "bytes": 1595,
+        "gzipBytes": 831,
+        "sha256": "39eb707f6093dc433e3ede8fb20a47f203e24ee5cf13d5475c1e42256ec5bef0"
+      },
+      {
+        "url": "./v2/army-books.mjs",
+        "path": "v2/army-books.mjs",
+        "bytes": 1049,
+        "gzipBytes": 337,
+        "sha256": "d8620ba3a782043b2ed0c616230e4da6fc88e03029a1fa6bc166a97369a12f4d"
+      },
+      {
+        "url": "./v2/boot.mjs",
+        "path": "v2/boot.mjs",
+        "bytes": 676,
+        "gzipBytes": 354,
+        "sha256": "bebd162498c3ed8fc88d4d10a6c8a9cd6c3b1350c167c864c80e6f02407aa3c6"
+      }
+    ]
+  },
+  "accepted202JobRuntime": {
+    "sha": "b0aa1273b907020776dec41ca0466d646e5435e2",
+    "manifestByteIdentical": true,
+    "all456BodiesVerified": true
+  }
+}
