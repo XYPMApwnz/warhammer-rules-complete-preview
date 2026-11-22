@@ -115,7 +115,7 @@ export function validateDebt({baseline,debt,closures,decisions,verifyEvidence=()
   requireValue(decision&&!['GAP','UNKNOWN'].includes(decision.category)&&row.category===decision.category,'INVALID_CLOSURE',row,'closure must establish resolved coverage');
   requireValue(Array.isArray(row.evidence)&&row.evidence.length>=2,'MISSING_CLOSURE_EVIDENCE',row,'a test and source-backed fixture are required');
   requireValue(row.evidence.some(e=>e.kind==='test')&&row.evidence.some(e=>e.kind==='fixture'),'MISSING_CLOSURE_EVIDENCE',row,'both test and fixture evidence are required');
-  for(const evidence of row.evidence)requireValue(verifyEvidence(evidence,{...row,sourceEntityId:decision.sourceEntityId,sourceFields:decision.sourceFields,sourceFingerprint:decision.sourceFingerprint,clauseIds:decision.proof.clauseIds,kind:decision.kind,presentationScope:decision.presentationScope}),'MISSING_CLOSURE_EVIDENCE',row,'missing or unrelated closure evidence '+evidence.path);
+  for(const evidence of row.evidence)requireValue(verifyEvidence(evidence,{...row,sourceEntityId:decision.sourceEntityId,sourceFields:decision.sourceFields,sourceFingerprint:decision.sourceFingerprint,bindingFingerprint:decision.proof.bindingFingerprint,clauseIds:decision.proof.clauseIds,kind:decision.kind,presentationScope:decision.presentationScope}),'MISSING_CLOSURE_EVIDENCE',row,'missing or unrelated closure evidence '+evidence.path);
  }
  for(const [key,row]of decisions)if(['GAP','UNKNOWN'].includes(row.category))
   requireValue(active.has(key),'NEW_DEBT',row,'GAP/UNKNOWN is outside the exact active debt list');

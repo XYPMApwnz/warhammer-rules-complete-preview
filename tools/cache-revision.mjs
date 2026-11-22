@@ -3,6 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {REVISION_PLACEHOLDER,stampRuntimeText,stampableRuntimePath,helperSri} from './runtime-url-stamps.mjs';
 
 const moduleFile=fileURLToPath(import.meta.url);
 export const CACHE_REVISION_RELATIVE_PATH='glossary/generated/cache-revision.js';
@@ -38,13 +39,22 @@ export function resolveAppShellUrl(root,url){
 
 const RUNTIME_MANIFEST_PATH='tools/pages-runtime-manifest.json';
 const RUNTIME_REPORT_PATH='PAGES_RUNTIME_MANIFEST.json';
-const REVISION_PLACEHOLDER='__WH_PWA_REVISION__';
 const excludedIntegrityPaths=new Set([CACHE_REVISION_RELATIVE_PATH,'service-worker.js']);
 
 function normalizeV2Revision(source){
   return normalizeCacheText(source)
     .replace(/(WHPwaExpectedRevision\s*=\s*["'])(?:__WH_PWA_REVISION__|[a-f0-9]{16})(["'])/g,'$1'+REVISION_PLACEHOLDER+'$2')
     .replace(/([?&]wh-pwa=)(?:__WH_PWA_REVISION__|[a-f0-9]{16})/g,'$1'+REVISION_PLACEHOLDER);
+}
+function helperIntegrity(root,{canonical=false}={}){
+  const file=path.join(root,'books/shared/offline-status.js');
+  if(!fs.existsSync(file))return undefined;
+  const raw=fs.readFileSync(file);return helperSri(canonical?Buffer.from(normalizeCacheText(raw.toString('utf8'))):raw);
+}
+function canonicalReviewedContent(root,relative,allowed,integrity){
+  const content=canonicalAssetContent(path.join(root,relative));
+  if(!stampableRuntimePath(relative))return content;
+  return normalizeV2Revision(stampRuntimeText(String(content),relative,{allowed,revision:REVISION_PLACEHOLDER,helperIntegrity:integrity}).text);
 }
 function readReviewedPaths(root,manifest){
   if(!manifest){
@@ -100,11 +110,15 @@ function minimalPrecache(root,paths){
     for(const match of text.matchAll(/<(script|link|img)\b[^>]*?\b(?:src|href)=["']([^"']+)["'][^>]*>/gi)){
       const tag=match[0],type=match[1].toLowerCase();
       if(type==='link'&&!/rel=["']stylesheet["']/i.test(tag))continue;
-      const resolved=new URL(match[2],'https://runtime.invalid/'+html);
+      const resolved=new URL(match[2].replaceAll('&amp;','&'),'https://runtime.invalid/'+html);
       if(resolved.origin!=='https://runtime.invalid')continue;
       const relative=decodeURIComponent(resolved.pathname).slice(1);
       if(!allowed.has(relative)||relative==='glossary/v2/generated/index.en.js'||relative.endsWith('.json'))continue;
       if(type==='img'&&fs.statSync(path.join(root,relative)).size>250000)continue;
+      // Package-only URL tags must not add a second mandatory cache key. The
+      // two historical updater URLs remain the only explicit query exceptions.
+      const revision=resolved.searchParams.get('wh-pwa');
+      if(revision&&(revision===REVISION_PLACEHOLDER||/^[a-f0-9]{16}$/.test(revision))&&!(relative==='books/shared/offline-status.js'&&[...resolved.searchParams.keys()].length===1))resolved.searchParams.delete('wh-pwa');
       add(relative,resolved.search);
     }
   }
@@ -120,13 +134,17 @@ export function calculateCacheRevision({root=defaultRoot(),manifest}={}){
     const assets=legacyUrls.slice().sort().map(url=>{const item=resolveAppShellUrl(root,url);return [url,item.relative,item.relative===CACHE_REVISION_RELATIVE_PATH?'self-reference':sha(canonicalAssetContent(item.absolute))];});
     return {revision:sha(JSON.stringify({schema:1,serviceWorker:sha(normalizeCacheText(source)),assets})).slice(0,16),assets,urls:legacyUrls,runtimeAssets:{},precacheBytes:assets.reduce((sum,[,relative])=>sum+(relative===CACHE_REVISION_RELATIVE_PATH?0:fs.statSync(path.join(root,relative)).size),0)};
   }
+  const allowed=new Set(reviewed),integrity=helperIntegrity(root,{canonical:true});
   const assets=reviewed.filter(relative=>relative!==CACHE_REVISION_RELATIVE_PATH).map(relative=>{
-    const file=path.join(root,relative),content=relative==='v2/app.html'?normalizeV2Revision(fs.readFileSync(file,'utf8')):canonicalAssetContent(file);
+    const content=canonicalReviewedContent(root,relative,allowed,integrity);
     return ['./'+relative,relative,sha(content)];
   });
   const precache=minimalPrecache(root,reviewed);
-  const revision=sha(JSON.stringify({schema:2,serviceWorker:sha(normalizeCacheText(source)),assets,precache})).slice(0,16);
+  const core=['./','./index.html','./v2/app.html','./books/shared/offline-status.js?v=4',
+    './books/shared/offline-status.js?wh-pwa='+REVISION_PLACEHOLDER,'./books/shared/styles/offline-status.css','./v2/boot.mjs'].filter(url=>precache.includes(url));
+  const revision=sha(JSON.stringify({schema:3,serviceWorker:sha(normalizeCacheText(source)),assets,precache,startupCore:core})).slice(0,16);
   const urls=precache.map(url=>url.replaceAll(REVISION_PLACEHOLDER,revision));
+  const startupCore=core.map(url=>url.replaceAll(REVISION_PLACEHOLDER,revision));
   const runtimeAssets=Object.fromEntries(reviewed.filter(relative=>!excludedIntegrityPaths.has(relative)).map(relative=>{
     const raw=fs.readFileSync(path.join(root,relative));return [relative,{sha256:sha(raw),bytes:raw.length}];
   }));
@@ -135,7 +153,7 @@ export function calculateCacheRevision({root=defaultRoot(),manifest}={}){
   // overwrite a previous worker's immutable offline responses.
   const cacheBytes=sha(JSON.stringify(Object.entries(runtimeAssets).map(([relative,asset])=>[relative,asset.sha256,asset.bytes]))).slice(0,16);
   const uniquePrecachePaths=new Set(urls.map(url=>resolveAppShellUrl(root,url).relative));
-  return {revision,cacheBytes,assets,urls,runtimeAssets,precacheBytes:[...uniquePrecachePaths].reduce((sum,relative)=>sum+fs.statSync(path.join(root,relative)).size,0)};
+  return {revision,cacheBytes,assets,urls,startupCore,runtimeAssets,precacheBytes:[...uniquePrecachePaths].reduce((sum,relative)=>sum+fs.statSync(path.join(root,relative)).size,0)};
 }
 export function readCacheRevision({root=defaultRoot()}={}){
   const match=/self\.WH40K_CACHE_REVISION='([a-f0-9]{16})';/.exec(fs.readFileSync(path.join(root,CACHE_REVISION_RELATIVE_PATH),'utf8'));
@@ -143,7 +161,7 @@ export function readCacheRevision({root=defaultRoot()}={}){
   return match[1];
 }
 function renderCacheRevision(result){
-  return "self.WH40K_CACHE_REVISION='"+result.revision+"';\n"+(result.cacheBytes?"self.WH40K_CACHE_BYTES='"+result.cacheBytes+"';\n":"")+"self.WH40K_RUNTIME_ASSETS="+JSON.stringify(result.runtimeAssets)+";\nself.WH40K_PRECACHE="+JSON.stringify(result.urls)+";\n";
+  return "self.WH40K_CACHE_REVISION='"+result.revision+"';\n"+(result.cacheBytes?"self.WH40K_CACHE_BYTES='"+result.cacheBytes+"';\n":"")+"self.WH40K_RUNTIME_ASSETS="+JSON.stringify(result.runtimeAssets)+";\nself.WH40K_PRECACHE="+JSON.stringify(result.urls)+";\n"+(result.startupCore?.length?"self.WH40K_STARTUP_CORE="+JSON.stringify(result.startupCore)+";\n":"");
 }
 export function verifyCacheRevision({root=defaultRoot(),manifest}={}){
   const result=calculateCacheRevision({root,manifest}),current=readCacheRevision({root});
@@ -151,8 +169,17 @@ export function verifyCacheRevision({root=defaultRoot(),manifest}={}){
   if(Object.keys(result.runtimeAssets).length&&fs.readFileSync(path.join(root,CACHE_REVISION_RELATIVE_PATH),'utf8')!==renderCacheRevision(result))throw new Error('Stale runtime integrity/precache metadata');
   return result;
 }
-export function writeCacheRevision({root=defaultRoot(),manifest}={}){
+export function writeCacheRevision({root=defaultRoot(),manifest,stampUrls=fs.existsSync(path.join(root,RUNTIME_REPORT_PATH))}={}){
   const {revision}=calculateCacheRevision({root,manifest}),file=path.join(root,CACHE_REVISION_RELATIVE_PATH),app=path.join(root,'v2/app.html');
+  if(stampUrls){
+    const reviewed=readReviewedPaths(root,manifest),allowed=new Set(reviewed||[]),integrity=helperIntegrity(root);
+    for(const relative of reviewed||[]){
+      if(!stampableRuntimePath(relative))continue;
+      const target=path.join(root,relative),source=fs.readFileSync(target,'utf8');
+      const stamped=stampRuntimeText(source,relative,{allowed,revision,helperIntegrity:integrity}).text;
+      if(stamped!==source)fs.writeFileSync(target,stamped,'utf8');
+    }
+  }
   if(fs.existsSync(app)){
     const original=fs.readFileSync(app,'utf8'),stamped=original
       .replace(/(WHPwaExpectedRevision\s*=\s*["'])(?:__WH_PWA_REVISION__|[a-f0-9]{16})(["'])/g,'$1'+revision+'$2')

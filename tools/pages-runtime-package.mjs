@@ -1,10 +1,11 @@
-/** Publication packaging only. Browser facts and runtime files are copied verbatim;
- * only the existing offline/cache producers stamp their declared outputs. */
+/** Publication packaging only. Facts remain verbatim; reviewed code/resource URL
+ * literal ranges receive the publication tag, without transpiling game code. */
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
-import {readAppShell,resolveAppShellUrl,verifyCacheRevision,writeCacheRevision,normalizeCacheText} from './cache-revision.mjs';
+import {readAppShell,resolveAppShellUrl,calculateCacheRevision,verifyCacheRevision,writeCacheRevision,normalizeCacheText} from './cache-revision.mjs';
+import {stampRuntimeText,stampableRuntimePath,helperSri} from './runtime-url-stamps.mjs';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 const manifestPath=path.join(here,'pages-runtime-manifest.json');
@@ -72,6 +73,9 @@ export function buildPagesRuntimePackage({sourceRoot=path.resolve(here,'..'),out
     const {relative}=resolveAppShellUrl(sourceRoot,url);
     if(!allowed.has(relative))throw new Error('Existing precache file omitted: '+url);
   }
+  const revision=calculateCacheRevision({root:sourceRoot,manifest}).revision;
+  const helperFile=path.join(sourceRoot,'books/shared/offline-status.js');
+  const helperIntegrity=fs.existsSync(helperFile)?helperSri(fs.readFileSync(helperFile)):undefined;
   if(!check){
     if(fs.existsSync(outRoot)&&fs.readdirSync(outRoot).length)throw new Error('Refusing to overwrite a non-empty publish directory');
     fs.mkdirSync(outRoot,{recursive:true});
@@ -80,25 +84,32 @@ export function buildPagesRuntimePackage({sourceRoot=path.resolve(here,'..'),out
       if(relative==='.nojekyll')fs.writeFileSync(target,normalizeCacheText(fs.readFileSync(relativeFile(sourceRoot,relative),'utf8')),'utf8');
       else fs.copyFileSync(relativeFile(sourceRoot,relative),target);
     }
-    writeCacheRevision({root:outRoot,manifest});
+    writeCacheRevision({root:outRoot,manifest,stampUrls:true});
   }
   const files=[...allowed].sort().map(relative=>{
     // The static Pages marker has no gameplay data. Normalize its checkout-only
     // CRLF difference so Windows and Linux produce the same publication hash.
     const raw=fs.readFileSync(relativeFile(sourceRoot,relative));
     const input=relative==='.nojekyll'?Buffer.from(normalizeCacheText(raw.toString('utf8'))):raw;
+    const stamp=stampableRuntimePath(relative)?stampRuntimeText(input.toString('utf8'),relative,{allowed,revision,helperIntegrity}):null;
+    const expected=stamp?Buffer.from(stamp.text):input;
     const published=fs.readFileSync(relativeFile(outRoot,relative));
-    if(!generated.has(relative)&&!input.equals(published))throw new Error('Runtime input changed during packaging: '+relative);
+    if(relative!=='glossary/generated/cache-revision.js'&&!expected.equals(published))throw new Error('Runtime input changed during packaging: '+relative);
     return {path:relative,bytes:published.length,sha256:hash(published),inputSha256:hash(input),
       ...(relative==='.nojekyll'?{inputNormalization:'CHECKOUT_EOL_TO_LF'}:{}),
-      producer:generated.has(relative)?'EXISTING_OFFLINE_OR_CACHE_PRODUCER':relative==='.nojekyll'?'STATIC_MARKER_LF':'VERBATIM_RUNTIME_INPUT'};
+      ...(stamp?.rewrites.length?{urlRewrites:stamp.rewrites}:{}),
+      ...(stamp?.unresolved.length?{dynamicUrlExpressions:stamp.unresolved}:{}),
+      producer:generated.has(relative)?'EXISTING_OFFLINE_OR_CACHE_PRODUCER':stamp?.rewrites.length?'PUBLICATION_URL_LITERAL_STAMP':relative==='.nojekyll'?'STATIC_MARKER_LF':'VERBATIM_RUNTIME_INPUT'};
   });
   const cache=verifyCacheRevision({root:outRoot,manifest});
   const unexpected=allFiles(outRoot).map(file=>path.relative(outRoot,file).replaceAll('\\','/')).filter(file=>!allowed.has(file)&&file!==reportName);
   if(unexpected.length)throw new Error('Unlisted publication files: '+unexpected.join(', '));
   const report={schema:'unified-v2-pages-runtime-package/v1',allowlistSha256:hash(normalizeCacheText(fs.readFileSync(manifestFile,'utf8'))),fileCount:files.length,
     runtimeBytes:files.reduce((sum,file)=>sum+file.bytes,0),contentSha256:hash(JSON.stringify(files.map(({path,bytes,sha256})=>({path,bytes,sha256})))),
-    cacheRevision:cache.revision,precacheUrls:cache.urls.length,publicSourceDownloads:manifest.publicSourceDownloads,files};
+    cacheRevision:cache.revision,precacheUrls:cache.urls.length,startupCore:cache.startupCore,
+    urlStamping:{schema:'runtime-url-literal-stamps/v1',revision,files:files.filter(file=>file.urlRewrites?.length).length,
+      rewrites:files.reduce((sum,file)=>sum+(file.urlRewrites?.length||0),0),helperIntegrity},
+    publicSourceDownloads:manifest.publicSourceDownloads,files};
   const expected=json(report),reportFile=path.join(outRoot,reportName);
   if(check){if(fs.readFileSync(reportFile,'utf8')!==expected)throw new Error('Stale publication manifest');}
   else fs.writeFileSync(reportFile,expected,'utf8');

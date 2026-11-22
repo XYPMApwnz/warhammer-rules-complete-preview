@@ -152,6 +152,18 @@ route for a unit/model owner-only decision fails the census and requires owner
 review. Existing transferred texts in the separate recipient audit are unchanged
 and await the owner's review; this closure does not silently repair them.
 
+The owner-approved UNKNOWN review of 2026-11-21 records 156 deliberate text-only
+decisions without changing Army Book data, effects or presentation.
+`tools/markup-census/unknown-review.v1.json` preserves the exact reviewed source
+and binding fingerprints, physical scope, reasons and remaining 15 named next
+steps. The census JSON/Markdown report exposes those next steps separately from
+the immutable historical debt rows. Do not overwrite the original baseline or
+the remaining debt reasons/actions. `UNKNOWN_REVIEW_CHANGED` or
+`UNKNOWN_REVIEW_MISMATCH` requires a new source/decision review; never repin the
+approval fingerprint to silence a failure. Run `npm run test:markup-unknown`
+with the existing census and owner-only controls. The review closes annotation
+debt, not battle automation or a new recipient route.
+
 ## What the command selects
 
 `--book=<id>` runs the declared book chain and its declared dependants. `--all`
@@ -180,6 +192,14 @@ The command may migrate that pin only when restoring the previous version label
 reconstructs the exact old full fingerprint. All other factual bytes stay pinned;
 a rule, characteristic or unrelated metadata change still requires explicit
 review. This does not refresh source-review acceptance or rewrite rule clauses.
+
+On a player's first visit, the working screen opens before the offline package
+finishes downloading. “Preparing offline access…” becomes “Ready for offline
+use” when all mandatory files of that revision have been verified. Ask players
+to wait for Ready before disconnecting. “Offline access not ready — will retry”
+means the current screen can still be used online; reconnect to resume the
+download. Previously opened books and saved rosters remain subject to browser
+storage retention. Updates on a working screen still require confirmation.
 
 `--out=E:/Warhammer/qa-evidence/my-update` retains Markdown, JSON and child logs
 outside the checkout. Scratch files use the project's QA temporary directory;

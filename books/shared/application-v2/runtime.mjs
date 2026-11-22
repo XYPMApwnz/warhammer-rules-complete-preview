@@ -6,6 +6,7 @@ import {createHomePresenter,createHomeBranding} from './home.mjs';
 import {mountGlobalGlossary} from './glossary.mjs';
 import {loadDetachmentPresentationSources} from '../army-book-app-v2/personal.mjs';
 import {createSourceMetadataLoader,createSourcesLine} from './source-metadata.mjs';
+import {armyBookLoadCopy} from '../army-book-app-v2/cosmetics.mjs';
 
 /** Top-level destinations only. ArmyBookApp retains all book/roster/reference logic. */
 export function createApplication(document,{registry,entryURL=new URL('../../../v2/app.html',import.meta.url).href,root=document.body}={}) {
@@ -198,7 +199,16 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
       if(!lifecycle.active||token!==generation)return;
       if(!await transitionAllowed(token,startedOnline))return activeModule;
       if(preserveCurrentAfterLoadFailure())return activeModule;
-      stopModule();page('Army Book unavailable','The Army Book could not be loaded. Return Home and try again.');
+      stopModule();
+      const offline=view.navigator.onLine===false;
+      const main=page(armyBookLoadCopy.title,offline?armyBookLoadCopy.offline:armyBookLoadCopy.online);
+      if(offline){
+        const homeLink=el('a','v2-home-action v2-load-action',armyBookLoadCopy.home);
+        homeLink.href=applicationRouteURL(entryURL,{destination:'HOME'});homeLink.dataset.v2ShellLink='';main.append(homeLink);
+      }else{
+        const retry=el('button','v2-home-action v2-load-action',armyBookLoadCopy.retry);retry.type='button';
+        lifecycle.listen(retry,'click',()=>{ready=dispatch();});main.append(retry);
+      }
     }
   }
   function navigate(route) {

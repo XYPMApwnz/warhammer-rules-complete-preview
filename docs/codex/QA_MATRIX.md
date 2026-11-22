@@ -52,6 +52,12 @@ permission to add a new recipient later without review.
 The dated scope clarification exempts actual ARMY_RULE/DETACHMENT_RULE sources
 from the foreign-recipient prohibition. Their eligible army/Detachment units keep
 the existing text; source kind and reviewed scope are checked exactly.
+`npm run test:markup-unknown` runs in pre-FF (about 11 seconds locally). It validates the owner's
+exact 171-entry review, 156 annotation closures, 15 source-fingerprinted next
+steps, unchanged historical debt and physical owner isolation. Negative controls
+reject changed approvals, missing/stale sources, forged scope, a foreign receiver,
+an executable path and unrelated closure evidence. This does not change runtime
+coverage or replace the existing owner-only regression controls.
 `test:pwa-update` includes both working-screen manual updates and the initial
 bootstrap auto-update regression (`test:pwa-bootstrap`), with once-per-version
 failure recovery, saved-state retention, prepared offline startup and offline reopening controls.
@@ -59,6 +65,15 @@ failure recovery, saved-state retention, prepared offline startup and offline re
 and rejects missing mandatory resources, including a removed-file mutation control.
 Use `--out=<external-directory>` to retain `RESULTS.json` and logs. Full A/B card
 parity is a separate review tool and is not included in either queue.
+`npm run test:offline-army-book` runs the actual published worker at 390/1440:
+all nine unseen offline books explain how to save them and link Home; all nine
+previously opened books reopen offline; online load failures retain their exact
+message and recover with Try again. It runs once in pre-FF.
+The Core browser test keeps its existing assertions, waits and timeout. On failure,
+it prints its evidence directory's `failure-diagnostics/FAILURE.json`, with live
+frame DOM, application state, console and a network journal including pending
+requests. The passive collector has a focused negative-control test in both queues;
+successful Core runs do not write failure artifacts or repeat a scenario.
 `npm run test:sweep-polish` checks human-facing reference text, physical caption
 ownership, shared rule prose and visible technical-label leaks. Its browser guard
 covers all nine full libraries, the 20 common glossary searches and representative
@@ -105,6 +120,14 @@ For independent unified V2 certification of Core, DG, AdMech and CSM, follow the
 | Documentation/QA aliases | `qa:workflow` | One representative changed alias | None unless preparing release |
 
 ## Expansion rules
+
+- First-load/offline changes: quick and pre-ff include revision-scoped cache,
+  package URL-stamp, coherent-core and visible-unit-art negative controls.
+  Runtime packaging QA independently checks native module links, core hashes
+  and the update helper's HTML integrity attribute. Browser tests distinguish
+  interactive readiness from complete verified offline preparation; assertions
+  about offline behavior wait for the latter explicitly. Targeted commands:
+  `npm run test:fast-first-load` and `npm run test:fast-first-load-browser`.
 
 - Import/Attachment Setup copy: `npm run test:import-messages` checks all nine books, exact native choice values, saved-state preservation and player-facing messages at 390/1440. The unit and browser checks also run sequentially in pre-FF. Browser negative controls: `node v2/import-messages-browser-qa.mjs --book=death-guard --widths=390 --mutation=label` (or `--mutation=option`) must fail the visible-copy guard.
 

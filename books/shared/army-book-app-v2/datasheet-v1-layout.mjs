@@ -3,6 +3,60 @@ import {createLifecycle} from './lifecycle.mjs';
 const cardLayouts = new WeakMap();
 const lifecycleByDocument = new WeakMap();
 
+/** Decorative unit art has no source URL until it is actually visible. Native
+ * loading=lazy alone may start requests while a whole book is constructed. The
+ * existing width/height and art-frame CSS reserve the same geometry throughout.
+ */
+export function createVisibleUnitArtLoader(view, {lifecycle} = {}) {
+  const moduleURL=new URL(import.meta.url);
+  const revision=[moduleURL.searchParams.get('wh-pwa'),view?.WHPwaExpectedRevision].find(value=>typeof value==='string'&&/^[a-f0-9]{16}$/.test(value));
+  const publicationArtURL=value=>{
+    if(!revision)return value;
+    try{
+      const pageURL=view?.location?.href?new URL(view.location.href):null;
+      const scope=/^https?:$/.test(moduleURL.protocol)?new URL('../../../',moduleURL):
+        pageURL&&/\/v2\/app\.html$/.test(pageURL.pathname)?new URL('../',pageURL):null;
+      const assetURL=new URL(value,pageURL||moduleURL);
+      if(!scope||assetURL.origin!==scope.origin||!assetURL.pathname.startsWith(scope.pathname)||assetURL.searchParams.has('wh-pwa'))return value;
+      assetURL.searchParams.set('wh-pwa',revision);return assetURL.href;
+    }catch{return value;}
+  };
+  const pending = new WeakMap();
+  let active = true;
+  const observer = typeof view?.IntersectionObserver === 'function'
+    ? new view.IntersectionObserver(entries => {
+      if (!active) return;
+      for (const entry of entries) {
+        const image = entry.target, url = pending.get(image);
+        if (!url || !entry.isIntersecting || !image.isConnected ||
+            !entry.intersectionRect.width || !entry.intersectionRect.height ||
+            !image.getClientRects().length) continue;
+        pending.delete(image);
+        observer.unobserve(image);
+        image.dataset.unitArtState = 'loading';
+        image.src = publicationArtURL(url);
+      }
+    }, {rootMargin: '0px', threshold: 0})
+    : null;
+  if (observer) lifecycle?.observe(observer);
+  lifecycle?.cleanup(() => { active = false; observer?.disconnect(); });
+  return (image, url) => {
+    if (!active) return;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    if (observer) {
+      image.dataset.unitArtState = 'deferred';
+      pending.set(image, url);
+      observer.observe(image);
+    } else {
+      // Supported browsers have IntersectionObserver; retain native laziness
+      // for isolated/non-window consumers and older engines.
+      image.dataset.unitArtState = 'loading';
+      image.src = publicationArtURL(url);
+    }
+  };
+}
+
 function watchLifecycle(ownerDocument, view, registration) {
   let lifecycle = lifecycleByDocument.get(ownerDocument);
   if (!lifecycle) {

@@ -4,6 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import {unknownReviewEvidence} from './unknown-review.mjs';
 
 const nonempty=value=>typeof value==='string'&&value.trim().length>0;
 const strings=value=>Array.isArray(value)&&value.length>0&&value.every(nonempty)&&new Set(value).size===value.length;
@@ -125,6 +126,7 @@ export function verifyMarkupEvidence({root,evidence,row}={}){
   }
   if(path.extname(file)!=='.json')return false;
   const document=JSON.parse(text);
+  if(document?.schema==='markup-unknown-review/v1')return unknownReviewEvidence(document,{evidence,row,canonicalId});
   return document?.schema==='markup-owner-only-review/v1'
    ?ownerOnlyReview(document,{evidence,row,canonicalId})
    :recipientFixture(document,{evidence,row,canonicalId});

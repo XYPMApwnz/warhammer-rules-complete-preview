@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {buildPagesRuntimePackage,validateRuntimeManifest} from './pages-runtime-package.mjs';
 import {checkSourceClosureTree} from '../books/shared/source-refs-v2/source-closure-qa.mjs';
 import {createQaTempDir,createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {checkPackagedBootstrap} from '../tests/packaged-bootstrap-qa.mjs';
 
 const args=process.argv.slice(2),value=key=>args[args.indexOf(key)+1];
 const sourceRoot=value('--source'),published=value('--published'),reportDirectory=value('--work');
@@ -21,6 +22,10 @@ let first,second;
 check('published-output-verbatim-and-fresh',()=>{
   first=buildPagesRuntimePackage({sourceRoot,outRoot:published,check:true});
   assert.equal(checkSourceClosureTree(published,{packaged:true}).status,'PASS');
+});
+check('independent-packaged-startup-core-and-module-revision-guards',()=>{
+  const result=checkPackagedBootstrap(published);
+  fs.writeFileSync(path.join(reportDirectory,'PACKAGED_BOOTSTRAP.json'),JSON.stringify(result,null,2)+'\n');
 });
 const rebuilt=path.join(work,'rebuilt');
 check('independent-deterministic-build',()=>{
