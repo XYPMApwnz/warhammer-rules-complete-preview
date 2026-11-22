@@ -1,0 +1,1039 @@
+{
+  "schema": "release-candidate-browser/v4",
+  "status": "PASS",
+  "candidate": "818d3b0c34503a166b58b21810666feafe858bc5",
+  "package": {
+    "contentSha256": "f975aa7a6c68073dd86c46b512e9cc1b8664209abce937fad128e91616095af5",
+    "cacheRevision": "28acb87c11537a8b"
+  },
+  "fixture": {
+    "file": "new-recruit-v37.25-owner-death-guard.txt",
+    "sha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+    "encoding": "UTF-8 without BOM; LF; final newline"
+  },
+  "cases": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "steps": [
+        {
+          "name": "cold-home-Preparing-to-Ready",
+          "status": "PASS",
+          "elapsedMs": 12207,
+          "result": {
+            "homeBeforeOfflineReady": true,
+            "controlled": true,
+            "configuredNetwork": "Shared origin Fast4G 9Mbps/170ms for this cold functional scenario only",
+            "revision": "28acb87c11537a8b",
+            "keys": 221,
+            "bad": []
+          }
+        },
+        {
+          "name": "offline-unseen-books",
+          "status": "PASS",
+          "elapsedMs": 694,
+          "result": {
+            "books": 9,
+            "correctHintAndWorkingHomeAction": true
+          }
+        },
+        {
+          "name": "online-book-death-guard",
+          "status": "PASS",
+          "elapsedMs": 1527,
+          "result": {
+            "book": "death-guard",
+            "expected": 53,
+            "shown": 53
+          }
+        },
+        {
+          "name": "online-book-adeptus-mechanicus",
+          "status": "PASS",
+          "elapsedMs": 1528,
+          "result": {
+            "book": "adeptus-mechanicus",
+            "expected": 69,
+            "shown": 69
+          }
+        },
+        {
+          "name": "online-book-chaos-space-marines",
+          "status": "PASS",
+          "elapsedMs": 3538,
+          "result": {
+            "book": "chaos-space-marines",
+            "expected": 139,
+            "shown": 139
+          }
+        },
+        {
+          "name": "online-book-emperors-children",
+          "status": "PASS",
+          "elapsedMs": 1169,
+          "result": {
+            "book": "emperors-children",
+            "expected": 81,
+            "shown": 81
+          }
+        },
+        {
+          "name": "online-book-tyranids",
+          "status": "PASS",
+          "elapsedMs": 1747,
+          "result": {
+            "book": "tyranids",
+            "expected": 92,
+            "shown": 92
+          }
+        },
+        {
+          "name": "online-book-tau-empire",
+          "status": "PASS",
+          "elapsedMs": 1697,
+          "result": {
+            "book": "tau-empire",
+            "expected": 69,
+            "shown": 69
+          }
+        },
+        {
+          "name": "online-book-space-marines",
+          "status": "PASS",
+          "elapsedMs": 3806,
+          "result": {
+            "book": "space-marines",
+            "expected": 111,
+            "shown": 111
+          }
+        },
+        {
+          "name": "online-book-dark-angels",
+          "status": "PASS",
+          "elapsedMs": 3467,
+          "result": {
+            "book": "dark-angels",
+            "expected": 106,
+            "shown": 106
+          }
+        },
+        {
+          "name": "online-book-blood-angels",
+          "status": "PASS",
+          "elapsedMs": 3371,
+          "result": {
+            "book": "blood-angels",
+            "expected": 102,
+            "shown": 102
+          }
+        },
+        {
+          "name": "authentic-owner-DG-v37.25",
+          "status": "PASS",
+          "elapsedMs": 1030,
+          "result": {
+            "status": "READY",
+            "units": 8,
+            "storageBytes": 19524,
+            "storageSha256": "8ce1489b7487f4f0a2aa75da30b38ecf38f082d3444b19f4e1596b85facf7da1",
+            "snapshotSha256": "c7b1c452102482095c581a26f7a9bd5c30c3e050dad00c6471d95bf809ac4e98"
+          }
+        },
+        {
+          "name": "offline-fresh-process-home-nine-books-and-saved-DG",
+          "status": "PASS",
+          "elapsedMs": 21238,
+          "result": {
+            "freshBrowserProcess": true,
+            "home": true,
+            "books": 9,
+            "storageByteIdentical": true,
+            "nativeDGSnapshotByteIdentical": true
+          }
+        }
+      ],
+      "screenshots": [
+        "390-preparing-offline.jpg",
+        "390-ready-offline.jpg",
+        "390-unseen-book-offline.jpg",
+        "390-death-guard.jpg",
+        "390-adeptus-mechanicus.jpg",
+        "390-chaos-space-marines.jpg",
+        "390-emperors-children.jpg",
+        "390-tyranids.jpg",
+        "390-tau-empire.jpg",
+        "390-space-marines.jpg",
+        "390-dark-angels.jpg",
+        "390-blood-angels.jpg",
+        "390-owner-DG-import.jpg",
+        "390-offline-saved-DG.jpg"
+      ],
+      "pageErrors": [],
+      "consoleErrors": [
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        }
+      ],
+      "failedRequests": [
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "online-book-death-guard",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "steps": [
+        {
+          "name": "cold-home-Preparing-to-Ready",
+          "status": "PASS",
+          "elapsedMs": 12398,
+          "result": {
+            "homeBeforeOfflineReady": true,
+            "controlled": true,
+            "configuredNetwork": "Shared origin Fast4G 9Mbps/170ms for this cold functional scenario only",
+            "revision": "28acb87c11537a8b",
+            "keys": 221,
+            "bad": []
+          }
+        },
+        {
+          "name": "offline-unseen-books",
+          "status": "PASS",
+          "elapsedMs": 738,
+          "result": {
+            "books": 9,
+            "correctHintAndWorkingHomeAction": true
+          }
+        },
+        {
+          "name": "online-book-death-guard",
+          "status": "PASS",
+          "elapsedMs": 1449,
+          "result": {
+            "book": "death-guard",
+            "expected": 53,
+            "shown": 53
+          }
+        },
+        {
+          "name": "online-book-adeptus-mechanicus",
+          "status": "PASS",
+          "elapsedMs": 1508,
+          "result": {
+            "book": "adeptus-mechanicus",
+            "expected": 69,
+            "shown": 69
+          }
+        },
+        {
+          "name": "online-book-chaos-space-marines",
+          "status": "PASS",
+          "elapsedMs": 3438,
+          "result": {
+            "book": "chaos-space-marines",
+            "expected": 139,
+            "shown": 139
+          }
+        },
+        {
+          "name": "online-book-emperors-children",
+          "status": "PASS",
+          "elapsedMs": 1171,
+          "result": {
+            "book": "emperors-children",
+            "expected": 81,
+            "shown": 81
+          }
+        },
+        {
+          "name": "online-book-tyranids",
+          "status": "PASS",
+          "elapsedMs": 1720,
+          "result": {
+            "book": "tyranids",
+            "expected": 92,
+            "shown": 92
+          }
+        },
+        {
+          "name": "online-book-tau-empire",
+          "status": "PASS",
+          "elapsedMs": 1607,
+          "result": {
+            "book": "tau-empire",
+            "expected": 69,
+            "shown": 69
+          }
+        },
+        {
+          "name": "online-book-space-marines",
+          "status": "PASS",
+          "elapsedMs": 3951,
+          "result": {
+            "book": "space-marines",
+            "expected": 111,
+            "shown": 111
+          }
+        },
+        {
+          "name": "online-book-dark-angels",
+          "status": "PASS",
+          "elapsedMs": 3448,
+          "result": {
+            "book": "dark-angels",
+            "expected": 106,
+            "shown": 106
+          }
+        },
+        {
+          "name": "online-book-blood-angels",
+          "status": "PASS",
+          "elapsedMs": 3378,
+          "result": {
+            "book": "blood-angels",
+            "expected": 102,
+            "shown": 102
+          }
+        },
+        {
+          "name": "authentic-owner-DG-v37.25",
+          "status": "PASS",
+          "elapsedMs": 1032,
+          "result": {
+            "status": "READY",
+            "units": 8,
+            "storageBytes": 19524,
+            "storageSha256": "8ce1489b7487f4f0a2aa75da30b38ecf38f082d3444b19f4e1596b85facf7da1",
+            "snapshotSha256": "c7b1c452102482095c581a26f7a9bd5c30c3e050dad00c6471d95bf809ac4e98"
+          }
+        },
+        {
+          "name": "offline-fresh-process-home-nine-books-and-saved-DG",
+          "status": "PASS",
+          "elapsedMs": 22003,
+          "result": {
+            "freshBrowserProcess": true,
+            "home": true,
+            "books": 9,
+            "storageByteIdentical": true,
+            "nativeDGSnapshotByteIdentical": true
+          }
+        }
+      ],
+      "screenshots": [
+        "1440-preparing-offline.jpg",
+        "1440-ready-offline.jpg",
+        "1440-unseen-book-offline.jpg",
+        "1440-death-guard.jpg",
+        "1440-adeptus-mechanicus.jpg",
+        "1440-chaos-space-marines.jpg",
+        "1440-emperors-children.jpg",
+        "1440-tyranids.jpg",
+        "1440-tau-empire.jpg",
+        "1440-space-marines.jpg",
+        "1440-dark-angels.jpg",
+        "1440-blood-angels.jpg",
+        "1440-owner-DG-import.jpg",
+        "1440-offline-saved-DG.jpg"
+      ],
+      "pageErrors": [],
+      "consoleErrors": [
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: the server responded with a status of 503 ()",
+          "location": {
+            "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:52428/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        }
+      ],
+      "failedRequests": [
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "offline-unseen-books",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "phase": "online-book-death-guard",
+          "url": "http://127.0.0.1:52428/warhammer-rules-complete-preview/books/shared/source-refs-v2/source-catalog.json?wh-pwa=28acb87c11537a8b",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        }
+      ]
+    }
+  ],
+  "privacy": "No raw roster or localStorage values are written to evidence.",
+  "network": {
+    "requests": 836,
+    "httpFailures": []
+  }
+}

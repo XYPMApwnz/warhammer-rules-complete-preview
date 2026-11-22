@@ -1,0 +1,87 @@
+{
+  "schema": "release-candidate-v4-rollback-inventory/v1",
+  "capturedAtUtc": "2026-11-22T08:57:14.280384+00:00",
+  "readOnly": true,
+  "currentRelease": "e3db1b345eca989436eea7af758900eee7795203",
+  "oldTreeForV4Rollback": "74a8064e67dafa06b20120ef5563da176db6d793",
+  "reviewedSource": "9c18451452a478be2509314b6b80224313506ec9",
+  "reviewedSourceTree": "01c7af3af3cb9f8d19d0cef14ddf8aededcdd09c",
+  "pagesRun": {
+    "id": 44863910786,
+    "head_sha": "e3db1b345eca989436eea7af758900eee7795203",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-21T04:00:19Z",
+    "updated_at": "2026-11-21T04:01:49Z",
+    "html_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/44863910786"
+  },
+  "jobs": [
+    {
+      "id": 136723211688,
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-21T04:00:22Z",
+      "completed_at": "2026-11-21T04:01:32Z",
+      "html_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/44863910786/job/136723211688"
+    },
+    {
+      "id": 136723535350,
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-21T04:01:37Z",
+      "completed_at": "2026-11-21T04:01:48Z",
+      "html_url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/44863910786/job/136723535350"
+    }
+  ],
+  "deployment": {
+    "id": 7958227298,
+    "sha": "e3db1b345eca989436eea7af758900eee7795203",
+    "state": "success",
+    "successAt": "2026-11-21T04:01:49Z",
+    "environmentUrl": "https://xypmapwnz.github.io/warhammer-rules-complete-preview/",
+    "logUrl": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/44863910786/job/136723535350"
+  },
+  "currentReleaseArtifacts": {
+    "runId": 44863910786,
+    "totalCount": 0,
+    "artifacts": [],
+    "downloadablePagesArtifactAvailable": false,
+    "limitation": "The authenticated artifacts API lists zero artifacts. No specific expiration/deletion cause is inferred."
+  },
+  "older1fdArtifacts": {
+    "release": "1fd0b279051d76f1a262f7c8f117e35551b7de39",
+    "runId": 40496093519,
+    "totalCount": 0,
+    "downloadablePagesArtifactAvailable": false
+  },
+  "liveHttpsManifest": {
+    "url": "https://xypmapwnz.github.io/warhammer-rules-complete-preview/PAGES_RUNTIME_MANIFEST.json",
+    "http": 200,
+    "contentSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909",
+    "cacheRevision": "d08e23b961b6f507",
+    "fileCount": 456
+  },
+  "rollbackCreated": false,
+  "rollbackPushed": false,
+  "releaseChanged": false,
+  "workflowDispatched": false,
+  "authorization": "Rollback requires a new commit-tree candidate, independent review, manual owner check and separate exact-SHA owner authorization.",
+  "candidate": {
+    "sha": "818d3b0c34503a166b58b21810666feafe858bc5",
+    "branch": "codex/release-candidate-818d3b0c",
+    "tree": "01c7af3af3cb9f8d19d0cef14ddf8aededcdd09c",
+    "onlyParent": "e3db1b345eca989436eea7af758900eee7795203",
+    "publicationAuthorized": false
+  },
+  "queries": [
+    "GET /repos/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/44863910786",
+    "GET /repos/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/44863910786/jobs",
+    "GET /repos/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/44863910786/artifacts",
+    "GET /repos/XYPMApwnz/warhammer-rules-complete-preview/deployments/7958227298/statuses",
+    "GET /repos/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/40496093519/artifacts",
+    "GET https://xypmapwnz.github.io/warhammer-rules-complete-preview/PAGES_RUNTIME_MANIFEST.json"
+  ]
+}

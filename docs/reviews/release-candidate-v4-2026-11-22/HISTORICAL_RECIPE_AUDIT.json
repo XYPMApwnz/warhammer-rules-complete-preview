@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "recipeExecuted": false,
+  "sourceRecipe": "E:/Warhammer/qa-evidence/fast-first-load-v1-2026-11-21/RECIPES/historical-update-console-diagnostics.mjs",
+  "oldAssertions": 21,
+  "currentAssertions": 24,
+  "oldExactAssertionsOrderedSubsequence": true,
+  "addedAssertions": 3,
+  "sourceSha256": "021450479964e20932ec8b3072ac218980a934f9566d470db92baf23eb7993f6",
+  "recipeSha256": "e83b6c8059227d4d4a1a1da96f17cdb88993f4efce71b578bfbc16f8a0603890",
+  "syntax": "Acorn parse PASS; recipe entrypoint not executed",
+  "changes": [
+    "adjacent unchanged server import",
+    "scratch path restricted to candidate-v4",
+    "schema/current-live-package label only",
+    "passive diagnostics and exact intentional-offline freshness classification",
+    "three additional zero-unexpected-error guards; explicitly initiated navigation cancellations remain retained separately",
+    "go/ready behavior and all old assertion text/order unchanged"
+  ]
+}

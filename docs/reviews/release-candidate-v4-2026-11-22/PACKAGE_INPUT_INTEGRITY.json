@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "packages": [
+    {
+      "package": "candidate",
+      "root": "E:\\Warhammer\\qa-tmp\\release-candidate-v4\\package",
+      "status": "PASS",
+      "files": 456,
+      "bodyBytes": 282879565,
+      "contentSha256": "f975aa7a6c68073dd86c46b512e9cc1b8664209abce937fad128e91616095af5"
+    },
+    {
+      "package": "live-e3",
+      "root": "E:\\Warhammer\\qa-tmp\\release-candidate\\runtime-e3db1b34",
+      "status": "PASS",
+      "files": 456,
+      "bodyBytes": 282837773,
+      "contentSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909"
+    },
+    {
+      "package": "old-1fd",
+      "root": "E:\\Warhammer\\qa-tmp\\preview-v1\\package-old",
+      "status": "PASS",
+      "files": 422,
+      "bodyBytes": 270196444,
+      "contentSha256": "d389549067279096e9a645bab8dbaa6be682967190155ce1f8ec37db8eaf35d3"
+    }
+  ]
+}

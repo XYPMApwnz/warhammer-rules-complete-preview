@@ -1,0 +1,8 @@
+{
+  "initialFunctionalSmoke": "PASS, both widths13steps",
+  "initialRecipeSha256": "31739d3f0f0935912535930bcc406944661843dd68cdcc702cbb875857f005ce",
+  "finalRecipeSha256": "41958ccbccb5ea9db88a8c23b783f0579960a2632baa606c90b6950a7304c3b6",
+  "reason": "First smoke supplied explicit E profiles but inherited system TEMP for transient Playwright artifacts. Preserve initial successful receipts; repeat same functional cases with all three temporary environment variables on E. Add request-start phase diagnostics/strict explicit expected offline errors; no application/package changes.",
+  "preffRuns": 0,
+  "packageChanged": false
+}

@@ -1,0 +1,4 @@
+# PREPARED ONLY. Parent coordinates; run one command to completion before the next.
+$env:WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH="C:/Program Files/Google/Chrome/Application/chrome.exe"
+node "E:\Warhammer\qa-evidence\release-candidate-v4-2026-11-22\RECIPES\historical-updates.mjs" --old-package "E:/Warhammer/qa-tmp/release-candidate/runtime-e3db1b34" --new-package "E:/Warhammer/qa-tmp/release-candidate-v4/package" --source "E:/Warhammer/qa-tmp/release-candidate-v4/candidate" --out "E:\Warhammer\qa-evidence\release-candidate-v4-2026-11-22\update-path\live-e3"
+node "E:\Warhammer\qa-evidence\release-candidate-v4-2026-11-22\RECIPES\historical-updates.mjs" --old-package "E:/Warhammer/qa-tmp/preview-v1/package-old" --new-package "E:/Warhammer/qa-tmp/release-candidate-v4/package" --source "E:/Warhammer/qa-tmp/release-candidate-v4/candidate" --out "E:\Warhammer\qa-evidence\release-candidate-v4-2026-11-22\update-path\old-1fd"

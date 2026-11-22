@@ -1,0 +1,34 @@
+{
+  "status": "PREPARED_NOT_RUN",
+  "oldPackages": [
+    {
+      "commit": "e3db1b345eca989436eea7af758900eee7795203",
+      "root": "E:/Warhammer/qa-tmp/release-candidate/runtime-e3db1b34",
+      "contentSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909",
+      "manifestSha256": "615a0834ea9032a19ae163acc4dd4454dc847fb574110849a0eb5a6ec4f1805c",
+      "runtimeFiles": 456,
+      "revision": "d08e23b961b6f507",
+      "recordedAcceptance": "E:/Warhammer/qa-evidence/release-candidate-v3-2026-11-21/PACKAGE_METRICS.json",
+      "recordedAcceptanceManifestHashMatch": true,
+      "gitCheckout": "E:/Warhammer/qa-tmp/release-candidate/candidate",
+      "gitHead": "e3db1b345eca989436eea7af758900eee7795203",
+      "gitTree": "74a8064e67dafa06b20120ef5563da176db6d793",
+      "gitClean": true
+    },
+    {
+      "commit": "1fd0b279051d76f1a262f7c8f117e35551b7de39",
+      "root": "E:/Warhammer/qa-tmp/preview-v1/package-old",
+      "contentSha256": "d389549067279096e9a645bab8dbaa6be682967190155ce1f8ec37db8eaf35d3",
+      "manifestSha256": "2fabaf96f518081eca9a26e4272e79bc124752ff4b1c4d1dbe8267d6fb52f752",
+      "runtimeFiles": 422,
+      "revision": "c3dffaf3c592a3c4"
+    }
+  ],
+  "bodyValidation": "This preparation reads manifests and prior accepted identity receipts only. It does not rehash all old package bodies or rebuild them. Actual worker integrity/install and native browser reads will validate the used historical bodies during the separately coordinated run.",
+  "recipeSha256": "e83b6c8059227d4d4a1a1da96f17cdb88993f4efce71b578bfbc16f8a0603890",
+  "serverSha256": "8f5789b906b161fe4c2d3d6a21ee85ed1d32620d164d7167c5e982b171cf455b",
+  "browserRunsStarted": 0,
+  "applicationFilesChanged": 0,
+  "temporaryRoot": "E:/Warhammer/qa-tmp/release-candidate-v4",
+  "assertionAudit": "HISTORICAL_RECIPE_AUDIT.json"
+}

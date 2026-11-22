@@ -1,0 +1,96 @@
+--- previous diagnostic recipe
++++ candidate-v4 recipe
+@@ -1,6 +1,6 @@
+ /** Actual historical packages, isolated origin, real native imports. Author-only recipe.
+  * node historical-updates.mjs --old-package <dir> --new-package <dir> --source <feature checkout> --out <evidence dir>
+- * Run separately for 1fd0b279 and e3db1b34/runtime-base. No package is rebuilt or edited.
++ * Run separately for 1fd0b279 and actual release e3db1b34. No package is rebuilt or edited.
+  * Browser profiles and exact storage snapshots never enter evidence. No raw exports are published.
+  */
+ import assert from 'node:assert/strict';
+@@ -8,7 +8,7 @@
+ import path from 'node:path';
+ import {createHash, randomUUID} from 'node:crypto';
+ import {pathToFileURL} from 'node:url';
+-import {createResponder} from '../measurement-recipes/runtime-server.mjs';
++import {createResponder} from './runtime-server.mjs';
+ 
+ const args = Object.fromEntries(process.argv.slice(2).reduce((rows, arg, i, all) => {
+   if (arg.startsWith('--')) rows.push([arg.slice(2), all[i + 1]]);
+@@ -25,15 +25,15 @@
+ assert.notEqual(oldManifest.cacheRevision, newManifest.cacheRevision, 'Update requires distinct revisions');
+ const historicalSources = {
+   d389549067279096e9a645bab8dbaa6be682967190155ce1f8ec37db8eaf35d3: '1fd0b279051d76f1a262f7c8f117e35551b7de39',
+-  '0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909': 'e3db1b345eca989436eea7af758900eee7795203 (runtime-identical base)',
++  '0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909': 'e3db1b345eca989436eea7af758900eee7795203',
+ };
+ assert(historicalSources[oldManifest.contentSha256], 'Old input is not either verified historical package');
+ // Only newly created, explicitly owned scratch. Never remove historical packages or preview files.
+-const scratch = path.join('E:/Warhammer/qa-tmp/fast-first-load/historical-updates', randomUUID());
++const scratch = path.join('E:/Warhammer/qa-tmp/release-candidate-v4/historical-updates', randomUUID());
+ fs.mkdirSync(scratch, {recursive: true});
+ fs.mkdirSync(out, {recursive: true});
+ const {chromium} = await import(pathToFileURL(path.join(source, 'node_modules/playwright/index.mjs')).href);
+-const report = {schema: 'fast-first-load-historical-update/v1', status: 'RUNNING',
++const report = {schema: 'release-candidate-v4-historical-update/v1', status: 'RUNNING',
+   old: {root: oldRoot, source: historicalSources[oldManifest.contentSha256], contentSha256: oldManifest.contentSha256, revision: oldManifest.cacheRevision},
+   candidate: {root: newRoot, contentSha256: newManifest.contentSha256, revision: newManifest.cacheRevision},
+   privacy: 'No raw import, storage, trace, or browser profile is written to evidence.', scratch, scenarios: []};
+@@ -60,7 +60,8 @@
+   await page.evaluate(() => WarhammerAppV2.ready);
+   await poll(() => page.evaluate(() => !document.querySelector('[data-v2-loading]')));
+ }
+-async function go(page, query = '') { await page.goto(entry + query, {waitUntil: 'load', timeout: 180000}); await ready(page); }
++const explicitNavigations = new WeakSet();
++async function go(page, query = '') { explicitNavigations.add(page); try { await page.goto(entry + query, {waitUntil: 'load', timeout: 180000}); await ready(page); } finally { explicitNavigations.delete(page); } }
+ async function roster(page, book) {
+   await go(page, '?v2=ROSTER&book=' + book);
+   await poll(() => page.evaluate(id => window.ArmyBookAppV2?.payload?.book?.id === id && !!ArmyBookAppV2.roster, book));
+@@ -149,8 +150,12 @@
+       env: {...process.env, TMP: scratch, TEMP: scratch, TMPDIR: scratch},
+     });
+     context.setDefaultTimeout(30000);
+-    scenario.phase = 'online-setup'; scenario.consoleMessages = [];
+-    const attachDiagnostics = page => { page.on('console', message => { if (message.type() === 'error') { scenario.errors.console++; scenario.consoleMessages.push({phase:scenario.phase,text:message.text(),location:message.location(),pageUrl:page.url()}); } }); page.on('pageerror', () => scenario.errors.page++); };
++    scenario.phase = 'online-setup'; scenario.consoleMessages = []; scenario.pageErrors = []; scenario.networkFailures = [];
++    const attachDiagnostics = page => {
++      page.on('console', message => { if (message.type() === 'error') { scenario.errors.console++; scenario.consoleMessages.push({phase:scenario.phase,text:safeError(message.text()),location:message.location(),pageUrl:page.url(),duringExplicitNavigation:explicitNavigations.has(page)}); } });
++      page.on('pageerror', error => { scenario.errors.page++; scenario.pageErrors.push({phase:scenario.phase,message:safeError(error),pageUrl:page.url()}); });
++      page.on('requestfailed', request => scenario.networkFailures.push({phase:scenario.phase,url:request.url(),method:request.method(),resourceType:request.resourceType(),failure:request.failure()?.errorText || 'unknown',duringExplicitNavigation:explicitNavigations.has(page)}));
++    };
+     const working = context.pages()[0] || await context.newPage(); attachDiagnostics(working);
+     await go(working); scenario.oldOffline = await fullReady(working, oldManifest.cacheRevision);
+     const counts = {};
+@@ -236,7 +241,23 @@
+     scenario.storageAfter = await unchanged(startup, reference, 'Candidate offline');
+     scenario.offlineHome = true;
+     await startup.screenshot({path: path.join(out, 'saved-roster-offline-' + width + '.png'), fullPage: false});
+-    scenario.status = 'PASS';
++    const isOfflineFreshnessProbe = row => {
++      if (row.phase !== 'candidate-offline') return false;
++      const url = row.url || row.location?.url;
++      if (!url || new URL(url).pathname !== prefix + 'glossary/generated/cache-revision.js') return false;
++      return /net::ERR_(FAILED|INTERNET_DISCONNECTED|NETWORK_CHANGED)/.test(row.text || row.failure || '');
++    };
++    const isExplicitNavigationCancellation = row => row.duringExplicitNavigation === true && /net::ERR_ABORTED/.test(row.text || row.failure || '');
++    scenario.expectedOfflineConsole = scenario.consoleMessages.filter(isOfflineFreshnessProbe);
++    scenario.navigationConsoleCancellations = scenario.consoleMessages.filter(isExplicitNavigationCancellation);
++    scenario.unexpectedConsole = scenario.consoleMessages.filter(row => !isOfflineFreshnessProbe(row) && !isExplicitNavigationCancellation(row));
++    scenario.expectedOfflineNetwork = scenario.networkFailures.filter(isOfflineFreshnessProbe);
++    scenario.navigationNetworkCancellations = scenario.networkFailures.filter(isExplicitNavigationCancellation);
++    scenario.unexpectedNetwork = scenario.networkFailures.filter(row => !isOfflineFreshnessProbe(row) && !isExplicitNavigationCancellation(row));
++    assert.equal(scenario.pageErrors.length, 0, 'Unexpected application page exception');
++    assert.equal(scenario.unexpectedConsole.length, 0, 'Unexpected console error outside offline freshness probes or explicit-navigation cancellation');
++    assert.equal(scenario.unexpectedNetwork.length, 0, 'Unexpected failed request outside offline freshness probes or explicit-navigation cancellation');
++    scenario.status = 'PASS'; scenario.phase = 'closing';
+     await context.close(); context = null;
+   }
+   report.status = 'PASS';
+@@ -253,6 +274,7 @@
+     'This recipe checks two actual historical origins separately; it does not replace the separate revision-switch-during-background negative control.',
+     'Offline assertion covers home and the warmed saved DG/SM rosters. Large untouched books are lazy in the accepted model.',
+     'Profiles remain in the named qa-tmp scratch folder for owner-approved cleanup; no preview or package file is changed.',
++    'Console, page exceptions and request failures are retained. Exact cache-revision.js failures during candidate-offline are expected network-first freshness probes. ERR_ABORTED is separately retained as a navigation cancellation only when this recipe was actually inside its explicit go/ready operation for that page; no timing window or broad abort suppression is used. Other failures reject the scenario. Closing-profile events remain phase-labelled.',
+   ];
+   fs.writeFileSync(path.join(out, 'REPORT.json'), JSON.stringify(report, null, 2) + '\n');
+   console.log(JSON.stringify({status: report.status, report: path.join(out, 'REPORT.json'), scratch}));

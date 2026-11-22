@@ -1,0 +1,520 @@
+{
+  "schema": "release-candidate-evidence/v4",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 155,
+      "sha256": "c7062543997d357686176fefeaaa3ea889ddcd554d6b0e17b6c9a13c25443577"
+    },
+    {
+      "path": "ACCEPTED_SOURCE_QA.json",
+      "bytes": 465,
+      "sha256": "0f063c284b2d758d528bb05d2f58beb5816af62132d19dc3dcf5fab9c0f4dc5e"
+    },
+    {
+      "path": "browser/1440-adeptus-mechanicus.jpg",
+      "bytes": 103686,
+      "sha256": "be5f01ba47940997782fb86d49b59c9f2a9d7b88110c38b50eae2ed19ec9c800"
+    },
+    {
+      "path": "browser/1440-blood-angels.jpg",
+      "bytes": 90914,
+      "sha256": "07a4f3dd996e0219ccb0f263dd97c09f4d9e54f0d222d4d75d4b83cd67ec3870"
+    },
+    {
+      "path": "browser/1440-chaos-space-marines.jpg",
+      "bytes": 83919,
+      "sha256": "600a7614edaa58c9530c6bd8681c8474bb9dbdf2f31901729be1dd4ba38f8c9a"
+    },
+    {
+      "path": "browser/1440-dark-angels.jpg",
+      "bytes": 94209,
+      "sha256": "60b4f3c75b6104dc1db60f0413ca8b456ae063aba1375557c9ebe7acd35c3669"
+    },
+    {
+      "path": "browser/1440-death-guard.jpg",
+      "bytes": 81690,
+      "sha256": "478e2b03869be1b96efec96a97fd7cc79b55d8c0ec67520044758c8b6bcf1217"
+    },
+    {
+      "path": "browser/1440-emperors-children.jpg",
+      "bytes": 106752,
+      "sha256": "edfdde0cb3ef28f07e5c7a686360d663d7f5306fe2dd1227580387b75a83d9df"
+    },
+    {
+      "path": "browser/1440-offline-saved-DG.jpg",
+      "bytes": 86043,
+      "sha256": "648276e985f9541d278ffaa661d469c79081f5f4a8982ff4564623f0092f2dd9"
+    },
+    {
+      "path": "browser/1440-owner-DG-import.jpg",
+      "bytes": 87772,
+      "sha256": "8f94fdfff597919f27b7936f831f0273029a16c88655913dc925eeb363ce54f4"
+    },
+    {
+      "path": "browser/1440-preparing-offline.jpg",
+      "bytes": 92489,
+      "sha256": "3d9938d3d67749068fe8db65a87e37d8e6a63d21c10f73e72fc41074468fb595"
+    },
+    {
+      "path": "browser/1440-ready-offline.jpg",
+      "bytes": 91610,
+      "sha256": "ac29b1f118e24a8f16c7128429aa39bdc9a9ea16d402579cae50d2ee801b28c2"
+    },
+    {
+      "path": "browser/1440-space-marines.jpg",
+      "bytes": 102558,
+      "sha256": "fa410ba42110bee2fc340e19c3f9e1c32d1bdc5ef0fe13f53b57460a04301c7d"
+    },
+    {
+      "path": "browser/1440-tau-empire.jpg",
+      "bytes": 91205,
+      "sha256": "53a1766b6f18ac690797f31725cf81e480e0e08d74fe2482c0ba2c31170ca82e"
+    },
+    {
+      "path": "browser/1440-tyranids.jpg",
+      "bytes": 94178,
+      "sha256": "a4a31d49a2f1eefcb4fdb8266a07bfbbcdbf396b1a9a3ab8f86c10a921ec4fe6"
+    },
+    {
+      "path": "browser/1440-unseen-book-offline.jpg",
+      "bytes": 34911,
+      "sha256": "20f9d16c634390a099a0f5d0f3a7f5ce502a107db679b8f85f74974782c7bfc4"
+    },
+    {
+      "path": "browser/390-adeptus-mechanicus.jpg",
+      "bytes": 40995,
+      "sha256": "55b559c511f87393695ca6a4a143619019dcf6554b57ade92fa7f4ee75f6bde6"
+    },
+    {
+      "path": "browser/390-blood-angels.jpg",
+      "bytes": 36222,
+      "sha256": "5bd15d001c0bf2e5c9818c0a2f1296f6ad998599a9a6fe6fa6f430300b3e16aa"
+    },
+    {
+      "path": "browser/390-chaos-space-marines.jpg",
+      "bytes": 36994,
+      "sha256": "5619a16af504e2e6e8db415e18e4fe705e02e4af5e1f3010d4306500ab9c0fd6"
+    },
+    {
+      "path": "browser/390-dark-angels.jpg",
+      "bytes": 37778,
+      "sha256": "fb21cde08781301f16fab6953bee639e7d7c7b04d6a829b773e0bb035fe7b9a4"
+    },
+    {
+      "path": "browser/390-death-guard.jpg",
+      "bytes": 35320,
+      "sha256": "e294276bc8113c0813147e3550903bd08b71b82cdb7c873d5e205a555dc742c3"
+    },
+    {
+      "path": "browser/390-emperors-children.jpg",
+      "bytes": 42792,
+      "sha256": "ad7e97d9fc0f43bdf1d45dc27392c8b7bb8d8ed434bd029d8ad6916587def466"
+    },
+    {
+      "path": "browser/390-offline-saved-DG.jpg",
+      "bytes": 31581,
+      "sha256": "53993a0f281f8d2e0ed3e84b2c32d06469b8346c7ea1e5df23f1c9187776c01d"
+    },
+    {
+      "path": "browser/390-owner-DG-import.jpg",
+      "bytes": 32484,
+      "sha256": "ea5a4d4e4c6ede487528e08311e8faf8d1fd3760afb8fa0dc44357b448c0ab84"
+    },
+    {
+      "path": "browser/390-preparing-offline.jpg",
+      "bytes": 47661,
+      "sha256": "f72afc52fabc16786a224c951d1f462dbf24aac420626a53da2042e6caff8579"
+    },
+    {
+      "path": "browser/390-ready-offline.jpg",
+      "bytes": 47456,
+      "sha256": "38b8d1eb312b5cfb3e846301950b66c8c36f71300b1ccd570355107d4b0794a4"
+    },
+    {
+      "path": "browser/390-space-marines.jpg",
+      "bytes": 40345,
+      "sha256": "7d75684172dbc250f069b6a18610c0e47800bb804335b37eb385325826d0dcd0"
+    },
+    {
+      "path": "browser/390-tau-empire.jpg",
+      "bytes": 38562,
+      "sha256": "2235bac3ea27e6fa4fa3cae479189c9164243ee6f9564efa0cf3472ed045f924"
+    },
+    {
+      "path": "browser/390-tyranids.jpg",
+      "bytes": 37553,
+      "sha256": "f3d5a43fb2b21ddaf1015b3ca82c03cfd94f435c5f81805c8f51abd44b83e3b7"
+    },
+    {
+      "path": "browser/390-unseen-book-offline.jpg",
+      "bytes": 19198,
+      "sha256": "d89544b5d70efaf09e9e003322fd6f3ffd3ab3fec53f7f62cc4f9ea9714c6955"
+    },
+    {
+      "path": "browser/RESULTS.json",
+      "bytes": 33350,
+      "sha256": "c588531fff91e33f2e869065846159aa71bfdd302293f995c4febfb04b90ce72"
+    },
+    {
+      "path": "browser-final/1440-adeptus-mechanicus.jpg",
+      "bytes": 103686,
+      "sha256": "be5f01ba47940997782fb86d49b59c9f2a9d7b88110c38b50eae2ed19ec9c800"
+    },
+    {
+      "path": "browser-final/1440-blood-angels.jpg",
+      "bytes": 90914,
+      "sha256": "07a4f3dd996e0219ccb0f263dd97c09f4d9e54f0d222d4d75d4b83cd67ec3870"
+    },
+    {
+      "path": "browser-final/1440-chaos-space-marines.jpg",
+      "bytes": 83919,
+      "sha256": "600a7614edaa58c9530c6bd8681c8474bb9dbdf2f31901729be1dd4ba38f8c9a"
+    },
+    {
+      "path": "browser-final/1440-dark-angels.jpg",
+      "bytes": 94209,
+      "sha256": "60b4f3c75b6104dc1db60f0413ca8b456ae063aba1375557c9ebe7acd35c3669"
+    },
+    {
+      "path": "browser-final/1440-death-guard.jpg",
+      "bytes": 81690,
+      "sha256": "478e2b03869be1b96efec96a97fd7cc79b55d8c0ec67520044758c8b6bcf1217"
+    },
+    {
+      "path": "browser-final/1440-emperors-children.jpg",
+      "bytes": 106752,
+      "sha256": "edfdde0cb3ef28f07e5c7a686360d663d7f5306fe2dd1227580387b75a83d9df"
+    },
+    {
+      "path": "browser-final/1440-offline-saved-DG.jpg",
+      "bytes": 86043,
+      "sha256": "648276e985f9541d278ffaa661d469c79081f5f4a8982ff4564623f0092f2dd9"
+    },
+    {
+      "path": "browser-final/1440-owner-DG-import.jpg",
+      "bytes": 87772,
+      "sha256": "8f94fdfff597919f27b7936f831f0273029a16c88655913dc925eeb363ce54f4"
+    },
+    {
+      "path": "browser-final/1440-preparing-offline.jpg",
+      "bytes": 92481,
+      "sha256": "9d5e831c4a95890736978a94158c6e6cd6c40ca46db3417dde7b8765d301527f"
+    },
+    {
+      "path": "browser-final/1440-ready-offline.jpg",
+      "bytes": 91610,
+      "sha256": "ac29b1f118e24a8f16c7128429aa39bdc9a9ea16d402579cae50d2ee801b28c2"
+    },
+    {
+      "path": "browser-final/1440-space-marines.jpg",
+      "bytes": 102558,
+      "sha256": "fa410ba42110bee2fc340e19c3f9e1c32d1bdc5ef0fe13f53b57460a04301c7d"
+    },
+    {
+      "path": "browser-final/1440-tau-empire.jpg",
+      "bytes": 91205,
+      "sha256": "53a1766b6f18ac690797f31725cf81e480e0e08d74fe2482c0ba2c31170ca82e"
+    },
+    {
+      "path": "browser-final/1440-tyranids.jpg",
+      "bytes": 94178,
+      "sha256": "a4a31d49a2f1eefcb4fdb8266a07bfbbcdbf396b1a9a3ab8f86c10a921ec4fe6"
+    },
+    {
+      "path": "browser-final/1440-unseen-book-offline.jpg",
+      "bytes": 34911,
+      "sha256": "20f9d16c634390a099a0f5d0f3a7f5ce502a107db679b8f85f74974782c7bfc4"
+    },
+    {
+      "path": "browser-final/390-adeptus-mechanicus.jpg",
+      "bytes": 40995,
+      "sha256": "55b559c511f87393695ca6a4a143619019dcf6554b57ade92fa7f4ee75f6bde6"
+    },
+    {
+      "path": "browser-final/390-blood-angels.jpg",
+      "bytes": 36222,
+      "sha256": "5bd15d001c0bf2e5c9818c0a2f1296f6ad998599a9a6fe6fa6f430300b3e16aa"
+    },
+    {
+      "path": "browser-final/390-chaos-space-marines.jpg",
+      "bytes": 36994,
+      "sha256": "5619a16af504e2e6e8db415e18e4fe705e02e4af5e1f3010d4306500ab9c0fd6"
+    },
+    {
+      "path": "browser-final/390-dark-angels.jpg",
+      "bytes": 37778,
+      "sha256": "fb21cde08781301f16fab6953bee639e7d7c7b04d6a829b773e0bb035fe7b9a4"
+    },
+    {
+      "path": "browser-final/390-death-guard.jpg",
+      "bytes": 35320,
+      "sha256": "e294276bc8113c0813147e3550903bd08b71b82cdb7c873d5e205a555dc742c3"
+    },
+    {
+      "path": "browser-final/390-emperors-children.jpg",
+      "bytes": 42792,
+      "sha256": "ad7e97d9fc0f43bdf1d45dc27392c8b7bb8d8ed434bd029d8ad6916587def466"
+    },
+    {
+      "path": "browser-final/390-offline-saved-DG.jpg",
+      "bytes": 31581,
+      "sha256": "53993a0f281f8d2e0ed3e84b2c32d06469b8346c7ea1e5df23f1c9187776c01d"
+    },
+    {
+      "path": "browser-final/390-owner-DG-import.jpg",
+      "bytes": 32484,
+      "sha256": "ea5a4d4e4c6ede487528e08311e8faf8d1fd3760afb8fa0dc44357b448c0ab84"
+    },
+    {
+      "path": "browser-final/390-preparing-offline.jpg",
+      "bytes": 47688,
+      "sha256": "bea6bdb63542391145f85f8f7e9c7fa4d16337b70c200aa012861f94c5e73e9e"
+    },
+    {
+      "path": "browser-final/390-ready-offline.jpg",
+      "bytes": 47456,
+      "sha256": "38b8d1eb312b5cfb3e846301950b66c8c36f71300b1ccd570355107d4b0794a4"
+    },
+    {
+      "path": "browser-final/390-space-marines.jpg",
+      "bytes": 40345,
+      "sha256": "7d75684172dbc250f069b6a18610c0e47800bb804335b37eb385325826d0dcd0"
+    },
+    {
+      "path": "browser-final/390-tau-empire.jpg",
+      "bytes": 38587,
+      "sha256": "564af1e5395fbc21014daa219a8d4e09cfa01382cae1bc9a415c918d7c60b5a0"
+    },
+    {
+      "path": "browser-final/390-tyranids.jpg",
+      "bytes": 37553,
+      "sha256": "f3d5a43fb2b21ddaf1015b3ca82c03cfd94f435c5f81805c8f51abd44b83e3b7"
+    },
+    {
+      "path": "browser-final/390-unseen-book-offline.jpg",
+      "bytes": 19198,
+      "sha256": "d89544b5d70efaf09e9e003322fd6f3ffd3ab3fec53f7f62cc4f9ea9714c6955"
+    },
+    {
+      "path": "browser-final/RESULTS.json",
+      "bytes": 59768,
+      "sha256": "887164f32bba29d82c383f90a97456aedccbcafcc294dfe00e9fa206b0b6deac"
+    },
+    {
+      "path": "BROWSER_REPEAT_SCOPE.json",
+      "bytes": 635,
+      "sha256": "9d6755dffb2ccecfa2f1bec742b7de3188d9e3c2d8e82d2ffe39506a5df706d7"
+    },
+    {
+      "path": "CANDIDATE.json",
+      "bytes": 777,
+      "sha256": "6631d62833c02f073f61e981b01dca65f0d14588acf5dd8f49d0f3a5f0574d68"
+    },
+    {
+      "path": "CLEANUP.json",
+      "bytes": 916,
+      "sha256": "f5662766ccfeaa52d7b0fffa563d2bbc2628fc19c2c8d3855605f9a20b0a5158"
+    },
+    {
+      "path": "CLEANUP_ATTEMPT_1.json",
+      "bytes": 334,
+      "sha256": "5da2942c6834ba65ea4c99b1a544545fc980cc12ed2a8173a01596dc9cb35305"
+    },
+    {
+      "path": "FINAL_VERIFICATION.json",
+      "bytes": 928,
+      "sha256": "5acecbe3e8408c834fac09fd7ecde95942fd9ce5d634c95cb7310b8001b4f881"
+    },
+    {
+      "path": "GALLERY.html",
+      "bytes": 2576615,
+      "sha256": "873d1e0f62ae86399692adcc982c9dfd243a4e5a6a42718635a5727d7ace4602"
+    },
+    {
+      "path": "HISTORICAL_PREPARATION.json",
+      "bytes": 1849,
+      "sha256": "562fc6c6dcd04c7f8956088ae943f9bfafb8caf114d4fdfb22a80d3c666d2a4e"
+    },
+    {
+      "path": "HISTORICAL_RECIPE_AUDIT.json",
+      "bytes": 963,
+      "sha256": "ca2fcfe652c25cad76b41cd579efe4c0b1b34eb7492e52fbaafe3c09938064ce"
+    },
+    {
+      "path": "PACKAGE_BUILD.txt",
+      "bytes": 210,
+      "sha256": "e97bb773e92e79431cb9046d6265e6869923b91809dc7acd23ec032bf81e0976"
+    },
+    {
+      "path": "PACKAGE_CHECK.txt",
+      "bytes": 209,
+      "sha256": "8a2e1b585c72407061e6c4cad604c7caf6aaa3cdad897ad9b451e722c7377f97"
+    },
+    {
+      "path": "PACKAGE_COMMANDS.json",
+      "bytes": 304,
+      "sha256": "429a0f9804323abe01e38893dd53dc73433ad635baa73028a64e91f877515be6"
+    },
+    {
+      "path": "PACKAGE_INPUT_INTEGRITY.json",
+      "bytes": 870,
+      "sha256": "7c951710eae877a284d59d0f51eb13274341207dcb744678704ab5357851a185"
+    },
+    {
+      "path": "PACKAGE_METRICS.json",
+      "bytes": 56767,
+      "sha256": "b05f2ea9830e38ca4d163dd513ad9f34917f2768a01918aba71e411cc5c8bf93"
+    },
+    {
+      "path": "PACKAGE_QA.json",
+      "bytes": 1615,
+      "sha256": "fc65d805827f639b77c2c3e00167541393ec139a4c1e71047a2d0be2ba5ef60a"
+    },
+    {
+      "path": "PACKAGE_QA.txt",
+      "bytes": 1806,
+      "sha256": "70f57687e3883d128f2228c86f716bfd3a204b936e9c334659186475e6640773"
+    },
+    {
+      "path": "PAGES_RUNTIME_MANIFEST.json",
+      "bytes": 308315,
+      "sha256": "0a4b26fd2f8f370ab954d06d5914bc27cba02235ecf820bec77bdd69e278295c"
+    },
+    {
+      "path": "RECIPES/candidate-browser-initial.mjs",
+      "bytes": 12268,
+      "sha256": "31739d3f0f0935912535930bcc406944661843dd68cdcc702cbb875857f005ce"
+    },
+    {
+      "path": "RECIPES/candidate-browser.mjs",
+      "bytes": 13822,
+      "sha256": "41958ccbccb5ea9db88a8c23b783f0579960a2632baa606c90b6950a7304c3b6"
+    },
+    {
+      "path": "RECIPES/cleanup-owned.ps1",
+      "bytes": 4690,
+      "sha256": "daab97b739dba5ca72e3207665f201ab85801e6a94f916b03f3abd4e35bd4bed"
+    },
+    {
+      "path": "RECIPES/historical-updates.mjs",
+      "bytes": 21772,
+      "sha256": "e83b6c8059227d4d4a1a1da96f17cdb88993f4efce71b578bfbc16f8a0603890"
+    },
+    {
+      "path": "RECIPES/HISTORICAL_README.md",
+      "bytes": 3482,
+      "sha256": "9cdd97c2f2cd3189ef115e69c1c3df5a410301a1337fd9910cf5cc612965bba4"
+    },
+    {
+      "path": "RECIPES/HISTORICAL_RECIPE_CHANGES.patch",
+      "bytes": 8315,
+      "sha256": "244a3771a1b7ec86cc2ecf5828f4b435e00aa3d1c6e088b4fd32c8bb311392b9"
+    },
+    {
+      "path": "RECIPES/RUN_HISTORICAL_SEQUENTIALLY.txt",
+      "bytes": 928,
+      "sha256": "e6976118ba3be21f812932dfb13daa20f0cfacd0297ff53963e39f18110d2a90"
+    },
+    {
+      "path": "RECIPES/runtime-server.mjs",
+      "bytes": 5496,
+      "sha256": "8f5789b906b161fe4c2d3d6a21ee85ed1d32620d164d7167c5e982b171cf455b"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 10062,
+      "sha256": "52256bcfa2d8e6d71ecfa5264c0a45121f8980a27977a46563f6db67c1e607ae"
+    },
+    {
+      "path": "rollback/PAGES_ROLLBACK_DATA.json",
+      "bytes": 3722,
+      "sha256": "6a8070aca81e6aa826c73843868d5213f6cd44b4950fda792d3111cd08bd6437"
+    },
+    {
+      "path": "rollback/ROLLBACK_COMMANDS.md",
+      "bytes": 5414,
+      "sha256": "3619b941a75e00ea179752422f03b74780476a085639a9b91341a8464304a63d"
+    },
+    {
+      "path": "update-path/live-e3/REPORT.json",
+      "bytes": 14125,
+      "sha256": "6ac6578df32fade15ce66682e5ee5b85a3a8f622e14974e71166b24b2e18f1db"
+    },
+    {
+      "path": "update-path/live-e3/saved-roster-new-1440.png",
+      "bytes": 313017,
+      "sha256": "92d3058ba9e9c5272d44c0b085a8beb6e58547f36bb170183d18b7ea25bcd1f7"
+    },
+    {
+      "path": "update-path/live-e3/saved-roster-new-390.png",
+      "bytes": 50611,
+      "sha256": "26c20c096da1f76ccdfa952942b4406af1f1282c98fc151d5ab2e306f09562bc"
+    },
+    {
+      "path": "update-path/live-e3/saved-roster-offline-1440.png",
+      "bytes": 313017,
+      "sha256": "92d3058ba9e9c5272d44c0b085a8beb6e58547f36bb170183d18b7ea25bcd1f7"
+    },
+    {
+      "path": "update-path/live-e3/saved-roster-offline-390.png",
+      "bytes": 50611,
+      "sha256": "26c20c096da1f76ccdfa952942b4406af1f1282c98fc151d5ab2e306f09562bc"
+    },
+    {
+      "path": "update-path/live-e3/working-banner-1440.png",
+      "bytes": 318037,
+      "sha256": "02ae89716f44eaf99e323c6c332c242b242ddff54d1dc65571606b7023ae2739"
+    },
+    {
+      "path": "update-path/live-e3/working-banner-390.png",
+      "bytes": 56376,
+      "sha256": "aa96327cb6ed4c0d1589ed4765bea7cfa9e5e44cd84db36356ab3d94c301a067"
+    },
+    {
+      "path": "update-path/old-1fd/REPORT.json",
+      "bytes": 17039,
+      "sha256": "2ac95ba5cbb98a8db5080bd447a4de2aa412de6f8b0933a25ab59613379b8e01"
+    },
+    {
+      "path": "update-path/old-1fd/saved-roster-new-1440.png",
+      "bytes": 313017,
+      "sha256": "92d3058ba9e9c5272d44c0b085a8beb6e58547f36bb170183d18b7ea25bcd1f7"
+    },
+    {
+      "path": "update-path/old-1fd/saved-roster-new-390.png",
+      "bytes": 50611,
+      "sha256": "26c20c096da1f76ccdfa952942b4406af1f1282c98fc151d5ab2e306f09562bc"
+    },
+    {
+      "path": "update-path/old-1fd/saved-roster-offline-1440.png",
+      "bytes": 313017,
+      "sha256": "92d3058ba9e9c5272d44c0b085a8beb6e58547f36bb170183d18b7ea25bcd1f7"
+    },
+    {
+      "path": "update-path/old-1fd/saved-roster-offline-390.png",
+      "bytes": 50611,
+      "sha256": "26c20c096da1f76ccdfa952942b4406af1f1282c98fc151d5ab2e306f09562bc"
+    },
+    {
+      "path": "update-path/old-1fd/working-banner-1440.png",
+      "bytes": 316349,
+      "sha256": "7f911bd5ebbc6913a19109900cbd36eac6ed0bee803b82c8a77d1f76e2415dc9"
+    },
+    {
+      "path": "update-path/old-1fd/working-banner-390.png",
+      "bytes": 60933,
+      "sha256": "a1ec16e29857b16b8163c389d86dbdc770bf4043e68487dad91381b8c4b4b482"
+    },
+    {
+      "path": "UPDATE_live-e3.txt",
+      "bytes": 238,
+      "sha256": "efa5ce128767b55b15fd353f3bda916249075444f890e40609bfae0cdf4c04f6"
+    },
+    {
+      "path": "UPDATE_old-1fd.txt",
+      "bytes": 238,
+      "sha256": "085e0bc72ca09599a30621f93580b15f5fade658d55d49ab2e2d2189f70512ae"
+    }
+  ]
+}

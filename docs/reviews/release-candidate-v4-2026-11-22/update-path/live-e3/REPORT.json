@@ -1,0 +1,383 @@
+{
+  "schema": "release-candidate-v4-historical-update/v1",
+  "status": "PASS",
+  "old": {
+    "root": "E:\\Warhammer\\qa-tmp\\release-candidate\\runtime-e3db1b34",
+    "source": "e3db1b345eca989436eea7af758900eee7795203",
+    "contentSha256": "0fab482c0fa7f4132c9bbb60646e880afca25f2b5823ab7fc1bd62322e67b909",
+    "revision": "d08e23b961b6f507"
+  },
+  "candidate": {
+    "root": "E:\\Warhammer\\qa-tmp\\release-candidate-v4\\package",
+    "contentSha256": "f975aa7a6c68073dd86c46b512e9cc1b8664209abce937fad128e91616095af5",
+    "revision": "28acb87c11537a8b"
+  },
+  "privacy": "No raw import, storage, trace, or browser profile is written to evidence.",
+  "scratch": "E:\\Warhammer\\qa-tmp\\release-candidate-v4\\historical-updates\\4aaba0b2-b008-4c4a-a808-8f97604750c7",
+  "scenarios": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "imports": [
+        {
+          "file": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+          "sha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+          "accepted": true,
+          "book": "death-guard",
+          "version": "v37.25",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        },
+        {
+          "file": "books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt",
+          "sha256": "77adceda3ee79ff89352a364a535df3b0d58d9aa246e3491930bf5a64bb7fb6f",
+          "accepted": true,
+          "book": "space-marines",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        }
+      ],
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "started": "2026-11-22T09:05:48.834Z",
+      "phase": "closing",
+      "consoleMessages": [
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:59956/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=death-guard#view-roster",
+          "duringExplicitNavigation": true
+        },
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:59956/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=space-marines#view-roster",
+          "duringExplicitNavigation": true
+        }
+      ],
+      "pageErrors": [],
+      "networkFailures": [
+        {
+          "phase": "candidate-offline",
+          "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+          "method": "GET",
+          "resourceType": "fetch",
+          "failure": "net::ERR_FAILED",
+          "duringExplicitNavigation": true
+        },
+        {
+          "phase": "candidate-offline",
+          "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+          "method": "GET",
+          "resourceType": "fetch",
+          "failure": "net::ERR_FAILED",
+          "duringExplicitNavigation": true
+        }
+      ],
+      "oldOffline": {
+        "revision": "d08e23b961b6f507",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "dgAcceptedVersion": "v37.25",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "workingScreen": {
+        "banner": true,
+        "noAutoReload": true,
+        "draftUnchanged": true
+      },
+      "updateToWorkingMs": 4652,
+      "startupToWorkingMs": 1445,
+      "savedOnline": {
+        "death-guard": {
+          "units": 8,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "newOffline": {
+        "revision": "28acb87c11537a8b",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "savedOffline": {
+        "death-guard": {
+          "units": 8,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "offlineHome": true,
+      "expectedOfflineConsole": [
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:59956/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=death-guard#view-roster",
+          "duringExplicitNavigation": true
+        },
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:59956/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=space-marines#view-roster",
+          "duringExplicitNavigation": true
+        }
+      ],
+      "navigationConsoleCancellations": [],
+      "unexpectedConsole": [],
+      "expectedOfflineNetwork": [
+        {
+          "phase": "candidate-offline",
+          "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+          "method": "GET",
+          "resourceType": "fetch",
+          "failure": "net::ERR_FAILED",
+          "duringExplicitNavigation": true
+        },
+        {
+          "phase": "candidate-offline",
+          "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+          "method": "GET",
+          "resourceType": "fetch",
+          "failure": "net::ERR_FAILED",
+          "duringExplicitNavigation": true
+        }
+      ],
+      "navigationNetworkCancellations": [],
+      "unexpectedNetwork": []
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "imports": [
+        {
+          "file": "v2/fixtures/new-recruit-v37.25-owner-death-guard.txt",
+          "sha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+          "accepted": true,
+          "book": "death-guard",
+          "version": "v37.25",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        },
+        {
+          "file": "books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt",
+          "sha256": "77adceda3ee79ff89352a364a535df3b0d58d9aa246e3491930bf5a64bb7fb6f",
+          "accepted": true,
+          "book": "space-marines",
+          "kind": "AUTHENTIC_STORED_EXPORT"
+        }
+      ],
+      "errors": {
+        "console": 2,
+        "page": 0
+      },
+      "started": "2026-11-22T09:06:17.950Z",
+      "phase": "closing",
+      "consoleMessages": [
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:59956/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=death-guard#view-roster",
+          "duringExplicitNavigation": true
+        },
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:59956/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=space-marines#view-roster",
+          "duringExplicitNavigation": true
+        }
+      ],
+      "pageErrors": [],
+      "networkFailures": [
+        {
+          "phase": "candidate-offline",
+          "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+          "method": "GET",
+          "resourceType": "fetch",
+          "failure": "net::ERR_FAILED",
+          "duringExplicitNavigation": true
+        },
+        {
+          "phase": "candidate-offline",
+          "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+          "method": "GET",
+          "resourceType": "fetch",
+          "failure": "net::ERR_FAILED",
+          "duringExplicitNavigation": true
+        }
+      ],
+      "oldOffline": {
+        "revision": "d08e23b961b6f507",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "dgAcceptedVersion": "v37.25",
+      "storageBefore": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "workingScreen": {
+        "banner": true,
+        "noAutoReload": true,
+        "draftUnchanged": true
+      },
+      "updateToWorkingMs": 4075,
+      "startupToWorkingMs": 1450,
+      "savedOnline": {
+        "death-guard": {
+          "units": 8,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "newOffline": {
+        "revision": "28acb87c11537a8b",
+        "completed": 221,
+        "total": 221,
+        "controlled": true
+      },
+      "savedOffline": {
+        "death-guard": {
+          "units": 8,
+          "pointsStatus": null
+        },
+        "space-marines": {
+          "units": 3,
+          "pointsStatus": "RESOLVED"
+        }
+      },
+      "storageAfter": {
+        "entries": 2,
+        "bytes": 31508,
+        "sha256": "fae056b63f652c1a68c13d1458e1c4a8003b518ef0b3447c18eb6cef2cb84bc2"
+      },
+      "offlineHome": true,
+      "expectedOfflineConsole": [
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:59956/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=death-guard#view-roster",
+          "duringExplicitNavigation": true
+        },
+        {
+          "phase": "candidate-offline",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "pageUrl": "http://127.0.0.1:59956/warhammer-rules-complete-preview/v2/app.html?v2=ROSTER&book=space-marines#view-roster",
+          "duringExplicitNavigation": true
+        }
+      ],
+      "navigationConsoleCancellations": [],
+      "unexpectedConsole": [],
+      "expectedOfflineNetwork": [
+        {
+          "phase": "candidate-offline",
+          "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+          "method": "GET",
+          "resourceType": "fetch",
+          "failure": "net::ERR_FAILED",
+          "duringExplicitNavigation": true
+        },
+        {
+          "phase": "candidate-offline",
+          "url": "http://127.0.0.1:59956/warhammer-rules-complete-preview/glossary/generated/cache-revision.js",
+          "method": "GET",
+          "resourceType": "fetch",
+          "failure": "net::ERR_FAILED",
+          "duringExplicitNavigation": true
+        }
+      ],
+      "navigationNetworkCancellations": [],
+      "unexpectedNetwork": []
+    }
+  ],
+  "requests": {
+    "total": 1490,
+    "historical": 966,
+    "candidate": 524,
+    "failed": 0
+  },
+  "notes": [
+    "Exact localStorage proof covers all origin keys, not only DG/SM. Contents exist only in browser and Node memory.",
+    "Old DG v37.25 is attempted first, then actual v37.15. Failed attempts remain in the report. If both fail, the unchanged DERIVED dg-short-derived-labelled fixture from the prior actual-old preview audit is attempted with exact SHA and provenance. No input is converted.",
+    "This recipe checks two actual historical origins separately; it does not replace the separate revision-switch-during-background negative control.",
+    "Offline assertion covers home and the warmed saved DG/SM rosters. Large untouched books are lazy in the accepted model.",
+    "Profiles remain in the named qa-tmp scratch folder for owner-approved cleanup; no preview or package file is changed.",
+    "Console, page exceptions and request failures are retained. Exact cache-revision.js failures during candidate-offline are expected network-first freshness probes. ERR_ABORTED is separately retained as a navigation cancellation only when this recipe was actually inside its explicit go/ready operation for that page; no timing window or broad abort suppression is used. Other failures reject the scenario. Closing-profile events remain phase-labelled."
+  ]
+}
