@@ -56,6 +56,17 @@ for(const name of ['SecurityError','NotAllowedError','NotSupportedError'])await 
   assert.equal([...h.timers].filter(timer=>[15000,30000].includes(timer.delay)).length,0);
 });
 
+await test('denied registration while offline opens online-only after reconnect without another registration',async()=>{
+  const h=harness({registrationDenial:'SecurityError',online:false});
+  await until(()=>h.panel.dataset.state==='startup_failed');assert.equal(h.registrations,1);assert.equal(h.visible,false);
+  h.event('focus');await new Promise(resolve=>setImmediate(resolve));assert.equal(h.registrations,1);assert.equal(h.visible,false);
+  h.navigator.onLine=true;h.event('online');await h.window.WHOfflineStatus.ready;
+  assert.equal(h.panel.dataset.unavailable,'true');assert.equal(h.panel.dataset.state,'up_to_date','The failed startup/update UI must be cleared');assert.equal(h.registrations,1,'Reconnection must not retry a browser-policy denial');assert.equal(h.visible,false);
+  h.window.WHOfflineStatus.completeBootstrap();h.event('focus');h.event('online');await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(h.registrations,1);assert.equal(h.visible,false);
+  assert.equal([...h.timers].filter(timer=>[15000,30000].includes(timer.delay)).length,0);
+});
+
 await test('denied getRegistration does not escape or promise offline recovery',async()=>{
   const h=harness({lookupDenial:'SecurityError'});await until(()=>h.panel.dataset.unavailable==='true');await h.window.WHOfflineStatus.ready;
   assert.equal(h.lookups,2,'Existing-registration recovery remains attempted');assert.equal(h.registrations,0);assert.equal(h.visible,false);

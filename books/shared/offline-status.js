@@ -479,7 +479,13 @@
     }finally{starting=false;}
   }
   function retryUnavailableRegistration(){
-    if(!registrationUnavailable||registrationForbidden||bootstrapReleased||starting||!navigator.onLine)return false;
+    if(!registrationUnavailable||bootstrapReleased||starting||!navigator.onLine)return false;
+    if(registrationForbidden){
+      // Reconnection can open an online-only shell; it cannot grant SW permission.
+      bootstrapFailed=false;coreRepairPending=false;
+      if(updater)updater.dataset.unavailable='true';
+      startupText('Opening Warhammer 40,000…','opening');setUpdateState('up_to_date');releaseBootstrap();return true;
+    }
     registrationUnavailable=false;bootstrapFailed=false;coreRepairPending=true;lastOfflineRetry=Date.now();
     if(updater)delete updater.dataset.unavailable;
     startupText('Preparing offline access…','opening');setUpdateState('checking');start();return true;
