@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 
 const integer=value=>Number.isSafeInteger(value)&&value>=0;
 const safeJob=value=>typeof value==='string'&&value.length<=240&&/^[A-Za-z0-9_./ -]+$/.test(value)&&!value.includes('..');
+const safeCodeFile=value=>typeof value==='string'&&value.length<=240&&/^(?:tests|tools|v2|books|glossary|mfm)\/[A-Za-z0-9_./-]+\.(?:mjs|cjs|js|py)$/.test(value)&&!value.split('/').includes('..');
 const same=(left,right)=>JSON.stringify(left)===JSON.stringify(right);
 const diagnosticLimit=200,logTailLimit=64*1024;
 const errorClasses=new Set(['AssertionError','TypeError','ReferenceError','SyntaxError','RangeError','TimeoutError','Error',
@@ -18,22 +19,42 @@ const errorHeader=new RegExp('^('+[...errorClasses].join('|')+')(?: \\[([A-Z0-9_
 const systemCodes=new Set(['ENOENT','EACCES','EPERM','ENOSPC','ENOMEM','EMFILE','ENFILE','ECONNREFUSED','ECONNRESET','ETIMEDOUT']);
 const moduleCodes=new Set(['ERR_MODULE_NOT_FOUND','MODULE_NOT_FOUND']);
 const signals=new Set(['SIGKILL','SIGTERM','SIGINT','SIGABRT','SIGSEGV','SIGBUS']);
-const reportCodes=new Set(['PLAN_UNAVAILABLE','CHECKOUT_SHA_UNAVAILABLE','INVALID_RESULT_HEADER','INVALID_RESULT_ROWS','JOB_PLAN_MISMATCH','INVALID_JOB_RESULT','INVALID_EXIT_CODE','INVALID_JOB_STATUS','REPORT_DESTINATION_NOT_FRESH','REPORT_INSIDE_SOURCE','INVALID_REPORT_OPTION','INVALID_REPORT_COMMAND','EMAIL_IN_PUBLIC_REPORT']);
+const reportCodes=new Set(['PLAN_UNAVAILABLE','CHECKOUT_SHA_UNAVAILABLE','TRACKED_SOURCES_UNAVAILABLE','INVALID_RESULT_HEADER','INVALID_RESULT_ROWS','JOB_PLAN_MISMATCH','INVALID_JOB_RESULT','INVALID_EXIT_CODE','INVALID_JOB_STATUS','REPORT_DESTINATION_NOT_FRESH','REPORT_INSIDE_SOURCE','INVALID_REPORT_OPTION','INVALID_REPORT_COMMAND','EMAIL_IN_PUBLIC_REPORT']);
 function stackLocation(text,root,sourceFiles){
  // Locations alone are useful; never publish a stack function name or line body.
  const traceback=text.lastIndexOf('Traceback (most recent call last):');
- for(const line of (traceback<0?text:text.slice(traceback)).split(/\r?\n/)){
-  const python=/^\s*File "([^"\r\n]+)", line ([1-9][0-9]*)(?:, in [^\r\n]*)?$/.exec(line);
-  const match=python||(/^\s+at\s/.test(line)?/((?:file:\/\/\/|[A-Za-z]:[\\/]|\/)[^()\r\n]*?):([1-9][0-9]*):([1-9][0-9]*)\)?\s*$/.exec(line):null);
-  if(!match)continue;
+ const locate=(match,python)=>{
+  if(!match)return null;
   let absolute;
-  try{absolute=match[1].startsWith('file:')?fileURLToPath(match[1]):path.resolve(root,match[1]);}catch{continue;}
+  try{absolute=match[1].startsWith('file:')?fileURLToPath(match[1]):path.resolve(root,match[1]);}catch{return null;}
   const relative=path.relative(path.resolve(root),absolute).replaceAll(path.sep,'/');
-  if(!/^(?:tests|tools|v2|books|glossary|mfm)\/[A-Za-z0-9_./-]+\.(?:mjs|cjs|js|py)$/.test(relative)||relative.split('/').includes('..')||relative.length>240||!sourceFiles.has(relative))continue;
+  if(!safeCodeFile(relative)||!sourceFiles.has(relative))return null;
   const row=Number(match[2]),column=python?null:Number(match[3]);
   if(Number.isSafeInteger(row)&&(python||Number.isSafeInteger(column)))return {file:relative,line:row,...(python?{}:{column})};
+  return null;
+ };
+ let pythonLocation=null;
+ for(const line of (traceback<0?text:text.slice(traceback)).split(/\r?\n/)){
+  const location=locate(/^\s*File "([^"\r\n]+)", line ([1-9][0-9]*)(?:, in [^\r\n]*)?$/.exec(line),true);
+  // Python prints the innermost origin last, unlike JavaScript stacks.
+  if(location)pythonLocation=location;
+ }
+ if(pythonLocation)return pythonLocation;
+ // A child traceback may contain only external frames; retain its trusted JS
+ // caller even when that parent stack occurred before the child stderr text.
+ for(const line of text.split(/\r?\n/)){
+  if(!/^\s+at\s/.test(line))continue;
+  const location=locate(/((?:file:\/\/\/|[A-Za-z]:[\\/]|\/)[^()\r\n]*?):([1-9][0-9]*):([1-9][0-9]*)\)?\s*$/.exec(line),false);
+  if(location)return location;
  }
  return null;
+}
+export function collectTrackedCodeFiles(root){
+ // Membership comes from the committed source tree, never a log, raw result,
+ // untracked file, or arbitrary exception field. Contents are not read.
+ const result=spawnSync('git',['ls-tree','-r','--name-only','-z','HEAD'],{cwd:path.resolve(root),encoding:'utf8',maxBuffer:16*1024*1024});
+ if(result.status!==0)throw Error('TRACKED_SOURCES_UNAVAILABLE');
+ return result.stdout.split('\0').filter(safeCodeFile);
 }
 export function safeFailureDiagnostic({text='',error='',signal=null,exitCode=null,root,sourceFiles=[]}){
  // Classification sees private text, but every public message is a fixed template.
@@ -63,8 +84,8 @@ export function safeFailureDiagnostic({text='',error='',signal=null,exitCode=nul
  }else if(errorClass!=='UnknownError'){cause='ERROR_MESSAGE_REDACTED';firstLine=errorClass+': error message redacted.';}
  else if(Number.isInteger(exitCode)){cause='PROCESS_EXIT';firstLine='UnknownError: process exited with code '+exitCode+'; private details redacted.';}
  // A private message cannot invent a new "source" filename for publication.
- // Only entrypoints already present in the public canonical plan are eligible.
- const location=stackLocation(privateText,root,new Set(sourceFiles));
+ // Membership is the trusted committed code inventory plus canonical entries.
+ const location=stackLocation(privateText,root,new Set(sourceFiles.filter(safeCodeFile)));
  return {errorClass,cause,firstLine:firstLine.slice(0,diagnosticLimit),messageRedacted:true,...(location?{location}:{})};
 }
 function readFailureLog(raw,index,id){
@@ -120,11 +141,13 @@ export function normalizeJob(job,root){
  if(args.some(arg=>arg.length>512||!placeholders.has(arg)&&!/^[A-Za-z0-9_./= -]+$/.test(arg)))throw Error('UNSAFE_PUBLIC_ARG');
  return {command:commandKind(job),id:job.id,args};
 }
-export function projectResults({plan,raw,root,sha,outcome,platform=process.platform,failureLogs=[]}){
+export function projectResults({plan,raw,root,sha,outcome,platform=process.platform,failureLogs=[],knownSourceFiles=[]}){
  if(!/^[0-9a-f]{40}$/.test(sha))throw Error('INVALID_SHA');
  if(!['linux','win32','darwin'].includes(platform))throw Error('INVALID_PLATFORM');
  if(!['success','failure','cancelled','skipped',''].includes(outcome))throw Error('INVALID_OUTCOME');
  const canonical=plan.map(job=>normalizeJob(job,root));
+ if(!Array.isArray(knownSourceFiles)||knownSourceFiles.some(file=>typeof file!=='string'))throw Error('INVALID_KNOWN_SOURCE_FILES');
+ const sourceFiles=[...canonical.map(job=>job.id),...knownSourceFiles.filter(safeCodeFile)];
  const rows=raw?.results??[];
  const problems=[];
  if(!raw)problems.push('RESULTS_UNAVAILABLE');
@@ -136,7 +159,7 @@ export function projectResults({plan,raw,root,sha,outcome,platform=process.platf
   if(row.exitCode!==null&&!Number.isInteger(row.exitCode))throw Error('INVALID_EXIT_CODE');
   if((row.exitCode===0)!==(row.status==='PASS'))throw Error('INVALID_JOB_STATUS');
   return {index:index+1,...canonical[index],status:row.status,exitCode:row.exitCode,elapsedMs:row.elapsedMs,
-   ...(row.status==='FAIL'?{diagnostic:safeFailureDiagnostic({text:failureLogs[index]||'',error:row.error,signal:row.signal,exitCode:row.exitCode,root,sourceFiles:canonical.map(job=>job.id)})}:{})};
+   ...(row.status==='FAIL'?{diagnostic:safeFailureDiagnostic({text:failureLogs[index]||'',error:row.error,signal:row.signal,exitCode:row.exitCode,root,sourceFiles})}:{})};
  });
  if(jobs.length!==canonical.length)problems.push('INCOMPLETE_QUEUE');
  if(outcome!=='success')problems.push('QUEUE_STEP_NOT_SUCCESSFUL');
@@ -168,7 +191,8 @@ export function exportReport({source,raw,out,summary,outcome}){
  const file=path.join(path.resolve(raw),'RESULTS.json');
  const input=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):null;
  const failureLogs=plan.map((job,index)=>input?.results?.[index]?.status==='FAIL'?readFailureLog(raw,index,job.id):'');
- const projected=projectResults({plan,raw:input,root,sha:git.stdout.trim(),outcome,failureLogs});
+ const knownSourceFiles=collectTrackedCodeFiles(root);
+ const projected=projectResults({plan,raw:input,root,sha:git.stdout.trim(),outcome,failureLogs,knownSourceFiles});
  const files={'JOB_PLAN.json':JSON.stringify(projected.plan,null,2)+'\n','RESULTS.json':JSON.stringify(projected.result,null,2)+'\n','REPORT.md':markdownReport(projected.result)};
  for(const body of Object.values(files))if(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/.test(body))throw Error('EMAIL_IN_PUBLIC_REPORT');
  fs.mkdirSync(destination,{recursive:true});

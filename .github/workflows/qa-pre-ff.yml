@@ -18,7 +18,60 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  parser-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      source_sha: ${{ steps.target.outputs.sha }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Validate census target ref without echoing untrusted input
+        env:
+          TARGET_REF: ${{ inputs.ref }}
+        run: |
+          [[ "$TARGET_REF" =~ ^[A-Za-z0-9][A-Za-z0-9._/-]*$ ]] || { echo 'Invalid repository ref'; exit 1; }
+      - name: Check out reviewed parser census
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          path: orchestration
+          persist-credentials: false
+      - name: Check out target parser inputs
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
+          path: source
+          persist-credentials: false
+      - name: Freeze the exact census checkout
+        id: target
+        run: |
+          sha=$(git -C source rev-parse HEAD)
+          [[ "$sha" =~ ^[0-9a-f]{40}$ ]] || { echo 'Invalid census checkout SHA'; exit 1; }
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Compare native DOM fingerprints before full verification
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+          PYTHONUTF8: '1'
+        run: |
+          python -m pip install --disable-pip-version-check -r source/requirements-army-books.txt > "$RUNNER_TEMP/parser-install.log" 2>&1
+          python -B orchestration/tools/parser-dom-census.py --source="$GITHUB_WORKSPACE/source" --out="$RUNNER_TEMP/parser-census-report"
+      - name: Upload parser census metadata only
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: parser-dom-census-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/parser-census-report/RESULTS.json
+            ${{ runner.temp }}/parser-census-report/INVENTORY.csv
   pre-ff:
+    needs: parser-census
     runs-on: ubuntu-latest
     timeout-minutes: 300
     defaults:
@@ -44,7 +97,7 @@ jobs:
       - name: Check out target with historical baselines
         uses: actions/checkout@v7
         with:
-          ref: ${{ inputs.ref }}
+          ref: ${{ needs.parser-census.outputs.source_sha }}
           path: source
           fetch-depth: 0
           persist-credentials: false

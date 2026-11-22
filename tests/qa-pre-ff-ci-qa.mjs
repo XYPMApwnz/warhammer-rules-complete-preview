@@ -5,13 +5,34 @@ import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {createQaTempDir,cleanupQaTempDir} from './helpers/qa-temp.mjs';
-import {projectResults,normalizeJob,markdownReport,safeFailureDiagnostic} from '../tools/qa-pre-ff-ci.mjs';
+import {projectResults,normalizeJob,markdownReport,safeFailureDiagnostic,collectTrackedCodeFiles} from '../tools/qa-pre-ff-ci.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const workflow=fs.readFileSync(path.join(root,'.github/workflows/qa-pre-ff.yml'),'utf8').replace(/\r\n?/g,'\n');
 const checks=[];
 function control(name,operation){operation();checks.push(name);}
 function workflowContract(text){
+ const census=text.slice(text.indexOf('  parser-census:'),text.indexOf('  pre-ff:'));
+ const queue=text.slice(text.indexOf('  pre-ff:'));
+ assert.match(text,/  parser-census:\n    runs-on: ubuntu-latest/);
+ assert.match(queue,/  pre-ff:\n    needs: parser-census\n    runs-on: ubuntu-latest/);
+ assert.match(census,/outputs:\n      source_sha: \$\{\{ steps.target.outputs.sha \}\}/);
+ assert.match(census,/Freeze the exact census checkout\n        id: target/);
+ assert(census.includes('sha=$(git -C source rev-parse HEAD)'));
+ assert(census.includes('[[ "$sha" =~ ^[0-9a-f]{40}$ ]]'));
+ assert(census.includes('echo "sha=$sha" >> "$GITHUB_OUTPUT"'));
+ const targetCheckout=queue.split(/^      - /m).find(step=>step.startsWith('name: Check out target with historical baselines\n'));
+ assert(targetCheckout,'The full queue checks out the census-tested source');
+ assert.match(targetCheckout,/ref: \$\{\{ needs\.parser-census\.outputs\.source_sha \}\}/);
+ assert.doesNotMatch(targetCheckout,/inputs\.ref/);
+ const censusCheckout=census.split(/^      - /m).find(step=>step.startsWith('name: Check out target parser inputs\n'));
+ assert.match(censusCheckout,/ref: \$\{\{ inputs.ref \}\}/,'Initial branch/SHA input is preserved');
+ assert.doesNotMatch(queue.split('    steps:')[0],/^    if:/m);
+ assert.doesNotMatch(census,/secrets\.|BSDATA_MIRROR_SSH_KEY/);
+ assert.doesNotMatch(census,/continue-on-error:/);
+ assert.match(census,/python -B orchestration\/tools\/parser-dom-census\.py --source="\$GITHUB_WORKSPACE\/source" --out="\$RUNNER_TEMP\/parser-census-report"/);
+ assert.match(census,/Upload parser census metadata only\n        if: \$\{\{ always\(\) \}\}/);
+ assert.deepEqual([...census.matchAll(/\$\{\{ runner.temp \}\}\/parser-census-report\/([^\s]+)/g)].map(match=>match[1]),['RESULTS.json','INVENTORY.csv']);
  assert.match(text,/on:\s*\n  workflow_dispatch:/);
  assert.doesNotMatch(text,/^  (?:push|pull_request|schedule|repository_dispatch):/m);
  assert.match(text,/permissions:\s*\n  contents: read/);
@@ -28,7 +49,7 @@ function workflowContract(text){
  assert.match(text,/group: pre-ff-\$\{\{ inputs.ref \}\}/);assert.match(text,/cancel-in-progress: false/);
  assert.match(text,/fetch-depth: 0/);assert.match(text,/node-version: '24'/);assert.match(text,/python-version: '3.12'/);
  const requirements=['npm ci >','python -m pip install','python -B ../orchestration/tests/parser-independent-source-qa.py','npx playwright install --with-deps chromium','node ../orchestration/tests/ci-bsdata-transport-qa.mjs','node ../orchestration/tools/prepare-ci-bsdata.mjs','npm run qa:pre-ff -- --out='];
- let previous=-1;for(const item of requirements){const position=text.indexOf(item);assert(position>previous,'Required sequential preparation: '+item);previous=position;}
+ let previous=-1;for(const item of requirements){const position=queue.indexOf(item);assert(position>previous,'Required sequential preparation: '+item);previous=position;}
  assert.match(text,/WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH/);assert.match(text,/PLAYWRIGHT_CHROMIUM_EXECUTABLE/);
  assert.match(text,/QA_PYTHON=/);assert.match(text,/PYTHON=/);
  assert.match(text,/npm run qa:pre-ff[^\n]+> "\$RUNNER_TEMP\/pre-ff-console.log" 2>&1/);
@@ -42,6 +63,11 @@ function workflowContract(text){
 control('manual-only-read-only-setup-summary-and-allowlisted-artifact',()=>workflowContract(workflow));
 control('missing-locked-install-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replace('npm ci >','npm install >'))));
 control('missing-parser-source-controls-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replace('python -B ../orchestration/tests/parser-independent-source-qa.py','echo parser control removed'))));
+control('parser-census-must-gate-the-full-queue',()=>assert.throws(()=>workflowContract(workflow.replace('    needs: parser-census\n',''))));
+control('parser-census-failure-cannot-be-ignored',()=>assert.throws(()=>workflowContract(workflow.replace('      - name: Compare native DOM fingerprints before full verification','      - name: Compare native DOM fingerprints before full verification\n        continue-on-error: true'))));
+control('full-queue-rejects-resolving-a-moving-branch-after-census',()=>assert.throws(()=>workflowContract(workflow.replace('ref: ${{ needs.parser-census.outputs.source_sha }}','ref: ${{ inputs.ref }}'))));
+control('census-frozen-SHA-must-be-exported-to-the-dependent-job',()=>assert.throws(()=>workflowContract(workflow.replace('source_sha: ${{ steps.target.outputs.sha }}','source_sha: ${{ steps.other.outputs.sha }}'))));
+control('parser-census-artifact-rejects-any-extra-body-file',()=>assert.throws(()=>workflowContract(workflow.replace('parser-census-report/INVENTORY.csv','parser-census-report/source.html'))));
 control('publishing-raw-output-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replace('pre-ff-report/RESULTS.json','pre-ff-raw/RESULTS.json'))));
 control('push-trigger-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replace('  workflow_dispatch:','  push:\n  workflow_dispatch:'))));
 control('secret-in-any-other-step-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replace('      - name: Run complete sequential pre-FF','      - name: Unexpected secret use\n        env:\n          BSDATA_MIRROR_SSH_KEY: ${{ secrets.BSDATA_MIRROR_SSH_KEY }}\n        run: echo forbidden\n      - name: Run complete sequential pre-FF'))));
@@ -160,6 +186,40 @@ control('markdown-python-line-location-never-invents-an-undefined-column',()=>{
  result.jobs[0].diagnostic=safeFailureDiagnostic({text:'Traceback (most recent call last):\n  File "'+path.join(checkout,'tools/example.py')+'", line 51\nValueError: '+privateBody,root:checkout,sourceFiles:['tools/example.py'],exitCode:1});
  const markdown=markdownReport(result);assert(markdown.includes('tools/example.py:51'));assert(!markdown.includes('undefined'));noPrivateBody(markdown);
 });
+const trackedCode=collectTrackedCodeFiles(checkout);
+control('trusted-location-inventory-comes-only-from-committed-code-paths',()=>{
+ assert(trackedCode.includes('books/chaos-space-marines/v2/model_sources.py'));
+ assert(trackedCode.includes('tests/helpers/qa_temp.py'));assert(trackedCode.includes('tests/helpers/qa-temp.cjs'));
+ assert(!trackedCode.includes('tools/PRIVATE_KEY_CANARY.mjs'));
+ assert(trackedCode.every(file=>/\.(?:mjs|cjs|js|py)$/.test(file)));noPrivateBody(trackedCode);
+});
+control('known-Python-helper-location-is-innermost-in-the-latest-traceback',()=>{
+ const file='books/chaos-space-marines/v2/model_sources.py',parent='tests/helpers/qa_temp.py';
+ const text='Traceback (most recent call last):\n  File "'+path.join(checkout,file)+'", line 3\nValueError: '+privateBody+'\nTraceback (most recent call last):\n  File "'+path.join(checkout,parent)+'", line 30\n    '+privateBody+'\n  File "'+path.join(checkout,file)+'", line 91, in private_function\nValueError: '+privateBody;
+ const failed=structuredClone(raw);failed.results[0].status='FAIL';failed.results[0].exitCode=1;
+ const {result}=projectResults({...input,raw:failed,outcome:'failure',failureLogs:[text],knownSourceFiles:trackedCode});
+ assert.equal(result.jobs[0].diagnostic.errorClass,'ValueError');assert.deepEqual(result.jobs[0].diagnostic.location,{file,line:91});
+ assert.equal(result.jobs[0].diagnostic.messageRedacted,true);noPrivateBody(result);noPrivateBody(markdownReport(result));
+ const withoutInventory=projectResults({...input,raw:failed,outcome:'failure',failureLogs:[text]}).result;
+ assert(!Object.hasOwn(withoutInventory.jobs[0].diagnostic,'location'),'Pure projection defaults to canonical entries only');
+});
+control('known-JavaScript-helper-retains-first-eligible-origin-frame',()=>{
+ const file='tests/helpers/qa-temp.cjs';
+ const diagnostic=safeFailureDiagnostic({text:'AssertionError: '+privateBody+'\n    at '+pathToFileURL(path.join(checkout,file)).href+':88:9\n'+safeStack,root:checkout,sourceFiles:[...trackedCode,plan[0].id],exitCode:1});
+ assert.deepEqual(diagnostic.location,{file,line:88,column:9});noPrivateBody(diagnostic);
+});
+control('external-latest-Python-traceback-falls-back-to-the-trusted-JS-parent',()=>{
+ const file='tests/helpers/qa-temp.cjs';
+ const text='Error: '+privateBody+'\n    at '+pathToFileURL(path.join(checkout,file)).href+':22:4\nTraceback (most recent call last):\n  File "/home/private-runner/secret", line 9\n  File "'+path.join(checkout,'tools/PRIVATE_KEY_CANARY.py')+'", line 14\nValueError: '+privateBody;
+ const diagnostic=safeFailureDiagnostic({text,root:checkout,sourceFiles:trackedCode,exitCode:1});
+ assert.equal(diagnostic.errorClass,'ValueError');assert.deepEqual(diagnostic.location,{file,line:22,column:4});noPrivateBody(diagnostic);
+});
+control('raw-result-cannot-inject-an-untracked-or-invented-trusted-filename',()=>{
+ const failed=structuredClone(raw);failed.results[0].status='FAIL';failed.results[0].exitCode=1;failed.results[0].knownSourceFiles=['tools/PRIVATE_KEY_CANARY.py'];
+ const text='Traceback (most recent call last):\n  File "'+path.join(checkout,'tools/PRIVATE_KEY_CANARY.py')+'", line 14\nValueError: '+privateBody;
+ const {result}=projectResults({...input,raw:failed,outcome:'failure',failureLogs:[text],knownSourceFiles:trackedCode});
+ assert.equal(result.jobs[0].diagnostic.errorClass,'ValueError');assert(!Object.hasOwn(result.jobs[0].diagnostic,'location'));noPrivateBody(result);
+});
 const arena=createQaTempDir('wh-pre-ff-ci-controls-');
 try{
  control('CLI-incomplete-results-exits-nonzero-and-uploads-no-private-fields',()=>{
@@ -197,6 +257,18 @@ try{
   assert.equal(cli.status,1);assert.deepEqual(fs.readdirSync(outDir).sort(),['JOB_PLAN.json','REPORT.md','RESULTS.json']);
   const result=JSON.parse(fs.readFileSync(path.join(outDir,'RESULTS.json'),'utf8'));
   assert.equal(result.diagnostic.errorClass,'ReportError');assert.equal(result.diagnostic.messageRedacted,true);assert(result.diagnostic.firstLine.length<=200);
+  const published=fs.readdirSync(outDir).map(file=>fs.readFileSync(path.join(outDir,file),'utf8')).join('');noPrivateBody(published);noPrivateBody(cli.stdout+cli.stderr);
+ });
+ control('CLI-publishes-tracked-helper-location-without-reading-source-contents',()=>{
+  const rawDir=path.join(arena,'helper-raw'),outDir=path.join(arena,'helper-public');fs.mkdirSync(rawDir);
+  const file='tests/helpers/qa_temp.py',text='Traceback (most recent call last):\n  File "'+path.join(checkout,file)+'", line 72, in private_function\nValueError: '+privateBody;
+  fs.writeFileSync(path.join(rawDir,'01-git_diff_--check.log'),text);
+  const job={id:'git diff --check',command:'git',args:['diff','--check'],status:'FAIL',exitCode:1,elapsedMs:5,error:privateBody};
+  fs.writeFileSync(path.join(rawDir,'RESULTS.json'),JSON.stringify({mode:'pre-ff',root:checkout,elapsedMs:5,results:[job]}));
+  const cli=spawnSync(process.execPath,[path.join(root,'tools/qa-pre-ff-ci.mjs'),'report','--source='+checkout,'--raw='+rawDir,'--out='+outDir,'--outcome=failure'],{encoding:'utf8'});
+  assert.equal(cli.status,1);assert.deepEqual(fs.readdirSync(outDir).sort(),['JOB_PLAN.json','REPORT.md','RESULTS.json']);
+  const result=JSON.parse(fs.readFileSync(path.join(outDir,'RESULTS.json'),'utf8'));
+  assert.equal(result.jobs[0].diagnostic.errorClass,'ValueError');assert.deepEqual(result.jobs[0].diagnostic.location,{file,line:72});
   const published=fs.readdirSync(outDir).map(file=>fs.readFileSync(path.join(outDir,file),'utf8')).join('');noPrivateBody(published);noPrivateBody(cli.stdout+cli.stderr);
  });
 }finally{cleanupQaTempDir(arena);}
