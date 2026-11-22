@@ -1550,6 +1550,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       if(assigned)context.append(el('p','',`${['SUPPORT','SUPPORT_EXCEPTION'].includes(assigned.role)?'Supporting':'Leading'}: ${name(assigned.bodyguardInstanceId)}`));
       for(const member of members)context.append(el('p','',`${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
       // Detachment selection lives in roster navigation, not repeated on each unit.
+      context.hidden=![...context.children].some(child=>!child.hidden);
       head.after(context);
     }
     if(instanceId&&root.querySelector('[data-profile-metric]')){

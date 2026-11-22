@@ -19,3 +19,11 @@
   .unit-art-background{inset:-30px -18px -26px 12%;opacity:var(--unit-art-background-phone-opacity);-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.72) 30%,#000 60%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.72) 30%,#000 60%)}
   .unit-art-background img{transform:translate(var(--unit-art-background-phone-x),var(--unit-art-background-phone-y)) scale(var(--unit-art-background-phone-scale))}
 }
+/* A roster card's figures are supporting art, not a second mobile hero row. */
+@media(max-width:760px){
+  .unit-card.ds-roster-card.has-unit-art .unit-header{min-height:0;padding:18px 36% 14px 16px}
+  .unit-card.ds-roster-card.has-unit-art .unit-art{right:6px;bottom:8px;width:33%;height:132px;transform:none}
+  .unit-card.ds-roster-card.has-unit-art-background .unit-header{min-height:0;padding:18px 16px 14px}
+  .unit-card.ds-roster-card .unit-header h3{font-size:clamp(28px,8vw,38px);line-height:1.06}
+  .unit-card.ds-roster-card .unit-header .ds-cost{min-width:0;width:fit-content;max-width:100%;margin-top:12px}
+}

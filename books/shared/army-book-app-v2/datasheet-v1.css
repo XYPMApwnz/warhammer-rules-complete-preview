@@ -667,3 +667,6 @@
 /* The full roster Stratagem reference is populated on first opening. */
 .unit-card details.ds-roster-stratagems > summary { cursor:pointer; }
 .unit-card details.ds-roster-stratagems > summary h4 { display:inline; }
+
+/* Empty context retains canonical hidden option metadata without a visual strip. */
+.unit-card .ds-roster-context[hidden] { display:none; }
