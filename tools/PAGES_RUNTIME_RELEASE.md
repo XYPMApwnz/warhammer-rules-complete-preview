@@ -18,6 +18,43 @@ Normal packaging is network-free. It publishes only the explicit `tools/pages-ru
 
 The mandatory precache contains V2 code and small shell resources, including `books/shared/datasheet-system.css` and `books/shared/unit-art.css`. Army Book JSON and the large glossary payloads remain lazy. Core still needs `glossary/v2/generated/index.en.js` after it is opened. Test current V2 install, compatible cached data, manual updates and offline reading; no retired V1 migration journey is an acceptance requirement.
 
+### Mandatory clean-room candidate check
+
+On 22 November 2026, Pages run `45008914493` failed before deployment because
+`tools/runtime-url-stamps.mjs` could not import the declared `acorn` dependency.
+Local packaging had used installed dependencies; the workflow had not installed
+them. A local package PASS alone did not validate the runner preparation.
+
+Every candidate now requires a **fresh clone of its exact SHA**, initially without
+`node_modules`, followed by the install and all packaging commands from the
+current `build` job in `.github/workflows/pages-runtime.yml`, in their exact order.
+Do not copy, junction, reuse or inherit a dependency tree. Use a new package/QA
+output directory. Substitute only `${{ runner.temp }}` with the task's temporary
+directory. Node must be version 24, as in the workflow. For example, after cloning
+and checking out the exact candidate, run in that clone:
+
+```powershell
+if (Test-Path -LiteralPath './node_modules') { throw 'Clean-room clone already has dependencies; STOP' }
+npm ci --ignore-scripts
+node tools/pages-runtime-package.mjs --source . --out "$runnerTemp/dist-pages"
+node tools/pages-runtime-package.mjs --source . --out "$runnerTemp/dist-pages" --check
+node tools/pages-runtime-package-qa.mjs --source . --published "$runnerTemp/dist-pages" --work "$runnerTemp/pages-package-qa"
+```
+
+The dependency installation follows `package-lock.json`; packaging and its boundary
+QA do not require lifecycle/postinstall scripts. The install is the dependency
+network step; the package producers remain network-free. Keep the clone SHA/tree,
+initial dependency-absence proof, Node/npm/OS versions, exact expanded workflow
+commands, their complete outputs/exit codes, and the resulting manifest. Confirm
+the installed dependency tree belongs to the fresh clone and source stays clean.
+Compare every runtime file and the aggregate hash against the reviewed local
+package. Record the actual host platform; do not label a Windows run as Linux.
+
+`npm run qa:pages-ci` checks that the locked install precedes the first packaging
+command and that every transitive bare dependency of the packaging tools is
+declared in `package.json`. Its mutation controls run in quick and pre-FF. This
+static gate complements the real clean-room commands; neither replaces the other.
+
 ## Source review and release authorization
 
 The GitHub repository is `XYPMApwnz/warhammer-rules-complete-preview`. Check actual remotes and current GitHub refs; a local `origin` may be a backup rather than GitHub.
@@ -32,7 +69,7 @@ The owner authorizes publication; Codex executes it. After Claude PASS for the e
 
 1. Verify clean reviewed source, current GitHub source/release refs, reviewed limitations and required QA. Record the previous release SHA, last Pages deployment/run and whether a previous Pages artifact is available for rollback.
 2. Create the candidate with `git commit-tree <reviewed-source-tree> -p <current-release-sha>`. Its tree must equal the reviewed source tree and its only parent must equal current `unified-v2-release`. Verify the proposed review branch does not exist; otherwise stop. Push only to that new review branch. Do not update source, release or `main`, change Pages settings or dispatch a workflow.
-3. Package a clean checkout of the exact candidate with all three commands above. Obtain independent Claude review of that exact SHA, including Linux packaging, runtime hashes, file inventories, deterministic rebuilds and browser acceptance. Require PASS and the owner's manual check before requesting separate release authorization.
+3. Run the mandatory clean-room candidate check above on the exact candidate SHA: a fresh clone with no dependencies, then the workflow's locked install and all three packaging commands. Preserve command outputs and compare the package with the reviewed local publication. Obtain independent Claude review of that exact SHA, including Linux clean-room packaging, runtime hashes, file inventories, deterministic rebuilds and browser acceptance. Require PASS and the owner's manual check before requesting separate release authorization.
 
 ### Publish only the separately authorized exact candidate
 

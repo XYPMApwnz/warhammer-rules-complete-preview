@@ -26,6 +26,8 @@ jobs:
         with:
           node-version: '24'
           package-manager-cache: false
+      - name: Install locked packaging dependencies
+        run: npm ci --ignore-scripts
       - name: Build explicit runtime publication
         run: node tools/pages-runtime-package.mjs --source . --out "${{ runner.temp }}/dist-pages"
       - name: Verify package and deterministic boundary tests

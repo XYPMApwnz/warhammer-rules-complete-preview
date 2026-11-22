@@ -18,6 +18,12 @@ contains injected-attribute/unsupported-syntax negative controls. It also checks
 ordinary JSON read-once/retry behavior, unchanged Node catalog reads, equivalent
 older-browser normalization/order, and exact SHA-verified lazy-catalog migration.
 Runtime/API minima and the distinction from physical-device QA are in README.
+`npm run qa:pages-ci` runs in quick and pre-FF. It checks the locked dependency
+installation order in the actual Pages build job and the declared transitive
+bare imports of the package producer and its QA. Missing-install and undeclared
+dependency mutations must fail. Candidate review also requires the real fresh-clone
+clean-room commands in `tools/PAGES_RUNTIME_RELEASE.md`; this static check alone
+does not prove the runner environment.
 `qa:glossary` starts with strict cross-owner admission and published-reference
 negative controls before the other glossary checks.
 `test:polish-6` checks the small generated source metadata against its owners,
