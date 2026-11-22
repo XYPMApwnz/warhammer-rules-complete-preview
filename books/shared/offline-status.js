@@ -1,7 +1,9 @@
 (function(root){
   'use strict';
   const script=document.currentScript,swUrl=script?.dataset.serviceWorker;
-  if(!swUrl||!('serviceWorker' in navigator)||!location.protocol.startsWith('http')){root.WHOfflineStatus=Object.freeze({ready:Promise.resolve()});return;}
+  let serviceWorker;
+  try{serviceWorker=navigator.serviceWorker;}catch{/* Browser policy can deny even reading the optional API. */}
+  if(!swUrl||!serviceWorker||!location.protocol.startsWith('http')){root.WHOfflineStatus=Object.freeze({ready:Promise.resolve()});return;}
   const MESSAGE='WH_OFFLINE_PACKAGE_STATUS',QUERY='WH_OFFLINE_PACKAGE_STATUS_QUERY',VERSION_QUERY='GET_VERSION',ACTIVATE_UPDATE='SKIP_WAITING';
   const PREPARE_OFFLINE='WH_PWA_PREPARE_OFFLINE',BOOTSTRAP_COMPLETE='WH_PWA_BOOTSTRAP_COMPLETE';
   const v2Bootstrap=script.hasAttribute('data-v2-bootstrap'),expectedRevision=root.WHPwaExpectedRevision;
@@ -16,7 +18,7 @@
   const automaticPrefix='wh40k:pwa-auto-update:'+new URL(swUrl,location.href).pathname+':';
   const automaticKey=revision=>automaticPrefix+revision;
   function pendingAutomaticAttempt(){return Object.keys(sessionStorage).some(key=>key.startsWith(automaticPrefix)&&sessionStorage.getItem(key)==='attempted');}
-  let bootstrapReleased=false,bootstrapFinished=!v2Bootstrap,bootstrapFailed=false,bootstrapTimer=0,automaticUpdate=null,versionRecoveryStarted=false,fetchMarkerInstalled=false,coreRepairPending=false,registrationUnavailable=false,starting=false;
+  let bootstrapReleased=false,bootstrapFinished=!v2Bootstrap,bootstrapFailed=false,bootstrapTimer=0,automaticUpdate=null,versionRecoveryStarted=false,fetchMarkerInstalled=false,coreRepairPending=false,registrationUnavailable=false,registrationForbidden=false,starting=false;
   let pendingIndicator=null;
   function preparedCore(payload){
     if(!payload||payload.type!==MESSAGE)return false;
@@ -66,7 +68,7 @@
     document.querySelector('[data-v2-loading]')?.remove();
     if(recovered)setUpdateState('up_to_date');
     if(pendingIndicator)apply(pendingIndicator.payload,pendingIndicator.worker);
-    const worker=navigator.serviceWorker.controller||registration?.active;
+    const worker=serviceWorker.controller||registration?.active;
     request(worker,BOOTSTRAP_COMPLETE,{revision:expectedRevision}).then(payload=>apply(payload,worker)).catch(()=>{});
     prepareOffline(worker);
   }
@@ -126,7 +128,7 @@
     if(!automaticStartupAllowed()||!worker||worker!==registration?.waiting)return false;
     automaticUpdate=(async()=>{
       try{
-        const active=registration.active||navigator.serviceWorker.controller;
+        const active=registration.active||serviceWorker.controller;
         if(!active||!/^[a-f0-9]{16}$/.test(expectedRevision)){reportBootstrapFailure();return false;}
         const activeRevision=await readRevision(active);
         const status=await query(worker);
@@ -162,7 +164,7 @@
     reloaded=true;location.reload();
   }
   const updater=document.querySelector('[data-pwa-updater]'),updateStatus=updater?.querySelector('[data-pwa-update-status]'),updateAction=updater?.querySelector('[data-pwa-update-action]'),installedVersion=updater?.querySelector('[data-pwa-installed-version]'),availableRow=updater?.querySelector('[data-pwa-available-row]'),availableVersion=updater?.querySelector('[data-pwa-available-version]');
-  let node,label,meter,bar,announcement,activeSeen=false,readyTimer=0,lastAnnouncement='',registration,checkPromise=null,autoChecked=false,activationRequested=false,reloaded=false,controlledWorker=navigator.serviceWorker.controller;
+  let node,label,meter,bar,announcement,activeSeen=false,readyTimer=0,lastAnnouncement='',registration,checkPromise=null,autoChecked=false,activationRequested=false,reloaded=false,controlledWorker=serviceWorker.controller;
   let offlineRetryTimer=0,offlineRetryCount=0,lastOfflineRetry=0;
   const watchedWorkers=new WeakSet(),workerSequences=new WeakMap(),workerStatuses=new WeakMap(),preparationRequested=new WeakSet();
   const workerInstances=new WeakMap(),instanceRefreshes=new WeakMap(),querySerials=new WeakMap();
@@ -204,20 +206,23 @@
     const delay=offlineRetryCount===0?15000:30000;
     offlineRetryTimer=setTimeout(()=>{offlineRetryTimer=0;offlineRetryCount++;prepareOffline(worker,{retry:true});},delay);
   }
+  function canPrepareOffline(worker,payload){
+    // Only a current worker with the resumable protocol can actually retry.
+    return Boolean(worker&&payload&&typeof payload.coreReady==='boolean'&&Number.isSafeInteger(payload.coreTotal)&&payload.coreTotal>0
+      &&Number.isSafeInteger(payload.coreCompleted)&&payload.coreCompleted>=0&&payload.coreCompleted<=payload.coreTotal
+      &&/^[a-f0-9]{16}$/.test(payload.cacheBytes||'')&&worker.state!=='redundant'
+      &&(worker===serviceWorker.controller||worker===registration?.active||worker===registration?.waiting)
+      &&(!v2Bootstrap||worker===registration?.waiting||payload.revision===expectedRevision));
+  }
   function prepareOffline(worker,{retry=false}={}){
     const payload=worker&&workerStatuses.get(worker);
-    // An older worker prepares its complete package during install and has no
-    // resumable-background protocol. Never wait for an unsupported message.
-    if(!worker||!payload||typeof payload.coreReady!=='boolean'||!Number.isSafeInteger(payload.coreTotal)||payload.coreTotal<=0
-        ||!Number.isSafeInteger(payload.coreCompleted)||payload.coreCompleted<0||payload.coreCompleted>payload.coreTotal
-        ||!/^[a-f0-9]{16}$/.test(payload.cacheBytes||''))return;
-    if(worker.state==='redundant'||worker!==navigator.serviceWorker.controller&&worker!==registration?.active&&worker!==registration?.waiting)return;
-    if(v2Bootstrap&&worker!==registration?.waiting&&payload.revision!==expectedRevision)return;
+    // Older workers prepare their package during install, not via this protocol.
+    if(!canPrepareOffline(worker,payload))return;
     if(preparationRequested.has(worker)&&!retry)return;
     preparationRequested.add(worker);lastOfflineRetry=Date.now();
     const afterStartup=worker!==registration?.waiting&&!bootstrapFinished&&preparedCore(payload);
     request(worker,PREPARE_OFFLINE,{revision:payload.revision,afterStartup}).then(value=>apply(value,worker)).catch(()=>{
-      if(worker===(navigator.serviceWorker.controller||registration?.active)){
+      if(worker===(serviceWorker.controller||registration?.active)){
         apply({...payload,status:'error',error:'Offline preparation could not be contacted.'},worker);scheduleOfflineRetry(worker);
       }
     });
@@ -247,12 +252,12 @@
     }else if(worker&&workerInstances.has(worker))return;
     const sequence=Number(payload.sequence)||0,lastSequence=worker&&workerSequences.get(worker)||0;if(worker&&sequence<lastSequence)return;if(worker)workerSequences.set(worker,sequence);
     const previous=worker&&workerStatuses.get(worker);if(worker)workerStatuses.set(worker,payload);
-    const active=registration?.active||navigator.serviceWorker.controller;
+    const active=registration?.active||serviceWorker.controller;
     if(worker&&(worker.state==='redundant'||active&&worker!==active))return;
     if(v2Bootstrap&&payload.revision&&payload.revision!==expectedRevision){
       clearTimeout(readyTimer);clearTimeout(offlineRetryTimer);offlineRetryTimer=0;pendingIndicator=null;hide();return;
     }
-    if(worker&&worker===navigator.serviceWorker.controller&&payload.revision===expectedRevision
+    if(worker&&worker===serviceWorker.controller&&payload.revision===expectedRevision
         &&previous?.coreReady===false&&preparedCore(payload)){
       // Only a proven pre-import core repair may resume a blocked bootstrap.
       // Generic module failures still require the existing explicit retry.
@@ -277,7 +282,7 @@
       if(!activeSeen){hide();return;}
       label.textContent='Ready for offline use';meter.setAttribute('aria-valuenow','100');meter.setAttribute('aria-valuetext','Ready for offline use');bar.style.setProperty('--offline-progress','100%');target.hidden=false;requestAnimationFrame(()=>target.classList.add('is-visible'));announce('Ready for offline use',true);readyTimer=setTimeout(hide,1400);return;
     }
-    if(state==='error'){console.warn('Offline package status error',{revision:payload.revision,completed,total,error:payload.error});label.textContent='Offline access not ready — will retry';meter.setAttribute('aria-valuetext','Offline access not ready — will retry');target.hidden=false;requestAnimationFrame(()=>target.classList.add('is-visible'));announce('Offline access not ready — will retry',true);scheduleOfflineRetry(worker);if(registration?.active&&!preparedCore(payload))setUpdateState('failed');return;}
+    if(state==='error'){if(!canPrepareOffline(worker,payload)||navigator.onLine&&offlineRetryCount>=2&&!offlineRetryTimer){hide();return;}console.warn('Offline package status error',{revision:payload.revision,completed,total,error:payload.error});label.textContent='Offline access not ready — will retry';meter.setAttribute('aria-valuetext','Offline access not ready — will retry');target.hidden=false;requestAnimationFrame(()=>target.classList.add('is-visible'));announce('Offline access not ready — will retry',true);scheduleOfflineRetry(worker);if(registration?.active&&!preparedCore(payload))setUpdateState('failed');return;}
     hide();
   }
   function request(worker,type,data={}){
@@ -290,7 +295,7 @@
   }
   async function readRevision(worker){const payload=await request(worker,VERSION_QUERY);return payload?.revision||'';}
   async function syncInstalled(){
-    const worker=registration?.active||navigator.serviceWorker.controller;if(!worker)return;
+    const worker=registration?.active||serviceWorker.controller;if(!worker)return;
     // Each app startup/controller change retries an interrupted data transfer.
     // Never ask an installing/waiting publication to clean the active cache.
     request(worker,'WH_PWA_MIGRATE_V2_DATA').catch(()=>{});
@@ -312,7 +317,7 @@
       if(bootstrapFailed||reloaded||activationRequested||document.body.dataset?.pwaBootstrapState==='blocked')return;
       // Registration.active can change before clients.claim finishes. Boot must
       // not import through a previous or missing controller during that gap.
-      if(navigator.serviceWorker.controller!==worker)return;
+      if(serviceWorker.controller!==worker)return;
       releaseBootstrap();
       prepareOffline(worker);
     }catch{}
@@ -338,7 +343,7 @@
         // revision's offline indicator or treating its intact screen as failed.
         setUpdateState('failed');return;
       }
-      if(worker.state==='redundant'&&!registration?.active&&!navigator.serviceWorker.controller&&!bootstrapReleased){
+      if(worker.state==='redundant'&&!registration?.active&&!serviceWorker.controller&&!bootstrapReleased){
         registrationUnavailable=true;coreRepairPending=true;reportBootstrapFailure('The site could not finish opening. Reconnect, then select Try again.',true);return;
       }
       if(worker.state!=='installing')query(worker).catch(()=>{});
@@ -389,10 +394,10 @@
     }
     if(!current){
       current=undefined;
-      const worker=navigator.serviceWorker.controller||registration?.active;
+      const worker=serviceWorker.controller||registration?.active;
       try{
         offlinePackage=await request(worker,QUERY);
-        if(worker===(navigator.serviceWorker.controller||registration?.active)
+        if(worker===(serviceWorker.controller||registration?.active)
             &&offlinePackage?.type===MESSAGE&&/^[a-f0-9]{16}$/.test(offlinePackage.revision)){
           current=offlinePackage.revision;
         }
@@ -448,7 +453,7 @@
   async function start(){
     if(starting)return;starting=true;
     try{
-      registration=await navigator.serviceWorker.getRegistration();
+      registration=await serviceWorker.getRegistration();
       if(v2Bootstrap){
         try{
           const marker=sessionStorage.getItem(automaticKey(expectedRevision)),pending=pendingAutomaticAttempt();
@@ -458,21 +463,29 @@
           }
         }catch{/* A blocked store never grants permission to auto-activate. */}
       }
-      if(!registration&&navigator.serviceWorker.controller)registration=await navigator.serviceWorker.ready;
-      if(updater&&navigator.onLine&&(registration?.updateViaCache!=='none'||!registration?.active&&!registration?.installing&&!registration?.waiting)){registration=await navigator.serviceWorker.register(swUrl,{updateViaCache:'none'});autoChecked=true;}
-      else if(!registration)registration=await navigator.serviceWorker.register(swUrl,{updateViaCache:'none'});
+      if(!registration&&serviceWorker.controller)registration=await serviceWorker.ready;
+      if(updater&&navigator.onLine&&(registration?.updateViaCache!=='none'||!registration?.active&&!registration?.installing&&!registration?.waiting)){registration=await serviceWorker.register(swUrl,{updateViaCache:'none'});autoChecked=true;}
+      else if(!registration)registration=await serviceWorker.register(swUrl,{updateViaCache:'none'});
       observe(registration);
       if(updater&&registration.active&&navigator.onLine&&!autoChecked){autoChecked=true;checkForUpdate({quiet:true}).catch(()=>{});}
-    }catch{
-      try{registration=await navigator.serviceWorker.getRegistration();if(registration&&(registration.active||registration.waiting||registration.installing)){observe(registration);return;}}catch{}
-      registrationUnavailable=true;coreRepairPending=!bootstrapReleased;
-      apply({type:MESSAGE,status:'error',completed:0,total:0,revision:''});setUpdateState('failed');
-      if(!navigator.serviceWorker.controller&&navigator.onLine){if(v2Bootstrap)updater.dataset.unavailable='true';releaseBootstrap();}
+    }catch(error){
+      try{registration=await serviceWorker.getRegistration();if(registration&&(registration.active||registration.waiting||registration.installing)){observe(registration);return;}}catch{}
+      registrationUnavailable=true;registrationForbidden=['SecurityError','NotAllowedError','NotSupportedError'].includes(error?.name);coreRepairPending=!bootstrapReleased;
+      // With no worker there is no background preparation to retry. Keep an
+      // online-only browser quiet instead of promising an unavailable feature.
+      pendingIndicator=null;clearTimeout(readyTimer);clearTimeout(offlineRetryTimer);offlineRetryTimer=0;hide();setUpdateState('failed');
+      if(!serviceWorker.controller&&navigator.onLine){if(v2Bootstrap)updater.dataset.unavailable='true';releaseBootstrap();}
       else if(!bootstrapReleased)reportBootstrapFailure('The site could not finish opening. Reconnect, then select Try again.',true);
     }finally{starting=false;}
   }
   function retryUnavailableRegistration(){
     if(!registrationUnavailable||bootstrapReleased||starting||!navigator.onLine)return false;
+    if(registrationForbidden){
+      // Reconnection can open an online-only shell; it cannot grant SW permission.
+      bootstrapFailed=false;coreRepairPending=false;
+      if(updater)updater.dataset.unavailable='true';
+      startupText('Opening Warhammer 40,000…','opening');setUpdateState('up_to_date');releaseBootstrap();return true;
+    }
     registrationUnavailable=false;bootstrapFailed=false;coreRepairPending=true;lastOfflineRetry=Date.now();
     if(updater)delete updater.dataset.unavailable;
     startupText('Preparing offline access…','opening');setUpdateState('checking');start();return true;
@@ -482,24 +495,24 @@
     if(updater.dataset.state==='startup_failed'){bootstrapFailed=false;startupText('Updating to the new version…','updating');setUpdateState('startup_updating');confirmChanged();}
     else if(updater.dataset.state==='changed')confirmChanged();else if(updater.dataset.state==='ready')installUpdate();else checkForUpdate().catch(()=>{});
   });
-  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='WH_PWA_DATA_CHANGED'){
-    const active=navigator.serviceWorker.controller||registration?.active;if(event.source&&active&&event.source!==active)return;
+  serviceWorker.addEventListener('message',event=>{if(event.data?.type==='WH_PWA_DATA_CHANGED'){
+    const active=serviceWorker.controller||registration?.active;if(event.source&&active&&event.source!==active)return;
     reloadRequired=true;setUpdateState('changed');recoverStartupVersion();return;
   }apply(event.data,event.source);});
-  navigator.serviceWorker.addEventListener('controllerchange',()=>{controlledWorker=navigator.serviceWorker.controller;syncInstalled();});
+  serviceWorker.addEventListener('controllerchange',()=>{controlledWorker=serviceWorker.controller;syncInstalled();});
   root.addEventListener?.('offline',()=>{clearTimeout(offlineRetryTimer);offlineRetryTimer=0;});
   root.addEventListener?.('online',()=>{
     clearTimeout(offlineRetryTimer);offlineRetryTimer=0;offlineRetryCount=0;
     if(retryUnavailableRegistration())return;
-    const worker=navigator.serviceWorker.controller||registration?.active;
+    const worker=serviceWorker.controller||registration?.active;
     if(worker)prepareOffline(worker,{retry:true});
     if(reloadRequired)recoverStartupVersion();
   });
   root.addEventListener?.('focus',()=>{
     if(registrationUnavailable&&Date.now()-lastOfflineRetry>=30000&&retryUnavailableRegistration())return;
-    const worker=navigator.serviceWorker.controller||registration?.active,payload=worker&&workerStatuses.get(worker);
+    const worker=serviceWorker.controller||registration?.active,payload=worker&&workerStatuses.get(worker);
     if(navigator.onLine&&payload?.status==='error'&&Date.now()-lastOfflineRetry>=30000)prepareOffline(worker,{retry:true});
   });
   if(v2Bootstrap||document.readyState==='complete')start();else addEventListener('load',start,{once:true});
-  root.WHOfflineStatus=Object.freeze({ready,completeBootstrap,reportBootstrapFailure,checkRunningVersion,reportLoadFailure:()=>setUpdateState('failed'),query:()=>navigator.serviceWorker.getRegistration().then(value=>value&&query(value.installing||value.waiting||value.active)),check:()=>checkForUpdate()});
+  root.WHOfflineStatus=Object.freeze({ready,completeBootstrap,reportBootstrapFailure,checkRunningVersion,reportLoadFailure:()=>setUpdateState('failed'),query:()=>serviceWorker.getRegistration().then(value=>value&&query(value.installing||value.waiting||value.active)),check:()=>checkForUpdate()});
 })(window);

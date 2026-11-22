@@ -32,3 +32,14 @@
 .v2-glossary .glossary-categories button[aria-pressed="true"] { border-color: var(--book-accent, #b2c64f); box-shadow: inset 0 -2px var(--book-accent, #b2c64f); }
 .v2-book-surface .v2-not-found { background: var(--book-panel, #111710); color: var(--book-ink, #e2dcc9); border: 1px solid var(--book-control-line, #565b3b); padding: 16px; }
 @media(max-width:600px) { .v2-book-surface .v1-reference-article { padding: 18px 14px; } .term-popup .v1-reference-article { padding: 0; } }
+
+/* Reference destinations are a list of links, not nested control cards. */
+.v1-reference-article .reference-links { display:block; border-color:var(--v2-control-line); padding-top:8px; }
+.v1-reference-article .reference-links a, .v1-reference-article .reference-permalink {
+  display:flex; align-items:center; width:fit-content; max-width:100%; min-height:44px;
+  padding:8px 0; border:0; border-radius:0; background:transparent;
+  color:var(--v2-control-accent); text-decoration:underline; text-underline-offset:3px;
+}
+.v2-book-surface :is(button,a,input,select,textarea,summary):focus-visible { outline:2px solid var(--v2-control-focus); outline-offset:3px; }
+
+.term-popup .reference-header { padding-right:44px; }
