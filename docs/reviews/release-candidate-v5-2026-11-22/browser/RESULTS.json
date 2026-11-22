@@ -1,0 +1,103 @@
+{
+  "schema": "release-candidate-v5-smoke/v1",
+  "status": "PASS",
+  "candidate": "5bfc62144a8d8d6986c77eb1833941502fb06ab4",
+  "package": "f975aa7a6c68073dd86c46b512e9cc1b8664209abce937fad128e91616095af5",
+  "fixture": {
+    "file": "new-recruit-v37.25-owner-death-guard.txt",
+    "sha256": "7b7050e6f2e39c749f9cd883cd0c00c3806291faf625479dede324f6b38a188f",
+    "encoding": "UTF-8 without BOM; LF; final newline"
+  },
+  "browser": "Installed Chrome, headless Chromium; mobile viewport emulation is not a physical-device check",
+  "scope": "Only Home, one Army Book (Death Guard), authentic owner DG v37.25 import at 390 and 1440.",
+  "cases": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "steps": [
+        {
+          "name": "home",
+          "status": "PASS",
+          "elapsedMs": 380,
+          "result": {
+            "bookLinks": 9
+          }
+        },
+        {
+          "name": "death-guard-library",
+          "status": "PASS",
+          "elapsedMs": 1382,
+          "result": {
+            "book": "death-guard",
+            "expected": 53,
+            "shown": 53
+          }
+        },
+        {
+          "name": "authentic-DG-v37.25-import",
+          "status": "PASS",
+          "elapsedMs": 1059,
+          "result": {
+            "status": "READY",
+            "message": "Roster imported.",
+            "units": 8
+          }
+        }
+      ],
+      "screenshots": [
+        "390-home.jpg",
+        "390-death-guard.jpg",
+        "390-DG-import.jpg"
+      ],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": []
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "steps": [
+        {
+          "name": "home",
+          "status": "PASS",
+          "elapsedMs": 367,
+          "result": {
+            "bookLinks": 9
+          }
+        },
+        {
+          "name": "death-guard-library",
+          "status": "PASS",
+          "elapsedMs": 1323,
+          "result": {
+            "book": "death-guard",
+            "expected": 53,
+            "shown": 53
+          }
+        },
+        {
+          "name": "authentic-DG-v37.25-import",
+          "status": "PASS",
+          "elapsedMs": 1080,
+          "result": {
+            "status": "READY",
+            "message": "Roster imported.",
+            "units": 8
+          }
+        }
+      ],
+      "screenshots": [
+        "1440-home.jpg",
+        "1440-death-guard.jpg",
+        "1440-DG-import.jpg"
+      ],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": []
+    }
+  ],
+  "network": {
+    "requests": 505,
+    "httpFailures": []
+  }
+}

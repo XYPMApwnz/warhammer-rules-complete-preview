@@ -1,0 +1,151 @@
+{
+  "schema": "release-ci-clean-room/v1",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "sha": "5bfc62144a8d8d6986c77eb1833941502fb06ab4",
+  "hostBoundary": "Windows Node 24; not a Linux runner execution",
+  "steps": [
+    {
+      "label": "NODE_VERSION",
+      "command": "\"C:/Program Files/nodejs/node.exe\" --version",
+      "cwd": "E:\\Warhammer\\worktrees\\release-ci-fix-v1",
+      "exitCode": 0,
+      "elapsedMs": 20,
+      "log": "NODE_VERSION.txt"
+    },
+    {
+      "label": "NPM_VERSION",
+      "command": "\"C:/Program Files/nodejs/node.exe\" \"C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js\" --version",
+      "cwd": "E:\\Warhammer\\worktrees\\release-ci-fix-v1",
+      "exitCode": 0,
+      "elapsedMs": 154,
+      "log": "NPM_VERSION.txt"
+    },
+    {
+      "label": "CLONE",
+      "command": "git -c core.autocrlf=false clone --single-branch --branch codex/release-candidate-5bfc6214 --depth=1 https://github.com/XYPMApwnz/warhammer-rules-complete-preview.git E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "cwd": "E:\\Warhammer\\worktrees\\release-ci-fix-v1",
+      "exitCode": 0,
+      "elapsedMs": 49707,
+      "log": "CLONE.txt"
+    },
+    {
+      "label": "CLONE_SHA",
+      "command": "git rev-parse HEAD",
+      "cwd": "E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 21,
+      "log": "CLONE_SHA.txt"
+    },
+    {
+      "label": "CLONE_STATUS_BEFORE",
+      "command": "git status --porcelain",
+      "cwd": "E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 137,
+      "log": "CLONE_STATUS_BEFORE.txt"
+    },
+    {
+      "label": "WORKFLOW_CONTRACT",
+      "command": "\"C:/Program Files/nodejs/node.exe\" E:\\Warhammer\\worktrees\\release-ci-fix-v1\\tools\\pages-runtime-ci-contract.mjs --source E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "cwd": "E:\\Warhammer\\worktrees\\release-ci-fix-v1",
+      "exitCode": 0,
+      "elapsedMs": 111,
+      "log": "WORKFLOW_CONTRACT.txt"
+    },
+    {
+      "label": "WORKFLOW_1",
+      "command": "npm ci --ignore-scripts",
+      "cwd": "E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 1162,
+      "log": "WORKFLOW_1.txt"
+    },
+    {
+      "label": "ACORN_RESOLVED",
+      "command": "\"C:/Program Files/nodejs/node.exe\" --input-type=module -e console.log(import.meta.resolve('acorn'))",
+      "cwd": "E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 38,
+      "log": "ACORN_RESOLVED.txt"
+    },
+    {
+      "label": "WORKFLOW_2",
+      "command": "node tools/pages-runtime-package.mjs --source . --out \"E:/Warhammer/qa-tmp/release-candidate-v5/clean-room-runner/dist-pages\"",
+      "cwd": "E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 8315,
+      "log": "WORKFLOW_2.txt"
+    },
+    {
+      "label": "WORKFLOW_3",
+      "command": "node tools/pages-runtime-package.mjs --source . --out \"E:/Warhammer/qa-tmp/release-candidate-v5/clean-room-runner/dist-pages\" --check",
+      "cwd": "E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 4110,
+      "log": "WORKFLOW_3.txt"
+    },
+    {
+      "label": "WORKFLOW_4",
+      "command": "node tools/pages-runtime-package-qa.mjs --source . --published \"E:/Warhammer/qa-tmp/release-candidate-v5/clean-room-runner/dist-pages\" --work \"E:/Warhammer/qa-tmp/release-candidate-v5/clean-room-runner/pages-package-qa\"",
+      "cwd": "E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 33590,
+      "log": "WORKFLOW_4.txt"
+    },
+    {
+      "label": "CLONE_STATUS_AFTER",
+      "command": "git status --porcelain",
+      "cwd": "E:\\Warhammer\\qa-tmp\\release-candidate-v5\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 141,
+      "log": "CLONE_STATUS_AFTER.txt"
+    }
+  ],
+  "node": "v24.18.0",
+  "npm": "11.16.0",
+  "initialState": {
+    "nodeModulesAbsent": true,
+    "cleanGitStatus": true,
+    "noObjectAlternates": true,
+    "cloneMethod": "fresh depth-1 HTTPS clone of the candidate review branch; core.autocrlf=false"
+  },
+  "dependencyIsolation": {
+    "ordinaryLocalNodeModules": true,
+    "acornInsideClone": true,
+    "lockAndPackageUnchanged": true
+  },
+  "localVsCleanRoom": {
+    "status": "PASS",
+    "filesIncludingManifest": 457,
+    "totalBytes": 283187880,
+    "differentFiles": [],
+    "manifestSha256": "0a4b26fd2f8f370ab954d06d5914bc27cba02235ecf820bec77bdd69e278295c"
+  },
+  "release818VsCleanRoom": {
+    "status": "PASS",
+    "filesIncludingManifest": 457,
+    "totalBytes": 283187880,
+    "differentFiles": [],
+    "manifestSha256": "0a4b26fd2f8f370ab954d06d5914bc27cba02235ecf820bec77bdd69e278295c"
+  },
+  "package": {
+    "fileCount": 456,
+    "runtimeBytes": 282879565,
+    "contentSha256": "f975aa7a6c68073dd86c46b512e9cc1b8664209abce937fad128e91616095af5",
+    "cacheRevision": "28acb87c11537a8b",
+    "precacheUrls": 221
+  },
+  "runtimeExclusion": {
+    "changedSourceFiles": [
+      ".github/workflows/pages-runtime.yml",
+      "docs/codex/QA_MATRIX.md",
+      "package.json",
+      "tests/pages-runtime-ci-contract-qa.mjs",
+      "tools/PAGES_RUNTIME_RELEASE.md",
+      "tools/pages-runtime-ci-contract.mjs",
+      "tools/qa-queue.mjs"
+    ],
+    "inRuntimePackage": []
+  },
+  "status": "PASS"
+}
