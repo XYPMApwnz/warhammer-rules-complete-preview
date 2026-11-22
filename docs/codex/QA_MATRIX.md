@@ -65,6 +65,15 @@ failure recovery, saved-state retention, prepared offline startup and offline re
 and rejects missing mandatory resources, including a removed-file mutation control.
 Use `--out=<external-directory>` to retain `RESULTS.json` and logs. Full A/B card
 parity is a separate review tool and is not included in either queue.
+`npm run test:offline-army-book` runs the actual published worker at 390/1440:
+all nine unseen offline books explain how to save them and link Home; all nine
+previously opened books reopen offline; online load failures retain their exact
+message and recover with Try again. It runs once in pre-FF.
+The Core browser test keeps its existing assertions, waits and timeout. On failure,
+it prints its evidence directory's `failure-diagnostics/FAILURE.json`, with live
+frame DOM, application state, console and a network journal including pending
+requests. The passive collector has a focused negative-control test in both queues;
+successful Core runs do not write failure artifacts or repeat a scenario.
 `npm run test:sweep-polish` checks human-facing reference text, physical caption
 ownership, shared rule prose and visible technical-label leaks. Its browser guard
 covers all nine full libraries, the 20 common glossary searches and representative
