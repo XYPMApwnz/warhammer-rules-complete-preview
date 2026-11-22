@@ -1,8 +1,8 @@
 # Cold Core popup verification — 22 November 2026
 
-**Result: no branch regression. The owner-authorized second full pre-FF is running on unchanged `e08ec20df980d4e6700c32b65069de983b250e03`. No third full run is authorized if it again fails only with the Core popup timeout.**
+**Result: no branch regression. The owner-authorized second full pre-FF subsequently passed 209/209 in 78.73 minutes on unchanged `e08ec20df980d4e6700c32b65069de983b250e03`. The original Core test passed without a patch or timeout change. No third full run occurred.**
 
-This targets the failed `assertCorePopup` section-link scenario. It does not claim to rerun the original whole multi-chapter Core test ten times. The same accepted fight-phase deep route and first on-page Ctrl-click are used, without the unrelated all-chapter/reload warmup that would finish background downloading first. The original popup predicate, exact deep equality and 15-second timeout remain unchanged; only the expected entry pathname gains the actual Pages prefix. The repository test file is untouched.
+This targets the failed `assertCorePopup` section-link scenario. The original pre-FF Core harness serves source with service workers blocked; this diagnostic intentionally uses immutable published packages with workers enabled to exercise the owner-requested background-download hypothesis. It does not claim to rerun the original whole multi-chapter Core test ten times. The same accepted fight-phase deep route and first on-page Ctrl-click are used, without the unrelated all-chapter/reload warmup that would finish background downloading first. The original popup predicate, exact deep equality and 15-second timeout remain unchanged; only the expected entry pathname gains the actual Pages prefix. The repository test file is untouched.
 
 Each width has ten fresh Chromium processes/contexts per side: 40 observations in total. The original viewport-only desktop context at 1440 and 390 px is retained, not Pixel 7 emulation. Base/head order alternates by pair. HTTPS/H2 and gzip level 6 match the original local audit; Fast 4G is one shared 9 Mbit/s / 170 ms link cap covering page and service-worker traffic. Calibration median RTT is 170.8 ms; aggregate page-plus-worker transfer obeyed the shared cap. No CPU slowdown, trace/screencast, forced focus, artificial response hold, or warm navigation is used.
 
@@ -23,3 +23,5 @@ The original full pre-FF remains 208 PASS / 1 Core timeout, with its original st
 
 - [Full observations](RESULTS.json) · [Summary CSV](SUMMARY.csv) · [Authorization and independent gate](AUTHORIZATION_AND_GATE.json).
 - [Exact original assertion function](ASSERT_CORE_POPUP_ORIGINAL.txt) · [Executable recipe](../RECIPES/cold-core-popup-fast4g-v2.mjs) · [Transport lifecycle change](../RECIPES/cold-core-transport.mjs).
+
+The completed transport recorded 41 client-socket close/reset events across 41 browser profiles including calibration (39 ECONNABORTED, 2 ECONNRESET), zero origin-socket errors and zero application page exceptions. These lifecycle events are recorded rather than allowed to terminate the next unrelated browser. All 40 profile controllers matched their exact publication revision.

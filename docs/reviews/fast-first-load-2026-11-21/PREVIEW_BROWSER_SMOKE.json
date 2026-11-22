@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "cases": [
+    {
+      "url": "http://192.168.1.124:8765/",
+      "width": 390,
+      "secure": false,
+      "revision": "9445e8293bc10c1c",
+      "workerAPI": false,
+      "homeReadyMs": 192,
+      "books": 9,
+      "status": "PASS"
+    },
+    {
+      "url": "https://127.0.0.1:8443/",
+      "width": 1440,
+      "secure": true,
+      "revision": "9445e8293bc10c1c",
+      "workerAPI": true,
+      "homeReadyMs": 261,
+      "books": 9,
+      "status": "PASS",
+      "offlineReady": true,
+      "offlineReload": true
+    }
+  ]
+}

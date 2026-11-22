@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "oldPid": 4068,
+  "pid": 1348,
+  "lan": "http://192.168.1.124:8765/",
+  "https": "https://192.168.1.124:8443/",
+  "httpStatus": 200,
+  "contentSha256": "32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b",
+  "httpsSamePublication": true,
+  "tlsMaterialUnchanged": true,
+  "boundAddresses": [
+    {
+      "LocalAddress": "0.0.0.0",
+      "LocalPort": 8765,
+      "OwningProcess": 1348
+    },
+    {
+      "LocalAddress": "0.0.0.0",
+      "LocalPort": 8443,
+      "OwningProcess": 1348
+    }
+  ]
+}

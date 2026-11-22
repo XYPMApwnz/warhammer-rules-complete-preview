@@ -4,7 +4,7 @@ Feature: `codex/fast-first-load-v1` at `e08ec20df980d4e6700c32b65069de983b250e03
 
 Runtime preview only. No release candidate, source fast-forward, release update or Pages deployment is authorized by this task.
 
-**Status: final verification in progress. The owner-approved cold Core check passed without regression; one authorized second full pre-FF is running on the unchanged feature SHA. Preview has not been switched. See the [22 November follow-up](cold-core-2026-11-22/REPORT.md).**
+**READY_FOR_REVIEW. The cold Fast-4G Core check passed without regression, and the one owner-authorized additional full pre-FF passed 209/209 on unchanged `e08ec20df980d4e6700c32b65069de983b250e03`. No third run, Core test patch or timeout increase occurred. Preview was switched only after final PASS. See the [22 November follow-up](cold-core-2026-11-22/REPORT.md).**
 
 ## Result
 
@@ -150,16 +150,16 @@ The original full run failed only `v2/core-reader-browser-qa.mjs:103`, calling `
 
 A sequential base/head/base/head/base/head comparison with an external diagnostic observer passes 3/3 on each side. All 46 original assertions, wait predicates and arguments remain exact. There are 24 successful popup observations; all are visible and satisfy the expected document/frame/glossary state, maximum 2.228 seconds. Tracing changes timing and is not treated as a clean performance baseline. The earlier background-rAF and changing-href hypotheses were not demonstrated; the cause of the original timeout remains undetermined. See `CORE_OBSERVER_ASSURANCE.json` and `CORE_COMPARISON_SUMMARY.json`.
 
-Core reader, native application runtime, boot, HTML and the Core test are unchanged against the base. The relevant blocked-service-worker fallback difference installs a fetch revision marker; the source test server ignores queries and returns the same bytes. This inspection does not prove the absence of a timing regression. The owner subsequently authorized one additional full run after the cold Fast-4G comparison; that condition passed and the second run is in progress. See the linked follow-up for all 40 observations.
+Core reader, native application runtime, boot, HTML and the Core test are unchanged against the base. The relevant blocked-service-worker fallback difference installs a fetch revision marker; the source test server ignores queries and returns the same bytes. This inspection does not prove the absence of a timing regression. The owner subsequently authorized one additional full run after the cold Fast-4G comparison. All 40 observations passed without branch regression; the second full run then passed 209/209, including the unchanged Core test in 54.043 seconds. The original timeout was not reproduced or fixed by a test change; its cause remains undetermined. No third full run was started.
 
 ## Gates and artifacts
 
-Full pre-FF: 209/209 completed; 1 failed jobs; elapsed 132.01 minutes. This is the first-run record. The owner has now authorized one additional full run after the cold comparison; that second run is in progress, with results kept separately.
+First full pre-FF: **208 PASS / 1 Core timeout**, 132.01 minutes; [original results](PREFF_RESULTS.json) and stack are retained. After the cold comparison and explicit owner authorization, the final full run passed **209/209**, 78.73 minutes, on exactly the same source SHA. [Final results](PREFF_FINAL_RESULTS.json), [final per-job times](PREFF_FINAL_TIMINGS.csv). The diff between the pre-FF SHA and final code SHA is empty. Only two full runs were started.
 
 - Runtime package/check/determinism/boundary: 15 PASS; 456 inventory files / 282,878,160 bytes, plus the 308,073-byte manifest (457 files / 283,186,233 bytes on disk); 221 mandatory keys.
 - Runtime content SHA-256: `32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b`; revision `9445e8293bc10c1c`.
 - Exact published syntax: 142 JS modules and 3 inline scripts PASS for safari15/chrome100/firefox102; API/real Safari engine validation is separate.
-- Factual publication byte comparison: 41 JSON/generated-data JS files, 232,985,525 bytes, 0 differences. Tracked generated changes: 0. The full generated rebuild gate passed within the single pre-FF: all 148 files / 68 steps, byte-identical; `GENERATED_REBUILD.json`.
+- Factual publication byte comparison: 41 JSON/generated-data JS files, 232,985,525 bytes, 0 differences. Tracked generated changes: 0. The generated rebuild gate passed in both full runs: all 148 files / 68 steps, byte-identical; [first](GENERATED_REBUILD.json), [final](GENERATED_REBUILD_FINAL.json).
 - Fresh native A/B: 199 cases, 507 states, 9 books, 0 differences, no masking.
 - Markup census: 2,724 rules; EXECUTED 812 / RECIPIENTS_ONLY 1,478 / TEXT_ONLY_INTENDED 419 / GAP 0 / UNKNOWN 15; registry unchanged.
 - New cache controls 16, worker-instance controls 4, package-stamp/core mutations and art-visibility controls pass. Original 36 cache/JSON/migration controls are retained.
@@ -172,7 +172,7 @@ Full results remain in the local task evidence root. Private NetLogs are additio
 
 Use `npm run test:fast-first-load`, `npm run test:fast-first-load-browser` and the existing PWA update/offline commands. Timing recipes in `measurement-recipes/README.md` use already-built immutable packages, fresh profiles, matched controls and sequential execution. The accompanying source recipes preserve the actual observer and NetLog reducer used for the tables. Six/eight variants are explicitly not for publication. No heavy verification runs overlap.
 
-The feature has been pushed at the SHA above for review; this report does not yet declare READY; the second full run is still in progress. Preview was not switched: PID 4068 still serves the base-equivalent runtime `0fab482c…` from the previously accepted b0aa1273 package, and `http://192.168.1.124:8765/` returns HTTP 200. Source remains `8579a7a7…`; release remains `e3db1b34…`. No fast-forward or Pages action occurred.
+The feature remains at the unchanged SHA above. After final full PASS, preview PID 1348 serves runtime `32efc21a…` at **http://192.168.1.124:8765/** (HTTP 200) and **https://192.168.1.124:8443/**. Both listeners bind `0.0.0.0`; TLS material is byte-identical. Fresh-browser smoke passes at HTTP/LAN 390 px and HTTPS/loopback 1440 px, including a verified-ready offline reload. HTTP on the LAN is an insecure context and does not offer service workers; the HTTPS check exercises the worker. Source remains `8579a7a7…`; release remains `e3db1b34…`. No fast-forward, main/release change or Pages action occurred. [Preview switch](PREVIEW_SWITCH.json), [browser smoke](PREVIEW_BROWSER_SMOKE.json).
 
 Automatic approval review rejected the cleanup command with `blocked by policy` before process creation. Zero deletion operations ran. `E:/Warhammer/qa-tmp/fast-first-load` remains, including the owned base worktree and its dependency junction; no workaround was attempted. See `CLEANUP.json` and `PREVIEW_UNCHANGED.json`.
 
@@ -182,6 +182,6 @@ Automatic approval review rejected the cleanup command with `blocked by policy` 
 - [Before requests](measurements-base/requests.csv), [after requests](measurements-after/requests.csv), [timing methodology](measurement-recipes/README.md).
 - [Full old-test diff](TEST_CHANGES.patch), [assertion preservation](ASSERTION_PRESERVATION.json), [queue preservation](QUEUE_PRESERVATION.json).
 - [Generated rebuild](GENERATED_REBUILD.json), [factual byte comparison](DATA_BYTE_PROOF.json), [native A/B](AB_RESULTS.json), [census](CENSUS_SUMMARY.json).
-- [Full pre-FF](PREFF_RESULTS.json), [per-job timings](PREFF_TIMINGS.csv), [Core error stack](CORE_PREFF_FAILURE.txt), [Core comparison](CORE_COMPARISON_SUMMARY.json).
+- [First full pre-FF](PREFF_RESULTS.json), [final full pre-FF](PREFF_FINAL_RESULTS.json), [final per-job timings](PREFF_FINAL_TIMINGS.csv), [Core error stack](CORE_PREFF_FAILURE.txt), [Core comparison](CORE_COMPARISON_SUMMARY.json).
 - [PWA current-run cases](PWA_FINAL_RESULTS.json), [historical offline console classification](HISTORICAL_CONSOLE_SUMMARY.json), [syntax guard](PACKAGE_SYNTAX.json).
-- [Self-contained gallery](GALLERY.html), [verification status](VERIFICATION_STATUS.json), [unchanged preview](PREVIEW_UNCHANGED.json), [cleanup refusal](CLEANUP.json).
+- [Self-contained gallery](GALLERY.html), [verification status](VERIFICATION_STATUS.json), [current preview](PREVIEW_STATUS.json), [prior preview record](PREVIEW_UNCHANGED.json), [cleanup refusal](CLEANUP.json).

@@ -1,0 +1,2584 @@
+{
+  "mode": "pre-ff",
+  "root": "E:\\Warhammer\\worktrees\\fast-first-load-v1",
+  "elapsedMs": 4723968,
+  "results": [
+    {
+      "command": "git",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "id": "git diff --check",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 32,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\01-git_diff_--check.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/qa-temp-qa.mjs"
+      ],
+      "id": "tests/qa-temp-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3608,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\02-qa-temp-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser-compatibility-qa.mjs"
+      ],
+      "id": "tests/browser-compatibility-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1813,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\03-browser-compatibility-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser-compat-equivalence-qa.mjs"
+      ],
+      "id": "tests/browser-compat-equivalence-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 249,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\04-browser-compat-equivalence-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser-catalog-loader-qa.mjs"
+      ],
+      "id": "tests/browser-catalog-loader-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 617,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\05-browser-catalog-loader-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser-catalog-cache-qa.mjs"
+      ],
+      "id": "tests/browser-catalog-cache-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 73,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\06-browser-catalog-cache-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/fast-first-load-cache-qa.mjs"
+      ],
+      "id": "tests/fast-first-load-cache-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 93,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\07-fast-first-load-cache-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/helper-offline-status-instance-qa.mjs"
+      ],
+      "id": "tests/helper-offline-status-instance-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 113,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\08-helper-offline-status-instance-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/runtime-url-stamps-qa.mjs"
+      ],
+      "id": "tests/runtime-url-stamps-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 416,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\09-runtime-url-stamps-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/packaged-bootstrap-qa.mjs",
+        "--self-test"
+      ],
+      "id": "tests/packaged-bootstrap-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1134,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\10-packaged-bootstrap-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 40,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\11-unit-art-visibility-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-passport-qa.mjs"
+      ],
+      "id": "tests/book-passport-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 708,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\12-book-passport-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/keyword-access-qa.mjs"
+      ],
+      "id": "tests/keyword-access-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1787,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\13-keyword-access-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tools/markup-census.mjs",
+        "--check"
+      ],
+      "id": "tools/markup-census.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6741,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\14-markup-census.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/markup-census-qa.mjs"
+      ],
+      "id": "tests/markup-census-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8267,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\15-markup-census-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/markup-evidence-qa.mjs"
+      ],
+      "id": "tests/markup-evidence-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 154,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\16-markup-evidence-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/markup-owner-only-qa.mjs"
+      ],
+      "id": "tests/markup-owner-only-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8242,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\17-markup-owner-only-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/markup-unknown-qa.mjs"
+      ],
+      "id": "tests/markup-unknown-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 7342,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\18-markup-unknown-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-metadata-build-qa.mjs"
+      ],
+      "id": "tests/source-metadata-build-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 536,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\19-source-metadata-build-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/application-v2/source-metadata-qa.mjs"
+      ],
+      "id": "books/shared/application-v2/source-metadata-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 80,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\20-source-metadata-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/model-base-caption-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/model-base-caption-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 40,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\21-model-base-caption-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/import-notices-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/import-notices-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 783,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\22-import-notices-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 40,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\23-rule-term-visibility-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/navigation-geometry-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 89,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\24-navigation-geometry-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/death-guard/v2/insectile-recipient-qa.mjs"
+      ],
+      "id": "books/death-guard/v2/insectile-recipient-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 344,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\25-insectile-recipient-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/executable-detachment-source-qa.mjs"
+      ],
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2481,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\26-executable-detachment-source-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 110,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\27-plain-header-explanation-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/sweep-polish-qa.mjs"
+      ],
+      "id": "v2/sweep-polish-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 42,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\28-sweep-polish-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 40,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\29-rule-popup-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-section-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/rule-popup-section-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2052,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\30-rule-popup-section-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-links-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 91,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\31-rule-term-links-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/equipment-reference-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 39,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\32-equipment-reference-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/roster-navigation-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 481,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\33-roster-navigation-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/import-messages-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/import-messages-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 47,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\34-import-messages-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-updates-qa.mjs"
+      ],
+      "id": "tests/official-updates-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 49,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\35-official-updates-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-update-books-qa.mjs"
+      ],
+      "id": "tests/official-update-books-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 110,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\36-official-update-books-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-update-report-qa.mjs"
+      ],
+      "id": "tests/official-update-report-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 45,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\37-official-update-report-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-update-integration-qa.mjs"
+      ],
+      "id": "tests/official-update-integration-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 16856,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\38-official-update-integration-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/official-effect-review-qa.mjs"
+      ],
+      "id": "tests/official-effect-review-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 95,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\39-official-effect-review-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/current-gw-contract-qa.mjs"
+      ],
+      "id": "tests/current-gw-contract-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 50,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\40-current-gw-contract-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-importer-candidate-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 13168,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\41-core-importer-candidate-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-importer-isolation-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 34810,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\42-core-importer-isolation-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/adeptus-mechanicus/v2/app-qa.mjs"
+      ],
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 15710,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\43-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/adeptus-mechanicus/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3092,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\44-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 488,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\45-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 7130,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\46-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 412,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\47-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=adeptus-mechanicus",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3711,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\48-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/blood-angels/v2/app-qa.mjs"
+      ],
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 26526,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\49-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/blood-angels/v2/roster-qa.mjs"
+      ],
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 98997,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\50-roster-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 15228,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\51-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9823,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\52-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3700,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\53-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=blood-angels",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 23858,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\54-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 296,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\55-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/chaos-space-marines/v2/app-qa.mjs"
+      ],
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1082,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\56-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/chaos-space-marines/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9964,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\57-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1550,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\58-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8796,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\59-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3081,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\60-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=chaos-space-marines",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 7611,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\61-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/dark-angels/v2/app-qa.mjs"
+      ],
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 27611,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\62-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/dark-angels/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 174781,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\63-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 98877,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\64-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 21411,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\65-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9258,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\66-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=dark-angels",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 23165,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\67-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 407,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\68-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/death-guard/v2/app-qa.mjs"
+      ],
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6757,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\69-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/death-guard/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 158,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\70-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=death-guard"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 362,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\71-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=death-guard"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 7845,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\72-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=death-guard",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3305,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\73-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=death-guard"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 205,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\74-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/emperors-children/v2/app-qa.mjs"
+      ],
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3972,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\75-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/emperors-children/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8063,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\76-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1818,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\77-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8020,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\78-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 617,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\79-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9545,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\80-reviewed-text-coverage-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=emperors-children",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 14065,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\81-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 238,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\82-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/space-marines/v2/app-qa.mjs"
+      ],
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 42796,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\83-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/space-marines/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 118478,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\84-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/space-marines/v2/roster-static-model-bindings-qa.mjs"
+      ],
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9452,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\85-roster-static-model-bindings-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=space-marines"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8632,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\86-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=space-marines"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9041,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\87-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=space-marines"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3699,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\88-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=space-marines",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 24917,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\89-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=space-marines"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 316,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\90-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/wardens-source-binding-qa.mjs"
+      ],
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1569,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\91-wardens-source-binding-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tau-empire/v2/app-qa.mjs"
+      ],
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 4465,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\92-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tau-empire/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 165953,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\93-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tau-empire/v2/physical-choice-qa.mjs"
+      ],
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9033,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\94-physical-choice-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1547,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\95-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8678,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\96-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1081,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\97-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tau-empire",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 14946,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\98-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 367,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\99-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tyranids/v2/app-qa.mjs"
+      ],
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 4584,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\100-app-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/tyranids/v2/roster-import-qa.mjs"
+      ],
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 5110,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\101-roster-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/new-recruit-export-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 932,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\102-new-recruit-export-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8511,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\103-new-recruit-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 705,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\104-new-recruit-model-names-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9985,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\105-reviewed-text-coverage-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tyranids",
+        "--phase=all"
+      ],
+      "id": "v2/related-panel-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 16404,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\106-related-panel-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tyranids"
+      ],
+      "id": "v2/detachment-card-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 296,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\107-detachment-card-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/rule-contract-v2/recipients-qa.mjs"
+      ],
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3098,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\108-recipients-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/physical-selection-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 194,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\109-physical-selection-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/condition-execution-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 137,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\110-condition-execution-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/numeric-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 209,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\111-numeric-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/keyword-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 186,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\112-keyword-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/ability-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 165,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\113-ability-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/weapon-contribution-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 162,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\114-weapon-contribution-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/advance-roll-effects-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 139,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\115-advance-roll-effects-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/source-effect-regression-qa.mjs"
+      ],
+      "id": "v2/source-effect-regression-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 44327,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\116-source-effect-regression-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-source-binding-qa.mjs"
+      ],
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 20571,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\117-detachment-source-binding-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/reimport-attachments-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6578,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\118-reimport-attachments-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/service-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 114,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\119-service-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/import-service-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 113,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\120-import-service-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/import-selections-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 115,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\121-import-selections-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/attachment-service-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 103,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\122-attachment-service-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/attachment-conditions-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 107,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\123-attachment-conditions-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/roster-execution-atomic-qa.mjs"
+      ],
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 4244,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\124-roster-execution-atomic-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-recipient-qa.mjs"
+      ],
+      "id": "v2/detachment-recipient-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1451,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\125-detachment-recipient-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-recipient-qa.mjs"
+      ],
+      "id": "v2/card-recipient-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 690,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\126-card-recipient-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/attached-rule-text-qa.mjs"
+      ],
+      "id": "v2/attached-rule-text-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9659,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\127-attached-rule-text-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-display-2-qa.mjs"
+      ],
+      "id": "v2/card-display-2-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2056,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\128-card-display-2-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/singleton-model-import-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 41,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\129-singleton-model-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/plain-header-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 98,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\130-plain-header-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/epic-hero-enhancements-qa.mjs"
+      ],
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 5377,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\131-epic-hero-enhancements-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/initial-attachment-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 103,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\132-initial-attachment-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/faction-safe-import-qa.mjs"
+      ],
+      "id": "v2/faction-safe-import-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 868,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\133-faction-safe-import-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/card-text-formatting-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 43,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\134-card-text-formatting-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/library-currentness-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 215,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\135-library-currentness-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/roster-v2/text-roster-facts-qa.mjs"
+      ],
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 47,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\136-text-roster-facts-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/source-completeness-check.mjs"
+      ],
+      "id": "v2/source-completeness-check.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1605,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\137-source-completeness-check.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/integration-qa.mjs"
+      ],
+      "id": "tests/integration-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 4098,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\138-integration-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/cosmetics-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 478,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\139-cosmetics-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/codex-workflow-qa.mjs"
+      ],
+      "id": "tests/codex-workflow-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 89,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\140-codex-workflow-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-book-clone-qa.mjs",
+        "--root=E:\\Warhammer\\worktrees\\fast-first-load-v1"
+      ],
+      "id": "tests/source-book-clone-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1631,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\141-source-book-clone-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/source-refs-v2/source-catalog-qa.mjs"
+      ],
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1113,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\142-source-catalog-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/unit-recipient-scope-qa.mjs"
+      ],
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2901,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\143-unit-recipient-scope-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-declarations-qa.mjs"
+      ],
+      "id": "tests/book-update-declarations-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 147,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\144-book-update-declarations-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-report-qa.mjs"
+      ],
+      "id": "tests/book-update-report-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 62,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\145-book-update-report-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-snapshots-qa.mjs"
+      ],
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 11548,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\146-book-update-snapshots-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-metadata-qa.mjs"
+      ],
+      "id": "tests/book-update-metadata-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 46,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\147-book-update-metadata-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/book-update-command-qa.mjs"
+      ],
+      "id": "tests/book-update-command-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 54648,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\148-book-update-command-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/mfm-release-history-qa.mjs"
+      ],
+      "id": "tests/mfm-release-history-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 200,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\149-mfm-release-history-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/mfm-update-qa.mjs"
+      ],
+      "id": "tests/mfm-update-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 36441,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\150-mfm-update-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-catalog-registry-qa.mjs"
+      ],
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 47265,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\151-source-catalog-registry-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-catalog-additions-qa.mjs"
+      ],
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 10703,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\152-source-catalog-additions-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/factual-ownership-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 505,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\153-factual-ownership-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-waha-certification-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 179,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\154-core-waha-certification-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "glossary/v2/tests/core-projection-qa.mjs"
+      ],
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 158445,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\155-core-projection-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/term-bindings-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 639,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\156-term-bindings-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/reader-see-also-regression-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1435,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\157-reader-see-also-regression-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-faq-anchor-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1794,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\158-core-faq-anchor-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/generated-rebuild-qa.mjs"
+      ],
+      "id": "tests/generated-rebuild-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 23671,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\159-generated-rebuild-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/csm-model-alias-bootstrap-qa.mjs"
+      ],
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2546,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\160-csm-model-alias-bootstrap-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-review-execution-book-qa.mjs"
+      ],
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3344,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\161-source-review-execution-book-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/tools/check-generated-rebuild.mjs"
+      ],
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 679195,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\162-check-generated-rebuild.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tools/pages-runtime-package.mjs",
+        "--source",
+        "E:\\Warhammer\\worktrees\\fast-first-load-v1",
+        "--out",
+        "E:\\Warhammer\\qa-tmp\\fast-first-load\\preff-final-tmp\\wh-qa-pre-ff-work-e6rqwG\\work\\runtime"
+      ],
+      "id": "tools/pages-runtime-package.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 7782,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\163-pages-runtime-package.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/shell-browser-qa.mjs"
+      ],
+      "id": "v2/shell-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 31273,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\164-shell-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/core-reader-browser-qa.mjs"
+      ],
+      "id": "v2/core-reader-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 54043,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\165-core-reader-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/minimal-pwa-cache-qa.mjs"
+      ],
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 119,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\166-minimal-pwa-cache-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/pwa-transition-qa.mjs"
+      ],
+      "id": "v2/pwa-transition-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 62310,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\167-pwa-transition-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser/pwa-update-flow.mjs"
+      ],
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 47265,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\168-pwa-update-flow.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser/pwa-bootstrap-update.mjs"
+      ],
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 99806,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\169-pwa-bootstrap-update.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/startup-precache-qa.mjs"
+      ],
+      "id": "tests/startup-precache-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1823,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\170-startup-precache-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser/fast-first-load.mjs"
+      ],
+      "id": "tests/browser/fast-first-load.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 40417,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\171-fast-first-load.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/browser/cold-offline.mjs"
+      ],
+      "id": "tests/browser/cold-offline.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 75822,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\172-cold-offline.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-recipient-browser-qa.mjs"
+      ],
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 91601,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\173-detachment-recipient-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-synthetic-table-browser-qa.mjs"
+      ],
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 40172,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\174-detachment-synthetic-table-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-recipient-browser-qa.mjs"
+      ],
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 52956,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\175-card-recipient-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/attached-rule-text-browser-qa.mjs"
+      ],
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 182108,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\176-attached-rule-text-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-display-browser-qa.mjs"
+      ],
+      "id": "v2/card-display-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 96198,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\177-card-display-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-display-2-browser-qa.mjs"
+      ],
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 56120,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\178-card-display-2-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/source-equipment-browser-qa.mjs"
+      ],
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 61613,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\179-source-equipment-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-export-browser-qa.mjs"
+      ],
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 9236,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\180-new-recruit-export-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-plain-header-browser-qa.mjs"
+      ],
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 33609,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\181-new-recruit-plain-header-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/new-recruit-model-names-browser-qa.mjs"
+      ],
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 22091,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\182-new-recruit-model-names-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/reviewed-text-coverage-browser-qa.mjs"
+      ],
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 16011,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\183-reviewed-text-coverage-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/related-panel-browser-qa.mjs"
+      ],
+      "id": "v2/related-panel-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 16604,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\184-related-panel-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/detachment-card-text-browser-qa.mjs"
+      ],
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 42954,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\185-detachment-card-text-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/wardens-source-binding-browser-qa.mjs"
+      ],
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 6718,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\186-wardens-source-binding-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/cards-cosmetics-browser-qa.mjs"
+      ],
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 33469,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\187-cards-cosmetics-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/epic-hero-enhancements-browser-qa.mjs"
+      ],
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 10142,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\188-epic-hero-enhancements-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/fabius-safe-import-browser-qa.mjs"
+      ],
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 24638,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\189-fabius-safe-import-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-texts-browser-qa.mjs"
+      ],
+      "id": "v2/card-texts-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 35468,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\190-card-texts-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-polish-2-browser-qa.mjs"
+      ],
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 35537,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\191-card-polish-2-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/sweep-polish-browser-qa.mjs"
+      ],
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 41327,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\192-sweep-polish-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/card-gained-rules-browser-qa.mjs"
+      ],
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 74814,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\193-card-gained-rules-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/rule-popups-browser-qa.mjs"
+      ],
+      "id": "v2/rule-popups-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 109384,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\194-rule-popups-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/polish-5-browser-qa.mjs"
+      ],
+      "id": "v2/polish-5-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 40024,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\195-polish-5-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/roster-navigation-browser-qa.mjs"
+      ],
+      "id": "v2/roster-navigation-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 189273,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\196-roster-navigation-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/import-messages-browser-qa.mjs"
+      ],
+      "id": "v2/import-messages-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 51499,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\197-import-messages-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/markup-insectile-browser-qa.mjs"
+      ],
+      "id": "v2/markup-insectile-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 7101,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\198-markup-insectile-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/library-sources-browser-qa.mjs"
+      ],
+      "id": "v2/library-sources-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 18510,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\199-library-sources-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/import-notices-browser-qa.mjs"
+      ],
+      "id": "v2/import-notices-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 8491,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\200-import-notices-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/lazy-glossary-browser-qa.mjs"
+      ],
+      "id": "v2/lazy-glossary-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 115419,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\201-lazy-glossary-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json"
+      ],
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 152071,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\202-dg-am-recipient-enrollment-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json"
+      ],
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 176604,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\203-dg-am-recipient-enrollment-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/core-rules/tests/core-switch-browser-qa.mjs"
+      ],
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 3758,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\204-core-switch-browser-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tools/pages-runtime-package-qa.mjs",
+        "--source",
+        "E:\\Warhammer\\worktrees\\fast-first-load-v1",
+        "--published",
+        "E:\\Warhammer\\qa-tmp\\fast-first-load\\preff-final-tmp\\wh-qa-pre-ff-work-e6rqwG\\work\\runtime",
+        "--work",
+        "E:\\Warhammer\\qa-tmp\\fast-first-load\\preff-final-tmp\\wh-qa-pre-ff-work-e6rqwG\\work\\packaging"
+      ],
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 33017,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\205-pages-runtime-package-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-enrollment-qa.mjs"
+      ],
+      "id": "tests/source-enrollment-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 10303,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\206-source-enrollment-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/tools/source-freshness.mjs"
+      ],
+      "id": "books/shared/tools/source-freshness.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 2375,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\207-source-freshness.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tests/source-ingestion-contract-qa.mjs"
+      ],
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 7700,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\208-source-ingestion-contract-qa.mjs.log"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "books/shared/army-book-app-v2/keyword-attribution-qa.mjs"
+      ],
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "status": "PASS",
+      "elapsedMs": 1436,
+      "log": "E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\preff-final\\209-keyword-attribution-qa.mjs.log"
+    }
+  ]
+}

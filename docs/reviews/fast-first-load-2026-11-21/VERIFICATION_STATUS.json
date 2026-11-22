@@ -1,6 +1,6 @@
 {
-  "status": "AUTHORIZED_SECOND_FULL_PREF_F_IN_PROGRESS",
-  "readyForReview": false,
+  "status": "READY_FOR_REVIEW",
+  "readyForReview": true,
   "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
   "headAfter": "e08ec20df980d4e6700c32b65069de983b250e03",
   "worktreeStatus": "",
@@ -8,12 +8,12 @@
   "runtimeOrTestEditsAfterFullPreff": false,
   "diffStatAfterPreff": "",
   "preff": {
-    "fullRunNumber": 1,
-    "passed": 208,
-    "failed": 1,
-    "elapsedMs": 7920385,
-    "failedJob": "v2/core-reader-browser-qa.mjs",
-    "report": "preff/RESULTS.json"
+    "fullRunNumber": 2,
+    "passed": 209,
+    "failed": 0,
+    "elapsedMs": 4723968,
+    "report": "preff-final/RESULTS.json",
+    "sourceSha": "e08ec20df980d4e6700c32b65069de983b250e03"
   },
   "generated": {
     "status": "PASS",
@@ -41,10 +41,11 @@
   "coreTargetedObserver": {
     "base": "3/3 PASS",
     "head": "3/3 PASS",
-    "cause": "undetermined; timeout not reproduced"
+    "cause": "undetermined; timeout not reproduced",
+    "finalFullCoreStatus": "PASS with original test unchanged"
   },
-  "additionalFullPreff": "Owner authorized one on unchanged e08 after cold comparison; gate passed, run 2 in progress at local preff-final/RESULTS.json",
-  "previewSwitched": false,
+  "additionalFullPreff": "Completed exactly one owner-authorized additional full run;209/209PASS, no third run",
+  "previewSwitched": true,
   "featurePushed": true,
   "protectedBranchesTouched": false,
   "coldCoreComparison": {
@@ -54,5 +55,37 @@
     "branchBackgroundCoreAndPopup": 20,
     "regression": false,
     "report": "cold-core-2026-11-22/REPORT.md"
+  },
+  "firstFullRun": {
+    "fullRunNumber": 1,
+    "passed": 208,
+    "failed": 1,
+    "elapsedMs": 7920385,
+    "failedJob": "v2/core-reader-browser-qa.mjs",
+    "report": "preff/RESULTS.json"
+  },
+  "preview": {
+    "status": "PASS",
+    "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+    "oldPid": 4068,
+    "pid": 1348,
+    "lan": "http://192.168.1.124:8765/",
+    "https": "https://192.168.1.124:8443/",
+    "httpStatus": 200,
+    "contentSha256": "32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b",
+    "httpsSamePublication": true,
+    "tlsMaterialUnchanged": true,
+    "boundAddresses": [
+      {
+        "LocalAddress": "0.0.0.0",
+        "LocalPort": 8765,
+        "OwningProcess": 1348
+      },
+      {
+        "LocalAddress": "0.0.0.0",
+        "LocalPort": 8443,
+        "OwningProcess": 1348
+      }
+    ]
   }
 }
