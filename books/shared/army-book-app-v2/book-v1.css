@@ -285,6 +285,7 @@ body.v2-book-surface .v1-contents-heading::after,
  * becoming another full-record renderer. Their sizing/layout is unchanged. */
 body.v2-book-surface .v2-hero { border-radius: 2px; border: 1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .36); border-top: 5px solid var(--book-accent-deep, #7d9257); background: linear-gradient(120deg,var(--book-bg, #0c0f0c),rgba(var(--book-accent-deep-rgb, 125, 146, 87), .12)); box-shadow: 0 26px 58px rgba(0,0,0,.46); }
 body.v2-book-surface .v2-hero h1 { font-family: Georgia,"Times New Roman",serif; }
+body.v2-book-surface .v2-hero-subtitle { color:var(--v2-control-ink); }
 /* The original V1 cover treatment; the book supplies the artwork URL. */
 body.v2-book-surface .v2-hero[data-book-artwork] {
   min-height: min(66vh,680px);
@@ -307,11 +308,10 @@ body.v2-book-surface .v2-section-heading .v2-count { border-radius: 0; backgroun
 /* V1 popup surface on the existing canonical V2 dialog/resolver. */
 .v2-detail-dialog.v2-book-detail {
   width: min(560px, calc(100% - 28px));
-  border: 1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .52);
-  border-top: 4px solid var(--green-deep);
-  border-radius: 0;
-  background: radial-gradient(circle at 100% 0,rgba(var(--book-signal-rgb, 213, 72, 142), .12),transparent 180px),radial-gradient(circle at 0 100%,rgba(var(--book-accent-deep-rgb, 125, 146, 87), .13),transparent 210px),var(--panel);
-  box-shadow: 0 32px 90px rgba(0,0,0,.82),0 0 0 5px rgba(var(--book-void-rgb, 9, 12, 9), .72),0 0 34px rgba(var(--book-accent-rgb, 191, 213, 140), .1);
+  border:1px solid var(--v2-control-line);
+  border-radius:0;
+  background:var(--panel);
+  box-shadow:0 24px 70px rgba(0,0,0,.6);
 }
 .v2-detail-dialog.v2-book-detail::backdrop { background: rgba(var(--book-void-rgb, 4, 6, 4), .55); backdrop-filter: blur(2px); }
 .v2-book-detail .v2-dialog-bar { position: absolute; z-index: 2; top: 12px; right: 12px; padding: 0; border: 0; background: transparent; }

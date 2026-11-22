@@ -1,7 +1,7 @@
 /* Actual V1 content.css Related Rules and popups.css term-popup shell. */
 .related-rules-layer{position:fixed;z-index:var(--z-related-rules);inset:0;display:grid;place-items:center;padding:clamp(12px,3vw,36px);background:rgba(var(--book-void-rgb, 4, 7, 4), .84)}
 .related-rules-layer[hidden]{display:none}
-.related-rules-dialog{width:min(1180px,100%);height:min(900px,calc(100dvh - 72px));display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;border:1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .42);border-top:4px solid var(--green-deep);background:var(--panel);box-shadow:0 36px 110px rgba(0,0,0,.88)}
+.related-rules-dialog{width:min(1180px,100%);height:min(900px,calc(100dvh - 72px));display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;border:1px solid var(--v2-control-line);background:var(--panel);box-shadow:0 36px 110px rgba(0,0,0,.88)}
 .related-rules-dialog>header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:20px 24px;border-bottom:1px solid var(--line)}
 .related-rules-dialog>header>div{min-width:0}
 .related-rules-dialog>header span{color:var(--pink);font:800 9px/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}
