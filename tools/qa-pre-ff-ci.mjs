@@ -7,6 +7,81 @@ import {fileURLToPath} from 'node:url';
 const integer=value=>Number.isSafeInteger(value)&&value>=0;
 const safeJob=value=>typeof value==='string'&&value.length<=240&&/^[A-Za-z0-9_./ -]+$/.test(value)&&!value.includes('..');
 const same=(left,right)=>JSON.stringify(left)===JSON.stringify(right);
+const diagnosticLimit=200,logTailLimit=64*1024;
+const errorClasses=new Set(['AssertionError','TypeError','ReferenceError','SyntaxError','RangeError','TimeoutError','Error',
+ 'Exception','ValueError','KeyError','RuntimeError','ImportError','ModuleNotFoundError','FileNotFoundError','PermissionError','OSError',
+ 'AttributeError','IndexError','MemoryError','UnicodeDecodeError','UnicodeEncodeError','UnicodeTranslateError','LookupError','NotImplementedError',
+ 'OverflowError','ZeroDivisionError','EOFError','StopIteration','RecursionError','ConnectionError','BrokenPipeError','ConnectionAbortedError',
+ 'ConnectionRefusedError','ConnectionResetError','IsADirectoryError','NotADirectoryError','FileExistsError','InterruptedError','BlockingIOError',
+ 'ProcessLookupError','ChildProcessError','SystemExit','KeyboardInterrupt']);
+const errorHeader=new RegExp('^('+[...errorClasses].join('|')+')(?: \\[([A-Z0-9_]+)\\])?:');
+const systemCodes=new Set(['ENOENT','EACCES','EPERM','ENOSPC','ENOMEM','EMFILE','ENFILE','ECONNREFUSED','ECONNRESET','ETIMEDOUT']);
+const moduleCodes=new Set(['ERR_MODULE_NOT_FOUND','MODULE_NOT_FOUND']);
+const signals=new Set(['SIGKILL','SIGTERM','SIGINT','SIGABRT','SIGSEGV','SIGBUS']);
+const reportCodes=new Set(['PLAN_UNAVAILABLE','CHECKOUT_SHA_UNAVAILABLE','INVALID_RESULT_HEADER','INVALID_RESULT_ROWS','JOB_PLAN_MISMATCH','INVALID_JOB_RESULT','INVALID_EXIT_CODE','INVALID_JOB_STATUS','REPORT_DESTINATION_NOT_FRESH','REPORT_INSIDE_SOURCE','INVALID_REPORT_OPTION','INVALID_REPORT_COMMAND','EMAIL_IN_PUBLIC_REPORT']);
+function stackLocation(text,root,sourceFiles){
+ // Locations alone are useful; never publish a stack function name or line body.
+ const traceback=text.lastIndexOf('Traceback (most recent call last):');
+ for(const line of (traceback<0?text:text.slice(traceback)).split(/\r?\n/)){
+  const python=/^\s*File "([^"\r\n]+)", line ([1-9][0-9]*)(?:, in [^\r\n]*)?$/.exec(line);
+  const match=python||(/^\s+at\s/.test(line)?/((?:file:\/\/\/|[A-Za-z]:[\\/]|\/)[^()\r\n]*?):([1-9][0-9]*):([1-9][0-9]*)\)?\s*$/.exec(line):null);
+  if(!match)continue;
+  let absolute;
+  try{absolute=match[1].startsWith('file:')?fileURLToPath(match[1]):path.resolve(root,match[1]);}catch{continue;}
+  const relative=path.relative(path.resolve(root),absolute).replaceAll(path.sep,'/');
+  if(!/^(?:tests|tools|v2|books|glossary|mfm)\/[A-Za-z0-9_./-]+\.(?:mjs|cjs|js|py)$/.test(relative)||relative.split('/').includes('..')||relative.length>240||!sourceFiles.has(relative))continue;
+  const row=Number(match[2]),column=python?null:Number(match[3]);
+  if(Number.isSafeInteger(row)&&(python||Number.isSafeInteger(column)))return {file:relative,line:row,...(python?{}:{column})};
+ }
+ return null;
+}
+export function safeFailureDiagnostic({text='',error='',signal=null,exitCode=null,root,sourceFiles=[]}){
+ // Classification sees private text, but every public message is a fixed template.
+ // Do not return an original first line, assertion value, source quote or error name.
+ const sourceText=String(text),bounded=sourceText.length<=logTailLimit?sourceText:sourceText.slice(0,4096)+'\n'+sourceText.slice(-(logTailLimit-4096));
+ const privateText=bounded+'\n'+String(error).slice(0,logTailLimit);
+ const lines=privateText.split(/\r?\n/),headers=[];
+ for(const line of lines){
+  const match=errorHeader.exec(line.trimStart());
+  if(match&&errorClasses.has(match[1]))headers.push({errorClass:match[1],code:match[2]||null,line});
+ }
+ const header=headers.findLast(row=>row.errorClass!=='Error')||headers.at(-1);
+ let errorClass=header?.errorClass||'UnknownError',cause='REDACTED',firstLine=errorClass+': failure details redacted.';
+ const code=header?.code||(/^spawn [^\r\n]*\b(ENOENT|EACCES|EPERM|ENOSPC|ENOMEM|EMFILE|ENFILE|ECONNREFUSED|ECONNRESET|ETIMEDOUT)\b/.exec(String(error))?.[1])||(/\b(?:spawn|Error:)\s+(ENOENT|EACCES|EPERM|ENOSPC|ENOMEM|EMFILE|ENFILE|ECONNREFUSED|ECONNRESET|ETIMEDOUT)\b/.exec(privateText)?.[1]);
+ if(signals.has(signal)){errorClass='ProcessError';cause='PROCESS_SIGNAL';firstLine='ProcessError: process terminated by '+signal+'.';}
+ else if(moduleCodes.has(code)){cause='MODULE_UNAVAILABLE';firstLine=errorClass+': module dependency unavailable ('+code+').';}
+ else if(errorClass==='ModuleNotFoundError'||errorClass==='ImportError'){cause='MODULE_UNAVAILABLE';firstLine=errorClass+': module dependency unavailable; private module identifier redacted.';}
+ else if(systemCodes.has(code)){errorClass='SystemError';cause='SYSTEM_'+code;firstLine='SystemError: operating-system failure ('+code+').';}
+ else if(errorClass==='AssertionError'){
+  const standard=header.line.replace(/^\s*AssertionError(?: \[[A-Z0-9_]+\])?:\s*/,'').trim();
+  if(standard==='Expected values to be strictly deep-equal:'){cause='ASSERTION_DEEP_EQUAL';firstLine='AssertionError: expected values to be strictly deep-equal; private comparison values redacted.';}
+  else if(standard==='Expected values to be strictly equal:'){cause='ASSERTION_EQUAL';firstLine='AssertionError: expected values to be strictly equal; private comparison values redacted.';}
+  else{cause='ASSERTION_FAILED';firstLine='AssertionError: assertion failed; private comparison values redacted.';}
+ }
+ else if(errorClass==='TimeoutError'||/^\s*(?:[A-Za-z]+\.)?(?:waitFor|waitForFunction|waitForSelector|waitForURL|click|goto)\b[^\n]*\bTimeout\b/m.test(privateText)){
+  errorClass='TimeoutError';cause='TIMEOUT';firstLine='TimeoutError: operation timed out; private selector and message redacted.';
+ }else if(errorClass!=='UnknownError'){cause='ERROR_MESSAGE_REDACTED';firstLine=errorClass+': error message redacted.';}
+ else if(Number.isInteger(exitCode)){cause='PROCESS_EXIT';firstLine='UnknownError: process exited with code '+exitCode+'; private details redacted.';}
+ // A private message cannot invent a new "source" filename for publication.
+ // Only entrypoints already present in the public canonical plan are eligible.
+ const location=stackLocation(privateText,root,new Set(sourceFiles));
+ return {errorClass,cause,firstLine:firstLine.slice(0,diagnosticLimit),messageRedacted:true,...(location?{location}:{})};
+}
+function readFailureLog(raw,index,id){
+ // Never follow row.log, a symlink, or an arbitrary runner path supplied by a test.
+ const name=String(index+1).padStart(2,'0')+'-'+path.basename(id).replace(/[^\w.-]/g,'_')+'.log';
+ const file=path.join(path.resolve(raw),name);
+ let fd;
+ try{
+  const stat=fs.lstatSync(file);if(!stat.isFile()||stat.isSymbolicLink())return '';
+  fd=fs.openSync(file,'r');
+  if(stat.size<=logTailLimit){const buffer=Buffer.alloc(stat.size);fs.readSync(fd,buffer,0,buffer.length,0);return buffer.toString('utf8');}
+  const head=Buffer.alloc(4096),tail=Buffer.alloc(logTailLimit-head.length);
+  fs.readSync(fd,head,0,head.length,0);fs.readSync(fd,tail,0,tail.length,stat.size-tail.length);
+  return head.toString('utf8')+'\n'+tail.toString('utf8');
+ }catch{return '';}
+ finally{if(fd!==undefined)fs.closeSync(fd);}
+}
 function commandKind(job){
  if(job.id==='git diff --check'&&job.command==='git')return 'git';
  if(job.command===process.execPath)return 'node';
@@ -45,7 +120,7 @@ export function normalizeJob(job,root){
  if(args.some(arg=>arg.length>512||!placeholders.has(arg)&&!/^[A-Za-z0-9_./= -]+$/.test(arg)))throw Error('UNSAFE_PUBLIC_ARG');
  return {command:commandKind(job),id:job.id,args};
 }
-export function projectResults({plan,raw,root,sha,outcome,platform=process.platform}){
+export function projectResults({plan,raw,root,sha,outcome,platform=process.platform,failureLogs=[]}){
  if(!/^[0-9a-f]{40}$/.test(sha))throw Error('INVALID_SHA');
  if(!['linux','win32','darwin'].includes(platform))throw Error('INVALID_PLATFORM');
  if(!['success','failure','cancelled','skipped',''].includes(outcome))throw Error('INVALID_OUTCOME');
@@ -60,7 +135,8 @@ export function projectResults({plan,raw,root,sha,outcome,platform=process.platf
   if(!['PASS','FAIL'].includes(row.status)||!integer(row.elapsedMs))throw Error('INVALID_JOB_RESULT');
   if(row.exitCode!==null&&!Number.isInteger(row.exitCode))throw Error('INVALID_EXIT_CODE');
   if((row.exitCode===0)!==(row.status==='PASS'))throw Error('INVALID_JOB_STATUS');
-  return {index:index+1,...canonical[index],status:row.status,exitCode:row.exitCode,elapsedMs:row.elapsedMs};
+  return {index:index+1,...canonical[index],status:row.status,exitCode:row.exitCode,elapsedMs:row.elapsedMs,
+   ...(row.status==='FAIL'?{diagnostic:safeFailureDiagnostic({text:failureLogs[index]||'',error:row.error,signal:row.signal,exitCode:row.exitCode,root,sourceFiles:canonical.map(job=>job.id)})}:{})};
  });
  if(jobs.length!==canonical.length)problems.push('INCOMPLETE_QUEUE');
  if(outcome!=='success')problems.push('QUEUE_STEP_NOT_SUCCESSFUL');
@@ -77,7 +153,7 @@ export function markdownReport(result){
   `Result: **${result.status}**; platform: ${result.platform}.\n\n`+
   `Jobs: ${result.total}; completed: ${result.completed}; PASS: ${result.passed}; FAIL: ${result.failed}; missing: ${result.missing}.\n\n`+
   `Elapsed: ${(result.elapsedMs/60000).toFixed(2)} minutes (${result.elapsedMs} ms).\n\n`+
-  '## Failed jobs\n\n'+(failed.length?failed.map(job=>`- ${job.index}. \`${job.id}\` ${job.args.slice(1).map(a=>'`'+a+'`').join(' ')}`).join('\n'):'None.')+'\n\n'+
+  '## Failed jobs\n\n'+(failed.length?failed.map(job=>`- ${job.index}. \`${job.id}\` ${job.args.slice(1).map(a=>'`'+a+'`').join(' ')}\n  ${job.diagnostic.firstLine}${job.diagnostic.location?' (`'+job.diagnostic.location.file+':'+job.diagnostic.location.line+(Number.isSafeInteger(job.diagnostic.location.column)?':'+job.diagnostic.location.column:'')+'`)':''}`).join('\n'):'None.')+'\n\n'+
   'Report conditions: '+(result.problems.join(', ')||'none')+'.\n\n'+
   'Privacy: raw logs, captures, DOM, traces, browser profiles, source text and arbitrary error messages are not published.\n';
 }
@@ -91,7 +167,8 @@ export function exportReport({source,raw,out,summary,outcome}){
  const plan=JSON.parse(run(['tools/qa-queue.mjs','pre-ff','--list'],root));
  const file=path.join(path.resolve(raw),'RESULTS.json');
  const input=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):null;
- const projected=projectResults({plan,raw:input,root,sha:git.stdout.trim(),outcome});
+ const failureLogs=plan.map((job,index)=>input?.results?.[index]?.status==='FAIL'?readFailureLog(raw,index,job.id):'');
+ const projected=projectResults({plan,raw:input,root,sha:git.stdout.trim(),outcome,failureLogs});
  const files={'JOB_PLAN.json':JSON.stringify(projected.plan,null,2)+'\n','RESULTS.json':JSON.stringify(projected.result,null,2)+'\n','REPORT.md':markdownReport(projected.result)};
  for(const body of Object.values(files))if(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/.test(body))throw Error('EMAIL_IN_PUBLIC_REPORT');
  fs.mkdirSync(destination,{recursive:true});
@@ -105,14 +182,16 @@ if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.ur
   for(const arg of args){const match=/^--(source|raw|out|summary|outcome)=(.*)$/.exec(arg);if(!match||Object.hasOwn(options,match[1]))throw Error('INVALID_REPORT_OPTION');options[match[1]]=match[2];}
   if(command!=='report'||['source','raw','out','outcome'].some(key=>!Object.hasOwn(options,key)))throw Error('INVALID_REPORT_COMMAND');
   const report=exportReport(options);console.log(`Public pre-FF report: ${report.status}; ${report.passed}/${report.total} PASS`);process.exitCode=report.status==='PASS'?0:1;
- }catch{
+ }catch(error){
   // Even checkout/setup failure gets a fixed public artifact, without echoing
   // an exception whose message might contain source text or private paths.
   const option=name=>process.argv.find(arg=>arg.startsWith('--'+name+'='))?.slice(name.length+3);
   const destination=option('out'),summary=option('summary');
   if(destination&&!fs.existsSync(destination)){
-   const report={schema:'pre-ff-public-report/v1',sha:null,status:'FAIL',total:0,completed:0,passed:0,failed:0,missing:0,elapsedMs:0,problems:['REPORT_UNAVAILABLE'],jobs:[]};
-   const body='# Pre-FF verification\n\nFAIL: checkout or report preparation failed. Tested SHA and job results are unavailable. Raw diagnostics remain private.\n';
+   const code=reportCodes.has(error?.message)?error.message:'REPORT_UNAVAILABLE';
+   const diagnostic={errorClass:'ReportError',cause:code,firstLine:'ReportError: report preparation failed ('+code+'); private details redacted.',messageRedacted:true};
+   const report={schema:'pre-ff-public-report/v1',sha:null,status:'FAIL',total:0,completed:0,passed:0,failed:0,missing:0,elapsedMs:0,problems:['REPORT_UNAVAILABLE'],diagnostic,jobs:[]};
+   const body='# Pre-FF verification\n\nFAIL: checkout or report preparation failed. Tested SHA and job results are unavailable.\n\n'+diagnostic.firstLine+'\n\nRaw diagnostics remain private.\n';
    fs.mkdirSync(destination,{recursive:true});fs.writeFileSync(path.join(destination,'RESULTS.json'),JSON.stringify(report,null,2)+'\n');fs.writeFileSync(path.join(destination,'JOB_PLAN.json'),'[]\n');fs.writeFileSync(path.join(destination,'REPORT.md'),body);
    if(summary)fs.appendFileSync(summary,body);
   }

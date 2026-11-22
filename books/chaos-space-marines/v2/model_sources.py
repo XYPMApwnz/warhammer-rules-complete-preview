@@ -121,7 +121,7 @@ def validate_model_bindings(root, bindings, corpus) -> None:
         if len(profiles) > 1:
             for profile, wrap in zip(profiles, wraps):
                 label = _one(wrap.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," dsModelName ")]'), profile["sourceId"])
-                if _text(label.text_content()) != profile["name"]:
+                if _text(str(label.text_content())) != profile["name"]:
                     raise ValueError("CSM profile label differs from captured source: " + profile["sourceId"])
 
         member_profiles = {}
@@ -198,7 +198,7 @@ def validate_model_bindings(root, bindings, corpus) -> None:
         invulnerable_nodes = frame.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," dsInvulWrap ")]')
         invulnerable_comments = frame.xpath('.//*[contains(@class,"dsInvulComment")]')
         invulnerable_values = frame.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," dsCharInvulValue ")]')
-        invulnerable_qualifier = " ".join(node.text_content() for node in invulnerable_comments)
+        invulnerable_qualifier = " ".join(str(node.text_content()) for node in invulnerable_comments)
         invulnerable_members = all_member_ids
         if invulnerable_qualifier:
             parsed = re.fullmatch(r"\* (.+?) model only\.", invulnerable_qualifier)
@@ -206,7 +206,7 @@ def validate_model_bindings(root, bindings, corpus) -> None:
                 raise ValueError("Unsupported CSM invulnerable source qualifier: " + invulnerable_qualifier)
             invulnerable_members = [_one(named_members(parsed[1]), owner + " INSV qualifier")]
         if invulnerable_values:
-            invulnerable_value = _text(_one(invulnerable_values, owner + " INSV value").text_content())
+            invulnerable_value = _text(str(_one(invulnerable_values, owner + " INSV value").text_content()))
         else:
             invulnerable_value = None
 
@@ -223,7 +223,7 @@ def validate_model_bindings(root, bindings, corpus) -> None:
                 local_bases = base_nodes
             base_node = _one(local_bases, profile["sourceId"] + " base metadata")
             base_id = owner + f":base:{base_nodes.index(base_node) + 1}"
-            source_text = _text(base_node.text_content())
+            source_text = _text(str(base_node.text_content()))
             references = [
                 _reference(document, base_id, selector=tree.getroottree().getpath(base_node)),
                 _reference(corpus_document, profile["sourceId"],
@@ -233,7 +233,7 @@ def validate_model_bindings(root, bindings, corpus) -> None:
             if comments:
                 overrides = []
                 for comment in comments:
-                    text = comment.text_content()
+                    text = str(comment.text_content())
                     parsed = re.fullmatch(r"(.+?) (\d+(?:\.\d+)?mm)", text)
                     if parsed is None:
                         raise ValueError("Unsupported CSM base metadata qualifier: " + text)
@@ -251,7 +251,7 @@ def validate_model_bindings(root, bindings, corpus) -> None:
                     })
                 for member_id, value, comment in overrides:
                     base_bindings.append({
-                        "sourceEntityId": base_id, "scope": "COMPOSITION_MEMBER", "sourceText": comment.text_content(),
+                        "sourceEntityId": base_id, "scope": "COMPOSITION_MEMBER", "sourceText": str(comment.text_content()),
                         "value": value, **recipients([member_id]),
                         "sourceReferences": [_reference(document, base_id, selector=tree.getroottree().getpath(comment)), *references[1:]],
                     })

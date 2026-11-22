@@ -41,6 +41,15 @@ def payload_digest(value):
     return digest(json.dumps(value, ensure_ascii=False, sort_keys=True).encode("utf-8"))
 
 
+def row_text_fingerprint(row):
+    """Hash complete ordered cell text, never libxml's HTML serialization."""
+    if row.tag != "tr" or not row.xpath("./th|./td"):
+        raise ValueError("Weapon source occurrence is not a table row")
+    cells = [" ".join(str(cell.text_content()).split()) for cell in row.xpath("./th|./td")]
+    payload = {"schema": "html-row-cell-text/v1", "cells": cells}
+    return digest(json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")).lower()
+
+
 def unique_index(items, field):
     result = {}
     for item in items:
@@ -49,6 +58,19 @@ def unique_index(items, field):
             raise ValueError(f"Identity collision: {field}={key}")
         result[key] = item
     return result
+
+
+def row_text_expectations(document, occurrences):
+    if set(document) != {"schema", "rows"} or document["schema"] != "csm-presentation-row-text-fingerprints/v1":
+        raise ValueError("Unsupported CSM row text fingerprint schema")
+    expected = unique_index(document["rows"], "sourceEntityId")
+    if set(expected) != {item["sourceEntityId"] for item in occurrences}:
+        raise ValueError("CSM row text fingerprint inventory differs from source bindings")
+    for row in expected.values():
+        value = row.get("expectedRowTextSha256")
+        if set(row) != {"sourceEntityId", "expectedRowTextSha256"} or type(value) is not str or len(value) != 64 or any(char not in "0123456789abcdef" for char in value):
+            raise ValueError("Invalid CSM row text fingerprint")
+    return expected
 
 
 def verify_sources(root, enrollment):
@@ -290,6 +312,7 @@ def bind_corrections(records, accounting, official, corpus, identities):
 
 def reference_metadata(root, here, records, identities, artifacts):
     binding = read(here / "presentation-bindings.json")
+    expected_rows = row_text_expectations(read(here / "presentation-row-text-fingerprints.json"), binding["instructionOccurrences"])
     registry = {item["sourceEntityId"]: item["id"] for item in identities["bindings"]}
     index = {record["id"]: record for record in records}
     documents = {}
@@ -325,8 +348,7 @@ def reference_metadata(root, here, records, identities, artifacts):
         seen.add(sid)
         tree = document(occurrence["sourceDocument"])
         row, = tree.xpath(occurrence["weaponRowSelector"])
-        text = html.tostring(row, encoding="unicode")
-        if digest(text.encode()).lower() != occurrence["expectedRowSha256"]:
+        if row_text_fingerprint(row) != expected_rows[sid]["expectedRowTextSha256"]:
             raise ValueError("Weapon source occurrence changed")
         fields = [" ".join(cell.text_content().split()) for cell in row.xpath("./td")][-6:]
         weapon = index[registry[sid]]["data"]
@@ -342,6 +364,8 @@ def reference_metadata(root, here, records, identities, artifacts):
         instruction_text = " ".join(template.text_content().split())
         if digest(instruction_text.encode()).lower() != occurrence["expectedInstructionTextSha256"]:
             raise ValueError("Instruction occurrence does not share its canonical instruction")
+    # Preserve accepted publication/provenance bytes. Its legacy expectedRowSha256
+    # records the historical serializer; active validation uses the text sidecar.
     return {"instructions": instructions, "sourceBindings": binding}
 
 
