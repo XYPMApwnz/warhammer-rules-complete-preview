@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/pages-runtime.yml b/.github/workflows/pages-runtime.yml
+index 459f829b..eaa3f746 100644
+--- a/.github/workflows/pages-runtime.yml
++++ b/.github/workflows/pages-runtime.yml
+@@ -26,6 +26,8 @@ jobs:
+         with:
+           node-version: '24'
+           package-manager-cache: false
++      - name: Install locked packaging dependencies
++        run: npm ci --ignore-scripts
+       - name: Build explicit runtime publication
+         run: node tools/pages-runtime-package.mjs --source . --out "${{ runner.temp }}/dist-pages"
+       - name: Verify package and deterministic boundary tests

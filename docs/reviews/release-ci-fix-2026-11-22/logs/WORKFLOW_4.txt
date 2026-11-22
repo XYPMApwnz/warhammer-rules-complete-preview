@@ -1,0 +1,16 @@
+published-output-verbatim-and-fresh PASS
+independent-packaged-startup-core-and-module-revision-guards PASS
+independent-deterministic-build PASS
+allowlist-checkout-CRLF-LF-identical-package PASS
+refuse-source-overwrite PASS
+refuse-nonempty-output PASS
+reject-duplicate-allowlist-entry PASS
+reject-path-traversal PASS
+reject-development-qa-publication PASS
+reject-unreviewed-raw-capture-publication PASS
+preserve-existing-public-source-download PASS
+reject-missing-browser-module-before-copy PASS
+reject-runtime-content-corruption PASS
+reject-unlisted-published-file PASS
+restored-negative-fixture-still-fresh PASS
+{"status":"PASS","checks":15,"results":[{"name":"published-output-verbatim-and-fresh","status":"PASS"},{"name":"independent-packaged-startup-core-and-module-revision-guards","status":"PASS"},{"name":"independent-deterministic-build","status":"PASS"},{"name":"allowlist-checkout-CRLF-LF-identical-package","status":"PASS"},{"name":"refuse-source-overwrite","status":"PASS"},{"name":"refuse-nonempty-output","status":"PASS"},{"name":"reject-duplicate-allowlist-entry","status":"PASS"},{"name":"reject-path-traversal","status":"PASS"},{"name":"reject-development-qa-publication","status":"PASS"},{"name":"reject-unreviewed-raw-capture-publication","status":"PASS"},{"name":"preserve-existing-public-source-download","status":"PASS"},{"name":"reject-missing-browser-module-before-copy","status":"PASS"},{"name":"reject-runtime-content-corruption","status":"PASS"},{"name":"reject-unlisted-published-file","status":"PASS"},{"name":"restored-negative-fixture-still-fresh","status":"PASS"}],"contentSha256":"f975aa7a6c68073dd86c46b512e9cc1b8664209abce937fad128e91616095af5","publishedBytes":283187880,"cacheRevision":"28acb87c11537a8b","scope":"Runtime-only output boundary; browser QA is separate"}

@@ -1,0 +1,338 @@
+diff --git a/.github/workflows/pages-runtime.yml b/.github/workflows/pages-runtime.yml
+index 459f829b..eaa3f746 100644
+--- a/.github/workflows/pages-runtime.yml
++++ b/.github/workflows/pages-runtime.yml
+@@ -26,6 +26,8 @@ jobs:
+         with:
+           node-version: '24'
+           package-manager-cache: false
++      - name: Install locked packaging dependencies
++        run: npm ci --ignore-scripts
+       - name: Build explicit runtime publication
+         run: node tools/pages-runtime-package.mjs --source . --out "${{ runner.temp }}/dist-pages"
+       - name: Verify package and deterministic boundary tests
+diff --git a/docs/codex/QA_MATRIX.md b/docs/codex/QA_MATRIX.md
+index 519e9125..8bf482bd 100644
+--- a/docs/codex/QA_MATRIX.md
++++ b/docs/codex/QA_MATRIX.md
+@@ -18,6 +18,12 @@ contains injected-attribute/unsupported-syntax negative controls. It also checks
+ ordinary JSON read-once/retry behavior, unchanged Node catalog reads, equivalent
+ older-browser normalization/order, and exact SHA-verified lazy-catalog migration.
+ Runtime/API minima and the distinction from physical-device QA are in README.
++`npm run qa:pages-ci` runs in quick and pre-FF. It checks the locked dependency
++installation order in the actual Pages build job and the declared transitive
++bare imports of the package producer and its QA. Missing-install and undeclared
++dependency mutations must fail. Candidate review also requires the real fresh-clone
++clean-room commands in `tools/PAGES_RUNTIME_RELEASE.md`; this static check alone
++does not prove the runner environment.
+ `qa:glossary` starts with strict cross-owner admission and published-reference
+ negative controls before the other glossary checks.
+ `test:polish-6` checks the small generated source metadata against its owners,
+diff --git a/package.json b/package.json
+index 6d5d3c4a..3d4d539b 100644
+--- a/package.json
++++ b/package.json
+@@ -7,6 +7,7 @@
+     "playwright": "1.61.1"
+   },
+   "scripts": {
++    "qa:pages-ci": "node tests/pages-runtime-ci-contract-qa.mjs",
+     "test:offline-army-book": "node tests/browser/offline-army-book.mjs",
+     "test:polish-6": "node tests/source-metadata-build-qa.mjs && node books/shared/application-v2/source-metadata-qa.mjs && node books/shared/army-book-app-v2/model-base-caption-qa.mjs && node books/shared/army-book-app-v2/import-notices-qa.mjs && node books/shared/army-book-app-v2/rule-term-visibility-qa.mjs && node books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+     "test:polish-6-browser": "node v2/library-sources-browser-qa.mjs && node v2/import-notices-browser-qa.mjs && node v2/lazy-glossary-browser-qa.mjs",
+diff --git a/tests/pages-runtime-ci-contract-qa.mjs b/tests/pages-runtime-ci-contract-qa.mjs
+new file mode 100644
+index 00000000..1a75e105
+--- /dev/null
++++ b/tests/pages-runtime-ci-contract-qa.mjs
+@@ -0,0 +1,62 @@
++/** CI dependency contract and pure in-memory negative controls. No packaging runs. */
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import path from 'node:path';
++import {fileURLToPath} from 'node:url';
++import {checkPagesRuntimeCiContract,checkPackagingImports,checkWorkflowInstall,packageName} from '../tools/pages-runtime-ci-contract.mjs';
++
++const root=fileURLToPath(new URL('../',import.meta.url));
++const read=file=>fs.readFileSync(path.join(root,file),'utf8');
++const baseline=checkPagesRuntimeCiContract(root);
++const workflow=read('.github/workflows/pages-runtime.yml').replace(/\r\n?/g,'\n');
++const controls=[];
++function reject(name,fn,error){assert.throws(fn,error,name);controls.push({name,status:'REJECTED'});}
++function overlay(entries){return file=>{
++  if(Object.hasOwn(entries,file))return entries[file];
++  return read(file);
++};}
++const install=/^      - [^\n]*\n(?:        [^\n]*\n)*?        run: npm ci(?: --ignore-scripts)?\n/m;
++const installStep=workflow.match(install)?.[0];
++assert.ok(installStep,'Reviewed workflow has a standalone named npm ci step');
++const withoutInstall=workflow.replace(installStep,'');
++reject('missing locked install',()=>checkWorkflowInstall(withoutInstall),/CI_LOCKED_INSTALL_REQUIRED/);
++reject('install after packaging',()=>checkWorkflowInstall(withoutInstall.replace('      - uses: actions/upload-pages-artifact',installStep+'      - uses: actions/upload-pages-artifact')),/CI_LOCKED_INSTALL_REQUIRED/);
++reject('unlocked npm install',()=>checkWorkflowInstall(workflow.replace(/run: npm ci(?: --ignore-scripts)?/, 'run: npm install')),/CI_LOCKED_INSTALL_REQUIRED/);
++reject('dev dependencies omitted',()=>checkWorkflowInstall(workflow.replace(/run: npm ci(?: --ignore-scripts)?/, 'run: npm ci --omit=dev')),/CI_LOCKED_INSTALL_REQUIRED/);
++reject('conditional install',()=>checkWorkflowInstall(workflow.replace(installStep,installStep.replace('        run:', '        if: false\n        run:'))),/CI_INSTALL_CONTEXT/);
++reject('install in another directory',()=>checkWorkflowInstall(workflow.replace(installStep,installStep.replace('        run:', '        working-directory: tools\n        run:'))),/CI_INSTALL_CONTEXT/);
++reject('inherited production environment',()=>checkWorkflowInstall(workflow.replace('    steps:', '    env:\n      NODE_ENV: production\n    steps:')),/CI_INSTALL_ENV/);
++reject('undeclared transitive bare import',()=>checkPackagingImports(root,{readText:overlay({
++  'tools/runtime-url-stamps.mjs':read('tools/runtime-url-stamps.mjs')+"\nimport 'not-declared-ci-control/subpath';\n"
++})}),/CI_UNDECLARED_PACKAGE.*runtime-url-stamps\.mjs.*not-declared-ci-control/);
++
++const synthetic={
++  'package.json':JSON.stringify({dependencies:{'@review/scope':'1','fixture-package':'1'},devDependencies:{acorn:'8'}}),
++  'tools/pages-runtime-package.mjs':"export * from './ci-guard-fixture.mjs';",
++  'tools/pages-runtime-package-qa.mjs':"import './ci-guard-fixture.mjs';",
++  'tools/ci-guard-fixture.mjs':"import '@review/scope/subpath'; export {value} from './ci-guard-fixture.cjs'; export const next=()=>import('fixture-package/lazy');",
++  'tools/ci-guard-fixture.cjs':"const fs=require('fs/promises'); const value=require('fixture-package/subpath'); exports.value=value;"
++};
++const fixture=()=>checkPackagingImports(root,{readText:overlay(synthetic)});
++const graph=fixture();
++assert.deepEqual(graph.packages,['@review/scope','fixture-package']);
++assert.ok(graph.imports.some(row=>row.kind==='require'&&row.package==='fixture-package'));
++assert.ok(graph.imports.some(row=>row.kind==='dynamic import'&&row.package==='fixture-package'));
++assert.ok(graph.imports.some(row=>row.kind==='reexport'&&row.target==='tools/ci-guard-fixture.cjs'));
++assert.equal(packageName('@review/scope/subpath'),'@review/scope');
++for(const [name,source,error]of [
++  ['undeclared scoped subpath',"import '@missing/scope/path';",/CI_UNDECLARED_PACKAGE.*@missing\/scope/],
++  ['undeclared reexport',"export * from 'missing-reexport';",/CI_UNDECLARED_PACKAGE.*missing-reexport/],
++  ['undeclared literal dynamic import',"const load=()=>import('missing-dynamic');",/CI_UNDECLARED_PACKAGE.*missing-dynamic/],
++  ['undeclared require',"const load=require('missing-require');",/CI_UNDECLARED_PACKAGE.*missing-require/],
++  ['nonliteral dynamic import',"const load=name=>import(name);",/CI_DYNAMIC_IMPORT/],
++  ['nonliteral require',"const load=name=>require(name);",/CI_DYNAMIC_IMPORT/],
++  ['unsupported URL import',"import 'https://invalid.example/dependency.mjs';",/CI_IMPORT_SPECIFIER/],
++  ['checkout escape',"import '../../outside-checkout.mjs';",/CI_LOCAL_IMPORT/]
++]){
++  reject(name,()=>checkPackagingImports(root,{readText:overlay({...synthetic,'tools/ci-guard-fixture.mjs':source})}),error);
++}
++assert.deepEqual(checkWorkflowInstall(workflow.replace(/npm ci --ignore-scripts/g,'npm ci')).packagingCommands,baseline.workflow.packagingCommands);
++assert.deepEqual(checkWorkflowInstall(workflow.replace(/npm ci(?: --ignore-scripts)?/g,'npm ci --ignore-scripts')).packagingCommands,baseline.workflow.packagingCommands);
++console.log(JSON.stringify({...baseline,negativeControls:controls,syntheticGraphKinds:['import','reexport','dynamic import','require'],
++  boundary:'Reads only packaging-tool Node import closure; never imports or evaluates tool/native runtime factories.'},null,2));
+diff --git a/tools/PAGES_RUNTIME_RELEASE.md b/tools/PAGES_RUNTIME_RELEASE.md
+index f0ab5005..16f224bb 100644
+--- a/tools/PAGES_RUNTIME_RELEASE.md
++++ b/tools/PAGES_RUNTIME_RELEASE.md
+@@ -18,6 +18,43 @@ Normal packaging is network-free. It publishes only the explicit `tools/pages-ru
+ 
+ The mandatory precache contains V2 code and small shell resources, including `books/shared/datasheet-system.css` and `books/shared/unit-art.css`. Army Book JSON and the large glossary payloads remain lazy. Core still needs `glossary/v2/generated/index.en.js` after it is opened. Test current V2 install, compatible cached data, manual updates and offline reading; no retired V1 migration journey is an acceptance requirement.
+ 
++### Mandatory clean-room candidate check
++
++On 22 November 2026, Pages run `45008914493` failed before deployment because
++`tools/runtime-url-stamps.mjs` could not import the declared `acorn` dependency.
++Local packaging had used installed dependencies; the workflow had not installed
++them. A local package PASS alone did not validate the runner preparation.
++
++Every candidate now requires a **fresh clone of its exact SHA**, initially without
++`node_modules`, followed by the install and all packaging commands from the
++current `build` job in `.github/workflows/pages-runtime.yml`, in their exact order.
++Do not copy, junction, reuse or inherit a dependency tree. Use a new package/QA
++output directory. Substitute only `${{ runner.temp }}` with the task's temporary
++directory. Node must be version 24, as in the workflow. For example, after cloning
++and checking out the exact candidate, run in that clone:
++
++```powershell
++if (Test-Path -LiteralPath './node_modules') { throw 'Clean-room clone already has dependencies; STOP' }
++npm ci --ignore-scripts
++node tools/pages-runtime-package.mjs --source . --out "$runnerTemp/dist-pages"
++node tools/pages-runtime-package.mjs --source . --out "$runnerTemp/dist-pages" --check
++node tools/pages-runtime-package-qa.mjs --source . --published "$runnerTemp/dist-pages" --work "$runnerTemp/pages-package-qa"
++```
++
++The dependency installation follows `package-lock.json`; packaging and its boundary
++QA do not require lifecycle/postinstall scripts. The install is the dependency
++network step; the package producers remain network-free. Keep the clone SHA/tree,
++initial dependency-absence proof, Node/npm/OS versions, exact expanded workflow
++commands, their complete outputs/exit codes, and the resulting manifest. Confirm
++the installed dependency tree belongs to the fresh clone and source stays clean.
++Compare every runtime file and the aggregate hash against the reviewed local
++package. Record the actual host platform; do not label a Windows run as Linux.
++
++`npm run qa:pages-ci` checks that the locked install precedes the first packaging
++command and that every transitive bare dependency of the packaging tools is
++declared in `package.json`. Its mutation controls run in quick and pre-FF. This
++static gate complements the real clean-room commands; neither replaces the other.
++
+ ## Source review and release authorization
+ 
+ The GitHub repository is `XYPMApwnz/warhammer-rules-complete-preview`. Check actual remotes and current GitHub refs; a local `origin` may be a backup rather than GitHub.
+@@ -32,7 +69,7 @@ The owner authorizes publication; Codex executes it. After Claude PASS for the e
+ 
+ 1. Verify clean reviewed source, current GitHub source/release refs, reviewed limitations and required QA. Record the previous release SHA, last Pages deployment/run and whether a previous Pages artifact is available for rollback.
+ 2. Create the candidate with `git commit-tree <reviewed-source-tree> -p <current-release-sha>`. Its tree must equal the reviewed source tree and its only parent must equal current `unified-v2-release`. Verify the proposed review branch does not exist; otherwise stop. Push only to that new review branch. Do not update source, release or `main`, change Pages settings or dispatch a workflow.
+-3. Package a clean checkout of the exact candidate with all three commands above. Obtain independent Claude review of that exact SHA, including Linux packaging, runtime hashes, file inventories, deterministic rebuilds and browser acceptance. Require PASS and the owner's manual check before requesting separate release authorization.
++3. Run the mandatory clean-room candidate check above on the exact candidate SHA: a fresh clone with no dependencies, then the workflow's locked install and all three packaging commands. Preserve command outputs and compare the package with the reviewed local publication. Obtain independent Claude review of that exact SHA, including Linux clean-room packaging, runtime hashes, file inventories, deterministic rebuilds and browser acceptance. Require PASS and the owner's manual check before requesting separate release authorization.
+ 
+ ### Publish only the separately authorized exact candidate
+ 
+diff --git a/tools/pages-runtime-ci-contract.mjs b/tools/pages-runtime-ci-contract.mjs
+new file mode 100644
+index 00000000..f8f2fb73
+--- /dev/null
++++ b/tools/pages-runtime-ci-contract.mjs
+@@ -0,0 +1,153 @@
++/** Release packaging dependency boundary. Read sources; never evaluate factories. */
++import fs from 'node:fs';
++import path from 'node:path';
++import {isBuiltin} from 'node:module';
++import {fileURLToPath} from 'node:url';
++import {parse} from 'acorn';
++
++export const PACKAGING_ROOTS=Object.freeze(['tools/pages-runtime-package.mjs','tools/pages-runtime-package-qa.mjs']);
++const workflowFile='.github/workflows/pages-runtime.yml';
++const fail=(code,message)=>{throw Error(code+': '+message);};
++const normalize=text=>text.replace(/\r\n?/g,'\n');
++const packagingCommand=/\btools\/pages-runtime-package[\w-]*\.mjs\b/;
++
++/** Deliberately restricted to the reviewed block-style build job, not a YAML evaluator.
++ * A new workflow shape needs review rather than a guess about shell/YAML execution. */
++export function checkWorkflowInstall(source){
++  const lines=normalize(source).split('\n');
++  if(lines.some(line=>/^\s*defaults\s*:/.test(line)||/^\s*<<\s*:/.test(line)))
++    fail('CI_WORKFLOW_SHAPE','defaults and YAML merges need explicit dependency-install review');
++  const build=lines.findIndex(line=>line==='  build:');
++  if(build<0||lines.filter(line=>line==='  build:').length!==1)fail('CI_WORKFLOW_SHAPE','expected one block-style build job');
++  const next=lines.findIndex((line,index)=>index>build&&/^  [\w-]+:/.test(line));
++  const job=lines.slice(build+1,next<0?undefined:next),stepsAt=job.findIndex(line=>line==='    steps:');
++  if(stepsAt<0||job.filter(line=>line==='    steps:').length!==1)fail('CI_WORKFLOW_SHAPE','expected one build steps list');
++  // npm ci includes devDependencies only without an inherited production/omit setting.
++  if(lines.slice(0,build).some(line=>/^env\s*:/.test(line))||job.slice(0,stepsAt).some(line=>/^    env\s*:/.test(line)))
++    fail('CI_INSTALL_ENV','inherited environment requires explicit dependency-install review');
++  const steps=[];
++  for(let index=stepsAt+1;index<job.length;index++){
++    const line=job[index];
++    if(!line.trim()||line.trimStart().startsWith('#'))continue;
++    if(/^      - /.test(line))steps.push({lines:[line],line:build+index+2});
++    else if(/^        \S|^          /.test(line)&&steps.length)steps.at(-1).lines.push(line);
++    else fail('CI_WORKFLOW_SHAPE','unsupported build step at line '+(build+index+2));
++  }
++  const commands=[];
++  for(const [stepIndex,step]of steps.entries()){
++    const runIndices=step.lines.flatMap((line,index)=>/^(?:      - |        )run:/.test(line)?[index]:[]);
++    if(runIndices.length>1)fail('CI_WORKFLOW_SHAPE','duplicate run field at step '+(stepIndex+1));
++    if(!runIndices.length)continue;
++    const at=runIndices[0],value=step.lines[at].replace(/^(?:      - |        )run:\s*/,'');
++    let run;
++    if(value==='|'||value==='|-'){
++      run=[];
++      for(let index=at+1;index<step.lines.length&&/^          /.test(step.lines[index]);index++)run.push(step.lines[index].slice(10));
++    }else if(value&&!/^[>|'"&*]/.test(value))run=[value];
++    else fail('CI_WORKFLOW_SHAPE','unsupported run field at step '+(stepIndex+1));
++    for(const command of run.filter(line=>line.trim()&&!line.trimStart().startsWith('#')))
++      commands.push({command:command.trim(),stepIndex,line:step.line,step});
++  }
++  const firstPackage=commands.findIndex(({command})=>packagingCommand.test(command));
++  if(firstPackage<0)fail('CI_PACKAGE_COMMAND','no Pages packaging command found');
++  const prior=commands.slice(0,firstPackage);
++  const install=prior.find(({command})=>/^npm ci(?: --ignore-scripts)?$/.test(command));
++  if(!install)fail('CI_LOCKED_INSTALL_REQUIRED','npm ci (optionally --ignore-scripts) must precede the first Pages packaging command');
++  if(install.step.lines.some(line=>/^(?:      - |        )(?:if|env|working-directory|shell):/.test(line)))
++    fail('CI_INSTALL_CONTEXT','locked install must be unconditional at the checkout root with the default shell and environment');
++  if(install.stepIndex===commands[firstPackage].stepIndex)
++    fail('CI_INSTALL_CONTEXT','locked install must be its own step before packaging');
++  if(prior.some(({command,stepIndex})=>stepIndex===install.stepIndex&&command!==install.command))
++    fail('CI_INSTALL_CONTEXT','locked-install step must contain only npm ci');
++  for(const {step,stepIndex,command}of commands.filter(({command})=>packagingCommand.test(command))){
++    if(step.lines.some(line=>/^(?:      - |        )working-directory:/.test(line)))
++      fail('CI_PACKAGE_CONTEXT','packaging step '+(stepIndex+1)+' must run at the checkout root');
++    if(!/^node tools\/pages-runtime-package[\w-]*\.mjs\b/.test(command)||/[;&|\r\n]/.test(command))
++      fail('CI_PACKAGE_CONTEXT','packaging command must be one direct Node invocation at the checkout root');
++  }
++  const packagingCommands=commands.filter(({command})=>packagingCommand.test(command)).map(({command})=>command);
++  return {installCommand:install.command,installStep:install.stepIndex+1,firstPackagingStep:commands[firstPackage].stepIndex+1,
++    packagingCommands,commands:[install.command,...packagingCommands],
++    buildCommands:commands.map(({command,stepIndex})=>({command,step:stepIndex+1}))};
++}
++
++const literal=node=>node?.type==='Literal'&&typeof node.value==='string'?node.value:
++  node?.type==='TemplateLiteral'&&!node.expressions.length?node.quasis[0].value.cooked:null;
++function walk(node,visit){
++  if(!node||typeof node!=='object')return;
++  if(node.type)visit(node);
++  for(const [key,value]of Object.entries(node)){
++    if(['start','end','loc','range'].includes(key))continue;
++    if(Array.isArray(value))for(const child of value)walk(child,visit);
++    else if(value&&typeof value==='object')walk(value,visit);
++  }
++}
++export function packageName(specifier){
++  if(specifier.startsWith('@')){
++    const parts=specifier.split('/');
++    if(parts.length<2||!parts[0].slice(1)||!parts[1])fail('CI_IMPORT_SPECIFIER','invalid scoped package '+specifier);
++    return parts.slice(0,2).join('/');
++  }
++  if(!/^[a-zA-Z0-9][a-zA-Z0-9._-]*(?:\/|$)/.test(specifier))fail('CI_IMPORT_SPECIFIER','unsupported package specifier '+specifier);
++  return specifier.split('/')[0];
++}
++
++/** Every local dependency is parsed, including reexports and literal CJS/dynamic
++ * imports. Browser module source strings and fs-read JSON are data, not edges. */
++export function checkPackagingImports(root,{readText=file=>fs.readFileSync(path.join(root,file),'utf8')}={}){
++  const manifest=JSON.parse(readText('package.json'));
++  const declared=new Set([...Object.keys(manifest.dependencies||{}),...Object.keys(manifest.devDependencies||{})]);
++  const pending=[...PACKAGING_ROOTS],visited=new Set(),imports=[],packages=new Set();
++  function localFile(owner,specifier,kind){
++    if(/[?#]/.test(specifier)||specifier.includes('\\'))fail('CI_LOCAL_IMPORT',owner+' -> '+specifier+' needs explicit Node resolution review');
++    const target=path.posix.normalize(path.posix.join(path.posix.dirname(owner),specifier));
++    if(target==='..'||target.startsWith('../')||path.posix.isAbsolute(target))fail('CI_LOCAL_IMPORT',owner+' escapes checkout: '+specifier);
++    const candidates=[target];
++    if(kind==='require'&&!path.posix.extname(target))candidates.push(target+'.js',target+'.json',target+'.node');
++    for(const file of candidates){try{readText(file);return file;}catch(error){if(!['ENOENT','EISDIR','ENOTDIR'].includes(error.code))throw error;}}
++    fail('CI_LOCAL_IMPORT',owner+' -> '+specifier+' does not resolve to a reviewed local file');
++  }
++  while(pending.length){
++    const owner=pending.shift();if(visited.has(owner))continue;visited.add(owner);
++    const source=readText(owner);let ast;
++    try{ast=parse(source,{ecmaVersion:'latest',sourceType:owner.endsWith('.cjs')?'script':'module',allowHashBang:true,locations:true});}
++    catch(error){fail('CI_IMPORT_SYNTAX',owner+': '+error.message);}
++    function inspect(node,specifier,kind){
++      if(specifier===null)fail('CI_DYNAMIC_IMPORT',owner+':'+node.loc.start.line+' nonliteral '+kind+' needs explicit dependency review');
++      if(isBuiltin(specifier))return;
++      if(specifier.startsWith('node:'))fail('CI_IMPORT_SPECIFIER',owner+': unknown Node builtin '+specifier);
++      if(specifier.startsWith('.')){
++        const target=localFile(owner,specifier,kind);imports.push({owner,specifier,kind,target});
++        if(/\.(?:mjs|cjs|js)$/.test(target))pending.push(target);
++        else if(!target.endsWith('.json'))fail('CI_LOCAL_IMPORT',owner+' -> '+target+' is not a reviewed JavaScript or JSON module');
++      }else{
++        const dependency=packageName(specifier);
++        if(!declared.has(dependency))fail('CI_UNDECLARED_PACKAGE',owner+':'+node.loc.start.line+' imports '+specifier+'; declare '+dependency+' in package.json dependencies/devDependencies');
++        packages.add(dependency);imports.push({owner,specifier,kind,package:dependency});
++      }
++    }
++    walk(ast,node=>{
++      if(node.type==='ImportDeclaration')inspect(node,literal(node.source),'import');
++      else if((node.type==='ExportAllDeclaration'||node.type==='ExportNamedDeclaration')&&node.source)inspect(node,literal(node.source),'reexport');
++      else if(node.type==='ImportExpression')inspect(node,literal(node.source),'dynamic import');
++      else if(node.type==='CallExpression'&&node.callee.type==='Identifier'&&node.callee.name==='require'){
++        if(node.arguments.length!==1)fail('CI_DYNAMIC_IMPORT',owner+':'+node.loc.start.line+' require must have one literal argument');
++        inspect(node,literal(node.arguments[0]),'require');
++      }
++    });
++  }
++  return {roots:[...PACKAGING_ROOTS],files:[...visited].sort(),packages:[...packages].sort(),imports};
++}
++
++export function checkPagesRuntimeCiContract(root,{readText=file=>fs.readFileSync(path.join(root,file),'utf8')}={}){
++  // Presence is part of the install contract; npm ci validates its full contents.
++  const lock=JSON.parse(readText('package-lock.json'));
++  if(!Number.isInteger(lock.lockfileVersion))fail('CI_LOCKFILE','package-lock.json needs a lockfileVersion');
++  return {status:'PASS',schema:'pages-runtime-ci-contract/v1',workflow:checkWorkflowInstall(readText(workflowFile)),
++    dependencies:checkPackagingImports(root,{readText})};
++}
++if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
++  const args=process.argv.slice(2),at=args.indexOf('--source');
++  const root=at<0?fileURLToPath(new URL('../',import.meta.url)):path.resolve(args[at+1]);
++  console.log(JSON.stringify(checkPagesRuntimeCiContract(root),null,2));
++}
+diff --git a/tools/qa-queue.mjs b/tools/qa-queue.mjs
+index ab6e3d11..8eb9830d 100644
+--- a/tools/qa-queue.mjs
++++ b/tools/qa-queue.mjs
+@@ -41,6 +41,7 @@ function node(file,extra=[]){const id=JSON.stringify([file,...extra]);if(mode===
+ function expand(script){for(const part of script.split(/\s*&&\s*/)){const tokens=part.trim().split(/\s+/);if(tokens[0]==='npm'&&tokens[1]==='run')expand(pkg.scripts[tokens[2]]);else if(tokens[0]==='node'&&tokens[1]==='tests/helpers/run-qa-suite.mjs')for(const entry of tokens.slice(2))entry.startsWith('npm:')?expand(pkg.scripts[entry.slice(4)]):node(entry);else if(tokens[0]==='node')node(tokens[1],tokens.slice(2));else throw Error('Unsupported QA entry: '+part);}}
+ jobs.push({command:'git',args:['diff','--check'],id:'git diff --check'});
+ node('tests/qa-temp-qa.mjs');
++node('tests/pages-runtime-ci-contract-qa.mjs');
+ node('tests/browser-failure-diagnostics-qa.mjs');
+ node('tests/browser-compatibility-qa.mjs');
+ node('tests/browser-compat-equivalence-qa.mjs');

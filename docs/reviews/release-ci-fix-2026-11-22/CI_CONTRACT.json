@@ -1,0 +1,219 @@
+{
+  "status": "PASS",
+  "schema": "pages-runtime-ci-contract/v1",
+  "workflow": {
+    "installCommand": "npm ci --ignore-scripts",
+    "installStep": 3,
+    "firstPackagingStep": 4,
+    "packagingCommands": [
+      "node tools/pages-runtime-package.mjs --source . --out \"${{ runner.temp }}/dist-pages\"",
+      "node tools/pages-runtime-package.mjs --source . --out \"${{ runner.temp }}/dist-pages\" --check",
+      "node tools/pages-runtime-package-qa.mjs --source . --published \"${{ runner.temp }}/dist-pages\" --work \"${{ runner.temp }}/pages-package-qa\""
+    ],
+    "commands": [
+      "npm ci --ignore-scripts",
+      "node tools/pages-runtime-package.mjs --source . --out \"${{ runner.temp }}/dist-pages\"",
+      "node tools/pages-runtime-package.mjs --source . --out \"${{ runner.temp }}/dist-pages\" --check",
+      "node tools/pages-runtime-package-qa.mjs --source . --published \"${{ runner.temp }}/dist-pages\" --work \"${{ runner.temp }}/pages-package-qa\""
+    ],
+    "buildCommands": [
+      {
+        "command": "npm ci --ignore-scripts",
+        "step": 3
+      },
+      {
+        "command": "node tools/pages-runtime-package.mjs --source . --out \"${{ runner.temp }}/dist-pages\"",
+        "step": 4
+      },
+      {
+        "command": "node tools/pages-runtime-package.mjs --source . --out \"${{ runner.temp }}/dist-pages\" --check",
+        "step": 5
+      },
+      {
+        "command": "node tools/pages-runtime-package-qa.mjs --source . --published \"${{ runner.temp }}/dist-pages\" --work \"${{ runner.temp }}/pages-package-qa\"",
+        "step": 5
+      }
+    ]
+  },
+  "dependencies": {
+    "roots": [
+      "tools/pages-runtime-package.mjs",
+      "tools/pages-runtime-package-qa.mjs"
+    ],
+    "files": [
+      "books/shared/source-refs-v2/source-catalog.mjs",
+      "books/shared/source-refs-v2/source-closure-qa.mjs",
+      "books/shared/source-refs-v2/source-closure.mjs",
+      "books/shared/source-refs-v2/source-refs.mjs",
+      "tests/helpers/qa-temp.cjs",
+      "tests/helpers/qa-temp.mjs",
+      "tests/packaged-bootstrap-qa.mjs",
+      "tools/cache-revision.mjs",
+      "tools/pages-runtime-package-qa.mjs",
+      "tools/pages-runtime-package.mjs",
+      "tools/runtime-url-stamps.mjs"
+    ],
+    "packages": [
+      "acorn"
+    ],
+    "imports": [
+      {
+        "owner": "tools/pages-runtime-package.mjs",
+        "specifier": "./cache-revision.mjs",
+        "kind": "import",
+        "target": "tools/cache-revision.mjs"
+      },
+      {
+        "owner": "tools/pages-runtime-package.mjs",
+        "specifier": "./runtime-url-stamps.mjs",
+        "kind": "import",
+        "target": "tools/runtime-url-stamps.mjs"
+      },
+      {
+        "owner": "tools/pages-runtime-package-qa.mjs",
+        "specifier": "./pages-runtime-package.mjs",
+        "kind": "import",
+        "target": "tools/pages-runtime-package.mjs"
+      },
+      {
+        "owner": "tools/pages-runtime-package-qa.mjs",
+        "specifier": "../books/shared/source-refs-v2/source-closure-qa.mjs",
+        "kind": "import",
+        "target": "books/shared/source-refs-v2/source-closure-qa.mjs"
+      },
+      {
+        "owner": "tools/pages-runtime-package-qa.mjs",
+        "specifier": "../tests/helpers/qa-temp.mjs",
+        "kind": "import",
+        "target": "tests/helpers/qa-temp.mjs"
+      },
+      {
+        "owner": "tools/pages-runtime-package-qa.mjs",
+        "specifier": "../tests/packaged-bootstrap-qa.mjs",
+        "kind": "import",
+        "target": "tests/packaged-bootstrap-qa.mjs"
+      },
+      {
+        "owner": "tools/cache-revision.mjs",
+        "specifier": "./runtime-url-stamps.mjs",
+        "kind": "import",
+        "target": "tools/runtime-url-stamps.mjs"
+      },
+      {
+        "owner": "tools/runtime-url-stamps.mjs",
+        "specifier": "acorn",
+        "kind": "import",
+        "package": "acorn"
+      },
+      {
+        "owner": "books/shared/source-refs-v2/source-closure-qa.mjs",
+        "specifier": "./source-closure.mjs",
+        "kind": "import",
+        "target": "books/shared/source-refs-v2/source-closure.mjs"
+      },
+      {
+        "owner": "tests/helpers/qa-temp.mjs",
+        "specifier": "./qa-temp.cjs",
+        "kind": "reexport",
+        "target": "tests/helpers/qa-temp.cjs"
+      },
+      {
+        "owner": "tests/packaged-bootstrap-qa.mjs",
+        "specifier": "acorn",
+        "kind": "import",
+        "package": "acorn"
+      },
+      {
+        "owner": "tests/packaged-bootstrap-qa.mjs",
+        "specifier": "./helpers/qa-temp.mjs",
+        "kind": "import",
+        "target": "tests/helpers/qa-temp.mjs"
+      },
+      {
+        "owner": "books/shared/source-refs-v2/source-closure.mjs",
+        "specifier": "./source-refs.mjs",
+        "kind": "import",
+        "target": "books/shared/source-refs-v2/source-refs.mjs"
+      },
+      {
+        "owner": "books/shared/source-refs-v2/source-refs.mjs",
+        "specifier": "./source-catalog.mjs",
+        "kind": "import",
+        "target": "books/shared/source-refs-v2/source-catalog.mjs"
+      }
+    ]
+  },
+  "negativeControls": [
+    {
+      "name": "missing locked install",
+      "status": "REJECTED"
+    },
+    {
+      "name": "install after packaging",
+      "status": "REJECTED"
+    },
+    {
+      "name": "unlocked npm install",
+      "status": "REJECTED"
+    },
+    {
+      "name": "dev dependencies omitted",
+      "status": "REJECTED"
+    },
+    {
+      "name": "conditional install",
+      "status": "REJECTED"
+    },
+    {
+      "name": "install in another directory",
+      "status": "REJECTED"
+    },
+    {
+      "name": "inherited production environment",
+      "status": "REJECTED"
+    },
+    {
+      "name": "undeclared transitive bare import",
+      "status": "REJECTED"
+    },
+    {
+      "name": "undeclared scoped subpath",
+      "status": "REJECTED"
+    },
+    {
+      "name": "undeclared reexport",
+      "status": "REJECTED"
+    },
+    {
+      "name": "undeclared literal dynamic import",
+      "status": "REJECTED"
+    },
+    {
+      "name": "undeclared require",
+      "status": "REJECTED"
+    },
+    {
+      "name": "nonliteral dynamic import",
+      "status": "REJECTED"
+    },
+    {
+      "name": "nonliteral require",
+      "status": "REJECTED"
+    },
+    {
+      "name": "unsupported URL import",
+      "status": "REJECTED"
+    },
+    {
+      "name": "checkout escape",
+      "status": "REJECTED"
+    }
+  ],
+  "syntheticGraphKinds": [
+    "import",
+    "reexport",
+    "dynamic import",
+    "require"
+  ],
+  "boundary": "Reads only packaging-tool Node import closure; never imports or evaluates tool/native runtime factories."
+}
