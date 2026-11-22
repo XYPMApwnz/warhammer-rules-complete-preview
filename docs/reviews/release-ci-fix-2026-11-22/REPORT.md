@@ -1,4 +1,4 @@
-# Release CI dependency fix — 22 November 2026
+# Release CI dependency fix вЂ” 22 November 2026
 
 READY_FOR_REVIEW. Feature `codex/release-ci-fix-v1`: `f5d73d531edbea8f8c919265477404c9b1b0eec4` from `9c18451452a478be2509314b6b80224313506ec9`.
 The runtime publication remains byte-for-byte identical to release candidate `818d3b0c34503a166b58b21810666feafe858bc5`.
@@ -56,14 +56,13 @@ The fresh depth-1 transport clone had no `node_modules`, no object alternates an
 Commands were extracted from the actual workflow; only `${{ runner.temp }}` was replaced by the new task-owned runner directory:
 
 ```text
-"C:/Program Files/nodejs/node.exe" E:\Warhammer\worktrees\release-ci-fix-v1\tools\pages-runtime-ci-contract.mjs --source E:\Warhammer\qa-tmp\release-ci-fix\clean-room-clone
 npm ci --ignore-scripts
 node tools/pages-runtime-package.mjs --source . --out "E:/Warhammer/qa-tmp/release-ci-fix/clean-room-runner/dist-pages"
 node tools/pages-runtime-package.mjs --source . --out "E:/Warhammer/qa-tmp/release-ci-fix/clean-room-runner/dist-pages" --check
 node tools/pages-runtime-package-qa.mjs --source . --published "E:/Warhammer/qa-tmp/release-ci-fix/clean-room-runner/dist-pages" --work "E:/Warhammer/qa-tmp/release-ci-fix/clean-room-runner/pages-package-qa"
 ```
 
-On Windows, the driver invokes npm through Node's bundled `npm-cli.js` and Node via its absolute executable; argument lists are otherwise the extracted workflow commands. Exact outputs and exit codes:
+On Windows, the driver invokes npm through Node's bundled `npm-cli.js` and Node via its absolute executable; argument lists are otherwise the extracted workflow commands. Captured text logs use LF line endings for Git; the package manifest retains its exact original bytes. Exact outputs and exit codes:
 
 | Step | Exit | Time | Evidence |
 | --- | --- | --- | --- |

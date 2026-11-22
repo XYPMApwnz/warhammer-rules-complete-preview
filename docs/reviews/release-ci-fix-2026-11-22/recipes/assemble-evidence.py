@@ -28,8 +28,8 @@ recipes=DEST/'recipes'; recipes.mkdir()
 shutil.copyfile(OUT/'RECIPES/clean-room.py',recipes/'clean-room.py')
 shutil.copyfile(OUT/'RECIPES/assemble-evidence.py',recipes/'assemble-evidence.py')
 rows='\n'.join(f"| {s['label']} | {s['exitCode']} | {s['elapsedMs']/1000:.3f} s | [output](logs/{s['log']}) |" for s in c['steps'])
-commands='\n'.join(s['command'] for s in c['steps'] if s['label'].startswith('WORKFLOW_'))
-report=f'''# Release CI dependency fix — 22 November 2026
+commands='\n'.join(s['command'] for s in c['steps'] if s['label'] in ('WORKFLOW_1','WORKFLOW_2','WORKFLOW_3','WORKFLOW_4'))
+report=f'''# Release CI dependency fix вЂ” 22 November 2026
 
 READY_FOR_REVIEW. Feature `codex/release-ci-fix-v1`: `{SHA}` from `{BASE}`.
 The runtime publication remains byte-for-byte identical to release candidate `818d3b0c34503a166b58b21810666feafe858bc5`.
