@@ -64,6 +64,10 @@ steps, unchanged historical debt and physical owner isolation. Negative controls
 reject changed approvals, missing/stale sources, forged scope, a foreign receiver,
 an executable path and unrelated closure evidence. This does not change runtime
 coverage or replace the existing owner-only regression controls.
+`npm run test:offline-availability` runs in quick and pre-FF. It verifies that
+unsupported/policy-denied optional service workers do not leave a retry promise,
+while actual current-worker offline preparation retains its retry timing,
+recovery events and Ready transition. No service-worker cache policy changes.
 `test:pwa-update` includes both working-screen manual updates and the initial
 bootstrap auto-update regression (`test:pwa-bootstrap`), with once-per-version
 failure recovery, saved-state retention, prepared offline startup and offline reopening controls.

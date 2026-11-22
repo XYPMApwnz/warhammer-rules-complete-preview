@@ -7,6 +7,7 @@
     "playwright": "1.61.1"
   },
   "scripts": {
+    "test:offline-availability": "node tests/helper-offline-availability-qa.mjs",
     "qa:pages-ci": "node tests/pages-runtime-ci-contract-qa.mjs",
     "test:offline-army-book": "node tests/browser/offline-army-book.mjs",
     "test:polish-6": "node tests/source-metadata-build-qa.mjs && node books/shared/application-v2/source-metadata-qa.mjs && node books/shared/army-book-app-v2/model-base-caption-qa.mjs && node books/shared/army-book-app-v2/import-notices-qa.mjs && node books/shared/army-book-app-v2/rule-term-visibility-qa.mjs && node books/shared/army-book-app-v2/navigation-geometry-qa.mjs",

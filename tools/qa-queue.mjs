@@ -49,6 +49,7 @@ node('tests/browser-catalog-loader-qa.mjs');
 node('tests/browser-catalog-cache-qa.mjs');
 node('tests/fast-first-load-cache-qa.mjs');
 node('tests/helper-offline-status-instance-qa.mjs');
+node('tests/helper-offline-availability-qa.mjs');
 node('tests/runtime-url-stamps-qa.mjs');
 node('tests/packaged-bootstrap-qa.mjs',['--self-test']);
 node('books/shared/army-book-app-v2/unit-art-visibility-qa.mjs');
