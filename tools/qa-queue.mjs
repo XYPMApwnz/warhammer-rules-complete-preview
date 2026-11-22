@@ -41,6 +41,7 @@ function node(file,extra=[]){const id=JSON.stringify([file,...extra]);if(mode===
 function expand(script){for(const part of script.split(/\s*&&\s*/)){const tokens=part.trim().split(/\s+/);if(tokens[0]==='npm'&&tokens[1]==='run')expand(pkg.scripts[tokens[2]]);else if(tokens[0]==='node'&&tokens[1]==='tests/helpers/run-qa-suite.mjs')for(const entry of tokens.slice(2))entry.startsWith('npm:')?expand(pkg.scripts[entry.slice(4)]):node(entry);else if(tokens[0]==='node')node(tokens[1],tokens.slice(2));else throw Error('Unsupported QA entry: '+part);}}
 jobs.push({command:'git',args:['diff','--check'],id:'git diff --check'});
 node('tests/qa-temp-qa.mjs');
+node('tests/pages-runtime-ci-contract-qa.mjs');
 node('tests/browser-failure-diagnostics-qa.mjs');
 node('tests/browser-compatibility-qa.mjs');
 node('tests/browser-compat-equivalence-qa.mjs');
