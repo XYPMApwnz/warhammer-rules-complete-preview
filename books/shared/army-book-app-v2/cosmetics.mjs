@@ -1,5 +1,13 @@
 /** Display-only formatting. Accepted fields and roster state stay untouched. */
 import {rosterUnitNames} from './roster-labels.mjs';
+/** A failed offline fetch cannot obtain a book that has not been saved yet. */
+export const armyBookLoadCopy=Object.freeze({
+  title:'Army Book unavailable',
+  offline:"This Army Book isn't saved for offline use yet. Open it once while online, then it will work offline.",
+  online:'The Army Book could not be loaded. Return Home and try again.',
+  home:'Back to Home',
+  retry:'Try again',
+});
 /** MODEL_BASE caption only; retained source fields keep their original value. */
 export function modelBaseCaption(value){
   return typeof value==='string'?value.replace(/(^|[(:]\s*)(?:[⌀Ø]\s*)?Use model(?=\s*\)|$)/g,'$1Use model base'):value;

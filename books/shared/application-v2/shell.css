@@ -28,6 +28,8 @@ body.v2-application { margin:0; min-height:100vh; background:#101216; color:#ece
 [data-v2-shell] .v2-home-card h3 { margin:0 0 10px; font:700 22px/1.2 system-ui,sans-serif; color:#f6f1e6; overflow-wrap:anywhere; }
 [data-v2-shell] .v2-home-card p { margin:0 0 24px; color:#c0c0ca; }
 [data-v2-shell] .v2-home-action { margin-top:auto; color:#e5c98d; font-size:13px; font-weight:650; }
+[data-v2-shell] .v2-load-action { display:inline-flex; align-items:center; box-sizing:border-box; min-height:44px; margin-top:20px; padding:10px 16px; border:1px solid #706451; border-radius:2px; color:#fff3d7; background:#292c33; font:600 14px/1.25 system-ui,sans-serif; text-decoration:none; cursor:pointer; }
+[data-v2-shell] .v2-load-action:focus-visible { outline:2px solid #dfc48a; outline-offset:3px; }
 /* Offset every book-local fixed surface by the common application bar. */
 body.v2-application.v2-v1-navigation [data-v2-shell] #appHeader { top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top)); height:var(--v1-nav-header); }
 body.v2-application.v2-v1-navigation [data-v2-shell] #main.v2-main { padding-top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + var(--v1-nav-header) + 34px); }
