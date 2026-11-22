@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "base": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "head": "9c18451452a478be2509314b6b80224313506ec9",
+  "file": "v2/core-reader-browser-qa.mjs",
+  "checks": {
+    "assertions": {
+      "before": 46,
+      "after": 46,
+      "exactOrderedEquality": true
+    },
+    "waits": {
+      "before": 15,
+      "after": 15,
+      "exactOrderedEquality": true
+    },
+    "timeouts": {
+      "before": 1,
+      "after": 1,
+      "exactOrderedEquality": true
+    }
+  },
+  "assertCorePopupByteIdentical": true
+}

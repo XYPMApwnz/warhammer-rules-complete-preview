@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "method": "Primary and independent subagent static review; no script entrypoint execution",
+  "scriptSha256": "4543d7069bd3474e81e9760bc87003e80a46a977066d06d69a649a44dd8244f1",
+  "scriptBytes": 142050,
+  "targets": "240 disjoint,248 operations,all qa-tmp descendants",
+  "protections": [
+    "dynamic current preview and TLS",
+    "active task and retained worktrees/common Git owners",
+    "retained BSData dependencies",
+    "launcher and history",
+    "all external evidence/Codex/personal paths"
+  ],
+  "allPreflightBeforeFirstRemoval": true,
+  "junctionsUnlinkOnly": true,
+  "worktreesViaGitRemoveAndPrune": true,
+  "separateOwnerApprovalRequired": true,
+  "executed": false,
+  "limitations": [
+    "No concurrent mutation during approved execution; normal TOCTOU remains",
+    "Process command lines/executable paths are checked; this is not full OS open-handle enumeration",
+    "Runtime error stops with partial-operation receipt; completed deletions cannot be undone"
+  ]
+}

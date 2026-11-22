@@ -1,0 +1,58 @@
+diff --git a/tools/qa-queue.mjs b/tools/qa-queue.mjs
+index 5f3f4ad3..ab6e3d11 100644
+--- a/tools/qa-queue.mjs
++++ b/tools/qa-queue.mjs
+@@ -41,6 +41,7 @@ function node(file,extra=[]){const id=JSON.stringify([file,...extra]);if(mode===
+ function expand(script){for(const part of script.split(/\s*&&\s*/)){const tokens=part.trim().split(/\s+/);if(tokens[0]==='npm'&&tokens[1]==='run')expand(pkg.scripts[tokens[2]]);else if(tokens[0]==='node'&&tokens[1]==='tests/helpers/run-qa-suite.mjs')for(const entry of tokens.slice(2))entry.startsWith('npm:')?expand(pkg.scripts[entry.slice(4)]):node(entry);else if(tokens[0]==='node')node(tokens[1],tokens.slice(2));else throw Error('Unsupported QA entry: '+part);}}
+ jobs.push({command:'git',args:['diff','--check'],id:'git diff --check'});
+ node('tests/qa-temp-qa.mjs');
++node('tests/browser-failure-diagnostics-qa.mjs');
+ node('tests/browser-compatibility-qa.mjs');
+ node('tests/browser-compat-equivalence-qa.mjs');
+ node('tests/browser-catalog-loader-qa.mjs');
+@@ -107,6 +108,7 @@ if(mode==='pre-ff'){
+  // not edited source files paired with the checkout's old cache inventory.
+  node('tools/pages-runtime-package.mjs',['--source',root,'--out',path.join(work,'runtime')]);
+  expand(pkg.scripts['test:browser']);
++ node('tests/browser/offline-army-book.mjs');
+  node('v2/sweep-polish-browser-qa.mjs');
+  node('v2/card-gained-rules-browser-qa.mjs');
+  node('v2/rule-popups-browser-qa.mjs');
+diff --git a/v2/core-reader-browser-qa.mjs b/v2/core-reader-browser-qa.mjs
+index b513d03f..89d9de3d 100644
+--- a/v2/core-reader-browser-qa.mjs
++++ b/v2/core-reader-browser-qa.mjs
+@@ -6,6 +6,7 @@ import os from 'node:os';
+ import {createServer} from 'node:http';
+ import {fileURLToPath} from 'node:url';
+ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
++import {createBrowserFailureDiagnostics} from '../tests/helpers/browser-failure-diagnostics.mjs';
+ import {encodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
+ 
+ const repo=fileURLToPath(new URL('../',import.meta.url)),reader=path.join(repo,'books/core-rules/reader');
+@@ -22,6 +23,7 @@ const server=createServer((request,response)=>{try{
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const origin=`http://127.0.0.1:${server.address().port}`,entry=`${origin}/v2/app.html`,browser=await launchChromium();
+ const core={destination:'CORE_RULES',registryId:'core-rules'};
++const failureDiagnostics=createBrowserFailureDiagnostics();
+ const ready=async page=>{await page.waitForFunction(()=>!!window.WarhammerAppV2);await page.evaluate(()=>window.WarhammerAppV2.ready);};
+ const child=async page=>(await page.locator('iframe.v2-core-reader').elementHandle()).contentFrame();
+ async function readyPopupLink(frame,selector,href){
+@@ -58,6 +60,7 @@ try{
+   for(const width of [1440,390]){
+     const context=await browser.newContext({viewport:{width,height:width===390?844:900},serviceWorkers:'block'});
+     context.setDefaultTimeout(15000);
++    failureDiagnostics.observe(context,`${width}px`);
+     context.on('page',page=>{
+       page.on('pageerror',error=>errors.push(`${width}: ${error.message}`));
+       page.on('response',response=>{if(response.status()>=400&&!response.url().endsWith('/favicon.ico'))missing.push(response.url());});
+@@ -156,4 +159,9 @@ try{
+   }
+   assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);
+   console.log(JSON.stringify({status:'PASS',results,screenshots}));
++}catch(error){
++  const diagnostics=path.join(screenshots,'failure-diagnostics');
++  try{console.error(`Core browser failure diagnostics: ${await failureDiagnostics.write(diagnostics,error)}`);}
++  catch(captureError){console.error(`Core browser failure diagnostics could not be saved at ${diagnostics}: ${captureError.message}`);}
++  throw error;
+ }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

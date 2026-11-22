@@ -1,0 +1,2 @@
+# Preserve the reviewed owner script and its SHA256, including normal PowerShell CRLF.
+disk-inventory/apply-3.ps1 -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

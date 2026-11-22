@@ -1,0 +1,121 @@
+# GitHub branch inventory — 22 November 2026
+
+Snapshot: `2026-11-22T00:54:49.634040+00:00`. Source `e08ec20df980d4e6700c32b65069de983b250e03`; release `e3db1b345eca989436eea7af758900eee7795203`.
+
+**Read-only inventory. No GitHub branch was deleted or changed. Deletion remains stopped until separate owner approval.**
+
+Classification uses `git merge-base --is-ancestor <exact remote tip> <source/release>`. A successful test proves ancestry; same names or matching files are not used as evidence. All `*-evidence` branches are retained. `main`, `unified-v2-release`, and `codex/unified-v2-source` are protected.
+
+The object graph is read from an isolated bare audit repository with a read-only alternate pointing at existing objects. Missing objects, if any, are fetched only into the audit repository. Existing working-tree refs are unchanged. Commit author emails are excluded.
+
+| Classification | Count |
+| --- | ---: |
+| CANDIDATE_MERGED | 63 |
+| CANDIDATE_RELEASED | 1 |
+| KEEP_EVIDENCE | 17 |
+| KEEP_PROTECTED | 3 |
+| KEEP_UNMERGED | 3 |
+
+Deletion candidates: **64**. All remote codex branches plus the two non-codex protected branches appear below.
+
+| Branch | Exact tip | Last commit date | Last commit subject | Source ancestor | Release ancestor | Classification |
+| --- | --- | --- | --- | --- | --- | --- |
+| codex/am-dg-recipient-gaps-v1 | 82f628e4524a94c589ef108a416ad72a33ff99d1 | 2026-11-06T10:56:47+03:00 | fix: gate recipient rule text by selected source equipment | True | False | CANDIDATE_MERGED |
+| codex/auto-qa-sweep-2-evidence | 2ac1badd431f2c3ae3a5d0a6d43fbfa9c539de46 | 2026-11-19T16:54:34+03:00 | docs: record read-only pre-release site sweep v2 | False | False | KEEP_EVIDENCE |
+| codex/backlog-triage-v1 | 53cef239c49fc66fb00dd48bb4727088bf791e32 | 2026-11-13T13:47:37+03:00 | docs: publish English backlog triage report | False | False | KEEP_UNMERGED |
+| codex/book-passport-v1 | e8841df84cb443bcbd5234d3af2ab46a2cf1773f | 2026-11-12T06:23:31+03:00 | test: enforce strict book passports and unchanged producer plans | True | False | CANDIDATE_MERGED |
+| codex/book-update-command-v1 | d55a3515d2cb96866f80a2d30b3017cd9496fc95 | 2026-11-13T00:20:40+03:00 | test: await canonical Core popup navigation | True | False | CANDIDATE_MERGED |
+| codex/browser-compat-evidence | 00b024e3618533f35fd7eaced4bc58a8d44ab544 | 2026-11-21T01:56:25+03:00 | Document browser compatibility, exact full gate, offline update and timing evidence | False | False | KEEP_EVIDENCE |
+| codex/browser-compat-v1 | b0aa1273b907020776dec41ca0466d646e5435e2 | 2026-11-20T23:23:44+03:00 | Load runtime JSON without import attributes and defer the full source catalog | True | False | CANDIDATE_MERGED |
+| codex/card-gained-rules-evidence | 18b3ccb4005ee59575633b75050111d664df25fb | 2026-11-17T09:01:58+03:00 | docs: publish gained rule card review evidence | False | False | KEEP_EVIDENCE |
+| codex/card-gained-rules-v1 | 9b99ade9975346afc3644ade7f69d01ed71cce31 | 2026-11-17T04:41:23+03:00 | test: cover hidden captions and canonical rule navigation | True | False | CANDIDATE_MERGED |
+| codex/card-polish-2-v1 | 4bd213b92f8a1b01fba5d5a11d239be1b9bba244 | 2026-11-14T14:28:04+03:00 | fix: keep rule and battle choice text references independent | True | False | CANDIDATE_MERGED |
+| codex/card-texts-v1 | 56b5c82466bafad98dbe5157525331556b48a03d | 2026-11-13T18:18:59+03:00 | test: cover shared rule text recipients and library source dates | True | False | CANDIDATE_MERGED |
+| codex/compatible-related-panel-v1 | 985a1da4a842741ab0005d8d0388bc5b6aa70724 | 2026-11-07T10:30:21+03:00 | Respect confirmed CHARACTER on a physical singleton Enhancement bearer | True | False | CANDIDATE_MERGED |
+| codex/core-importer-a-v1 | 8ab6787ce503171d852a86f52ffb20467b315959 | 2026-11-11T21:21:17+03:00 | test: guard Core candidate ownership and production isolation | True | False | CANDIDATE_MERGED |
+| codex/core-switch-b-v1 | 913cfef538bc96b7f2d9b55e21995c631cabffeb | 2026-11-12T02:57:05+03:00 | test: refresh Core-only coverage hashes and native card count | True | False | CANDIDATE_MERGED |
+| codex/csm-tau-recipient-gaps-v1 | 67f10ef5e754b54b55f67ff7a8b44007c32e11a9 | 2026-11-06T12:39:50+03:00 | fix: declare reviewed Tau formed-unit text recipients | True | False | CANDIDATE_MERGED |
+| codex/csm-tau-tyranids-ec-rule-recipients | 8e9a95289168048086639ba8099f2e686023de9b | 2026-11-05T02:46:11+03:00 | Record reviewed Tau Tyranids and Emperors Children text recipients | True | False | CANDIDATE_MERGED |
+| codex/dg-am-rule-recipients | 7579401a1dd3a18c05543139a47b58b2d25f83c5 | 2026-10-31T18:19:24+03:00 | Record source-proven Adeptus Mechanicus text recipients | True | False | CANDIDATE_MERGED |
+| codex/dg-source-enrollment | 023554a1805935074156a0e3afa80effedbfb5f4 | 2026-10-28T01:08:19+03:00 | Register accepted Death Guard wargear source and guard enrollment | True | False | CANDIDATE_MERGED |
+| codex/disk-e-audit-evidence | 7fb8d0ad89aaa08f6d5ae34027907d679a305c42 | 2026-11-16T11:34:49+03:00 | docs: preserve cleanup archives and prepare reviewed deletion plan | False | False | KEEP_EVIDENCE |
+| codex/epic-hero-enhancements-v1 | 949d98f9699d660e87c753d3e2385b72a7bf465f | 2026-11-11T01:36:10+03:00 | fix: preserve Epic Hero validation and eligible QA bearers | True | False | CANDIDATE_MERGED |
+| codex/f1-detachment-recipients | ebd6232e27bece8abdb8a8f5df424c3db529ba98 | 2026-10-28T18:44:17+03:00 | Wire F1 checks into required roster, effects and browser QA | True | False | CANDIDATE_MERGED |
+| codex/f2-card-recipients | 8dbbb9e5f9032a009939d3dd70a62f1ac068ef8a | 2026-10-28T22:25:27+03:00 | Fix singleton carrier labels and deduplicate canonical detachment fields | True | False | CANDIDATE_MERGED |
+| codex/fabius-safe-import-v1 | feea3583775b69db1f9c42943cca3e5dc43630e5 | 2026-11-13T14:14:54+03:00 | test: cover declared formations faction refusals and incomplete export hints | True | False | CANDIDATE_MERGED |
+| codex/fast-first-load-evidence | 5a57f3f7fe741d8c7ec035e933f29c0ddf496ae9 | 2026-11-22T03:15:32+03:00 | docs(review): record final QA pass and reviewed preview | False | False | KEEP_EVIDENCE |
+| codex/fast-first-load-v1 | e08ec20df980d4e6700c32b65069de983b250e03 | 2026-11-21T21:28:01+03:00 | perf(pwa): open verified startup before background offline preparation | True | False | CANDIDATE_MERGED |
+| codex/glossary-builder | 0d67e4a274660284b0d24975525e5d2c89703052 | 2026-11-05T21:27:49+03:00 | docs: align freshness tracker with verified result | True | False | CANDIDATE_MERGED |
+| codex/i2a-shield-drone | 21669a052a5b1a3531deda83cf64643609ca83c6 | 2026-11-02T13:28:35+03:00 | Fix physical selection quantity proof for split model groups | True | False | CANDIDATE_MERGED |
+| codex/i2b-tau-choices | dccca461ad72c69f2dc695c10ffadf189d5a359e | 2026-11-02T15:42:42+03:00 | Resolve Tau recipient and weapon choices without rewriting runtime books | True | False | CANDIDATE_MERGED |
+| codex/i2c-sm-static-model | ce555e10670b7e10b028964b394f485a458ecaab | 2026-11-02T17:16:12+03:00 | Prepare static MODEL source bindings for Veteran Bodyguard | True | False | CANDIDATE_MERGED |
+| codex/i3-csm-ec-execution | 0a7f4874945db52f8075bdc6a362a8db882c12f9 | 2026-11-02T22:37:32+03:00 | Share atomic roster condition execution for CSM and EC | True | False | CANDIDATE_MERGED |
+| codex/i4-unified-roster-service | 0c7dfdfcebd81fe585a669b789a5ad13da940476 | 2026-11-03T12:04:47+03:00 | Add scoped UI import timing and native call diagnostics | True | False | CANDIDATE_MERGED |
+| codex/import-messages-evidence | 633cd83e924bb3707305321e596f232b1e477b29 | 2026-11-18T18:41:56+03:00 | docs: record final import messages acceptance and reviewed preview | False | False | KEEP_EVIDENCE |
+| codex/import-messages-v1 | 4060074ae0c7888571367f99f7cb9cc375c167ba | 2026-11-18T16:53:47+03:00 | test: retain exact points warnings and independently prove price origins | True | False | CANDIDATE_MERGED |
+| codex/keywords-access-v1 | 0e887a93c298eddc09b18dcc8c2dfa43d434c439 | 2026-11-14T11:23:25+03:00 | fix: preserve keyword membership and import validation boundaries | True | False | CANDIDATE_MERGED |
+| codex/load-audit-evidence | 2c12f7536007e19ba9fcd70599bf57f2e378d891 | 2026-11-21T15:27:18+03:00 | docs: audit mobile loading and precache critical path | False | False | KEEP_EVIDENCE |
+| codex/markup-census-evidence | a854d1735ebc780ed587b6be86d2a6581584c7b6 | 2026-11-19T23:43:35+03:00 | docs: publish native rule markup census | False | False | KEEP_EVIDENCE |
+| codex/markup-gap-close-evidence | cdfbab36e710f56b54359bbeb5adb51278c34353 | 2026-11-20T10:48:12+03:00 | docs: publish scoped markup closure and recipient audit for review | False | False | KEEP_EVIDENCE |
+| codex/markup-gap-close-v1 | 50c9a9c89d8e66e0466dbeeabc918ec1d465c87f | 2026-11-20T10:42:51+03:00 | feat: close reviewed battlefield markup debt with scoped owner guard | True | False | CANDIDATE_MERGED |
+| codex/markup-gate-evidence | a594b2b19b0e654c774b33f7a3ca417a8b76790a | 2026-11-20T02:07:43+03:00 | docs: publish markup gate review evidence | False | False | KEEP_EVIDENCE |
+| codex/markup-gate-v1 | 9efbd95f67c5e65bc62b477e36acf9d710ff4784 | 2026-11-20T02:05:28+03:00 | test: scope initial markup totals to their introducing ledger | True | False | CANDIDATE_MERGED |
+| codex/markup-unknown-evidence | 17337be1e87fb85e06d378aff4c4db0241360c25 | 2026-11-21T11:55:28+03:00 | Record approved markup closures and complete sequential verification | False | False | KEEP_EVIDENCE |
+| codex/markup-unknown-v1 | 8579a7a77c7f5e8dad291afc11b27aab3cd9d73a | 2026-11-21T10:07:23+03:00 | Close 156 owner-reviewed markup decisions and retain exact named debt | True | False | CANDIDATE_MERGED |
+| codex/mfm-update-v1 | 35a5e4d59c9343b4c74f8e9b4833ee095f59f411 | 2026-11-12T12:02:43+03:00 | fix: preserve MFM group references in reviewed regroupings | True | False | CANDIDATE_MERGED |
+| codex/new-recruit-export-import-v1 | 70be7d9d37a71b7ab91d79d3effd7019bb3b619a | 2026-11-06T18:11:50+03:00 | Prove singleton New Recruit equipment ownership before roster load | True | False | CANDIDATE_MERGED |
+| codex/new-recruit-model-names-v1 | c0fab930a4f45ba05c33b66834fbf979518d91ef | 2026-11-06T23:43:50+03:00 | Derive source-backed New Recruit MODEL names from pinned BSData | True | False | CANDIDATE_MERGED |
+| codex/new-recruit-plain-header-v1 | 2bced37f2733c97595407790429a8aa60c07b2a8 | 2026-11-06T20:51:00+03:00 | Import unlabelled New Recruit headers through shared book-aware resolution | True | False | CANDIDATE_MERGED |
+| codex/norma-1 | f85c0b59f00875c9a22bfdcec0070e92b78df7b8 | 2026-11-04T16:34:10+03:00 | Complete source enrollment for active Army Book build inputs | True | False | CANDIDATE_MERGED |
+| codex/nr-v3725-header-evidence | 5f88e125835ade0c4d544d3fb7dd6fea699df13c | 2026-11-15T23:10:35+03:00 | docs: publish NR v37.25 header review evidence | False | False | KEEP_EVIDENCE |
+| codex/nr-v3725-header-v1 | 9a48765744f32f467f6e53c1f85e94921cbdd54b | 2026-11-15T21:39:41+03:00 | test: distinguish supported plain header examples | True | False | CANDIDATE_MERGED |
+| codex/o1-recipient-rule-text | 0ba0426b592f4a16f115b25452721e7e0e39491b | 2026-10-31T02:22:37+03:00 | Show recorded rule text on attached recipient components | True | False | CANDIDATE_MERGED |
+| codex/o3-detachment-card-text-v1 | 29a866d534ef64b5e7ed5fc1f97bf87e267f9f8e | 2026-11-07T12:54:11+03:00 | Confirm Wardens physical source binding | True | False | CANDIDATE_MERGED |
+| codex/official-updates-v1 | 021578691affac6bf75433bc813aded7789709a0 | 2026-11-13T11:08:59+03:00 | test: read accepted source text through the shared official updater | True | False | CANDIDATE_MERGED |
+| codex/polish-5-evidence | b09a111f1038422a0ac5a5b913443e6db5bcea19 | 2026-11-19T22:34:09+03:00 | docs: record polish 5 popup fixes and DA performance diagnosis | False | False | KEEP_EVIDENCE |
+| codex/polish-5-v1 | 635c503b4bb45d13e3c2cc92c439b86a75e1c954 | 2026-11-19T20:58:15+03:00 | test: retain unique canonical rule locator preference | True | False | CANDIDATE_MERGED |
+| codex/polish-6-evidence | cc39f8236d52c0bb08c3395ef782e1a6375c5eac | 2026-11-20T21:44:05+03:00 | Document polish 6 final verification and review gallery | False | False | KEEP_EVIDENCE |
+| codex/polish-6-v1 | 9876164de85f1e35aa2cf070a3eb9de662093980 | 2026-11-20T20:18:34+03:00 | Generate small startup source metadata and preserve closed resource checks | True | False | CANDIDATE_MERGED |
+| codex/preff-speedup-v1 | 242fc764ca0890e10b3c7c2b6270291fa0b0a070 | 2026-11-14T09:17:55+03:00 | docs: publish pre-ff timing review | False | False | KEEP_UNMERGED |
+| codex/release-candidate-e3db1b34 | e3db1b345eca989436eea7af758900eee7795203 | 2026-11-21T03:39:26+03:00 | Release candidate: Unified V2 from reviewed source 6f2e5fb23643fc0041efcd7006f3e150bd5ce4be | False | True | CANDIDATE_RELEASED |
+| codex/release-candidate-evidence | b3b92162ce3180894b4fa1aeaff4acdc75033a97 | 2026-11-21T03:52:55+03:00 | Record release candidate v3 package, browser acceptance and rollback evidence | False | False | KEEP_EVIDENCE |
+| codex/release-docs-v1 | 6f2e5fb23643fc0041efcd7006f3e150bd5ce4be | 2026-11-21T02:44:38+03:00 | Clarify Codex release authorization and history-preserving rollback | True | False | CANDIDATE_MERGED |
+| codex/roster-condition-binding-am-dg | cff58491aa10132aaa6a36b37dba6c771a50ad2a | 2026-11-01T02:50:46+03:00 | Fix accepted rule source QA and reuse recipient test sessions | True | False | CANDIDATE_MERGED |
+| codex/roster-navigation-evidence | 28297c76e1bcf59b1ff1c88f76562f1026c40e7b | 2026-11-18T04:43:39+03:00 | docs: archive roster navigation review evidence | False | False | KEEP_EVIDENCE |
+| codex/roster-navigation-v1 | 5bc1b038437fcac86966f87371760da94d7e9b38 | 2026-11-18T04:30:50+03:00 | test: verify visible desktop roster section navigation | True | False | CANDIDATE_MERGED |
+| codex/rule-encoding-census | aa79193e7a458ad77c32b986c2fe9e84f26bd26f | 2026-10-29T01:33:34+03:00 | docs(audit): inventory rule encoding across nine books | True | False | CANDIDATE_MERGED |
+| codex/rule-popups-evidence | 3e0b6381eeee5b2113aaef4a8587c888fa2a47ef | 2026-11-17T22:32:33+03:00 | docs: publish rule popup review evidence | False | False | KEEP_EVIDENCE |
+| codex/rule-popups-v1 | c477d20aaa16f850b56f18aa878d6b5fb8b4057f | 2026-11-17T18:10:33+03:00 | fix: preserve chip labels and suppress self source summaries | True | False | CANDIDATE_MERGED |
+| codex/show-1-card-labels | fe40b913da96ad6b02a11ee18c4702259d28bb66 | 2026-10-31T05:11:54+03:00 | Clean up rule-card labels and redundant metric annotations | True | False | CANDIDATE_MERGED |
+| codex/show-2-card-display | 1d6ed00ec299331239b18261c8edbf0d45a39f59 | 2026-10-31T12:42:12+03:00 | Fix component keywords and remaining rule-card presentation duplicates | True | False | CANDIDATE_MERGED |
+| codex/sm-ba-da-rule-recipients | 7882b6583de1ca137d1ba147310a5158b9a9258a | 2026-11-04T17:10:57+03:00 | Record reviewed native Blood Angels and Dark Angels text recipients | True | False | CANDIDATE_MERGED |
+| codex/sm-da-recipient-gaps-v1 | 6fdb77a320b3907e206e08f9c4a6167c12593eb7 | 2026-11-06T15:19:48+03:00 | Present unscoped source UNIT rules on attached components | True | False | CANDIDATE_MERGED |
+| codex/source-catalog-registry-v1 | 7b15dc36425ac577b6928837ec9983409972e278 | 2026-11-11T16:33:00+03:00 | fix: keep source catalog as append-only registry with pre-write integrity | True | False | CANDIDATE_MERGED |
+| codex/sw-update-v1 | 62b16eb233c4df5dff7b3ba17a55d39fd31093f3 | 2026-11-15T04:12:42+03:00 | test: cover selected-book startup code dependencies | True | False | CANDIDATE_MERGED |
+| codex/sweep-polish-v1 | 175d41d14a58a05340b14530a959991d171a8765 | 2026-11-15T13:39:01+03:00 | test: guard player text names shared prose and mobile headings | True | False | CANDIDATE_MERGED |
+| codex/test-hygiene-1 | f3cb1565c17a30121b8ff1bc202883ece774b385 | 2026-11-05T13:21:40+03:00 | test: use the shared managed browser launcher for shell QA | True | False | CANDIDATE_MERGED |
+| codex/test-hygiene-2 | b4c7e9738941e82c23fd40c8bb29527bcc93fada | 2026-11-05T16:21:59+03:00 | test: retain independent accepted-source corpus controls | True | False | CANDIDATE_MERGED |
+| codex/test-hygiene-min-v1 | 2d5defae9e9677e64c48814055ba9b2eb3c24452 | 2026-11-14T00:18:57+03:00 | docs: require exact SHA authorization for release fast-forwards | True | False | CANDIDATE_MERGED |
+| codex/test-speedup | feb2fee2e67448967092e05d813bae82445209ac | 2026-10-30T17:17:14+03:00 | Reuse validated roster runtimes and owned source-book copies | True | False | CANDIDATE_MERGED |
+| codex/test-temp-cleanup-tau | 3bb12ef850a477fde6b78df40e7644646c9304c6 | 2026-10-31T15:17:20+03:00 | Manage QA scratch lifecycles and reuse Tau test setup | True | False | CANDIDATE_MERGED |
+| codex/translate-1-recipients | 98342d0670117e15dd8fb7871b2132252a128a92 | 2026-10-29T16:05:21+03:00 | Replace remaining recipient review aliases | True | False | CANDIDATE_MERGED |
+| codex/translate-2-conditions | 75d322e4e3274f14d7e2a81abace3ba63c784ec5 | 2026-10-29T18:47:18+03:00 | Unify recorded FIELD conditions and shared computation | True | False | CANDIDATE_MERGED |
+| codex/translate-3-sources | 874f3ccb2e21a561828985875c19c52146d387af | 2026-10-30T12:17:39+03:00 | Complete source-reference validation and refresh derived cache metadata | False | False | KEEP_UNMERGED |
+| codex/translate-3-sources-v2 | b2eec6b2c109c7bc72ca5d469f56533207aa87e2 | 2026-10-30T12:54:31+03:00 | Unify source references across nine books with verified parity and generated audit data | True | False | CANDIDATE_MERGED |
+| codex/tyranids-ec-rule-coverage-v1 | 427796be5d29766acedc59338537f04667c0ba67 | 2026-11-07T02:01:20+03:00 | Complete reviewed Emperor's Children rule text contracts and browser coverage | True | False | CANDIDATE_MERGED |
+| codex/unified-v2-source | e08ec20df980d4e6700c32b65069de983b250e03 | 2026-11-21T21:28:01+03:00 | perf(pwa): open verified startup before background offline preparation | True | False | KEEP_PROTECTED |
+| codex/unified-v2-staging | 0c7dfdfcebd81fe585a669b789a5ad13da940476 | 2026-11-03T12:04:47+03:00 | Add scoped UI import timing and native call diagnostics | True | False | CANDIDATE_MERGED |
+| main | c5200d40f81896febf6e143053111948374ef92d | 2026-07-27T16:49:47+03:00 | Lock background scrolling for open popups | True | True | KEEP_PROTECTED |
+| unified-v2-release | e3db1b345eca989436eea7af758900eee7795203 | 2026-11-21T03:39:26+03:00 | Release candidate: Unified V2 from reviewed source 6f2e5fb23643fc0041efcd7006f3e150bd5ce4be | False | True | KEEP_PROTECTED |
+
+## Proposed deletion command — not executed
+
+This command contains only the snapshot-approved candidate categories, never evidence/protected/unmerged branches. It is a proposal, not authorization. Recheck every exact remote tip from the JSON and rerun the ancestry checks immediately before running it; stop if a tip has moved. Do not add force options.
+
+```powershell
+git push https://github.com/XYPMApwnz/warhammer-rules-complete-preview.git --delete codex/am-dg-recipient-gaps-v1 codex/book-passport-v1 codex/book-update-command-v1 codex/browser-compat-v1 codex/card-gained-rules-v1 codex/card-polish-2-v1 codex/card-texts-v1 codex/compatible-related-panel-v1 codex/core-importer-a-v1 codex/core-switch-b-v1 codex/csm-tau-recipient-gaps-v1 codex/csm-tau-tyranids-ec-rule-recipients codex/dg-am-rule-recipients codex/dg-source-enrollment codex/epic-hero-enhancements-v1 codex/f1-detachment-recipients codex/f2-card-recipients codex/fabius-safe-import-v1 codex/fast-first-load-v1 codex/glossary-builder codex/i2a-shield-drone codex/i2b-tau-choices codex/i2c-sm-static-model codex/i3-csm-ec-execution codex/i4-unified-roster-service codex/import-messages-v1 codex/keywords-access-v1 codex/markup-gap-close-v1 codex/markup-gate-v1 codex/markup-unknown-v1 codex/mfm-update-v1 codex/new-recruit-export-import-v1 codex/new-recruit-model-names-v1 codex/new-recruit-plain-header-v1 codex/norma-1 codex/nr-v3725-header-v1 codex/o1-recipient-rule-text codex/o3-detachment-card-text-v1 codex/official-updates-v1 codex/polish-5-v1 codex/polish-6-v1 codex/release-candidate-e3db1b34 codex/release-docs-v1 codex/roster-condition-binding-am-dg codex/roster-navigation-v1 codex/rule-encoding-census codex/rule-popups-v1 codex/show-1-card-labels codex/show-2-card-display codex/sm-ba-da-rule-recipients codex/sm-da-recipient-gaps-v1 codex/source-catalog-registry-v1 codex/sw-update-v1 codex/sweep-polish-v1 codex/test-hygiene-1 codex/test-hygiene-2 codex/test-hygiene-min-v1 codex/test-speedup codex/test-temp-cleanup-tau codex/translate-1-recipients codex/translate-2-conditions codex/translate-3-sources-v2 codex/tyranids-ec-rule-coverage-v1 codex/unified-v2-staging
+```
+
+## Scope limitation
+
+An ancestor feature tip is recoverable from reviewed source history, but branch names/bookmarks are still removed by deletion. Evidence branches are retained even when their content might be recoverable elsewhere. Already released candidates are candidates only when their exact tip is an ancestor of current release; matching source tree alone is insufficient.

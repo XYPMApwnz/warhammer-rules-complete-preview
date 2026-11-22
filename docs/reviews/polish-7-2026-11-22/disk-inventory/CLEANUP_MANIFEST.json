@@ -1,0 +1,3578 @@
+{
+  "schema": "polish-7-cleanup-plan/v1",
+  "capturedUtc": "2026-11-22T00:57:30.3607190Z",
+  "applyWasExecuted": false,
+  "disjointTargets": [
+    "E:/Warhammer/qa-tmp/auto-qa-sweep-2",
+    "E:/Warhammer/qa-tmp/auto-qa-sweep-v1",
+    "E:/Warhammer/qa-tmp/backlog-triage-v1",
+    "E:/Warhammer/qa-tmp/book-passport-v1",
+    "E:/Warhammer/qa-tmp/book-unification-v1",
+    "E:/Warhammer/qa-tmp/book-update-command-v1",
+    "E:/Warhammer/qa-tmp/browser-compat",
+    "E:/Warhammer/qa-tmp/card-gained-rules",
+    "E:/Warhammer/qa-tmp/card-polish-2-v1",
+    "E:/Warhammer/qa-tmp/cards-cosmetics-u2-scripts",
+    "E:/Warhammer/qa-tmp/cards-cosmetics-v1-scripts",
+    "E:/Warhammer/qa-tmp/core-importer-a-v1-20261111",
+    "E:/Warhammer/qa-tmp/core-rules-refresh-v1-scripts",
+    "E:/Warhammer/qa-tmp/core-rules-refresh-v1-tests",
+    "E:/Warhammer/qa-tmp/core-switch-b-v1-20261111",
+    "E:/Warhammer/qa-tmp/core-switch-b-v1-clarification-3",
+    "E:/Warhammer/qa-tmp/core-switch-b-v1-runtime-baseline",
+    "E:/Warhammer/qa-tmp/core-switch-b-v1-runtime-baseline-8ab",
+    "E:/Warhammer/qa-tmp/core-switch-b-v1-runtime-preview",
+    "E:/Warhammer/qa-tmp/core-switch-b-v1-runtime-working-final",
+    "E:/Warhammer/qa-tmp/core-switch-b-v1-term-audit",
+    "E:/Warhammer/qa-tmp/disk-e-audit",
+    "E:/Warhammer/qa-tmp/epic-hero-enhancements-v1-scripts",
+    "E:/Warhammer/qa-tmp/fabius-safe-import-v1",
+    "E:/Warhammer/qa-tmp/fast-first-load/base",
+    "E:/Warhammer/qa-tmp/fast-first-load/cold-core-fast4g-10x",
+    "E:/Warhammer/qa-tmp/fast-first-load/cold-core-fast4g-10x-v2",
+    "E:/Warhammer/qa-tmp/fast-first-load/core-popup",
+    "E:/Warhammer/qa-tmp/fast-first-load/experiment-c4",
+    "E:/Warhammer/qa-tmp/fast-first-load/experiment-c4-input",
+    "E:/Warhammer/qa-tmp/fast-first-load/experiment-c4.experiment.json",
+    "E:/Warhammer/qa-tmp/fast-first-load/experiment-c6",
+    "E:/Warhammer/qa-tmp/fast-first-load/experiment-c6-input",
+    "E:/Warhammer/qa-tmp/fast-first-load/experiment-c6.experiment.json",
+    "E:/Warhammer/qa-tmp/fast-first-load/experiment-c8",
+    "E:/Warhammer/qa-tmp/fast-first-load/experiment-c8-input",
+    "E:/Warhammer/qa-tmp/fast-first-load/experiment-c8.experiment.json",
+    "E:/Warhammer/qa-tmp/fast-first-load/historical-updates",
+    "E:/Warhammer/qa-tmp/fast-first-load/list-only",
+    "E:/Warhammer/qa-tmp/fast-first-load/package-base",
+    "E:/Warhammer/qa-tmp/fast-first-load/package-final-c4",
+    "E:/Warhammer/qa-tmp/fast-first-load/package-smoke-1",
+    "E:/Warhammer/qa-tmp/fast-first-load/package-smoke-2",
+    "E:/Warhammer/qa-tmp/fast-first-load/preff-final-tmp",
+    "E:/Warhammer/qa-tmp/fast-first-load/preff-tmp",
+    "E:/Warhammer/qa-tmp/fast-first-load/preview-smoke",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-book-1-8KEQ8T",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-book-2-1QdSRq",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-book-3-ysVmDl",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-roster-1-28mB3j",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-roster-2-CGhQub",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-roster-3-ZXzwrr",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-1-67rJr5",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-1-8GqwVM",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-1-QDN6nZ",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-2-1k0giz",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-2-x1bNMa",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-2-zyvOc7",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-3-gs8SD9",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-3-N1ZoCA",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-3-qr8UMQ",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-sm-book-1-hjuC2k",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-sm-book-2-1Ao61t",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-sm-book-3-u5SepH",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-book-1-t2RSrN",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-book-2-LIWQJ8",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-book-3-Wj5Dk4",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-roster-1-iNCAdG",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-roster-2-8z11Zb",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-roster-3-o8bpM1",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-1-7N7HCN",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-1-aL9Egm",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-1-wVomC2",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-2-0iYWy2",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-2-4QnUhp",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-2-hRE2xJ",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-3-1gxiAa",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-3-gNq4Bs",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-3-M4RHF9",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-sm-book-1-unTKgW",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-sm-book-2-8RuYeG",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-sm-book-3-xydCHC",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-book-1-zo8bQF",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-book-2-bT4RmS",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-book-3-C7p4ND",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-roster-1-itsHAP",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-roster-2-6r7kqJ",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-roster-3-wCL1w9",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-1-69J2ua",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-1-sJKsnv",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-1-YuLhzF",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-2-RNWmQR",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-3-y41rQ3",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-sm-book-1-8ColgB",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-sm-book-2-fG8tNT",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-sm-book-3-wioqWy",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-book-1-3PZUIS",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-book-2-UMWTBR",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-book-3-XhSDAl",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-roster-1-FFM7f8",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-roster-2-Xko6a4",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-roster-3-SpogFC",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-home-1-cFhBnw",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-home-2-TTcI3C",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-home-3-UHCsps",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-sm-book-1-d9uPZt",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-sm-book-2-wKzK5h",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-sm-book-3-EtJNw4",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-book-1-DV1SQK",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-book-2-UJ36g2",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-book-3-YIn1jD",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-roster-1-YnvbGb",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-roster-2-fxRXVt",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-roster-3-1sCbpB",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-home-1-XIpVX4",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-home-2-s2UDbr",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-home-3-4kiPFm",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-sm-book-1-ZQWKnU",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-sm-book-2-YSAhyS",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-sm-book-3-8SUWeC",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-book-1-o4hsDg",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-book-2-plS1Vf",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-book-3-kWq4Mx",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-roster-1-zmbpXZ",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-roster-2-JpFujQ",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-roster-3-6I9dzI",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-home-1-RfGSqp",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-home-2-HLzXML",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-home-3-uUkkop",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-sm-book-1-EMeHTg",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-sm-book-2-EGgB2c",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-sm-book-3-qJ4pBU",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-calibration-fast4g-qK8RfK",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-calibration-fast4g-VsIYyc",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-calibration-slow4g-mCPmIi",
+    "E:/Warhammer/qa-tmp/fast-first-load/profile-calibration-slow4g-NxViYw",
+    "E:/Warhammer/qa-tmp/fast-first-load/proposal",
+    "E:/Warhammer/qa-tmp/fast-first-load/test-work/wh-browser-gGKxna",
+    "E:/Warhammer/qa-tmp/fast-first-load/test-work/wh-pwa-bootstrap-work-kjvqsk",
+    "E:/Warhammer/qa-tmp/import-messages",
+    "E:/Warhammer/qa-tmp/keywords-access-v1",
+    "E:/Warhammer/qa-tmp/lan-preview",
+    "E:/Warhammer/qa-tmp/load-audit",
+    "E:/Warhammer/qa-tmp/markup-census",
+    "E:/Warhammer/qa-tmp/markup-gap-close/assemble-audit-sm-am-tau.py",
+    "E:/Warhammer/qa-tmp/markup-gap-close/audit-dg-csm-ec-tyr.mjs",
+    "E:/Warhammer/qa-tmp/markup-gap-close/audit-observed.mjs",
+    "E:/Warhammer/qa-tmp/markup-gap-close/audit-replay-fixtures.mjs",
+    "E:/Warhammer/qa-tmp/markup-gap-close/audit-sm-am-tau-native.mjs",
+    "E:/Warhammer/qa-tmp/markup-gap-close/audit-sm-am-tau.py",
+    "E:/Warhammer/qa-tmp/markup-gap-close/capture-inventory.mjs",
+    "E:/Warhammer/qa-tmp/markup-gap-close/evidence.index",
+    "E:/Warhammer/qa-tmp/markup-gap-close/finalize-audit-dg-csm-ec-tyr.py",
+    "E:/Warhammer/qa-tmp/markup-gap-close/native-inventory.json",
+    "E:/Warhammer/qa-tmp/markup-gap-close/panegyric-display-plan.mjs",
+    "E:/Warhammer/qa-tmp/markup-gap-close/report-audit-sm-am-tau.py",
+    "E:/Warhammer/qa-tmp/markup-gap-close/tome-projection.mjs",
+    "E:/Warhammer/qa-tmp/markup-gate/census-seed.json",
+    "E:/Warhammer/qa-tmp/markup-gate/evidence.index",
+    "E:/Warhammer/qa-tmp/markup-gate/seed-registry.mjs",
+    "E:/Warhammer/qa-tmp/markup-unknown/base",
+    "E:/Warhammer/qa-tmp/markup-unknown/evidence",
+    "E:/Warhammer/qa-tmp/mfm-update-v1",
+    "E:/Warhammer/qa-tmp/official-updates-v1",
+    "E:/Warhammer/qa-tmp/polish-5/evidence.index",
+    "E:/Warhammer/qa-tmp/polish-5/package-final",
+    "E:/Warhammer/qa-tmp/polish-5/package-stable",
+    "E:/Warhammer/qa-tmp/polish-5/package-targeted",
+    "E:/Warhammer/qa-tmp/polish-6/ab-base",
+    "E:/Warhammer/qa-tmp/polish-6/ab-final-base",
+    "E:/Warhammer/qa-tmp/polish-6/ab-final-head",
+    "E:/Warhammer/qa-tmp/polish-6/ab-head",
+    "E:/Warhammer/qa-tmp/polish-6/base50-ready.json",
+    "E:/Warhammer/qa-tmp/polish-6/base50.tar",
+    "E:/Warhammer/qa-tmp/polish-6/evidence",
+    "E:/Warhammer/qa-tmp/polish-6/runtime-50",
+    "E:/Warhammer/qa-tmp/polish-6/runtime-development",
+    "E:/Warhammer/qa-tmp/polish-6/wh-browser-6GG9L0",
+    "E:/Warhammer/qa-tmp/polish-6/wh-browser-fsfR7G",
+    "E:/Warhammer/qa-tmp/preff-speedup-v1",
+    "E:/Warhammer/qa-tmp/preview-phone-diagnostics",
+    "E:/Warhammer/qa-tmp/release-candidate",
+    "E:/Warhammer/qa-tmp/roster-navigation",
+    "E:/Warhammer/qa-tmp/source-catalog-registry-v1-review-20261111",
+    "E:/Warhammer/qa-tmp/sw-update-v1",
+    "E:/Warhammer/qa-tmp/sweep-polish-v1",
+    "E:/Warhammer/qa-tmp/test-hygiene-min-v1",
+    "E:/Warhammer/qa-tmp/v1-cleanup-v1-scripts",
+    "E:/Warhammer/qa-tmp/wh-browser-0O5Doe",
+    "E:/Warhammer/qa-tmp/wh-browser-69U5Oi",
+    "E:/Warhammer/qa-tmp/wh-browser-AiythD",
+    "E:/Warhammer/qa-tmp/wh-browser-APmBLL",
+    "E:/Warhammer/qa-tmp/wh-browser-bDyBvT",
+    "E:/Warhammer/qa-tmp/wh-browser-d2I86b",
+    "E:/Warhammer/qa-tmp/wh-browser-dbNK31",
+    "E:/Warhammer/qa-tmp/wh-browser-eDccGI",
+    "E:/Warhammer/qa-tmp/wh-browser-g03yBK",
+    "E:/Warhammer/qa-tmp/wh-browser-G9HnkB",
+    "E:/Warhammer/qa-tmp/wh-browser-gT8Gbp",
+    "E:/Warhammer/qa-tmp/wh-browser-HRzOnq",
+    "E:/Warhammer/qa-tmp/wh-browser-iPDKh5",
+    "E:/Warhammer/qa-tmp/wh-browser-k8zCyf",
+    "E:/Warhammer/qa-tmp/wh-browser-kG5FBj",
+    "E:/Warhammer/qa-tmp/wh-browser-M3sJ01",
+    "E:/Warhammer/qa-tmp/wh-browser-ml914X",
+    "E:/Warhammer/qa-tmp/wh-browser-nKJz0y",
+    "E:/Warhammer/qa-tmp/wh-browser-ny7HCL",
+    "E:/Warhammer/qa-tmp/wh-browser-OcUK3f",
+    "E:/Warhammer/qa-tmp/wh-browser-ocVmbM",
+    "E:/Warhammer/qa-tmp/wh-browser-PtW6dP",
+    "E:/Warhammer/qa-tmp/wh-browser-si3Aud",
+    "E:/Warhammer/qa-tmp/wh-browser-tj9Y2G",
+    "E:/Warhammer/qa-tmp/wh-browser-vQ8gBg",
+    "E:/Warhammer/qa-tmp/wh-browser-x2xs8V",
+    "E:/Warhammer/qa-tmp/wh-browser-xIhFhV",
+    "E:/Warhammer/qa-tmp/wh-browser-Ypu6Wc",
+    "E:/Warhammer/qa-tmp/wh-browser-yWAZCJ",
+    "E:/Warhammer/qa-tmp/wh-f1-synthetic-table-iKZWE1",
+    "E:/Warhammer/qa-tmp/wh-pwa-cold-work-lzAyEP",
+    "E:/Warhammer/qa-tmp/wh-pwa-update-work-epEqzN",
+    "E:/Warhammer/qa-tmp/wh-qa-pre-ff-bvVbdK",
+    "E:/Warhammer/qa-tmp/wh-qa-pre-ff-work-8cJmv9",
+    "E:/Warhammer/qa-tmp/wh-qa-quick-work-7vf35C",
+    "E:/Warhammer/qa-tmp/wh-qa-quick-work-CNgXWk",
+    "E:/Warhammer/qa-tmp/wh-qa-quick-work-ORv6m5",
+    "E:/Warhammer/qa-tmp/wh-runtime-package-qa-iXU1NR",
+    "E:/Warhammer/qa-tmp/wh-source-catalog-negative-9hFi9Y",
+    "E:/Warhammer/qa-tmp/wh-source-catalog-negative-JpeIA6",
+    "E:/Warhammer/qa-tmp/wh-source-catalog-negative-MreIqq",
+    "E:/Warhammer/qa-tmp/wh-source-catalog-negative-UvsOlj",
+    "E:/Warhammer/qa-tmp/wh-source-clone-0lkKMu",
+    "E:/Warhammer/qa-tmp/wh-source-clone-DX1nmb",
+    "E:/Warhammer/qa-tmp/wh-source-clone-vDBDj8",
+    "E:/Warhammer/qa-tmp/wh-source-clone-ymVmsw",
+    "E:/Warhammer/qa-tmp/wh-temp-controls-0DMKty",
+    "E:/Warhammer/qa-tmp/wh-temp-controls-JtE3Gd",
+    "E:/Warhammer/qa-tmp/wh-temp-controls-O0f9xH",
+    "E:/Warhammer/qa-tmp/wh-temp-controls-OsGrz2",
+    "E:/Warhammer/qa-tmp/wh-temp-controls-qlHdQA",
+    "E:/Warhammer/qa-tmp/wh-temp-controls-WAJ5dS"
+  ],
+  "operations": [
+    {
+      "path": "E:/Warhammer/qa-tmp/auto-qa-sweep-2",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c5a973a4c30cc771d2f133141709aab3ad27c426ccf23a3bc852fafbe74a9244",
+        "entries": 2060,
+        "files": 1672,
+        "logicalBytes": 197476276,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/auto-qa-sweep-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "21427b962d7987e8418e12182336e682d1d41227da70fe4bd3b37d0e7c9bf11b",
+        "entries": 1,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/backlog-triage-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "4b39255c70e12db728fa13cf70b45d47832c82e87bfe7465994739f98c7ae862",
+        "entries": 511,
+        "files": 447,
+        "logicalBytes": 282791093,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/book-passport-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "0664de20a1aec272d9f4a01d719d564c1190106085a40b4951f7b949535e3d3b",
+        "entries": 12,
+        "files": 10,
+        "logicalBytes": 45690,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/book-unification-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "f03ac4a4de3ba80c86d770fa7edb76c7439ba8c5c67f5843a9f4d28837904a02",
+        "entries": 7,
+        "files": 6,
+        "logicalBytes": 80005,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/book-update-command-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d945a88a2bedbd589edcb0c3c23e18bdca2432e14b10702e4603fe2ebaeb93e3",
+        "entries": 1484,
+        "files": 1294,
+        "logicalBytes": 1119094396,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/browser-compat/original-shared-node-modules-link",
+      "kind": "junction",
+      "owner": null,
+      "linkTarget": "e:/warhammer/worktrees/card-gained-rules-v1/node_modules"
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/browser-compat/evidence",
+      "kind": "worktree",
+      "owner": "E:/Warhammer/warhammer-v2-recovery",
+      "treeFingerprint": {
+        "sha256": "8a03f14d68cb06903249e8ca2279a1033f2e3dfdf09c2a3173cd92a3cfd5fb46",
+        "entries": 2797,
+        "files": 2600,
+        "logicalBytes": 1267194220,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\browser-compat\\evidence"
+        ],
+        "reparseEntries": []
+      },
+      "git": {
+        "head": "00b024e3618533f35fd7eaced4bc58a8d44ab544",
+        "branch": "codex/browser-compat-evidence",
+        "commonDir": "E:/Warhammer/warhammer-v2-recovery/.git",
+        "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "trackedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cachedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/browser-compat",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "5fb2dee6be6939159e1b69547cea2c7013a9fec8f1426f26b264933f94349f00",
+        "entries": 4457,
+        "files": 4046,
+        "logicalBytes": 1781307696,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\browser-compat\\evidence"
+        ],
+        "reparseEntries": [
+          "E:\\Warhammer\\qa-tmp\\browser-compat\\original-shared-node-modules-link"
+        ]
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/card-gained-rules",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ead6ca71dfe53ea8fdb5ef0f9fe0d901a8d7c6691abc57e7c532b6106524c67e",
+        "entries": 3280,
+        "files": 2859,
+        "logicalBytes": 1707777669,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/card-polish-2-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "8b24561963cffc28c3c8894e696c8a42fcad31bd6d2d7ac8a183416919873926",
+        "entries": 6,
+        "files": 5,
+        "logicalBytes": 109040,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/cards-cosmetics-u2-scripts",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ed7cce832c2462266b1eddb835a16532a336867c64b8d6600c627c167f6527cb",
+        "entries": 6,
+        "files": 5,
+        "logicalBytes": 27548,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/cards-cosmetics-v1-scripts",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "e0b0fceafa527b8d718adddc7eb0d05d71419ecdfce57219823b067be0d53e33",
+        "entries": 13,
+        "files": 12,
+        "logicalBytes": 57221,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-importer-a-v1-20261111",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "13d3e75f9b7fd329ac6703c9f62fb2a2a41bed0cadf352595bb91a03c1a02191",
+        "entries": 81,
+        "files": 66,
+        "logicalBytes": 38125376,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-rules-refresh-v1-scripts",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "0d29aa85b5a3eb73ef75127d8d38e17748677342ca506b1e0740bda069a8ff4d",
+        "entries": 39,
+        "files": 38,
+        "logicalBytes": 133478,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-rules-refresh-v1-tests",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c3d073a4fd068e53c6781af2472598ae216e20dee25e7aff9cb569831d77abd0",
+        "entries": 62,
+        "files": 61,
+        "logicalBytes": 386165,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-switch-b-v1-20261111",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "8096b2966c0954f8133ab3b062e5ecd54bff7db025f475f59ec835bed693cd69",
+        "entries": 106,
+        "files": 62,
+        "logicalBytes": 53152633,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-switch-b-v1-clarification-3",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "14dfcf2243231c507454bfd20dcf727ca1bf966c358da3ee0b10dd5a53595001",
+        "entries": 1177,
+        "files": 1106,
+        "logicalBytes": 191708682,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-switch-b-v1-runtime-baseline",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "272d2c5cb2dfba4cf4758be55f76cbf0138286194e565f6473f2c35cb3f7b906",
+        "entries": 498,
+        "files": 437,
+        "logicalBytes": 281696020,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-switch-b-v1-runtime-baseline-8ab",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "33b359b4402c28de9979d5a3cb4cf7f0d9548bbf58e2ab42d13970cce41bed83",
+        "entries": 496,
+        "files": 436,
+        "logicalBytes": 279563718,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-switch-b-v1-runtime-preview",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "9cffcd4eabd2e887043590bfdf24bc8e02635d546fb1bfc00365edccc831c46c",
+        "entries": 498,
+        "files": 437,
+        "logicalBytes": 282709184,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-switch-b-v1-runtime-working-final",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "2d992196bdadea9de5569c80dd20783953cdcc32507fc4c186df9cdaf532bac9",
+        "entries": 498,
+        "files": 437,
+        "logicalBytes": 282709066,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-switch-b-v1-term-audit",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "f097e8289ac3b8613d8f1a3d0b544ba716aaf65ec4c86895e384cf6a4f02d0aa",
+        "entries": 584,
+        "files": 548,
+        "logicalBytes": 93263905,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/disk-e-audit",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "104ce2454601f602fc35ff2d04a785621d574029a8f188d9c1ca7721b9de6e9f",
+        "entries": 12,
+        "files": 11,
+        "logicalBytes": 54039799,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/epic-hero-enhancements-v1-scripts",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "345fcdcd740e347bebc01843229e61689ac5240ed82e89990d5ddadf718fee79",
+        "entries": 25,
+        "files": 24,
+        "logicalBytes": 87761,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fabius-safe-import-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "e2092e4207425baa1b1a09de7ff8e1c5880f11b4c7547b2cb39acaf4392ddc61",
+        "entries": 15,
+        "files": 13,
+        "logicalBytes": 53970,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/base/node_modules",
+      "kind": "junction",
+      "owner": null,
+      "linkTarget": "e:/warhammer/worktrees/fast-first-load-v1/node_modules"
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/base",
+      "kind": "worktree",
+      "owner": "E:/Warhammer/warhammer-v2-recovery",
+      "treeFingerprint": {
+        "sha256": "211aad5270c10657b8af7d46e6bcb324718074f89f9d4eaabe1ba5171abd03ba",
+        "entries": 2673,
+        "files": 2485,
+        "logicalBytes": 1255400802,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\fast-first-load\\base"
+        ],
+        "reparseEntries": [
+          "E:\\Warhammer\\qa-tmp\\fast-first-load\\base\\node_modules"
+        ]
+      },
+      "git": {
+        "head": "8579a7a77c7f5e8dad291afc11b27aab3cd9d73a",
+        "branch": "",
+        "commonDir": "E:/Warhammer/warhammer-v2-recovery/.git",
+        "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "trackedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cachedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/cold-core-fast4g-10x",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "953e62893a8f072b2430553d5df4569891d056b5c28b8b6ba8b815c48f8c9bd7",
+        "entries": 3,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/cold-core-fast4g-10x-v2",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "09ed399592d0fac5538772e6de0440abc590ab27f850e01ac8454b578861617a",
+        "entries": 1,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/core-popup",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "884c6fbad03f62464109ac6dbd5533f356fa4458d004c8d18609c3c0a8a35cf8",
+        "entries": 1,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/experiment-c4",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "518ff928334ceb70e379cddf8fe64a1598a0305c002f91b4505292516adbc7d5",
+        "entries": 519,
+        "files": 457,
+        "logicalBytes": 283024575,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/experiment-c4-input",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "19e6aefe3ed02257c2386b78a9bf47d85b33614bf562ceceb5291388528b57ed",
+        "entries": 518,
+        "files": 456,
+        "logicalBytes": 282878160,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/experiment-c4.experiment.json",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 487,
+        "lastWriteTicks": 639308834225802074,
+        "sha256": "87e9555361da79ab7c284d369c38b69774f846a77874a62614fed1249883006b"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/experiment-c6",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "5ecbffc0533d73baf71830dbd9beffbe6ab061c9606f0bffc1fcaba8cbb234a9",
+        "entries": 519,
+        "files": 457,
+        "logicalBytes": 283201986,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/experiment-c6-input",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "515d26df494f87538f5620e3395fde59e1614a91f1c34639f67304444b271228",
+        "entries": 518,
+        "files": 456,
+        "logicalBytes": 282878160,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/experiment-c6.experiment.json",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 487,
+        "lastWriteTicks": 639308834407162950,
+        "sha256": "7b19e010760b1f45817f923ea74fae48635826b6a5e5be9b6775ffd7715004b7"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/experiment-c8",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "9b42d3212396db1cbc320af322d9c67fefb85399392c979d055fce6bc771c8c7",
+        "entries": 519,
+        "files": 457,
+        "logicalBytes": 283201986,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/experiment-c8-input",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ce4d20a428aa133604eca78cceddd57a485ab5cd20acf66a9de9b7e5577dda3a",
+        "entries": 518,
+        "files": 456,
+        "logicalBytes": 282878160,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/experiment-c8.experiment.json",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 487,
+        "lastWriteTicks": 639308834608916698,
+        "sha256": "179302205364ae5085581d10fe1f04c78a49f99db1ac54354bc35765f292dfad"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/historical-updates",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "2fc614ea56726760a99550abc667dab37b8c9f984ceb22a0d6530e27006befd1",
+        "entries": 5636,
+        "files": 4899,
+        "logicalBytes": 857915174,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/list-only",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "408e67834562a5500b7ea332a3b5e6f54e6830d7249fa1f6fe1bcc56e32437e4",
+        "entries": 1,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/package-base",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "27804557de9667896616998081c4d129a860431fab7c0f1d611563b3197bb029",
+        "entries": 519,
+        "files": 457,
+        "logicalBytes": 282982284,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/package-final-c4",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "406872f36f928c0988828b71b4b41a194c72de1b1fea202c46b7e2fff46a6db8",
+        "entries": 519,
+        "files": 457,
+        "logicalBytes": 283186233,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/package-smoke-1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "758781f8a891af06683e596b9c3f5805b7fe359f425d292d10d940d3248956a2",
+        "entries": 519,
+        "files": 457,
+        "logicalBytes": 283182293,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/package-smoke-2",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "faa88686e57d66fb60e98cf0a6b8ba8a5be06a385d511eda08e71e78f28d4651",
+        "entries": 519,
+        "files": 457,
+        "logicalBytes": 283182848,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/preff-final-tmp",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "2ce27125ef213c9abd20997c15ca27bd48417c7271bd5a9c8a84b1ea3720cabb",
+        "entries": 1,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/preff-tmp",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "efc22adc344b891b8d00eb9968406bf055b8aefb367bb8c75d75b08eadce410a",
+        "entries": 1,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/preview-smoke",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "90e481557656bca9adc84e5719cf212f468787c839fc79ff6ebc7e2430829087",
+        "entries": 1,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-book-1-8KEQ8T",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "2e369f7e608b4c5cd7b07d96ad76f771c2f54c9f02d516b05e256e997eb31bf3",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13806015,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-book-2-1QdSRq",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "5650e8cc19ebe701449ca243c5bfb6a95e1edd90da367cd6ec75a86d048bfe1f",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13801910,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-book-3-ysVmDl",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "dea3333b1a3616de659597deed120c3ac24638020d135b12b4654e36a054e158",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13798037,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-roster-1-28mB3j",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "9c953bee2048d2315a3433f9813481ce45bfc58b92798b469240ad3fa6adc28a",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13752141,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-roster-2-CGhQub",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "bc8064359d38b5869b94f4d19fa8aa3e3220723f2f7d3c85c24b99b8af251a28",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13763846,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-dg-roster-3-ZXzwrr",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "14adb9a83054e5e240df1c669612c8063747aa90f2bd88c4d2640f735d84513b",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13762508,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-1-67rJr5",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "774aab0b590e511129d47ae3de44badab02ad04ca6b4fb541a5398a086335b28",
+        "entries": 267,
+        "files": 199,
+        "logicalBytes": 13403174,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-1-8GqwVM",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "e9a18188884dacd8c05e80c4c1d25a6953f79b96a16445677a911b6ff8bac649",
+        "entries": 267,
+        "files": 199,
+        "logicalBytes": 13393307,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-1-QDN6nZ",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "644096bd1582fcae073b0198be1d7fe46d0d1fba6f0754b29a23eca14e611bec",
+        "entries": 267,
+        "files": 199,
+        "logicalBytes": 13411952,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-2-1k0giz",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "4f82cfa8b1c0a1850fdcd170a26caad0e9e2dc30b3eaf144c7f93635b70366e4",
+        "entries": 267,
+        "files": 199,
+        "logicalBytes": 13395035,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-2-x1bNMa",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6a3f91f5dc3a6d5df0c117ae2f969240a32e40fb4c18459380bcfe6be5ac5429",
+        "entries": 267,
+        "files": 199,
+        "logicalBytes": 13414287,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-2-zyvOc7",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "b9dc21def7d4d3e8ac16dd459b762e30b347b9fd9836a4623d3ccb3e3d2dc46b",
+        "entries": 268,
+        "files": 200,
+        "logicalBytes": 13402709,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-3-gs8SD9",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6ba2e70d1e544f7587a0cc40d8ed2ebbddec6f7132681cb70114d5865f53dc31",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13370260,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-3-N1ZoCA",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d4552979ddeda261bed5cc9a4b051c7830d178e2c156df284388d588d7f4629e",
+        "entries": 267,
+        "files": 199,
+        "logicalBytes": 13394266,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-home-3-qr8UMQ",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "1d0fa332ed7289aebc1db402e25b68920e41485d45f5af58c2b093e296049684",
+        "entries": 267,
+        "files": 199,
+        "logicalBytes": 13390615,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-sm-book-1-hjuC2k",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "9887fa6bfbf010a44e471f732f3b9968673c1268f0311fe02e7d1ccbcc0b5ac2",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14017398,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-sm-book-2-1Ao61t",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "fab301457e99bccf7f72dd9a25c11a607e32d8231dd53849e655cfd8c00b5dc5",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14036176,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-fast4g-sm-book-3-u5SepH",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "186ee02782029b8cfa93e4ca1be983a33e7094fe95bbb2873e18e8ed221428db",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14033392,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-book-1-t2RSrN",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "54f7110820f2c19746bcd8de66b1d2a0c1b8951c6307e21e346c3288179f1ba3",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14011106,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-book-2-LIWQJ8",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c02a700b1dcac3562cc3de2fc4280ff7c73d3025a390e8eaf488075bdd49ee41",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13989587,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-book-3-Wj5Dk4",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "becbfa5adb4bead8978b14e61e624cc120d135562416ab283567c64e1952a39e",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14020584,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-roster-1-iNCAdG",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6e7be618ab324bc2a2c6a6f182508d4c5ae6740de1f542cd3f49c3245ddefa2b",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13941756,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-roster-2-8z11Zb",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "3a927ad2d1501da84615bd01aed75a2c8df993dd97f444868f4287629b81532a",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13924318,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-dg-roster-3-o8bpM1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c61caee73152e73761f1ef81d3adc37b546fa18097730a8c212052138ee6358e",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13924196,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-1-7N7HCN",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "8ea05ff5c8df242bf4f76bccb89e9f71df9a9e6871fa757a006a05fd47d7edce",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13474554,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-1-aL9Egm",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "24e42c66399a3ee14ee8d419e310c1b68e0cab4c04a998af72a00724c8a2ff8e",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13456560,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-1-wVomC2",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "405cfcf9fde843aee3738ae91cf2fe2692445ee9febd06e947fb6a6133e0acdf",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13469888,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-2-0iYWy2",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "4a2c6bc27e248d189666075be2e66c972c0fbac312d4b3f8e9b59fd5188f32a7",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13456021,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-2-4QnUhp",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "5b9f571dff1556f4b52c6256628c4245362c239bbe8e4de567fff6e466767b74",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13458285,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-2-hRE2xJ",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "f3f065c291a508319113be45a614c441f047c0b4cb5c55e0bef745da7593a427",
+        "entries": 266,
+        "files": 198,
+        "logicalBytes": 13468696,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-3-1gxiAa",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6b10b486a6edcbe329f7c5797e46a2ee280a33f01e9eac362029f897026e5977",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13470731,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-3-gNq4Bs",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "cd7e744e9edc6909040310c58c6aca12f0c361acdcb13a457cacd9b61afabe02",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13471273,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-home-3-M4RHF9",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "22525714340931b318839df8c8c924abbaa835b1d9179319b9a6a55ec2c4937d",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13472973,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-sm-book-1-unTKgW",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "3eeb8e5351829bcab68567c8dafc33a5f3dbb87f486047ce2336673274733e72",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14229105,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-sm-book-2-8RuYeG",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "126f1da7b73a699cbe70bb2a217d4c2cfb760a0c98bc7611fbcf55f4a6f95d92",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14224112,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-slow4g-sm-book-3-xydCHC",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "969315de0150aaeccdde9eeb93a05062989f1b6648fcdd9a46ff719dbcd48c13",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14232404,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-book-1-zo8bQF",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "3d09bd9937bd881cc2011a65d45e3fed5478aff78aab336969ed864cf262e67f",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 13733104,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-book-2-bT4RmS",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "3a05ec03e97b9e4e64bc72122a3b1d0f64f89522868bde65e7bec836f9198114",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 13701420,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-book-3-C7p4ND",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "dacd4c9177f7bf4138827d709b92376a8a278001613f3b937809faba67ddc5db",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 13723417,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-roster-1-itsHAP",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "a4f672c970f92077741aca75159ea418c1321423221d5181cbf6168fad335dd7",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 13670081,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-roster-2-6r7kqJ",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "44c1f25ec40133745f9c35064ac3ca69d34e8c245d6b47f6bef46d7d260a0324",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 13705479,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-dg-roster-3-wCL1w9",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "8b4717f0a2911a7db039068760fa782a6357c4493c3c0b8ee929d3ab7da9095f",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 13663700,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-1-69J2ua",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "7786326316a3f1672f46fe5fa4311b8f5cc50cf2b3dafe0f1698b22b7609c851",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 13361287,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-1-sJKsnv",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "796564cdbd99b9317a72d6608e7362746f7f5e6c7a88b50ddd120b6b83f92706",
+        "entries": 260,
+        "files": 195,
+        "logicalBytes": 13331283,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-1-YuLhzF",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "fceae297de7f6b9f7f98c670f4f687e05b6cf3399a9e4faedf7a554ab560288c",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 13350663,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-2-RNWmQR",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6351b889f99f0adb334f3f1430a7ebe7e59cf227daf732cae1efa1c970ce0bc1",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 13328780,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-home-3-y41rQ3",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ee3f06a266cdab2ae2a8346c32fd485f64c62c40d21bc774cc2a48f91aed67bc",
+        "entries": 260,
+        "files": 195,
+        "logicalBytes": 13325824,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-sm-book-1-8ColgB",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6a03a2e4c634dba44cd6475a4f381b7b8ceb28d2baa256c940f07c39ca8cd0e8",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13904730,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-sm-book-2-fG8tNT",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "b69da6ac51cc18d1b0fdbc42c6a27df6b4d83d91825de46b0161325ddb9115e8",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13884523,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-after-unlimited-sm-book-3-wioqWy",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d36dbf121b1a18af565b841d8227c004dd8f90f364991a52f12ae8bb2aacff4f",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 13892282,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-book-1-3PZUIS",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "bf4fad9c0828e7e6e1f654af11546c7f39c7c261266ba44be2b4ab08ab79cb8d",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 20640014,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-book-2-UMWTBR",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6dd6c4df816f3da6086b2a57de8b6cff13ce99c12027864c37acf2040dff96d3",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 20694732,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-book-3-XhSDAl",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c3ba9227896792d07b8826523ddcc4a4839a0b83da606b5c6fa75a94cedff767",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 20678213,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-roster-1-FFM7f8",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d6393f48eaded4253e13837220b6a2c1471809436475831c88514b086ce99ba4",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 15338322,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-roster-2-Xko6a4",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "e8a9bbae0b9aad7c420dc6e0a15379dd31358c04a96e539d9f1e1b3bfdc6c051",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 15319730,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-dg-roster-3-SpogFC",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "f9c0eb7f193b2fab7eba0d176816764c8a85d143cfa60af6fdc612acc5e754c0",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 15330175,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-home-1-cFhBnw",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "3ef9225c8c1f928d5af212401c34d48ff1f3b7cf4b7ef276ef4551a3af7b9e4a",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14183701,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-home-2-TTcI3C",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "cff2d3eb32e0cb8a40fccc7309a10a548f455808a6fe5d740635dde8f7c0ba3b",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14191271,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-home-3-UHCsps",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "bca1abe929f4d91da98f7bf6537597becc12d230eb1df2ea715f3a183ae47bac",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14208644,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-sm-book-1-d9uPZt",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "0c27b64a99057eb61debf0f59854a63cfcd4ae07ab61b85f8bc3b9fa358e7c92",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 16035623,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-sm-book-2-wKzK5h",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "9e00ea1637178b862cc16dda5191beab4fcefb88887ab4196a66bf7c7e5cd15b",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 16008891,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-fast4g-sm-book-3-EtJNw4",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "084aea4d41b551859278995fd8bae612ea930754ee81fa7eb4a21c270651e13b",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 16029458,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-book-1-DV1SQK",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "a428256ce8ef5c6c319ad7f98627a91cb7629b04f5a2e93b4c10be3b9b011436",
+        "entries": 266,
+        "files": 198,
+        "logicalBytes": 26030271,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-book-2-UJ36g2",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "f9c11fc3d879e1396cf8710f144be3ae9b1d3f61659eb6eb212c666c608aa0fa",
+        "entries": 266,
+        "files": 198,
+        "logicalBytes": 26014271,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-book-3-YIn1jD",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "8441e800eb735188bcb558dd783053367b81a795ef154095a4990594abbfa403",
+        "entries": 266,
+        "files": 198,
+        "logicalBytes": 26066262,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-roster-1-YnvbGb",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "901b1205b77e2ee2d0de5597ed7a9f7dc0e9020e0e4757c7be580e5f3ec0c0e9",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 15567245,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-roster-2-fxRXVt",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "af25b9c6d7576f33250c0e767f963e7ec0d1df167dc81705ed193180fdca4793",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 15563225,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-dg-roster-3-1sCbpB",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "9de08ed46c815ba7b09182db4ed4b874270ef1b15f349e1e8f8101761f5ddc9e",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 15565867,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-home-1-XIpVX4",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "8a3eeb8b3be3d3f4da2ac8736c3bbde8edebc8b3bbac8fec7ee0b9390a0d9a33",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14309508,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-home-2-s2UDbr",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "49548f9961192cbd2175f0f8da0df8648e2ed2819ad96d2ff7e54db35102f8dc",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14325492,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-home-3-4kiPFm",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c89b51c0caf68b7b985273824cfa5e86edb78221f96b3cd5578d215a75b081d5",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 14309649,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-sm-book-1-ZQWKnU",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "4ea2ea56da69ae6fe5a62e859d535cb0bb9834002881f11f17d55507ca3ecf77",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 16365407,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-sm-book-2-YSAhyS",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c4b280b6b11e7ebb3e8151a7f6a19c92e8a930d7dab1f73143c2732ec9c60400",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 16361103,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-slow4g-sm-book-3-8SUWeC",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "96adb60bc02ef0bdfa6bda932af1edc4b62ab176d99a4893df4249489f58f95d",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 16370027,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-book-1-o4hsDg",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "b480aeeab54ff4a80a501c2d037473562c71e94119a89b7ab1095a4e5d027921",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 19224211,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-book-2-plS1Vf",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "5b204f3c07e51406d65d413247572e1698c0da9ae501109b3acff77a0f4f1c33",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 19297591,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-book-3-kWq4Mx",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "f8e6190b6356fa7d732495d11d1c614ffe45e99fa1bd6fba0dd94d01bc13d32b",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 19437229,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-roster-1-zmbpXZ",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "a06a69046126220256a1601538d17709d92110e4f530f6024ea125a9fc656c7d",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 15232035,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-roster-2-JpFujQ",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "1ceeb6284f4d9c5f6244c9718830e4cd2610b0aff56004de037f3a6d037f9f20",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 15234344,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-dg-roster-3-6I9dzI",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ae1f7c758faea4406518bc8fd5262576d07a7f8be44542701477d272e2fa32e2",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 15236978,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-home-1-RfGSqp",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ad286b6cdb6603d4abc781690441cc425d6bfd10e96a2208cd26a0850fedb23e",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 14179325,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-home-2-HLzXML",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "9e8a8b678497d07b6818e9f6cbbef121667cc5bc7b0ac0d2882ebabec1058fb8",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 14174830,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-home-3-uUkkop",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "8c17d23128983e6f2d29486ff7a7932eda1e47fd357334e82f40b76956225f1f",
+        "entries": 261,
+        "files": 196,
+        "logicalBytes": 14188239,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-sm-book-1-EMeHTg",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "089e42befb0243a255f6f13defda3c9210bd64f08a4de99418753adcb447d6e6",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 15758382,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-sm-book-2-EGgB2c",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "bac3bc868addaac2f78c3f0e98934001366cca42b8e3fc677b5ecc275111e970",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 15754600,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-base-unlimited-sm-book-3-qJ4pBU",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "9a737a6d22aa17e7c8eeb1b6fbe6dd1a1105de4f026dc70dd52622bba7adf2d0",
+        "entries": 265,
+        "files": 197,
+        "logicalBytes": 15749793,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-calibration-fast4g-qK8RfK",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "a69b9e83265c30558328ab02e96bbb4198e757525304473cc92d8982b997e220",
+        "entries": 260,
+        "files": 195,
+        "logicalBytes": 10056273,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-calibration-fast4g-VsIYyc",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "e076ab61dbe2e33e1dab556c4b9ea72bd7c78a5df242fc8b2a1761f581c586d4",
+        "entries": 260,
+        "files": 195,
+        "logicalBytes": 10054226,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-calibration-slow4g-mCPmIi",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "06b3ca8e55c6453c12ea885874a17fd4d536f01ae93a68ca80cb32e8c4f98c24",
+        "entries": 260,
+        "files": 195,
+        "logicalBytes": 10056812,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/profile-calibration-slow4g-NxViYw",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c625d3c6e72bac2f03cd9c2c596b7dbc8b6be479ec3fdf9fb4beaadcab3f1cb6",
+        "entries": 260,
+        "files": 195,
+        "logicalBytes": 10054768,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/proposal",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "5850932f42bb773f46b7acb2016c35bd629a6e0f4e5c3eaa38fad0162b1505ff",
+        "entries": 3,
+        "files": 2,
+        "logicalBytes": 44827,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/test-work/wh-browser-gGKxna",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c5f77e1223ee8b59629f7e87bd8547b27474b72530b79050d29862bd39fa2943",
+        "entries": 238,
+        "files": 178,
+        "logicalBytes": 9484729,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/test-work/wh-pwa-bootstrap-work-kjvqsk",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "12e45e7d9cc8090be465f91a0c8efdfb150d74575775db53699bcdc72546bebf",
+        "entries": 1041,
+        "files": 915,
+        "logicalBytes": 566366020,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/import-messages",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "13d17e23c80cd291b1902231fd03d372e29babf99b3419656f795e6dc942ad7b",
+        "entries": 50,
+        "files": 49,
+        "logicalBytes": 766054,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/keywords-access-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "71bdf375349812726debd564a2757d4c6ae86fc278cfd57e5f65cc15da59b57a",
+        "entries": 9,
+        "files": 8,
+        "logicalBytes": 58144,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/lan-preview",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "4d70125f260a449e29034ffeb4a0634a5007e2801b840032adce73c3baf0b433",
+        "entries": 3,
+        "files": 2,
+        "logicalBytes": 5023,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/load-audit",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d4da96ec222cc9741fbb6a7165ec65a32ae0a3567d93f05973959520b487e918",
+        "entries": 32458,
+        "files": 24295,
+        "logicalBytes": 2275671605,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-census",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "bbbab6a357d05aa1b57b9c64b392fa0a6fba6e70fff6eb510b998a4801764e1a",
+        "entries": 2,
+        "files": 1,
+        "logicalBytes": 294475,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/assemble-audit-sm-am-tau.py",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 11442,
+        "lastWriteTicks": 639307346447406040,
+        "sha256": "d7ee4d61f075c6242b4c9e55453fa8e16280c55569afaf15af3495b9d46f9c2f"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/audit-dg-csm-ec-tyr.mjs",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 2665,
+        "lastWriteTicks": 639307345123385705,
+        "sha256": "0c18fc9a295ff146454d36f9b5f22a34394b08381d1505a987676547476917b8"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/audit-observed.mjs",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 2164,
+        "lastWriteTicks": 639307342279604135,
+        "sha256": "c807b622c524a53c0acf167472d30e3c8ab52a65455e848c1af70dc21f5b7202"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/audit-replay-fixtures.mjs",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 3877,
+        "lastWriteTicks": 639307343492833669,
+        "sha256": "c94eb68ef6ed26afefd0497613d35455672d5a901e5fdfee3426415e1e550bfb"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/audit-sm-am-tau-native.mjs",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 2517,
+        "lastWriteTicks": 639307342954784624,
+        "sha256": "ed26c871cdfc17737bbfd4a31c53c31b47cc2473ed1e5283887f1ee45590177c"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/audit-sm-am-tau.py",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 1863,
+        "lastWriteTicks": 639307340292433054,
+        "sha256": "a98e11d6f36ee7c3c87c6c5923e1065c6a1f7133f8afcfa404367319251be4cf"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/capture-inventory.mjs",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 537,
+        "lastWriteTicks": 639307339326351310,
+        "sha256": "102c4217c75f2d1513d5b3e279cf2a23d10f883c678077e67ebfa5abfcf9e37f"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/evidence.index",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 296998,
+        "lastWriteTicks": 639307576927195734,
+        "sha256": "96858162bf3cc3be85f1b32a0bafc3a21a4ce7d3e568c37eb90a56902c27ea74"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/finalize-audit-dg-csm-ec-tyr.py",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 12027,
+        "lastWriteTicks": 639307347894357221,
+        "sha256": "2635f1cb8fcd2927a1ccc3407200a2a24f4cfcd629a178dcb23cb932a4c637c2"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/native-inventory.json",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 90048522,
+        "lastWriteTicks": 639307339392057368,
+        "sha256": "ac8c928443ac3129747df108c73adbb5d47b0c5f32d749900ee2d20231289583"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/panegyric-display-plan.mjs",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 1948,
+        "lastWriteTicks": 639307349558939528,
+        "sha256": "7a5a8a3024cf347113801c207ec2d8524c6f960b7da7d509af4ac0068973eef3"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/report-audit-sm-am-tau.py",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 8773,
+        "lastWriteTicks": 639307348525261497,
+        "sha256": "e34c3bab8e0c0feba471577ee1e6a798ad6982deb57c6d8872c86e9c1283e830"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/tome-projection.mjs",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 1547,
+        "lastWriteTicks": 639307340990413471,
+        "sha256": "84730a7d6f31a508aa3e73e86ec16bfffce9c78c7e96d0080c1e832e1ab208b5"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gate/census-seed.json",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 3919527,
+        "lastWriteTicks": 639307196043610265,
+        "sha256": "d959d695dc99b23cdf71536fe219f2d0d3649d8627baf3c649bda2fcd470b83f"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gate/evidence.index",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 296897,
+        "lastWriteTicks": 639307264632765555,
+        "sha256": "c7590d936648cf27e857b3672805fae934609513c570b7adf664a363f78705c0"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gate/seed-registry.mjs",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 4717,
+        "lastWriteTicks": 639307205482685361,
+        "sha256": "2e7918838edea9ebf159634db3ed6577f1fcc476a15b7d7b8d5b502f84f50f77"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-unknown/base/node_modules",
+      "kind": "junction",
+      "owner": null,
+      "linkTarget": "e:/warhammer/worktrees/browser-compat-v1/node_modules"
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-unknown/base",
+      "kind": "worktree",
+      "owner": "E:/Warhammer/warhammer-v2-recovery",
+      "treeFingerprint": {
+        "sha256": "fb957a59b56caebdc763e4328135c0207de948e3c399fcc1b1b4383af03484d2",
+        "entries": 2670,
+        "files": 2482,
+        "logicalBytes": 1255050931,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\markup-unknown\\base"
+        ],
+        "reparseEntries": [
+          "E:\\Warhammer\\qa-tmp\\markup-unknown\\base\\node_modules"
+        ]
+      },
+      "git": {
+        "head": "6f2e5fb23643fc0041efcd7006f3e150bd5ce4be",
+        "branch": "",
+        "commonDir": "E:/Warhammer/warhammer-v2-recovery/.git",
+        "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "trackedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cachedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-unknown/evidence",
+      "kind": "worktree",
+      "owner": "E:/Warhammer/warhammer-v2-recovery",
+      "treeFingerprint": {
+        "sha256": "11cfe9160abb55b3f44da73b9ad7d2dacfeaf4ebaf403d7f62deb12c4e5a22e8",
+        "entries": 2723,
+        "files": 2529,
+        "logicalBytes": 1263417824,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\markup-unknown\\evidence"
+        ],
+        "reparseEntries": []
+      },
+      "git": {
+        "head": "17337be1e87fb85e06d378aff4c4db0241360c25",
+        "branch": "codex/markup-unknown-evidence",
+        "commonDir": "E:/Warhammer/warhammer-v2-recovery/.git",
+        "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "trackedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cachedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/mfm-update-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "15917f45e96d7e73e20cdb70c12415e3249256107efecd2fbf5b1c0b38cbc324",
+        "entries": 489,
+        "files": 393,
+        "logicalBytes": 280941224,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/official-updates-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c81b7347207316b4e961bd4d429284ccbc210c7a4669046e8e73e6ac6b2238c1",
+        "entries": 158,
+        "files": 145,
+        "logicalBytes": 29152636,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-5/evidence.index",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 299764,
+        "lastWriteTicks": 639307136498818403,
+        "sha256": "4e0ae9cf20ae4571aacee213b2a7db25fd4f150e1fd9cf36da41b41ccc027537"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-5/package-final",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "2c4c4d0c102e192c5328ecdfdc494ac3e29a443d54fb077db30e57ca7750ee56",
+        "entries": 515,
+        "files": 454,
+        "logicalBytes": 282956695,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-5/package-stable",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6a7518bdebf9d2bf85c0247eb3c97f7d2e2436f855cda5c52ee41f7a5ca52c05",
+        "entries": 515,
+        "files": 454,
+        "logicalBytes": 282957201,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-5/package-targeted",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "7133b7d61d630c1918c6324fb452cc1f66ed83666c30862bb96bcd7c5e07b8fa",
+        "entries": 515,
+        "files": 454,
+        "logicalBytes": 282956659,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/ab-base",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "abbf6924406d1e3395037339ca669c4e1e6a57473d8343972e09c40fad7d6380",
+        "entries": 12,
+        "files": 11,
+        "logicalBytes": 48620496,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/ab-final-base",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "dca9f537eab741862df7a0fa5dc3bd7615c9533036fff164b3760e5368f350aa",
+        "entries": 12,
+        "files": 11,
+        "logicalBytes": 48620456,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/ab-final-head",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "5839dc6acab6645b1c2497840262c379ab613b78597e2eaa504085b38fe2a60b",
+        "entries": 12,
+        "files": 11,
+        "logicalBytes": 48620442,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/ab-head",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d048fd6983138e60714d4da2f7cd69ab6a2de9b081e5543ed1abfd65d49286b6",
+        "entries": 12,
+        "files": 11,
+        "logicalBytes": 48620478,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/base50-ready.json",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 98,
+        "lastWriteTicks": 639307706073671040,
+        "sha256": "f3eba2945630a6606158bb525b224b9970e19da949b6fb5d6e3b0be1fdbf1d0d"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/base50.tar",
+      "kind": "file",
+      "owner": null,
+      "fileFingerprint": {
+        "bytes": 1158154240,
+        "lastWriteTicks": 639307706051488946,
+        "sha256": "2bd067f26cef7d93275bb84abdeb304bd0dc715c7119f9496a4f3c968d34ef1e"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/evidence",
+      "kind": "worktree",
+      "owner": "E:/Warhammer/warhammer-v2-recovery",
+      "treeFingerprint": {
+        "sha256": "9da5ad5ebaf1513ddb5c3f05057925fc616b9b929cbfd9988671cf2b79122c8c",
+        "entries": 2885,
+        "files": 2683,
+        "logicalBytes": 1286904592,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\polish-6\\evidence"
+        ],
+        "reparseEntries": []
+      },
+      "git": {
+        "head": "cc39f8236d52c0bb08c3395ef782e1a6375c5eac",
+        "branch": "codex/polish-6-evidence",
+        "commonDir": "E:/Warhammer/warhammer-v2-recovery/.git",
+        "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "trackedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cachedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/runtime-50",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "b6575d7c36b688e6ece9243637b0ddbf6dad432fc53e632527d8e4e671ae17df",
+        "entries": 2311,
+        "files": 2150,
+        "logicalBytes": 1156410752,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/runtime-development",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "a99d2d66f3bf87bf84f9947dacc374ebd972a7bfd45c958dddd8b3157408f857",
+        "entries": 521,
+        "files": 458,
+        "logicalBytes": 283212855,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/wh-browser-6GG9L0",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "28d32f02d036229076dffb1bed19a4e827ff7d39ffa5d55d3b6a80485468510e",
+        "entries": 187,
+        "files": 135,
+        "logicalBytes": 9177103,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/wh-browser-fsfR7G",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d59cc7d3bb05b511610df5e79f47a7b7af67a05e2fc3a31fe5f0d72cf4ed5adb",
+        "entries": 239,
+        "files": 179,
+        "logicalBytes": 13646085,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/preff-speedup-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c98457eb2989a6ede33150ce9c95664944c97d69802f4e8d1112f7154cf704c9",
+        "entries": 18,
+        "files": 16,
+        "logicalBytes": 81690,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/preview-phone-diagnostics",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "df882388a25023f0061891d8ed95f744f816564c8b200dadf8fa8268184b549d",
+        "entries": 1,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/release-candidate/candidate/node_modules",
+      "kind": "junction",
+      "owner": null,
+      "linkTarget": "e:/warhammer/worktrees/browser-compat-v1/node_modules"
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/release-candidate/source",
+      "kind": "worktree",
+      "owner": "E:/Warhammer/warhammer-v2-recovery",
+      "treeFingerprint": {
+        "sha256": "3a46f5653f8245bda3dfb36b6744f36587ac43ba627b9e0b6653d6a404631e0c",
+        "entries": 2669,
+        "files": 2482,
+        "logicalBytes": 1255050933,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\release-candidate\\source"
+        ],
+        "reparseEntries": []
+      },
+      "git": {
+        "head": "6f2e5fb23643fc0041efcd7006f3e150bd5ce4be",
+        "branch": "",
+        "commonDir": "E:/Warhammer/warhammer-v2-recovery/.git",
+        "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "trackedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cachedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/release-candidate/evidence",
+      "kind": "worktree",
+      "owner": "E:/Warhammer/warhammer-v2-recovery",
+      "treeFingerprint": {
+        "sha256": "203f16c62b9dd6cd9572393d26eca36f29a5afcea7f7832f78c3cfb838c91462",
+        "entries": 2751,
+        "files": 2558,
+        "logicalBytes": 1262322064,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\release-candidate\\evidence"
+        ],
+        "reparseEntries": []
+      },
+      "git": {
+        "head": "b3b92162ce3180894b4fa1aeaff4acdc75033a97",
+        "branch": "codex/release-candidate-evidence",
+        "commonDir": "E:/Warhammer/warhammer-v2-recovery/.git",
+        "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "trackedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cachedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/release-candidate/candidate",
+      "kind": "worktree",
+      "owner": "E:/Warhammer/warhammer-v2-recovery",
+      "treeFingerprint": {
+        "sha256": "8b5189bc73b71bfb4e72c56f93c033d51918daef6592f37584033228f7d7b323",
+        "entries": 2670,
+        "files": 2482,
+        "logicalBytes": 1255050936,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\release-candidate\\candidate"
+        ],
+        "reparseEntries": [
+          "E:\\Warhammer\\qa-tmp\\release-candidate\\candidate\\node_modules"
+        ]
+      },
+      "git": {
+        "head": "e3db1b345eca989436eea7af758900eee7795203",
+        "branch": "",
+        "commonDir": "E:/Warhammer/warhammer-v2-recovery/.git",
+        "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "trackedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cachedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/release-candidate",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "8e1e63c41eee6019f3b1ccea4ec85e8014db4cda4b0c00315844fd402a78641e",
+        "entries": 13431,
+        "files": 12281,
+        "logicalBytes": 5622150677,
+        "gitRoots": [
+          "E:\\Warhammer\\qa-tmp\\release-candidate\\source",
+          "E:\\Warhammer\\qa-tmp\\release-candidate\\evidence",
+          "E:\\Warhammer\\qa-tmp\\release-candidate\\candidate"
+        ],
+        "reparseEntries": [
+          "E:\\Warhammer\\qa-tmp\\release-candidate\\candidate\\node_modules"
+        ]
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/roster-navigation",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "08b21360391079935581d3289ac58736541da1912a50c8fbe7ba31267ef8e9b6",
+        "entries": 1546,
+        "files": 1362,
+        "logicalBytes": 848754851,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/source-catalog-registry-v1-review-20261111",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "955a23df35d835c1c113c6d61310d99e1afea8358d3d891813d549fca6e3de66",
+        "entries": 236,
+        "files": 228,
+        "logicalBytes": 2470441,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/sw-update-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "4ebe40b439196984db4569873f0dbf380794ae9769d622579573372484637d26",
+        "entries": 5638,
+        "files": 4957,
+        "logicalBytes": 3112372255,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/sweep-polish-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "9ba651cf92bbfa143b0275bd900950abd3c74d37975d92632a58b2d15cf8f217",
+        "entries": 513,
+        "files": 451,
+        "logicalBytes": 282840027,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/test-hygiene-min-v1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d318769a2c0be57fd271351a1df5b9aed6c4d683d3fbc7c0a45daea2eb0fe5e4",
+        "entries": 7,
+        "files": 6,
+        "logicalBytes": 63625,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/v1-cleanup-v1-scripts",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "b24137adcf2bf9306a7147289c5fa460c339b8433d79ef4c9f631bfd6d36d8e0",
+        "entries": 14,
+        "files": 13,
+        "logicalBytes": 65021,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-0O5Doe",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "2dd8c8ed1eecc103dffdf7e7032b504cd50a1ca527600689df7aeb793df47a05",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-69U5Oi",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "e08746d7d6c3c0112c2760e3364edcb26e23b100c832c2f327e0188421dd1603",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-AiythD",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c856c9de149fad8bad82eca407f62608acda92cba1cf11a4e145492e539a20b2",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 262,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-APmBLL",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "946ab7ac79e0b42cf9033a13b9537cb5fe1b4a275ff871adaf11327d0e244f62",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-bDyBvT",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "bf57cd2d3c6a5ea8d7435a25b860d7c448a9e824136a9632c41836d0dfb503d9",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-d2I86b",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "89a9f12c978578d842bdd734423fbdc48ec9e956eab8145cedac4eda94e8798a",
+        "entries": 47,
+        "files": 29,
+        "logicalBytes": 79402,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-dbNK31",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "a6c14471c50af66bd7c733e0ea65295c2926cb9e19da6ad7b1d889a055ade95f",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-eDccGI",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "db9308a7682c980765897fc8121d29e1271fdc430738c5681fb4bdd04c745256",
+        "entries": 45,
+        "files": 27,
+        "logicalBytes": 46634,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-g03yBK",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ddfebafb7fffda50b0b244888748ec485d8bd8fa1f8a39c2c5b983174a3d2d2d",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-G9HnkB",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "586387dd9315241b5c9de9608c38eeed3e90e17829f6f0ecd9568f02a74b6b77",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-gT8Gbp",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "97ba6a2427e97bfffc92f396212f3886ab1e2210a630b64706236cb157fde134",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-HRzOnq",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "86457a99bad4631c62abca6c87cce0ca077212a6c3357de0159bc76fb315b504",
+        "entries": 47,
+        "files": 29,
+        "logicalBytes": 84253,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-iPDKh5",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ce9c23f5600cafe4abd51a0262cbca47f974836090dac70e347eb2128d2e47a7",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-k8zCyf",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "1b01aa076810fad59e0ca09014a0253ccc718557ec9078e03c5b5eec17ee215d",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-kG5FBj",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c3401bf65a7ffe06a9d7242a5835b517925fb40786a2cd829bbb8195e9a98afb",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-M3sJ01",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "c5c3718d7b4da3abe2ab2ba7e0e79e786bebbcc17fb8f23f2e9ced33e539489a",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 262,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-ml914X",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d36bda739261a4b73f504e48b3b67da1af3a97099c333a095057ef6a6ac7baf3",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-nKJz0y",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "0b988f0efba3ca445c9061c575f6f886e1e66980f87c8856e2fbaff544cab71c",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-ny7HCL",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "0c2d6010d8cac3584a964158ac3793df7729050204ff2989ef0cf8203d62b023",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-OcUK3f",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6fad2a734586b00ad35d8fd0ffb9f2fad9ed93675ba015bd8ac0999bb2fb8935",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-ocVmbM",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "02cdd511182c2cd2548eb4adffdbf7944751ac1c682be2ce5331fab43784f3d0",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-PtW6dP",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "f1203012af3f24a99964c87dceffcec8226045e28a811745745a5f226fb9fca2",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-si3Aud",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "4f21c6876d40655367e1b2328fd2eaeecec984eb1fd26a251dd159b28002924a",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-tj9Y2G",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "5bc7bd9e1965002a18d5f060632eae319de3c254f2ff2415b33e9691f1b110ff",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-vQ8gBg",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "5f2f087a03f2b7d9e21866514ac87f94a635670ffa0c2dc3aa04421d6e0f1b00",
+        "entries": 2,
+        "files": 0,
+        "logicalBytes": 0,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-x2xs8V",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "fea430e35b84f5aaf8ac3b64ac269167ad71ef8801a5256fe6ca223b1c783d0a",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-xIhFhV",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "06957fe12b5fc40b6f78af641f3a30e490298fa29da743d3bd7cca2befe8a574",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-Ypu6Wc",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "d7cbabe9ac8465fd478bed07b0822debd56dd537ef24f114e7592070fc2ab0e6",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-browser-yWAZCJ",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "52e40bfc19bcb44b1a88a26aee27fe573bbd165c14edb1a1677baad89cf7d2a7",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-f1-synthetic-table-iKZWE1",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "41a669eb07d39c48e7c93031efa27e900b2a608a7374effa88dafe6778ec6837",
+        "entries": 2019,
+        "files": 1745,
+        "logicalBytes": 1083429952,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-pwa-cold-work-lzAyEP",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "dad36793099a3ab10a24088679f7f72611e016db5c5f7955861516e0e7aefe51",
+        "entries": 507,
+        "files": 437,
+        "logicalBytes": 270450168,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-pwa-update-work-epEqzN",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "a68de38c75f5d97b213fdcc302296c7127c3e541f2f2a3bc98e8f7344050832e",
+        "entries": 1011,
+        "files": 873,
+        "logicalBytes": 540900074,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-qa-pre-ff-bvVbdK",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "f19c08ed48ba8f860790baaac4b2fc59b96e393e92890462815dad76bfbf2d4b",
+        "entries": 14,
+        "files": 10,
+        "logicalBytes": 8757,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-qa-pre-ff-work-8cJmv9",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "b2c1591042e97c47afaa97df3e8fbfbf0436d3d8c3d4cfd1f8cf30ffd6dab11f",
+        "entries": 509,
+        "files": 438,
+        "logicalBytes": 270451669,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-qa-quick-work-7vf35C",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "b135fbf80e467f5c72422fa74a41146b3d5e8c7bb00d8dcc769c837695209cf9",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-qa-quick-work-CNgXWk",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "1317815ab1a91afe3f1dd6c7e709aed3b3861a5f59d37d39b44e49847aeea8d5",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 263,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-qa-quick-work-ORv6m5",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "7acff47b84a415199e3afbbe1616116d2c4527d16295820a87843b42af0cd5b1",
+        "entries": 3,
+        "files": 1,
+        "logicalBytes": 262,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-runtime-package-qa-iXU1NR",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ecda2c823805fa16c6ac17a0badb9b75f4a6018a7dd746fe76f09f1ff01b2eba",
+        "entries": 1013,
+        "files": 875,
+        "logicalBytes": 541381735,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-source-catalog-negative-9hFi9Y",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "dfaaf068ea5f9a2093c78de734ff01ca289d0e734dfec213e428c35501be120c",
+        "entries": 28,
+        "files": 21,
+        "logicalBytes": 32869410,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-source-catalog-negative-JpeIA6",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "3190f68238bf8d6008d4a5a697db3f2ad31162e4b25d8aac957aee4c2e757dd6",
+        "entries": 28,
+        "files": 21,
+        "logicalBytes": 32869410,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-source-catalog-negative-MreIqq",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "6607f1eebb6e60fa5fa9df17f92b33d7e29cba910dbb6c6c6ba026c39e562e02",
+        "entries": 28,
+        "files": 21,
+        "logicalBytes": 32869410,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-source-catalog-negative-UvsOlj",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "485966bffaf10f36f3a31e1a99488638857b43c6b67e37ff28baa5f47d75170f",
+        "entries": 28,
+        "files": 21,
+        "logicalBytes": 32869410,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-source-clone-0lkKMu",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "2ddcaa935d7a63c0f3365a442fbf5a1b80e8045dc919d0a3e0cd9577c5d27079",
+        "entries": 4,
+        "files": 2,
+        "logicalBytes": 39963,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-source-clone-DX1nmb",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "25852820831d17ee3c5b5f67a89759d47c10ad586894ce1e8c92960631eb43e1",
+        "entries": 4,
+        "files": 2,
+        "logicalBytes": 39963,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-source-clone-vDBDj8",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "1116a8ed4d06f5b83338fb42d11bb4d36769c36f1da500eff2b91dd9ab73930f",
+        "entries": 4,
+        "files": 2,
+        "logicalBytes": 39963,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-source-clone-ymVmsw",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "39ff416063b4d869e0ad875db8de52ad35dc87a7ccd0009c579de9e5d0da1ef3",
+        "entries": 4,
+        "files": 2,
+        "logicalBytes": 39963,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-temp-controls-0DMKty",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ff12c5a60c565a69a9b5394763ca2ec4bda2075b7954a63d7a91c1e7c46d9134",
+        "entries": 5,
+        "files": 2,
+        "logicalBytes": 270,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-temp-controls-JtE3Gd",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "ed3c2b181a05107a4e9628d5c49eedd778d376bac2b5e18c159fc753ed06a0a3",
+        "entries": 48,
+        "files": 27,
+        "logicalBytes": 46892,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-temp-controls-O0f9xH",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "4ff82c5f65be09b0d965b1108c771291604f7ec39e0beaa0f498f8a0fec72084",
+        "entries": 5,
+        "files": 2,
+        "logicalBytes": 270,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-temp-controls-OsGrz2",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "a4bb4b0a2206122a45bf6fa77f00fa4319fe5dd4b718505138f93a41c8fea3b5",
+        "entries": 5,
+        "files": 2,
+        "logicalBytes": 270,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-temp-controls-qlHdQA",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "54bd1486aeb1dd27054208e753233f1becf333edaaeda3fab1808e08669f5cda",
+        "entries": 46,
+        "files": 26,
+        "logicalBytes": 46844,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/wh-temp-controls-WAJ5dS",
+      "kind": "directory",
+      "owner": null,
+      "treeFingerprint": {
+        "sha256": "1c106d68561fb715f5bede08d99d308778330054b0e688756f65bcfa3a94a7d7",
+        "entries": 5,
+        "files": 2,
+        "logicalBytes": 269,
+        "gitRoots": [],
+        "reparseEntries": []
+      }
+    }
+  ],
+  "protected": [
+    {
+      "path": "E:/Warhammer/qa-tmp/preview-v1",
+      "reason": "Running preview, historical packages and TLS; PID 1348; protected as a whole."
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-7",
+      "reason": "Active task; never a cleanup target."
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/disk-cleanup",
+      "reason": "Contains this owner-run launcher and previous approved cleanup scripts; self-deletion is excluded."
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/node-compile-cache",
+      "reason": "Shared runtime cache; active-use scope is not established."
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-6/bsdata-wh40k-11e-fa30730fca11fbfe87be90684d481d50e0efaf66",
+      "reason": "Pinned BSData checkout still referenced by preserved worktree junction(s).",
+      "references": [
+        "E:/Warhammer/worktrees/polish-6-v1/tmp/bsdata-wh40k-11e",
+        "E:/Warhammer/worktrees/browser-compat-v1/tmp/bsdata-wh40k-11e"
+      ]
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/polish-5/bsdata-wh40k-11e-fa30730fca11fbfe87be90684d481d50e0efaf66",
+      "reason": "Pinned BSData checkout still referenced by preserved worktree junction(s).",
+      "references": [
+        "E:/Warhammer/worktrees/polish-5-v1/tmp/bsdata-wh40k-11e"
+      ]
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-unknown/bsdata-wh40k-11e-fa30730fca11fbfe87be90684d481d50e0efaf66",
+      "reason": "Pinned BSData checkout still referenced by preserved worktree junction(s).",
+      "references": [
+        "E:/Warhammer/worktrees/markup-unknown-v1/tmp/bsdata-wh40k-11e"
+      ]
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gate/bsdata-wh40k-11e-fa30730fca11fbfe87be90684d481d50e0efaf66",
+      "reason": "Pinned BSData checkout still referenced by preserved worktree junction(s).",
+      "references": [
+        "E:/Warhammer/worktrees/markup-gate-v1/tmp/bsdata-wh40k-11e"
+      ]
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/markup-gap-close/bsdata-wh40k-11e-fa30730fca11fbfe87be90684d481d50e0efaf66",
+      "reason": "Pinned BSData checkout still referenced by preserved worktree junction(s).",
+      "references": [
+        "E:/Warhammer/worktrees/markup-gap-close-v1/tmp/bsdata-wh40k-11e"
+      ]
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/fast-first-load/test-work/bsdata-wh40k-11e-fa30730fca11fbfe87be90684d481d50e0efaf66",
+      "reason": "Pinned BSData checkout still referenced by preserved worktrees, including active polish-7-v1.",
+      "references": [
+        "E:/Warhammer/worktrees/fast-first-load-v1/tmp/bsdata-wh40k-11e",
+        "E:/Warhammer/worktrees/polish-7-v1/tmp/bsdata-wh40k-11e"
+      ]
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/warhammer-dg-wargear-enrollment-0E5gDe",
+      "reason": "UNCLEAR: accepted-source/corpus provenance is not established by this cleanup inventory; preserve pending owner review."
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/warhammer-dg-wargear-enrollment-PGKVGC",
+      "reason": "UNCLEAR: accepted-source/corpus provenance is not established by this cleanup inventory; preserve pending owner review."
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/warhammer-source-enrollment-jklIjg",
+      "reason": "UNCLEAR: accepted-source/corpus provenance is not established by this cleanup inventory; preserve pending owner review."
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/warhammer-source-enrollment-OHVnTx",
+      "reason": "UNCLEAR: accepted-source/corpus provenance is not established by this cleanup inventory; preserve pending owner review."
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-rules-refresh-v1-20261111",
+      "reason": "UNCLEAR: accepted-source/corpus provenance is not established by this cleanup inventory; preserve pending owner review."
+    },
+    {
+      "path": "E:/Warhammer/qa-tmp/core-rules-refresh-v1-comparator-control",
+      "reason": "UNCLEAR: accepted-source/corpus provenance is not established by this cleanup inventory; preserve pending owner review."
+    }
+  ],
+  "logicalBytes": 36357525328,
+  "operationCount": 248,
+  "scope": "E:/Warhammer/qa-tmp only; exact reviewed paths; no wildcard discovery during deletion",
+  "previewRoot": "E:/Warhammer/qa-tmp/preview-v1",
+  "ownerRepo": "E:/Warhammer/warhammer-v2-recovery",
+  "externalLinkScanRoots": [
+    "E:/Warhammer/worktrees",
+    "E:/Warhammer/warhammer-final-test-cleanup",
+    "E:/Warhammer/warhammer-rules-complete-preview",
+    "E:/Warhammer/warhammer-rules-dg-v1-navigation-port",
+    "E:/Warhammer/warhammer-rules-dg-v2",
+    "E:/Warhammer/warhammer-source-orks-probe",
+    "E:/Warhammer/warhammer-v2-current",
+    "E:/Warhammer/warhammer-v2-recovery",
+    "E:/Warhammer/warhammer-v2-safety-20261017",
+    "E:/Warhammer/warhammer-w2-25-sm-facts"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "polish-7-cleanup-guard-controls/v1",
+  "scriptEntryPointExecuted": false,
+  "applyBlockExecuted": false,
+  "status": "PASS",
+  "controls": [
+    {
+      "rejection": "Path is outside the approved Warhammer descendants: E:\\Codex\\data",
+      "status": "PASS",
+      "name": "outside Warhammer"
+    },
+    {
+      "rejection": "Target outside qa-tmp descendants: E:\\Warhammer\\worktrees\\polish-7-v1",
+      "status": "PASS",
+      "name": "outside qa-tmp"
+    },
+    {
+      "rejection": "Protected path intersects target: E:\\Warhammer\\qa-tmp\\preview-v1",
+      "status": "PASS",
+      "name": "preview root"
+    },
+    {
+      "rejection": "Protected path intersects target: E:\\Warhammer\\qa-tmp\\disk-cleanup",
+      "status": "PASS",
+      "name": "launcher parent/self"
+    },
+    {
+      "rejection": "Protected path intersects target: E:\\Warhammer\\qa-tmp\\fast-first-load\\test-work\\bsdata-wh40k-11e-fa30730fca11fbfe87be90684d481d50e0efaf66",
+      "status": "PASS",
+      "name": "retained pinned dependency"
+    },
+    {
+      "rejection": "Retained link depends on target: E:\\Warhammer\\worktrees\\polish-7-v1\\tmp\\bsdata-wh40k-11e -> e:\\warhammer\\qa-tmp\\fast-first-load\\test-work\\bsdata-wh40k-11e-fa30730fca11fbfe87be90684d481d50e0efaf66",
+      "status": "PASS",
+      "name": "external retained junction detects cache deletion"
+    },
+    {
+      "rejection": "Active PID 1348 references target: E:\\Warhammer\\qa-evidence\\fast-first-load-v1-2026-11-21\\RECIPES\\start-reviewed-preview.mjs",
+      "status": "PASS",
+      "name": "active preview process"
+    },
+    {
+      "status": "PASS",
+      "name": "exact allowed ordinary target"
+    }
+  ],
+  "method": "Only AST-extracted function definitions invoked; negative controls and one allowed-boundary control; no Remove-Item/worktree-remove/prune call executed.",
+  "deletions": 0
+}

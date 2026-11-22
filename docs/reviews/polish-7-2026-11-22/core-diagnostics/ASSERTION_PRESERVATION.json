@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "file": "v2/core-reader-browser-qa.mjs",
+  "base": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "checks": {
+    "assertions": {
+      "before": 46,
+      "after": 46,
+      "exactOrderedSourceEquality": true
+    },
+    "waits": {
+      "before": 15,
+      "after": 15,
+      "exactOrderedSourceEquality": true
+    },
+    "timeoutSetters": {
+      "before": 1,
+      "after": 1,
+      "exactOrderedSourceEquality": true
+    }
+  },
+  "assertCorePopupUnchanged": true,
+  "noRetryAdded": true,
+  "diagnosticOnlyTimeoutMs": 2000,
+  "diagnosticTimeoutChangesTestTimeout": false
+}

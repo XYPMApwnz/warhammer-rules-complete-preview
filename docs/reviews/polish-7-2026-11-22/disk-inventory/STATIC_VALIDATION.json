@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "scriptExecuted": false,
+  "deletions": 0,
+  "scriptSha256": "4543d7069bd3474e81e9760bc87003e80a46a977066d06d69a649a44dd8244f1",
+  "operations": 248,
+  "disjointTargets": 240,
+  "protectedIntersections": 0,
+  "exactCopiesIdentical": true,
+  "manifestLiteralHash": "PASS including normalized CRLF/LF and final newline",
+  "parser": "PASS",
+  "guardControls": "8 PASS",
+  "independentReview": "PASS",
+  "privacyEmailFlags": [],
+  "publicFiles": [
+    "apply-3.ps1",
+    "CLEANUP_MANIFEST.json",
+    "EXTERNAL_LINKS.json",
+    "FOLDERS.csv",
+    "GIT_INVENTORY.json",
+    "GUARD_CONTROLS.json",
+    "OPERATIONS.csv",
+    "PLAN_INPUT.json",
+    "REPORT.md",
+    "SUMMARY.json",
+    "TREE_INVENTORY.json"
+  ],
+  "excludedPrivateFiles": [
+    "GIT_INVENTORY_PRIVATE.json"
+  ]
+}

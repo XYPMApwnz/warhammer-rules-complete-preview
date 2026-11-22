@@ -1,0 +1,88 @@
+{
+  "status": "READY_FOR_REVIEW",
+  "sha": "9c18451452a478be2509314b6b80224313506ec9",
+  "headAfter": "9c18451452a478be2509314b6b80224313506ec9",
+  "worktreeStatus": "",
+  "diffStatAfterPreff": "",
+  "preff": {
+    "runs": 1,
+    "passed": 211,
+    "failed": 0,
+    "elapsedMs": 4765872
+  },
+  "core": {
+    "status": "PASS",
+    "elapsedMs": 54213,
+    "original46AssertionsAnd15WaitsPreserved": true,
+    "timeoutChanged": false,
+    "retriesAdded": false,
+    "failureArtifactsWrittenOnSuccess": 0
+  },
+  "offlineBooks": {
+    "status": "PASS",
+    "books": 9,
+    "widths": [
+      390,
+      1440
+    ],
+    "cases": 54,
+    "elapsedMs": 107859
+  },
+  "generated": {
+    "status": "PASS",
+    "files": 148,
+    "steps": 68,
+    "differences": 0
+  },
+  "ab": {
+    "status": "PASS",
+    "cases": 199,
+    "states": 507,
+    "differences": 0,
+    "masking": "NONE"
+  },
+  "census": {
+    "status": "PASS",
+    "N": 2724,
+    "EXECUTED": 812,
+    "RECIPIENTS_ONLY": 1478,
+    "TEXT_ONLY_INTENDED": 419,
+    "GAP": 0,
+    "UNKNOWN": 15,
+    "partial": 126,
+    "resolved": {
+      "count": 2709,
+      "total": 2724,
+      "percent": 99.44933920704845
+    },
+    "debt": {
+      "original": 217,
+      "active": 15,
+      "closed": 202
+    },
+    "elapsedMs": 6511.458
+  },
+  "newRuntimeFiles": [],
+  "runtimeFiles": 456,
+  "precacheUrls": 221,
+  "cleanupScriptExecuted": false,
+  "proposedBranchDeletionsExecuted": 0,
+  "proposedDiskTargetsDeleted": 0,
+  "previewUnchanged": {
+    "status": "PASS",
+    "pid": 1348,
+    "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+    "http": 200,
+    "url": "http://192.168.1.124:8765/",
+    "contentSha256": "32efc21a7166f44a2d758ce869139e0191a30195abeccdc22884953cb1668b2b",
+    "restarted": false,
+    "switched": false
+  },
+  "protectedBranchesTouched": false,
+  "verifiedUtc": "2026-11-22T02:21:31.668594+00:00",
+  "protectedRemoteRefs": {
+    "refs/heads/codex/unified-v2-source": "e08ec20df980d4e6700c32b65069de983b250e03",
+    "refs/heads/main": "c5200d40f81896febf6e143053111948374ef92d",
+    "refs/heads/unified-v2-release": "e3db1b345eca989436eea7af758900eee7795203"
+  }
+}

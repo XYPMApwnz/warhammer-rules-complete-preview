@@ -1,0 +1,890 @@
+{
+  "schema": "polish-7-remote-branch-inventory/v1",
+  "capturedAtUtc": "2026-11-22T00:54:49.634040+00:00",
+  "remote": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview.git",
+  "source": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "release": "e3db1b345eca989436eea7af758900eee7795203",
+  "headsSnapshotSha256": "70169df8d7c06887702c5614f25f608c547f46a00e608daf11f81271c4afc01a",
+  "readOnly": true,
+  "deletionsExecuted": 0,
+  "counts": {
+    "CANDIDATE_MERGED": 63,
+    "CANDIDATE_RELEASED": 1,
+    "KEEP_EVIDENCE": 17,
+    "KEEP_PROTECTED": 3,
+    "KEEP_UNMERGED": 3
+  },
+  "missingObjectsFetched": 84,
+  "branches": [
+    {
+      "branch": "codex/am-dg-recipient-gaps-v1",
+      "sha": "82f628e4524a94c589ef108a416ad72a33ff99d1",
+      "commitDate": "2026-11-06T10:56:47+03:00",
+      "subject": "fix: gate recipient rule text by selected source equipment",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/auto-qa-sweep-2-evidence",
+      "sha": "2ac1badd431f2c3ae3a5d0a6d43fbfa9c539de46",
+      "commitDate": "2026-11-19T16:54:34+03:00",
+      "subject": "docs: record read-only pre-release site sweep v2",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/backlog-triage-v1",
+      "sha": "53cef239c49fc66fb00dd48bb4727088bf791e32",
+      "commitDate": "2026-11-13T13:47:37+03:00",
+      "subject": "docs: publish English backlog triage report",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_UNMERGED",
+      "reason": "Exact tip is not an ancestor of reviewed source; unique history may remain."
+    },
+    {
+      "branch": "codex/book-passport-v1",
+      "sha": "e8841df84cb443bcbd5234d3af2ab46a2cf1773f",
+      "commitDate": "2026-11-12T06:23:31+03:00",
+      "subject": "test: enforce strict book passports and unchanged producer plans",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/book-update-command-v1",
+      "sha": "d55a3515d2cb96866f80a2d30b3017cd9496fc95",
+      "commitDate": "2026-11-13T00:20:40+03:00",
+      "subject": "test: await canonical Core popup navigation",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/browser-compat-evidence",
+      "sha": "00b024e3618533f35fd7eaced4bc58a8d44ab544",
+      "commitDate": "2026-11-21T01:56:25+03:00",
+      "subject": "Document browser compatibility, exact full gate, offline update and timing evidence",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/browser-compat-v1",
+      "sha": "b0aa1273b907020776dec41ca0466d646e5435e2",
+      "commitDate": "2026-11-20T23:23:44+03:00",
+      "subject": "Load runtime JSON without import attributes and defer the full source catalog",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/card-gained-rules-evidence",
+      "sha": "18b3ccb4005ee59575633b75050111d664df25fb",
+      "commitDate": "2026-11-17T09:01:58+03:00",
+      "subject": "docs: publish gained rule card review evidence",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/card-gained-rules-v1",
+      "sha": "9b99ade9975346afc3644ade7f69d01ed71cce31",
+      "commitDate": "2026-11-17T04:41:23+03:00",
+      "subject": "test: cover hidden captions and canonical rule navigation",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/card-polish-2-v1",
+      "sha": "4bd213b92f8a1b01fba5d5a11d239be1b9bba244",
+      "commitDate": "2026-11-14T14:28:04+03:00",
+      "subject": "fix: keep rule and battle choice text references independent",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/card-texts-v1",
+      "sha": "56b5c82466bafad98dbe5157525331556b48a03d",
+      "commitDate": "2026-11-13T18:18:59+03:00",
+      "subject": "test: cover shared rule text recipients and library source dates",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/compatible-related-panel-v1",
+      "sha": "985a1da4a842741ab0005d8d0388bc5b6aa70724",
+      "commitDate": "2026-11-07T10:30:21+03:00",
+      "subject": "Respect confirmed CHARACTER on a physical singleton Enhancement bearer",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/core-importer-a-v1",
+      "sha": "8ab6787ce503171d852a86f52ffb20467b315959",
+      "commitDate": "2026-11-11T21:21:17+03:00",
+      "subject": "test: guard Core candidate ownership and production isolation",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/core-switch-b-v1",
+      "sha": "913cfef538bc96b7f2d9b55e21995c631cabffeb",
+      "commitDate": "2026-11-12T02:57:05+03:00",
+      "subject": "test: refresh Core-only coverage hashes and native card count",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/csm-tau-recipient-gaps-v1",
+      "sha": "67f10ef5e754b54b55f67ff7a8b44007c32e11a9",
+      "commitDate": "2026-11-06T12:39:50+03:00",
+      "subject": "fix: declare reviewed Tau formed-unit text recipients",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/csm-tau-tyranids-ec-rule-recipients",
+      "sha": "8e9a95289168048086639ba8099f2e686023de9b",
+      "commitDate": "2026-11-05T02:46:11+03:00",
+      "subject": "Record reviewed Tau Tyranids and Emperors Children text recipients",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/dg-am-rule-recipients",
+      "sha": "7579401a1dd3a18c05543139a47b58b2d25f83c5",
+      "commitDate": "2026-10-31T18:19:24+03:00",
+      "subject": "Record source-proven Adeptus Mechanicus text recipients",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/dg-source-enrollment",
+      "sha": "023554a1805935074156a0e3afa80effedbfb5f4",
+      "commitDate": "2026-10-28T01:08:19+03:00",
+      "subject": "Register accepted Death Guard wargear source and guard enrollment",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/disk-e-audit-evidence",
+      "sha": "7fb8d0ad89aaa08f6d5ae34027907d679a305c42",
+      "commitDate": "2026-11-16T11:34:49+03:00",
+      "subject": "docs: preserve cleanup archives and prepare reviewed deletion plan",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/epic-hero-enhancements-v1",
+      "sha": "949d98f9699d660e87c753d3e2385b72a7bf465f",
+      "commitDate": "2026-11-11T01:36:10+03:00",
+      "subject": "fix: preserve Epic Hero validation and eligible QA bearers",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/f1-detachment-recipients",
+      "sha": "ebd6232e27bece8abdb8a8f5df424c3db529ba98",
+      "commitDate": "2026-10-28T18:44:17+03:00",
+      "subject": "Wire F1 checks into required roster, effects and browser QA",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/f2-card-recipients",
+      "sha": "8dbbb9e5f9032a009939d3dd70a62f1ac068ef8a",
+      "commitDate": "2026-10-28T22:25:27+03:00",
+      "subject": "Fix singleton carrier labels and deduplicate canonical detachment fields",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/fabius-safe-import-v1",
+      "sha": "feea3583775b69db1f9c42943cca3e5dc43630e5",
+      "commitDate": "2026-11-13T14:14:54+03:00",
+      "subject": "test: cover declared formations faction refusals and incomplete export hints",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/fast-first-load-evidence",
+      "sha": "5a57f3f7fe741d8c7ec035e933f29c0ddf496ae9",
+      "commitDate": "2026-11-22T03:15:32+03:00",
+      "subject": "docs(review): record final QA pass and reviewed preview",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/fast-first-load-v1",
+      "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+      "commitDate": "2026-11-21T21:28:01+03:00",
+      "subject": "perf(pwa): open verified startup before background offline preparation",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/glossary-builder",
+      "sha": "0d67e4a274660284b0d24975525e5d2c89703052",
+      "commitDate": "2026-11-05T21:27:49+03:00",
+      "subject": "docs: align freshness tracker with verified result",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/i2a-shield-drone",
+      "sha": "21669a052a5b1a3531deda83cf64643609ca83c6",
+      "commitDate": "2026-11-02T13:28:35+03:00",
+      "subject": "Fix physical selection quantity proof for split model groups",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/i2b-tau-choices",
+      "sha": "dccca461ad72c69f2dc695c10ffadf189d5a359e",
+      "commitDate": "2026-11-02T15:42:42+03:00",
+      "subject": "Resolve Tau recipient and weapon choices without rewriting runtime books",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/i2c-sm-static-model",
+      "sha": "ce555e10670b7e10b028964b394f485a458ecaab",
+      "commitDate": "2026-11-02T17:16:12+03:00",
+      "subject": "Prepare static MODEL source bindings for Veteran Bodyguard",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/i3-csm-ec-execution",
+      "sha": "0a7f4874945db52f8075bdc6a362a8db882c12f9",
+      "commitDate": "2026-11-02T22:37:32+03:00",
+      "subject": "Share atomic roster condition execution for CSM and EC",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/i4-unified-roster-service",
+      "sha": "0c7dfdfcebd81fe585a669b789a5ad13da940476",
+      "commitDate": "2026-11-03T12:04:47+03:00",
+      "subject": "Add scoped UI import timing and native call diagnostics",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/import-messages-evidence",
+      "sha": "633cd83e924bb3707305321e596f232b1e477b29",
+      "commitDate": "2026-11-18T18:41:56+03:00",
+      "subject": "docs: record final import messages acceptance and reviewed preview",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/import-messages-v1",
+      "sha": "4060074ae0c7888571367f99f7cb9cc375c167ba",
+      "commitDate": "2026-11-18T16:53:47+03:00",
+      "subject": "test: retain exact points warnings and independently prove price origins",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/keywords-access-v1",
+      "sha": "0e887a93c298eddc09b18dcc8c2dfa43d434c439",
+      "commitDate": "2026-11-14T11:23:25+03:00",
+      "subject": "fix: preserve keyword membership and import validation boundaries",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/load-audit-evidence",
+      "sha": "2c12f7536007e19ba9fcd70599bf57f2e378d891",
+      "commitDate": "2026-11-21T15:27:18+03:00",
+      "subject": "docs: audit mobile loading and precache critical path",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/markup-census-evidence",
+      "sha": "a854d1735ebc780ed587b6be86d2a6581584c7b6",
+      "commitDate": "2026-11-19T23:43:35+03:00",
+      "subject": "docs: publish native rule markup census",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/markup-gap-close-evidence",
+      "sha": "cdfbab36e710f56b54359bbeb5adb51278c34353",
+      "commitDate": "2026-11-20T10:48:12+03:00",
+      "subject": "docs: publish scoped markup closure and recipient audit for review",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/markup-gap-close-v1",
+      "sha": "50c9a9c89d8e66e0466dbeeabc918ec1d465c87f",
+      "commitDate": "2026-11-20T10:42:51+03:00",
+      "subject": "feat: close reviewed battlefield markup debt with scoped owner guard",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/markup-gate-evidence",
+      "sha": "a594b2b19b0e654c774b33f7a3ca417a8b76790a",
+      "commitDate": "2026-11-20T02:07:43+03:00",
+      "subject": "docs: publish markup gate review evidence",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/markup-gate-v1",
+      "sha": "9efbd95f67c5e65bc62b477e36acf9d710ff4784",
+      "commitDate": "2026-11-20T02:05:28+03:00",
+      "subject": "test: scope initial markup totals to their introducing ledger",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/markup-unknown-evidence",
+      "sha": "17337be1e87fb85e06d378aff4c4db0241360c25",
+      "commitDate": "2026-11-21T11:55:28+03:00",
+      "subject": "Record approved markup closures and complete sequential verification",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/markup-unknown-v1",
+      "sha": "8579a7a77c7f5e8dad291afc11b27aab3cd9d73a",
+      "commitDate": "2026-11-21T10:07:23+03:00",
+      "subject": "Close 156 owner-reviewed markup decisions and retain exact named debt",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/mfm-update-v1",
+      "sha": "35a5e4d59c9343b4c74f8e9b4833ee095f59f411",
+      "commitDate": "2026-11-12T12:02:43+03:00",
+      "subject": "fix: preserve MFM group references in reviewed regroupings",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/new-recruit-export-import-v1",
+      "sha": "70be7d9d37a71b7ab91d79d3effd7019bb3b619a",
+      "commitDate": "2026-11-06T18:11:50+03:00",
+      "subject": "Prove singleton New Recruit equipment ownership before roster load",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/new-recruit-model-names-v1",
+      "sha": "c0fab930a4f45ba05c33b66834fbf979518d91ef",
+      "commitDate": "2026-11-06T23:43:50+03:00",
+      "subject": "Derive source-backed New Recruit MODEL names from pinned BSData",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/new-recruit-plain-header-v1",
+      "sha": "2bced37f2733c97595407790429a8aa60c07b2a8",
+      "commitDate": "2026-11-06T20:51:00+03:00",
+      "subject": "Import unlabelled New Recruit headers through shared book-aware resolution",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/norma-1",
+      "sha": "f85c0b59f00875c9a22bfdcec0070e92b78df7b8",
+      "commitDate": "2026-11-04T16:34:10+03:00",
+      "subject": "Complete source enrollment for active Army Book build inputs",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/nr-v3725-header-evidence",
+      "sha": "5f88e125835ade0c4d544d3fb7dd6fea699df13c",
+      "commitDate": "2026-11-15T23:10:35+03:00",
+      "subject": "docs: publish NR v37.25 header review evidence",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/nr-v3725-header-v1",
+      "sha": "9a48765744f32f467f6e53c1f85e94921cbdd54b",
+      "commitDate": "2026-11-15T21:39:41+03:00",
+      "subject": "test: distinguish supported plain header examples",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/o1-recipient-rule-text",
+      "sha": "0ba0426b592f4a16f115b25452721e7e0e39491b",
+      "commitDate": "2026-10-31T02:22:37+03:00",
+      "subject": "Show recorded rule text on attached recipient components",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/o3-detachment-card-text-v1",
+      "sha": "29a866d534ef64b5e7ed5fc1f97bf87e267f9f8e",
+      "commitDate": "2026-11-07T12:54:11+03:00",
+      "subject": "Confirm Wardens physical source binding",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/official-updates-v1",
+      "sha": "021578691affac6bf75433bc813aded7789709a0",
+      "commitDate": "2026-11-13T11:08:59+03:00",
+      "subject": "test: read accepted source text through the shared official updater",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/polish-5-evidence",
+      "sha": "b09a111f1038422a0ac5a5b913443e6db5bcea19",
+      "commitDate": "2026-11-19T22:34:09+03:00",
+      "subject": "docs: record polish 5 popup fixes and DA performance diagnosis",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/polish-5-v1",
+      "sha": "635c503b4bb45d13e3c2cc92c439b86a75e1c954",
+      "commitDate": "2026-11-19T20:58:15+03:00",
+      "subject": "test: retain unique canonical rule locator preference",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/polish-6-evidence",
+      "sha": "cc39f8236d52c0bb08c3395ef782e1a6375c5eac",
+      "commitDate": "2026-11-20T21:44:05+03:00",
+      "subject": "Document polish 6 final verification and review gallery",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/polish-6-v1",
+      "sha": "9876164de85f1e35aa2cf070a3eb9de662093980",
+      "commitDate": "2026-11-20T20:18:34+03:00",
+      "subject": "Generate small startup source metadata and preserve closed resource checks",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/preff-speedup-v1",
+      "sha": "242fc764ca0890e10b3c7c2b6270291fa0b0a070",
+      "commitDate": "2026-11-14T09:17:55+03:00",
+      "subject": "docs: publish pre-ff timing review",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_UNMERGED",
+      "reason": "Exact tip is not an ancestor of reviewed source; unique history may remain."
+    },
+    {
+      "branch": "codex/release-candidate-e3db1b34",
+      "sha": "e3db1b345eca989436eea7af758900eee7795203",
+      "commitDate": "2026-11-21T03:39:26+03:00",
+      "subject": "Release candidate: Unified V2 from reviewed source 6f2e5fb23643fc0041efcd7006f3e150bd5ce4be",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": true,
+      "classification": "CANDIDATE_RELEASED",
+      "reason": "Candidate commit is an ancestor of (or equal to) the current release; already released."
+    },
+    {
+      "branch": "codex/release-candidate-evidence",
+      "sha": "b3b92162ce3180894b4fa1aeaff4acdc75033a97",
+      "commitDate": "2026-11-21T03:52:55+03:00",
+      "subject": "Record release candidate v3 package, browser acceptance and rollback evidence",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/release-docs-v1",
+      "sha": "6f2e5fb23643fc0041efcd7006f3e150bd5ce4be",
+      "commitDate": "2026-11-21T02:44:38+03:00",
+      "subject": "Clarify Codex release authorization and history-preserving rollback",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/roster-condition-binding-am-dg",
+      "sha": "cff58491aa10132aaa6a36b37dba6c771a50ad2a",
+      "commitDate": "2026-11-01T02:50:46+03:00",
+      "subject": "Fix accepted rule source QA and reuse recipient test sessions",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/roster-navigation-evidence",
+      "sha": "28297c76e1bcf59b1ff1c88f76562f1026c40e7b",
+      "commitDate": "2026-11-18T04:43:39+03:00",
+      "subject": "docs: archive roster navigation review evidence",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/roster-navigation-v1",
+      "sha": "5bc1b038437fcac86966f87371760da94d7e9b38",
+      "commitDate": "2026-11-18T04:30:50+03:00",
+      "subject": "test: verify visible desktop roster section navigation",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/rule-encoding-census",
+      "sha": "aa79193e7a458ad77c32b986c2fe9e84f26bd26f",
+      "commitDate": "2026-10-29T01:33:34+03:00",
+      "subject": "docs(audit): inventory rule encoding across nine books",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/rule-popups-evidence",
+      "sha": "3e0b6381eeee5b2113aaef4a8587c888fa2a47ef",
+      "commitDate": "2026-11-17T22:32:33+03:00",
+      "subject": "docs: publish rule popup review evidence",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_EVIDENCE",
+      "reason": "All evidence branches retained by owner instruction, regardless of ancestry."
+    },
+    {
+      "branch": "codex/rule-popups-v1",
+      "sha": "c477d20aaa16f850b56f18aa878d6b5fb8b4057f",
+      "commitDate": "2026-11-17T18:10:33+03:00",
+      "subject": "fix: preserve chip labels and suppress self source summaries",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/show-1-card-labels",
+      "sha": "fe40b913da96ad6b02a11ee18c4702259d28bb66",
+      "commitDate": "2026-10-31T05:11:54+03:00",
+      "subject": "Clean up rule-card labels and redundant metric annotations",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/show-2-card-display",
+      "sha": "1d6ed00ec299331239b18261c8edbf0d45a39f59",
+      "commitDate": "2026-10-31T12:42:12+03:00",
+      "subject": "Fix component keywords and remaining rule-card presentation duplicates",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/sm-ba-da-rule-recipients",
+      "sha": "7882b6583de1ca137d1ba147310a5158b9a9258a",
+      "commitDate": "2026-11-04T17:10:57+03:00",
+      "subject": "Record reviewed native Blood Angels and Dark Angels text recipients",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/sm-da-recipient-gaps-v1",
+      "sha": "6fdb77a320b3907e206e08f9c4a6167c12593eb7",
+      "commitDate": "2026-11-06T15:19:48+03:00",
+      "subject": "Present unscoped source UNIT rules on attached components",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/source-catalog-registry-v1",
+      "sha": "7b15dc36425ac577b6928837ec9983409972e278",
+      "commitDate": "2026-11-11T16:33:00+03:00",
+      "subject": "fix: keep source catalog as append-only registry with pre-write integrity",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/sw-update-v1",
+      "sha": "62b16eb233c4df5dff7b3ba17a55d39fd31093f3",
+      "commitDate": "2026-11-15T04:12:42+03:00",
+      "subject": "test: cover selected-book startup code dependencies",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/sweep-polish-v1",
+      "sha": "175d41d14a58a05340b14530a959991d171a8765",
+      "commitDate": "2026-11-15T13:39:01+03:00",
+      "subject": "test: guard player text names shared prose and mobile headings",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/test-hygiene-1",
+      "sha": "f3cb1565c17a30121b8ff1bc202883ece774b385",
+      "commitDate": "2026-11-05T13:21:40+03:00",
+      "subject": "test: use the shared managed browser launcher for shell QA",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/test-hygiene-2",
+      "sha": "b4c7e9738941e82c23fd40c8bb29527bcc93fada",
+      "commitDate": "2026-11-05T16:21:59+03:00",
+      "subject": "test: retain independent accepted-source corpus controls",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/test-hygiene-min-v1",
+      "sha": "2d5defae9e9677e64c48814055ba9b2eb3c24452",
+      "commitDate": "2026-11-14T00:18:57+03:00",
+      "subject": "docs: require exact SHA authorization for release fast-forwards",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/test-speedup",
+      "sha": "feb2fee2e67448967092e05d813bae82445209ac",
+      "commitDate": "2026-10-30T17:17:14+03:00",
+      "subject": "Reuse validated roster runtimes and owned source-book copies",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/test-temp-cleanup-tau",
+      "sha": "3bb12ef850a477fde6b78df40e7644646c9304c6",
+      "commitDate": "2026-10-31T15:17:20+03:00",
+      "subject": "Manage QA scratch lifecycles and reuse Tau test setup",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/translate-1-recipients",
+      "sha": "98342d0670117e15dd8fb7871b2132252a128a92",
+      "commitDate": "2026-10-29T16:05:21+03:00",
+      "subject": "Replace remaining recipient review aliases",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/translate-2-conditions",
+      "sha": "75d322e4e3274f14d7e2a81abace3ba63c784ec5",
+      "commitDate": "2026-10-29T18:47:18+03:00",
+      "subject": "Unify recorded FIELD conditions and shared computation",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/translate-3-sources",
+      "sha": "874f3ccb2e21a561828985875c19c52146d387af",
+      "commitDate": "2026-10-30T12:17:39+03:00",
+      "subject": "Complete source-reference validation and refresh derived cache metadata",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_UNMERGED",
+      "reason": "Exact tip is not an ancestor of reviewed source; unique history may remain."
+    },
+    {
+      "branch": "codex/translate-3-sources-v2",
+      "sha": "b2eec6b2c109c7bc72ca5d469f56533207aa87e2",
+      "commitDate": "2026-10-30T12:54:31+03:00",
+      "subject": "Unify source references across nine books with verified parity and generated audit data",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/tyranids-ec-rule-coverage-v1",
+      "sha": "427796be5d29766acedc59338537f04667c0ba67",
+      "commitDate": "2026-11-07T02:01:20+03:00",
+      "subject": "Complete reviewed Emperor's Children rule text contracts and browser coverage",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "codex/unified-v2-source",
+      "sha": "e08ec20df980d4e6700c32b65069de983b250e03",
+      "commitDate": "2026-11-21T21:28:01+03:00",
+      "subject": "perf(pwa): open verified startup before background offline preparation",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "KEEP_PROTECTED",
+      "reason": "Protected branch; never include in deletion commands."
+    },
+    {
+      "branch": "codex/unified-v2-staging",
+      "sha": "0c7dfdfcebd81fe585a669b789a5ad13da940476",
+      "commitDate": "2026-11-03T12:04:47+03:00",
+      "subject": "Add scoped UI import timing and native call diagnostics",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": false,
+      "classification": "CANDIDATE_MERGED",
+      "reason": "Exact tip is an ancestor of (or equal to) reviewed source."
+    },
+    {
+      "branch": "main",
+      "sha": "c5200d40f81896febf6e143053111948374ef92d",
+      "commitDate": "2026-07-27T16:49:47+03:00",
+      "subject": "Lock background scrolling for open popups",
+      "ancestorOfSource": true,
+      "ancestorOfRelease": true,
+      "classification": "KEEP_PROTECTED",
+      "reason": "Protected branch; never include in deletion commands."
+    },
+    {
+      "branch": "unified-v2-release",
+      "sha": "e3db1b345eca989436eea7af758900eee7795203",
+      "commitDate": "2026-11-21T03:39:26+03:00",
+      "subject": "Release candidate: Unified V2 from reviewed source 6f2e5fb23643fc0041efcd7006f3e150bd5ce4be",
+      "ancestorOfSource": false,
+      "ancestorOfRelease": true,
+      "classification": "KEEP_PROTECTED",
+      "reason": "Protected branch; never include in deletion commands."
+    }
+  ]
+}
