@@ -44,6 +44,31 @@ Read the root and nearest scoped `AGENTS.md`, then use `REPO_MAP.md` and `QA_MAT
 - **Expand when:** a failure provides a concrete owner and reproduction.
 - **Do not run:** release actions from a local repair session.
 
+## Manual GitHub pre-FF (initial equivalence trial)
+
+`.github/workflows/qa-pre-ff.yml` accepts a repository branch or SHA through
+`workflow_dispatch` only. It runs the complete sequential queue, with Node 24,
+Python 3.12, locked npm dependencies, declared Python packages, pinned BSData and
+the Chromium shipped with the locked Playwright version. It neither deploys nor
+updates any branch. Same-ref runs are serialized; the job timeout is 300 minutes.
+
+GitHub requires a new manual workflow to exist on the repository's default branch
+before first dispatch. Do not move source or change repository settings merely to
+bootstrap it; obtain a separate owner decision. After the workflow is available:
+
+```text
+gh workflow run qa-pre-ff.yml --ref <workflow-branch> -f ref=<tested-branch-or-sha>
+```
+
+The tested SHA, ordered plan, counts, timings and failed jobs appear in the run
+summary and a 30-day artifact. Raw console, captures, DOM and traces remain
+runner-local and are not uploaded. A failed or incomplete run remains FAIL;
+timeouts are not retried automatically. Local equivalence uses the same exact
+SHA and complete queue once, comparing command kind and every argument, with
+only checkout and declared packaging-work operands normalized. Until the owner
+accepts this trial, existing local verification remains required. Real device
+review, local preview and separately authorized release checks are unchanged.
+
 ## Session boundary
 
 **NEW MAJOR STAGE → NEW CODEX SESSION**

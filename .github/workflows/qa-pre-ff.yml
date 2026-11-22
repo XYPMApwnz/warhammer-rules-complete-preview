@@ -1,0 +1,99 @@
+name: Manual pre-FF verification
+run-name: Pre-FF verification ${{ github.run_number }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Repository branch or commit SHA to verify
+        required: true
+        default: codex/unified-v2-source
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pre-ff-${{ inputs.ref }}
+  cancel-in-progress: false
+
+jobs:
+  pre-ff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    defaults:
+      run:
+        shell: bash
+    env:
+      QA_SKIP_TMP_SWEEP: '1'
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Validate target ref without echoing untrusted input
+        env:
+          TARGET_REF: ${{ inputs.ref }}
+        run: |
+          echo "QA_TMP_ROOT=$RUNNER_TEMP/qa-work" >> "$GITHUB_ENV"
+          [[ "$TARGET_REF" =~ ^[A-Za-z0-9][A-Za-z0-9._/-]*$ ]] || { echo 'Invalid repository ref'; exit 1; }
+      - name: Check out reviewed orchestration
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          path: orchestration
+          persist-credentials: false
+      - name: Check out target with historical baselines
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
+          path: source
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Prepare locked dependencies and authenticated input
+        timeout-minutes: 15
+        working-directory: source
+        run: |
+          echo 'Installing locked npm dependencies'
+          npm ci > "$RUNNER_TEMP/npm-install.log" 2>&1
+          echo 'Installing declared Python dependencies'
+          python -m pip install --disable-pip-version-check -r requirements-army-books.txt > "$RUNNER_TEMP/python-install.log" 2>&1
+          echo 'Installing locked Playwright Chromium and system dependencies'
+          npx playwright install --with-deps chromium > "$RUNNER_TEMP/browser-install.log" 2>&1
+          echo 'Checking workflow and public-report controls'
+          node ../orchestration/tests/qa-pre-ff-ci-qa.mjs > "$RUNNER_TEMP/ci-controls.log" 2>&1
+          echo 'Preparing the authenticated BSData checkout'
+          npm run qa:sm:prepare-bsdata > "$RUNNER_TEMP/bsdata-prepare.log" 2>&1
+          echo "QA_PYTHON=$(command -v python)" >> "$GITHUB_ENV"
+          echo "PYTHON=$(command -v python)" >> "$GITHUB_ENV"
+          node -e 'const p=require("playwright").chromium.executablePath();for(const k of ["WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH","PLAYWRIGHT_CHROMIUM_EXECUTABLE"])console.log(k+"="+p)' >> "$GITHUB_ENV"
+      - name: Run complete sequential pre-FF
+        id: queue
+        timeout-minutes: 280
+        working-directory: source
+        run: |
+          # Raw test output may contain source captures or private failure values.
+          # Keep it runner-local; publish only the fixed-schema report below.
+          npm run qa:pre-ff -- --out="$RUNNER_TEMP/pre-ff-raw" > "$RUNNER_TEMP/pre-ff-console.log" 2>&1
+      - name: Export safe report and step summary
+        if: ${{ always() }}
+        env:
+          QUEUE_OUTCOME: ${{ steps.queue.outcome }}
+        run: |
+          node orchestration/tools/qa-pre-ff-ci.mjs report --source="$GITHUB_WORKSPACE/source" --raw="$RUNNER_TEMP/pre-ff-raw" --out="$RUNNER_TEMP/pre-ff-report" --summary="$GITHUB_STEP_SUMMARY" --outcome="$QUEUE_OUTCOME"
+      - name: Upload report only, including failures
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: pre-ff-report-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/pre-ff-report/REPORT.md
+            ${{ runner.temp }}/pre-ff-report/RESULTS.json
+            ${{ runner.temp }}/pre-ff-report/JOB_PLAN.json
