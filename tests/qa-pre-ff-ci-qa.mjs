@@ -15,11 +15,19 @@ function workflowContract(text){
  assert.match(text,/on:\s*\n  workflow_dispatch:/);
  assert.doesNotMatch(text,/^  (?:push|pull_request|schedule|repository_dispatch):/m);
  assert.match(text,/permissions:\s*\n  contents: read/);
- assert.doesNotMatch(text,/secrets\.|contents: write|actions: write|pages: write/);
+ assert.doesNotMatch(text,/contents: write|actions: write|pages: write/);
+ const steps=text.split(/^      - /m),secretSteps=steps.filter(step=>step.includes('secrets.'));
+ assert.equal(secretSteps.length,1,'Exactly one secret-scoped preparation step');
+ assert(secretSteps[0].startsWith('name: Prepare authenticated BSData from private mirror\n'));
+ for(const step of steps)if(step!==secretSteps[0])assert.doesNotMatch(step,/BSDATA_MIRROR_SSH_KEY/);
+ assert.deepEqual([...text.matchAll(/secrets\.([A-Za-z0-9_]+)/g)].map(match=>match[1]),['BSDATA_MIRROR_SSH_KEY']);
+ assert.match(secretSteps[0],/env:\s*\n          BSDATA_MIRROR_SSH_KEY: \$\{\{ secrets\.BSDATA_MIRROR_SSH_KEY \}\}/);
+ assert.match(secretSteps[0],/node \.\.\/orchestration\/tools\/prepare-ci-bsdata\.mjs --source="\$PWD" > "\$RUNNER_TEMP\/bsdata-prepare.log" 2>&1/);
+ assert.doesNotMatch(text.split('    steps:')[0],/BSDATA_MIRROR_SSH_KEY|secrets\./);
  assert.match(text,/runs-on: ubuntu-latest/);assert.match(text,/timeout-minutes: 300/);
  assert.match(text,/group: pre-ff-\$\{\{ inputs.ref \}\}/);assert.match(text,/cancel-in-progress: false/);
  assert.match(text,/fetch-depth: 0/);assert.match(text,/node-version: '24'/);assert.match(text,/python-version: '3.12'/);
- const requirements=['npm ci >','python -m pip install','npx playwright install --with-deps chromium','npm run qa:sm:prepare-bsdata','npm run qa:pre-ff -- --out='];
+ const requirements=['npm ci >','python -m pip install','npx playwright install --with-deps chromium','node ../orchestration/tests/ci-bsdata-transport-qa.mjs','node ../orchestration/tools/prepare-ci-bsdata.mjs','npm run qa:pre-ff -- --out='];
  let previous=-1;for(const item of requirements){const position=text.indexOf(item);assert(position>previous,'Required sequential preparation: '+item);previous=position;}
  assert.match(text,/WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH/);assert.match(text,/PLAYWRIGHT_CHROMIUM_EXECUTABLE/);
  assert.match(text,/QA_PYTHON=/);assert.match(text,/PYTHON=/);
@@ -35,6 +43,9 @@ control('manual-only-read-only-setup-summary-and-allowlisted-artifact',()=>workf
 control('missing-locked-install-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replace('npm ci >','npm install >'))));
 control('publishing-raw-output-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replace('pre-ff-report/RESULTS.json','pre-ff-raw/RESULTS.json'))));
 control('push-trigger-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replace('  workflow_dispatch:','  push:\n  workflow_dispatch:'))));
+control('secret-in-any-other-step-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replace('      - name: Run complete sequential pre-FF','      - name: Unexpected secret use\n        env:\n          BSDATA_MIRROR_SSH_KEY: ${{ secrets.BSDATA_MIRROR_SSH_KEY }}\n        run: echo forbidden\n      - name: Run complete sequential pre-FF'))));
+control('unapproved-secret-name-is-rejected',()=>assert.throws(()=>workflowContract(workflow.replaceAll('secrets.BSDATA_MIRROR_SSH_KEY','secrets.UNAPPROVED_SECRET'))));
+control('credential-identifier-cannot-be-forwarded-to-queue-step',()=>assert.throws(()=>workflowContract(workflow.replace('      - name: Run complete sequential pre-FF','      - name: Unexpected credential forwarding\n        env:\n          BSDATA_MIRROR_SSH_KEY: ${{ env.BSDATA_MIRROR_SSH_KEY }}\n        run: echo forbidden\n      - name: Run complete sequential pre-FF'))));
 const checkout=path.resolve(root),sha='a'.repeat(40);
 const plan=[{command:process.execPath,id:'tests/example-qa.mjs',args:['tests/example-qa.mjs','--fixtures=v2/fixtures/accepted.json']},
  {command:process.execPath,id:'tests/source-book-clone-qa.mjs',args:['tests/source-book-clone-qa.mjs','--root='+checkout]},

@@ -69,6 +69,19 @@ only checkout and declared packaging-work operands normalized. Until the owner
 accepts this trial, existing local verification remains required. Real device
 review, local preview and separately authorized release checks are unchanged.
 
+The accepted BSData upstream became unavailable after its published November2026
+notice. CI reads the exact accepted commit from the owner's private mirror using
+one read-only deploy key, injected only into the BSData preparation step. The
+temporary credential is removed before calling the existing authenticated
+`prepare-sm-bsdata.mjs --cache` path. That path still verifies the accepted
+upstream identity, exact commit, tracked inputs and clean tree. The mirror is a
+transport, not a replacement source; book configuration and expectations stay
+unchanged. Its Actions are disabled and it has only the pinned branch. Never
+publish its data, key, raw preparation logs or source bodies in an artifact,
+release asset or public branch. The standard artifact file allowlist remains
+unchanged. Rotate the deploy key through mirror administration and the main
+repository's `BSDATA_MIRROR_SSH_KEY` Actions secret; never put it in source.
+
 ## Session boundary
 
 **NEW MAJOR STAGE → NEW CODEX SESSION**
