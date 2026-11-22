@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "checks": 15,
+  "results": [
+    {
+      "name": "published-output-verbatim-and-fresh",
+      "status": "PASS"
+    },
+    {
+      "name": "independent-packaged-startup-core-and-module-revision-guards",
+      "status": "PASS"
+    },
+    {
+      "name": "independent-deterministic-build",
+      "status": "PASS"
+    },
+    {
+      "name": "allowlist-checkout-CRLF-LF-identical-package",
+      "status": "PASS"
+    },
+    {
+      "name": "refuse-source-overwrite",
+      "status": "PASS"
+    },
+    {
+      "name": "refuse-nonempty-output",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-duplicate-allowlist-entry",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-path-traversal",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-development-qa-publication",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-unreviewed-raw-capture-publication",
+      "status": "PASS"
+    },
+    {
+      "name": "preserve-existing-public-source-download",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-missing-browser-module-before-copy",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-runtime-content-corruption",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-unlisted-published-file",
+      "status": "PASS"
+    },
+    {
+      "name": "restored-negative-fixture-still-fresh",
+      "status": "PASS"
+    }
+  ],
+  "contentSha256": "2b3643a912a65dcdf285d5a8de5647d8c0bf2f156f39d1db920f4d108cf4f1c0",
+  "publishedBytes": 283191930,
+  "cacheRevision": "946ff60a59dc4381",
+  "scope": "Runtime-only output boundary; browser QA is separate"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "BLOCKED_BY_AUTOMATIC_POLICY",
+  "action": "Stop the identified e08 owned preview with its stop-file, then start the exact 213/213 PASS visual-polish preview with Start-Process -WindowStyle Hidden.",
+  "reason": "CreateProcess rejected: blocked by policy. No more specific reason was returned.",
+  "executed": false,
+  "oldPreviewChanged": false,
+  "oldSha": "e08ec20df980d4e6700c32b65069de983b250e03",
+  "address": "http://192.168.1.124:8765/",
+  "ownerScript": "E:/Warhammer/qa-evidence/visual-polish-v1-2026-11-22/RECIPES/restart-reviewed-preview.ps1",
+  "retainedReviewedPackage": "E:/Warhammer/qa-tmp/preview-v1/package-visual-polish-9e04d5d4"
+}

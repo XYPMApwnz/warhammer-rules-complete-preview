@@ -1,0 +1,380 @@
+{
+  "schema": "visual-polish-offline-browser/v1",
+  "status": "PASS",
+  "root": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-runner\\dist-pages",
+  "package": "2b3643a912a65dcdf285d5a8de5647d8c0bf2f156f39d1db920f4d108cf4f1c0",
+  "revision": "946ff60a59dc4381",
+  "mode": "Fresh Chrome persistent profiles at 390/1440; optional browser capability is the only simulated input.",
+  "scope": "Missing API, denied API getter, SecurityError registration, plus actual normal worker Ready.",
+  "cases": [
+    {
+      "width": 390,
+      "mode": "missing-api",
+      "status": "PASS",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "steps": [
+        {
+          "name": "Home without blank/loading screen",
+          "status": "PASS",
+          "elapsedMs": 381,
+          "bookLinks": 9
+        },
+        {
+          "name": "Online native DG library",
+          "status": "PASS",
+          "elapsedMs": 1186,
+          "book": "death-guard",
+          "expected": 53,
+          "shown": 53
+        }
+      ],
+      "screenshots": [
+        "390-missing-api-home.jpg",
+        "390-missing-api-library.jpg"
+      ],
+      "onlineOnly": {
+        "indicator": [],
+        "observations": {
+          "mode": "missing-api",
+          "registerCalls": 0,
+          "getterReads": 0,
+          "apiAbsent": true
+        },
+        "updaterHidden": true
+      },
+      "afterRecoveryEvents": {
+        "indicator": [],
+        "observations": {
+          "mode": "missing-api",
+          "registerCalls": 0,
+          "getterReads": 0,
+          "apiAbsent": true
+        },
+        "updaterHidden": true
+      }
+    },
+    {
+      "width": 390,
+      "mode": "getter-denied",
+      "status": "PASS",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "steps": [
+        {
+          "name": "Home without blank/loading screen",
+          "status": "PASS",
+          "elapsedMs": 415,
+          "bookLinks": 9
+        },
+        {
+          "name": "Online native DG library",
+          "status": "PASS",
+          "elapsedMs": 1087,
+          "book": "death-guard",
+          "expected": 53,
+          "shown": 53
+        }
+      ],
+      "screenshots": [
+        "390-getter-denied-home.jpg",
+        "390-getter-denied-library.jpg"
+      ],
+      "onlineOnly": {
+        "indicator": [],
+        "observations": {
+          "mode": "getter-denied",
+          "registerCalls": 0,
+          "getterReads": 1
+        },
+        "updaterHidden": true
+      },
+      "afterRecoveryEvents": {
+        "indicator": [],
+        "observations": {
+          "mode": "getter-denied",
+          "registerCalls": 0,
+          "getterReads": 1
+        },
+        "updaterHidden": true
+      }
+    },
+    {
+      "width": 390,
+      "mode": "registration-denied",
+      "status": "PASS",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "steps": [
+        {
+          "name": "Home without blank/loading screen",
+          "status": "PASS",
+          "elapsedMs": 374,
+          "bookLinks": 9
+        },
+        {
+          "name": "Online native DG library",
+          "status": "PASS",
+          "elapsedMs": 1094,
+          "book": "death-guard",
+          "expected": 53,
+          "shown": 53
+        }
+      ],
+      "screenshots": [
+        "390-registration-denied-home.jpg",
+        "390-registration-denied-library.jpg"
+      ],
+      "onlineOnly": {
+        "indicator": [],
+        "observations": {
+          "mode": "registration-denied",
+          "registerCalls": 1,
+          "getterReads": 0
+        },
+        "updaterHidden": true
+      },
+      "afterRecoveryEvents": {
+        "indicator": [],
+        "observations": {
+          "mode": "registration-denied",
+          "registerCalls": 1,
+          "getterReads": 0
+        },
+        "updaterHidden": true
+      }
+    },
+    {
+      "width": 390,
+      "mode": "normal",
+      "status": "PASS",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "steps": [
+        {
+          "name": "Home without blank/loading screen",
+          "status": "PASS",
+          "elapsedMs": 572,
+          "bookLinks": 9
+        },
+        {
+          "name": "Online native DG library",
+          "status": "PASS",
+          "elapsedMs": 1281,
+          "book": "death-guard",
+          "expected": 53,
+          "shown": 53
+        }
+      ],
+      "screenshots": [
+        "390-normal-home.jpg",
+        "390-normal-library.jpg"
+      ],
+      "preparedWorker": {
+        "type": "WH_OFFLINE_PACKAGE_STATUS",
+        "revision": "946ff60a59dc4381",
+        "cacheBytes": "5f4aa52c3dc6b60d",
+        "statusInstance": "e8d9d4cc6802a5ed5d591462c1affe31",
+        "sequence": 9,
+        "status": "preparing",
+        "completed": 7,
+        "total": 221,
+        "error": null,
+        "coreReady": true,
+        "coreCompleted": 7,
+        "coreTotal": 7
+      }
+    },
+    {
+      "width": 1440,
+      "mode": "missing-api",
+      "status": "PASS",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "steps": [
+        {
+          "name": "Home without blank/loading screen",
+          "status": "PASS",
+          "elapsedMs": 345,
+          "bookLinks": 9
+        },
+        {
+          "name": "Online native DG library",
+          "status": "PASS",
+          "elapsedMs": 1137,
+          "book": "death-guard",
+          "expected": 53,
+          "shown": 53
+        }
+      ],
+      "screenshots": [
+        "1440-missing-api-home.jpg",
+        "1440-missing-api-library.jpg"
+      ],
+      "onlineOnly": {
+        "indicator": [],
+        "observations": {
+          "mode": "missing-api",
+          "registerCalls": 0,
+          "getterReads": 0,
+          "apiAbsent": true
+        },
+        "updaterHidden": true
+      },
+      "afterRecoveryEvents": {
+        "indicator": [],
+        "observations": {
+          "mode": "missing-api",
+          "registerCalls": 0,
+          "getterReads": 0,
+          "apiAbsent": true
+        },
+        "updaterHidden": true
+      }
+    },
+    {
+      "width": 1440,
+      "mode": "getter-denied",
+      "status": "PASS",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "steps": [
+        {
+          "name": "Home without blank/loading screen",
+          "status": "PASS",
+          "elapsedMs": 378,
+          "bookLinks": 9
+        },
+        {
+          "name": "Online native DG library",
+          "status": "PASS",
+          "elapsedMs": 1160,
+          "book": "death-guard",
+          "expected": 53,
+          "shown": 53
+        }
+      ],
+      "screenshots": [
+        "1440-getter-denied-home.jpg",
+        "1440-getter-denied-library.jpg"
+      ],
+      "onlineOnly": {
+        "indicator": [],
+        "observations": {
+          "mode": "getter-denied",
+          "registerCalls": 0,
+          "getterReads": 1
+        },
+        "updaterHidden": true
+      },
+      "afterRecoveryEvents": {
+        "indicator": [],
+        "observations": {
+          "mode": "getter-denied",
+          "registerCalls": 0,
+          "getterReads": 1
+        },
+        "updaterHidden": true
+      }
+    },
+    {
+      "width": 1440,
+      "mode": "registration-denied",
+      "status": "PASS",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "steps": [
+        {
+          "name": "Home without blank/loading screen",
+          "status": "PASS",
+          "elapsedMs": 372,
+          "bookLinks": 9
+        },
+        {
+          "name": "Online native DG library",
+          "status": "PASS",
+          "elapsedMs": 1146,
+          "book": "death-guard",
+          "expected": 53,
+          "shown": 53
+        }
+      ],
+      "screenshots": [
+        "1440-registration-denied-home.jpg",
+        "1440-registration-denied-library.jpg"
+      ],
+      "onlineOnly": {
+        "indicator": [],
+        "observations": {
+          "mode": "registration-denied",
+          "registerCalls": 1,
+          "getterReads": 0
+        },
+        "updaterHidden": true
+      },
+      "afterRecoveryEvents": {
+        "indicator": [],
+        "observations": {
+          "mode": "registration-denied",
+          "registerCalls": 1,
+          "getterReads": 0
+        },
+        "updaterHidden": true
+      }
+    },
+    {
+      "width": 1440,
+      "mode": "normal",
+      "status": "PASS",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "steps": [
+        {
+          "name": "Home without blank/loading screen",
+          "status": "PASS",
+          "elapsedMs": 540,
+          "bookLinks": 9
+        },
+        {
+          "name": "Online native DG library",
+          "status": "PASS",
+          "elapsedMs": 1337,
+          "book": "death-guard",
+          "expected": 53,
+          "shown": 53
+        }
+      ],
+      "screenshots": [
+        "1440-normal-home.jpg",
+        "1440-normal-library.jpg"
+      ],
+      "preparedWorker": {
+        "type": "WH_OFFLINE_PACKAGE_STATUS",
+        "revision": "946ff60a59dc4381",
+        "cacheBytes": "5f4aa52c3dc6b60d",
+        "statusInstance": "ea147ce2388c6baefa991fe519bf4158",
+        "sequence": 9,
+        "status": "preparing",
+        "completed": 7,
+        "total": 221,
+        "error": null,
+        "coreReady": true,
+        "coreCompleted": 7,
+        "coreTotal": 7
+      }
+    }
+  ],
+  "network": {
+    "requests": 1231,
+    "httpFailures": [],
+    "unpublishedSuccessfulResources": []
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "runtimeFiles": 456,
+  "addedPaths": [],
+  "removedPaths": [],
+  "sourceRuntimeChanges": [
+    "books/shared/army-book-app-v2/book-v1.css",
+    "books/shared/army-book-app-v2/datasheet-v1.css",
+    "books/shared/army-book-app-v2/datasheet-v1.mjs",
+    "books/shared/army-book-app-v2/popup-v1.css",
+    "books/shared/army-book-app-v2/reference-v1.css",
+    "books/shared/army-book-app-v2/roster.mjs",
+    "books/shared/army-book-app-v2/styles.css",
+    "books/shared/offline-status.js",
+    "books/shared/unit-art.css"
+  ],
+  "nonRuntimeChanges": [
+    "docs/codex/QA_MATRIX.md",
+    "package.json",
+    "tests/helper-offline-availability-qa.mjs",
+    "tools/qa-queue.mjs"
+  ],
+  "precacheUrlsBefore": 221,
+  "precacheUrlsAfter": 221,
+  "startupCoreKeysBefore": 7,
+  "startupCoreKeysAfter": 7,
+  "revisionBefore": "28acb87c11537a8b",
+  "revisionAfter": "946ff60a59dc4381",
+  "note": "Normal revision-tag and SRI literal updates are produced by unchanged publication tools; there are no new runtime paths/imports."
+}

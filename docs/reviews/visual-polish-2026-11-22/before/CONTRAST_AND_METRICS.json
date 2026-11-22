@@ -1,0 +1,2018 @@
+{
+  "schema": "visual-polish-compact/v1",
+  "sourceFile": "RESULTS.json",
+  "sourceSha256": "98ad4b0b988e4d420309e84bc6e376f740fac1411edaef0ef293d18114f734f3",
+  "status": "PASS",
+  "phase": "before",
+  "package": "f975aa7a6c68073dd86c46b512e9cc1b8664209abce937fad128e91616095af5",
+  "axeVersion": "4.14.1",
+  "errors": [],
+  "cases": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "pageErrors": [],
+      "screens": [
+        {
+          "name": "book-library",
+          "screenshot": "390-book-library.jpg",
+          "semanticSha256": "c7d63bbe8edb3d509d89a64c7f2d75ec9fa14bd9d383971430802e7a6dd1a498",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 805
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 4203,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 443,
+                "examples": [
+                  [
+                    ".offline-package-label"
+                  ],
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "nonBmp",
+                "message": "Element content contains only non-text characters",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "#navMenu"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 3746,
+                "examples": [
+                  [
+                    ".book-fact-value[data-context-id=\"army-rule-nurgles-gift\"][data-fact-value=\"\\\"1\\\"\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"\\\"3\\\\\\\"\\\"\"][data-context-id=\"army-rule-nurgles-gift\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-context-id=\"army-rule-nurgles-gift\"][data-fact-value=\"\\\"2\\\"\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"\\\"6\\\\\\\"\\\"\"][data-context-id=\"army-rule-nurgles-gift\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "shortTextContent",
+                "message": "Element content is too short to determine if it is actual text content",
+                "nodes": 12,
+                "examples": [
+                  [
+                    "span[data-fact-value=\"3\"]"
+                  ],
+                  [
+                    ".detachment.v2-kind-DETACHMENT[data-source-ids=\"[\\\"dg-waha-2026-09-25\\\"]\"]:nth-child(3) > .detachment-title.category-title > .detachment-dp.v2-kind-MFM-DETACHMENT.v2-book-record > .book-fact-value[data-fact-value=\"2\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"2\"][data-context-id=\"detachment-tallyband-summoners\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"2\"][data-context-id=\"detachment-death-lords-chosen\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "imgNode",
+                "message": "Element's background color could not be determined because element contains an image node",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "h3[data-fact-id=\"unit-beasts-of-nurgle::/title\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 10
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "import-empty",
+          "screenshot": "390-import-empty.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 5,
+            "incompleteReasons": [
+              {
+                "reason": "nonBmp",
+                "message": "Element content contains only non-text characters",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "#navMenu"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 4,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ],
+                  [
+                    "h1"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 13
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "attachment-setup",
+          "screenshot": "390-attachment-setup.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 689.609375,
+                  "bottom": 760.90625,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 776.90625,
+                    "bottom": 812.90625,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 927.90625,
+                  "bottom": 999.203125,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 1015.203125,
+                    "bottom": 1051.203125,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 1166.203125,
+                  "bottom": 1237.5,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 1253.5,
+                    "bottom": 1289.5,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 23
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 4,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 4,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ],
+                  [
+                    "h1"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 86
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "attachment-models-points",
+          "screenshot": "390-attachment-models-points.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 689.609375,
+                  "bottom": 760.90625,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 776.90625,
+                    "bottom": 812.90625,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 927.90625,
+                  "bottom": 999.203125,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 1015.203125,
+                    "bottom": 1051.203125,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 1166.203125,
+                  "bottom": 1237.5,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 1253.5,
+                    "bottom": 1289.5,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 23
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 4,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 4,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ],
+                  [
+                    "h1"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 86
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "roster-card",
+          "screenshot": "390-roster-card.jpg",
+          "semanticSha256": "7223893ca542a4307f9934a78944c0a99c5cd7f3dc72b39a6fd1d91c89e7bdb1",
+          "detail": {
+            "instanceId": "parsed-unit-8"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 220.6875,
+                "bottom": 2834.015625,
+                "left": 14,
+                "right": 376,
+                "width": 362,
+                "height": 2613.328125
+              },
+              "header": {
+                "top": 223.6875,
+                "bottom": 414.03125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 190.34375
+              },
+              "context": {
+                "top": 414.03125,
+                "bottom": 430.03125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 16
+              },
+              "contextVisible": true,
+              "stats": {
+                "top": 536.53125,
+                "bottom": 593.078125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 56.546875
+              }
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 36
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 113,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 7,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ],
+                  [
+                    ".v2-breadcrumbs > button"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 106,
+                "examples": [
+                  [
+                    ".eyebrow"
+                  ],
+                  [
+                    "h3"
+                  ],
+                  [
+                    ".ds-instance-price"
+                  ],
+                  [
+                    ".local-tab:nth-child(1)"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 6
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "weapon-popup",
+          "screenshot": "390-weapon-popup.jpg",
+          "semanticSha256": "f0c8bee89d91e992fe6a33a83c37589b95cfdd7beb01f5c219c763da7087bedf",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:weapon:1"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 220.6875,
+                "bottom": 2834.015625,
+                "left": 14,
+                "right": 376,
+                "width": 362,
+                "height": 2613.328125
+              },
+              "header": {
+                "top": 223.6875,
+                "bottom": 414.03125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 190.34375
+              },
+              "context": {
+                "top": 414.03125,
+                "bottom": 430.03125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 16
+              },
+              "contextVisible": true,
+              "stats": {
+                "top": 536.53125,
+                "bottom": 593.078125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 56.546875
+              }
+            },
+            "dialog": {
+              "top": 312,
+              "bottom": 533.234375,
+              "left": 14,
+              "right": 376,
+              "width": 362,
+              "height": 221.234375
+            },
+            "close": {
+              "top": 326,
+              "bottom": 362,
+              "left": 329,
+              "right": 365,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 21,
+            "incompleteReasons": [
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 19,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ],
+                  [
+                    "#v2-detail-heading > .weapon-name[role=\"rowheader\"] > div:nth-child(1) > .ds-weapon-quantity"
+                  ],
+                  [
+                    ".weapon-name[role=\"rowheader\"] > .ds-composition-scope"
+                  ],
+                  [
+                    "#v2-detail-heading > .weapon-name[role=\"rowheader\"] > .weapon-tags > .tag.weapon-tag[data-target-id=\"core-anti\"] > span[data-fact-value=\"\\\"anti-infantry 4+\\\"\"][data-roster-derived=\"true\"][data-context-id=\"unit-deathshroud-terminators\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 2,
+                "examples": [
+                  [
+                    ".reference-context"
+                  ],
+                  [
+                    "#v2-detail-heading > .weapon-name[role=\"rowheader\"] > div:nth-child(1) > .term-button.weapon-button > span[data-fact-value=\"\\\"Plaguespurt gauntlet\\\"\"][data-roster-derived=\"true\"][data-context-id=\"unit-deathshroud-terminators\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "ability-popup",
+          "screenshot": "390-ability-popup.jpg",
+          "semanticSha256": "1dd8a232658ee166218371674ded1ccdaaf7b8b97f9d0a793ab4593290b1af33",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:section:1",
+            "fieldPath": "/blocks/0/text"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 305,
+              "bottom": 538.890625,
+              "left": 14,
+              "right": 376,
+              "width": 362,
+              "height": 233.890625
+            },
+            "close": {
+              "top": 319,
+              "bottom": 355,
+              "left": 329,
+              "right": 365,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 3
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 3,
+            "incompleteReasons": [
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 2,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ],
+                  [
+                    ".rule-term-link"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscured",
+                "message": "Element's background color could not be determined because it's partially obscured by another element",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".v2-field-value"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 3
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "core-related-popup",
+          "screenshot": "390-core-related-popup.jpg",
+          "semanticSha256": "276a879bd6a0238327cb2f101564bf54b813dafe65566857a4dc5c13f732edf1",
+          "detail": {
+            "canonicalId": "core-feel-no-pain"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 180,
+              "bottom": 664.171875,
+              "left": 14,
+              "right": 376,
+              "width": 362,
+              "height": 484.171875
+            },
+            "close": {
+              "top": 194,
+              "bottom": 230,
+              "left": 329,
+              "right": 365,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 4
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 3,
+            "incompleteReasons": [
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 2,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ],
+                  [
+                    ".rule-term-link"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscuring",
+                "message": "Element's background color could not be determined because it partially overlaps other elements",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "p > .reference-fact[data-context-id=\"core-feel-no-pain\"][data-entity-id=\"core-feel-no-pain\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 5
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "global-glossary",
+          "screenshot": "390-global-glossary.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 152
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 280
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "core-reader",
+          "screenshot": "390-core-reader.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 5
+          },
+          "coreAxe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 23,
+            "incompleteReasons": [
+              {
+                "reason": "nonBmp",
+                "message": "Element content contains only non-text characters",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "#navButton"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 3,
+                "examples": [
+                  [
+                    ".brand > strong"
+                  ],
+                  [
+                    ".current"
+                  ],
+                  [
+                    ".library"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 19,
+                "examples": [
+                  [
+                    ".chapter-hero > .eyebrow"
+                  ],
+                  [
+                    ".chapter-hero > h2"
+                  ],
+                  [
+                    ".chapter-hero > p"
+                  ],
+                  [
+                    ".home-section:nth-child(2) > header > .eyebrow"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 627
+          },
+          "pixels": null,
+          "corePixels": null
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "pageErrors": [],
+      "screens": [
+        {
+          "name": "book-library",
+          "screenshot": "1440-book-library.jpg",
+          "semanticSha256": "c7d63bbe8edb3d509d89a64c7f2d75ec9fa14bd9d383971430802e7a6dd1a498",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 623
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 4477,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 577,
+                "examples": [
+                  [
+                    ".offline-package-label"
+                  ],
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 3866,
+                "examples": [
+                  [
+                    ".book-fact-value[data-context-id=\"army-rule-nurgles-gift\"][data-fact-value=\"\\\"1\\\"\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"\\\"3\\\\\\\"\\\"\"][data-context-id=\"army-rule-nurgles-gift\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-context-id=\"army-rule-nurgles-gift\"][data-fact-value=\"\\\"2\\\"\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"\\\"6\\\\\\\"\\\"\"][data-context-id=\"army-rule-nurgles-gift\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "shortTextContent",
+                "message": "Element content is too short to determine if it is actual text content",
+                "nodes": 12,
+                "examples": [
+                  [
+                    "span[data-fact-value=\"3\"]"
+                  ],
+                  [
+                    ".detachment.v2-kind-DETACHMENT[data-source-ids=\"[\\\"dg-waha-2026-09-25\\\"]\"]:nth-child(3) > .detachment-title.category-title > .detachment-dp.v2-kind-MFM-DETACHMENT.v2-book-record > .book-fact-value[data-fact-value=\"2\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"2\"][data-context-id=\"detachment-tallyband-summoners\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"2\"][data-context-id=\"detachment-death-lords-chosen\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "imgNode",
+                "message": "Element's background color could not be determined because element contains an image node",
+                "nodes": 17,
+                "examples": [
+                  [
+                    "h3[data-fact-value=\"\\\"Biologus Putrifier\\\"\"]"
+                  ],
+                  [
+                    "h3[data-fact-id=\"unit-foul-blightspawn::/title\"]"
+                  ],
+                  [
+                    "h3[data-fact-id=\"unit-great-unclean-one::/title\"]"
+                  ],
+                  [
+                    "h3[data-fact-id=\"unit-lord-of-contagion::/title\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscuring",
+                "message": "Element's background color could not be determined because it partially overlaps other elements",
+                "nodes": 3,
+                "examples": [
+                  [
+                    "h3[data-fact-value=\"\\\"Blightlord Terminators\\\"\"]"
+                  ],
+                  [
+                    "h3[data-fact-value=\"\\\"Deathshroud Terminators\\\"\"]"
+                  ],
+                  [
+                    "h3[data-fact-value=\"\\\"Chaos Predator Annihilator\\\"\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgOverlap",
+                "message": "Element's background color could not be determined because it is overlapped by another element",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".ds-source-update > p[data-context-id=\"unit-chaos-land-raider\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 10
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "import-empty",
+          "screenshot": "1440-import-empty.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 13,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 12,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input[type=\"search\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 13
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "attachment-setup",
+          "screenshot": "1440-attachment-setup.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 659.8125,
+                  "bottom": 733.109375,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 749.109375,
+                    "bottom": 793.109375,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 916.109375,
+                  "bottom": 989.40625,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 1005.40625,
+                    "bottom": 1049.40625,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 1172.40625,
+                  "bottom": 1245.703125,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 1261.703125,
+                    "bottom": 1305.703125,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 23
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 23,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 21,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".toc-roster-summary > strong"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input[type=\"search\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 85
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "attachment-models-points",
+          "screenshot": "1440-attachment-models-points.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 659.8125,
+                  "bottom": 733.109375,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 749.109375,
+                    "bottom": 793.109375,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 916.109375,
+                  "bottom": 989.40625,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 1005.40625,
+                    "bottom": 1049.40625,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 1172.40625,
+                  "bottom": 1245.703125,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 1261.703125,
+                    "bottom": 1305.703125,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 23
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 23,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 21,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".toc-roster-summary > strong"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input[type=\"search\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 85
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "roster-card",
+          "screenshot": "1440-roster-card.jpg",
+          "semanticSha256": "7223893ca542a4307f9934a78944c0a99c5cd7f3dc72b39a6fd1d91c89e7bdb1",
+          "detail": {
+            "instanceId": "parsed-unit-8"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 216.6875,
+                "bottom": 2192.765625,
+                "left": 348.546875,
+                "right": 1382.40625,
+                "width": 1033.859375,
+                "height": 1976.078125
+              },
+              "header": {
+                "top": 219.6875,
+                "bottom": 429.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 210
+              },
+              "context": {
+                "top": 429.6875,
+                "bottom": 445.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 16
+              },
+              "contextVisible": true,
+              "stats": {
+                "top": 478.1875,
+                "bottom": 551.1875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 73
+              }
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 36
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 145,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 25,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 118,
+                "examples": [
+                  [
+                    ".toc-roster-summary > strong"
+                  ],
+                  [
+                    ".eyebrow"
+                  ],
+                  [
+                    ".ds-instance-price"
+                  ],
+                  [
+                    ".stat:nth-child(1) > b"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscuring",
+                "message": "Element's background color could not be determined because it partially overlaps other elements",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "h3"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 6
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "weapon-popup",
+          "screenshot": "1440-weapon-popup.jpg",
+          "semanticSha256": "f0c8bee89d91e992fe6a33a83c37589b95cfdd7beb01f5c219c763da7087bedf",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:weapon:1"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 216.6875,
+                "bottom": 2192.765625,
+                "left": 348.546875,
+                "right": 1382.40625,
+                "width": 1033.859375,
+                "height": 1976.078125
+              },
+              "header": {
+                "top": 219.6875,
+                "bottom": 429.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 210
+              },
+              "context": {
+                "top": 429.6875,
+                "bottom": 445.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 16
+              },
+              "contextVisible": true,
+              "stats": {
+                "top": 478.1875,
+                "bottom": 551.1875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 73
+              }
+            },
+            "dialog": {
+              "top": 521,
+              "bottom": 751.4375,
+              "left": 387,
+              "right": 947,
+              "width": 560,
+              "height": 230.4375
+            },
+            "close": {
+              "top": 535,
+              "bottom": 571,
+              "left": 900,
+              "right": 936,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 21,
+            "incompleteReasons": [
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 19,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ],
+                  [
+                    "#v2-detail-heading > .weapon-name[role=\"rowheader\"] > div:nth-child(1) > .term-button.weapon-button > span[data-fact-value=\"\\\"Plaguespurt gauntlet\\\"\"][data-roster-derived=\"true\"][data-context-id=\"unit-deathshroud-terminators\"]"
+                  ],
+                  [
+                    "#v2-detail-heading > .weapon-name[role=\"rowheader\"] > div:nth-child(1) > .ds-weapon-quantity"
+                  ],
+                  [
+                    "#v2-detail-heading > .weapon-name[role=\"rowheader\"] > .weapon-tags > .tag.weapon-tag[data-target-id=\"core-anti\"] > span[data-fact-value=\"\\\"anti-infantry 4+\\\"\"][data-roster-derived=\"true\"][data-context-id=\"unit-deathshroud-terminators\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 2,
+                "examples": [
+                  [
+                    ".reference-context"
+                  ],
+                  [
+                    ".weapon-name[role=\"rowheader\"] > .ds-composition-scope"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "ability-popup",
+          "screenshot": "1440-ability-popup.jpg",
+          "semanticSha256": "1dd8a232658ee166218371674ded1ccdaaf7b8b97f9d0a793ab4593290b1af33",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:section:1",
+            "fieldPath": "/blocks/0/text"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 567,
+              "bottom": 824.203125,
+              "left": 393,
+              "right": 953,
+              "width": 560,
+              "height": 257.203125
+            },
+            "close": {
+              "top": 581,
+              "bottom": 617,
+              "left": 906,
+              "right": 942,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 3
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 2,
+            "incompleteReasons": [
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 2,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ],
+                  [
+                    ".v2-permalink"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 4
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "core-related-popup",
+          "screenshot": "1440-core-related-popup.jpg",
+          "semanticSha256": "276a879bd6a0238327cb2f101564bf54b813dafe65566857a4dc5c13f732edf1",
+          "detail": {
+            "canonicalId": "core-feel-no-pain"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 148,
+              "bottom": 585.21875,
+              "left": 393,
+              "right": 953,
+              "width": 560,
+              "height": 437.21875
+            },
+            "close": {
+              "top": 162,
+              "bottom": 198,
+              "left": 906,
+              "right": 942,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 4
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 4,
+            "incompleteReasons": [
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 3,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ],
+                  [
+                    ".rule-term-link"
+                  ],
+                  [
+                    ".v2-permalink"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscuring",
+                "message": "Element's background color could not be determined because it partially overlaps other elements",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "p > .reference-fact[data-context-id=\"core-feel-no-pain\"][data-entity-id=\"core-feel-no-pain\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 4
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "global-glossary",
+          "screenshot": "1440-global-glossary.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 152
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 280
+          },
+          "coreAxe": null,
+          "pixels": null,
+          "corePixels": null
+        },
+        {
+          "name": "core-reader",
+          "screenshot": "1440-core-reader.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 7
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 5
+          },
+          "coreAxe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 43,
+            "incompleteReasons": [
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 5,
+                "examples": [
+                  [
+                    ".brand > strong"
+                  ],
+                  [
+                    ".brand > small"
+                  ],
+                  [
+                    ".current"
+                  ],
+                  [
+                    "#searchButton"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscured",
+                "message": "Element's background color could not be determined because it's partially obscured by another element",
+                "nodes": 18,
+                "examples": [
+                  [
+                    ".sidebar-head > .eyebrow"
+                  ],
+                  [
+                    "h1"
+                  ],
+                  [
+                    ".nav-group:nth-child(1) > h2"
+                  ],
+                  [
+                    ".nav-group:nth-child(2) > h2"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 20,
+                "examples": [
+                  [
+                    "a[aria-current=\"page\"]"
+                  ],
+                  [
+                    ".chapter-hero > .eyebrow"
+                  ],
+                  [
+                    ".chapter-hero > h2"
+                  ],
+                  [
+                    ".chapter-hero > p"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 627
+          },
+          "pixels": null,
+          "corePixels": null
+        }
+      ]
+    }
+  ],
+  "contrastSummary": {
+    "axeViolationNodes": 0,
+    "axeIncompleteNodes": 9130,
+    "measuredViewportTextRuns": 0,
+    "minimumRenderedContrast": null,
+    "minimumRenderedControlContrast": null,
+    "wcagViolations": 0,
+    "belowRequested45": 0,
+    "unmeasuredRuns": 0
+  }
+}

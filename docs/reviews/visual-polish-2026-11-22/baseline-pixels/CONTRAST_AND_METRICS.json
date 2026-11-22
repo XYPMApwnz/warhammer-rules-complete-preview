@@ -1,0 +1,1925 @@
+{
+  "schema": "visual-polish-compact/v1",
+  "sourceFile": "RESULTS.json",
+  "sourceSha256": "e620111c42a827062066823abc7aac88f31aac6de99ce464b9a740278f289210",
+  "status": "PASS",
+  "phase": "before",
+  "package": "f975aa7a6c68073dd86c46b512e9cc1b8664209abce937fad128e91616095af5",
+  "axeVersion": null,
+  "errors": [],
+  "cases": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "pageErrors": [],
+      "screens": [
+        {
+          "name": "book-library",
+          "screenshot": "390-book-library.jpg",
+          "semanticSha256": "c7d63bbe8edb3d509d89a64c7f2d75ec9fa14bd9d383971430802e7a6dd1a498",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 805
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 26,
+            "minimumContrast": 4.332868577277251,
+            "minimumControlContrast": 12.22958241740028,
+            "wcagViolations": [
+              {
+                "text": "Explore your army book. Find a datasheet, read a rule, or dive into a detachment.",
+                "selector": "#main > section.v2-hero > p.v2-hero-subtitle",
+                "color": [
+                  210,
+                  218,
+                  207,
+                  1
+                ],
+                "fontSize": 13,
+                "fontWeight": 400,
+                "control": false,
+                "controlLevel": null,
+                "wcagMinimum": 4.5,
+                "requestedMinimum": 4.5,
+                "glyphPixels": 2162,
+                "minimumContrast": 4.332868577277251,
+                "witness": {
+                  "x": 283,
+                  "y": 423,
+                  "foreground": [
+                    210,
+                    218,
+                    207
+                  ],
+                  "background": [
+                    149,
+                    76,
+                    64
+                  ]
+                },
+                "wcagPass": false,
+                "requestedPass": false
+              }
+            ],
+            "belowRequested45": [
+              {
+                "text": "Explore your army book. Find a datasheet, read a rule, or dive into a detachment.",
+                "selector": "#main > section.v2-hero > p.v2-hero-subtitle",
+                "color": [
+                  210,
+                  218,
+                  207,
+                  1
+                ],
+                "fontSize": 13,
+                "fontWeight": 400,
+                "control": false,
+                "controlLevel": null,
+                "wcagMinimum": 4.5,
+                "requestedMinimum": 4.5,
+                "glyphPixels": 2162,
+                "minimumContrast": 4.332868577277251,
+                "witness": {
+                  "x": 283,
+                  "y": 423,
+                  "foreground": [
+                    210,
+                    218,
+                    207
+                  ],
+                  "background": [
+                    149,
+                    76,
+                    64
+                  ]
+                },
+                "wcagPass": false,
+                "requestedPass": false
+              }
+            ],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Ready for offline use",
+                "selector": "div.v2-application-shell > header.v2-primary-header.offline-package-host > div.offline-package-status.is-visible > span.offline-package-announcement",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "c0c4445b62c91fd35bf380f3563a4b1b4e1989e76743c0738cabf87cd644b777",
+            "backgroundPngSha256": "e04a45f45c516056fca17962fab7af527532ba78ba96d5cb44342f0fa023c6a9"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "import-empty",
+          "screenshot": "390-import-empty.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 18,
+            "minimumContrast": 8.345095216268318,
+            "minimumControlContrast": 8.345095216268318,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Ready for offline use",
+                "selector": "div.v2-application-shell > header.v2-primary-header.offline-package-host > div.offline-package-status.is-visible > span.offline-package-announcement",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Download backup",
+                "selector": "button[data-roster-action=\"export-backup\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Reload saved roster",
+                "selector": "button[data-roster-action=\"reload-saved\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Restore a roster backup",
+                "selector": "#main > section.v2-roster > details.v2-card.v2-roster-pane > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "dee5af182fb4621c44a42b74d58c6ab911432b5fc3bc20dff29d349c28a3b1ee",
+            "backgroundPngSha256": "949d2d530a21ca8e8b6ad88c504b0cd94e687a8a77a3a9425c05431f497fb8e4"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "attachment-setup",
+          "screenshot": "390-attachment-setup.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 689.609375,
+                  "bottom": 760.90625,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 776.90625,
+                    "bottom": 812.90625,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 927.90625,
+                  "bottom": 999.203125,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 1015.203125,
+                    "bottom": 1051.203125,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 1166.203125,
+                  "bottom": 1237.5,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 1253.5,
+                    "bottom": 1289.5,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 23
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 29,
+            "minimumContrast": 7.130015395783202,
+            "minimumControlContrast": 8.945970866710855,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 1,
+            "unmeasured": [
+              {
+                "text": "Import roster",
+                "selector": "button[data-roster-action=\"review-import\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Biologus Putrifier · 1 model in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Plague Marines · 5 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Plague Marines · 10 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Poxwalkers · 10 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Deathshroud Terminators · 3 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Download backup",
+                "selector": "button[data-roster-action=\"export-backup\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Reload saved roster",
+                "selector": "button[data-roster-action=\"reload-saved\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Restore a roster backup",
+                "selector": "#main > section.v2-roster > details.v2-card.v2-roster-pane > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Your roster",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > h2",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Warlord",
+                "selector": "div.v2-roster > section.v2-card.v2-roster-pane > section > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "7728c00cbe9d0ff9aecadc0397e7b401307a15565dea338f1723cdb273ade161",
+            "backgroundPngSha256": "0e62bf9ec0d6d6872bd1005e11de46c966dbc934dc19e5bf0e2ea4f000dfb7e4"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "attachment-models-points",
+          "screenshot": "390-attachment-models-points.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 689.609375,
+                  "bottom": 760.90625,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 776.90625,
+                    "bottom": 812.90625,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 927.90625,
+                  "bottom": 999.203125,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 1015.203125,
+                    "bottom": 1051.203125,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 1166.203125,
+                  "bottom": 1237.5,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 71.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "15px 16px",
+                "body": {
+                  "rect": {
+                    "top": 1253.5,
+                    "bottom": 1289.5,
+                    "left": 15,
+                    "right": 375,
+                    "width": 360,
+                    "height": 36
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 23
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 29,
+            "minimumContrast": 7.130015395783202,
+            "minimumControlContrast": 8.945970866710855,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 1,
+            "unmeasured": [
+              {
+                "text": "Import roster",
+                "selector": "button[data-roster-action=\"review-import\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Biologus Putrifier · 1 model in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Plague Marines · 5 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Plague Marines · 10 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Poxwalkers · 10 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Deathshroud Terminators · 3 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Download backup",
+                "selector": "button[data-roster-action=\"export-backup\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Reload saved roster",
+                "selector": "button[data-roster-action=\"reload-saved\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Restore a roster backup",
+                "selector": "#main > section.v2-roster > details.v2-card.v2-roster-pane > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Your roster",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > h2",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Warlord",
+                "selector": "div.v2-roster > section.v2-card.v2-roster-pane > section > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "7728c00cbe9d0ff9aecadc0397e7b401307a15565dea338f1723cdb273ade161",
+            "backgroundPngSha256": "0e62bf9ec0d6d6872bd1005e11de46c966dbc934dc19e5bf0e2ea4f000dfb7e4"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "roster-card",
+          "screenshot": "390-roster-card.jpg",
+          "semanticSha256": "7223893ca542a4307f9934a78944c0a99c5cd7f3dc72b39a6fd1d91c89e7bdb1",
+          "detail": {
+            "instanceId": "parsed-unit-8"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 220.6875,
+                "bottom": 2834.015625,
+                "left": 14,
+                "right": 376,
+                "width": 362,
+                "height": 2613.328125
+              },
+              "header": {
+                "top": 223.6875,
+                "bottom": 414.03125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 190.34375
+              },
+              "context": {
+                "top": 414.03125,
+                "bottom": 430.03125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 16
+              },
+              "contextVisible": true,
+              "stats": {
+                "top": 536.53125,
+                "bottom": 593.078125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 56.546875
+              }
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 36
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 47,
+            "minimumContrast": 4.875543350261323,
+            "minimumControlContrast": 8.88872235966595,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "7ecedeb124dd2f16ca43d0e1d4426e2df2da3d67b42240f979dddab8076fcd87",
+            "backgroundPngSha256": "df90aea6687bd4b4e8fbb32aec6f8c1c28edc90a5953f21c752f7d8f05ca55cb"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "weapon-popup",
+          "screenshot": "390-weapon-popup.jpg",
+          "semanticSha256": "f0c8bee89d91e992fe6a33a83c37589b95cfdd7beb01f5c219c763da7087bedf",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:weapon:1"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 220.6875,
+                "bottom": 2834.015625,
+                "left": 14,
+                "right": 376,
+                "width": 362,
+                "height": 2613.328125
+              },
+              "header": {
+                "top": 223.6875,
+                "bottom": 414.03125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 190.34375
+              },
+              "context": {
+                "top": 414.03125,
+                "bottom": 430.03125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 16
+              },
+              "contextVisible": true,
+              "stats": {
+                "top": 536.53125,
+                "bottom": 593.078125,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 56.546875
+              }
+            },
+            "dialog": {
+              "top": 312,
+              "bottom": 533.234375,
+              "left": 14,
+              "right": 376,
+              "width": 362,
+              "height": 221.234375
+            },
+            "close": {
+              "top": 326,
+              "bottom": 362,
+              "left": 329,
+              "right": 365,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 21,
+            "minimumContrast": 5.372400325584138,
+            "minimumControlContrast": 10.448905454077677,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "c0a73d6b31eb4bed71e478d356a4862e99e0931c6034b08116ed0323a7f48695",
+            "backgroundPngSha256": "42a8bdda9c5a6718ad3125ac06e36e5b3f10c0aae579a8dcc164160c6aa3e675"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "ability-popup",
+          "screenshot": "390-ability-popup.jpg",
+          "semanticSha256": "1dd8a232658ee166218371674ded1ccdaaf7b8b97f9d0a793ab4593290b1af33",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:section:1",
+            "fieldPath": "/blocks/0/text"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 305,
+              "bottom": 538.890625,
+              "left": 14,
+              "right": 376,
+              "width": 362,
+              "height": 233.890625
+            },
+            "close": {
+              "top": 319,
+              "bottom": 355,
+              "left": 329,
+              "right": 365,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 3
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 7,
+            "minimumContrast": 9.316399229289248,
+            "minimumControlContrast": 10.448905454077677,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "a3674ed31559cdc612006f6ad84157295fcf6caa8ff2f9cea1a237b69e43493b",
+            "backgroundPngSha256": "b8cc4b62717d2693bda0b265d783416a31863b701d651f211d4675cce9a7e587"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "core-related-popup",
+          "screenshot": "390-core-related-popup.jpg",
+          "semanticSha256": "276a879bd6a0238327cb2f101564bf54b813dafe65566857a4dc5c13f732edf1",
+          "detail": {
+            "canonicalId": "core-feel-no-pain"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 180,
+              "bottom": 664.171875,
+              "left": 14,
+              "right": 376,
+              "width": 362,
+              "height": 484.171875
+            },
+            "close": {
+              "top": 194,
+              "bottom": 230,
+              "left": 329,
+              "right": 365,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 4
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 9,
+            "minimumContrast": 6.029262131240316,
+            "minimumControlContrast": 10.448905454077677,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "4f4b6e242c717c3731843d18d281c3ee3e4fbb6b4e873e81b129f2c8b18132cf",
+            "backgroundPngSha256": "93fa118d89d7f5aa6f6a435102eb89d0760fd1b82caedb5ecb351dcaf19b19a7"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "global-glossary",
+          "screenshot": "390-global-glossary.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 152
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 44,
+            "minimumContrast": 8.767059254028313,
+            "minimumControlContrast": 12.596982787251036,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "3eed6ef7401a44162390c2b3b6692587f11375041b578d76cd21385d9d5fc5d1",
+            "backgroundPngSha256": "c6509c5e661ba8f73ec16e78ad4f8016ebbaa187aee34e342ca7c3e3d151090b"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "core-reader",
+          "screenshot": "390-core-reader.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 5,
+            "minimumContrast": 12.682381544166299,
+            "minimumControlContrast": null,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "9830e2ff9e5c131b31ea5cabe2c0e88c01db377c28c270341bedc47484c4f0e1",
+            "backgroundPngSha256": "238af2102a05bab348277edc9c371f4205b616080ad3112b024cd4d89d03d4ca"
+          },
+          "corePixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 15,
+            "minimumContrast": 5.204217398756304,
+            "minimumControlContrast": 11.074069442113496,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "9830e2ff9e5c131b31ea5cabe2c0e88c01db377c28c270341bedc47484c4f0e1",
+            "backgroundPngSha256": "ec0639c81cd8cc84a80d6c94e5fe329bd4fff3fc9fd09fdfc85c25f210605a02"
+          }
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "pageErrors": [],
+      "screens": [
+        {
+          "name": "book-library",
+          "screenshot": "1440-book-library.jpg",
+          "semanticSha256": "c7d63bbe8edb3d509d89a64c7f2d75ec9fa14bd9d383971430802e7a6dd1a498",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 623
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 36,
+            "minimumContrast": 6.110461495654569,
+            "minimumControlContrast": 6.110461495654569,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Ready for offline use",
+                "selector": "div.v2-application-shell > header.v2-primary-header.offline-package-host > div.offline-package-status.is-visible > span.offline-package-announcement",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "e27147253bc9bf9497f22aac0a8397155c4a0c3f981b395eb97ceb0313dff70d",
+            "backgroundPngSha256": "29c6aed1dc56490fc168d0c063c6231e77cb081a255af1223b1c5b777205d43e"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "import-empty",
+          "screenshot": "1440-import-empty.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 27,
+            "minimumContrast": 6.110461495654569,
+            "minimumControlContrast": 6.110461495654569,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Download backup",
+                "selector": "button[data-roster-action=\"export-backup\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Reload saved roster",
+                "selector": "button[data-roster-action=\"reload-saved\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Restore a roster backup",
+                "selector": "#main > section.v2-roster > details.v2-card.v2-roster-pane > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Your roster is saved in this browser. Download a backup to keep a separate copy.",
+                "selector": "#main > section.v2-roster > details.v2-card.v2-roster-pane > p.v2-roster-hint",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "a8d7130e93a5b669bb6c2d03d7960b1d1e38acd4f6c918e94cc1669a4ddc3a75",
+            "backgroundPngSha256": "6024efac5348ca99ca09ae6b1f1e4691d299e7c345009e8c3f2d741c702c24a1"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "attachment-setup",
+          "screenshot": "1440-attachment-setup.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 659.8125,
+                  "bottom": 733.109375,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 749.109375,
+                    "bottom": 793.109375,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 916.109375,
+                  "bottom": 989.40625,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 1005.40625,
+                    "bottom": 1049.40625,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 1172.40625,
+                  "bottom": 1245.703125,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 1261.703125,
+                    "bottom": 1305.703125,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 23
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 53,
+            "minimumContrast": 6.110461495654569,
+            "minimumControlContrast": 6.110461495654569,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 1,
+            "unmeasured": [
+              {
+                "text": "Poxwalkers",
+                "selector": "button[data-target-id=\"roster-unit/parsed-unit-7\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Imported text (8 units)",
+                "selector": "details.v2-card.v2-roster-pane > div > details > summary.v2-roster-hint",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Malignant Plaguecaster · 1 model in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Noxious Blightbringer · 1 model in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Poxwalkers · 10 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Deathshroud Terminators · 3 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Restore a roster backup",
+                "selector": "#main > section.v2-roster > details.v2-card.v2-roster-pane > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Your roster is saved in this browser. Download a backup to keep a separate copy.",
+                "selector": "#main > section.v2-roster > details.v2-card.v2-roster-pane > p.v2-roster-hint",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Your roster",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > h2",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "8 units. Review your units and optional attachments.",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > p.v2-roster-hint",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Warlord",
+                "selector": "div.v2-roster > section.v2-card.v2-roster-pane > section > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "c249277eb844b1a3014faab93dfc924268ce91546c576b46fd9e8fd0ea0c6338",
+            "backgroundPngSha256": "588e0c6e5a46d6992591c7909b2f305abca30c46e117214aefe364355ef8aca0"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "attachment-models-points",
+          "screenshot": "1440-attachment-models-points.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 659.8125,
+                  "bottom": 733.109375,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 749.109375,
+                    "bottom": 793.109375,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 916.109375,
+                  "bottom": 989.40625,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 1005.40625,
+                    "bottom": 1049.40625,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 1172.40625,
+                  "bottom": 1245.703125,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 73.296875
+                },
+                "marginTop": "16px",
+                "marginBottom": "16px",
+                "padding": "16px 24px",
+                "body": {
+                  "rect": {
+                    "top": 1261.703125,
+                    "bottom": 1305.703125,
+                    "left": 349.546875,
+                    "right": 1341.40625,
+                    "width": 991.859375,
+                    "height": 44
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 23
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 53,
+            "minimumContrast": 6.110461495654569,
+            "minimumControlContrast": 6.110461495654569,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 1,
+            "unmeasured": [
+              {
+                "text": "Poxwalkers",
+                "selector": "button[data-target-id=\"roster-unit/parsed-unit-7\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Imported text (8 units)",
+                "selector": "details.v2-card.v2-roster-pane > div > details > summary.v2-roster-hint",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Malignant Plaguecaster · 1 model in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Noxious Blightbringer · 1 model in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Poxwalkers · 10 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Deathshroud Terminators · 3 models in the export",
+                "selector": "div > details > ul.v2-roster-list > li",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Restore a roster backup",
+                "selector": "#main > section.v2-roster > details.v2-card.v2-roster-pane > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Your roster is saved in this browser. Download a backup to keep a separate copy.",
+                "selector": "#main > section.v2-roster > details.v2-card.v2-roster-pane > p.v2-roster-hint",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Your roster",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > h2",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "8 units. Review your units and optional attachments.",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > p.v2-roster-hint",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Warlord",
+                "selector": "div.v2-roster > section.v2-card.v2-roster-pane > section > label.v2-roster-field",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "c249277eb844b1a3014faab93dfc924268ce91546c576b46fd9e8fd0ea0c6338",
+            "backgroundPngSha256": "588e0c6e5a46d6992591c7909b2f305abca30c46e117214aefe364355ef8aca0"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "roster-card",
+          "screenshot": "1440-roster-card.jpg",
+          "semanticSha256": "7223893ca542a4307f9934a78944c0a99c5cd7f3dc72b39a6fd1d91c89e7bdb1",
+          "detail": {
+            "instanceId": "parsed-unit-8"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 216.6875,
+                "bottom": 2192.765625,
+                "left": 348.546875,
+                "right": 1382.40625,
+                "width": 1033.859375,
+                "height": 1976.078125
+              },
+              "header": {
+                "top": 219.6875,
+                "bottom": 429.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 210
+              },
+              "context": {
+                "top": 429.6875,
+                "bottom": 445.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 16
+              },
+              "contextVisible": true,
+              "stats": {
+                "top": 478.1875,
+                "bottom": 551.1875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 73
+              }
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 36
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 98,
+            "minimumContrast": 4.74670802162378,
+            "minimumControlContrast": 5.650971842011883,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Poxwalkers",
+                "selector": "button[data-target-id=\"roster-unit/parsed-unit-7\"]",
+                "reason": "No differing glyph pixels; original baseline observer did not distinguish occlusion",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "646b8d207129151480162e14858408c2588691126ee48165bdd1c790fda022ce",
+            "backgroundPngSha256": "7fc32c08e9d963a3290d3378e4e70944eec48bdb0fe97658bf073dd0bc6f8be4"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "weapon-popup",
+          "screenshot": "1440-weapon-popup.jpg",
+          "semanticSha256": "f0c8bee89d91e992fe6a33a83c37589b95cfdd7beb01f5c219c763da7087bedf",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:weapon:1"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 216.6875,
+                "bottom": 2192.765625,
+                "left": 348.546875,
+                "right": 1382.40625,
+                "width": 1033.859375,
+                "height": 1976.078125
+              },
+              "header": {
+                "top": 219.6875,
+                "bottom": 429.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 210
+              },
+              "context": {
+                "top": 429.6875,
+                "bottom": 445.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 16
+              },
+              "contextVisible": true,
+              "stats": {
+                "top": 478.1875,
+                "bottom": 551.1875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 73
+              }
+            },
+            "dialog": {
+              "top": 521,
+              "bottom": 751.4375,
+              "left": 387,
+              "right": 947,
+              "width": 560,
+              "height": 230.4375
+            },
+            "close": {
+              "top": 535,
+              "bottom": 571,
+              "left": 900,
+              "right": 936,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 21,
+            "minimumContrast": 5.383929187117998,
+            "minimumControlContrast": 10.448905454077677,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "cf849139463b912b771e220a171964947a5e2ffb3b92fb1a54f3407e136869da",
+            "backgroundPngSha256": "d5a1b9fd687e03e98ffab79d51e4e162094d3b633f6db874ae9424d8bf477f95"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "ability-popup",
+          "screenshot": "1440-ability-popup.jpg",
+          "semanticSha256": "1dd8a232658ee166218371674ded1ccdaaf7b8b97f9d0a793ab4593290b1af33",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:section:1",
+            "fieldPath": "/blocks/0/text"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 567,
+              "bottom": 824.203125,
+              "left": 393,
+              "right": 953,
+              "width": 560,
+              "height": 257.203125
+            },
+            "close": {
+              "top": 581,
+              "bottom": 617,
+              "left": 906,
+              "right": 942,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 3
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 7,
+            "minimumContrast": 9.316399229289248,
+            "minimumControlContrast": 10.448905454077677,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "e078455b6e188852354f5a7173cab812988f556436b28f000c6d4f16333bb2ad",
+            "backgroundPngSha256": "e983ae21e48c1ccc5391d678b51cfe1aac64557072d81fffc8d6c99f4721e474"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "core-related-popup",
+          "screenshot": "1440-core-related-popup.jpg",
+          "semanticSha256": "276a879bd6a0238327cb2f101564bf54b813dafe65566857a4dc5c13f732edf1",
+          "detail": {
+            "canonicalId": "core-feel-no-pain"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 148,
+              "bottom": 585.21875,
+              "left": 393,
+              "right": 953,
+              "width": 560,
+              "height": 437.21875
+            },
+            "close": {
+              "top": 162,
+              "bottom": 198,
+              "left": 906,
+              "right": 942,
+              "width": 36,
+              "height": 36
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 4
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 9,
+            "minimumContrast": 6.029262131240316,
+            "minimumControlContrast": 10.448905454077677,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "bf786ad20c8eb36b9aac693c05fb1eeac7e95d63e5dbb6c7bab260b6bc9de3f2",
+            "backgroundPngSha256": "f54f3193a4cd1eabeb55403afde5a64f6ea22ba1628d0cfb1e458b7f2621880e"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "global-glossary",
+          "screenshot": "1440-global-glossary.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 152
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 55,
+            "minimumContrast": 8.767059254028313,
+            "minimumControlContrast": 12.596982787251036,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "b519547c5f7278ddd41c093e2aac68d5bf5923b7144b6cc58458cb0e7a4ecb81",
+            "backgroundPngSha256": "253673a333abbd25a41601a04f9fbb81bb1cda3879e19f93e08d2b9f5f8eaf7f"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "core-reader",
+          "screenshot": "1440-core-reader.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 7
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": null,
+            "notRun": "Rendered-pixel supplement only; retain prior before-complete/RESULTS.json full axe audit",
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 0
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 5,
+            "minimumContrast": 12.682381544166299,
+            "minimumControlContrast": null,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "c0b30aed443e022d153f0faf740f74102f1c4911b9173343292daef2419b5a54",
+            "backgroundPngSha256": "ac7248576865ab50b00a5bcf637a5e30f2fbdf80b548f45f5132c9c6e187b84c"
+          },
+          "corePixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 50,
+            "minimumContrast": 4.937451404086261,
+            "minimumControlContrast": 11.074069442113496,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "c0b30aed443e022d153f0faf740f74102f1c4911b9173343292daef2419b5a54",
+            "backgroundPngSha256": "91b6a31f20d1229f589c3cb933fd576a27851fa17fa837bf8e8c1ad28f2dc3db"
+          }
+        }
+      ]
+    }
+  ],
+  "contrastSummary": {
+    "axeViolationNodes": 0,
+    "axeIncompleteNodes": 0,
+    "measuredViewportTextRuns": 664,
+    "minimumRenderedContrast": 4.332868577277251,
+    "minimumRenderedControlContrast": 5.650971842011883,
+    "wcagViolations": 1,
+    "belowRequested45": 1,
+    "unmeasuredRuns": 55
+  }
+}

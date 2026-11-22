@@ -1,0 +1,136 @@
+{
+  "schema": "visual-polish-clean-room/v1",
+  "sha": "9e04d5d43240795979d0257a27ba4c35cd2259f6",
+  "host": "Windows-11-10.0.26300-SP0",
+  "steps": [
+    {
+      "label": "node",
+      "command": "\"C:/Program Files/nodejs/node.exe\" --version",
+      "cwd": "E:\\Warhammer\\worktrees\\visual-polish-v1",
+      "exitCode": 0,
+      "elapsedMs": 17,
+      "log": "clean-room-node.txt"
+    },
+    {
+      "label": "npm",
+      "command": "\"C:/Program Files/nodejs/node.exe\" \"C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js\" --version",
+      "cwd": "E:\\Warhammer\\worktrees\\visual-polish-v1",
+      "exitCode": 0,
+      "elapsedMs": 146,
+      "log": "clean-room-npm.txt"
+    },
+    {
+      "label": "local-package",
+      "command": "\"C:/Program Files/nodejs/node.exe\" tools/pages-runtime-package.mjs --source . --out E:\\Warhammer\\qa-tmp\\visual-polish\\package-final",
+      "cwd": "E:\\Warhammer\\worktrees\\visual-polish-v1",
+      "exitCode": 0,
+      "elapsedMs": 7363,
+      "log": "clean-room-local-package.txt"
+    },
+    {
+      "label": "clone",
+      "command": "git -c core.autocrlf=false clone --no-local --no-hardlinks --single-branch --branch codex/visual-polish-v1 --depth=1 file:///E:/Warhammer/worktrees/visual-polish-v1 E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "cwd": "E:\\Warhammer\\worktrees\\visual-polish-v1",
+      "exitCode": 0,
+      "elapsedMs": 26204,
+      "log": "clean-room-clone.txt"
+    },
+    {
+      "label": "clone-sha",
+      "command": "git rev-parse HEAD",
+      "cwd": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 19,
+      "log": "clean-room-clone-sha.txt"
+    },
+    {
+      "label": "clone-tree",
+      "command": "git rev-parse HEAD^{tree}",
+      "cwd": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 20,
+      "log": "clean-room-clone-tree.txt"
+    },
+    {
+      "label": "status-before",
+      "command": "git status --porcelain",
+      "cwd": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 718,
+      "log": "clean-room-status-before.txt"
+    },
+    {
+      "label": "contract",
+      "command": "\"C:/Program Files/nodejs/node.exe\" E:\\Warhammer\\worktrees\\visual-polish-v1\\tools\\pages-runtime-ci-contract.mjs --source E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "cwd": "E:\\Warhammer\\worktrees\\visual-polish-v1",
+      "exitCode": 0,
+      "elapsedMs": 104,
+      "log": "clean-room-contract.txt"
+    },
+    {
+      "label": "workflow-1",
+      "command": "npm ci --ignore-scripts",
+      "cwd": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 1123,
+      "log": "clean-room-workflow-1.txt"
+    },
+    {
+      "label": "acorn-resolved",
+      "command": "\"C:/Program Files/nodejs/node.exe\" --input-type=module -e console.log(import.meta.resolve('acorn'))",
+      "cwd": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 39,
+      "log": "clean-room-acorn-resolved.txt"
+    },
+    {
+      "label": "workflow-2",
+      "command": "node tools/pages-runtime-package.mjs --source . --out \"E:/Warhammer/qa-tmp/visual-polish/clean-room-runner/dist-pages\"",
+      "cwd": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 7861,
+      "log": "clean-room-workflow-2.txt"
+    },
+    {
+      "label": "workflow-3",
+      "command": "node tools/pages-runtime-package.mjs --source . --out \"E:/Warhammer/qa-tmp/visual-polish/clean-room-runner/dist-pages\" --check",
+      "cwd": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 4069,
+      "log": "clean-room-workflow-3.txt"
+    },
+    {
+      "label": "workflow-4",
+      "command": "node tools/pages-runtime-package-qa.mjs --source . --published \"E:/Warhammer/qa-tmp/visual-polish/clean-room-runner/dist-pages\" --work \"E:/Warhammer/qa-tmp/visual-polish/clean-room-runner/pages-package-qa\"",
+      "cwd": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 32968,
+      "log": "clean-room-workflow-4.txt"
+    },
+    {
+      "label": "status-after",
+      "command": "git status --porcelain",
+      "cwd": "E:\\Warhammer\\qa-tmp\\visual-polish\\clean-room-clone",
+      "exitCode": 0,
+      "elapsedMs": 27,
+      "log": "clean-room-status-after.txt"
+    }
+  ],
+  "node": "v24.18.0",
+  "npm": "11.16.0",
+  "tree": "745ab05d79f1fe17151301e2992e0f944762b49e",
+  "initialNodeModulesAbsent": true,
+  "noObjectAlternates": true,
+  "isolatedDependencies": true,
+  "status": "PASS",
+  "package": {
+    "contentSha256": "2b3643a912a65dcdf285d5a8de5647d8c0bf2f156f39d1db920f4d108cf4f1c0",
+    "cacheRevision": "946ff60a59dc4381",
+    "fileCount": 456,
+    "runtimeBytes": 282883615,
+    "precacheUrls": 221
+  },
+  "comparedPhysicalFiles": 457,
+  "byteDifferences": 0,
+  "manifestSha256": "df721617e3a267abc43418be40b8992791c7acd953f24b27e825d81e0830bd50"
+}

@@ -1,0 +1,150 @@
+{
+  "status": "PASS",
+  "checks": 36,
+  "results": [
+    {
+      "name": "V2 code is network-first and does not poison the prepared offline copy",
+      "status": "PASS"
+    },
+    {
+      "name": "offline code is an exact compatible publication body",
+      "status": "PASS"
+    },
+    {
+      "name": "foreign JSON is rejected before a consumer can parse it",
+      "status": "PASS"
+    },
+    {
+      "name": "a valid but foreign JSON document is also rejected before parsing",
+      "status": "PASS"
+    },
+    {
+      "name": "an unchanged old book remains accessible offline after activation",
+      "status": "PASS"
+    },
+    {
+      "name": "an incompatible old offline JSON is not substituted",
+      "status": "PASS"
+    },
+    {
+      "name": "failed cache writes do not replace a successful network response or erase old books",
+      "status": "PASS"
+    },
+    {
+      "name": "quota failure during install cannot activate or delete the previous cache",
+      "status": "PASS"
+    },
+    {
+      "name": "the version oracle bypasses a stale cache even for the same URL",
+      "status": "PASS"
+    },
+    {
+      "name": "current V1 fallback outranks retained previous copies",
+      "status": "PASS"
+    },
+    {
+      "name": "same semantic revision and different raw bytes cannot overwrite an active cache during a failed install",
+      "status": "PASS"
+    },
+    {
+      "name": "migration drops changed and non-publication data, V1 and own old caches but not unrelated caches",
+      "status": "PASS"
+    },
+    {
+      "name": "copy failure keeps every old cache, next startup message retries without another activation",
+      "status": "PASS"
+    },
+    {
+      "name": "a missing or corrupted destination prevents deletion even after cache.put succeeds",
+      "status": "PASS"
+    },
+    {
+      "name": "another installing or waiting publication defers cleanup",
+      "status": "PASS"
+    },
+    {
+      "name": "an update starting during transfer prevents deletion of its prepared cache",
+      "status": "PASS"
+    },
+    {
+      "name": "a superseded worker cannot delete the newly active publication cache",
+      "status": "PASS"
+    },
+    {
+      "name": "activation during transfer cannot let the superseded worker clean the new cache",
+      "status": "PASS"
+    },
+    {
+      "name": "missing publication integrity inventory never permits old-cache deletion",
+      "status": "PASS"
+    },
+    {
+      "name": "each published Army Book uses the same hash-only migration boundary",
+      "status": "PASS"
+    },
+    {
+      "name": "restarted waiting worker accepts explicit consent only for a complete current prepared shell",
+      "status": "PASS"
+    },
+    {
+      "name": "migration is idempotent and never fetches books",
+      "status": "PASS"
+    },
+    {
+      "name": "only the exact lazy Core glossary JS is migrated, including old query URLs",
+      "status": "PASS"
+    },
+    {
+      "name": "a changed or unlisted Core glossary JS is not migrated",
+      "status": "PASS"
+    },
+    {
+      "name": "failed Core glossary copy retains old caches and retries on next startup without activation",
+      "status": "PASS"
+    },
+    {
+      "name": "Core glossary destination SHA failure prevents old-cache deletion",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: fetch rejected, installed revision compatible",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: fetch timeout, installed revision compatible",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: HTTP non-200, installed revision compatible",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: network lost during online transition",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: transition already offline",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: installed revision mismatch",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: worker unavailable",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: installed publication incomplete",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: confirmed server revision mismatch",
+      "status": "PASS"
+    },
+    {
+      "name": "Version guard: integrity rejection stays latched after network failure",
+      "status": "PASS"
+    }
+  ]
+}

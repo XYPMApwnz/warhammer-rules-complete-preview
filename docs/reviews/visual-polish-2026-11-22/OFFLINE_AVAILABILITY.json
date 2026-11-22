@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "checks": 12,
+  "choice": "Hide the optional indicator when SW support/permission or resumable preparation is unavailable; no persistent unsupported message.",
+  "results": [
+    {
+      "name": "missing API opens online-only without an indicator",
+      "status": "PASS"
+    },
+    {
+      "name": "getterDenied API opens online-only without an indicator",
+      "status": "PASS"
+    },
+    {
+      "name": "SecurityError registration rejection stays quiet and opens the online shell",
+      "status": "PASS"
+    },
+    {
+      "name": "NotAllowedError registration rejection stays quiet and opens the online shell",
+      "status": "PASS"
+    },
+    {
+      "name": "NotSupportedError registration rejection stays quiet and opens the online shell",
+      "status": "PASS"
+    },
+    {
+      "name": "denied registration while offline opens online-only after reconnect without another registration",
+      "status": "PASS"
+    },
+    {
+      "name": "denied getRegistration does not escape or promise offline recovery",
+      "status": "PASS"
+    },
+    {
+      "name": "registration network failure without a worker does not claim background retry",
+      "status": "PASS"
+    },
+    {
+      "name": "an actual resumable worker retains the timed recovery and Ready transition",
+      "status": "PASS"
+    },
+    {
+      "name": "exhausted timed retries stop promising another automatic attempt until a real recovery event",
+      "status": "PASS"
+    },
+    {
+      "name": "offline interruption with a real worker retains recovery when connectivity returns",
+      "status": "PASS"
+    },
+    {
+      "name": "a legacy worker without resumable preparation does not promise an unsupported retry",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,674 @@
+diff --git a/books/shared/army-book-app-v2/book-v1.css b/books/shared/army-book-app-v2/book-v1.css
+index 7d85411c..c481d099 100644
+--- a/books/shared/army-book-app-v2/book-v1.css
++++ b/books/shared/army-book-app-v2/book-v1.css
+@@ -285,6 +285,7 @@ body.v2-book-surface .v1-contents-heading::after,
+  * becoming another full-record renderer. Their sizing/layout is unchanged. */
+ body.v2-book-surface .v2-hero { border-radius: 2px; border: 1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .36); border-top: 5px solid var(--book-accent-deep, #7d9257); background: linear-gradient(120deg,var(--book-bg, #0c0f0c),rgba(var(--book-accent-deep-rgb, 125, 146, 87), .12)); box-shadow: 0 26px 58px rgba(0,0,0,.46); }
+ body.v2-book-surface .v2-hero h1 { font-family: Georgia,"Times New Roman",serif; }
++body.v2-book-surface .v2-hero-subtitle { color:var(--v2-control-ink); }
+ /* The original V1 cover treatment; the book supplies the artwork URL. */
+ body.v2-book-surface .v2-hero[data-book-artwork] {
+   min-height: min(66vh,680px);
+@@ -307,11 +308,10 @@ body.v2-book-surface .v2-section-heading .v2-count { border-radius: 0; backgroun
+ /* V1 popup surface on the existing canonical V2 dialog/resolver. */
+ .v2-detail-dialog.v2-book-detail {
+   width: min(560px, calc(100% - 28px));
+-  border: 1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .52);
+-  border-top: 4px solid var(--green-deep);
+-  border-radius: 0;
+-  background: radial-gradient(circle at 100% 0,rgba(var(--book-signal-rgb, 213, 72, 142), .12),transparent 180px),radial-gradient(circle at 0 100%,rgba(var(--book-accent-deep-rgb, 125, 146, 87), .13),transparent 210px),var(--panel);
+-  box-shadow: 0 32px 90px rgba(0,0,0,.82),0 0 0 5px rgba(var(--book-void-rgb, 9, 12, 9), .72),0 0 34px rgba(var(--book-accent-rgb, 191, 213, 140), .1);
++  border:1px solid var(--v2-control-line);
++  border-radius:0;
++  background:var(--panel);
++  box-shadow:0 24px 70px rgba(0,0,0,.6);
+ }
+ .v2-detail-dialog.v2-book-detail::backdrop { background: rgba(var(--book-void-rgb, 4, 6, 4), .55); backdrop-filter: blur(2px); }
+ .v2-book-detail .v2-dialog-bar { position: absolute; z-index: 2; top: 12px; right: 12px; padding: 0; border: 0; background: transparent; }
+diff --git a/books/shared/army-book-app-v2/datasheet-v1.css b/books/shared/army-book-app-v2/datasheet-v1.css
+index 483a262f..e5528515 100644
+--- a/books/shared/army-book-app-v2/datasheet-v1.css
++++ b/books/shared/army-book-app-v2/datasheet-v1.css
+@@ -667,3 +667,6 @@
+ /* The full roster Stratagem reference is populated on first opening. */
+ .unit-card details.ds-roster-stratagems > summary { cursor:pointer; }
+ .unit-card details.ds-roster-stratagems > summary h4 { display:inline; }
++
++/* Empty context retains canonical hidden option metadata without a visual strip. */
++.unit-card .ds-roster-context[hidden] { display:none; }
+diff --git a/books/shared/army-book-app-v2/datasheet-v1.mjs b/books/shared/army-book-app-v2/datasheet-v1.mjs
+index c22b1c40..65a9f354 100644
+--- a/books/shared/army-book-app-v2/datasheet-v1.mjs
++++ b/books/shared/army-book-app-v2/datasheet-v1.mjs
+@@ -1550,6 +1550,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
+       if(assigned)context.append(el('p','',`${['SUPPORT','SUPPORT_EXCEPTION'].includes(assigned.role)?'Supporting':'Leading'}: ${name(assigned.bodyguardInstanceId)}`));
+       for(const member of members)context.append(el('p','',`${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
+       // Detachment selection lives in roster navigation, not repeated on each unit.
++      context.hidden=![...context.children].some(child=>!child.hidden);
+       head.after(context);
+     }
+     if(instanceId&&root.querySelector('[data-profile-metric]')){
+diff --git a/books/shared/army-book-app-v2/popup-v1.css b/books/shared/army-book-app-v2/popup-v1.css
+index c6ab12fa..df05960a 100644
+--- a/books/shared/army-book-app-v2/popup-v1.css
++++ b/books/shared/army-book-app-v2/popup-v1.css
+@@ -1,7 +1,7 @@
+ /* Actual V1 content.css Related Rules and popups.css term-popup shell. */
+ .related-rules-layer{position:fixed;z-index:var(--z-related-rules);inset:0;display:grid;place-items:center;padding:clamp(12px,3vw,36px);background:rgba(var(--book-void-rgb, 4, 7, 4), .84)}
+ .related-rules-layer[hidden]{display:none}
+-.related-rules-dialog{width:min(1180px,100%);height:min(900px,calc(100dvh - 72px));display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;border:1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .42);border-top:4px solid var(--green-deep);background:var(--panel);box-shadow:0 36px 110px rgba(0,0,0,.88)}
++.related-rules-dialog{width:min(1180px,100%);height:min(900px,calc(100dvh - 72px));display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;border:1px solid var(--v2-control-line);background:var(--panel);box-shadow:0 36px 110px rgba(0,0,0,.88)}
+ .related-rules-dialog>header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:20px 24px;border-bottom:1px solid var(--line)}
+ .related-rules-dialog>header>div{min-width:0}
+ .related-rules-dialog>header span{color:var(--pink);font:800 9px/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}
+@@ -45,33 +45,13 @@
+   overflow-y: auto;
+   padding: 20px 52px 20px 20px;
+   border: 1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .52);
+-  border-top: 4px solid var(--green-deep);
++  border-top:1px solid var(--v2-control-line);
+   border-radius: 0;
+-  background:
+-    radial-gradient(circle at 100% 0, rgba(var(--book-signal-rgb, 213, 72, 142), .12), transparent 180px),
+-    radial-gradient(circle at 0 100%, rgba(var(--book-accent-deep-rgb, 125, 146, 87), .13), transparent 210px),
+-    var(--panel);
++  background:var(--panel);
+   box-shadow: 0 32px 90px rgba(0,0,0,.82), 0 0 0 5px rgba(var(--book-void-rgb, 9, 12, 9), .72), 0 0 34px rgba(var(--book-accent-rgb, 191, 213, 140), .1);
+   animation: popup-in .17s ease both;
+ }
+-.term-popup::before {
+-  content: "";
+-  position: absolute;
+-  inset: 0 0 auto;
+-  width: auto;
+-  height: 3px;
+-  background: var(--faction-gradient);
+-  pointer-events: none;
+-}
+-.term-popup::after {
+-  content: "";
+-  position: absolute;
+-  left: 0;
+-  bottom: 0;
+-  width: 72px;
+-  height: 2px;
+-  background: var(--faction-gradient);
+-}
++.term-popup::before, .term-popup::after { content:none; }
+ .term-popup:nth-last-child(n+4) { visibility: hidden; pointer-events: none; }
+ .term-popup h3 { margin: 0 0 8px; padding-right: 34px; font: 700 24px Georgia, "Times New Roman", serif; letter-spacing: -.015em; }
+ .term-popup p { margin: 7px 0; color: var(--muted); }
+@@ -127,7 +107,7 @@ dialog.v2-detail-dialog.term-popup.v2-book-detail {
+ dialog.v2-detail-dialog.term-popup.v2-book-detail[open] { display:flex; flex-direction:column; }
+ dialog.v2-detail-dialog.term-popup.v2-book-detail::backdrop { background:rgba(var(--book-void-rgb, 4, 6, 4), .34); backdrop-filter:blur(2px); }
+ .term-popup.v2-detail-dialog .v2-dialog-bar { position:absolute; z-index:2; top:0; right:0; padding:0; border:0; background:none; }
+-.term-popup.v2-detail-dialog .v2-dialog-bar .popup-close { position:absolute; top:10px; right:10px; width:36px; height:36px; min-width:36px; min-height:36px; padding:0; border:1px solid var(--line); background:var(--panel-2); color:var(--ink); font-size:20px; }
++.term-popup.v2-detail-dialog .v2-dialog-bar .popup-close { position:absolute; top:10px; right:10px; width:44px; height:44px; min-width:44px; min-height:44px; padding:0; border:0; background:transparent; color:var(--v2-control-ink); font-size:20px; }
+ .term-popup.v2-detail-dialog .v2-dialog-content { min-height:0; overflow:auto; padding:20px; overscroll-behavior:contain; scrollbar-color:var(--green-deep) var(--bg); }
+ .term-popup.v2-detail-dialog .v2-dialog-content:has(>.popup-weapon-profile) { padding:0; }
+ .term-popup.v2-detail-dialog .popup-weapon-profile.v2-card h3 { padding-right:42px; }
+@@ -167,3 +147,8 @@ dialog.v2-detail-dialog.term-popup.v2-book-detail::backdrop { background:rgba(va
+   .v2-related-dialog .related-rules-dialog>header h2 { font-size:clamp(16px,5vw,22px); line-height:1.05; margin:0; }
+   .v2-related-dialog .related-rules-dialog .related-rules-body { padding:10px 12px; }
+ }
++
++/* Quiet chrome; content and all source links remain unchanged. */
++.term-popup { border-color:var(--v2-control-line); box-shadow:0 24px 70px rgba(0,0,0,.6); }
++.term-popup .popup-close, .related-rules-close { min-width:44px; min-height:44px; border:0; background:transparent; color:var(--v2-control-ink); }
++.term-popup .popup-close:hover, .related-rules-close:hover { background:var(--v2-control-hover); }
+diff --git a/books/shared/army-book-app-v2/reference-v1.css b/books/shared/army-book-app-v2/reference-v1.css
+index 03e64223..6feb4100 100644
+--- a/books/shared/army-book-app-v2/reference-v1.css
++++ b/books/shared/army-book-app-v2/reference-v1.css
+@@ -32,3 +32,14 @@
+ .v2-glossary .glossary-categories button[aria-pressed="true"] { border-color: var(--book-accent, #b2c64f); box-shadow: inset 0 -2px var(--book-accent, #b2c64f); }
+ .v2-book-surface .v2-not-found { background: var(--book-panel, #111710); color: var(--book-ink, #e2dcc9); border: 1px solid var(--book-control-line, #565b3b); padding: 16px; }
+ @media(max-width:600px) { .v2-book-surface .v1-reference-article { padding: 18px 14px; } .term-popup .v1-reference-article { padding: 0; } }
++
++/* Reference destinations are a list of links, not nested control cards. */
++.v1-reference-article .reference-links { display:block; border-color:var(--v2-control-line); padding-top:8px; }
++.v1-reference-article .reference-links a, .v1-reference-article .reference-permalink {
++  display:flex; align-items:center; width:fit-content; max-width:100%; min-height:44px;
++  padding:8px 0; border:0; border-radius:0; background:transparent;
++  color:var(--v2-control-accent); text-decoration:underline; text-underline-offset:3px;
++}
++.v2-book-surface :is(button,a,input,select,textarea,summary):focus-visible { outline:2px solid var(--v2-control-focus); outline-offset:3px; }
++
++.term-popup .reference-header { padding-right:44px; }
+diff --git a/books/shared/army-book-app-v2/roster.mjs b/books/shared/army-book-app-v2/roster.mjs
+index c4ec6a45..6786b921 100644
+--- a/books/shared/army-book-app-v2/roster.mjs
++++ b/books/shared/army-book-app-v2/roster.mjs
+@@ -79,11 +79,13 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
+     const node = el('button', 'v2-reference', label);
+     node.type = 'button';
+     if (actionId) node.dataset.rosterAction = actionId;
++    node.dataset.controlLevel=actionId==='review-import'?'primary':['library','open-personal-guide','show-instance'].includes(actionId)?'ghost':'secondary';
+     lifecycle.listen(node,'click', () => run(action));
+     return node;
+   };
+   const reference = (id, label = named(id), reader = false) => {
+     const link = el('a', 'v2-reference', label);
++    link.dataset.controlLevel='ghost';
+     link.href = routeURL?routeURL(id,!reader):`#${encodeURIComponent(id)}`;
+     link.dataset.targetId = id;
+     lifecycle.listen(link,'click', event => {
+@@ -100,9 +102,12 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
+   style.textContent = `
+     .v2-roster { --v2-paper:var(--book-panel, #191f1a); --v2-ink:var(--book-ink, #e2dcc9); --v2-muted:var(--book-muted-readable, #b7b8aa); --v2-line:var(--book-control-line, #566052); --v2-green:var(--book-accent, #bfd58c); display:grid; gap:20px; min-width:0; color:var(--v2-ink); }
+     .v2-roster .v2-card { background:var(--v2-paper); color:var(--v2-ink); border-color:var(--v2-line); }
+-    .v2-roster .v2-reference { background:var(--book-panel-raised, #252c25); color:var(--v2-green); border-color:var(--book-control-line, #6c7950); }
+-    .v2-roster .v2-reference:hover { background:var(--book-hover, #313c2a); color:var(--book-ink-bright, #f0eddd); }
+-    .v2-roster :is(button,a,input,select,textarea):focus-visible { outline:2px solid var(--v2-green); outline-offset:3px; }
++    .v2-roster .v2-reference { color:var(--v2-control-ink); border-color:var(--v2-control-line); }
++    .v2-roster .v2-reference[data-control-level=ghost] { color:var(--v2-control-accent); border-color:transparent; background:transparent; }
++    .v2-roster .v2-reference[data-control-level=primary] { background:var(--v2-control-primary-bg); color:var(--v2-control-primary-ink); border-color:transparent; }
++    .v2-roster .v2-reference:hover { background:var(--v2-control-hover); color:var(--v2-control-ink); }
++    .v2-roster .v2-reference[data-control-level=primary]:hover { background:var(--v2-control-primary-bg); color:var(--v2-control-primary-ink); }
++    .v2-roster :is(button,a,input,select,textarea):focus-visible { outline:2px solid var(--v2-control-focus); outline-offset:3px; }
+     .v2-roster textarea::placeholder { color:var(--v2-muted); opacity:1; }
+     .v2-roster h1 { margin:0; font-size:30px; letter-spacing:-.03em; }
+     .v2-roster h2 { margin:0 0 14px; font-size:19px; }
+@@ -133,14 +138,17 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
+     .v2-roster-instance-header { padding:22px 24px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; border-bottom:1px solid var(--v2-line); }
+     .v2-roster-instance-header h2 { margin:4px 0 0; }
+     .v2-roster-instance-header > a { margin-left:auto; }
+-    .v2-roster-identity { padding:16px 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; background:var(--book-panel-raised, #252c25); }
++    .v2-roster-identity { margin:0; padding:12px 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; background:var(--book-panel-raised, #252c25); }
+     .v2-roster-identity dt { font-size:10px; color:var(--v2-muted); font-weight:700; margin-bottom:5px; }
+     .v2-roster-identity dd { margin:0; font-size:13px; line-height:1.6; }
+-    .v2-roster-body { padding:22px 24px; display:grid; gap:22px; }
++    .v2-roster-body { padding:18px 24px; display:grid; gap:18px; }
++    .v2-roster-body:empty { display:none; }
+     .v2-roster-model { border-left:3px solid var(--book-accent, #c8d6ac); padding-left:13px; margin:13px 0; }
+     .v2-roster-list { padding:0; margin:10px 0; list-style:none; display:grid; gap:9px; }
+     .v2-roster-list li { padding:10px 12px; border:1px solid var(--v2-line); border-radius:7px; min-width:0; overflow-wrap:anywhere; font-size:12px; line-height:1.7; }
+-    .v2-roster-list .v2-reference { margin:3px 5px 3px 0; }
++    .v2-roster-list .v2-reference { margin:0; }
++    [data-roster-detachments] > li, .v2-roster-related-list > li { border:0; border-radius:0; padding:2px 0; }
++    [data-roster-detachments] { gap:2px; }
+     .v2-roster-profile { background:var(--book-panel-raised, #252c25); border:1px solid var(--v2-line); padding:15px; border-radius:9px; margin:10px 0; }
+     .v2-roster-profile dl { display:grid; grid-template-columns:repeat(auto-fit,minmax(80px,1fr)); gap:14px; margin:0; }
+     .v2-roster-profile dt { color:var(--v2-muted); font-size:10px; }
+@@ -152,7 +160,7 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
+     .v2-roster-structured dd { margin:4px 0 12px; font-size:12px; line-height:1.7; overflow-wrap:anywhere; white-space:pre-wrap; }
+     .v2-roster-related-list .v2-count { display:inline-block; margin-left:6px; }
+     .v2-roster-loading { opacity:.65; pointer-events:none; }
+-    @media(max-width:860px) { .v2-roster-pane,.v2-roster-body { padding:18px 16px; } .v2-roster-instance-header { padding:18px 16px; } .v2-roster-identity { padding:15px 16px; grid-template-columns:repeat(2,minmax(0,1fr)); } .v2-roster h1 { font-size:26px; } .v2-roster-profile dl { grid-template-columns:repeat(3,minmax(0,1fr)); } .v2-roster .v2-reference { overflow-wrap:anywhere; } }
++    @media(max-width:860px) { .v2-roster-pane,.v2-roster-body { padding:18px 16px; } .v2-roster-instance-header { padding:18px 16px; } .v2-roster-identity { padding:12px 16px; grid-template-columns:repeat(2,minmax(0,1fr)); } .v2-roster h1 { font-size:26px; } .v2-roster-profile dl { grid-template-columns:repeat(3,minmax(0,1fr)); } .v2-roster .v2-reference { overflow-wrap:anywhere; } }
+   `;
+   section.append(style);
+   const heading = el('div', 'v2-roster-tools');
+@@ -165,6 +173,14 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
+   importPane.dataset.rosterImportPanel = '';
+   const importSummary = el('summary', '', importMessages["import-summary"]);
+   importPane.append(importSummary);
++  // Emphasis follows the visible workflow; this never changes any action/state.
++  function refreshActionEmphasis(){
++    section.querySelectorAll('[data-roster-action="review-import"],[data-roster-action="set-warlord"]').forEach(node=>{
++      node.dataset.controlLevel=(node.dataset.rosterAction==='review-import')===importPane.open?'primary':'secondary';
++    });
++  }
++  lifecycle.listen(importPane,'toggle',refreshActionEmphasis);
++
+   const rawLabel = el('label', 'v2-roster-field', importMessages["raw-label"]);
+   const raw = el('textarea');
+   raw.setAttribute('aria-label', importMessages["raw-label"]);
+@@ -277,6 +293,7 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
+   function foldCompletedImport() {
+     if(importDraftPending||!service.state?.units?.length)return;
+     importPane.open = false;
++    refreshActionEmphasis();
+     importSummary.textContent = importMessages["another-roster"];
+   }
+   function exportBackup() {
+@@ -835,6 +852,7 @@ export function createRosterPanel(document, {service, bookId, bookTitle='this Ar
+       }
+       article.append(heading, instanceIdentity(unit,{showWarlord:false}), body); rosterArea.append(article);
+     }
++    refreshActionEmphasis();
+     if (activeOwner) {
+       const article = [...rosterArea.querySelectorAll('[data-roster-instance-id]')].find(node => node.dataset.rosterInstanceId === activeOwner);
+       const preferredAction = activeAction === 'attach' ? 'detach' : activeAction === 'detach' ? 'attach' : activeAction;
+diff --git a/books/shared/army-book-app-v2/styles.css b/books/shared/army-book-app-v2/styles.css
+index 9a29d0af..ea7fed21 100644
+--- a/books/shared/army-book-app-v2/styles.css
++++ b/books/shared/army-book-app-v2/styles.css
+@@ -1,5 +1,16 @@
+ /* No remote fonts or assets: the reader remains self-contained. */
+ :root { color-scheme: light; --v2-bg: var(--book-canvas, #f2f1eb); --v2-paper: var(--book-panel, #fffef9); --v2-ink: var(--book-ink, #232d2b); --v2-muted: var(--book-muted, #64706a); --v2-line: var(--book-control-line, #dddfd4); --v2-green: var(--book-accent, #294d40); --v2-accent: var(--book-accent, #bfd269); --v2-sidebar: 292px; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
++
++/* Three shared action levels. Neutral readable ink is independent of faction accents. */
++:root {
++  --v2-control-ink: #e8e2d5;
++  --v2-control-accent: #dfcfa6;
++  --v2-control-line: rgba(225, 218, 202, .24);
++  --v2-control-hover: #30372f;
++  --v2-control-focus: #f5d895;
++  --v2-control-primary-bg: #d9c79b;
++  --v2-control-primary-ink: #172018;
++}
+ * { box-sizing: border-box; }
+ body { margin: 0; background: var(--v2-bg); color: var(--v2-ink); }
+ .v2-detail-open { overflow: hidden; }
+@@ -107,8 +118,11 @@ body.v2-datasheet-mode .v2-breadcrumb-current { color: var(--book-ink, #e2dcc9);
+ .v2-token-list .v2-field-value { border: 1px solid #d3dec3; background: #eef4e2; border-radius: 5px; padding: 5px 8px; font-size: 9px; line-height: 1.5; }
+ .v2-field-references, .v2-source { grid-column: 2; }
+ .v2-field-references { display: flex; flex-wrap: wrap; gap: 7px; }
+-.v2-reference { display: inline-block; font-size: 11px; line-height: 1.4; padding: 7px 10px; border: 1px solid #c9d6b7; border-radius: 6px; background: #f0f4e6; }
+-.v2-reference:hover { border-color: #829e62; background: #e6eecf; }
++.v2-reference { display:inline-flex; align-items:center; gap:6px; max-width:100%; min-height:40px; font-size:12px; line-height:1.5; padding:8px 12px; border:1px solid var(--v2-control-line); border-radius:4px; background:transparent; color:var(--v2-control-ink); text-align:left; }
++.v2-reference:hover { background:var(--v2-control-hover); color:var(--v2-control-ink); }
++a.v2-reference, .v2-reference[data-control-level="ghost"] { border-color:transparent; background:transparent; color:var(--v2-control-accent); padding-inline:4px; text-decoration:underline; text-underline-offset:3px; }
++.v2-reference[data-control-level="primary"] { background:var(--v2-control-primary-bg); color:var(--v2-control-primary-ink); border-color:transparent; font-weight:750; min-height:44px; }
++.v2-reference[data-control-level="primary"]:hover { filter:brightness(1.06); }
+ .v2-related { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 20px 30px; border-top: 1px solid var(--v2-line); }
+ .v2-related > .v2-eyebrow { width: 100%; margin-bottom: 3px; }
+ .v2-compatible { padding: 24px 30px; border-top: 1px solid var(--v2-line); }
+@@ -143,7 +157,7 @@ body.v2-datasheet-mode .v2-breadcrumb-current { color: var(--book-ink, #e2dcc9);
+ .v2-source { font-size: 10px; color: var(--v2-muted); overflow-wrap: anywhere; }
+ .v2-source summary { cursor: pointer; margin-bottom: 4px; }
+ .v2-not-found { background: #fff5dc; border: 1px solid #ddce9b; padding: 15px; border-radius: 8px; font-size: 13px; }
+-.v2-icon-button { background: transparent; border: 1px solid #cdd5c1; color: inherit; border-radius: 7px; min-width: 40px; min-height: 40px; font-size: 24px; line-height: 1; padding: 6px; }
++.v2-icon-button { background: transparent; border: 1px solid #cdd5c1; color: inherit; border-radius: 7px; min-width: 44px; min-height: 44px; font-size: 24px; line-height: 1; padding: 6px; }
+ .v2-desktop-nav-toggle { color: var(--book-ink, #e5eacc); border-color: var(--book-control-line, #617358); font-size: 17px; min-width: 34px; min-height: 34px; }
+ .v2-nav-collapsed .v2-layout { grid-template-columns: minmax(0, 1fr); }
+ .v2-nav-collapsed .v2-sidebar { display: none; }
+diff --git a/books/shared/offline-status.js b/books/shared/offline-status.js
+index 18907009..b29d0675 100644
+--- a/books/shared/offline-status.js
++++ b/books/shared/offline-status.js
+@@ -1,7 +1,9 @@
+ (function(root){
+   'use strict';
+   const script=document.currentScript,swUrl=script?.dataset.serviceWorker;
+-  if(!swUrl||!('serviceWorker' in navigator)||!location.protocol.startsWith('http')){root.WHOfflineStatus=Object.freeze({ready:Promise.resolve()});return;}
++  let serviceWorker;
++  try{serviceWorker=navigator.serviceWorker;}catch{/* Browser policy can deny even reading the optional API. */}
++  if(!swUrl||!serviceWorker||!location.protocol.startsWith('http')){root.WHOfflineStatus=Object.freeze({ready:Promise.resolve()});return;}
+   const MESSAGE='WH_OFFLINE_PACKAGE_STATUS',QUERY='WH_OFFLINE_PACKAGE_STATUS_QUERY',VERSION_QUERY='GET_VERSION',ACTIVATE_UPDATE='SKIP_WAITING';
+   const PREPARE_OFFLINE='WH_PWA_PREPARE_OFFLINE',BOOTSTRAP_COMPLETE='WH_PWA_BOOTSTRAP_COMPLETE';
+   const v2Bootstrap=script.hasAttribute('data-v2-bootstrap'),expectedRevision=root.WHPwaExpectedRevision;
+@@ -16,7 +18,7 @@
+   const automaticPrefix='wh40k:pwa-auto-update:'+new URL(swUrl,location.href).pathname+':';
+   const automaticKey=revision=>automaticPrefix+revision;
+   function pendingAutomaticAttempt(){return Object.keys(sessionStorage).some(key=>key.startsWith(automaticPrefix)&&sessionStorage.getItem(key)==='attempted');}
+-  let bootstrapReleased=false,bootstrapFinished=!v2Bootstrap,bootstrapFailed=false,bootstrapTimer=0,automaticUpdate=null,versionRecoveryStarted=false,fetchMarkerInstalled=false,coreRepairPending=false,registrationUnavailable=false,starting=false;
++  let bootstrapReleased=false,bootstrapFinished=!v2Bootstrap,bootstrapFailed=false,bootstrapTimer=0,automaticUpdate=null,versionRecoveryStarted=false,fetchMarkerInstalled=false,coreRepairPending=false,registrationUnavailable=false,registrationForbidden=false,starting=false;
+   let pendingIndicator=null;
+   function preparedCore(payload){
+     if(!payload||payload.type!==MESSAGE)return false;
+@@ -66,7 +68,7 @@
+     document.querySelector('[data-v2-loading]')?.remove();
+     if(recovered)setUpdateState('up_to_date');
+     if(pendingIndicator)apply(pendingIndicator.payload,pendingIndicator.worker);
+-    const worker=navigator.serviceWorker.controller||registration?.active;
++    const worker=serviceWorker.controller||registration?.active;
+     request(worker,BOOTSTRAP_COMPLETE,{revision:expectedRevision}).then(payload=>apply(payload,worker)).catch(()=>{});
+     prepareOffline(worker);
+   }
+@@ -126,7 +128,7 @@
+     if(!automaticStartupAllowed()||!worker||worker!==registration?.waiting)return false;
+     automaticUpdate=(async()=>{
+       try{
+-        const active=registration.active||navigator.serviceWorker.controller;
++        const active=registration.active||serviceWorker.controller;
+         if(!active||!/^[a-f0-9]{16}$/.test(expectedRevision)){reportBootstrapFailure();return false;}
+         const activeRevision=await readRevision(active);
+         const status=await query(worker);
+@@ -162,7 +164,7 @@
+     reloaded=true;location.reload();
+   }
+   const updater=document.querySelector('[data-pwa-updater]'),updateStatus=updater?.querySelector('[data-pwa-update-status]'),updateAction=updater?.querySelector('[data-pwa-update-action]'),installedVersion=updater?.querySelector('[data-pwa-installed-version]'),availableRow=updater?.querySelector('[data-pwa-available-row]'),availableVersion=updater?.querySelector('[data-pwa-available-version]');
+-  let node,label,meter,bar,announcement,activeSeen=false,readyTimer=0,lastAnnouncement='',registration,checkPromise=null,autoChecked=false,activationRequested=false,reloaded=false,controlledWorker=navigator.serviceWorker.controller;
++  let node,label,meter,bar,announcement,activeSeen=false,readyTimer=0,lastAnnouncement='',registration,checkPromise=null,autoChecked=false,activationRequested=false,reloaded=false,controlledWorker=serviceWorker.controller;
+   let offlineRetryTimer=0,offlineRetryCount=0,lastOfflineRetry=0;
+   const watchedWorkers=new WeakSet(),workerSequences=new WeakMap(),workerStatuses=new WeakMap(),preparationRequested=new WeakSet();
+   const workerInstances=new WeakMap(),instanceRefreshes=new WeakMap(),querySerials=new WeakMap();
+@@ -204,20 +206,23 @@
+     const delay=offlineRetryCount===0?15000:30000;
+     offlineRetryTimer=setTimeout(()=>{offlineRetryTimer=0;offlineRetryCount++;prepareOffline(worker,{retry:true});},delay);
+   }
++  function canPrepareOffline(worker,payload){
++    // Only a current worker with the resumable protocol can actually retry.
++    return Boolean(worker&&payload&&typeof payload.coreReady==='boolean'&&Number.isSafeInteger(payload.coreTotal)&&payload.coreTotal>0
++      &&Number.isSafeInteger(payload.coreCompleted)&&payload.coreCompleted>=0&&payload.coreCompleted<=payload.coreTotal
++      &&/^[a-f0-9]{16}$/.test(payload.cacheBytes||'')&&worker.state!=='redundant'
++      &&(worker===serviceWorker.controller||worker===registration?.active||worker===registration?.waiting)
++      &&(!v2Bootstrap||worker===registration?.waiting||payload.revision===expectedRevision));
++  }
+   function prepareOffline(worker,{retry=false}={}){
+     const payload=worker&&workerStatuses.get(worker);
+-    // An older worker prepares its complete package during install and has no
+-    // resumable-background protocol. Never wait for an unsupported message.
+-    if(!worker||!payload||typeof payload.coreReady!=='boolean'||!Number.isSafeInteger(payload.coreTotal)||payload.coreTotal<=0
+-        ||!Number.isSafeInteger(payload.coreCompleted)||payload.coreCompleted<0||payload.coreCompleted>payload.coreTotal
+-        ||!/^[a-f0-9]{16}$/.test(payload.cacheBytes||''))return;
+-    if(worker.state==='redundant'||worker!==navigator.serviceWorker.controller&&worker!==registration?.active&&worker!==registration?.waiting)return;
+-    if(v2Bootstrap&&worker!==registration?.waiting&&payload.revision!==expectedRevision)return;
++    // Older workers prepare their package during install, not via this protocol.
++    if(!canPrepareOffline(worker,payload))return;
+     if(preparationRequested.has(worker)&&!retry)return;
+     preparationRequested.add(worker);lastOfflineRetry=Date.now();
+     const afterStartup=worker!==registration?.waiting&&!bootstrapFinished&&preparedCore(payload);
+     request(worker,PREPARE_OFFLINE,{revision:payload.revision,afterStartup}).then(value=>apply(value,worker)).catch(()=>{
+-      if(worker===(navigator.serviceWorker.controller||registration?.active)){
++      if(worker===(serviceWorker.controller||registration?.active)){
+         apply({...payload,status:'error',error:'Offline preparation could not be contacted.'},worker);scheduleOfflineRetry(worker);
+       }
+     });
+@@ -247,12 +252,12 @@
+     }else if(worker&&workerInstances.has(worker))return;
+     const sequence=Number(payload.sequence)||0,lastSequence=worker&&workerSequences.get(worker)||0;if(worker&&sequence<lastSequence)return;if(worker)workerSequences.set(worker,sequence);
+     const previous=worker&&workerStatuses.get(worker);if(worker)workerStatuses.set(worker,payload);
+-    const active=registration?.active||navigator.serviceWorker.controller;
++    const active=registration?.active||serviceWorker.controller;
+     if(worker&&(worker.state==='redundant'||active&&worker!==active))return;
+     if(v2Bootstrap&&payload.revision&&payload.revision!==expectedRevision){
+       clearTimeout(readyTimer);clearTimeout(offlineRetryTimer);offlineRetryTimer=0;pendingIndicator=null;hide();return;
+     }
+-    if(worker&&worker===navigator.serviceWorker.controller&&payload.revision===expectedRevision
++    if(worker&&worker===serviceWorker.controller&&payload.revision===expectedRevision
+         &&previous?.coreReady===false&&preparedCore(payload)){
+       // Only a proven pre-import core repair may resume a blocked bootstrap.
+       // Generic module failures still require the existing explicit retry.
+@@ -277,7 +282,7 @@
+       if(!activeSeen){hide();return;}
+       label.textContent='Ready for offline use';meter.setAttribute('aria-valuenow','100');meter.setAttribute('aria-valuetext','Ready for offline use');bar.style.setProperty('--offline-progress','100%');target.hidden=false;requestAnimationFrame(()=>target.classList.add('is-visible'));announce('Ready for offline use',true);readyTimer=setTimeout(hide,1400);return;
+     }
+-    if(state==='error'){console.warn('Offline package status error',{revision:payload.revision,completed,total,error:payload.error});label.textContent='Offline access not ready — will retry';meter.setAttribute('aria-valuetext','Offline access not ready — will retry');target.hidden=false;requestAnimationFrame(()=>target.classList.add('is-visible'));announce('Offline access not ready — will retry',true);scheduleOfflineRetry(worker);if(registration?.active&&!preparedCore(payload))setUpdateState('failed');return;}
++    if(state==='error'){if(!canPrepareOffline(worker,payload)||navigator.onLine&&offlineRetryCount>=2&&!offlineRetryTimer){hide();return;}console.warn('Offline package status error',{revision:payload.revision,completed,total,error:payload.error});label.textContent='Offline access not ready — will retry';meter.setAttribute('aria-valuetext','Offline access not ready — will retry');target.hidden=false;requestAnimationFrame(()=>target.classList.add('is-visible'));announce('Offline access not ready — will retry',true);scheduleOfflineRetry(worker);if(registration?.active&&!preparedCore(payload))setUpdateState('failed');return;}
+     hide();
+   }
+   function request(worker,type,data={}){
+@@ -290,7 +295,7 @@
+   }
+   async function readRevision(worker){const payload=await request(worker,VERSION_QUERY);return payload?.revision||'';}
+   async function syncInstalled(){
+-    const worker=registration?.active||navigator.serviceWorker.controller;if(!worker)return;
++    const worker=registration?.active||serviceWorker.controller;if(!worker)return;
+     // Each app startup/controller change retries an interrupted data transfer.
+     // Never ask an installing/waiting publication to clean the active cache.
+     request(worker,'WH_PWA_MIGRATE_V2_DATA').catch(()=>{});
+@@ -312,7 +317,7 @@
+       if(bootstrapFailed||reloaded||activationRequested||document.body.dataset?.pwaBootstrapState==='blocked')return;
+       // Registration.active can change before clients.claim finishes. Boot must
+       // not import through a previous or missing controller during that gap.
+-      if(navigator.serviceWorker.controller!==worker)return;
++      if(serviceWorker.controller!==worker)return;
+       releaseBootstrap();
+       prepareOffline(worker);
+     }catch{}
+@@ -338,7 +343,7 @@
+         // revision's offline indicator or treating its intact screen as failed.
+         setUpdateState('failed');return;
+       }
+-      if(worker.state==='redundant'&&!registration?.active&&!navigator.serviceWorker.controller&&!bootstrapReleased){
++      if(worker.state==='redundant'&&!registration?.active&&!serviceWorker.controller&&!bootstrapReleased){
+         registrationUnavailable=true;coreRepairPending=true;reportBootstrapFailure('The site could not finish opening. Reconnect, then select Try again.',true);return;
+       }
+       if(worker.state!=='installing')query(worker).catch(()=>{});
+@@ -389,10 +394,10 @@
+     }
+     if(!current){
+       current=undefined;
+-      const worker=navigator.serviceWorker.controller||registration?.active;
++      const worker=serviceWorker.controller||registration?.active;
+       try{
+         offlinePackage=await request(worker,QUERY);
+-        if(worker===(navigator.serviceWorker.controller||registration?.active)
++        if(worker===(serviceWorker.controller||registration?.active)
+             &&offlinePackage?.type===MESSAGE&&/^[a-f0-9]{16}$/.test(offlinePackage.revision)){
+           current=offlinePackage.revision;
+         }
+@@ -448,7 +453,7 @@
+   async function start(){
+     if(starting)return;starting=true;
+     try{
+-      registration=await navigator.serviceWorker.getRegistration();
++      registration=await serviceWorker.getRegistration();
+       if(v2Bootstrap){
+         try{
+           const marker=sessionStorage.getItem(automaticKey(expectedRevision)),pending=pendingAutomaticAttempt();
+@@ -458,21 +463,29 @@
+           }
+         }catch{/* A blocked store never grants permission to auto-activate. */}
+       }
+-      if(!registration&&navigator.serviceWorker.controller)registration=await navigator.serviceWorker.ready;
+-      if(updater&&navigator.onLine&&(registration?.updateViaCache!=='none'||!registration?.active&&!registration?.installing&&!registration?.waiting)){registration=await navigator.serviceWorker.register(swUrl,{updateViaCache:'none'});autoChecked=true;}
+-      else if(!registration)registration=await navigator.serviceWorker.register(swUrl,{updateViaCache:'none'});
++      if(!registration&&serviceWorker.controller)registration=await serviceWorker.ready;
++      if(updater&&navigator.onLine&&(registration?.updateViaCache!=='none'||!registration?.active&&!registration?.installing&&!registration?.waiting)){registration=await serviceWorker.register(swUrl,{updateViaCache:'none'});autoChecked=true;}
++      else if(!registration)registration=await serviceWorker.register(swUrl,{updateViaCache:'none'});
+       observe(registration);
+       if(updater&&registration.active&&navigator.onLine&&!autoChecked){autoChecked=true;checkForUpdate({quiet:true}).catch(()=>{});}
+-    }catch{
+-      try{registration=await navigator.serviceWorker.getRegistration();if(registration&&(registration.active||registration.waiting||registration.installing)){observe(registration);return;}}catch{}
+-      registrationUnavailable=true;coreRepairPending=!bootstrapReleased;
+-      apply({type:MESSAGE,status:'error',completed:0,total:0,revision:''});setUpdateState('failed');
+-      if(!navigator.serviceWorker.controller&&navigator.onLine){if(v2Bootstrap)updater.dataset.unavailable='true';releaseBootstrap();}
++    }catch(error){
++      try{registration=await serviceWorker.getRegistration();if(registration&&(registration.active||registration.waiting||registration.installing)){observe(registration);return;}}catch{}
++      registrationUnavailable=true;registrationForbidden=['SecurityError','NotAllowedError','NotSupportedError'].includes(error?.name);coreRepairPending=!bootstrapReleased;
++      // With no worker there is no background preparation to retry. Keep an
++      // online-only browser quiet instead of promising an unavailable feature.
++      pendingIndicator=null;clearTimeout(readyTimer);clearTimeout(offlineRetryTimer);offlineRetryTimer=0;hide();setUpdateState('failed');
++      if(!serviceWorker.controller&&navigator.onLine){if(v2Bootstrap)updater.dataset.unavailable='true';releaseBootstrap();}
+       else if(!bootstrapReleased)reportBootstrapFailure('The site could not finish opening. Reconnect, then select Try again.',true);
+     }finally{starting=false;}
+   }
+   function retryUnavailableRegistration(){
+     if(!registrationUnavailable||bootstrapReleased||starting||!navigator.onLine)return false;
++    if(registrationForbidden){
++      // Reconnection can open an online-only shell; it cannot grant SW permission.
++      bootstrapFailed=false;coreRepairPending=false;
++      if(updater)updater.dataset.unavailable='true';
++      startupText('Opening Warhammer 40,000…','opening');setUpdateState('up_to_date');releaseBootstrap();return true;
++    }
+     registrationUnavailable=false;bootstrapFailed=false;coreRepairPending=true;lastOfflineRetry=Date.now();
+     if(updater)delete updater.dataset.unavailable;
+     startupText('Preparing offline access…','opening');setUpdateState('checking');start();return true;
+@@ -482,24 +495,24 @@
+     if(updater.dataset.state==='startup_failed'){bootstrapFailed=false;startupText('Updating to the new version…','updating');setUpdateState('startup_updating');confirmChanged();}
+     else if(updater.dataset.state==='changed')confirmChanged();else if(updater.dataset.state==='ready')installUpdate();else checkForUpdate().catch(()=>{});
+   });
+-  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='WH_PWA_DATA_CHANGED'){
+-    const active=navigator.serviceWorker.controller||registration?.active;if(event.source&&active&&event.source!==active)return;
++  serviceWorker.addEventListener('message',event=>{if(event.data?.type==='WH_PWA_DATA_CHANGED'){
++    const active=serviceWorker.controller||registration?.active;if(event.source&&active&&event.source!==active)return;
+     reloadRequired=true;setUpdateState('changed');recoverStartupVersion();return;
+   }apply(event.data,event.source);});
+-  navigator.serviceWorker.addEventListener('controllerchange',()=>{controlledWorker=navigator.serviceWorker.controller;syncInstalled();});
++  serviceWorker.addEventListener('controllerchange',()=>{controlledWorker=serviceWorker.controller;syncInstalled();});
+   root.addEventListener?.('offline',()=>{clearTimeout(offlineRetryTimer);offlineRetryTimer=0;});
+   root.addEventListener?.('online',()=>{
+     clearTimeout(offlineRetryTimer);offlineRetryTimer=0;offlineRetryCount=0;
+     if(retryUnavailableRegistration())return;
+-    const worker=navigator.serviceWorker.controller||registration?.active;
++    const worker=serviceWorker.controller||registration?.active;
+     if(worker)prepareOffline(worker,{retry:true});
+     if(reloadRequired)recoverStartupVersion();
+   });
+   root.addEventListener?.('focus',()=>{
+     if(registrationUnavailable&&Date.now()-lastOfflineRetry>=30000&&retryUnavailableRegistration())return;
+-    const worker=navigator.serviceWorker.controller||registration?.active,payload=worker&&workerStatuses.get(worker);
++    const worker=serviceWorker.controller||registration?.active,payload=worker&&workerStatuses.get(worker);
+     if(navigator.onLine&&payload?.status==='error'&&Date.now()-lastOfflineRetry>=30000)prepareOffline(worker,{retry:true});
+   });
+   if(v2Bootstrap||document.readyState==='complete')start();else addEventListener('load',start,{once:true});
+-  root.WHOfflineStatus=Object.freeze({ready,completeBootstrap,reportBootstrapFailure,checkRunningVersion,reportLoadFailure:()=>setUpdateState('failed'),query:()=>navigator.serviceWorker.getRegistration().then(value=>value&&query(value.installing||value.waiting||value.active)),check:()=>checkForUpdate()});
++  root.WHOfflineStatus=Object.freeze({ready,completeBootstrap,reportBootstrapFailure,checkRunningVersion,reportLoadFailure:()=>setUpdateState('failed'),query:()=>serviceWorker.getRegistration().then(value=>value&&query(value.installing||value.waiting||value.active)),check:()=>checkForUpdate()});
+ })(window);
+diff --git a/books/shared/unit-art.css b/books/shared/unit-art.css
+index 3585b130..6adaf108 100644
+--- a/books/shared/unit-art.css
++++ b/books/shared/unit-art.css
+@@ -18,4 +18,12 @@
+   .unit-card.has-unit-art-background .unit-header{min-height:190px}
+   .unit-art-background{inset:-30px -18px -26px 12%;opacity:var(--unit-art-background-phone-opacity);-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.72) 30%,#000 60%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.72) 30%,#000 60%)}
+   .unit-art-background img{transform:translate(var(--unit-art-background-phone-x),var(--unit-art-background-phone-y)) scale(var(--unit-art-background-phone-scale))}
+-}
+\ No newline at end of file
++}
++/* A roster card's figures are supporting art, not a second mobile hero row. */
++@media(max-width:760px){
++  .unit-card.ds-roster-card.has-unit-art .unit-header{min-height:0;padding:18px 36% 14px 16px}
++  .unit-card.ds-roster-card.has-unit-art .unit-art{right:6px;bottom:8px;width:33%;height:132px;transform:none}
++  .unit-card.ds-roster-card.has-unit-art-background .unit-header{min-height:0;padding:18px 16px 14px}
++  .unit-card.ds-roster-card .unit-header h3{font-size:clamp(28px,8vw,38px);line-height:1.06}
++  .unit-card.ds-roster-card .unit-header .ds-cost{min-width:0;width:fit-content;max-width:100%;margin-top:12px}
++}
+diff --git a/docs/codex/QA_MATRIX.md b/docs/codex/QA_MATRIX.md
+index 8bf482bd..1286a343 100644
+--- a/docs/codex/QA_MATRIX.md
++++ b/docs/codex/QA_MATRIX.md
+@@ -64,6 +64,10 @@ steps, unchanged historical debt and physical owner isolation. Negative controls
+ reject changed approvals, missing/stale sources, forged scope, a foreign receiver,
+ an executable path and unrelated closure evidence. This does not change runtime
+ coverage or replace the existing owner-only regression controls.
++`npm run test:offline-availability` runs in quick and pre-FF. It verifies that
++unsupported/policy-denied optional service workers do not leave a retry promise,
++while actual current-worker offline preparation retains its retry timing,
++recovery events and Ready transition. No service-worker cache policy changes.
+ `test:pwa-update` includes both working-screen manual updates and the initial
+ bootstrap auto-update regression (`test:pwa-bootstrap`), with once-per-version
+ failure recovery, saved-state retention, prepared offline startup and offline reopening controls.
+diff --git a/package.json b/package.json
+index 3d4d539b..40ba7810 100644
+--- a/package.json
++++ b/package.json
+@@ -7,6 +7,7 @@
+     "playwright": "1.61.1"
+   },
+   "scripts": {
++    "test:offline-availability": "node tests/helper-offline-availability-qa.mjs",
+     "qa:pages-ci": "node tests/pages-runtime-ci-contract-qa.mjs",
+     "test:offline-army-book": "node tests/browser/offline-army-book.mjs",
+     "test:polish-6": "node tests/source-metadata-build-qa.mjs && node books/shared/application-v2/source-metadata-qa.mjs && node books/shared/army-book-app-v2/model-base-caption-qa.mjs && node books/shared/army-book-app-v2/import-notices-qa.mjs && node books/shared/army-book-app-v2/rule-term-visibility-qa.mjs && node books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+diff --git a/tests/helper-offline-availability-qa.mjs b/tests/helper-offline-availability-qa.mjs
+new file mode 100644
+index 00000000..dc9d74cb
+--- /dev/null
++++ b/tests/helper-offline-availability-qa.mjs
+@@ -0,0 +1,108 @@
++/** Optional SW availability must not promise a retry without a usable worker. */
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import vm from 'node:vm';
++
++const source=fs.readFileSync(new URL('../books/shared/offline-status.js',import.meta.url),'utf8');
++const revision='aaaaaaaaaaaaaaaa',base='https://example.test/warhammer-rules-complete-preview/';
++const denied=name=>Object.assign(new Error('Injected browser policy denial'),{name});
++function element(){return {children:[],dataset:{},attributes:{},style:{setProperty(){}},classList:{add(){},remove(){}},hidden:false,textContent:'',
++  append(...children){this.children.push(...children);},setAttribute(name,value){this.attributes[name]=String(value);},addEventListener(){},remove(){this.removed=true;}};}
++function harness({missing=false,getterDenied=false,registrationDenial=null,lookupDenial=null,online=true,workerMode=null,failedPreparations=0}={}){
++  const header=element(),panel=element(),loading=element(),rootListeners=new Map(),workerListeners=new Map(),timers=new Set();
++  const controls=new Map(['[data-pwa-update-status]','[data-pwa-update-action]','[data-pwa-installed-version]','[data-pwa-available-row]','[data-pwa-available-version]'].map(key=>[key,element()]));
++  panel.querySelector=key=>controls.get(key);let registrations=0,lookups=0,getterReads=0,preparations=0,sequence=1;
++  const bootstrap=!workerMode;
++  const payload=status=>({type:'WH_OFFLINE_PACKAGE_STATUS',status,revision,completed:status==='ready'?10:7,total:10,sequence,
++    ...(workerMode==='legacy'?{}:{coreReady:true,coreTotal:7,coreCompleted:7,cacheBytes:'bbbbbbbbbbbbbbbb'})});
++  const worker=workerMode?{state:'activated',addEventListener(){},postMessage(message,[port]){
++    if(message.type==='WH_PWA_PREPARE_OFFLINE'){preparations++;sequence++;port.postMessage(payload(preparations<=failedPreparations?'error':'ready'));}
++    else if(message.type==='WH_OFFLINE_PACKAGE_STATUS_QUERY')port.postMessage(payload('error'));
++    else throw Error('Unexpected worker request '+message.type);
++  }}:null;
++  const registration=worker?{active:worker,updateViaCache:'none',addEventListener(){},update:async()=>{}}:undefined;
++  const container={controller:worker,getRegistration:async()=>{lookups++;if(lookupDenial)throw denied(lookupDenial);return registration;},
++    register:async()=>{registrations++;throw denied(registrationDenial||'TypeError');},addEventListener:(name,listener)=>workerListeners.set(name,listener)};
++  const navigator={onLine:online};
++  if(!missing)Object.defineProperty(navigator,'serviceWorker',{get(){getterReads++;if(getterDenied)throw denied('SecurityError');return container;}});
++  const window={WHPwaExpectedRevision:revision,addEventListener:(name,listener)=>rootListeners.set(name,listener)};
++  const document={readyState:'loading',currentScript:{dataset:{serviceWorker:'../service-worker.js'},src:base+'books/shared/offline-status.js',hasAttribute:()=>bootstrap},body:{dataset:{}},
++    querySelector:key=>key==='[data-pwa-updater]'?panel:key==='[data-v2-mount-root]'?{children:[]}:key==='[data-v2-loading]'?!loading.removed&&loading:key==='header.app-header, header.topbar, header.v2-primary-header'?header:null,
++    querySelectorAll:()=>[],createElement:()=>element()};
++  class Channel{constructor(){this.port1={onmessage:null,close(){}};this.port2={postMessage:data=>queueMicrotask(()=>this.port1.onmessage?.({data})),close(){}};}}
++  const context={window,document,navigator,location:new URL(base+'v2/app.html'),URL,AbortController,MessageChannel:Channel,
++    sessionStorage:{getItem:()=>null,setItem(){}},MutationObserver:class{observe(){}},console:{warn(){}},addEventListener(){},requestAnimationFrame:fn=>fn(),
++    setTimeout:(callback,delay)=>{const timer={callback,delay};timers.add(timer);return timer;},clearTimeout:timer=>timers.delete(timer)};
++  vm.runInNewContext(source,context);
++  return {window,navigator,header,panel,timers,rootListeners,get registrations(){return registrations;},get lookups(){return lookups;},get getterReads(){return getterReads;},get preparations(){return preparations;},
++    get visible(){return header.children.some(node=>!node.hidden);},get text(){return header.children[0]?.children[0]?.textContent;},get status(){return header.children[0]?.dataset.state;},
++    query:()=>window.WHOfflineStatus.query(),event:name=>rootListeners.get(name)?.(),runTimer(delay){const timer=[...timers].find(item=>item.delay===delay);assert(timer,'Expected retry timer');timers.delete(timer);timer.callback();}};
++}
++async function until(predicate){const end=Date.now()+1000;while(!predicate()){assert(Date.now()<end,'Availability control did not settle');await new Promise(resolve=>setImmediate(resolve));}}
++const results=[];
++async function test(name,fn){await fn();results.push({name,status:'PASS'});}
++
++for(const mode of ['missing','getterDenied'])await test(mode+' API opens online-only without an indicator',async()=>{
++  const h=harness({[mode]:true});await h.window.WHOfflineStatus.ready;
++  assert.equal(h.visible,false);assert.equal(h.header.children.length,0);assert.equal(h.registrations,0);
++  if(mode==='getterDenied')assert.equal(h.getterReads,1);
++});
++
++for(const name of ['SecurityError','NotAllowedError','NotSupportedError'])await test(name+' registration rejection stays quiet and opens the online shell',async()=>{
++  const h=harness({registrationDenial:name});await until(()=>h.panel.dataset.unavailable==='true');await h.window.WHOfflineStatus.ready;
++  assert.equal(h.registrations,1);assert.equal(h.getterReads,1);assert.equal(h.visible,false);assert.equal(h.header.children.length,0);
++  h.window.WHOfflineStatus.completeBootstrap();h.event('focus');h.event('online');await new Promise(resolve=>setImmediate(resolve));
++  assert.equal(h.registrations,1,'Policy denial must not generate background registration loops');assert.equal(h.visible,false);
++  assert.equal([...h.timers].filter(timer=>[15000,30000].includes(timer.delay)).length,0);
++});
++
++await test('denied registration while offline opens online-only after reconnect without another registration',async()=>{
++  const h=harness({registrationDenial:'SecurityError',online:false});
++  await until(()=>h.panel.dataset.state==='startup_failed');assert.equal(h.registrations,1);assert.equal(h.visible,false);
++  h.event('focus');await new Promise(resolve=>setImmediate(resolve));assert.equal(h.registrations,1);assert.equal(h.visible,false);
++  h.navigator.onLine=true;h.event('online');await h.window.WHOfflineStatus.ready;
++  assert.equal(h.panel.dataset.unavailable,'true');assert.equal(h.panel.dataset.state,'up_to_date','The failed startup/update UI must be cleared');assert.equal(h.registrations,1,'Reconnection must not retry a browser-policy denial');assert.equal(h.visible,false);
++  h.window.WHOfflineStatus.completeBootstrap();h.event('focus');h.event('online');await new Promise(resolve=>setImmediate(resolve));
++  assert.equal(h.registrations,1);assert.equal(h.visible,false);
++  assert.equal([...h.timers].filter(timer=>[15000,30000].includes(timer.delay)).length,0);
++});
++
++await test('denied getRegistration does not escape or promise offline recovery',async()=>{
++  const h=harness({lookupDenial:'SecurityError'});await until(()=>h.panel.dataset.unavailable==='true');await h.window.WHOfflineStatus.ready;
++  assert.equal(h.lookups,2,'Existing-registration recovery remains attempted');assert.equal(h.registrations,0);assert.equal(h.visible,false);
++});
++
++await test('registration network failure without a worker does not claim background retry',async()=>{
++  const h=harness({registrationDenial:'TypeError'});await until(()=>h.panel.dataset.unavailable==='true');await h.window.WHOfflineStatus.ready;
++  assert.equal(h.registrations,1);assert.equal(h.visible,false);assert.equal(h.header.children.length,0);
++});
++
++await test('an actual resumable worker retains the timed recovery and Ready transition',async()=>{
++  const h=harness({workerMode:'modern'});await h.query();assert.equal(h.text,'Offline access not ready — will retry');assert.equal(h.visible,true);
++  h.runTimer(15000);await until(()=>h.status==='ready');assert.equal(h.preparations,1);assert.equal(h.text,'Ready for offline use');
++  assert.equal([...h.timers].filter(timer=>[15000,30000].includes(timer.delay)).length,0);
++});
++
++await test('exhausted timed retries stop promising another automatic attempt until a real recovery event',async()=>{
++  const h=harness({workerMode:'modern',failedPreparations:3});await h.query();
++  h.runTimer(15000);await until(()=>h.preparations===1);await new Promise(resolve=>setImmediate(resolve));
++  h.runTimer(30000);await until(()=>h.preparations===2);await new Promise(resolve=>setImmediate(resolve));
++  assert.equal(h.visible,false,'An exhausted automatic retry budget must not leave a permanent retry promise');
++  assert.equal([...h.timers].filter(timer=>[15000,30000].includes(timer.delay)).length,0);
++  h.event('online');await until(()=>h.preparations===3);await new Promise(resolve=>setImmediate(resolve));
++  assert.equal(h.visible,true,'A connectivity recovery resets the existing retry budget');assert.equal(h.text,'Offline access not ready — will retry');
++  h.runTimer(15000);await until(()=>h.status==='ready');assert.equal(h.preparations,4);
++});
++
++await test('offline interruption with a real worker retains recovery when connectivity returns',async()=>{
++  const h=harness({workerMode:'modern',online:false});await h.query();assert.equal(h.text,'Offline access not ready — will retry');
++  assert.equal([...h.timers].some(timer=>timer.delay===15000),false);h.navigator.onLine=true;h.event('online');
++  await until(()=>h.status==='ready');assert.equal(h.preparations,1);assert.equal(h.text,'Ready for offline use');
++});
++
++await test('a legacy worker without resumable preparation does not promise an unsupported retry',async()=>{
++  const h=harness({workerMode:'legacy'});await h.query();assert.equal(h.visible,false);assert.notEqual(h.text,'Offline access not ready — will retry');
++  assert.equal([...h.timers].some(timer=>timer.delay===15000),false);
++});
++
++console.log(JSON.stringify({status:'PASS',checks:results.length,choice:'Hide the optional indicator when SW support/permission or resumable preparation is unavailable; no persistent unsupported message.',results},null,2));
+diff --git a/tools/qa-queue.mjs b/tools/qa-queue.mjs
+index 8eb9830d..6d48e00f 100644
+--- a/tools/qa-queue.mjs
++++ b/tools/qa-queue.mjs
+@@ -49,6 +49,7 @@ node('tests/browser-catalog-loader-qa.mjs');
+ node('tests/browser-catalog-cache-qa.mjs');
+ node('tests/fast-first-load-cache-qa.mjs');
+ node('tests/helper-offline-status-instance-qa.mjs');
++node('tests/helper-offline-availability-qa.mjs');
+ node('tests/runtime-url-stamps-qa.mjs');
+ node('tests/packaged-bootstrap-qa.mjs',['--self-test']);
+ node('books/shared/army-book-app-v2/unit-art-visibility-qa.mjs');

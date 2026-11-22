@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "sha": "9e04d5d43240795979d0257a27ba4c35cd2259f6",
+  "headAfter": "9e04d5d43240795979d0257a27ba4c35cd2259f6",
+  "worktreeStatus": "",
+  "preff": {
+    "passed": 213,
+    "failed": 0,
+    "fullRunNumber": 1,
+    "elapsedMs": 4796015
+  },
+  "generated": {
+    "status": "PASS",
+    "files": 148,
+    "steps": 68,
+    "report": "E:\\Warhammer\\qa-evidence\\visual-polish-v1-2026-11-22\\preff\\165-check-generated-rebuild.mjs-evidence\\wh-generated-rebuild-evidence-8DNOuY\\RESULTS.json"
+  },
+  "ab": {
+    "status": "PASS",
+    "base": "f5d73d531edbea8f8c919265477404c9b1b0eec4",
+    "head": "9e04d5d43240795979d0257a27ba4c35cd2259f6",
+    "counts": {
+      "cases": 199,
+      "ready": 177,
+      "needsBindings": 22,
+      "other": 0,
+      "frames": 507
+    },
+    "fixtureSha256": "0cdc522a45fd237b29a4bc72802017e12ec23d0f71e1367eb72a546e1de2c1d6",
+    "baseline": "Fresh complete f5d73d53 capture retained from this task, same immutable accepted SHA",
+    "masking": "NONE; full native import, snapshot, projection, effective, related and points bytes",
+    "differences": 0,
+    "books": [
+      {
+        "book": "adeptus-mechanicus",
+        "cases": 21,
+        "bytes": 4783543,
+        "sha256": "8fc5e2549023ea68f095a0b9a83f4f1fb1060d31b2786add8288a8c12575bfe8",
+        "status": "BYTE_IDENTICAL"
+      },
+      {
+        "book": "blood-angels",
+        "cases": 4,
+        "bytes": 394829,
+        "sha256": "70e7c737e31a86ef13350942c218e7774c7825485552ffdfe38441512fa44bc9",
+        "status": "BYTE_IDENTICAL"
+      },
+      {
+        "book": "chaos-space-marines",
+        "cases": 67,
+        "bytes": 20893204,
+        "sha256": "fb3e9601b23ecb7b74a8730037211ce724e1f8819eac9fecf1be9bfbe5a5e625",
+        "status": "BYTE_IDENTICAL"
+      },
+      {
+        "book": "dark-angels",
+        "cases": 5,
+        "bytes": 630817,
+        "sha256": "b9a7849c8ed02bd0b34a5c165d3a0583699e836cd0aea0b0b4df34ec7675dd22",
+        "status": "BYTE_IDENTICAL"
+      },
+      {
+        "book": "death-guard",
+        "cases": 11,
+        "bytes": 8628074,
+        "sha256": "4d1b3d231298560ff5dba4bae9c1e6f4ca5d5dec496c634e0e377f5c81995a9c",
+        "status": "BYTE_IDENTICAL"
+      },
+      {
+        "book": "emperors-children",
+        "cases": 14,
+        "bytes": 2973820,
+        "sha256": "f9deadbc79792d6b94bd3dc3d3eaa2a69f8a8c036352df544db199501d4e3c0a",
+        "status": "BYTE_IDENTICAL"
+      },
+      {
+        "book": "space-marines",
+        "cases": 5,
+        "bytes": 1190997,
+        "sha256": "9efad112bc2740ed762900f898a2f22ec3195f1d426308fab9d76aed81514ff7",
+        "status": "BYTE_IDENTICAL"
+      },
+      {
+        "book": "tau-empire",
+        "cases": 54,
+        "bytes": 4026203,
+        "sha256": "33b0d4d457ff7e152b97e56d3f563bb0096d9f7e93d778eb28b9bd5bf3de07ee",
+        "status": "BYTE_IDENTICAL"
+      },
+      {
+        "book": "tyranids",
+        "cases": 18,
+        "bytes": 4676364,
+        "sha256": "5748fcf97b1a5ac6bbc60ab7674af4868ee474486c672eea5475ec102123a415",
+        "status": "BYTE_IDENTICAL"
+      }
+    ]
+  },
+  "cleanRoom": {
+    "status": "PASS",
+    "manifestSha256": "df721617e3a267abc43418be40b8992791c7acd953f24b27e825d81e0830bd50",
+    "package": {
+      "contentSha256": "2b3643a912a65dcdf285d5a8de5647d8c0bf2f156f39d1db920f4d108cf4f1c0",
+      "cacheRevision": "946ff60a59dc4381",
+      "fileCount": 456,
+      "runtimeBytes": 282883615,
+      "precacheUrls": 221
+    }
+  },
+  "contrast": {
+    "axeViolationNodes": 0,
+    "axeIncompleteNodes": 9089,
+    "measuredViewportTextRuns": 652,
+    "minimumRenderedContrast": 4.74670802162378,
+    "minimumRenderedControlContrast": 5.585907050107971,
+    "wcagViolations": 0,
+    "belowRequested45": 0,
+    "unmeasuredRuns": 24
+  },
+  "offlineBrowser": {
+    "status": "PASS",
+    "cases": 8
+  },
+  "previewManifestMatchesPreff": true
+}

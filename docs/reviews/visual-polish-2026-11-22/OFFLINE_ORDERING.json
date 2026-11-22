@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "checks": 4,
+  "results": [
+    {
+      "name": "a restarted global adopts low sequence only after the current-worker query",
+      "status": "PASS"
+    },
+    {
+      "name": "late old-instance and malformed broadcasts cannot replace current Ready",
+      "status": "PASS"
+    },
+    {
+      "name": "a late authoritative reply cannot undo a newer authoritative incarnation",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy workers retain strict sequence ordering without instance metadata",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "status": "PASS",
+  "baselineAggregate": "f975aa7a6c68073dd86c46b512e9cc1b8664209abce937fad128e91616095af5",
+  "headAggregate": "2b3643a912a65dcdf285d5a8de5647d8c0bf2f156f39d1db920f4d108cf4f1c0",
+  "files": 41,
+  "totalBytes": 232985525,
+  "differentFiles": [],
+  "data": [
+    {
+      "path": "books/adeptus-mechanicus/book.config.json",
+      "bytes": 8967,
+      "sha256": "8ae1fd6b8078ec15cb47b06233dc0d298178936d3b9023b76a0fead7171cbf0e"
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+      "bytes": 7645420,
+      "sha256": "dc33f2b22a6dafe7081498338fb663f503e096d3ee5ae8fffd75174a756820cd"
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/effective.json",
+      "bytes": 2071698,
+      "sha256": "4fdd247997383e74a9d66fecfd9efcdfd7f24d2d84746c4dddce77c5711e88a0"
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "bytes": 4669035,
+      "sha256": "34bbb76ee1dbfe0d0580a443ed9e8722d06b3a785c8d0cc8dcb8440b4500a71f"
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/model-name-aliases.json",
+      "bytes": 106,
+      "sha256": "1fcb9e90f1c3729c9aa4d9393e2a0c756d2a2faec5167ebb0569821dc5b75a73"
+    },
+    {
+      "path": "books/adeptus-mechanicus/v2/roster-import-aliases.json",
+      "bytes": 973,
+      "sha256": "aeaf568be0a247046f9b78749d9d605bbaf9f63d707dc5596d07ef6ffa882de1"
+    },
+    {
+      "path": "books/blood-angels/book.config.json",
+      "bytes": 18551,
+      "sha256": "267d909379e4b9322e69301ae853dc52f43cb1f5349d5cf0d019d60feae4430b"
+    },
+    {
+      "path": "books/blood-angels/v2/generated/app-presentation.json",
+      "bytes": 19417812,
+      "sha256": "1e746c0ad1fb929d94726627edfee5603d8ffad149f21714516924ec25f30562"
+    },
+    {
+      "path": "books/blood-angels/v2/generated/roster-import.json",
+      "bytes": 5901206,
+      "sha256": "5bc8e4f61377aae1f955fbe4b9f97bd1872b9765ef8508412e8eec19cfc22c7c"
+    },
+    {
+      "path": "books/chaos-space-marines/book.config.json",
+      "bytes": 10333,
+      "sha256": "e2d381279d4594b72695c13354a9ad27ecf753a94c944ef3d47a58bfcb29be59"
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/app-presentation.json",
+      "bytes": 19600722,
+      "sha256": "1b07f29014b3f1c69dd09dc6d8aab82541a1cc05a651af738f815bfe6a1b2608"
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-import.json",
+      "bytes": 3063451,
+      "sha256": "aa1fbea270271a0b36b7bc032ab97ccbfd383ddc21dbbaff3fb373e7495fb163"
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "bytes": 7827249,
+      "sha256": "669e89f73e341f3f789d4d1cd5969c20a6ea79b9a9b394044c05a214e2a877c1"
+    },
+    {
+      "path": "books/chaos-space-marines/v2/model-name-aliases.json",
+      "bytes": 18727,
+      "sha256": "599ae6bba67e04ead55fcad91b737ab2e811fa2015b001d28d2e5c20cdd6d34d"
+    },
+    {
+      "path": "books/chaos-space-marines/v2/roster-attachment-bindings.json",
+      "bytes": 3676,
+      "sha256": "3dd5578ec5b5cce1f89a4a407cab2c99baab41254d86236059a5958137aecc2b"
+    },
+    {
+      "path": "books/core-rules/reader/search-index.json",
+      "bytes": 235076,
+      "sha256": "6c7704cd4c644afa82a475505c676f05a781727667bd742e7283bda20f98fa29"
+    },
+    {
+      "path": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+      "bytes": 1467795,
+      "sha256": "7761005215c03f9d0e0a5bc217894f8605662fc41f04052150ff73218a3d588e"
+    },
+    {
+      "path": "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json",
+      "bytes": 2131716,
+      "sha256": "dcccb02c5da68f0af500edaaab7fdcdbb6f9d5060d0f2a7b0075a6685d579b4e"
+    },
+    {
+      "path": "books/dark-angels/book.config.json",
+      "bytes": 23740,
+      "sha256": "62ec05a4e0ac0108f689d60a439fd5e47af5dcd2018664c93ee1675a42b9afb9"
+    },
+    {
+      "path": "books/dark-angels/v2/generated/app-presentation.json",
+      "bytes": 19763042,
+      "sha256": "99452c651bdba62aa7ec5a2af7217afab863dc6f70957c990d08c0e77e4dbd95"
+    },
+    {
+      "path": "books/dark-angels/v2/generated/roster-import.json",
+      "bytes": 6104188,
+      "sha256": "1ff00df1eff718df1c846daa35fabbc1628b116a7abc0c595e5df2c4f24113f8"
+    },
+    {
+      "path": "books/death-guard/book.config.json",
+      "bytes": 8275,
+      "sha256": "7e7116a996ec226612faed971baca82b7231fc86871d61cb5b81532b31059985"
+    },
+    {
+      "path": "books/death-guard/v2/generated/app-presentation.json",
+      "bytes": 6112063,
+      "sha256": "0d55e16b1c501fb19ea3e74d8f3100bea81071b35f70a07e43d2c3bd694b984f"
+    },
+    {
+      "path": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "bytes": 2295405,
+      "sha256": "1579bd3784e47ab6b343ed99496d5255db593fc81aadaaa0eaa65e59962045ad"
+    },
+    {
+      "path": "books/emperors-children/book.config.json",
+      "bytes": 11844,
+      "sha256": "8654b3be548e82f6f1e7f37578e40a48ab7d1ba4daa026b0d72ba16bfb26cbc9"
+    },
+    {
+      "path": "books/emperors-children/v2/generated/app-presentation.json",
+      "bytes": 5437377,
+      "sha256": "4521fe8ee9dc49bbfd590f7d3eb1f2c9158b91e88bd38944df89e703d17aca17"
+    },
+    {
+      "path": "books/emperors-children/v2/generated/roster-attachments.json",
+      "bytes": 3507434,
+      "sha256": "98d57d16064844dce02c678cd75fd6f80afff245126e64d98c0e279ca89ab0d7"
+    },
+    {
+      "path": "books/emperors-children/v2/generated/roster-import.json",
+      "bytes": 2166207,
+      "sha256": "2596f045a77547901cacdcc202f656da68da7d9d23e9f4f3d0c7d9ef9ed8efd7"
+    },
+    {
+      "path": "books/shared/application-v2/generated/source-metadata.v1.json",
+      "bytes": 1003,
+      "sha256": "d27f4b10e255d3cc6fb67743a83e9f766f6d30b6ace02a85e383c67d0bd01f66"
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.json",
+      "bytes": 6530013,
+      "sha256": "599f5bf8f9f08d53a7396d5b1bcd23a945262b3acc0b54d018dae5dfc274ffbe"
+    },
+    {
+      "path": "books/space-marines/book.config.json",
+      "bytes": 19335,
+      "sha256": "a0ae7b12060e32bb49dc8702483351fe69aaca5a328cbd1f7edb66a28bf2da04"
+    },
+    {
+      "path": "books/space-marines/v2/generated/app-presentation.json",
+      "bytes": 23277245,
+      "sha256": "bd92ba82e9eedb3f08e2383f76f5b8d0cba215173c1e33b02cdbc1f078c54684"
+    },
+    {
+      "path": "books/space-marines/v2/generated/roster-import.json",
+      "bytes": 6799242,
+      "sha256": "d982e0f3208405742fc604475abdd7b283cbc6e2bed2a0b8db279179902e8822"
+    },
+    {
+      "path": "books/tau-empire/book.config.json",
+      "bytes": 9296,
+      "sha256": "8ecbe9c0c3e64609791df8644d9037d7e80a2869b804b1fdcd6f8b6427c6cde4"
+    },
+    {
+      "path": "books/tau-empire/v2/generated/app-presentation.json",
+      "bytes": 7092004,
+      "sha256": "b52333406633071ac5ddc069aecd67dee199930c35a3470397e4ffae7e8319af"
+    },
+    {
+      "path": "books/tau-empire/v2/generated/roster-import.json",
+      "bytes": 3543842,
+      "sha256": "d0e49306d90f11756310d493b48f3496fd48f4857f948a765c5c6bb3d5fcccae"
+    },
+    {
+      "path": "books/tyranids/book.config.json",
+      "bytes": 8120,
+      "sha256": "5c058a6d3c9796f4bf4d9cdc8aba26c80769108794fef44d65270ba5c595c464"
+    },
+    {
+      "path": "books/tyranids/v2/generated/app-presentation.json",
+      "bytes": 8747921,
+      "sha256": "397d7df75ac5c9fe4987749c1af5d64835c7bfbbaf9c6cf180d52acfbf65f9da"
+    },
+    {
+      "path": "books/tyranids/v2/generated/roster-runtime.json",
+      "bytes": 3064045,
+      "sha256": "59224d618c45ca6dfd5ff45294071c53d4bc06c69b6ec0a5784880c846d4c881"
+    },
+    {
+      "path": "glossary/v2/generated/index.en.js",
+      "bytes": 23201709,
+      "sha256": "064aa5190a99f566e60a5c9bfcbac8bedf1ab02976aff3df78ece732836867fa"
+    },
+    {
+      "path": "glossary/v2/generated/index.en.json",
+      "bytes": 31169662,
+      "sha256": "aa2554375bc46924acc16d3790ba5ab88d3b4d4d495015feede718b493bcf057"
+    }
+  ]
+}

@@ -1,0 +1,2464 @@
+{
+  "schema": "visual-polish-compact/v1",
+  "sourceFile": "RESULTS.json",
+  "sourceSha256": "c0bce3b8da032cc77387ef4e31c3a7c8df90cc630a26d63f2bbd487f760b7dfb",
+  "status": "PASS",
+  "phase": "after",
+  "package": "2b3643a912a65dcdf285d5a8de5647d8c0bf2f156f39d1db920f4d108cf4f1c0",
+  "axeVersion": "4.14.1",
+  "errors": [],
+  "cases": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "pageErrors": [],
+      "screens": [
+        {
+          "name": "book-library",
+          "screenshot": "390-book-library.jpg",
+          "semanticSha256": "c7d63bbe8edb3d509d89a64c7f2d75ec9fa14bd9d383971430802e7a6dd1a498",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 805
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 4203,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 443,
+                "examples": [
+                  [
+                    ".offline-package-label"
+                  ],
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "nonBmp",
+                "message": "Element content contains only non-text characters",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "#navMenu"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 3746,
+                "examples": [
+                  [
+                    ".book-fact-value[data-context-id=\"army-rule-nurgles-gift\"][data-fact-value=\"\\\"1\\\"\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"\\\"3\\\\\\\"\\\"\"][data-context-id=\"army-rule-nurgles-gift\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-context-id=\"army-rule-nurgles-gift\"][data-fact-value=\"\\\"2\\\"\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"\\\"6\\\\\\\"\\\"\"][data-context-id=\"army-rule-nurgles-gift\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "shortTextContent",
+                "message": "Element content is too short to determine if it is actual text content",
+                "nodes": 12,
+                "examples": [
+                  [
+                    "span[data-fact-value=\"3\"]"
+                  ],
+                  [
+                    ".detachment.v2-kind-DETACHMENT[data-source-ids=\"[\\\"dg-waha-2026-09-25\\\"]\"]:nth-child(3) > .detachment-title.category-title > .detachment-dp.v2-kind-MFM-DETACHMENT.v2-book-record > .book-fact-value[data-fact-value=\"2\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"2\"][data-context-id=\"detachment-tallyband-summoners\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"2\"][data-context-id=\"detachment-death-lords-chosen\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "imgNode",
+                "message": "Element's background color could not be determined because element contains an image node",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "h3[data-fact-id=\"unit-beasts-of-nurgle::/title\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 10
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 25,
+            "minimumContrast": 4.835606251526348,
+            "minimumControlContrast": 10.642611194599594,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "254aaaa9b4a32b6ed540acac6f6f723620982e2491590880bfc9acc946aa18ae",
+            "backgroundPngSha256": "f7c8242f0198197969dbb606e01cec8ff91518abd13d918194a7a9b0f48af930"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "import-empty",
+          "screenshot": "390-import-empty.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [
+              {
+                "text": "Import roster",
+                "rect": {
+                  "top": 635.109375,
+                  "bottom": 679.109375,
+                  "left": 31,
+                  "right": 130.921875,
+                  "width": 99.921875,
+                  "height": 44
+                }
+              }
+            ],
+            "controlLevels": {
+              "ghost": 1,
+              "unspecified": 2,
+              "primary": 1,
+              "secondary": 2
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 6,
+            "incompleteReasons": [
+              {
+                "reason": "nonBmp",
+                "message": "Element content contains only non-text characters",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "#navMenu"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 5,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ],
+                  [
+                    "h1"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 12
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 17,
+            "minimumContrast": 8.345095216268318,
+            "minimumControlContrast": 8.345095216268318,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "c8688bca4eecebf7aae8f90b153e484907f5044e1a5cf35f17e79a0490508633",
+            "backgroundPngSha256": "017b3e049728f7fef6c54e4148f204b09c6e0c2ba11015d5cb29fc593c85dafe"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "attachment-setup",
+          "screenshot": "390-attachment-setup.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 626.609375,
+                  "bottom": 691.90625,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 16px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 790.90625,
+                  "bottom": 856.203125,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 16px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 955.203125,
+                  "bottom": 1020.5,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 16px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [
+              {
+                "text": "Save Warlord",
+                "rect": {
+                  "top": 174.640625,
+                  "bottom": 218.640625,
+                  "left": 31,
+                  "right": 130.09375,
+                  "width": 99.09375,
+                  "height": 44
+                }
+              }
+            ],
+            "controlLevels": {
+              "ghost": 12,
+              "unspecified": 3,
+              "secondary": 7,
+              "primary": 1
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 5,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 5,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ],
+                  [
+                    "h1"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 85
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 27,
+            "minimumContrast": 7.130015395783202,
+            "minimumControlContrast": 10.871158664649618,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 1,
+            "unmeasured": [
+              {
+                "text": "Your roster",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > h2",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "8 units. Review your units and optional attachments.",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > p.v2-roster-hint",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 4
+              },
+              {
+                "text": "Warlord",
+                "selector": "div.v2-roster > section.v2-card.v2-roster-pane > section > label.v2-roster-field",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Not selected",
+                "selector": "section.v2-card.v2-roster-pane > section > label.v2-roster-field > select",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 454
+              }
+            ],
+            "originalPngSha256": "0b07baaae6c86b543af028c4a6274d6daa522e04db05da27cc74510f46649cbe",
+            "backgroundPngSha256": "77c2d2215b851a9fe393284fe63e916c43a570eb6dee06c392d7c38bc3b50861"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "attachment-models-points",
+          "screenshot": "390-attachment-models-points.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 626.609375,
+                  "bottom": 691.90625,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 16px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 790.90625,
+                  "bottom": 856.203125,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 16px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 955.203125,
+                  "bottom": 1020.5,
+                  "left": 15,
+                  "right": 375,
+                  "width": 360,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 16px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [
+              {
+                "text": "Save Warlord",
+                "rect": {
+                  "top": 174.640625,
+                  "bottom": 218.640625,
+                  "left": 31,
+                  "right": 130.09375,
+                  "width": 99.09375,
+                  "height": 44
+                }
+              }
+            ],
+            "controlLevels": {
+              "ghost": 12,
+              "unspecified": 3,
+              "secondary": 7,
+              "primary": 1
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 5,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 5,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ],
+                  [
+                    "h1"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 85
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 27,
+            "minimumContrast": 7.130015395783202,
+            "minimumControlContrast": 10.871158664649618,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 1,
+            "unmeasured": [
+              {
+                "text": "Your roster",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > h2",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "8 units. Review your units and optional attachments.",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > p.v2-roster-hint",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 4
+              },
+              {
+                "text": "Warlord",
+                "selector": "div.v2-roster > section.v2-card.v2-roster-pane > section > label.v2-roster-field",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Not selected",
+                "selector": "section.v2-card.v2-roster-pane > section > label.v2-roster-field > select",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 454
+              }
+            ],
+            "originalPngSha256": "0b07baaae6c86b543af028c4a6274d6daa522e04db05da27cc74510f46649cbe",
+            "backgroundPngSha256": "77c2d2215b851a9fe393284fe63e916c43a570eb6dee06c392d7c38bc3b50861"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "roster-card",
+          "screenshot": "390-roster-card.jpg",
+          "semanticSha256": "7223893ca542a4307f9934a78944c0a99c5cd7f3dc72b39a6fd1d91c89e7bdb1",
+          "detail": {
+            "instanceId": "parsed-unit-8"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 220.6875,
+                "bottom": 2801.046875,
+                "left": 14,
+                "right": 376,
+                "width": 362,
+                "height": 2580.359375
+              },
+              "header": {
+                "top": 223.6875,
+                "bottom": 393.0625,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 169.375
+              },
+              "context": {
+                "top": 0,
+                "bottom": 0,
+                "left": 0,
+                "right": 0,
+                "width": 0,
+                "height": 0
+              },
+              "contextVisible": false,
+              "stats": {
+                "top": 499.5625,
+                "bottom": 556.109375,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 56.546875
+              }
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 36
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 113,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 7,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-version"
+                  ],
+                  [
+                    ".v2-breadcrumbs > button"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 106,
+                "examples": [
+                  [
+                    ".eyebrow"
+                  ],
+                  [
+                    "h3"
+                  ],
+                  [
+                    ".ds-instance-price"
+                  ],
+                  [
+                    ".local-tab:nth-child(1)"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 6
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 48,
+            "minimumContrast": 4.875543350261323,
+            "minimumControlContrast": 8.88872235966595,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "f802b84ae9dc8f38d4406aa2a1c6983a0c9199ecfb9b8597d492dfe6e8ab83e8",
+            "backgroundPngSha256": "bdec4bf090155e80f1f39b5ad211a822380a872e16a04a7eefc2390b3a0e9627"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "weapon-popup",
+          "screenshot": "390-weapon-popup.jpg",
+          "semanticSha256": "f0c8bee89d91e992fe6a33a83c37589b95cfdd7beb01f5c219c763da7087bedf",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:weapon:1"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 220.6875,
+                "bottom": 2801.046875,
+                "left": 14,
+                "right": 376,
+                "width": 362,
+                "height": 2580.359375
+              },
+              "header": {
+                "top": 223.6875,
+                "bottom": 393.0625,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 169.375
+              },
+              "context": {
+                "top": 0,
+                "bottom": 0,
+                "left": 0,
+                "right": 0,
+                "width": 0,
+                "height": 0
+              },
+              "contextVisible": false,
+              "stats": {
+                "top": 499.5625,
+                "bottom": 556.109375,
+                "left": 15,
+                "right": 375,
+                "width": 360,
+                "height": 56.546875
+              }
+            },
+            "dialog": {
+              "top": 313,
+              "bottom": 531.234375,
+              "left": 14,
+              "right": 376,
+              "width": 362,
+              "height": 218.234375
+            },
+            "close": {
+              "top": 324,
+              "bottom": 368,
+              "left": 321,
+              "right": 365,
+              "width": 44,
+              "height": 44
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": {
+            "keyboardFocusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "outlineColor": "rgb(245, 216, 149)",
+            "width": 44,
+            "height": 44
+          },
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 21
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 21,
+            "minimumContrast": 5.555630416689145,
+            "minimumControlContrast": 10.998671813800463,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "797588257c8bb2c55146677e23dd5b993def0a3bc228faafb3ffab20d01bfc33",
+            "backgroundPngSha256": "8d8564a2bf05d943150ca924be24abe1fa0903639bf244da83910a9e6ea2fbbb"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "ability-popup",
+          "screenshot": "390-ability-popup.jpg",
+          "semanticSha256": "1dd8a232658ee166218371674ded1ccdaaf7b8b97f9d0a793ab4593290b1af33",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:section:1",
+            "fieldPath": "/blocks/0/text"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 310,
+              "bottom": 534.890625,
+              "left": 14,
+              "right": 376,
+              "width": 362,
+              "height": 224.890625
+            },
+            "close": {
+              "top": 321,
+              "bottom": 365,
+              "left": 321,
+              "right": 365,
+              "width": 44,
+              "height": 44
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 3
+            }
+          },
+          "focusProbe": {
+            "keyboardFocusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "outlineColor": "rgb(245, 216, 149)",
+            "width": 44,
+            "height": 44
+          },
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 2,
+            "incompleteReasons": [
+              {
+                "reason": "shortTextContent",
+                "message": "Element content is too short to determine if it is actual text content",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscured",
+                "message": "Element's background color could not be determined because it's partially obscured by another element",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".v2-field-value"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 4
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 7,
+            "minimumContrast": 9.316399229289248,
+            "minimumControlContrast": 11.797952769244555,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "f3dc2099a6628e75789fbabccce189ffb27c6de833979bfd7569e4cf301deebb",
+            "backgroundPngSha256": "007c4a5032aa07369e815d1d3747ac862e2b0ad45887204bf2059400d4449464"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "core-related-popup",
+          "screenshot": "390-core-related-popup.jpg",
+          "semanticSha256": "276a879bd6a0238327cb2f101564bf54b813dafe65566857a4dc5c13f732edf1",
+          "detail": {
+            "canonicalId": "core-feel-no-pain"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 178,
+              "bottom": 666.390625,
+              "left": 14,
+              "right": 376,
+              "width": 362,
+              "height": 488.390625
+            },
+            "close": {
+              "top": 189,
+              "bottom": 233,
+              "left": 321,
+              "right": 365,
+              "width": 44,
+              "height": 44
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 4
+            }
+          },
+          "focusProbe": {
+            "keyboardFocusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "outlineColor": "rgb(245, 216, 149)",
+            "width": 44,
+            "height": 44
+          },
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 2,
+            "incompleteReasons": [
+              {
+                "reason": "shortTextContent",
+                "message": "Element content is too short to determine if it is actual text content",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscuring",
+                "message": "Element's background color could not be determined because it partially overlaps other elements",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "p > .reference-fact[data-context-id=\"core-feel-no-pain\"][data-entity-id=\"core-feel-no-pain\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 6
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 9,
+            "minimumContrast": 6.029262131240316,
+            "minimumControlContrast": 6.029262131240316,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "0607259fd158d2d873b8a8be9856063224669159469da9da4d02c8aecb13b55a",
+            "backgroundPngSha256": "e67db4ba608f6b954a0281878b20cbe7f14e4972a39213bf40c5eeb1a389ce25"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "global-glossary",
+          "screenshot": "390-global-glossary.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 152
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 280
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 43,
+            "minimumContrast": 8.767059254028313,
+            "minimumControlContrast": 9.440439630982695,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Search glossary",
+                "selector": "section.v2-card.v2-glossary > div.v2-compatible > label.v2-search > span.v2-sr-only",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 154
+              }
+            ],
+            "originalPngSha256": "dbe3a2d71965c0775ed4625c5991d3e299ed656b51539f616ed9e882c7f6bce0",
+            "backgroundPngSha256": "a58e826a73cd19d4a7ca2b5e4f92e79f074f9a479b150c5d93d28ea05167406f"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "core-reader",
+          "screenshot": "390-core-reader.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 5
+          },
+          "coreAxe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 23,
+            "incompleteReasons": [
+              {
+                "reason": "nonBmp",
+                "message": "Element content contains only non-text characters",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "#navButton"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 3,
+                "examples": [
+                  [
+                    ".brand > strong"
+                  ],
+                  [
+                    ".current"
+                  ],
+                  [
+                    ".library"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 19,
+                "examples": [
+                  [
+                    ".chapter-hero > .eyebrow"
+                  ],
+                  [
+                    ".chapter-hero > h2"
+                  ],
+                  [
+                    ".chapter-hero > p"
+                  ],
+                  [
+                    ".home-section:nth-child(2) > header > .eyebrow"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 627
+          },
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 5,
+            "minimumContrast": 12.682381544166299,
+            "minimumControlContrast": 12.682381544166299,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "9830e2ff9e5c131b31ea5cabe2c0e88c01db377c28c270341bedc47484c4f0e1",
+            "backgroundPngSha256": "238af2102a05bab348277edc9c371f4205b616080ad3112b024cd4d89d03d4ca"
+          },
+          "corePixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 15,
+            "minimumContrast": 5.204217398756304,
+            "minimumControlContrast": 5.585907050107971,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "9830e2ff9e5c131b31ea5cabe2c0e88c01db377c28c270341bedc47484c4f0e1",
+            "backgroundPngSha256": "ec0639c81cd8cc84a80d6c94e5fe329bd4fff3fc9fd09fdfc85c25f210605a02"
+          }
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "pageErrors": [],
+      "screens": [
+        {
+          "name": "book-library",
+          "screenshot": "1440-book-library.jpg",
+          "semanticSha256": "c7d63bbe8edb3d509d89a64c7f2d75ec9fa14bd9d383971430802e7a6dd1a498",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 623
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 4477,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 576,
+                "examples": [
+                  [
+                    ".offline-package-label"
+                  ],
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 3867,
+                "examples": [
+                  [
+                    ".book-fact-value[data-context-id=\"army-rule-nurgles-gift\"][data-fact-value=\"\\\"1\\\"\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"\\\"3\\\\\\\"\\\"\"][data-context-id=\"army-rule-nurgles-gift\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-context-id=\"army-rule-nurgles-gift\"][data-fact-value=\"\\\"2\\\"\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"\\\"6\\\\\\\"\\\"\"][data-context-id=\"army-rule-nurgles-gift\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "shortTextContent",
+                "message": "Element content is too short to determine if it is actual text content",
+                "nodes": 12,
+                "examples": [
+                  [
+                    "span[data-fact-value=\"3\"]"
+                  ],
+                  [
+                    ".detachment.v2-kind-DETACHMENT[data-source-ids=\"[\\\"dg-waha-2026-09-25\\\"]\"]:nth-child(3) > .detachment-title.category-title > .detachment-dp.v2-kind-MFM-DETACHMENT.v2-book-record > .book-fact-value[data-fact-value=\"2\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"2\"][data-context-id=\"detachment-tallyband-summoners\"]"
+                  ],
+                  [
+                    ".book-fact-value[data-fact-value=\"2\"][data-context-id=\"detachment-death-lords-chosen\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "imgNode",
+                "message": "Element's background color could not be determined because element contains an image node",
+                "nodes": 17,
+                "examples": [
+                  [
+                    "h3[data-fact-value=\"\\\"Biologus Putrifier\\\"\"]"
+                  ],
+                  [
+                    "h3[data-fact-id=\"unit-foul-blightspawn::/title\"]"
+                  ],
+                  [
+                    "h3[data-fact-id=\"unit-great-unclean-one::/title\"]"
+                  ],
+                  [
+                    "h3[data-fact-id=\"unit-lord-of-contagion::/title\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscuring",
+                "message": "Element's background color could not be determined because it partially overlaps other elements",
+                "nodes": 3,
+                "examples": [
+                  [
+                    "h3[data-fact-value=\"\\\"Blightlord Terminators\\\"\"]"
+                  ],
+                  [
+                    "h3[data-fact-value=\"\\\"Deathshroud Terminators\\\"\"]"
+                  ],
+                  [
+                    "h3[data-fact-value=\"\\\"Chaos Predator Annihilator\\\"\"]"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgOverlap",
+                "message": "Element's background color could not be determined because it is overlapped by another element",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".ds-source-update > p[data-context-id=\"unit-chaos-land-raider\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 10
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 34,
+            "minimumContrast": 6.110461495654569,
+            "minimumControlContrast": 6.110461495654569,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Search the army book",
+                "selector": "#tocPanel > label.v2-search > span.v2-sr-only",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 403
+              }
+            ],
+            "originalPngSha256": "5530bf552beed00781bd2aa04a5996a341b5e2ca8f658eebd96d9573cf9cbd9a",
+            "backgroundPngSha256": "2f95fbf732a311b4d6037984f4438925d926e1106bc9ea0e748a3d0d362e43cf"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "import-empty",
+          "screenshot": "1440-import-empty.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [
+              {
+                "text": "Import roster",
+                "rect": {
+                  "top": 621.21875,
+                  "bottom": 665.21875,
+                  "left": 373.546875,
+                  "right": 475.46875,
+                  "width": 101.921875,
+                  "height": 44
+                }
+              }
+            ],
+            "controlLevels": {
+              "ghost": 1,
+              "unspecified": 2,
+              "primary": 1,
+              "secondary": 2
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 14,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 13,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input[type=\"search\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 12
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 26,
+            "minimumContrast": 6.110461495654569,
+            "minimumControlContrast": 6.110461495654569,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Search the army book",
+                "selector": "#tocPanel > label.v2-search > span.v2-sr-only",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 403
+              }
+            ],
+            "originalPngSha256": "4db2aeea194611483a47e56c079874c32a8ded5809a3a07ab604d141caa1c896",
+            "backgroundPngSha256": "6b3c0a7ab0d3aa5fe017e9ad74e4edfde6c0fd6eeca6750c7baa7eea23dc24b0"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "attachment-setup",
+          "screenshot": "1440-attachment-setup.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 610.03125,
+                  "bottom": 675.328125,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 24px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 782.328125,
+                  "bottom": 847.625,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 24px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 954.625,
+                  "bottom": 1019.921875,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 24px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [
+              {
+                "text": "Save Warlord",
+                "rect": {
+                  "top": 180.84375,
+                  "bottom": 224.84375,
+                  "left": 373.546875,
+                  "right": 474.640625,
+                  "width": 101.09375,
+                  "height": 44
+                }
+              }
+            ],
+            "controlLevels": {
+              "ghost": 12,
+              "unspecified": 3,
+              "secondary": 7,
+              "primary": 1
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 24,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 22,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".toc-roster-summary > strong"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input[type=\"search\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 84
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 52,
+            "minimumContrast": 6.086360684210248,
+            "minimumControlContrast": 6.086360684210248,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 1,
+            "unmeasured": [
+              {
+                "text": "Search the army book",
+                "selector": "#tocPanel > label.v2-search > span.v2-sr-only",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 403
+              },
+              {
+                "text": "Poxwalkers",
+                "selector": "button[data-target-id=\"roster-unit/parsed-unit-7\"]",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Your roster",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > h2",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "8 units. Review your units and optional attachments.",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > p.v2-roster-hint",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Warlord",
+                "selector": "div.v2-roster > section.v2-card.v2-roster-pane > section > label.v2-roster-field",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "6083a59389198f019986b1672bd32193b4a9067c21c8e55878bbbdc5828f6951",
+            "backgroundPngSha256": "deb4b5446f26b817a1a7d30f65507ddfe0a6fc263b739149c049121f94d4ec64"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "attachment-models-points",
+          "screenshot": "1440-attachment-models-points.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [
+              {
+                "rect": {
+                  "top": 610.03125,
+                  "bottom": 675.328125,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 24px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 782.328125,
+                  "bottom": 847.625,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 24px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              },
+              {
+                "rect": {
+                  "top": 954.625,
+                  "bottom": 1019.921875,
+                  "left": 349.546875,
+                  "right": 1341.40625,
+                  "width": 991.859375,
+                  "height": 65.296875
+                },
+                "marginTop": "0px",
+                "marginBottom": "0px",
+                "padding": "12px 24px",
+                "body": {
+                  "rect": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "children": 0,
+                  "text": 0
+                }
+              }
+            ],
+            "visiblePrimary": [
+              {
+                "text": "Save Warlord",
+                "rect": {
+                  "top": 180.84375,
+                  "bottom": 224.84375,
+                  "left": 373.546875,
+                  "right": 474.640625,
+                  "width": 101.09375,
+                  "height": 44
+                }
+              }
+            ],
+            "controlLevels": {
+              "ghost": 12,
+              "unspecified": 3,
+              "secondary": 7,
+              "primary": 1
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 24,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 22,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".toc-roster-summary > strong"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input[type=\"search\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 84
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 52,
+            "minimumContrast": 6.086360684210248,
+            "minimumControlContrast": 6.086360684210248,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 1,
+            "unmeasured": [
+              {
+                "text": "Search the army book",
+                "selector": "#tocPanel > label.v2-search > span.v2-sr-only",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 403
+              },
+              {
+                "text": "Poxwalkers",
+                "selector": "button[data-target-id=\"roster-unit/parsed-unit-7\"]",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Your roster",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > h2",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "8 units. Review your units and optional attachments.",
+                "selector": "section.v2-roster > div.v2-roster > section.v2-card.v2-roster-pane > p.v2-roster-hint",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              },
+              {
+                "text": "Warlord",
+                "selector": "div.v2-roster > section.v2-card.v2-roster-pane > section > label.v2-roster-field",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "6083a59389198f019986b1672bd32193b4a9067c21c8e55878bbbdc5828f6951",
+            "backgroundPngSha256": "deb4b5446f26b817a1a7d30f65507ddfe0a6fc263b739149c049121f94d4ec64"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "roster-card",
+          "screenshot": "1440-roster-card.jpg",
+          "semanticSha256": "7223893ca542a4307f9934a78944c0a99c5cd7f3dc72b39a6fd1d91c89e7bdb1",
+          "detail": {
+            "instanceId": "parsed-unit-8"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 216.6875,
+                "bottom": 2268.046875,
+                "left": 348.546875,
+                "right": 1382.40625,
+                "width": 1033.859375,
+                "height": 2051.359375
+              },
+              "header": {
+                "top": 219.6875,
+                "bottom": 429.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 210
+              },
+              "context": {
+                "top": 0,
+                "bottom": 0,
+                "left": 0,
+                "right": 0,
+                "width": 0,
+                "height": 0
+              },
+              "contextVisible": false,
+              "stats": {
+                "top": 462.1875,
+                "bottom": 535.1875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 73
+              }
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 36
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 145,
+            "incompleteReasons": [
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 30,
+                "examples": [
+                  [
+                    ".v2-brand"
+                  ],
+                  [
+                    ".v2-brand-mark"
+                  ],
+                  [
+                    ".v2-edition"
+                  ],
+                  [
+                    ".v2-version"
+                  ]
+                ]
+              },
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 113,
+                "examples": [
+                  [
+                    ".toc-roster-summary > strong"
+                  ],
+                  [
+                    ".eyebrow"
+                  ],
+                  [
+                    ".ds-instance-price"
+                  ],
+                  [
+                    ".stat:nth-child(1) > b"
+                  ]
+                ]
+              },
+              {
+                "reason": "emptyValue",
+                "message": "Element has no value; test color contrast with a value entered",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "input"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscuring",
+                "message": "Element's background color could not be determined because it partially overlaps other elements",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "h3"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 6
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 98,
+            "minimumContrast": 4.74670802162378,
+            "minimumControlContrast": 5.639118499777031,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Search the army book",
+                "selector": "#tocPanel > label.v2-search > span.v2-sr-only",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 403
+              },
+              {
+                "text": "Poxwalkers",
+                "selector": "button[data-target-id=\"roster-unit/parsed-unit-7\"]",
+                "reason": "No differing glyph pixels (clipped, non-text paint, or native control)",
+                "occludedPixels": 0
+              }
+            ],
+            "originalPngSha256": "d7a41055561fe7931e014ea383acbf2e8920431921329f0305818ccdd17a95a0",
+            "backgroundPngSha256": "869277c7393a24777c7f49af70a2117c99f5113adb145f7727b4e8173ccc0baa"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "weapon-popup",
+          "screenshot": "1440-weapon-popup.jpg",
+          "semanticSha256": "f0c8bee89d91e992fe6a33a83c37589b95cfdd7beb01f5c219c763da7087bedf",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:weapon:1"
+          },
+          "metrics": {
+            "card": {
+              "rect": {
+                "top": 216.6875,
+                "bottom": 2268.046875,
+                "left": 348.546875,
+                "right": 1382.40625,
+                "width": 1033.859375,
+                "height": 2051.359375
+              },
+              "header": {
+                "top": 219.6875,
+                "bottom": 429.6875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 210
+              },
+              "context": {
+                "top": 0,
+                "bottom": 0,
+                "left": 0,
+                "right": 0,
+                "width": 0,
+                "height": 0
+              },
+              "contextVisible": false,
+              "stats": {
+                "top": 462.1875,
+                "bottom": 535.1875,
+                "left": 349.546875,
+                "right": 1381.40625,
+                "width": 1031.859375,
+                "height": 73
+              }
+            },
+            "dialog": {
+              "top": 508,
+              "bottom": 735.4375,
+              "left": 387,
+              "right": 947,
+              "width": 560,
+              "height": 227.4375
+            },
+            "close": {
+              "top": 519,
+              "bottom": 563,
+              "left": 892,
+              "right": 936,
+              "width": 44,
+              "height": 44
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 6
+            }
+          },
+          "focusProbe": {
+            "keyboardFocusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "outlineColor": "rgb(245, 216, 149)",
+            "width": 44,
+            "height": 44
+          },
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 21
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 21,
+            "minimumContrast": 5.555630416689145,
+            "minimumControlContrast": 10.998671813800463,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "e9ec864fc82866708b6729854448e03f2efc4be67433e1e12ed5316d5423b4a7",
+            "backgroundPngSha256": "ac4c2387bd18e2b8c3b6a7d77eee5a6ee288b6fc3c4ea45a14b28293443fdaa4"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "ability-popup",
+          "screenshot": "1440-ability-popup.jpg",
+          "semanticSha256": "1dd8a232658ee166218371674ded1ccdaaf7b8b97f9d0a793ab4593290b1af33",
+          "detail": {
+            "canonicalId": "datasheet-deathshroud-terminators:section:1",
+            "fieldPath": "/blocks/0/text"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 575,
+              "bottom": 824.203125,
+              "left": 393,
+              "right": 953,
+              "width": 560,
+              "height": 249.203125
+            },
+            "close": {
+              "top": 586,
+              "bottom": 630,
+              "left": 898,
+              "right": 942,
+              "width": 44,
+              "height": 44
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 3
+            }
+          },
+          "focusProbe": {
+            "keyboardFocusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "outlineColor": "rgb(245, 216, 149)",
+            "width": 44,
+            "height": 44
+          },
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 1,
+            "incompleteReasons": [
+              {
+                "reason": "shortTextContent",
+                "message": "Element content is too short to determine if it is actual text content",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 5
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 7,
+            "minimumContrast": 9.316399229289248,
+            "minimumControlContrast": 11.797952769244555,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "c98294737e45832aed92d675a1aeb1bdeb38effb5bf26aeeb4d2fade403e0855",
+            "backgroundPngSha256": "7d045e2109f2e2dea08ad41edc7369dd052482290ceeffefa392f5994218c232"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "core-related-popup",
+          "screenshot": "1440-core-related-popup.jpg",
+          "semanticSha256": "276a879bd6a0238327cb2f101564bf54b813dafe65566857a4dc5c13f732edf1",
+          "detail": {
+            "canonicalId": "core-feel-no-pain"
+          },
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": {
+              "top": 148,
+              "bottom": 601.828125,
+              "left": 393,
+              "right": 953,
+              "width": 560,
+              "height": 453.828125
+            },
+            "close": {
+              "top": 159,
+              "bottom": 203,
+              "left": 898,
+              "right": 942,
+              "width": 44,
+              "height": 44
+            },
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 4
+            }
+          },
+          "focusProbe": {
+            "keyboardFocusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "outlineColor": "rgb(245, 216, 149)",
+            "width": 44,
+            "height": 44
+          },
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 2,
+            "incompleteReasons": [
+              {
+                "reason": "shortTextContent",
+                "message": "Element content is too short to determine if it is actual text content",
+                "nodes": 1,
+                "examples": [
+                  [
+                    ".v2-icon-button"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscuring",
+                "message": "Element's background color could not be determined because it partially overlaps other elements",
+                "nodes": 1,
+                "examples": [
+                  [
+                    "p > .reference-fact[data-context-id=\"core-feel-no-pain\"][data-entity-id=\"core-feel-no-pain\"]"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 6
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 9,
+            "minimumContrast": 6.029262131240316,
+            "minimumControlContrast": 6.029262131240316,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "202a97b4caccc8f408cb1c959fcfed6f570e0214dbc71f41ef5e199a6447d684",
+            "backgroundPngSha256": "6ec72ca350e596fd50fe948734a84b6039c7f28cbdfa8873b463abd8e9e8d025"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "global-glossary",
+          "screenshot": "1440-global-glossary.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 152
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 280
+          },
+          "coreAxe": null,
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 54,
+            "minimumContrast": 8.767059254028313,
+            "minimumControlContrast": 9.440439630982695,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [
+              {
+                "text": "Search glossary",
+                "selector": "section.v2-card.v2-glossary > div.v2-compatible > label.v2-search > span.v2-sr-only",
+                "reason": "All differing glyph pixels are occluded by another element",
+                "occludedPixels": 154
+              }
+            ],
+            "originalPngSha256": "9ec1ac290cd595e18524cf434e13ee27fae8a3836238f83bc1d0a6b8e4c86399",
+            "backgroundPngSha256": "9e5d5a9fecab95e57be115ff313769995b6d6947893771f0c59db589ab389ab0"
+          },
+          "corePixels": null
+        },
+        {
+          "name": "core-reader",
+          "screenshot": "1440-core-reader.jpg",
+          "semanticSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "detail": null,
+          "metrics": {
+            "card": {
+              "rect": null,
+              "header": null,
+              "context": null,
+              "contextVisible": false,
+              "stats": null
+            },
+            "dialog": null,
+            "close": null,
+            "horizontalOverflow": false,
+            "identities": [],
+            "visiblePrimary": [],
+            "controlLevels": {
+              "unspecified": 7
+            }
+          },
+          "focusProbe": null,
+          "axe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 0,
+            "incompleteReasons": [],
+            "passingNodes": 5
+          },
+          "coreAxe": {
+            "version": "4.14.1",
+            "notRun": null,
+            "violationNodes": 0,
+            "violations": [],
+            "incompleteNodes": 43,
+            "incompleteReasons": [
+              {
+                "reason": "pseudoContent",
+                "message": "Element's background color could not be determined due to a pseudo element",
+                "nodes": 5,
+                "examples": [
+                  [
+                    ".brand > strong"
+                  ],
+                  [
+                    ".brand > small"
+                  ],
+                  [
+                    ".current"
+                  ],
+                  [
+                    "#searchButton"
+                  ]
+                ]
+              },
+              {
+                "reason": "elmPartiallyObscured",
+                "message": "Element's background color could not be determined because it's partially obscured by another element",
+                "nodes": 18,
+                "examples": [
+                  [
+                    ".sidebar-head > .eyebrow"
+                  ],
+                  [
+                    "h1"
+                  ],
+                  [
+                    ".nav-group:nth-child(1) > h2"
+                  ],
+                  [
+                    ".nav-group:nth-child(2) > h2"
+                  ]
+                ]
+              },
+              {
+                "reason": "bgGradient",
+                "message": "Element's background color could not be determined due to a background gradient",
+                "nodes": 20,
+                "examples": [
+                  [
+                    "a[aria-current=\"page\"]"
+                  ],
+                  [
+                    ".chapter-hero > .eyebrow"
+                  ],
+                  [
+                    ".chapter-hero > h2"
+                  ],
+                  [
+                    ".chapter-hero > p"
+                  ]
+                ]
+              }
+            ],
+            "passingNodes": 627
+          },
+          "pixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 5,
+            "minimumContrast": 12.682381544166299,
+            "minimumControlContrast": 12.682381544166299,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "c0b30aed443e022d153f0faf740f74102f1c4911b9173343292daef2419b5a54",
+            "backgroundPngSha256": "ac7248576865ab50b00a5bcf637a5e30f2fbdf80b548f45f5132c9c6e187b84c"
+          },
+          "corePixels": {
+            "method": "Rendered glyph-background differential: PNG before/after temporary transparent webkit-text-fill; same layout/currentColor backgrounds. Delta >10 identifies glyph pixels. Nominal computed foreground RGBA times ancestor opacity is contrasted against each actual background pixel. Per-glyph elementFromPoint ownership rejects occluded text behind sticky headers/overlays. No application data changes; transparent style removed in finally.",
+            "checkedRuns": 50,
+            "minimumContrast": 4.937451404086261,
+            "minimumControlContrast": 5.585907050107971,
+            "wcagViolations": [],
+            "belowRequested45": [],
+            "excludedDisabled": 0,
+            "unmeasured": [],
+            "originalPngSha256": "c0b30aed443e022d153f0faf740f74102f1c4911b9173343292daef2419b5a54",
+            "backgroundPngSha256": "91b6a31f20d1229f589c3cb933fd576a27851fa17fa837bf8e8c1ad28f2dc3db"
+          }
+        }
+      ]
+    }
+  ],
+  "contrastSummary": {
+    "axeViolationNodes": 0,
+    "axeIncompleteNodes": 9089,
+    "measuredViewportTextRuns": 652,
+    "minimumRenderedContrast": 4.74670802162378,
+    "minimumRenderedControlContrast": 5.585907050107971,
+    "wcagViolations": 0,
+    "belowRequested45": 0,
+    "unmeasuredRuns": 24
+  }
+}
