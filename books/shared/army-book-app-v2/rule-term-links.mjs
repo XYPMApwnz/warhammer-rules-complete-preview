@@ -146,8 +146,10 @@ export function createVisibleRuleTermLinks({document,cards,linker,lifecycle,onLa
   }):null;
   if(observer){lifecycle.listen(view,'scroll',scheduleVisible,{passive:true});lifecycle.listen(view,'resize',scheduleVisible,{passive:true});}
   const reset=()=>{observer?.disconnect();if(revealFrame)lifecycle.cancelFrame(revealFrame);revealFrame=0;requests=[];for(const boundary of groups.keys())delete boundary.dataset.ruleTermState;groups.clear();visible.clear();};
+  const revealTarget=target=>{if(target)for(const boundary of [...groups.keys()])if(boundary===target||target.contains(boundary))reveal(boundary);};
   lifecycle.cleanup(reset);
   return Object.freeze({
+    revealTarget,
     defer(root,options={}){
       if(root)requests.push({root,options:{...options,ownerRoot:root,outsideTitle:titleFor(root.closest(ownerSelector),cardMap)}});
     },
@@ -161,7 +163,7 @@ export function createVisibleRuleTermLinks({document,cards,linker,lifecycle,onLa
       }
       requests=[];
       // An explicit destination is ready before Contents measures its position.
-      if(target)for(const boundary of [...groups.keys()])if(boundary===target||target.contains(boundary))reveal(boundary);
+      revealTarget(target);
       if(observer)for(const boundary of groups.keys())observer.observe(boundary);
       else for(const boundary of [...groups.keys()])reveal(boundary);
     },

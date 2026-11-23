@@ -111,9 +111,9 @@ export function projectContents(payload,state=null,personal=null){
   return {nodes,groups,roots,scope:'FULL'};
 }
 
-/** A geometry pass resolves many repeated targets against one current DOM.
+/** One snapshot resolves repeated targets against one current identity DOM.
  * Keep the original first-match order and heading/physical/canonical priority.
- * The caller discards this lookup as soon as that single pass finishes.
+ * Reuse across passes requires the invalidation owner below, never old geometry.
  */
 export function createContentsSectionLookup(main,model) {
   const headings=new Map(),instances=new Map(),cards=new Map();
@@ -133,19 +133,51 @@ export function createContentsSectionLookup(main,model) {
   };
 }
 
+/** Reuse only DOM identities, never positions. Prose decoration does not change
+ * Contents targets; structural/identity changes invalidate before a synchronous
+ * caller can observe a stale index, even before MutationObserver delivery.
+ */
+export function createContentsSectionCache(main,model,{MutationObserver:Observer=main.ownerDocument?.defaultView?.MutationObserver,lifecycle}={}) {
+  const selector='[data-contents-target],[data-roster-instance-id],[data-card-id]';
+  const attributes=['data-contents-target','data-roster-instance-id','data-card-id'];
+  let currentModel=model,lookup=null,destroyed=false,forgetCleanup;
+  const containsTarget=node=>node?.nodeType===1&&(node.matches(selector)||Boolean(node.firstElementChild&&node.querySelector(selector)));
+  const invalidate=()=>{lookup=null;};
+  const mutations=records=>{
+    if(destroyed)return;
+    if(records.some(record=>record.type==='attributes'?attributes.includes(record.attributeName):record.type==='childList'&&
+      [...record.addedNodes,...record.removedNodes].some(containsTarget)))invalidate();
+  };
+  const observer=typeof Observer==='function'?new Observer(mutations):null;
+  observer?.observe(main,{childList:true,subtree:true,attributes:true,attributeFilter:attributes});
+  const fresh=()=>{
+    if(observer)mutations(observer.takeRecords());
+    if(!observer||!lookup)lookup=createContentsSectionLookup(main,currentModel);
+    return lookup;
+  };
+  const live=(id,index)=>id==='start'?main.querySelector('.v2-hero')||main:index(id);
+  const destroy=()=>{
+    if(destroyed)return;
+    destroyed=true;observer?.disconnect();forgetCleanup?.();lookup=null;currentModel=null;
+  };
+  forgetCleanup=lifecycle?.cleanup(destroy);
+  return Object.freeze({
+    resolve(id){if(destroyed)return null;return live(id,fresh());},
+    snapshot(){if(destroyed)return ()=>null;const index=fresh();return id=>destroyed?null:live(id,index);},
+    setModel(next){if(destroyed)return;currentModel=next;invalidate();},
+    destroy
+  });
+}
+
 export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifecycle}={}){
   const originalNodes=[...elements.tree.childNodes],originalScope=elements.tree.getAttribute('data-scope');
   let destroyed=false,removeParentCleanup;
   const make=(tag,className,text)=>{const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;};
   let model={nodes:new Map(),groups:new Map(),roots:[]},signature='',controller,geometrySection=null;
+  const sectionCache=createContentsSectionCache(elements.main,model,{MutationObserver:document.defaultView?.MutationObserver,lifecycle});
   const section=id=>{
     if(geometrySection)return geometrySection(id);
-    if(id==='start')return elements.main.querySelector('.v2-hero')||elements.main;
-    const heading=[...elements.main.querySelectorAll('[data-contents-target]')].find(node=>node.dataset.contentsTarget===id);if(heading)return heading;
-    const node=model.nodes.get(id);
-    if(node?.instanceId)return [...elements.main.querySelectorAll('[data-roster-instance-id]')].find(card=>card.dataset.rosterInstanceId===node.instanceId)||null;
-    const target=model.groups.get(id)?.[0]||node?.canonicalId||id;
-    return [...elements.main.querySelectorAll('[data-card-id]')].find(card=>card.dataset.cardId===target)||null;
+    return sectionCache.resolve(id);
   };
   const resolve=element=>{
     if(element?.matches('[data-card-id]'))return {scrollTarget:element,highlightTarget:element};
@@ -153,7 +185,7 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
   };
   const highlighter=new Highlighter({view:document.defaultView||window});
   controller=new NavigationController({elements,highlighter,section,resolve,
-    beforeGeometry:()=>{geometrySection=createContentsSectionLookup(elements.main,model);},
+    beforeGeometry:()=>{geometrySection=sectionCache.snapshot();},
     afterGeometry:()=>{geometrySection=null;},
     kind:id=>model.nodes.get(id)?.children.length?'branch':'target',
     itemId:id=>{const seen=new Set();while(id&&!model.nodes.has(id)&&!seen.has(id)){seen.add(id);id=bridge.parentId?.(id);}return id;},
@@ -188,7 +220,7 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
   };
   const destroy=()=>{
     if(destroyed)return;
-    destroyed=true;removeParentCleanup?.();controller.destroy();
+    destroyed=true;removeParentCleanup?.();sectionCache.destroy();controller.destroy();
     elements.tree.replaceChildren(...originalNodes);
     if(originalScope===null)elements.tree.removeAttribute('data-scope');else elements.tree.setAttribute('data-scope',originalScope);
     model={nodes:new Map(),groups:new Map(),roots:[]};signature='';
@@ -197,7 +229,7 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
   return {controller,section,isTarget:id=>!destroyed&&model.nodes.has(id),destroy,
     refresh(next,id){
       if(destroyed)return;
-      model=next;const nextSignature=JSON.stringify(next.roots);
+      model=next;sectionCache.setModel(model);const nextSignature=JSON.stringify(next.roots);
       if(signature!==nextSignature){
         const open=new Set([...elements.tree.querySelectorAll('[data-nav-id]')].filter(node=>node.querySelector(':scope > .toc-branch')?.hidden===false).map(node=>node.dataset.navId));
         signature=nextSignature;elements.tree.replaceChildren(...next.roots.map(entry=>build(entry)));controller.indexNavigationItems();controller.activeButtons=new Set();
@@ -212,6 +244,6 @@ export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifec
       controller.scheduleGeometry();
     },
     restore(id,scrollY){if(destroyed)return;const item=controller.itemFor(id),target=section(id);if(!item||!target)return;controller.refreshGeometry();const resolved=resolve(target);controller.beginTransition(id,Number.isFinite(scrollY)?scrollY:controller.destination(resolved.scrollTarget),()=>{highlighter.show(resolved.highlightTarget);bridge.settled?.(id);},item.instanceId);},
-    clear(){if(destroyed)return;signature='';model={nodes:new Map(),groups:new Map(),roots:[]};elements.tree.replaceChildren();controller.indexNavigationItems();controller.activeButtons=new Set();}
+    clear(){if(destroyed)return;signature='';model={nodes:new Map(),groups:new Map(),roots:[]};sectionCache.setModel(model);elements.tree.replaceChildren();controller.indexNavigationItems();controller.activeButtons=new Set();}
   };
 }

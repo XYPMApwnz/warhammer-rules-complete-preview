@@ -67,3 +67,11 @@ for(const records of [[],[{...decoration,removedNodes:[]}],[{...decoration,remov
   assert(!onlyRuleTermDecorations(records),'Real or mixed layout mutations still require navigation geometry');checks++;
 }
 console.log(JSON.stringify({status:'PASS',checks}));
+
+const retained=make(Observer),firstPending=new Element({boundary:true,parent:page}),otherPending=new Element({boundary:true,parent:page});
+retained.manager.defer(firstPending);retained.manager.defer(otherPending);retained.manager.mount(page);
+retained.manager.revealTarget(firstPending);
+assert.equal(retained.calls.length,1);assert.equal(firstPending.dataset.ruleTermState,'ready');assert.equal(otherPending.dataset.ruleTermState,'pending','Revealing a retained destination keeps unseen groups pending');
+retained.manager.revealTarget(firstPending);assert.equal(retained.calls.length,1,'A retained destination is decorated once');
+retained.manager.revealTarget(otherPending);assert.equal(retained.calls.length,2,'A later retained destination keeps its original pending prose request');
+retained.destroy();console.log('PASS retained target reveal controls');

@@ -638,7 +638,18 @@ export function mount(document, payload, options = {}) {
     else if(options.sourceMetadataUnavailable)main.append(el('p','v2-sources-line','Source information unavailable. Reload to try again.'));
   }
 
-  function renderContentsBook(id=null) {
+  function renderContentsBook(id=null,{reuse=false}={}) {
+    if(reuse){
+      const pages=main.querySelector(':scope > .v1-contents-pages');
+      selectedId=cards.has(id)?id:null;selectedInstanceId=null;glossaryQuery='';
+      for(const card of pages.querySelectorAll('.v2-current-card'))card.classList.remove('v2-current-card');
+      const destination=cards.has(id)?[...pages.querySelectorAll('[data-card-id]')].find(card=>card.dataset.cardId===id):null;
+      if(cards.has(id)&&destination)destination.classList.add('v2-current-card');
+      visibleTermLinks.revealTarget(destination);
+      flushDatasheetLayouts(pages);
+      renderNavigation();
+      return;
+    }
     visibleTermLinks.reset();deferBookTerms=true;
     try {
     selectedView=personalMode?'PERSONAL':'READER';selectedId=cards.has(id)?id:null;selectedInstanceId=null;glossaryQuery='';
@@ -820,7 +831,13 @@ export function mount(document, payload, options = {}) {
     const key = JSON.stringify([context,id, detail, referenceView, state?.armyBookV2?.detailReference, state?.armyBookV2?.glossaryCategory, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
     if (routeKey === key) return;
     routeKey = key;
-    visibleTermLinks.reset();
+    // A controlled move within this immutable full-book DOM is navigation,
+    // not a new view. Retain pending first-show decoration and physical nodes.
+    const reuseContents=controlledRoute&&context.destination==='ARMY_BOOK'&&!personalMode&&!detail&&!referenceView&&!navigationBlocked&&!dialog.open&&
+      !rosterId&&!context.instanceId&&context.bookId===payload.book.id&&
+      context.registryId===(references.identityFor(id)?.registryId||payload.book.id)&&
+      selectedView==='READER'&&state?.armyBookV2?.contents&&Boolean(main.querySelector(':scope > .v1-contents-pages'))&&contents.isTarget(id||'start')&&Boolean(contents.section(id||'start'));
+    if(!reuseContents)visibleTermLinks.reset();
     if(contents?.controller.state.owner==='controller')contents.controller.cancelTransition();
     toggleDrawer(false);
     if(['HOME','CORE_RULES'].includes(context.destination)) {
@@ -893,7 +910,7 @@ export function mount(document, payload, options = {}) {
       else if (personalMode && id===personalRoute) renderPersonalHome(focus);
       else if (personalMode && id.startsWith('roster-unit/')) renderInstance(routeInstanceId(id),focus);
       else if (rosterPanel && (id===personalRoute || id.startsWith('roster-unit/') || rosterId && !options.roster.state)) renderRoster(focus);
-      else if(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)renderContentsBook(id);
+      else if(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)renderContentsBook(id,{reuse:reuseContents});
       else renderSelected(id || null, focus, context.instanceId);
       if(!referenceView&&!controlledRoute&&(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)){lifecycle.frame(()=>contents.restore(id||'start',state?.armyBookV2?.scrollY));}
       else if(!focus&&!controlledRoute)lifecycle.frame(()=>window.scrollTo({top:state?.armyBookV2?.scrollY||0,behavior:'instant'}));

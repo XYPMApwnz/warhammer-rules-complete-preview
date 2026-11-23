@@ -94,16 +94,28 @@ const section = (parts, role) =>
   parts.find(part => part.dataset.datasheetSection === role) || null;
 
 function restoreAbilities(layout) {
-  layout.cards.forEach(node => layout.list.append(node));
+  // Appending an already placed node still emits mutations and invalidates
+  // layout. Preserve the old final order without repeating those DOM moves.
+  let tail = layout.list?.lastChild;
+  let ordered = true;
+  for (let index = layout.cards.length - 1; index >= 0; index--) {
+    if (tail !== layout.cards[index]) { ordered = false; break; }
+    tail = tail.previousSibling;
+  }
+  if (!ordered) layout.cards.forEach(node => layout.list.append(node));
   layout.continuation?.remove();
 }
 
 function placeProfileStrip(layout) {
   const {card, localNav, profileStrip, phoneMedia} = layout;
   if (!profileStrip) return;
-  if (phoneMedia.matches && localNav) localNav.after(profileStrip);
-  else if (localNav) card.insertBefore(profileStrip, localNav);
-  else if (layout.grid) card.insertBefore(profileStrip, layout.grid);
+  if (phoneMedia.matches && localNav) {
+    if (localNav.nextSibling !== profileStrip) localNav.after(profileStrip);
+  } else if (localNav) {
+    if (profileStrip.parentNode !== card || profileStrip.nextSibling !== localNav) card.insertBefore(profileStrip, localNav);
+  } else if (layout.grid) {
+    if (profileStrip.parentNode !== card || profileStrip.nextSibling !== layout.grid) card.insertBefore(profileStrip, layout.grid);
+  }
 }
 
 function balanceAbilities(layout) {

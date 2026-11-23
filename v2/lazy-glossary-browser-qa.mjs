@@ -66,6 +66,7 @@ async function showEveryCard(page){
 }
 async function contentsTarget(page,id,width){
  const title=await phase('contents-title',()=>page.evaluate(id=>ArmyBookAppV2.payload.cards.find(card=>card.id===id).title,id));
+ await phase('snapshot',()=>page.evaluate(id=>{window.__qaContentsNode=document.querySelector(`main .unit-card[data-card-id="${id}"]`);},id));
  const before=await phase('contents-before',()=>page.locator(`main .unit-card[data-card-id="${id}"]`).first().evaluate(node=>({height:node.getBoundingClientRect().height,width:node.getBoundingClientRect().width})));
  if(width<=760)await phase('contents-navigate',()=>page.locator('#navMenu').click());
  await phase('contents-navigate',()=>page.getByRole('searchbox',{name:'Search the army book',exact:true}).fill(title));
@@ -80,6 +81,7 @@ async function contentsTarget(page,id,width){
  const geometry=await phase('contents-geometry',()=>page.locator(`main .unit-card[data-card-id="${id}"]`).first().evaluate(node=>{const rect=node.getBoundingClientRect(),header=document.querySelector('#appHeader').getBoundingClientRect();return {top:rect.top,inset:header.bottom+18,height:rect.height,width:rect.width,links:node.querySelectorAll('.rule-term-link').length};}));
  assert(Math.abs(geometry.top-geometry.inset)<=2,'Contents reaches the actual first-shown card after decoration');
  assert(geometry.links>0,'The destination receives exact term links before Contents settles');
+ assert.equal(await phase('snapshot',()=>page.evaluate(id=>window.__qaContentsNode===document.querySelector(`main .unit-card[data-card-id="${id}"]`),id)),true,'Controlled Contents navigation retains the existing canonical card DOM');
  await phase('screenshot',()=>page.screenshot({path:path.join(out,`contents-${id.replace(/[^a-z0-9-]/gi,'_')}-${width}.png`),animations:'disabled'}));
  return {before,after:geometry};
 }
@@ -91,6 +93,15 @@ for(const book of books)for(const width of widths){const result={book:book.id,wi
   const context=await phase('context-open',()=>browser.newContext({viewport:{width,height:844},serviceWorkers:'block'})),page=await phase('page-open',()=>context.newPage());page.setDefaultTimeout(30000);page.on('pageerror',error=>errors.push({book:book.id,width,version,message:error.message}));
   let contextFailure;
   try{await phase('book-open',()=>page.goto(`${origin}/${version}/v2/app.html`));await phase('book-open',()=>page.locator(`[data-v2-book="${book.id}"]`).click());await phase('book-open',()=>page.waitForFunction(id=>window.ArmyBookAppV2?.payload.book.id===id&&document.querySelector('main .unit-card'),book.id));await frames(page);
+   if(version==='head'){
+   const repeatLayout=await phase('snapshot',()=>page.evaluate(async()=>{
+    const {flushDatasheetLayouts}=await import(new URL('../books/shared/army-book-app-v2/datasheet-v1-layout.mjs',location.href));
+    const main=document.querySelector('main');flushDatasheetLayouts(main);
+    const observer=new MutationObserver(()=>{});observer.observe(main,{childList:true,subtree:true});
+    try{flushDatasheetLayouts(main);return observer.takeRecords().length;}finally{observer.disconnect();}
+   }));
+   assert.equal(repeatLayout,0,'Repeated settled datasheet layout must not move the existing rule/profile nodes');
+   }
    const id=await phase('contents-title',()=>page.evaluate(()=>ArmyBookAppV2.payload.cards.find(card=>card.kind==='DATASHEET'&&document.querySelector(`main .unit-card[data-card-id="${card.id}"] .ability p`))?.id));assert.ok(id);
    let geometry=null,flowChanges=[];
    if(version==='head'){
