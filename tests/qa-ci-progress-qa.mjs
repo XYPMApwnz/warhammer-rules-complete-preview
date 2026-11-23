@@ -5,7 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {createQaTempDir,cleanupQaTempDir} from './helpers/qa-temp.mjs';
-import {publicEvent,safeCurrentJob,jsonDifferencePaths,browserLaunchDetails} from '../tools/qa-ci-progress.mjs';
+import {publicEvent,safeCurrentJob,jsonDifferencePaths,jsonDifferenceSummary,browserLaunchDetails} from '../tools/qa-ci-progress.mjs';
 import {exportReport} from '../tools/qa-pre-ff-ci.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
@@ -44,6 +44,16 @@ check('JSON-difference-publishes-path-and-types-only',()=>{
  assert.deepEqual(injected,[{pointer:'/<redacted-key>',expectedType:'undefined',rebuiltType:'string'}]);
 });
 const arena=createQaTempDir('wh-ci-progress-controls-');
+check('complete-difference-summary-publishes-no-source-text',()=>{
+ const before={ownedHtml:'PRIVATE_CAPTURE\r\n',contentHash:'PRIVATE_HASH',details:{title:'PRIVATE_OLD'}};
+ const after={ownedHtml:'PRIVATE_CAPTURE\n',contentHash:'PRIVATE_OTHER',details:{title:'PRIVATE_NEW'}};
+ const summary=jsonDifferenceSummary(before,after);
+ assert.deepEqual(summary.counts,{'ownedHtml:string->string':1,'contentHash:string->string':1,'title:string->string':1});
+ assert.equal(summary.ownedHtml.length,1);assert.equal(summary.ownedHtml[0].crlfNormalizedEqual,true);
+ assert.deepEqual(summary.ownedHtml[0].expectedBreaks,{cr:1,lf:1,crlf:1});
+ assert.deepEqual(summary.ownedHtml[0].rebuiltBreaks,{cr:0,lf:1,crlf:0});
+ assert(!JSON.stringify(summary).includes('PRIVATE_'));
+});
 check('browser-launch-diagnostic-never-forwards-private-message',()=>{
  const row={schema:'browser-launch-diagnostic/v1',phase:'browser-launch',status:'FAIL',errorClass:'Error',cause:'UNIX_SOCKET_PATH_TOO_LONG',tempPathBytes:180,private:'PRIVATE_CAPTURE owner@example.invalid'};
  assert.deepEqual(browserLaunchDetails('QA_BROWSER_LAUNCH_DIAGNOSTIC '+JSON.stringify(row)),{errorClass:'Error',cause:'UNIX_SOCKET_PATH_TOO_LONG',tempPathBytes:180});

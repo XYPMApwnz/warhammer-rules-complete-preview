@@ -1,5 +1,6 @@
 """Deterministic source-fragment serialization without publishing source text."""
 from pathlib import Path
+import json
 import sys
 import unittest
 from unittest.mock import patch
@@ -9,7 +10,7 @@ from lxml import etree, html
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "books/core-rules/tools"))
 import build_waha_core_corpus as builder
-from owned_html import serialize_owned_html
+from owned_html import parse_owned_document, serialize_owned_html
 
 
 class OwnedHtmlTests(unittest.TestCase):
@@ -38,6 +39,40 @@ class OwnedHtmlTests(unittest.TestCase):
     def test_unknown_node_kind_fails_closed(self):
         with self.assertRaisesRegex(ValueError, "Unsupported owned HTML node kind"):
             serialize_owned_html(etree.ProcessingInstruction("synthetic", "value"))
+
+    def test_capture_line_ending_style_and_ambiguous_input(self):
+        crlf = b'<div title="a\r\nb">first\r\n<span>second</span>\r\n</div>'
+        self.assertEqual(serialize_owned_html(parse_owned_document(crlf)), crlf.decode())
+        lf = crlf.replace(b"\r\n", b"\n")
+        self.assertEqual(serialize_owned_html(parse_owned_document(lf)), lf.decode())
+        for raw in (b"<div>one\r\ntwo\nthree</div>", b"<div>one\rtwo</div>"):
+            with self.assertRaisesRegex(ValueError, "Unsupported mixed"):
+                parse_owned_document(raw)
+        for reference in (b"&#10;", b"&#x0a;", b"&#013;", b"&#xD;", b"&NewLine;"):
+            with self.assertRaisesRegex(ValueError, "Unsupported source HTML newline reference"):
+                parse_owned_document(b"<div>\r\n" + reference + b"</div>")
+        # An LF capture has no restoration step, so encoded newlines remain data.
+        self.assertEqual(parse_owned_document(b"<div>&#13;</div>").text, "\r")
+
+    def test_simulated_parser_normalization_preserves_outputs_and_source_bytes(self):
+        source = builder.DEFAULT_SOURCE
+        capture = json.loads((source / "capture.json").read_text("utf-8"))
+        originals = {entry["file"]: (source / entry["file"]).read_bytes() for entry in capture["sources"]}
+        native_parse = html.fromstring
+
+        def normalize_before_parse(value, *args, **kwargs):
+            if isinstance(value, bytes):
+                value = value.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+            return native_parse(value, *args, **kwargs)
+
+        with patch.object(html, "fromstring", side_effect=normalize_before_parse):
+            _, outputs = builder.source_outputs(source)
+        for name, actual in outputs.items():
+            self.assertTrue((source / name).read_bytes() == actual,
+                            "Parser normalization changed accepted output bytes: " + name)
+        for name, original in originals.items():
+            self.assertTrue((source / name).read_bytes() == original,
+                            "Parser normalization changed authenticated source bytes")
 
     def test_accepted_outputs_remain_exact_and_ignore_libxml_serializer(self):
         source = builder.DEFAULT_SOURCE

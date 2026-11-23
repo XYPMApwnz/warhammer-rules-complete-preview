@@ -18,7 +18,7 @@ import unicodedata
 from urllib.parse import unquote, urljoin, urlparse
 
 from lxml import html
-from owned_html import serialize_owned_html
+from owned_html import parse_owned_document, serialize_owned_html
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -196,7 +196,7 @@ class Page:
         raw = raw_file.read_bytes()
         if len(raw) != capture["rawBytes"] or sha256(raw) != capture["rawSha256"]:
             raise ValueError(f"Captured HTML integrity failure: {capture['file']}")
-        document = html.fromstring(raw, parser=html.HTMLParser(encoding="utf-8"))
+        document = parse_owned_document(raw)
         roots = document.xpath('//*[@id="wahMainContent"]')
         if len(roots) != 1:
             raise ValueError(f"Expected one player-visible main content: {capture['file']}")

@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {normalizeJob} from './qa-pre-ff-ci.mjs';
 
@@ -111,6 +112,23 @@ export function jsonDifferencePaths(expected,actual,limit=12){
   }
  };visit(expected,actual,'');return result;
 }
+/** Counts and hashes only: sufficient to diagnose parser newline drift without HTML. */
+export function jsonDifferenceSummary(expected,actual){
+ const counts={},ownedHtml=[];
+ const fixedKeys=new Set(['ownedHtml','contentHash','corpusFingerprint','corpusFileSha256','content','body','title','text','sourceOrder','tail','references','label']);
+ const sha=value=>createHash('sha256').update(value).digest('hex');
+ const breaks=value=>({cr:(value.match(/\r/g)||[]).length,lf:(value.match(/\n/g)||[]).length,crlf:(value.match(/\r\n/g)||[]).length});
+ const visit=(a,b,p,last)=>{
+  if(last==='ownedHtml'&&typeof a==='string'&&typeof b==='string')ownedHtml.push({pointer:p,changed:a!==b,expectedChars:a.length,rebuiltChars:b.length,expectedBreaks:breaks(a),rebuiltBreaks:breaks(b),expectedSha256:sha(a),rebuiltSha256:sha(b),crlfNormalizedEqual:a.replace(/\r\n/g,'\n')===b.replace(/\r\n/g,'\n')});
+  if(a===b)return;
+  if(valueType(a)!==valueType(b)||typeof a!=='object'||a===null){const key=(fixedKeys.has(last)?last:'<other-key>')+':'+valueType(a)+'->'+valueType(b);counts[key]=(counts[key]||0)+1;return;}
+  for(const key of new Set([...Object.keys(a),...Object.keys(b)])){
+   const safe=Object.hasOwn(a,key)&&/^[A-Za-z0-9_-]{1,80}$/.test(key)?key:'<redacted-key>';
+   visit(a[key],b[key],p+'/'+safe,key);
+  }
+ };
+ visit(expected,actual,'','');return {counts,ownedHtml};
+}
 export function generatedFailureDetails({source,raw,index}){
  const planResult=spawnSync(process.execPath,['books/shared/tools/check-generated-rebuild.mjs','--list'],{cwd:source,encoding:'utf8',maxBuffer:8*1024*1024});
  if(planResult.status!==0)return null;
@@ -133,7 +151,7 @@ export function generatedFailureDetails({source,raw,index}){
   for(const key of ['expectedBytes','rebuiltBytes','firstByte'])if(integer(row[key]))projected[key]=row[key];
   // Comparison values and serialized source HTML never leave the runner.
   const prefix=path.join(report.base,'differences',row.file),a=readJson(path.join(source,row.file),128*1024*1024),b=readJson(prefix+'.rebuilt',128*1024*1024);
-  if(a&&b)projected.jsonDifferences=jsonDifferencePaths(a,b);
+  if(a&&b){projected.jsonDifferences=jsonDifferencePaths(a,b);projected.jsonDifferenceSummary=jsonDifferenceSummary(a,b);}
   differences.push(projected);
  }
  return {producer:step.producer,status:['STALE','BUILD_FAILED'].includes(failed.status)?failed.status:'BLOCKED',differences};
