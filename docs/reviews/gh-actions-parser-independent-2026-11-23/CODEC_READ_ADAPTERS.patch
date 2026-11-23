@@ -1,0 +1,93 @@
+--- a/books/blood-angels/v2/foundation-qa.py
++++ b/books/blood-angels/v2/foundation-qa.py
+@@ -22,6 +22,7 @@
+ ROOT = HERE.parents[2]
+ sys.path.insert(0, str(ROOT / 'books/shared/tools'))
+ from source_node_fingerprints import fingerprint, load_native_expectations
++from source_refs_output import generated_source_outputs
+ RAW = HERE / 'sources/raw'
+ BADGE = 'App. Blood Angels (11th edition)'
+ read = lambda path: json.loads(path.read_text(encoding='utf-8-sig'))
+@@ -423,7 +424,7 @@
+     else:
+         raise AssertionError('Producer accepted altered artifact SHA')
+     assert (sources, identities) == pristine, 'QA mutated pristine enrollment'
+-    for name, value in result.items():
++    for name, value in generated_source_outputs(result, ROOT).items():
+         assert read(HERE / 'generated' / (name + '.json')) == value, 'Stale generated output: ' + name
+     return checks
+ 
+--- a/books/dark-angels/v2/foundation-qa.py
++++ b/books/dark-angels/v2/foundation-qa.py
+@@ -22,6 +22,7 @@
+ ROOT = HERE.parents[2]
+ sys.path.insert(0, str(ROOT / 'books/shared/tools'))
+ from source_node_fingerprints import fingerprint, load_native_expectations
++from source_refs_output import generated_source_outputs
+ RAW = HERE / 'sources/raw'
+ BADGE = 'App. Dark Angels (11th edition)'
+ read = lambda path: json.loads(path.read_text(encoding='utf-8-sig'))
+@@ -387,7 +388,7 @@
+     else:
+         raise AssertionError('Producer accepted altered artifact SHA')
+     assert (sources, identities) == pristine, 'QA mutated pristine enrollment'
+-    for name, value in result.items():
++    for name, value in generated_source_outputs(result, ROOT).items():
+         assert read(HERE / 'generated' / (name + '.json')) == value, 'Stale generated output: ' + name
+     return checks
+ 
+--- a/books/blood-angels/v2/reference-qa.py
++++ b/books/blood-angels/v2/reference-qa.py
+@@ -5,7 +5,7 @@
+ an oracle. No old Army Book or old pricing is read.
+ """
+ from __future__ import annotations
+-import copy, hashlib, importlib.util, json, sys
++import copy, hashlib, importlib.util, json, subprocess, sys
+ from collections import Counter
+ from functools import cache
+ from pathlib import Path
+@@ -36,13 +36,25 @@
+     return html.fromstring(path.read_bytes())
+ 
+ 
++def read_published_facts(path):
++    # Reuse the accepted source-reference decoder; do not implement a Python codec.
++    script = ("import fs from 'node:fs';"
++        "import {parseProducerJSON} from './books/shared/source-refs-v2/producer-io.mjs';"
++        "process.stdout.write(JSON.stringify(parseProducerJSON(fs.readFileSync(process.argv[1],'utf8'))));")
++    result = subprocess.run(['node', '--input-type=module', '-e', script, str(path)],
++        cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8', check=False)
++    if result.returncode:
++        raise AssertionError('Published source-reference decoding failed')
++    return json.loads(result.stdout)
++
++
+ def validate(inherited, mfm, issues):
+     errors = []
+     def need(ok, message):
+         if not ok:
+             errors.append(message)
+-    sm = read(ROOT/'books/space-marines/v2/generated/base.json')
+-    ba = read(HERE/'generated/base.json')
++    sm = read_published_facts(ROOT/'books/space-marines/v2/generated/base.json')
++    ba = read_published_facts(HERE/'generated/base.json')
+     smby = {r['id']:r for r in sm['entities']}
+     baby = {r['id']:r for r in ba['entities']}
+     contexts = []
+--- a/books/space-marines/v2/roster-named-recipient-qa.mjs
++++ b/books/space-marines/v2/roster-named-recipient-qa.mjs
+@@ -5,11 +5,12 @@
+ import {createHash} from 'node:crypto';
+ import {spawnSync} from 'node:child_process';
+ import {fileURLToPath} from 'node:url';
++import {parseProducerJSON} from '../../shared/source-refs-v2/producer-io.mjs';
+ import {enhancementEligibility} from './rule-contract-declarations.mjs';
+ import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
+ const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+ const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
+-const review=read('./roster-named-recipient-review.json'),facts=read('./generated/effective.json');
++const review=read('./roster-named-recipient-review.json'),facts=parseProducerJSON(fs.readFileSync(new URL('./generated/effective.json',import.meta.url),'utf8'));
+ const index=new Map(facts.entities.map(e=>[e.id,e]));
+ const expected=new Map([
+  ['enhancement-sm-90544ca326d243be',['unit-sm-63a015916b46446a','model-sm-303a4d0a13024600']],

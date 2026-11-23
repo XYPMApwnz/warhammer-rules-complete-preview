@@ -1,0 +1,70 @@
+{
+  "implementationFiles": 18,
+  "independentRegistryFilesReviewed": 57,
+  "approvedFieldsUpdated": 3,
+  "additionalActiveStalePins": [],
+  "reviewedCoreFiles": [
+    {
+      "implementation": "books/blood-angels/v2/build.py",
+      "currentSha256": "62b5ae77889f3e81c46a2b8b528ebc3b60eabe14c6f2fc2ed9b2b434ed5e48c1",
+      "beforeSha256": "8b10130c12c5f7811f18a25e79fc0c7ae8edaa6c77b591e8840dc7294fddee10",
+      "beforeHashReferences": [],
+      "currentHashReferences": []
+    },
+    {
+      "implementation": "books/chaos-space-marines/v2/build.py",
+      "currentSha256": "a4b26bd06d9902a2e772dc345e287beebdbc9fe326b9fc3342f473b37b529765",
+      "beforeSha256": "81d4a9427f7e6156ac028df60049428f5b39acca6e86ab675d5b5ab8ae8445cb",
+      "beforeHashReferences": [],
+      "currentHashReferences": []
+    },
+    {
+      "implementation": "books/chaos-space-marines/v2/model_sources.py",
+      "currentSha256": "ecd11d9ffa3e7e310d6a64755a0be4707b40bfac0a22823c09a81b77e864b2f3",
+      "beforeSha256": "ab2542e7102f9cb00ab54d8dfdd038c8f9743ca6783242c05995537283360fe3",
+      "beforeHashReferences": [],
+      "currentHashReferences": []
+    },
+    {
+      "implementation": "books/dark-angels/v2/build.py",
+      "currentSha256": "3b79f3f57e95950d1e079b8430401c105f86426895c5a893f173647c9c65b33c",
+      "beforeSha256": "302179df4806f9f7c2848f2756a06987273494255d95b730b4939814f2e33eb1",
+      "beforeHashReferences": [],
+      "currentHashReferences": []
+    },
+    {
+      "implementation": "books/space-marines/v2/build.py",
+      "currentSha256": "09fc3f8ea1317111df0575f9d5fa0d0b86d20cf2de4c79094ee36735b9f872d1",
+      "beforeSha256": "f887c2e4f6d64e4543367159ce3e49aa1bf5ba3b065a39693662c3f2ba4c702e",
+      "beforeHashReferences": [
+        "docs/audit/source-producer-reconfirmation.json",
+        "docs/audit/source-producer-reconfirmation.md",
+        "docs/audit/source-reader-migration.json"
+      ],
+      "currentHashReferences": [
+        "books/shared/roster-v2/source-completeness-review.json",
+        "books/space-marines/v2/source-review.json"
+      ]
+    }
+  ],
+  "historicalReferences": [
+    {
+      "path": "docs/audit/source-producer-reconfirmation.json",
+      "class": "HISTORICAL_REPORT_NO_ACTIVE_IMPLEMENTATION_GUARD",
+      "action": "Keep unchanged; record of accepted source-reference migration",
+      "currentQueueConsumer": false
+    },
+    {
+      "path": "docs/audit/source-producer-reconfirmation.md",
+      "class": "HISTORICAL_REPORT_NO_ACTIVE_IMPLEMENTATION_GUARD",
+      "action": "Keep unchanged; record of accepted source-reference migration",
+      "currentQueueConsumer": false
+    },
+    {
+      "path": "docs/audit/source-reader-migration.json",
+      "class": "HISTORICAL_REPORT_NO_ACTIVE_IMPLEMENTATION_GUARD",
+      "action": "Keep unchanged; record of accepted source-reference migration",
+      "currentQueueConsumer": false
+    }
+  ]
+}

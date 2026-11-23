@@ -1,0 +1,36 @@
+diff --git a/books/space-marines/v2/roster-named-recipient-qa.mjs b/books/space-marines/v2/roster-named-recipient-qa.mjs
+index 19d1b2ed..bd79d9d0 100644
+--- a/books/space-marines/v2/roster-named-recipient-qa.mjs
++++ b/books/space-marines/v2/roster-named-recipient-qa.mjs
+@@ -7,0 +8 @@ import {fileURLToPath} from 'node:url';
++import {parseProducerJSON} from '../../shared/source-refs-v2/producer-io.mjs';
+@@ -12 +13 @@ const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
+-const review=read('./roster-named-recipient-review.json'),facts=read('./generated/effective.json');
++const review=read('./roster-named-recipient-review.json'),facts=parseProducerJSON(fs.readFileSync(new URL('./generated/effective.json',import.meta.url),'utf8'));
+@@ -48,0 +50,11 @@ f=json.load(sys.stdin);root=Path(f['root']);docs={};checks=0;dispatches=0
++sys.path.insert(0,str(root/'books/shared/tools'))
++from source_node_fingerprints import fingerprint,load_qa_expectations
++contexts=[]
++for row in f['review']['records']:
++ for pin in row['proofs']:
++  contexts.append({'id':'roster-named/'+row['id']+'/proof/'+pin['entityId'],'sourceDocument':pin['source']['document'],'selector':pin['source']['pointer'],'parserInput':'bytes','legacySerializerSha256':pin['rawNodeHtmlSha256']})
++ dispatch=row['sourceDispatch'];document=row['proofs'][0]['source']['document']
++ contexts.append({'id':'roster-named/'+row['id']+'/dispatch-link','sourceDocument':document,'selector':dispatch['linkPointer'],'parserInput':'bytes','legacySerializerSha256':dispatch['linkHtmlSha256']})
++ if 'tooltipHtmlSha256' in dispatch:
++  contexts.append({'id':'roster-named/'+row['id']+'/dispatch-tooltip','sourceDocument':document,'selector':dispatch['tooltipPointer'],'parserInput':'bytes','legacySerializerSha256':dispatch['tooltipHtmlSha256']})
++node_expectations=load_qa_expectations(root/'books/space-marines/v2',contexts,group='roster-named-recipient')
+@@ -55 +67,3 @@ for row in f['review']['records']:
+-  assert sha(html.tostring(nodes[0],encoding='unicode').encode())==pin['rawNodeHtmlSha256'];checks+=1
++  expected=node_expectations['roster-named/'+row['id']+'/proof/'+pin['entityId']]
++  assert expected['legacySerializerSha256']==pin['rawNodeHtmlSha256']
++  assert fingerprint(nodes[0])==expected['fingerprintSha256'];checks+=1
+@@ -61 +75,3 @@ for row in f['review']['records']:
+- assert sha(html.tostring(link,encoding='unicode').encode())==dispatch['linkHtmlSha256']
++ expected=node_expectations['roster-named/'+row['id']+'/dispatch-link']
++ assert expected['legacySerializerSha256']==dispatch['linkHtmlSha256']
++ assert fingerprint(link)==expected['fingerprintSha256']
+@@ -69 +85,3 @@ for row in f['review']['records']:
+-  assert sha(html.tostring(tooltip,encoding='unicode').encode())==dispatch['tooltipHtmlSha256']
++  expected=node_expectations['roster-named/'+row['id']+'/dispatch-tooltip']
++  assert expected['legacySerializerSha256']==dispatch['tooltipHtmlSha256']
++  assert fingerprint(tooltip)==expected['fingerprintSha256']

@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "command": "(Get-FileHash -Algorithm SHA256 -LiteralPath 'books/space-marines/v2/build.py').Hash",
+  "output": "09FC3F8EA1317111DF0575F9D5FA0D0B86D20CF2DE4C79094EE36735B9F872D1",
+  "changedFields": [
+    {
+      "file": "books/shared/roster-v2/source-completeness-review.json",
+      "field": "/books/space-marines/sourceReview/artifacts/1/sha256",
+      "before": "f887c2e4f6d64e4543367159ce3e49aa1bf5ba3b065a39693662c3f2ba4c702e",
+      "after": "09fc3f8ea1317111df0575f9d5fa0d0b86d20cf2de4c79094ee36735b9f872d1"
+    },
+    {
+      "file": "books/space-marines/v2/source-review.json",
+      "field": "/books/space-marines/sourceReview/artifacts/1/sha256",
+      "before": "f887c2e4f6d64e4543367159ce3e49aa1bf5ba3b065a39693662c3f2ba4c702e",
+      "after": "09fc3f8ea1317111df0575f9d5fa0d0b86d20cf2de4c79094ee36735b9f872d1"
+    },
+    {
+      "file": "books/space-marines/v2/source-review.json",
+      "field": "/books/deathwatch/sourceReview/artifacts/1/sha256",
+      "before": "f887c2e4f6d64e4543367159ce3e49aa1bf5ba3b065a39693662c3f2ba4c702e",
+      "after": "09fc3f8ea1317111df0575f9d5fa0d0b86d20cf2de4c79094ee36735b9f872d1"
+    }
+  ],
+  "exactApprovedPatch": true
+}

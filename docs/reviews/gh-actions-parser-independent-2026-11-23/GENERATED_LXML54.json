@@ -1,0 +1,433 @@
+{
+  "sha": "6156836b7841d2c4f4c429834013598b3484058e",
+  "environment": {
+    "LXML_VERSION": [
+      5,
+      4,
+      0,
+      0
+    ],
+    "LIBXML_VERSION": [
+      2,
+      11,
+      9
+    ]
+  },
+  "status": "PASS",
+  "nativeControls": "14/14 PASS",
+  "exitCode": 0,
+  "elapsedMs": 670656,
+  "files": 148,
+  "stepsCompleted": 68,
+  "byteDifferences": 0,
+  "steps": [
+    {
+      "producer": "books/core-rules/tools/build_waha_core_corpus.py",
+      "status": "PASS",
+      "elapsedMs": 2598,
+      "differences": []
+    },
+    {
+      "producer": "books/core-rules/tools/build_core_candidate.py",
+      "status": "PASS",
+      "elapsedMs": 3617,
+      "differences": []
+    },
+    {
+      "producer": "books/core-rules/tools/publish_core_candidate.py",
+      "status": "PASS",
+      "elapsedMs": 460,
+      "differences": []
+    },
+    {
+      "producer": "books/space-marines/v2/build.py",
+      "status": "PASS",
+      "elapsedMs": 3396,
+      "differences": []
+    },
+    {
+      "producer": "books/space-marines/v2/datasheet-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 1221,
+      "differences": []
+    },
+    {
+      "producer": "books/space-marines/v2/book-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 1544,
+      "differences": []
+    },
+    {
+      "producer": "books/space-marines/v2/mfm-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 2225,
+      "differences": []
+    },
+    {
+      "producer": "books/space-marines/v2/rule-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 2848,
+      "differences": []
+    },
+    {
+      "producer": "books/space-marines/v2/gameplay-presentation-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 3330,
+      "differences": []
+    },
+    {
+      "producer": "books/space-marines/v2/roster-import-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 3658,
+      "differences": []
+    },
+    {
+      "producer": "books/space-marines/v2/app-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 12667,
+      "differences": []
+    },
+    {
+      "producer": "books/blood-angels/v2/build.py",
+      "status": "PASS",
+      "elapsedMs": 3971,
+      "differences": []
+    },
+    {
+      "producer": "books/blood-angels/v2/book-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 3113,
+      "differences": []
+    },
+    {
+      "producer": "books/blood-angels/v2/mfm-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 668,
+      "differences": []
+    },
+    {
+      "producer": "books/blood-angels/v2/rule-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 5255,
+      "differences": []
+    },
+    {
+      "producer": "books/blood-angels/v2/gameplay-presentation-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 6471,
+      "differences": []
+    },
+    {
+      "producer": "books/blood-angels/v2/roster-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 6517,
+      "differences": []
+    },
+    {
+      "producer": "books/blood-angels/v2/app-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 22154,
+      "differences": []
+    },
+    {
+      "producer": "books/dark-angels/v2/build.py",
+      "status": "PASS",
+      "elapsedMs": 3978,
+      "differences": []
+    },
+    {
+      "producer": "books/dark-angels/v2/book-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 3089,
+      "differences": []
+    },
+    {
+      "producer": "books/dark-angels/v2/mfm-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 656,
+      "differences": []
+    },
+    {
+      "producer": "books/dark-angels/v2/rule-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 5432,
+      "differences": []
+    },
+    {
+      "producer": "books/dark-angels/v2/gameplay-presentation-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 6583,
+      "differences": []
+    },
+    {
+      "producer": "books/dark-angels/v2/roster-import-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 6744,
+      "differences": []
+    },
+    {
+      "producer": "books/dark-angels/v2/app-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 23282,
+      "differences": []
+    },
+    {
+      "producer": "books/adeptus-mechanicus/v2/build.py",
+      "status": "PASS",
+      "elapsedMs": 7020,
+      "differences": []
+    },
+    {
+      "producer": "books/adeptus-mechanicus/v2/factual-qa.py",
+      "status": "PASS",
+      "elapsedMs": 34220,
+      "differences": []
+    },
+    {
+      "producer": "books/adeptus-mechanicus/v2/rule-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 2106,
+      "differences": []
+    },
+    {
+      "producer": "books/adeptus-mechanicus/v2/app-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 4515,
+      "differences": []
+    },
+    {
+      "producer": "books/chaos-space-marines/v2/build.py",
+      "status": "PASS",
+      "elapsedMs": 15158,
+      "differences": []
+    },
+    {
+      "producer": "books/chaos-space-marines/v2/rule-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 134754,
+      "differences": []
+    },
+    {
+      "producer": "books/chaos-space-marines/v2/roster-import-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 550,
+      "differences": []
+    },
+    {
+      "producer": "books/chaos-space-marines/v2/roster-runtime-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 1998,
+      "differences": []
+    },
+    {
+      "producer": "books/chaos-space-marines/v2/app-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 113324,
+      "differences": []
+    },
+    {
+      "producer": "books/death-guard/v2/build.mjs",
+      "status": "PASS",
+      "elapsedMs": 1298,
+      "differences": []
+    },
+    {
+      "producer": "books/death-guard/v2/rule-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 2538,
+      "differences": []
+    },
+    {
+      "producer": "books/death-guard/v2/roster-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 363,
+      "differences": []
+    },
+    {
+      "producer": "books/death-guard/v2/related-rules-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 792,
+      "differences": []
+    },
+    {
+      "producer": "books/death-guard/v2/glossary-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 457,
+      "differences": []
+    },
+    {
+      "producer": "books/death-guard/v2/app-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 2771,
+      "differences": []
+    },
+    {
+      "producer": "books/tau-empire/v2/build.py",
+      "status": "PASS",
+      "elapsedMs": 10104,
+      "differences": []
+    },
+    {
+      "producer": "books/tau-empire/v2/rule-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 916,
+      "differences": []
+    },
+    {
+      "producer": "books/tau-empire/v2/roster-import-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 1254,
+      "differences": []
+    },
+    {
+      "producer": "books/tau-empire/v2/app-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 2525,
+      "differences": []
+    },
+    {
+      "producer": "books/tyranids/v2/build.py",
+      "status": "PASS",
+      "elapsedMs": 8344,
+      "differences": []
+    },
+    {
+      "producer": "books/tyranids/v2/roster-import-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 576,
+      "differences": []
+    },
+    {
+      "producer": "books/tyranids/v2/rule-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 1032,
+      "differences": []
+    },
+    {
+      "producer": "books/tyranids/v2/app-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 3131,
+      "differences": []
+    },
+    {
+      "producer": "books/emperors-children/v2/build.py",
+      "status": "PASS",
+      "elapsedMs": 5973,
+      "differences": []
+    },
+    {
+      "producer": "books/emperors-children/v2/rule-contract-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 802,
+      "differences": []
+    },
+    {
+      "producer": "books/emperors-children/v2/roster-import-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 551,
+      "differences": []
+    },
+    {
+      "producer": "books/emperors-children/v2/roster-attachment-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 1073,
+      "differences": []
+    },
+    {
+      "producer": "books/emperors-children/v2/app-build.mjs",
+      "status": "PASS",
+      "elapsedMs": 3102,
+      "differences": []
+    },
+    {
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "status": "PASS",
+      "elapsedMs": 1706,
+      "differences": []
+    },
+    {
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "status": "PASS",
+      "elapsedMs": 1787,
+      "differences": []
+    },
+    {
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "status": "PASS",
+      "elapsedMs": 1803,
+      "differences": []
+    },
+    {
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "status": "PASS",
+      "elapsedMs": 287,
+      "differences": []
+    },
+    {
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "status": "PASS",
+      "elapsedMs": 1132,
+      "differences": []
+    },
+    {
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "status": "PASS",
+      "elapsedMs": 509,
+      "differences": []
+    },
+    {
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "status": "PASS",
+      "elapsedMs": 416,
+      "differences": []
+    },
+    {
+      "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+      "status": "PASS",
+      "elapsedMs": 396,
+      "differences": []
+    },
+    {
+      "producer": "books/space-marines/tools/build-related-rules.mjs",
+      "status": "PASS",
+      "elapsedMs": 429,
+      "differences": []
+    },
+    {
+      "producer": "books/shared/tools/build-source-metadata.mjs",
+      "status": "PASS",
+      "elapsedMs": 60,
+      "differences": []
+    },
+    {
+      "producer": "books/core-rules/reader/build.mjs",
+      "status": "PASS",
+      "elapsedMs": 693,
+      "differences": []
+    },
+    {
+      "producer": "glossary/v2/tools/build-glossary-v2.mjs",
+      "status": "PASS",
+      "elapsedMs": 137767,
+      "differences": []
+    },
+    {
+      "producer": "books/core-rules/tests/core-waha-player-visible-reference-census-qa.mjs",
+      "status": "PASS",
+      "elapsedMs": 831,
+      "differences": []
+    },
+    {
+      "producer": "tools/audit/build-source-catalog-additions.mjs",
+      "status": "PASS",
+      "elapsedMs": 11966,
+      "differences": []
+    },
+    {
+      "producer": "tools/audit/build-source-catalog.mjs",
+      "status": "PASS",
+      "elapsedMs": 5280,
+      "differences": []
+    }
+  ]
+}

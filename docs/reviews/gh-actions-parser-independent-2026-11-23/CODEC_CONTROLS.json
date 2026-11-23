@@ -1,0 +1,59 @@
+{
+  "schema": "parser-read-adapter-controls/v1",
+  "status": "PASS",
+  "approvedPatchSha256": "52e03c93198382333887844d0c76fee72c8de8175ccb80def32aca6a1402810f",
+  "positive": [
+    {
+      "test": "books/blood-angels/v2/foundation-qa.py",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "test": "books/dark-angels/v2/foundation-qa.py",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "test": "books/blood-angels/v2/reference-qa.py",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "test": "books/space-marines/v2/roster-named-recipient-qa.mjs",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "negative": [
+    {
+      "test": "books/blood-angels/v2/foundation-qa.py",
+      "expectedResult": "FAIL",
+      "exitCode": 1,
+      "guardMatched": true,
+      "guard": "Exact generated-source normalized object equality"
+    },
+    {
+      "test": "books/dark-angels/v2/foundation-qa.py",
+      "expectedResult": "FAIL",
+      "exitCode": 1,
+      "guardMatched": true,
+      "guard": "Exact generated-source normalized object equality"
+    },
+    {
+      "test": "books/blood-angels/v2/reference-qa.py",
+      "expectedResult": "FAIL",
+      "exitCode": 1,
+      "guardMatched": true,
+      "guard": "Thin bridge rejects changed published source reference"
+    },
+    {
+      "test": "books/space-marines/v2/roster-named-recipient-qa.mjs",
+      "expectedResult": "FAIL",
+      "exitCode": 1,
+      "guardMatched": true,
+      "guard": "Shared decoder rejects changed named-recipient published sourceRef"
+    }
+  ],
+  "originalGeneratedByteIdentical": true,
+  "rawLogsPublished": false
+}

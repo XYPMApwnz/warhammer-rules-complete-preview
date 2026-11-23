@@ -1,0 +1,70 @@
+diff --git a/books/blood-angels/v2/reference-qa.py b/books/blood-angels/v2/reference-qa.py
+index 25520a37..98a3f87f 100644
+--- a/books/blood-angels/v2/reference-qa.py
++++ b/books/blood-angels/v2/reference-qa.py
+@@ -8 +8 @@ from __future__ import annotations
+-import copy, hashlib, importlib.util, json, sys
++import copy, hashlib, importlib.util, json, subprocess, sys
+@@ -16,0 +17,2 @@ ROOT = HERE.parents[2]
++sys.path.insert(0, str(ROOT / 'books/shared/tools'))
++from source_node_fingerprints import fingerprint, load_qa_expectations
+@@ -36,0 +39,12 @@ def captured_byte_tree(path):
++def read_published_facts(path):
++    # Reuse the accepted source-reference decoder; do not implement a Python codec.
++    script = ("import fs from 'node:fs';"
++        "import {parseProducerJSON} from './books/shared/source-refs-v2/producer-io.mjs';"
++        "process.stdout.write(JSON.stringify(parseProducerJSON(fs.readFileSync(process.argv[1],'utf8'))));")
++    result = subprocess.run(['node', '--input-type=module', '-e', script, str(path)],
++        cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8', check=False)
++    if result.returncode:
++        raise AssertionError('Published source-reference decoding failed')
++    return json.loads(result.stdout)
++
++
+@@ -42,2 +56,2 @@ def validate(inherited, mfm, issues):
+-    sm = read(ROOT/'books/space-marines/v2/generated/base.json')
+-    ba = read(HERE/'generated/base.json')
++    sm = read_published_facts(ROOT/'books/space-marines/v2/generated/base.json')
++    ba = read_published_facts(HERE/'generated/base.json')
+@@ -45,0 +60,24 @@ def validate(inherited, mfm, issues):
++    contexts = []
++    def context(identifier, document, selector, legacy, parser_input):
++        return {'id': identifier, 'sourceDocument': document, 'selector': selector,
++                'legacySerializerSha256': legacy, 'parserInput': parser_input}
++    for reference in inherited['references']:
++        entity = smby.get(reference['canonicalId'])
++        if entity is not None and entity['kind'] == 'DATASHEET':
++            proof = reference['membershipProof']
++            contexts.append(context('inherited-sm/'+reference['canonicalId']+'/frame',
++                entity['provenance']['document'], proof['sourceFramePointer'], proof['sourceFrameSHA256'], 'bytes'))
++    for candidate in mfm['identityCandidates']:
++        for label in ('native', 'mfm'):
++            proof = candidate[label]
++            contexts.append(context('mfm-candidate/'+candidate['candidateNativeSourceIdentity']+'/'+label,
++                proof['document'], proof['pointer'], proof['rawNodeSha256'], 'unicode'))
++    for issue in issues['issues']:
++        for proof in issue.get('provenance', []):
++            if proof.get('pointer') and proof.get('rawNodeSha256'):
++                contexts.append(context('source-issue/'+issue['id']+'/'+proof['document']+'#'+proof['pointer'],
++                    proof['document'], proof['pointer'], proof['rawNodeSha256'], 'unicode'))
++    try:
++        node_expectations = load_qa_expectations(HERE, contexts, group='reference')
++    except ValueError:
++        return ['reference source-node locator/legacy enrollment mismatch']
+@@ -90 +128,3 @@ def validate(inherited, mfm, issues):
+-                need(len(captured_frame)==1 and hashlib.sha256(html.tostring(captured_frame[0],encoding='utf8')).hexdigest().upper()==proof['sourceFrameSHA256'],
++                expected = node_expectations['inherited-sm/'+reference['canonicalId']+'/frame']
++                need(expected['legacySerializerSha256'] == proof['sourceFrameSHA256']
++                    and len(captured_frame)==1 and fingerprint(captured_frame[0])==expected['fingerprintSha256'],
+@@ -130,2 +170,3 @@ def validate(inherited, mfm, issues):
+-                need(hashlib.sha256(html.tostring(found[0],encoding='utf8')).hexdigest().upper()==proof['rawNodeSha256'],
+-                    'pricing candidate source node changed')
++                expected = node_expectations['mfm-candidate/'+candidate['candidateNativeSourceIdentity']+'/'+label]
++                need(expected['legacySerializerSha256'] == proof['rawNodeSha256']
++                    and fingerprint(found[0]) == expected['fingerprintSha256'], 'pricing candidate source node changed')
+@@ -157,2 +198,3 @@ def validate(inherited, mfm, issues):
+-                    need(hashlib.sha256(html.tostring(evidence[0],encoding='utf8')).hexdigest().upper()
+-                        ==proof['rawNodeSha256'], 'source issue node hash changed')
++                    expected = node_expectations['source-issue/'+issue['id']+'/'+proof['document']+'#'+proof['pointer']]
++                    need(expected['legacySerializerSha256'] == proof['rawNodeSha256']
++                        and fingerprint(evidence[0]) == expected['fingerprintSha256'], 'source issue node hash changed')

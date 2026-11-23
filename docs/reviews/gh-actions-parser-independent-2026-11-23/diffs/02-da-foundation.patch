@@ -1,0 +1,20 @@
+diff --git a/books/dark-angels/v2/foundation-qa.py b/books/dark-angels/v2/foundation-qa.py
+index 02610eec..272c2fa4 100644
+--- a/books/dark-angels/v2/foundation-qa.py
++++ b/books/dark-angels/v2/foundation-qa.py
+@@ -22,0 +23,3 @@ ROOT = HERE.parents[2]
++sys.path.insert(0, str(ROOT / 'books/shared/tools'))
++from source_node_fingerprints import fingerprint, load_native_expectations
++from source_refs_output import generated_source_outputs
+@@ -82 +85 @@ def raw_oracle():
+-            'rawNodeSha256': hashlib.sha256(html.tostring(element, encoding='utf-8')).hexdigest().upper(),
++            'fingerprintSha256': fingerprint(element),
+@@ -231,0 +235 @@ def compare(snapshot, oracle, bindings, addresses):
++    node_expectations = load_native_expectations(HERE, addresses)
+@@ -259 +263,2 @@ def compare(snapshot, oracle, bindings, addresses):
+-            and address.get('rawNodeSha256') == raw['rawNodeSha256'], 'source-enrollment-mismatch:' + sid)
++            and address.get('rawNodeSha256') == node_expectations[sid]['legacySerializerSha256']
++            and raw['fingerprintSha256'] == node_expectations[sid]['fingerprintSha256'], 'source-enrollment-mismatch:' + sid)
+@@ -386 +391 @@ def enrollment_controls(producer, result):
+-    for name, value in result.items():
++    for name, value in generated_source_outputs(result, ROOT).items():

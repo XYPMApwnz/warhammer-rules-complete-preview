@@ -1,0 +1,218 @@
+{
+  "schema": "cancelled-run-diagnosis/v1",
+  "run": 45125199666,
+  "sha": "6156836b7841d2c4f4c429834013598b3484058e",
+  "runConclusion": "cancelled",
+  "queueStepConclusion": "cancelled",
+  "queueStepStartedAt": "2026-11-23T06:39:22Z",
+  "queueStepCompletedAt": "2026-11-23T10:21:50Z",
+  "queueStepWallMs": 13348000,
+  "recordedQueueElapsedMs": 5411329,
+  "lastRecord": {
+    "index": 204,
+    "command": "node",
+    "id": "v2/import-notices-browser-qa.mjs",
+    "args": [
+      "v2/import-notices-browser-qa.mjs"
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "elapsedMs": 13224
+  },
+  "nextPlanned": {
+    "index": 205,
+    "command": "node",
+    "id": "v2/lazy-glossary-browser-qa.mjs",
+    "args": [
+      "v2/lazy-glossary-browser-qa.mjs"
+    ]
+  },
+  "nextPlannedPC": {
+    "index": 205,
+    "command": "node",
+    "id": "v2/lazy-glossary-browser-qa.mjs",
+    "args": [
+      "v2/lazy-glossary-browser-qa.mjs"
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "elapsedMs": 110826
+  },
+  "actualNextChildStarted": "NOT_PROVEN",
+  "actualStartedReason": "No queue START metadata is exposed; private runner console was not published. Row persistence follows child close and cleanup.",
+  "completed": 204,
+  "passed": 201,
+  "failed": 3,
+  "missing": 9,
+  "uncompletedPlan": [
+    {
+      "index": 205,
+      "command": "node",
+      "id": "v2/lazy-glossary-browser-qa.mjs",
+      "args": [
+        "v2/lazy-glossary-browser-qa.mjs"
+      ]
+    },
+    {
+      "index": 206,
+      "command": "node",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json"
+      ]
+    },
+    {
+      "index": 207,
+      "command": "node",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json"
+      ]
+    },
+    {
+      "index": 208,
+      "command": "node",
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-switch-browser-qa.mjs"
+      ]
+    },
+    {
+      "index": 209,
+      "command": "node",
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "args": [
+        "tools/pages-runtime-package-qa.mjs",
+        "--source",
+        "<REPO>",
+        "--published",
+        "<QA_WORK>/runtime",
+        "--work",
+        "<QA_WORK>/packaging"
+      ]
+    },
+    {
+      "index": 210,
+      "command": "node",
+      "id": "tests/source-enrollment-qa.mjs",
+      "args": [
+        "tests/source-enrollment-qa.mjs"
+      ]
+    },
+    {
+      "index": 211,
+      "command": "node",
+      "id": "books/shared/tools/source-freshness.mjs",
+      "args": [
+        "books/shared/tools/source-freshness.mjs"
+      ]
+    },
+    {
+      "index": 212,
+      "command": "node",
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "args": [
+        "tests/source-ingestion-contract-qa.mjs"
+      ]
+    },
+    {
+      "index": 213,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/keyword-attribution-qa.mjs"
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "index": 2,
+      "command": "node",
+      "id": "tests/qa-temp-qa.mjs",
+      "args": [
+        "tests/qa-temp-qa.mjs"
+      ],
+      "status": "FAIL",
+      "exitCode": 1,
+      "elapsedMs": 3355,
+      "diagnostic": {
+        "errorClass": "AssertionError",
+        "cause": "ASSERTION_FAILED",
+        "firstLine": "AssertionError: assertion failed; private comparison values redacted.",
+        "messageRedacted": true,
+        "location": {
+          "file": "tests/qa-temp-qa.mjs",
+          "line": 93,
+          "column": 105
+        }
+      },
+      "pcStatus": "PASS",
+      "pcElapsedMs": 4018,
+      "confirmedGuard": "The ordinary browser child returned nonzero in browser-close-removes-owned-playwright-profiles; assertion required exit status 0.",
+      "limit": "Safe projection does not expose the child stderr; underlying browser-launch/cleanup cause cannot be established. QA_SKIP_TMP_SWEEP is not used by this test/helper."
+    },
+    {
+      "index": 151,
+      "command": "node",
+      "id": "tests/book-update-command-qa.mjs",
+      "args": [
+        "tests/book-update-command-qa.mjs"
+      ],
+      "status": "FAIL",
+      "exitCode": 1,
+      "elapsedMs": 31929,
+      "diagnostic": {
+        "errorClass": "AssertionError",
+        "cause": "ASSERTION_FAILED",
+        "firstLine": "AssertionError: assertion failed; private comparison values redacted.",
+        "messageRedacted": true,
+        "location": {
+          "file": "books/shared/tools/book-update.mjs",
+          "line": 27,
+          "column": 107
+        }
+      },
+      "pcStatus": "PASS",
+      "pcElapsedMs": 54814,
+      "confirmedGuard": "AssertionError has trusted JS location in workState fingerprint construction.",
+      "limit": "This line contains no assertion itself; artifact lacks assertion comparison values or a specific failed test control. Exact cause is not established."
+    },
+    {
+      "index": 165,
+      "command": "node",
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "args": [
+        "books/shared/tools/check-generated-rebuild.mjs"
+      ],
+      "status": "FAIL",
+      "exitCode": 1,
+      "elapsedMs": 8795,
+      "diagnostic": {
+        "errorClass": "Error",
+        "cause": "ERROR_MESSAGE_REDACTED",
+        "firstLine": "Error: error message redacted.",
+        "messageRedacted": true,
+        "location": {
+          "file": "books/shared/tools/check-generated-rebuild.mjs",
+          "line": 81,
+          "column": 96
+        }
+      },
+      "pcStatus": "PASS",
+      "pcElapsedMs": 671034,
+      "confirmedGuard": "Generated rebuild comparison found one or more differences against tracked output bytes (explicit STALE guard).",
+      "limit": "Safe artifact does not identify the differing generated file/producer. No assertion that this is serializer-related is justified."
+    }
+  ],
+  "all213Completed": false,
+  "hangConclusion": "The artifact proves 204 recorded completions, not an all-jobs-complete wrapper hang. Job 205 is the next ordered job, but exact child/cleanup phase is not provable.",
+  "reRunRequestedByMonitor": false,
+  "rawLogsPublished": false,
+  "proposalOnly": [
+    "Print allowlisted START/END job identity and monotonic elapsed time to the CI console; never child output or assertion bodies.",
+    "Use a CI-only per-job deadline; on expiry terminate the child process group, record TIMEOUT plus safe identity/timing, and proceed/fail according to the reviewed queue policy.",
+    "Export current job metadata independently before spawning and on child exit/cleanup so a cancellation distinguishes a child stall from cleanup/finalization."
+  ]
+}
