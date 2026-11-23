@@ -1,0 +1,2206 @@
+{
+  "schema": "qa-pre-ff-job-timeouts/v1",
+  "baselineSha": "6156836b7841d2c4f4c429834013598b3484058e",
+  "jobCount": 213,
+  "jobs": [
+    {
+      "index": 1,
+      "command": "git",
+      "id": "git diff --check",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "lastPcElapsedMs": 39,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 2,
+      "command": "node",
+      "id": "tests/qa-temp-qa.mjs",
+      "args": [
+        "tests/qa-temp-qa.mjs"
+      ],
+      "lastPcElapsedMs": 4018,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 3,
+      "command": "node",
+      "id": "tests/pages-runtime-ci-contract-qa.mjs",
+      "args": [
+        "tests/pages-runtime-ci-contract-qa.mjs"
+      ],
+      "lastPcElapsedMs": 134,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 4,
+      "command": "node",
+      "id": "tests/browser-failure-diagnostics-qa.mjs",
+      "args": [
+        "tests/browser-failure-diagnostics-qa.mjs"
+      ],
+      "lastPcElapsedMs": 55,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 5,
+      "command": "node",
+      "id": "tests/browser-compatibility-qa.mjs",
+      "args": [
+        "tests/browser-compatibility-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1882,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 6,
+      "command": "node",
+      "id": "tests/browser-compat-equivalence-qa.mjs",
+      "args": [
+        "tests/browser-compat-equivalence-qa.mjs"
+      ],
+      "lastPcElapsedMs": 259,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 7,
+      "command": "node",
+      "id": "tests/browser-catalog-loader-qa.mjs",
+      "args": [
+        "tests/browser-catalog-loader-qa.mjs"
+      ],
+      "lastPcElapsedMs": 653,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 8,
+      "command": "node",
+      "id": "tests/browser-catalog-cache-qa.mjs",
+      "args": [
+        "tests/browser-catalog-cache-qa.mjs"
+      ],
+      "lastPcElapsedMs": 80,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 9,
+      "command": "node",
+      "id": "tests/fast-first-load-cache-qa.mjs",
+      "args": [
+        "tests/fast-first-load-cache-qa.mjs"
+      ],
+      "lastPcElapsedMs": 102,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 10,
+      "command": "node",
+      "id": "tests/helper-offline-status-instance-qa.mjs",
+      "args": [
+        "tests/helper-offline-status-instance-qa.mjs"
+      ],
+      "lastPcElapsedMs": 120,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 11,
+      "command": "node",
+      "id": "tests/helper-offline-availability-qa.mjs",
+      "args": [
+        "tests/helper-offline-availability-qa.mjs"
+      ],
+      "lastPcElapsedMs": 56,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 12,
+      "command": "node",
+      "id": "tests/runtime-url-stamps-qa.mjs",
+      "args": [
+        "tests/runtime-url-stamps-qa.mjs"
+      ],
+      "lastPcElapsedMs": 452,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 13,
+      "command": "node",
+      "id": "tests/packaged-bootstrap-qa.mjs",
+      "args": [
+        "tests/packaged-bootstrap-qa.mjs",
+        "--self-test"
+      ],
+      "lastPcElapsedMs": 1232,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 14,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs"
+      ],
+      "lastPcElapsedMs": 48,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 15,
+      "command": "node",
+      "id": "tests/book-passport-qa.mjs",
+      "args": [
+        "tests/book-passport-qa.mjs"
+      ],
+      "lastPcElapsedMs": 849,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 16,
+      "command": "node",
+      "id": "tests/keyword-access-qa.mjs",
+      "args": [
+        "tests/keyword-access-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1825,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 17,
+      "command": "node",
+      "id": "tools/markup-census.mjs",
+      "args": [
+        "tools/markup-census.mjs",
+        "--check"
+      ],
+      "lastPcElapsedMs": 6901,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 18,
+      "command": "node",
+      "id": "tests/markup-census-qa.mjs",
+      "args": [
+        "tests/markup-census-qa.mjs"
+      ],
+      "lastPcElapsedMs": 8447,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 19,
+      "command": "node",
+      "id": "tests/markup-evidence-qa.mjs",
+      "args": [
+        "tests/markup-evidence-qa.mjs"
+      ],
+      "lastPcElapsedMs": 162,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 20,
+      "command": "node",
+      "id": "tests/markup-owner-only-qa.mjs",
+      "args": [
+        "tests/markup-owner-only-qa.mjs"
+      ],
+      "lastPcElapsedMs": 8444,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 21,
+      "command": "node",
+      "id": "tests/markup-unknown-qa.mjs",
+      "args": [
+        "tests/markup-unknown-qa.mjs"
+      ],
+      "lastPcElapsedMs": 7501,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 22,
+      "command": "node",
+      "id": "tests/source-metadata-build-qa.mjs",
+      "args": [
+        "tests/source-metadata-build-qa.mjs"
+      ],
+      "lastPcElapsedMs": 615,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 23,
+      "command": "node",
+      "id": "books/shared/application-v2/source-metadata-qa.mjs",
+      "args": [
+        "books/shared/application-v2/source-metadata-qa.mjs"
+      ],
+      "lastPcElapsedMs": 92,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 24,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/model-base-caption-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/model-base-caption-qa.mjs"
+      ],
+      "lastPcElapsedMs": 46,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 25,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/import-notices-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/import-notices-qa.mjs"
+      ],
+      "lastPcElapsedMs": 812,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 26,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs"
+      ],
+      "lastPcElapsedMs": 48,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 27,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/navigation-geometry-qa.mjs"
+      ],
+      "lastPcElapsedMs": 97,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 28,
+      "command": "node",
+      "id": "books/death-guard/v2/insectile-recipient-qa.mjs",
+      "args": [
+        "books/death-guard/v2/insectile-recipient-qa.mjs"
+      ],
+      "lastPcElapsedMs": 362,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 29,
+      "command": "node",
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "args": [
+        "v2/executable-detachment-source-qa.mjs"
+      ],
+      "lastPcElapsedMs": 2528,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 30,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs"
+      ],
+      "lastPcElapsedMs": 111,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 31,
+      "command": "node",
+      "id": "v2/sweep-polish-qa.mjs",
+      "args": [
+        "v2/sweep-polish-qa.mjs"
+      ],
+      "lastPcElapsedMs": 47,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 32,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-qa.mjs"
+      ],
+      "lastPcElapsedMs": 50,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 33,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-popup-section-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-section-qa.mjs"
+      ],
+      "lastPcElapsedMs": 2132,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 34,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-links-qa.mjs"
+      ],
+      "lastPcElapsedMs": 96,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 35,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/equipment-reference-qa.mjs"
+      ],
+      "lastPcElapsedMs": 48,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 36,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/roster-navigation-qa.mjs"
+      ],
+      "lastPcElapsedMs": 496,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 37,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/import-messages-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/import-messages-qa.mjs"
+      ],
+      "lastPcElapsedMs": 51,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 38,
+      "command": "node",
+      "id": "tests/official-updates-qa.mjs",
+      "args": [
+        "tests/official-updates-qa.mjs"
+      ],
+      "lastPcElapsedMs": 56,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 39,
+      "command": "node",
+      "id": "tests/official-update-books-qa.mjs",
+      "args": [
+        "tests/official-update-books-qa.mjs"
+      ],
+      "lastPcElapsedMs": 115,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 40,
+      "command": "node",
+      "id": "tests/official-update-report-qa.mjs",
+      "args": [
+        "tests/official-update-report-qa.mjs"
+      ],
+      "lastPcElapsedMs": 52,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 41,
+      "command": "node",
+      "id": "tests/official-update-integration-qa.mjs",
+      "args": [
+        "tests/official-update-integration-qa.mjs"
+      ],
+      "lastPcElapsedMs": 7765,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 42,
+      "command": "node",
+      "id": "tests/official-effect-review-qa.mjs",
+      "args": [
+        "tests/official-effect-review-qa.mjs"
+      ],
+      "lastPcElapsedMs": 98,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 43,
+      "command": "node",
+      "id": "tests/current-gw-contract-qa.mjs",
+      "args": [
+        "tests/current-gw-contract-qa.mjs"
+      ],
+      "lastPcElapsedMs": 56,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 44,
+      "command": "node",
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-candidate-qa.mjs"
+      ],
+      "lastPcElapsedMs": 14465,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 45,
+      "command": "node",
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-isolation-qa.mjs"
+      ],
+      "lastPcElapsedMs": 34757,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 46,
+      "command": "node",
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/app-qa.mjs"
+      ],
+      "lastPcElapsedMs": 16160,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 47,
+      "command": "node",
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/roster-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 3161,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 48,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "lastPcElapsedMs": 496,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 49,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "lastPcElapsedMs": 7746,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 50,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "lastPcElapsedMs": 394,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 51,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=adeptus-mechanicus",
+        "--phase=all"
+      ],
+      "lastPcElapsedMs": 4128,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 52,
+      "command": "node",
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/app-qa.mjs"
+      ],
+      "lastPcElapsedMs": 27034,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 53,
+      "command": "node",
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/roster-qa.mjs"
+      ],
+      "lastPcElapsedMs": 102028,
+      "timeoutMs": 306084
+    },
+    {
+      "index": 54,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "lastPcElapsedMs": 15353,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 55,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "lastPcElapsedMs": 10085,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 56,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "lastPcElapsedMs": 3776,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 57,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=blood-angels",
+        "--phase=all"
+      ],
+      "lastPcElapsedMs": 24434,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 58,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "lastPcElapsedMs": 299,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 59,
+      "command": "node",
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/app-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1074,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 60,
+      "command": "node",
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/roster-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 10091,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 61,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "lastPcElapsedMs": 1552,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 62,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "lastPcElapsedMs": 8661,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 63,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "lastPcElapsedMs": 3090,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 64,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=chaos-space-marines",
+        "--phase=all"
+      ],
+      "lastPcElapsedMs": 8102,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 65,
+      "command": "node",
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/app-qa.mjs"
+      ],
+      "lastPcElapsedMs": 27872,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 66,
+      "command": "node",
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/roster-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 177114,
+      "timeoutMs": 531342
+    },
+    {
+      "index": 67,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "lastPcElapsedMs": 100763,
+      "timeoutMs": 302289
+    },
+    {
+      "index": 68,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "lastPcElapsedMs": 21324,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 69,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "lastPcElapsedMs": 9500,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 70,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=dark-angels",
+        "--phase=all"
+      ],
+      "lastPcElapsedMs": 25004,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 71,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "lastPcElapsedMs": 420,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 72,
+      "command": "node",
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "args": [
+        "books/death-guard/v2/app-qa.mjs"
+      ],
+      "lastPcElapsedMs": 6972,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 73,
+      "command": "node",
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "args": [
+        "books/death-guard/v2/roster-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 171,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 74,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=death-guard"
+      ],
+      "lastPcElapsedMs": 388,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 75,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=death-guard"
+      ],
+      "lastPcElapsedMs": 7314,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 76,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=death-guard",
+        "--phase=all"
+      ],
+      "lastPcElapsedMs": 3805,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 77,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=death-guard"
+      ],
+      "lastPcElapsedMs": 209,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 78,
+      "command": "node",
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/app-qa.mjs"
+      ],
+      "lastPcElapsedMs": 4004,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 79,
+      "command": "node",
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/roster-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 8172,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 80,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "lastPcElapsedMs": 1821,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 81,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "lastPcElapsedMs": 8684,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 82,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "lastPcElapsedMs": 629,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 83,
+      "command": "node",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "lastPcElapsedMs": 9825,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 84,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=emperors-children",
+        "--phase=all"
+      ],
+      "lastPcElapsedMs": 15294,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 85,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "lastPcElapsedMs": 234,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 86,
+      "command": "node",
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/space-marines/v2/app-qa.mjs"
+      ],
+      "lastPcElapsedMs": 42739,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 87,
+      "command": "node",
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 119032,
+      "timeoutMs": 357096
+    },
+    {
+      "index": 88,
+      "command": "node",
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-static-model-bindings-qa.mjs"
+      ],
+      "lastPcElapsedMs": 9376,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 89,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=space-marines"
+      ],
+      "lastPcElapsedMs": 9071,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 90,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=space-marines"
+      ],
+      "lastPcElapsedMs": 9612,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 91,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=space-marines"
+      ],
+      "lastPcElapsedMs": 3883,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 92,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=space-marines",
+        "--phase=all"
+      ],
+      "lastPcElapsedMs": 26154,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 93,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=space-marines"
+      ],
+      "lastPcElapsedMs": 331,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 94,
+      "command": "node",
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1587,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 95,
+      "command": "node",
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/app-qa.mjs"
+      ],
+      "lastPcElapsedMs": 4623,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 96,
+      "command": "node",
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/roster-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 176030,
+      "timeoutMs": 528090
+    },
+    {
+      "index": 97,
+      "command": "node",
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/physical-choice-qa.mjs"
+      ],
+      "lastPcElapsedMs": 9313,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 98,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "lastPcElapsedMs": 1647,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 99,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "lastPcElapsedMs": 8744,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 100,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "lastPcElapsedMs": 1140,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 101,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tau-empire",
+        "--phase=all"
+      ],
+      "lastPcElapsedMs": 16306,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 102,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "lastPcElapsedMs": 374,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 103,
+      "command": "node",
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "args": [
+        "books/tyranids/v2/app-qa.mjs"
+      ],
+      "lastPcElapsedMs": 4543,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 104,
+      "command": "node",
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tyranids/v2/roster-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 5198,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 105,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tyranids"
+      ],
+      "lastPcElapsedMs": 952,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 106,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tyranids"
+      ],
+      "lastPcElapsedMs": 8587,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 107,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tyranids"
+      ],
+      "lastPcElapsedMs": 723,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 108,
+      "command": "node",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=tyranids"
+      ],
+      "lastPcElapsedMs": 10024,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 109,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tyranids",
+        "--phase=all"
+      ],
+      "lastPcElapsedMs": 17389,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 110,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tyranids"
+      ],
+      "lastPcElapsedMs": 296,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 111,
+      "command": "node",
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "args": [
+        "books/shared/rule-contract-v2/recipients-qa.mjs"
+      ],
+      "lastPcElapsedMs": 3195,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 112,
+      "command": "node",
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/physical-selection-effects-qa.mjs"
+      ],
+      "lastPcElapsedMs": 196,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 113,
+      "command": "node",
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/condition-execution-qa.mjs"
+      ],
+      "lastPcElapsedMs": 139,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 114,
+      "command": "node",
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/numeric-effects-qa.mjs"
+      ],
+      "lastPcElapsedMs": 216,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 115,
+      "command": "node",
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/keyword-effects-qa.mjs"
+      ],
+      "lastPcElapsedMs": 192,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 116,
+      "command": "node",
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/ability-effects-qa.mjs"
+      ],
+      "lastPcElapsedMs": 171,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 117,
+      "command": "node",
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/weapon-contribution-effects-qa.mjs"
+      ],
+      "lastPcElapsedMs": 162,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 118,
+      "command": "node",
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/advance-roll-effects-qa.mjs"
+      ],
+      "lastPcElapsedMs": 141,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 119,
+      "command": "node",
+      "id": "v2/source-effect-regression-qa.mjs",
+      "args": [
+        "v2/source-effect-regression-qa.mjs"
+      ],
+      "lastPcElapsedMs": 45637,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 120,
+      "command": "node",
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "args": [
+        "v2/detachment-source-binding-qa.mjs"
+      ],
+      "lastPcElapsedMs": 21123,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 121,
+      "command": "node",
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/reimport-attachments-qa.mjs"
+      ],
+      "lastPcElapsedMs": 6732,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 122,
+      "command": "node",
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/service-qa.mjs"
+      ],
+      "lastPcElapsedMs": 111,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 123,
+      "command": "node",
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-service-qa.mjs"
+      ],
+      "lastPcElapsedMs": 116,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 124,
+      "command": "node",
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-selections-qa.mjs"
+      ],
+      "lastPcElapsedMs": 118,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 125,
+      "command": "node",
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-service-qa.mjs"
+      ],
+      "lastPcElapsedMs": 107,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 126,
+      "command": "node",
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-conditions-qa.mjs"
+      ],
+      "lastPcElapsedMs": 114,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 127,
+      "command": "node",
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "args": [
+        "tests/roster-execution-atomic-qa.mjs"
+      ],
+      "lastPcElapsedMs": 4289,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 128,
+      "command": "node",
+      "id": "v2/detachment-recipient-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1481,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 129,
+      "command": "node",
+      "id": "v2/card-recipient-qa.mjs",
+      "args": [
+        "v2/card-recipient-qa.mjs"
+      ],
+      "lastPcElapsedMs": 680,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 130,
+      "command": "node",
+      "id": "v2/attached-rule-text-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-qa.mjs"
+      ],
+      "lastPcElapsedMs": 9902,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 131,
+      "command": "node",
+      "id": "v2/card-display-2-qa.mjs",
+      "args": [
+        "v2/card-display-2-qa.mjs"
+      ],
+      "lastPcElapsedMs": 2071,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 132,
+      "command": "node",
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/singleton-model-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 48,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 133,
+      "command": "node",
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/plain-header-qa.mjs"
+      ],
+      "lastPcElapsedMs": 103,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 134,
+      "command": "node",
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-qa.mjs"
+      ],
+      "lastPcElapsedMs": 5422,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 135,
+      "command": "node",
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/initial-attachment-qa.mjs"
+      ],
+      "lastPcElapsedMs": 108,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 136,
+      "command": "node",
+      "id": "v2/faction-safe-import-qa.mjs",
+      "args": [
+        "v2/faction-safe-import-qa.mjs"
+      ],
+      "lastPcElapsedMs": 892,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 137,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/card-text-formatting-qa.mjs"
+      ],
+      "lastPcElapsedMs": 45,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 138,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/library-currentness-qa.mjs"
+      ],
+      "lastPcElapsedMs": 225,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 139,
+      "command": "node",
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/text-roster-facts-qa.mjs"
+      ],
+      "lastPcElapsedMs": 59,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 140,
+      "command": "node",
+      "id": "v2/source-completeness-check.mjs",
+      "args": [
+        "v2/source-completeness-check.mjs"
+      ],
+      "lastPcElapsedMs": 1594,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 141,
+      "command": "node",
+      "id": "tests/integration-qa.mjs",
+      "args": [
+        "tests/integration-qa.mjs"
+      ],
+      "lastPcElapsedMs": 3883,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 142,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/cosmetics-qa.mjs"
+      ],
+      "lastPcElapsedMs": 475,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 143,
+      "command": "node",
+      "id": "tests/codex-workflow-qa.mjs",
+      "args": [
+        "tests/codex-workflow-qa.mjs"
+      ],
+      "lastPcElapsedMs": 103,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 144,
+      "command": "node",
+      "id": "tests/source-book-clone-qa.mjs",
+      "args": [
+        "tests/source-book-clone-qa.mjs",
+        "--root=<REPO>"
+      ],
+      "lastPcElapsedMs": 1678,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 145,
+      "command": "node",
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "args": [
+        "books/shared/source-refs-v2/source-catalog-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1189,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 146,
+      "command": "node",
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "args": [
+        "v2/unit-recipient-scope-qa.mjs"
+      ],
+      "lastPcElapsedMs": 3008,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 147,
+      "command": "node",
+      "id": "tests/book-update-declarations-qa.mjs",
+      "args": [
+        "tests/book-update-declarations-qa.mjs"
+      ],
+      "lastPcElapsedMs": 170,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 148,
+      "command": "node",
+      "id": "tests/book-update-report-qa.mjs",
+      "args": [
+        "tests/book-update-report-qa.mjs"
+      ],
+      "lastPcElapsedMs": 69,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 149,
+      "command": "node",
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "args": [
+        "tests/book-update-snapshots-qa.mjs"
+      ],
+      "lastPcElapsedMs": 12240,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 150,
+      "command": "node",
+      "id": "tests/book-update-metadata-qa.mjs",
+      "args": [
+        "tests/book-update-metadata-qa.mjs"
+      ],
+      "lastPcElapsedMs": 49,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 151,
+      "command": "node",
+      "id": "tests/book-update-command-qa.mjs",
+      "args": [
+        "tests/book-update-command-qa.mjs"
+      ],
+      "lastPcElapsedMs": 54814,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 152,
+      "command": "node",
+      "id": "tests/mfm-release-history-qa.mjs",
+      "args": [
+        "tests/mfm-release-history-qa.mjs"
+      ],
+      "lastPcElapsedMs": 211,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 153,
+      "command": "node",
+      "id": "tests/mfm-update-qa.mjs",
+      "args": [
+        "tests/mfm-update-qa.mjs"
+      ],
+      "lastPcElapsedMs": 38872,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 154,
+      "command": "node",
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "args": [
+        "tests/source-catalog-registry-qa.mjs"
+      ],
+      "lastPcElapsedMs": 49367,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 155,
+      "command": "node",
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "args": [
+        "tests/source-catalog-additions-qa.mjs"
+      ],
+      "lastPcElapsedMs": 12147,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 156,
+      "command": "node",
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "args": [
+        "books/core-rules/tests/factual-ownership-qa.mjs"
+      ],
+      "lastPcElapsedMs": 527,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 157,
+      "command": "node",
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-waha-certification-qa.mjs"
+      ],
+      "lastPcElapsedMs": 193,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 158,
+      "command": "node",
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "args": [
+        "glossary/v2/tests/core-projection-qa.mjs"
+      ],
+      "lastPcElapsedMs": 138979,
+      "timeoutMs": 416937
+    },
+    {
+      "index": 159,
+      "command": "node",
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "args": [
+        "books/core-rules/tests/term-bindings-qa.mjs"
+      ],
+      "lastPcElapsedMs": 672,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 160,
+      "command": "node",
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "args": [
+        "books/core-rules/tests/reader-see-also-regression-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1514,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 161,
+      "command": "node",
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-faq-anchor-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1829,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 162,
+      "command": "node",
+      "id": "tests/generated-rebuild-qa.mjs",
+      "args": [
+        "tests/generated-rebuild-qa.mjs"
+      ],
+      "lastPcElapsedMs": 24017,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 163,
+      "command": "node",
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "args": [
+        "tests/csm-model-alias-bootstrap-qa.mjs"
+      ],
+      "lastPcElapsedMs": 2679,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 164,
+      "command": "node",
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "args": [
+        "tests/source-review-execution-book-qa.mjs"
+      ],
+      "lastPcElapsedMs": 3420,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 165,
+      "command": "node",
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "args": [
+        "books/shared/tools/check-generated-rebuild.mjs"
+      ],
+      "lastPcElapsedMs": 671034,
+      "timeoutMs": 2013102
+    },
+    {
+      "index": 166,
+      "command": "node",
+      "id": "tools/pages-runtime-package.mjs",
+      "args": [
+        "tools/pages-runtime-package.mjs",
+        "--source",
+        "<REPO>",
+        "--out",
+        "<QA_WORK>/runtime"
+      ],
+      "lastPcElapsedMs": 8115,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 167,
+      "command": "node",
+      "id": "v2/shell-browser-qa.mjs",
+      "args": [
+        "v2/shell-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 32026,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 168,
+      "command": "node",
+      "id": "v2/core-reader-browser-qa.mjs",
+      "args": [
+        "v2/core-reader-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 56256,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 169,
+      "command": "node",
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "args": [
+        "tests/minimal-pwa-cache-qa.mjs"
+      ],
+      "lastPcElapsedMs": 131,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 170,
+      "command": "node",
+      "id": "v2/pwa-transition-qa.mjs",
+      "args": [
+        "v2/pwa-transition-qa.mjs"
+      ],
+      "lastPcElapsedMs": 61535,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 171,
+      "command": "node",
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "args": [
+        "tests/browser/pwa-update-flow.mjs"
+      ],
+      "lastPcElapsedMs": 53601,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 172,
+      "command": "node",
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "args": [
+        "tests/browser/pwa-bootstrap-update.mjs"
+      ],
+      "lastPcElapsedMs": 97290,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 173,
+      "command": "node",
+      "id": "tests/startup-precache-qa.mjs",
+      "args": [
+        "tests/startup-precache-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1801,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 174,
+      "command": "node",
+      "id": "tests/browser/fast-first-load.mjs",
+      "args": [
+        "tests/browser/fast-first-load.mjs"
+      ],
+      "lastPcElapsedMs": 42417,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 175,
+      "command": "node",
+      "id": "tests/browser/cold-offline.mjs",
+      "args": [
+        "tests/browser/cold-offline.mjs"
+      ],
+      "lastPcElapsedMs": 75184,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 176,
+      "command": "node",
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 94712,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 177,
+      "command": "node",
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "args": [
+        "v2/detachment-synthetic-table-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 41614,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 178,
+      "command": "node",
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "args": [
+        "v2/card-recipient-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 55426,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 179,
+      "command": "node",
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 188714,
+      "timeoutMs": 566142
+    },
+    {
+      "index": 180,
+      "command": "node",
+      "id": "v2/card-display-browser-qa.mjs",
+      "args": [
+        "v2/card-display-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 99542,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 181,
+      "command": "node",
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "args": [
+        "v2/card-display-2-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 57714,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 182,
+      "command": "node",
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "args": [
+        "v2/source-equipment-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 65779,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 183,
+      "command": "node",
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 9919,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 184,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 34860,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 185,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 23168,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 186,
+      "command": "node",
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 16475,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 187,
+      "command": "node",
+      "id": "v2/related-panel-browser-qa.mjs",
+      "args": [
+        "v2/related-panel-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 17102,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 188,
+      "command": "node",
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 44368,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 189,
+      "command": "node",
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 7052,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 190,
+      "command": "node",
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "args": [
+        "v2/cards-cosmetics-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 34407,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 191,
+      "command": "node",
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 10345,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 192,
+      "command": "node",
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "args": [
+        "v2/fabius-safe-import-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 25037,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 193,
+      "command": "node",
+      "id": "v2/card-texts-browser-qa.mjs",
+      "args": [
+        "v2/card-texts-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 37173,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 194,
+      "command": "node",
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "args": [
+        "v2/card-polish-2-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 37546,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 195,
+      "command": "node",
+      "id": "tests/browser/offline-army-book.mjs",
+      "args": [
+        "tests/browser/offline-army-book.mjs"
+      ],
+      "lastPcElapsedMs": 112997,
+      "timeoutMs": 338991
+    },
+    {
+      "index": 196,
+      "command": "node",
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "args": [
+        "v2/sweep-polish-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 42548,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 197,
+      "command": "node",
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "args": [
+        "v2/card-gained-rules-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 77579,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 198,
+      "command": "node",
+      "id": "v2/rule-popups-browser-qa.mjs",
+      "args": [
+        "v2/rule-popups-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 107242,
+      "timeoutMs": 321726
+    },
+    {
+      "index": 199,
+      "command": "node",
+      "id": "v2/polish-5-browser-qa.mjs",
+      "args": [
+        "v2/polish-5-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 42924,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 200,
+      "command": "node",
+      "id": "v2/roster-navigation-browser-qa.mjs",
+      "args": [
+        "v2/roster-navigation-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 200577,
+      "timeoutMs": 601731
+    },
+    {
+      "index": 201,
+      "command": "node",
+      "id": "v2/import-messages-browser-qa.mjs",
+      "args": [
+        "v2/import-messages-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 53462,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 202,
+      "command": "node",
+      "id": "v2/markup-insectile-browser-qa.mjs",
+      "args": [
+        "v2/markup-insectile-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 7608,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 203,
+      "command": "node",
+      "id": "v2/library-sources-browser-qa.mjs",
+      "args": [
+        "v2/library-sources-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 20164,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 204,
+      "command": "node",
+      "id": "v2/import-notices-browser-qa.mjs",
+      "args": [
+        "v2/import-notices-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 9025,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 205,
+      "command": "node",
+      "id": "v2/lazy-glossary-browser-qa.mjs",
+      "args": [
+        "v2/lazy-glossary-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 110826,
+      "timeoutMs": 332478
+    },
+    {
+      "index": 206,
+      "command": "node",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json"
+      ],
+      "lastPcElapsedMs": 154349,
+      "timeoutMs": 463047
+    },
+    {
+      "index": 207,
+      "command": "node",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json"
+      ],
+      "lastPcElapsedMs": 184033,
+      "timeoutMs": 552099
+    },
+    {
+      "index": 208,
+      "command": "node",
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-switch-browser-qa.mjs"
+      ],
+      "lastPcElapsedMs": 4020,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 209,
+      "command": "node",
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "args": [
+        "tools/pages-runtime-package-qa.mjs",
+        "--source",
+        "<REPO>",
+        "--published",
+        "<QA_WORK>/runtime",
+        "--work",
+        "<QA_WORK>/packaging"
+      ],
+      "lastPcElapsedMs": 33477,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 210,
+      "command": "node",
+      "id": "tests/source-enrollment-qa.mjs",
+      "args": [
+        "tests/source-enrollment-qa.mjs"
+      ],
+      "lastPcElapsedMs": 10634,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 211,
+      "command": "node",
+      "id": "books/shared/tools/source-freshness.mjs",
+      "args": [
+        "books/shared/tools/source-freshness.mjs"
+      ],
+      "lastPcElapsedMs": 2332,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 212,
+      "command": "node",
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "args": [
+        "tests/source-ingestion-contract-qa.mjs"
+      ],
+      "lastPcElapsedMs": 8477,
+      "timeoutMs": 300000
+    },
+    {
+      "index": 213,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/keyword-attribution-qa.mjs"
+      ],
+      "lastPcElapsedMs": 1438,
+      "timeoutMs": 300000
+    }
+  ]
+}

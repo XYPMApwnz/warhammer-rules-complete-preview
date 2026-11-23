@@ -9,6 +9,11 @@ on:
         required: true
         default: codex/unified-v2-source
         type: string
+      job:
+        description: Optional one-based job index for diagnosis; empty runs all 213 jobs
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: read
@@ -105,6 +110,8 @@ jobs:
         with:
           node-version: '24'
           package-manager-cache: false
+          cache: npm
+          cache-dependency-path: source/package-lock.json
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
@@ -124,6 +131,10 @@ jobs:
           echo 'Checking workflow and public-report controls'
           node ../orchestration/tests/qa-pre-ff-ci-qa.mjs > "$RUNNER_TEMP/ci-controls.log" 2>&1
           node ../orchestration/tests/ci-bsdata-transport-qa.mjs > "$RUNNER_TEMP/bsdata-controls.log" 2>&1
+          node ../orchestration/tests/qa-job-policy-qa.mjs > "$RUNNER_TEMP/job-policy-controls.log" 2>&1
+          node ../orchestration/tests/qa-ci-progress-qa.mjs > "$RUNNER_TEMP/progress-controls.log" 2>&1
+          node ../orchestration/tests/browser-phase-controls-qa.mjs > "$RUNNER_TEMP/browser-phase-controls.log" 2>&1
+          node tests/book-update-dependency-ignore-qa.mjs > "$RUNNER_TEMP/dependency-ignore-controls.log" 2>&1
           echo "QA_PYTHON=$(command -v python)" >> "$GITHUB_ENV"
           echo "PYTHON=$(command -v python)" >> "$GITHUB_ENV"
           node -e 'const p=require("playwright").chromium.executablePath();for(const k of ["WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH","PLAYWRIGHT_CHROMIUM_EXECUTABLE"])console.log(k+"="+p)' >> "$GITHUB_ENV"
@@ -138,16 +149,36 @@ jobs:
         id: queue
         timeout-minutes: 280
         working-directory: source
+        env:
+          DIAGNOSTIC_JOB: ${{ inputs.job }}
         run: |
           # Raw test output may contain source captures or private failure values.
           # Keep it runner-local; publish only the fixed-schema report below.
-          npm run qa:pre-ff -- --out="$RUNNER_TEMP/pre-ff-raw" > "$RUNNER_TEMP/pre-ff-console.log" 2>&1
+          [[ -z "$DIAGNOSTIC_JOB" || "$DIAGNOSTIC_JOB" =~ ^[1-9][0-9]*$ && "$DIAGNOSTIC_JOB" -le 213 ]] || { echo 'Invalid diagnostic job index'; exit 1; }
+          queue_args=(--ci-timeout-policy=tools/qa-pre-ff-timeouts.json --progress-file="$RUNNER_TEMP/pre-ff-progress.jsonl")
+          progress_args=()
+          if [[ -n "$DIAGNOSTIC_JOB" ]]; then queue_args+=(--job="$DIAGNOSTIC_JOB"); progress_args+=(--job="$DIAGNOSTIC_JOB"); fi
+          set +e
+          node ../orchestration/tools/qa-ci-progress.mjs --source="$PWD" --events="$RUNNER_TEMP/pre-ff-progress.jsonl" "${progress_args[@]}" &
+          progress_pid=$!
+          for attempt in {1..100}; do [[ -f "$RUNNER_TEMP/pre-ff-progress.jsonl.ready" ]] && break; sleep 0.1; done
+          [[ -f "$RUNNER_TEMP/pre-ff-progress.jsonl.ready" ]] || { kill -TERM "$progress_pid" 2>/dev/null; exit 1; }
+          npm run qa:pre-ff -- --out="$RUNNER_TEMP/pre-ff-raw" "${queue_args[@]}" > "$RUNNER_TEMP/pre-ff-console.log" 2>&1 &
+          queue_pid=$!
+          wait "$queue_pid"
+          queue_code=$?
+          kill -TERM "$progress_pid" 2>/dev/null
+          wait "$progress_pid"
+          progress_code=$?
+          if [[ "$progress_code" -ne 0 ]]; then exit 1; fi
+          exit "$queue_code"
       - name: Export safe report and step summary
         if: ${{ always() }}
         env:
           QUEUE_OUTCOME: ${{ steps.queue.outcome }}
+          DIAGNOSTIC_JOB: ${{ inputs.job }}
         run: |
-          node orchestration/tools/qa-pre-ff-ci.mjs report --source="$GITHUB_WORKSPACE/source" --raw="$RUNNER_TEMP/pre-ff-raw" --out="$RUNNER_TEMP/pre-ff-report" --summary="$GITHUB_STEP_SUMMARY" --outcome="$QUEUE_OUTCOME"
+          node orchestration/tools/qa-pre-ff-ci.mjs report --source="$GITHUB_WORKSPACE/source" --raw="$RUNNER_TEMP/pre-ff-raw" --out="$RUNNER_TEMP/pre-ff-report" --summary="$GITHUB_STEP_SUMMARY" --outcome="$QUEUE_OUTCOME" --job="$DIAGNOSTIC_JOB"
       - name: Upload report only, including failures
         if: ${{ always() }}
         uses: actions/upload-artifact@v7

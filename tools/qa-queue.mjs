@@ -4,6 +4,7 @@ import {createQaTempDir,createQaEvidenceDir,getQaTmpRoot,qaTempEnvironment,sweep
 import path from 'node:path';
 import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {validateTimeoutPolicy,selectJobPlan,createJobProgress,runJobProcess} from './qa-job-policy.mjs';
 const args=process.argv.slice(2),option=name=>args.find(a=>a.startsWith(name+'='))?.slice(name.length+1);
 const root=path.resolve(option('--root')||fileURLToPath(new URL('../',import.meta.url)));
 const harnessRoot=fileURLToPath(new URL('../',import.meta.url));
@@ -12,6 +13,7 @@ const aliases={tyr:'tyranids'};
 const acceptedBookKeys=[...Object.keys(books),...Object.keys(aliases)];
 if(args.includes('--help')||args.includes('-h')){
  console.log('Usage: node tools/qa-queue.mjs <quick|pre-ff> [--books=<keys>] [--list] [--out=<external-directory>]');
+ console.log('CI pre-ff only: --ci-timeout-policy=<file> --progress-file=<external-jsonl> [--job=<unique-id-or-full-plan-index>].');
  console.log('Accepted book keys: '+acceptedBookKeys.join(', ')+'. Alias: tyr = tyranids. Repeated books run once.');
  console.log('quick: selected books and shared checks; without --books, shared checks only. pre-ff: all books and full verification gates.');
  process.exit(0);
@@ -126,29 +128,53 @@ if(mode==='pre-ff'){
  node('tools/pages-runtime-package-qa.mjs',['--source',root,'--published',path.join(work,'runtime'),'--work',path.join(work,'packaging')]);
  for(const f of ['tests/source-enrollment-qa.mjs','books/shared/tools/source-freshness.mjs','tests/source-ingestion-contract-qa.mjs','books/shared/army-book-app-v2/keyword-attribution-qa.mjs'])node(f);
 }
-if(args.includes('--list')){console.log(JSON.stringify(jobs,null,2));process.exit(0);}
+const policyFile=option('--ci-timeout-policy'),progressFile=option('--progress-file'),jobFilter=option('--job');
+if((policyFile||progressFile||jobFilter!==undefined)&&(mode!=='pre-ff'||!policyFile||!progressFile||!['true','1'].includes(process.env.CI)))throw Error('CI_POLICY_FLAGS_REQUIRED');
+const policy=policyFile?validateTimeoutPolicy(JSON.parse(fs.readFileSync(path.resolve(policyFile),'utf8')),jobs,root):null;
+// Freeze/validate all 213 records before an explicitly requested diagnostic slice.
+const selectedJobs=selectJobPlan(jobs,jobFilter);
+if(args.includes('--list')){console.log(JSON.stringify(selectedJobs.map(row=>row.job),null,2));process.exit(0);}
+if(policy&&process.platform!=='linux')throw Error('CI_DEADLINES_REQUIRE_LINUX');
+if(progressFile){const absolute=path.resolve(progressFile);if(absolute===root||absolute.startsWith(root+path.sep)||absolute===harnessRoot||absolute.startsWith(harnessRoot+path.sep))throw Error('PROGRESS_MUST_BE_EXTERNAL');}
+const progress=policy?createJobProgress({file:progressFile,out,total:jobs.length,selectedTotal:selectedJobs.length}):null;
 const started=Date.now(),results=[];
-for(const [i,job]of jobs.entries()){
- const log=path.join(out,String(i+1).padStart(2,'0')+'-'+path.basename(job.id).replace(/[^\w.-]/g,'_')+'.log'),fd=fs.openSync(log,'w'),begin=Date.now();
+for(const [ordinal,{index:i,job}]of selectedJobs.entries()){
+ const entry={index:i,ordinal,job},log=path.join(out,String(i+1).padStart(2,'0')+'-'+path.basename(job.id).replace(/[^\w.-]/g,'_')+'.log'),fd=fs.openSync(log,'w'),begin=Date.now();
  console.log(`[qa-queue] ${i+1}/${jobs.length} START ${job.id}`);
+ progress?.event(entry,'START',0);
+ const phase=(name,details)=>progress?.phase(entry,name,Date.now()-begin,details);
  const profile=option('--profile')==='true'&&/books\/(space-marines|tau-empire|blood-angels)\/v2\/roster/.test(job.id);
  const childEvidence=path.join(out,String(i+1).padStart(2,'0')+'-'+path.basename(job.id).replace(/[^\w.-]/g,'_')+'-evidence');
  const publishedRoot=path.join(work,'runtime');
  const browserRoots=mode!=='pre-ff'?{}:job.id==='v2/detachment-recipient-browser-qa.mjs'?{F1_BROWSER_ROOT:publishedRoot}:
   job.id==='v2/card-recipient-browser-qa.mjs'?{F2_BROWSER_ROOT:publishedRoot}:
   job.id==='v2/sweep-polish-browser-qa.mjs'?{SWEEP_POLISH_ROOT:publishedRoot}:{};
- const child=spawn(job.command,profile?['--cpu-prof','--cpu-prof-interval=10000','--cpu-prof-dir='+out,...job.args]:job.args,{cwd:root,
-  env:{...qaTempEnvironment(),...browserRoots,QA_EVIDENCE_DIR:childEvidence},stdio:['ignore','pipe','pipe']});
- const unregister=registerQaCleanup(()=>new Promise(resolve=>{if(child.exitCode!==null)return resolve();child.once('close',resolve);child.kill('SIGTERM');}));
- for(const stream of [child.stdout,child.stderr])stream.on('data',chunk=>{fs.writeSync(fd,chunk);process.stdout.write(chunk);});
+ const childArgs=profile?['--cpu-prof','--cpu-prof-interval=10000','--cpu-prof-dir='+out,...job.args]:job.args;
+ const environment={...qaTempEnvironment(),...browserRoots,QA_EVIDENCE_DIR:childEvidence};
  const timer=setInterval(()=>console.log(`[qa-queue] RUNNING ${job.id} ${Math.round((Date.now()-begin)/1000)}s`),30000);
- const result=await new Promise(resolve=>{child.on('error',error=>resolve({exitCode:null,error:error.message}));child.on('close',(exitCode,signal)=>resolve({exitCode,signal}));});
- clearInterval(timer);fs.closeSync(fd);unregister();cleanupQaRunTemps();
+ let result;
+ if(policy){
+  result=await runJobProcess({job:{...job,args:childArgs},cwd:root,env:environment,timeoutMs:policy.jobs[i].timeoutMs,
+   onChunk:chunk=>{fs.writeSync(fd,chunk);process.stdout.write(chunk);},onPhase:phase,registerCleanup:registerQaCleanup});
+  if(!result.teardown.confirmed)result={...result,exitCode:125,error:'OWNED_PROCESS_TEARDOWN_UNCONFIRMED'};
+ }else{
+  // Preserve local process, stream and cleanup behavior when CI controls are absent.
+  const child=spawn(job.command,childArgs,{cwd:root,env:environment,stdio:['ignore','pipe','pipe']});
+  const unregister=registerQaCleanup(()=>new Promise(resolve=>{if(child.exitCode!==null)return resolve();child.once('close',resolve);child.kill('SIGTERM');}));
+  for(const stream of [child.stdout,child.stderr])stream.on('data',chunk=>{fs.writeSync(fd,chunk);process.stdout.write(chunk);});
+  result=await new Promise(resolve=>{child.on('error',error=>resolve({exitCode:null,error:error.message}));child.on('close',(exitCode,signal)=>resolve({exitCode,signal}));});
+  unregister();
+ }
+ clearInterval(timer);fs.closeSync(fd);phase('cleanup',{timedOut:!!result.timedOut});cleanupQaRunTemps();
  for(const [source,name]of [[path.join(work,'runtime/PAGES_RUNTIME_MANIFEST.json'),'RUNTIME_MANIFEST.json'],
   [path.join(work,'packaging/RESULTS.json'),'PACKAGING_RESULTS.json']])if(fs.existsSync(source))fs.copyFileSync(source,path.join(out,name));
- results.push({...job,...result,status:result.exitCode===0?'PASS':'FAIL',elapsedMs:Date.now()-begin,log});
- fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({mode,root,elapsedMs:Date.now()-started,results},null,2)+'\n');
+ results.push({...job,...result,status:result.exitCode===0&&!result.timedOut?'PASS':'FAIL',elapsedMs:Date.now()-begin,log,...(policy?{originalIndex:i+1}:{})});
+ fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({mode,root,elapsedMs:Date.now()-started,results,...(jobFilter!==undefined?{selectedFullIndices:selectedJobs.map(row=>row.index+1)}:{})},null,2)+'\n');
+ const status=result.timedOut?'TIMEOUT':results.at(-1).status;
+ phase('completed',{timedOut:!!result.timedOut,status});progress?.event(entry,'END',Date.now()-begin,status);
  console.log(`[qa-queue] ${results.at(-1).status} ${job.id} ${results.at(-1).elapsedMs}ms`);
+ if(policy&&!result.teardown.confirmed)break;
 }
+progress?.close();
 console.log('QA_QUEUE_RESULT '+JSON.stringify({out,elapsedMs:Date.now()-started,passed:results.filter(r=>r.status==='PASS').length,failed:results.filter(r=>r.status==='FAIL').length}));
 process.exitCode=results.every(r=>r.status==='PASS')?0:1;

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {selection,readJson,safeCurrentJob,generatedFailureDetails,browserLaunchDetails} from './qa-ci-progress.mjs';
 
 const integer=value=>Number.isSafeInteger(value)&&value>=0;
 const safeJob=value=>typeof value==='string'&&value.length<=240&&/^[A-Za-z0-9_./ -]+$/.test(value)&&!value.includes('..');
@@ -181,7 +182,7 @@ export function markdownReport(result){
   'Privacy: raw logs, captures, DOM, traces, browser profiles, source text and arbitrary error messages are not published.\n';
 }
 function run(args,cwd){const r=spawnSync(process.execPath,args,{cwd,encoding:'utf8',maxBuffer:16*1024*1024});if(r.status!==0)throw Error('PLAN_UNAVAILABLE');return r.stdout;}
-export function exportReport({source,raw,out,summary,outcome}){
+export function exportReport({source,raw,out,summary,outcome,job}){
  const root=path.resolve(source),destination=path.resolve(out);
  if(fs.existsSync(destination))throw Error('REPORT_DESTINATION_NOT_FRESH');
  if(destination===root||destination.startsWith(root+path.sep))throw Error('REPORT_INSIDE_SOURCE');
@@ -190,9 +191,29 @@ export function exportReport({source,raw,out,summary,outcome}){
  const plan=JSON.parse(run(['tools/qa-queue.mjs','pre-ff','--list'],root));
  const file=path.join(path.resolve(raw),'RESULTS.json');
  const input=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):null;
- const failureLogs=plan.map((job,index)=>input?.results?.[index]?.status==='FAIL'?readFailureLog(raw,index,job.id):'');
+ const canonical=plan.map(entry=>normalizeJob(entry,root)),indices=selection(canonical,job);
+ const diagnostic=job!==undefined&&job!=='';
+ if(diagnostic&&input&&JSON.stringify(input.selectedFullIndices)!==JSON.stringify(indices))throw Error('JOB_PLAN_MISMATCH');
+ const selectedPlan=indices.map(index=>plan[index-1]);
+ const failureLogs=selectedPlan.map((entry,index)=>input?.results?.[index]?.status==='FAIL'?readFailureLog(raw,indices[index]-1,entry.id):'');
  const knownSourceFiles=collectTrackedCodeFiles(root);
- const projected=projectResults({plan,raw:input,root,sha:git.stdout.trim(),outcome,failureLogs,knownSourceFiles});
+ const projected=projectResults({plan:selectedPlan,raw:input,root,sha:git.stdout.trim(),outcome,failureLogs,knownSourceFiles});
+ if(diagnostic){projected.result.schema='pre-ff-diagnostic-report/v1';projected.result.fullPlanTotal=plan.length;projected.result.selectedFullIndices=indices;}
+ for(const [i,row]of projected.result.jobs.entries()){
+  if(diagnostic)row.index=indices[i];
+  const privateRow=input.results[i];
+  const launch=row.status==='FAIL'?browserLaunchDetails(failureLogs[i]):null;
+  if(launch)row.browserLaunch=launch;
+  if(privateRow.timedOut===true){
+   if(privateRow.status!=='FAIL'||privateRow.exitCode!==124)throw Error('INVALID_JOB_STATUS');
+   row.timedOut=true;row.diagnostic={errorClass:'TimeoutError',cause:'TIMEOUT',firstLine:'TimeoutError: CI job deadline exceeded; owned processes terminated.',messageRedacted:true};
+  }
+  if(row.status==='FAIL'&&row.id==='books/shared/tools/check-generated-rebuild.mjs'){
+   const detail=generatedFailureDetails({source:root,raw,index:row.index});if(detail)row.generated=detail;
+  }
+ }
+ const current=safeCurrentJob(readJson(path.join(raw,'CURRENT_JOB.json')),canonical,indices);
+ if(current)projected.result.currentJob=current;
  const files={'JOB_PLAN.json':JSON.stringify(projected.plan,null,2)+'\n','RESULTS.json':JSON.stringify(projected.result,null,2)+'\n','REPORT.md':markdownReport(projected.result)};
  for(const body of Object.values(files))if(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/.test(body))throw Error('EMAIL_IN_PUBLIC_REPORT');
  fs.mkdirSync(destination,{recursive:true});
@@ -203,7 +224,7 @@ export function exportReport({source,raw,out,summary,outcome}){
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  try{
   const [command,...args]=process.argv.slice(2),options={};
-  for(const arg of args){const match=/^--(source|raw|out|summary|outcome)=(.*)$/.exec(arg);if(!match||Object.hasOwn(options,match[1]))throw Error('INVALID_REPORT_OPTION');options[match[1]]=match[2];}
+  for(const arg of args){const match=/^--(source|raw|out|summary|outcome|job)=(.*)$/.exec(arg);if(!match||Object.hasOwn(options,match[1]))throw Error('INVALID_REPORT_OPTION');options[match[1]]=match[2];}
   if(command!=='report'||['source','raw','out','outcome'].some(key=>!Object.hasOwn(options,key)))throw Error('INVALID_REPORT_COMMAND');
   const report=exportReport(options);console.log(`Public pre-FF report: ${report.status}; ${report.passed}/${report.total} PASS`);process.exitCode=report.status==='PASS'?0:1;
  }catch(error){
