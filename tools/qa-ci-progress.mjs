@@ -35,6 +35,7 @@ export function safeCurrentJob(row,plan,selected){
   !integer(row.ordinal)||row.ordinal<1||row.index!==selected[row.ordinal-1]||row.id!==plan[row.index-1]?.id||!integer(row.elapsedMs)||!phases.has(row.phase))return null;
  return {index:row.index,id:plan[row.index-1].id,phase:row.phase,elapsedMs:row.elapsedMs,
   ...(integer(row.timeoutMs)?{timeoutMs:row.timeoutMs}:{}),...(typeof row.timedOut==='boolean'?{timedOut:row.timedOut}:{}),
+  ...(row.processExitCode===null||Number.isSafeInteger(row.processExitCode)?{processExitCode:row.processExitCode}:{}),
   ...(['PASS','FAIL','TIMEOUT'].includes(row.status)?{status:row.status}:{})};
 }
 export function browserLaunchDetails(text){

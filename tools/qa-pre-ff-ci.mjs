@@ -204,6 +204,14 @@ export function exportReport({source,raw,out,summary,outcome,job}){
  for(const [i,row]of projected.result.jobs.entries()){
   if(diagnostic)row.index=indices[i];
   const privateRow=input.results[i];
+  if(Object.hasOwn(privateRow,'originalExitCode')){
+   if(privateRow.originalExitCode!==null&&!Number.isSafeInteger(privateRow.originalExitCode))throw Error('INVALID_EXIT_CODE');
+   row.processExitCode=privateRow.originalExitCode;
+  }
+  if(typeof privateRow.teardown?.confirmed==='boolean'){
+   row.teardownConfirmed=privateRow.teardown.confirmed;
+   if(integer(privateRow.teardown.reapedChildren))row.reapedChildren=privateRow.teardown.reapedChildren;
+  }
   const launch=row.status==='FAIL'?browserLaunchDetails(failureLogs[i]):null;
   if(launch)row.browserLaunch=launch;
   const browserPhase=browserPhaseDetails({raw,index:row.index,id:row.id});if(browserPhase)row.browserPhases=browserPhase;

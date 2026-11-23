@@ -35,6 +35,7 @@ check('marker-projection-omits-PID-path-and-private-fields',()=>{
  const row={...start,phase:'cleanup',childPid:123,private:'PRIVATE_CAPTURE',timeoutMs:300000};delete row.event;
  assert.deepEqual(safeCurrentJob(row,plan,[1]),{index:1,id:plan[0].id,phase:'cleanup',elapsedMs:0,timeoutMs:300000});
  assert.equal(safeCurrentJob({...row,id:'PRIVATE_CAPTURE'},plan,[1]),null);
+ assert.equal(safeCurrentJob({...row,processExitCode:0},plan,[1]).processExitCode,0);
 });
 check('JSON-difference-publishes-path-and-types-only',()=>{
  const result=jsonDifferencePaths({articles:[{ownedHtml:'PRIVATE_BEFORE'}]},{articles:[{ownedHtml:'PRIVATE_AFTER'}]});
@@ -65,10 +66,11 @@ try{
   const raw=path.join(arena,'raw');fs.mkdirSync(raw);
   const listed=spawnSync(process.execPath,['tools/qa-queue.mjs','pre-ff','--list'],{cwd:root,encoding:'utf8'});assert.equal(listed.status,0);
   const jobs=JSON.parse(listed.stdout),job=jobs[1];
-  fs.writeFileSync(path.join(raw,'RESULTS.json'),JSON.stringify({mode:'pre-ff',root,elapsedMs:300001,selectedFullIndices:[2],results:[{...job,originalIndex:2,status:'FAIL',exitCode:124,elapsedMs:300001,timedOut:true}]}));
+  fs.writeFileSync(path.join(raw,'RESULTS.json'),JSON.stringify({mode:'pre-ff',root,elapsedMs:300001,selectedFullIndices:[2],results:[{...job,originalIndex:2,status:'FAIL',exitCode:124,originalExitCode:0,elapsedMs:300001,timedOut:true,teardown:{confirmed:true,reapedChildren:3}}]}));
   const result=exportReport({source:root,raw,out:path.join(arena,'report'),outcome:'failure',job:'2'});
   assert.equal(result.schema,'pre-ff-diagnostic-report/v1');assert.equal(result.fullPlanTotal,213);assert.equal(result.total,1);
   assert.equal(result.jobs[0].index,2);assert.equal(result.failed,1);assert.equal(result.jobs[0].diagnostic.cause,'TIMEOUT');
+  assert.equal(result.jobs[0].processExitCode,0);assert.equal(result.jobs[0].teardownConfirmed,true);assert.equal(result.jobs[0].reapedChildren,3);
   assert.throws(()=>exportReport({source:root,raw,out:path.join(arena,'mismatch'),outcome:'failure',job:'3'}),/JOB_PLAN_MISMATCH/);
  });
 }finally{cleanupQaTempDir(arena);}
