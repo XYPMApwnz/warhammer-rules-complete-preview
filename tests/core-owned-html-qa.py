@@ -63,7 +63,13 @@ class OwnedHtmlTests(unittest.TestCase):
         def normalize_before_parse(value, *args, **kwargs):
             if isinstance(value, bytes):
                 value = value.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
-            return native_parse(value, *args, **kwargs)
+            document = native_parse(value, *args, **kwargs)
+            # Simulate 2.14 preserving the malformed empty quote-only attribute.
+            # The source facts and every legitimate attribute stay unchanged.
+            for node in document.iter():
+                if node.tag == "div":
+                    node.set('"', "")
+            return document
 
         with patch.object(html, "fromstring", side_effect=normalize_before_parse):
             _, outputs = builder.source_outputs(source)
@@ -73,6 +79,31 @@ class OwnedHtmlTests(unittest.TestCase):
         for name, original in originals.items():
             self.assertTrue((source / name).read_bytes() == original,
                             "Parser normalization changed authenticated source bytes")
+
+    def test_nonempty_quote_only_attribute_is_not_silently_discarded(self):
+        native_parse = html.fromstring
+
+        def malformed(*args, **kwargs):
+            node = native_parse(*args, **kwargs)
+            node.set('"', "unexpected")
+            return node
+
+        with patch.object(html, "fromstring", side_effect=malformed):
+            with self.assertRaisesRegex(ValueError, "Unsupported nonempty quote-only"):
+                parse_owned_document(b"<div>synthetic</div>")
+
+    def test_only_empty_quote_attribute_is_removed(self):
+        native_parse = html.fromstring
+
+        def malformed(*args, **kwargs):
+            node = native_parse(*args, **kwargs)
+            node.set('"', "")
+            return node
+
+        with patch.object(html, "fromstring", side_effect=malformed):
+            node = parse_owned_document(b'<div id="sample" class="source" data-empty="">synthetic</div>')
+        self.assertEqual(dict(node.attrib), {"id": "sample", "class": "source", "data-empty": ""})
+        self.assertEqual(node.text, "synthetic")
 
     def test_accepted_outputs_remain_exact_and_ignore_libxml_serializer(self):
         source = builder.DEFAULT_SOURCE

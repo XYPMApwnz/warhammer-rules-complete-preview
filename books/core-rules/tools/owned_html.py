@@ -33,8 +33,14 @@ def parse_owned_document(raw: bytes):
     if crlf and NEWLINE_REFERENCE.search(raw):
         raise ValueError("Unsupported source HTML newline reference with CRLF")
     document = html.fromstring(canonical, parser=html.HTMLParser(encoding="utf-8"))
-    if crlf:
-        for node in document.iter():
+    for node in document.iter():
+        # libxml 2.14 retains a quote-only empty attribute from malformed HTML;
+        # earlier parsers discard it. It is not a valid HTML attribute or fact.
+        if '"' in node.attrib:
+            if node.attrib['"'] != "":
+                raise ValueError("Unsupported nonempty quote-only HTML attribute")
+            del node.attrib['"']
+        if crlf:
             for field in ("text", "tail"):
                 value = getattr(node, field)
                 if value:
