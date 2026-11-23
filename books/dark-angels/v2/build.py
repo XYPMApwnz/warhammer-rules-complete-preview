@@ -20,6 +20,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 sys.path.insert(0, str(ROOT/'books/shared/tools'))
 from source_refs_output import serialized_source_outputs
+from source_node_fingerprints import fingerprint as node_fingerprint, load_native_expectations
 sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
 from bridge import apply_book_official_updates
 BOOK = 'dark-angels'
@@ -103,7 +104,7 @@ def discover():
         key=address(document,node,kind)
         rows.append({'key':key,'kind':kind,'ownerKey':parent,'bookId':book,'data':data,
                      'document':document,'pointer':node.getroottree().getpath(node),
-                     'rawNodeSha256':sha(html.tostring(node,encoding='utf-8'))})
+                     'nodeFingerprintSha256':node_fingerprint(node)})
         return key
     sheets=load_tree(SHEETS)
     all_frames=sheets.xpath('//div['+css('dsOuterFrame')+']')
@@ -314,6 +315,7 @@ def collect(*,source_bindings=None,identity_bindings=None):
     verify_sources()
     rows,accounting=discover()
     bindings=(read(HERE/'source-bindings.json') if source_bindings is None else source_bindings)['recordAddresses']
+    node_expectations=load_native_expectations(HERE,bindings)
     identities=(read(HERE/'identity-bindings.json') if identity_bindings is None else identity_bindings)['bindings']
     bykey={x['key']:x for x in bindings}
     bysource={x['sourceEntityId']:x for x in identities}
@@ -330,7 +332,7 @@ def collect(*,source_bindings=None,identity_bindings=None):
         parent=sourcebykey.get(row['ownerKey'])
         if binding['kind']!=row['kind'] or identity['kind']!=row['kind'] or identity['ownerSourceId']!=parent or identity['bookId']!=row['bookId']:
             raise ValueError('Source kind/owner mismatch: '+row['key'])
-        if binding['rawNodeSha256']!=row['rawNodeSha256'] or binding['dataFingerprint']!=fingerprint(row['data']):
+        if node_expectations[binding['sourceEntityId']]['fingerprintSha256']!=row['nodeFingerprintSha256'] or binding['dataFingerprint']!=fingerprint(row['data']):
             raise ValueError('Reviewed source block changed: '+row['key'])
         data=copy.deepcopy(row['data'])
         if 'modelProfileKey' in data:

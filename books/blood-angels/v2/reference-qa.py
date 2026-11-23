@@ -5,7 +5,7 @@ checked BA source links/full blocks. Neither producer discovery nor BA runtime i
 an oracle. No old Army Book or old pricing is read.
 """
 from __future__ import annotations
-import copy, hashlib, importlib.util, json, sys
+import copy, hashlib, importlib.util, json, subprocess, sys
 from collections import Counter
 from functools import cache
 from pathlib import Path
@@ -14,6 +14,8 @@ from lxml import html
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.path.insert(0, str(ROOT / 'books/shared/tools'))
+from source_node_fingerprints import fingerprint, load_qa_expectations
 read = lambda p: json.loads(p.read_text(encoding='utf8'))
 sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest().upper()
 spec = importlib.util.spec_from_file_location('ba_independent_source_qa', HERE/'foundation-qa.py')
@@ -34,15 +36,51 @@ def captured_byte_tree(path):
     return html.fromstring(path.read_bytes())
 
 
+def read_published_facts(path):
+    # Reuse the accepted source-reference decoder; do not implement a Python codec.
+    script = ("import fs from 'node:fs';"
+        "import {parseProducerJSON} from './books/shared/source-refs-v2/producer-io.mjs';"
+        "process.stdout.write(JSON.stringify(parseProducerJSON(fs.readFileSync(process.argv[1],'utf8'))));")
+    result = subprocess.run(['node', '--input-type=module', '-e', script, str(path)],
+        cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8', check=False)
+    if result.returncode:
+        raise AssertionError('Published source-reference decoding failed')
+    return json.loads(result.stdout)
+
+
 def validate(inherited, mfm, issues):
     errors = []
     def need(ok, message):
         if not ok:
             errors.append(message)
-    sm = read(ROOT/'books/space-marines/v2/generated/base.json')
-    ba = read(HERE/'generated/base.json')
+    sm = read_published_facts(ROOT/'books/space-marines/v2/generated/base.json')
+    ba = read_published_facts(HERE/'generated/base.json')
     smby = {r['id']:r for r in sm['entities']}
     baby = {r['id']:r for r in ba['entities']}
+    contexts = []
+    def context(identifier, document, selector, legacy, parser_input):
+        return {'id': identifier, 'sourceDocument': document, 'selector': selector,
+                'legacySerializerSha256': legacy, 'parserInput': parser_input}
+    for reference in inherited['references']:
+        entity = smby.get(reference['canonicalId'])
+        if entity is not None and entity['kind'] == 'DATASHEET':
+            proof = reference['membershipProof']
+            contexts.append(context('inherited-sm/'+reference['canonicalId']+'/frame',
+                entity['provenance']['document'], proof['sourceFramePointer'], proof['sourceFrameSHA256'], 'bytes'))
+    for candidate in mfm['identityCandidates']:
+        for label in ('native', 'mfm'):
+            proof = candidate[label]
+            contexts.append(context('mfm-candidate/'+candidate['candidateNativeSourceIdentity']+'/'+label,
+                proof['document'], proof['pointer'], proof['rawNodeSha256'], 'unicode'))
+    for issue in issues['issues']:
+        for proof in issue.get('provenance', []):
+            if proof.get('pointer') and proof.get('rawNodeSha256'):
+                contexts.append(context('source-issue/'+issue['id']+'/'+proof['document']+'#'+proof['pointer'],
+                    proof['document'], proof['pointer'], proof['rawNodeSha256'], 'unicode'))
+    try:
+        node_expectations = load_qa_expectations(HERE, contexts, group='reference')
+    except ValueError:
+        return ['reference source-node locator/legacy enrollment mismatch']
     hubpath = HERE/'sources/raw/wahapedia-blood-angels-main.html'
     hub = tree(hubpath)
     common = {r['id'] for r in smby.values() if r['kind']=='DATASHEET'
@@ -87,7 +125,9 @@ def validate(inherited, mfm, issues):
                 'SM source frame/reference address mismatch')
             if raw:
                 captured_frame=captured_byte_tree(source).xpath(entity['provenance']['pointer'])
-                need(len(captured_frame)==1 and hashlib.sha256(html.tostring(captured_frame[0],encoding='utf8')).hexdigest().upper()==proof['sourceFrameSHA256'],
+                expected = node_expectations['inherited-sm/'+reference['canonicalId']+'/frame']
+                need(expected['legacySerializerSha256'] == proof['sourceFrameSHA256']
+                    and len(captured_frame)==1 and fingerprint(captured_frame[0])==expected['fingerprintSha256'],
                     'SM source frame fingerprint changed')
         else:
             matches = [n for p in proof['matchingFullBlockPointers'] for n in hub.xpath(p)]
@@ -127,8 +167,9 @@ def validate(inherited, mfm, issues):
             found=tree(ROOT/proof['document']).xpath(proof['pointer'])
             need(len(found)==1, 'pricing candidate occurrence missing')
             if found:
-                need(hashlib.sha256(html.tostring(found[0],encoding='utf8')).hexdigest().upper()==proof['rawNodeSha256'],
-                    'pricing candidate source node changed')
+                expected = node_expectations['mfm-candidate/'+candidate['candidateNativeSourceIdentity']+'/'+label]
+                need(expected['legacySerializerSha256'] == proof['rawNodeSha256']
+                    and fingerprint(found[0]) == expected['fingerprintSha256'], 'pricing candidate source node changed')
         need(candidate['mfm']['sourceOwner']=='blood-angels' and candidate['mfm']['version']=='v1.6', 'foreign/old pricing candidate owner')
     need(Counter(c['candidateKind'] for c in candidates)=={'UNIT':14,'DETACHMENT':3,'ENHANCEMENT':8},
         'MFM candidate owner population changed')
@@ -154,8 +195,9 @@ def validate(inherited, mfm, issues):
                 evidence = tree(ROOT/proof['document']).xpath(proof['pointer'])
                 need(len(evidence)==1, 'source issue evidence occurrence missing')
                 if evidence and proof.get('rawNodeSha256'):
-                    need(hashlib.sha256(html.tostring(evidence[0],encoding='utf8')).hexdigest().upper()
-                        ==proof['rawNodeSha256'], 'source issue node hash changed')
+                    expected = node_expectations['source-issue/'+issue['id']+'/'+proof['document']+'#'+proof['pointer']]
+                    need(expected['legacySerializerSha256'] == proof['rawNodeSha256']
+                        and fingerprint(evidence[0]) == expected['fingerprintSha256'], 'source issue node hash changed')
     issues_by_id = {issue['id']:issue for issue in issues['issues']}
     need(issues_by_id.get('BA-SRC-STORMLANCE-DP',{}).get('applied') is False,
         'Stormlance conflict silently applied')

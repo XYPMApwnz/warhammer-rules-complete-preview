@@ -25,6 +25,7 @@ ROOT = HERE.parents[2]
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(ROOT/'books/shared/tools'))
 from source_refs_output import serialized_source_outputs
+from source_node_fingerprints import row_text_fingerprint
 BOOK = "chaos-space-marines"
 read = lambda path: json.loads(path.read_text(encoding="utf-8"))
 
@@ -39,15 +40,6 @@ def digest(value):
 
 def payload_digest(value):
     return digest(json.dumps(value, ensure_ascii=False, sort_keys=True).encode("utf-8"))
-
-
-def row_text_fingerprint(row):
-    """Hash complete ordered cell text, never libxml's HTML serialization."""
-    if row.tag != "tr" or not row.xpath("./th|./td"):
-        raise ValueError("Weapon source occurrence is not a table row")
-    cells = [" ".join(str(cell.text_content()).split()) for cell in row.xpath("./th|./td")]
-    payload = {"schema": "html-row-cell-text/v1", "cells": cells}
-    return digest(json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")).lower()
 
 
 def unique_index(items, field):

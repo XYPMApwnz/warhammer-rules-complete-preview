@@ -29,6 +29,15 @@ import json,sys,hashlib
 from pathlib import Path
 from lxml import html
 f=json.load(sys.stdin);root=Path(f['root']);docs={};records={};checks=0
+sys.path.insert(0,str(root/'books/shared/tools'))
+from source_node_fingerprints import fingerprint,load_qa_expectations
+contexts=[]
+for row in f['review']['corrections']+f['review']['unresolved']:
+ for proof in row['sourceProof'] if isinstance(row['sourceProof'],list) else [row['sourceProof']]:
+  contexts.append({'id':'roster-source/'+row['id']+'/proof/'+proof['canonicalId'],'sourceDocument':proof['source']['document'],'selector':proof['source']['pointer'],'parserInput':'bytes','legacySerializerSha256':proof['selectedHtmlSha256']})
+ if row['type']=='SOURCE_CONTEXTUAL_COMPOSITION_PROFILE_BINDING':
+  contexts.append({'id':'roster-source/'+row['id']+'/unit-header','sourceDocument':row['sourceProof'][0]['source']['document'],'selector':row['context']['unitHeaderPointer'],'parserInput':'bytes','legacySerializerSha256':row['context']['unitHeaderHtmlSha256']})
+node_expectations=load_qa_expectations(root/'books/space-marines/v2',contexts,group='roster-source-review')
 sha=lambda v:hashlib.sha256(v).hexdigest().upper()
 norm=lambda v:' '.join(v.split())
 for row in f['review']['corrections']+f['review']['unresolved']:
@@ -39,7 +48,9 @@ for row in f['review']['corrections']+f['review']['unresolved']:
   nodes=tree.xpath(src['pointer']);assert len(nodes)==1;n=nodes[0]
   text=norm(n.text_content());assert text==proof['selectedSourceText']
   assert sha(text.encode())==proof['selectedTextSha256']
-  assert sha(html.tostring(n,encoding='unicode').encode())==proof['selectedHtmlSha256']
+  pin=node_expectations['roster-source/'+row['id']+'/proof/'+proof['canonicalId']]
+  assert pin['legacySerializerSha256']==proof['selectedHtmlSha256']
+  assert fingerprint(n)==pin['fingerprintSha256']
   records[proof['canonicalId']]=(n,tree);checks+=1
 for row in f['review']['corrections']:
  if row['type']=='SOURCE_CONTEXTUAL_COMPOSITION_PROFILE_BINDING':
@@ -48,7 +59,9 @@ for row in f['review']['corrections']:
   assert 'datasheet' in unit.get('class','').split()
   heads=tree.xpath(context['unitHeaderPointer']);assert len(heads)==1;head=heads[0]
   assert unit in head.iterancestors();assert norm(head.text_content())=='Vanguard Veteran Squad With Jump Packs'
-  assert sha(html.tostring(head,encoding='unicode').encode())==context['unitHeaderHtmlSha256']
+  pin=node_expectations['roster-source/'+row['id']+'/unit-header']
+  assert pin['legacySerializerSha256']==context['unitHeaderHtmlSha256']
+  assert fingerprint(head)==pin['fingerprintSha256']
   profiles=unit.xpath('.//span[contains(concat(" ",normalize-space(@class)," ")," dsModelName ")]')
   assert sorted(norm(n.text_content()) for n in profiles)==['Vanguard Veteran','Vanguard Veteran Sergeant']
   composition=records[row['compositionId']][0];profile=records[row['modelProfileId']][0]

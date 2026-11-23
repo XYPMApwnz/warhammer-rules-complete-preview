@@ -5,11 +5,12 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {parseProducerJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {enhancementEligibility} from './rule-contract-declarations.mjs';
 import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
-const review=read('./roster-named-recipient-review.json'),facts=read('./generated/effective.json');
+const review=read('./roster-named-recipient-review.json'),facts=parseProducerJSON(fs.readFileSync(new URL('./generated/effective.json',import.meta.url),'utf8'));
 const index=new Map(facts.entities.map(e=>[e.id,e]));
 const expected=new Map([
  ['enhancement-sm-90544ca326d243be',['unit-sm-63a015916b46446a','model-sm-303a4d0a13024600']],
@@ -46,19 +47,34 @@ import json,sys,hashlib
 from pathlib import Path
 from lxml import html
 f=json.load(sys.stdin);root=Path(f['root']);docs={};checks=0;dispatches=0
+sys.path.insert(0,str(root/'books/shared/tools'))
+from source_node_fingerprints import fingerprint,load_qa_expectations
+contexts=[]
+for row in f['review']['records']:
+ for pin in row['proofs']:
+  contexts.append({'id':'roster-named/'+row['id']+'/proof/'+pin['entityId'],'sourceDocument':pin['source']['document'],'selector':pin['source']['pointer'],'parserInput':'bytes','legacySerializerSha256':pin['rawNodeHtmlSha256']})
+ dispatch=row['sourceDispatch'];document=row['proofs'][0]['source']['document']
+ contexts.append({'id':'roster-named/'+row['id']+'/dispatch-link','sourceDocument':document,'selector':dispatch['linkPointer'],'parserInput':'bytes','legacySerializerSha256':dispatch['linkHtmlSha256']})
+ if 'tooltipHtmlSha256' in dispatch:
+  contexts.append({'id':'roster-named/'+row['id']+'/dispatch-tooltip','sourceDocument':document,'selector':dispatch['tooltipPointer'],'parserInput':'bytes','legacySerializerSha256':dispatch['tooltipHtmlSha256']})
+node_expectations=load_qa_expectations(root/'books/space-marines/v2',contexts,group='roster-named-recipient')
 sha=lambda b:hashlib.sha256(b).hexdigest().upper()
 norm=lambda s:' '.join(s.split())
 for row in f['review']['records']:
  for pin in row['proofs']:
   source=pin['source'];raw=(root/source['document']).read_bytes();assert sha(raw)==source['sha256']
   tree=docs.setdefault(source['document'],html.fromstring(raw).getroottree());nodes=tree.xpath(source['pointer']);assert len(nodes)==1
-  assert sha(html.tostring(nodes[0],encoding='unicode').encode())==pin['rawNodeHtmlSha256'];checks+=1
+  expected=node_expectations['roster-named/'+row['id']+'/proof/'+pin['entityId']]
+  assert expected['legacySerializerSha256']==pin['rawNodeHtmlSha256']
+  assert fingerprint(nodes[0])==expected['fingerprintSha256'];checks+=1
  entity=row['proofs'][0];tree=docs[entity['source']['document']];node=tree.xpath(entity['source']['pointer'])[0]
  paragraphs=node.xpath('./p[not(contains(@class,"legend2"))]');assert len(paragraphs)==1
  assert norm(paragraphs[0].text_content())==row['sourceGameplayParagraph']
  dispatch=row['sourceDispatch'];links=tree.xpath(dispatch['linkPointer']);assert len(links)==1;link=links[0]
  assert link.get('href')==dispatch['href'];assert norm(link.text_content())==dispatch['linkText']
- assert sha(html.tostring(link,encoding='unicode').encode())==dispatch['linkHtmlSha256']
+ expected=node_expectations['roster-named/'+row['id']+'/dispatch-link']
+ assert expected['legacySerializerSha256']==dispatch['linkHtmlSha256']
+ assert fingerprint(link)==expected['fingerprintSha256']
  if dispatch['kind']=='EXPLICIT_SOURCE_DATASHEET_LINK':assert paragraphs[0] in link.iterancestors()
  else:
   triggers=tree.xpath(dispatch['triggerPointer']);assert len(triggers)==1;trigger=triggers[0]
@@ -66,7 +82,9 @@ for row in f['review']['records']:
   assert trigger.get('data-tooltip-content')==dispatch['tooltipId']
   tooltip=tree.xpath(dispatch['tooltipPointer']);assert len(tooltip)==1;tooltip=tooltip[0]
   assert tooltip.get('id')==dispatch['tooltipId'][1:]
-  assert sha(html.tostring(tooltip,encoding='unicode').encode())==dispatch['tooltipHtmlSha256']
+  expected=node_expectations['roster-named/'+row['id']+'/dispatch-tooltip']
+  assert expected['legacySerializerSha256']==dispatch['tooltipHtmlSha256']
+  assert fingerprint(tooltip)==expected['fingerprintSha256']
   assert tooltip in link.iterancestors();assert 'TECHMARINE keyword is used' in norm(tooltip.text_content())
   actual=[{'href':a.get('href'),'label':norm(a.text_content()),'pointer':tree.getpath(a)} for a in tooltip.xpath('.//a[@href]')]
   assert actual==dispatch['allLinkedSourceRecipients']

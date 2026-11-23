@@ -213,6 +213,60 @@ class ParserDOMCensusQA(unittest.TestCase):
             self.assertEqual(result["serializerDifferences"], 1)
             self.assertFalse(rows[0]["serializerMatches"])
 
+    def test_portable_guard_accepts_serializer_drift_but_preserves_legacy_measurement(self):
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name)
+            fixture(root)
+            here = root / "books/space-marines/v2"
+            path = here / "source-bindings.json"
+            bindings = json.loads(path.read_text())
+            address = bindings["recordAddresses"][0]
+            address["rawNodeSha256"] = "0" * 64
+            path.write_text(json.dumps(bindings))
+            node = html.fromstring((root / address["document"]).read_text()).xpath(address["pointer"])[0]
+            sidecar = {"schema": "native-source-node-fingerprints/v1", "bookId": "space-marines", "nodes": [{
+                "sourceEntityId": address["sourceEntityId"], "document": address["document"], "pointer": address["pointer"],
+                "legacySerializerSha256": address["rawNodeSha256"], "fingerprintSha256": census.candidate_fingerprint(node)}]}
+            (here / "source-node-fingerprints.json").write_text(json.dumps(sidecar))
+            result, rows = census.collect(root)
+            self.assertEqual(result["status"], "PASS")
+            self.assertEqual(result["serializerDifferences"], 1)
+            self.assertEqual(result["activeFingerprintDifferences"], 0)
+            self.assertEqual(rows[0]["activeScheme"], "portable")
+            self.assertFalse(rows[0]["serializerMatches"])
+            self.assertTrue(rows[0]["activeFingerprintMatches"])
+            sidecar["nodes"][0]["fingerprintSha256"] = "0" * 64
+            (here / "source-node-fingerprints.json").write_text(json.dumps(sidecar))
+            failed, _ = census.collect(root)
+            self.assertEqual(failed["status"], "FAIL")
+            self.assertEqual(failed["activeFingerprintDifferences"], 1)
+
+    def test_portable_qa_guard_uses_explicit_input_domain_without_source_body(self):
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name)
+            fixture(root)
+            here = root / "books/space-marines/v2"
+            address = json.loads((here / "source-bindings.json").read_text())["recordAddresses"][0]
+            node = html.fromstring((root / address["document"]).read_text()).xpath(address["pointer"])[0]
+            record = {"id": "qa-proof/example[0]", "sourceDocument": address["document"], "selector": address["pointer"],
+                      "legacySerializerSha256": address["rawNodeSha256"], "parserInput": "unicode",
+                      "fingerprintSha256": census.candidate_fingerprint(node)}
+            sidecar = {"schema": "source-node-qa-fingerprints/v1", "bookId": "space-marines",
+                       "groups": {"static-gameplay": [record]}}
+            (here / "source-node-qa-fingerprints.json").write_text(json.dumps(sidecar))
+            result, rows = census.collect(root)
+            self.assertEqual(result["status"], "PASS")
+            self.assertEqual(result["totalBindings"], 3)
+            self.assertEqual(result["qaBindings"], 1)
+            self.assertEqual(result["activeFingerprintDifferences"], 0)
+            self.assertEqual([row["parserInput"] for row in rows if row["guardType"] == "qa"], ["unicode"])
+            self.assertNotIn("PRIVATE_BODY_SENTINEL", json.dumps(result) + json.dumps(rows))
+            record["parserInput"] = "auto"
+            (here / "source-node-qa-fingerprints.json").write_text(json.dumps(sidecar))
+            with self.assertRaises(census.CensusError) as raised:
+                census.collect(root)
+            self.assertEqual(raised.exception.code, "INVALID_ACTIVE_QA_FINGERPRINTS")
+
     def test_duplicate_binding_rejected(self):
         with tempfile.TemporaryDirectory() as name:
             root = Path(name)

@@ -14,9 +14,14 @@ from lxml import etree, html
 
 BOOKS = ("space-marines", "blood-angels", "dark-angels")
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "books/shared/tools"))
+from source_node_fingerprints import fingerprint as candidate_fingerprint, load_native_expectations, load_qa_expectations
+
 FIELDS = ("book", "canonicalId", "sourceEntityId", "kind", "document", "selector",
           "nodeTag", "expectedSerializerSha256", "actualSerializerSha256",
-          "serializerMatches", "candidateFingerprintSha256")
+          "serializerMatches", "candidateFingerprintSha256", "guardType", "guardId",
+          "parserInput", "activeScheme", "expectedActiveFingerprintSha256",
+          "actualActiveFingerprintSha256", "activeFingerprintMatches")
 
 
 class CensusError(Exception):
@@ -29,35 +34,6 @@ class CensusError(Exception):
 
 def digest(raw):
     return hashlib.sha256(raw).hexdigest().upper()
-
-
-def normalized(text):
-    return " ".join((text or "").split())
-
-
-def candidate_fingerprint(node):
-    """Hash complete row text, or an ordered structural non-row token stream."""
-    if node.tag == "tr":
-        value = ["row", [normalized("".join(cell.itertext()))
-                         for cell in node.xpath("./td|./th")]]
-    else:
-        tokens = []
-
-        def visit(element):
-            if isinstance(element.tag, str):
-                tokens.append(["open", element.tag,
-                               sorted(set(element.get("class", "").split()))])
-                tokens.append(["text", normalized(element.text)])
-                for child in element:
-                    visit(child)
-                tokens.append(["close", element.tag])
-            else:
-                tokens.append(["comment", normalized(element.text)])
-            tokens.append(["tail", normalized(element.tail)])
-
-        visit(node)
-        value = ["tree", tokens]
-    return digest(json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode("utf-8"))
 
 
 def read_json(path):
@@ -121,6 +97,52 @@ def verify_sources(root, book):
     return verified, {artifact["path"] for artifact in enrollment["artifacts"]}
 
 
+def collect_qa(root, here, book, enrolled):
+    path = here / "source-node-qa-fingerprints.json"
+    if not path.exists():
+        return []
+    document = read_json(path)
+    if not isinstance(document, dict) or not isinstance(document.get("groups"), dict):
+        raise CensusError("INVALID_ACTIVE_QA_FINGERPRINTS", book)
+    rows, trees = [], {}
+    for group, records in document["groups"].items():
+        try:
+            contexts = [{key: record[key] for key in
+                         ("id", "sourceDocument", "selector", "legacySerializerSha256", "parserInput")}
+                        for record in records]
+            expected = load_qa_expectations(here, contexts, group=group)
+        except (ValueError, KeyError, TypeError):
+            raise CensusError("INVALID_ACTIVE_QA_FINGERPRINTS", book) from None
+        for identifier, record in expected.items():
+            if not re.fullmatch(r"[A-Za-z0-9_./:#\[\]-]+", identifier):
+                raise CensusError("INVALID_QA_IDENTIFIER", book)
+            name, selector, mode = record["sourceDocument"], record["selector"], record["parserInput"]
+            source_path(root, name)
+            if name not in enrolled:
+                raise CensusError("UNENROLLED_QA_SOURCE", book)
+            if not re.fullmatch(r"(?:/[a-z][a-z0-9]*(?:\[\d+\])?)+", selector):
+                raise CensusError("INVALID_QA_SELECTOR", book)
+            key = (name, mode)
+            if key not in trees:
+                file = source_path(root, name)
+                trees[key] = html.fromstring(file.read_bytes() if mode == "bytes" else file.read_text(encoding="utf-8"))
+            selected = trees[key].xpath(selector)
+            if len(selected) != 1:
+                raise CensusError("NON_UNIQUE_QA_SELECTOR", book)
+            node = selected[0]
+            actual = candidate_fingerprint(node)
+            rows.append({"book": book, "canonicalId": "", "sourceEntityId": identifier,
+                         "kind": "QA_SOURCE_PIN", "document": name, "selector": selector,
+                         "nodeTag": node.tag, "expectedSerializerSha256": record["legacySerializerSha256"],
+                         "actualSerializerSha256": "", "serializerMatches": "",
+                         "candidateFingerprintSha256": actual, "guardType": "qa", "guardId": identifier,
+                         "parserInput": mode, "activeScheme": "portable",
+                         "expectedActiveFingerprintSha256": record["fingerprintSha256"],
+                         "actualActiveFingerprintSha256": actual,
+                         "activeFingerprintMatches": actual == record["fingerprintSha256"]})
+    return rows
+
+
 def collect(root):
     rows, books, sources = [], [], []
     enrolled_by_book = {}
@@ -140,6 +162,12 @@ def collect(root):
         if (len(by_source) != len(identities) or len(set(source_ids)) != len(bindings)
                 or len(set(keys)) != len(bindings) or set(source_ids) != set(by_source)):
             raise CensusError("INCOMPLETE_OR_DUPLICATE_BINDINGS", book)
+        portable = None
+        if (here / "source-node-fingerprints.json").exists():
+            try:
+                portable = load_native_expectations(here, bindings)
+            except (ValueError, KeyError, TypeError):
+                raise CensusError("INVALID_ACTIVE_NATIVE_FINGERPRINTS", book) from None
         documents, book_rows = {}, []
         for binding in bindings:
             sid, document, selector = (binding["sourceEntityId"], binding["document"], binding["pointer"])
@@ -163,19 +191,38 @@ def collect(root):
             expected = binding["rawNodeSha256"].upper()
             if not re.fullmatch(r"[0-9A-F]{64}", expected):
                 raise CensusError("INVALID_EXPECTED_HASH", book)
-            row = dict(zip(FIELDS, (book, canonical, sid, kind, document, selector, node.tag,
-                                    expected, actual, actual == expected, candidate_fingerprint(node))))
+            candidate = candidate_fingerprint(node)
+            active_expected = portable[sid]["fingerprintSha256"] if portable is not None else expected
+            active_actual = candidate if portable is not None else actual
+            row = {"book": book, "canonicalId": canonical, "sourceEntityId": sid, "kind": kind,
+                   "document": document, "selector": selector, "nodeTag": node.tag,
+                   "expectedSerializerSha256": expected, "actualSerializerSha256": actual,
+                   "serializerMatches": actual == expected, "candidateFingerprintSha256": candidate,
+                   "guardType": "native", "guardId": sid, "parserInput": "unicode",
+                   "activeScheme": "portable" if portable is not None else "legacy-serializer",
+                   "expectedActiveFingerprintSha256": active_expected,
+                   "actualActiveFingerprintSha256": active_actual,
+                   "activeFingerprintMatches": active_actual == active_expected}
             book_rows.append(row)
         rows.extend(book_rows)
+        qa_rows = collect_qa(root, here, book, enrolled)
+        rows.extend(qa_rows)
         books.append({"book": book, "bindings": len(bindings),
                       "serializerMatches": sum(row["serializerMatches"] for row in book_rows),
                       "serializerDifferences": sum(not row["serializerMatches"] for row in book_rows),
                       "rowNodes": sum(row["nodeTag"] == "tr" for row in book_rows),
-                      "nonRowNodes": sum(row["nodeTag"] != "tr" for row in book_rows)})
-    return {"schema": "native-parser-dom-census/v1", "status": "FAIL" if any(
-        book["serializerDifferences"] for book in books) else "PASS",
+                      "nonRowNodes": sum(row["nodeTag"] != "tr" for row in book_rows),
+                      "activeScheme": "portable" if portable is not None else "legacy-serializer",
+                      "nativeActiveDifferences": sum(not row["activeFingerprintMatches"] for row in book_rows),
+                      "qaBindings": len(qa_rows),
+                      "qaActiveDifferences": sum(not row["activeFingerprintMatches"] for row in qa_rows)})
+    return {"schema": "native-parser-dom-census/v2", "status": "FAIL" if any(
+        book["nativeActiveDifferences"] or book["qaActiveDifferences"] for book in books) else "PASS",
         "versions": versions(),
-        "totalBindings": len(rows), "serializerDifferences": sum(
+        "totalBindings": sum(book["bindings"] for book in books),
+        "qaBindings": sum(book["qaBindings"] for book in books),
+        "activeFingerprintDifferences": sum(not row["activeFingerprintMatches"] for row in rows),
+        "serializerDifferences": sum(
             book["serializerDifferences"] for book in books), "books": books,
         "sources": sources}, rows
 
@@ -204,18 +251,18 @@ def main(argv=None):
         result, rows = collect(source)
         result["sourceSha"] = checkout_source_sha(source)
     except CensusError as error:
-        result = {"schema": "native-parser-dom-census/v1", "status": "FAIL", "code": error.code,
+        result = {"schema": "native-parser-dom-census/v2", "status": "FAIL", "code": error.code,
                   "versions": versions()}
         if error.book in BOOKS:
             result["book"] = error.book
         rows = []
     except Exception:
         # Parser and filesystem exceptions may contain accepted source snippets or user paths.
-        result, rows = {"schema": "native-parser-dom-census/v1", "status": "FAIL", "code": "CENSUS_INPUT_FAILURE",
+        result, rows = {"schema": "native-parser-dom-census/v2", "status": "FAIL", "code": "CENSUS_INPUT_FAILURE",
                         "versions": versions()}, []
     write_results(out, result, rows)
     print(json.dumps({key: result[key] for key in
-                      ("status", "code", "book", "sourceSha", "versions", "totalBindings", "serializerDifferences", "books")
+                      ("status", "code", "book", "sourceSha", "versions", "totalBindings", "qaBindings", "serializerDifferences", "activeFingerprintDifferences", "books")
                       if key in result}, separators=(",", ":")))
     return 0 if result["status"] == "PASS" else 1
 

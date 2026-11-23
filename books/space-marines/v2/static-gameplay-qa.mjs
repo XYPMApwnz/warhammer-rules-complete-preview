@@ -50,12 +50,18 @@ import json,sys,hashlib
 from pathlib import Path
 from lxml import html
 data=json.load(sys.stdin);root=Path(data['root']);docs={};checks=0
+sys.path.insert(0,str(root/'books/shared/tools'))
+from source_node_fingerprints import fingerprint,load_qa_expectations
+contexts=[{'id':'static-gameplay/'+pin['canonicalId']+'/source','sourceDocument':pin['source']['document'],'selector':pin['source']['pointer'],'parserInput':'bytes','legacySerializerSha256':pin['selectedHtmlSha256']} for pin in data['pins']]
+node_expectations=load_qa_expectations(root/'books/space-marines/v2',contexts,group='static-gameplay')
 sha=lambda value:hashlib.sha256(value).hexdigest().upper()
 norm=lambda text:' '.join(text.split())
 for pin in data['pins']:
  source=pin['source'];raw=(root/source['document']).read_bytes();assert sha(raw)==source['sha256']
  tree=docs.setdefault(source['document'],html.fromstring(raw).getroottree());nodes=tree.xpath(source['pointer']);assert len(nodes)==1
- assert sha(html.tostring(nodes[0],encoding='unicode').encode())==pin['selectedHtmlSha256']
+ expected=node_expectations['static-gameplay/'+pin['canonicalId']+'/source']
+ assert expected['legacySerializerSha256']==pin['selectedHtmlSha256']
+ assert fingerprint(nodes[0])==expected['fingerprintSha256']
  assert norm(nodes[0].text_content())==norm(pin['selectedRawText'])
  assert sha(pin['selectedRawText'].encode())==pin['selectedRawTextSha256'];checks+=1
 print(json.dumps({'rawSourceOwners':checks}))

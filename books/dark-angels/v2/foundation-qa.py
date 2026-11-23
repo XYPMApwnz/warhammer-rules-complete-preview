@@ -20,6 +20,9 @@ if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.path.insert(0, str(ROOT / 'books/shared/tools'))
+from source_node_fingerprints import fingerprint, load_native_expectations
+from source_refs_output import generated_source_outputs
 RAW = HERE / 'sources/raw'
 BADGE = 'App. Dark Angels (11th edition)'
 read = lambda path: json.loads(path.read_text(encoding='utf-8-sig'))
@@ -79,7 +82,7 @@ def raw_oracle():
     def observe(kind, element, path, data, owner=None):
         row = {'kind': kind, 'document': path.relative_to(ROOT).as_posix(),
             'pointer': element.getroottree().getpath(element), 'sha256': digest(path),
-            'rawNodeSha256': hashlib.sha256(html.tostring(element, encoding='utf-8')).hexdigest().upper(),
+            'fingerprintSha256': fingerprint(element),
             'ownerPointer': owner.getroottree().getpath(owner) if owner is not None else None,
             'data': data}
         rows.append(row)
@@ -229,6 +232,7 @@ def compare(snapshot, oracle, bindings, addresses):
     by_id = {r['id']: r for r in records}
     enrolled = {r['sourceEntityId']: r for r in bindings}
     located = {r['sourceEntityId']: r for r in addresses}
+    node_expectations = load_native_expectations(HERE, addresses)
     actual = defaultdict(list)
     expected = {(r['kind'], r['document'], r['pointer']): r for r in oracle['rows']}
     for row in records:
@@ -256,7 +260,8 @@ def compare(snapshot, oracle, bindings, addresses):
         need(proof.get('sha256') == raw['sha256'] and proof.get('sourceEntityId') == sid
             and proof.get('authority') == 'ACCEPTED_SECONDARY' and bool(proof.get('sourceId')), 'provenance-mismatch:' + sid)
         need(address.get('document') == raw['document'] and address.get('pointer', address.get('xpath')) == raw['pointer']
-            and address.get('rawNodeSha256') == raw['rawNodeSha256'], 'source-enrollment-mismatch:' + sid)
+            and address.get('rawNodeSha256') == node_expectations[sid]['legacySerializerSha256']
+            and raw['fingerprintSha256'] == node_expectations[sid]['fingerprintSha256'], 'source-enrollment-mismatch:' + sid)
         owners = [r for candidates in actual.values() for r in candidates if r.get('provenance', {}).get('document') == raw['document']
             and r.get('provenance', {}).get('pointer') == raw['ownerPointer'] and r['kind'] in ('DATASHEET', 'DETACHMENT')]
         parent = owners[0]['id'] if len(owners) == 1 else None
@@ -383,7 +388,7 @@ def enrollment_controls(producer, result):
     else:
         raise AssertionError('Producer accepted altered artifact SHA')
     assert (sources, identities) == pristine, 'QA mutated pristine enrollment'
-    for name, value in result.items():
+    for name, value in generated_source_outputs(result, ROOT).items():
         assert read(HERE / 'generated' / (name + '.json')) == value, 'Stale generated output: ' + name
     return checks
 
