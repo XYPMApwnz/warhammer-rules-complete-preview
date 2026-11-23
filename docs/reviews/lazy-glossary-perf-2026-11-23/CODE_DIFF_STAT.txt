@@ -1,0 +1,14 @@
+ .../army-book-app-v2/datasheet-v1-layout.mjs       | 20 ++++-
+ .../army-book-app-v2/navigation-geometry-qa.mjs    | 93 +++++++++++++++++++++-
+ books/shared/army-book-app-v2/navigation-v1.mjs    | 56 ++++++++++---
+ books/shared/army-book-app-v2/rule-term-links.mjs  |  4 +-
+ .../army-book-app-v2/rule-term-visibility-qa.mjs   |  8 ++
+ books/shared/army-book-app-v2/runtime.mjs          | 23 +++++-
+ glossary/generated/cache-revision.js               |  9 ++-
+ tests/browser-phase-controls-qa.mjs                | 10 +++
+ tests/helpers/browser-phases.mjs                   | 10 ++-
+ tests/qa-ci-progress-qa.mjs                        | 10 ++-
+ tools/qa-ci-progress.mjs                           |  1 +
+ v2/app.html                                        |  6 +-
+ v2/lazy-glossary-browser-qa.mjs                    | 19 +++++
+ 13 files changed, 237 insertions(+), 32 deletions(-)

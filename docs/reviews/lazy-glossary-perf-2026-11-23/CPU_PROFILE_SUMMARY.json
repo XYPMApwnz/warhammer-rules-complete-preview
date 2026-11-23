@@ -1,0 +1,422 @@
+{
+  "metadataOnly": true,
+  "rawProfilesPublished": false,
+  "profiles": [
+    {
+      "version": "before",
+      "cpuRate": 4,
+      "collection": "V8 sampling and timeline enabled; representative diagnostic, not the paired timing benchmark",
+      "phase": "book-and-first-navigation",
+      "topSelfSamples": [
+        {
+          "file": "<native-or-test>",
+          "function": "(program)",
+          "line": 0,
+          "selfMs": 3183.58
+        },
+        {
+          "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+          "function": "reveal",
+          "line": 118,
+          "selfMs": 546.021
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "(idle)",
+          "line": 0,
+          "selfMs": 380.063
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+          "function": "setDrawer",
+          "line": 177,
+          "selfMs": 190.989
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "(garbage collector)",
+          "line": 0,
+          "selfMs": 154.105
+        },
+        {
+          "file": "books/shared/army-book-app-v2/route-context.mjs",
+          "function": "encodeRoute",
+          "line": 24,
+          "selfMs": 152.199
+        },
+        {
+          "file": "books/shared/army-book-app-v2/runtime.mjs",
+          "function": "factValue",
+          "line": 216,
+          "selfMs": 91.536
+        },
+        {
+          "file": "books/shared/source-refs-v2/source-refs.mjs",
+          "function": "copy",
+          "line": 49,
+          "selfMs": 81.571
+        },
+        {
+          "file": "books/shared/roster-v2/import-service.mjs",
+          "function": "copy",
+          "line": 8,
+          "selfMs": 74.039
+        },
+        {
+          "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+          "function": "renderWeapon",
+          "line": 364,
+          "selfMs": 72.82
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "query",
+          "line": 5447,
+          "selfMs": 65.42
+        },
+        {
+          "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+          "function": "renderDatasheet",
+          "line": 916,
+          "selfMs": 64.719
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+          "function": "<anonymous>",
+          "line": 259,
+          "selfMs": 63.22
+        },
+        {
+          "file": "books/shared/army-book-app-v2/runtime.mjs",
+          "function": "el",
+          "line": 65,
+          "selfMs": 60.228
+        },
+        {
+          "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+          "function": "match",
+          "line": 28,
+          "selfMs": 59.404
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+          "function": "refreshGeometry",
+          "line": 252,
+          "selfMs": 55.083
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "cpuRate": 4,
+      "collection": "V8 sampling and timeline enabled; representative diagnostic, not the paired timing benchmark",
+      "phase": "boundary-sweep",
+      "topSelfSamples": [
+        {
+          "file": "<native-or-test>",
+          "function": "(program)",
+          "line": 0,
+          "selfMs": 7469.738
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+          "function": "createContentsSectionLookup",
+          "line": 118,
+          "selfMs": 1178.731
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "getBoundingClientRect",
+          "line": 0,
+          "selfMs": 808.716
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "(idle)",
+          "line": 0,
+          "selfMs": 611.114
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "querySelectorAll",
+          "line": 0,
+          "selfMs": 535.346
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "querySelector",
+          "line": 0,
+          "selfMs": 384.744
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "scrollIntoView",
+          "line": 0,
+          "selfMs": 331.601
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+          "function": "beforeGeometry",
+          "line": 156,
+          "selfMs": 114.716
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+          "function": "first",
+          "line": 120,
+          "selfMs": 61.331
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "closest",
+          "line": 0,
+          "selfMs": 28.812
+        },
+        {
+          "file": "books/shared/army-book-app-v2/route-context.mjs",
+          "function": "encodeRoute",
+          "line": 24,
+          "selfMs": 27.766
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "delete",
+          "line": 0,
+          "selfMs": 24.232
+        },
+        {
+          "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+          "function": "link",
+          "line": 75,
+          "selfMs": 22.108
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+          "function": "<anonymous>",
+          "line": 259,
+          "selfMs": 21.794
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+          "function": "pickActive",
+          "line": 282,
+          "selfMs": 19.872
+        },
+        {
+          "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+          "function": "reveal",
+          "line": 118,
+          "selfMs": 18.271
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "cpuRate": 4,
+      "collection": "V8 sampling and timeline enabled; representative diagnostic, not the paired timing benchmark",
+      "phase": "book-and-first-navigation",
+      "topSelfSamples": [
+        {
+          "file": "<native-or-test>",
+          "function": "(program)",
+          "line": 0,
+          "selfMs": 3480.138
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+          "function": "<anonymous>",
+          "line": 259,
+          "selfMs": 324.003
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "(idle)",
+          "line": 0,
+          "selfMs": 316.589
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+          "function": "setDrawer",
+          "line": 177,
+          "selfMs": 265.906
+        },
+        {
+          "file": "books/shared/army-book-app-v2/route-context.mjs",
+          "function": "encodeRoute",
+          "line": 24,
+          "selfMs": 173.879
+        },
+        {
+          "file": "books/shared/source-refs-v2/source-refs.mjs",
+          "function": "copy",
+          "line": 49,
+          "selfMs": 128.25
+        },
+        {
+          "file": "books/shared/roster-v2/import-service.mjs",
+          "function": "copy",
+          "line": 8,
+          "selfMs": 105.474
+        },
+        {
+          "file": "books/shared/army-book-app-v2/runtime.mjs",
+          "function": "factValue",
+          "line": 216,
+          "selfMs": 103.718
+        },
+        {
+          "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+          "function": "match",
+          "line": 28,
+          "selfMs": 85.914
+        },
+        {
+          "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+          "function": "renderWeapon",
+          "line": 364,
+          "selfMs": 70.558
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "(garbage collector)",
+          "line": 0,
+          "selfMs": 70.305
+        },
+        {
+          "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+          "function": "renderDatasheet",
+          "line": 916,
+          "selfMs": 68.585
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "query",
+          "line": 5447,
+          "selfMs": 62.865
+        },
+        {
+          "file": "books/shared/army-book-app-v2/runtime.mjs",
+          "function": "mount",
+          "line": 26,
+          "selfMs": 57.322
+        },
+        {
+          "file": "books/shared/army-book-app-v2/runtime.mjs",
+          "function": "el",
+          "line": 65,
+          "selfMs": 57.243
+        },
+        {
+          "file": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+          "function": "installDatasheetLayout",
+          "line": 225,
+          "selfMs": 54.155
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "cpuRate": 4,
+      "collection": "V8 sampling and timeline enabled; representative diagnostic, not the paired timing benchmark",
+      "phase": "boundary-sweep",
+      "topSelfSamples": [
+        {
+          "file": "<native-or-test>",
+          "function": "(program)",
+          "line": 0,
+          "selfMs": 10443.904
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "getBoundingClientRect",
+          "line": 0,
+          "selfMs": 1217.624
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "querySelector",
+          "line": 0,
+          "selfMs": 542.603
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "scrollIntoView",
+          "line": 0,
+          "selfMs": 468.883
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "(idle)",
+          "line": 0,
+          "selfMs": 409.664
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "replaceWith",
+          "line": 0,
+          "selfMs": 47.654
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "closest",
+          "line": 0,
+          "selfMs": 41.863
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "(garbage collector)",
+          "line": 0,
+          "selfMs": 31.901
+        },
+        {
+          "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+          "function": "link",
+          "line": 75,
+          "selfMs": 29.735
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "delete",
+          "line": 0,
+          "selfMs": 27.958
+        },
+        {
+          "file": "books/shared/army-book-app-v2/route-context.mjs",
+          "function": "encodeRoute",
+          "line": 24,
+          "selfMs": 27.791
+        },
+        {
+          "file": "books/shared/army-book-app-v2/rule-term-links.mjs",
+          "function": "match",
+          "line": 28,
+          "selfMs": 21.143
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+          "function": "direct",
+          "line": 70,
+          "selfMs": 16.768
+        },
+        {
+          "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+          "function": "pickActive",
+          "line": 282,
+          "selfMs": 13.33
+        },
+        {
+          "file": "books/shared/army-book-app-v2/runtime.mjs",
+          "function": "routeURL",
+          "line": 963,
+          "selfMs": 12.467
+        },
+        {
+          "file": "<native-or-test>",
+          "function": "ready",
+          "line": 11,
+          "selfMs": 11.542
+        }
+      ]
+    }
+  ]
+}

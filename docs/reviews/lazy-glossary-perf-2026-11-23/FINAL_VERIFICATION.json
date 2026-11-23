@@ -1,0 +1,202 @@
+{
+  "status": "PASS",
+  "sha": "43af890575b53767e91e8986be190c8b731c2272",
+  "run": 45240992883,
+  "runUrl": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/45240992883",
+  "artifactUrl": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/45240992883/artifacts/14862062314",
+  "artifactDigest": "sha256:31cb13d7d2d00b6136b7b932367329323f79dda7bf19ae152c6e8c030b6dbe88",
+  "total": 213,
+  "passed": 213,
+  "failed": 0,
+  "missing": 0,
+  "queueElapsedMs": 8327022,
+  "workflowWallSeconds": 8568.0,
+  "fullRunsStarted": 1,
+  "localFullRunsStarted": 0,
+  "ordered213JobPlanEqual": true,
+  "failedJobs": [],
+  "job205": {
+    "index": 205,
+    "command": "node",
+    "id": "v2/lazy-glossary-browser-qa.mjs",
+    "args": [
+      "v2/lazy-glossary-browser-qa.mjs"
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "elapsedMs": 248825,
+    "processExitCode": 0,
+    "teardownConfirmed": true,
+    "reapedChildren": 5,
+    "browserPhases": {
+      "history": [
+        {
+          "phase": "dialog-links",
+          "status": "PASS",
+          "elapsedMs": 2,
+          "book": "blood-angels",
+          "width": 1440
+        },
+        {
+          "phase": "dialog-close",
+          "status": "PASS",
+          "elapsedMs": 66,
+          "book": "blood-angels",
+          "width": 1440
+        },
+        {
+          "phase": "dialog-close",
+          "status": "PASS",
+          "elapsedMs": 2,
+          "book": "blood-angels",
+          "width": 1440
+        },
+        {
+          "phase": "frame-sync",
+          "status": "PASS",
+          "elapsedMs": 34,
+          "book": "blood-angels",
+          "width": 1440
+        },
+        {
+          "phase": "snapshot",
+          "status": "PASS",
+          "elapsedMs": 2,
+          "book": "blood-angels",
+          "width": 1440
+        },
+        {
+          "phase": "context-close",
+          "status": "PASS",
+          "elapsedMs": 5,
+          "book": "blood-angels",
+          "width": 1440
+        },
+        {
+          "phase": "browser-close",
+          "status": "PASS",
+          "elapsedMs": 49,
+          "book": "blood-angels",
+          "width": 1440
+        },
+        {
+          "phase": "server-close",
+          "status": "PASS",
+          "elapsedMs": 0,
+          "book": "blood-angels",
+          "width": 1440
+        }
+      ],
+      "sweeps": [
+        {
+          "book": "death-guard",
+          "width": 390,
+          "status": "PASS",
+          "elapsedMs": 5818
+        },
+        {
+          "book": "death-guard",
+          "width": 1440,
+          "status": "PASS",
+          "elapsedMs": 7898
+        },
+        {
+          "book": "adeptus-mechanicus",
+          "width": 390,
+          "status": "PASS",
+          "elapsedMs": 6704
+        },
+        {
+          "book": "adeptus-mechanicus",
+          "width": 1440,
+          "status": "PASS",
+          "elapsedMs": 8786
+        },
+        {
+          "book": "chaos-space-marines",
+          "width": 390,
+          "status": "PASS",
+          "elapsedMs": 12611
+        },
+        {
+          "book": "chaos-space-marines",
+          "width": 1440,
+          "status": "PASS",
+          "elapsedMs": 16049
+        },
+        {
+          "book": "emperors-children",
+          "width": 390,
+          "status": "PASS",
+          "elapsedMs": 6910
+        },
+        {
+          "book": "emperors-children",
+          "width": 1440,
+          "status": "PASS",
+          "elapsedMs": 8383
+        },
+        {
+          "book": "tyranids",
+          "width": 390,
+          "status": "PASS",
+          "elapsedMs": 7953
+        },
+        {
+          "book": "tyranids",
+          "width": 1440,
+          "status": "PASS",
+          "elapsedMs": 10355
+        },
+        {
+          "book": "tau-empire",
+          "width": 390,
+          "status": "PASS",
+          "elapsedMs": 5491
+        },
+        {
+          "book": "tau-empire",
+          "width": 1440,
+          "status": "PASS",
+          "elapsedMs": 7642
+        },
+        {
+          "book": "space-marines",
+          "width": 390,
+          "status": "PASS",
+          "elapsedMs": 11773
+        },
+        {
+          "book": "space-marines",
+          "width": 1440,
+          "status": "PASS",
+          "elapsedMs": 16102
+        },
+        {
+          "book": "dark-angels",
+          "width": 390,
+          "status": "PASS",
+          "elapsedMs": 9801
+        },
+        {
+          "book": "dark-angels",
+          "width": 1440,
+          "status": "PASS",
+          "elapsedMs": 13898
+        },
+        {
+          "book": "blood-angels",
+          "width": 390,
+          "status": "PASS",
+          "elapsedMs": 9595
+        },
+        {
+          "book": "blood-angels",
+          "width": 1440,
+          "status": "PASS",
+          "elapsedMs": 13711
+        }
+      ]
+    }
+  }
+}

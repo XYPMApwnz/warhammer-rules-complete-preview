@@ -1,0 +1,220 @@
+diff --git a/books/shared/army-book-app-v2/navigation-geometry-qa.mjs b/books/shared/army-book-app-v2/navigation-geometry-qa.mjs
+index 2c99ebd4..006d2891 100644
+--- a/books/shared/army-book-app-v2/navigation-geometry-qa.mjs
++++ b/books/shared/army-book-app-v2/navigation-geometry-qa.mjs
+@@ -1,6 +1,6 @@
+ /** Fresh per-pass lookups must agree with the original live DOM scan. */
+ import assert from 'node:assert/strict';
+-import {createContentsSectionLookup} from './navigation-v1.mjs';
++import {createContentsSectionLookup,createContentsSectionCache} from './navigation-v1.mjs';
+ import {NavigationController} from './navigation-v1-controller.mjs';
+ let checks=0;
+ const node=(name,dataset={})=>({name,dataset});
+@@ -48,3 +48,94 @@ try{
+  controller.destroyed=true;NavigationController.prototype.refreshGeometry.call(controller);assert.equal(started,2);checks++;
+ }finally{if(priorDocument===undefined)delete globalThis.document;else globalThis.document=priorDocument;if(priorWindow===undefined)delete globalThis.window;else globalThis.window=priorWindow;}
+ console.log(JSON.stringify({status:'PASS',checks}));
++
++// Additional identity-cache regressions; all original checks above
++// remain unchanged and still exercise the fresh, independent lookup factory.
++let cacheChecks=0,domScans=0,leafQueries=0;
++const identitySelector='[data-contents-target],[data-roster-instance-id],[data-card-id]';
++class CacheElement{
++  constructor(name,dataset={},children=[]){this.nodeType=1;this.name=name;this.dataset={...dataset};this.children=children;this.hero=false;}
++  get firstElementChild(){return this.children.find(child=>child.nodeType===1)||null;}
++  matches(selector){return selector===identitySelector?['contentsTarget','rosterInstanceId','cardId'].some(key=>Object.hasOwn(this.dataset,key)):selector==='.v2-hero'&&this.hero;}
++  querySelectorAll(selector){const descendants=[];const visit=node=>{for(const child of node.children||[]){if(child.nodeType!==1)continue;descendants.push(child);visit(child);}};visit(this);if(this===cacheMain)domScans++;return descendants.filter(node=>node.matches(selector));}
++  querySelector(selector){if(!this.firstElementChild)leafQueries++;return this.querySelectorAll(selector)[0]||null;}
++}
++class CacheObserver{
++  constructor(callback){this.callback=callback;this.records=[];this.disconnected=false;CacheObserver.last=this;}
++  observe(target,options){this.target=target;this.options=options;}
++  takeRecords(){return this.records.splice(0);}
++  disconnect(){this.disconnected=true;this.records=[];}
++  deliver(records){this.callback(records);}
++}
++const cacheHero=new CacheElement('hero');cacheHero.hero=true;
++const cacheHeading=new CacheElement('heading',{contentsTarget:'group'});
++const cacheFirst=new CacheElement('first canonical',{cardId:'shared'});
++const cacheSecond=new CacheElement('second canonical',{cardId:'shared'});
++const cachePhysical=new CacheElement('physical',{rosterInstanceId:'unit-a',cardId:'bodyguard'});
++const cacheOther=new CacheElement('other canonical',{cardId:'other'});
++const cacheMain=new CacheElement('main',{},[cacheHero,cacheHeading,cacheFirst,cacheSecond,cachePhysical,cacheOther]);
++const cacheModel={nodes:new Map([['physical-route',{instanceId:'unit-a',canonicalId:'shared'}],['canonical-route',{canonicalId:'shared'}]]),groups:new Map([['group',['shared']]])};
++const identityCache=createContentsSectionCache(cacheMain,cacheModel,{MutationObserver:CacheObserver}),cacheObserver=CacheObserver.last;
++const childMutation=(addedNodes=[],removedNodes=[])=>({type:'childList',addedNodes,removedNodes});
++const attrMutation=attributeName=>({type:'attributes',attributeName});
++assert.deepEqual(cacheObserver.options,{childList:true,subtree:true,attributes:true,attributeFilter:['data-contents-target','data-roster-instance-id','data-card-id']});cacheChecks++;
++assert.equal(identityCache.resolve('group'),cacheHeading);assert.equal(identityCache.resolve('physical-route'),cachePhysical);assert.equal(identityCache.resolve('canonical-route'),cacheFirst);cacheChecks++;
++const firstCacheScans=domScans;
++for(let pass=0;pass<100;pass++){const snapshot=identityCache.snapshot();assert.equal(snapshot('shared'),cacheFirst);assert.equal(identityCache.resolve('physical-route'),cachePhysical);}
++assert.equal(domScans,firstCacheScans,'Unchanged identity DOM is indexed once across geometry passes and direct calls');cacheChecks++;
++const leafAnchor=new CacheElement('glossary anchor'),plainText={nodeType:3};
++cacheObserver.records.push(childMutation([leafAnchor,plainText],[plainText]));
++const beforeLeafQueries=leafQueries;
++assert.equal(identityCache.resolve('shared'),cacheFirst);assert.equal(domScans,firstCacheScans,'Prose-only mutations do not rebuild identity maps');assert.equal(leafQueries,beforeLeafQueries,'Text and leaf anchors never issue subtree identity queries');cacheChecks++;
++
++// No observer callback delivery occurs before the immediate direct lookup.
++cacheFirst.dataset.cardId='retired';cacheObserver.records.push(attrMutation('data-card-id'));
++assert.equal(identityCache.resolve('shared'),cacheSecond,'Pending synchronous identity changes are drained before direct lookup');assert(domScans>firstCacheScans);cacheChecks++;
++const changedScans=domScans;
++cachePhysical.dataset.rosterInstanceId='unit-b';cacheObserver.records.push(attrMutation('data-roster-instance-id'));
++assert.equal(identityCache.snapshot()('physical-route'),null,'Pending physical identity change is drained before a geometry snapshot');assert(domScans>changedScans);cacheChecks++;
++cacheHeading.dataset.contentsTarget='retired-group';cacheObserver.records.push(attrMutation('data-contents-target'));
++assert.equal(identityCache.resolve('group'),cacheSecond,'Removed explicit heading returns to canonical group priority');cacheChecks++;
++
++const nestedFirst=new CacheElement('nested canonical',{cardId:'shared'}),wrapper=new CacheElement('wrapper',{},[nestedFirst]);
++cacheMain.children.unshift(wrapper);cacheObserver.records.push(childMutation([wrapper]));
++assert.equal(identityCache.resolve('shared'),nestedFirst,'Inserted nested identities override later duplicates immediately');cacheChecks++;
++cacheMain.children.shift();cacheObserver.records.push(childMutation([],[wrapper]));
++assert.equal(identityCache.resolve('shared'),cacheSecond,'Removing an ancestor invalidates its nested identity');cacheChecks++;
++cacheFirst.dataset.cardId='shared';cacheMain.children.splice(cacheMain.children.indexOf(cacheFirst),1);cacheMain.children.push(cacheFirst);
++cacheObserver.records.push(attrMutation('data-card-id'),childMutation([cacheFirst],[cacheFirst]));
++assert.equal(identityCache.resolve('shared'),cacheSecond,'Last duplicate never replaces the first match');cacheChecks++;
++cacheMain.children.splice(cacheMain.children.indexOf(cacheFirst),1);cacheMain.children.unshift(cacheFirst);cacheObserver.deliver([childMutation([cacheFirst],[cacheFirst])]);
++assert.equal(identityCache.resolve('shared'),cacheFirst,'Delivered reorder mutations also refresh first-in-DOM priority');cacheChecks++;
++const newHeading=new CacheElement('new explicit heading',{contentsTarget:'group',cardId:'other'});
++cacheMain.children.push(newHeading);cacheObserver.records.push(childMutation([newHeading]));
++assert.equal(identityCache.resolve('group'),newHeading,'Explicit heading beats canonical fallback even when later in DOM');cacheChecks++;
++delete newHeading.dataset.contentsTarget;cacheObserver.records.push(attrMutation('data-contents-target'));
++assert.equal(identityCache.resolve('group'),cacheFirst,'Removing a heading attribute invalidates its former identity');cacheChecks++;
++newHeading.dataset.contentsTarget='group';cacheObserver.records.push(attrMutation('data-contents-target'));
++assert.equal(identityCache.resolve('group'),newHeading,'Adding a heading attribute restores heading priority');cacheChecks++;
++
++const replacementModel={nodes:new Map([['canonical-route',{canonicalId:'other'}]]),groups:new Map()};
++identityCache.setModel(replacementModel);assert.equal(identityCache.resolve('canonical-route'),cacheOther,'A replacement model cannot retain a closure over the old routing maps');cacheChecks++;
++const modelScans=domScans;replacementModel.nodes.set('canonical-route',{canonicalId:'shared'});identityCache.setModel(replacementModel);
++assert.equal(identityCache.resolve('canonical-route'),cacheFirst);assert(domScans>modelScans,'Model refresh invalidates even with the same object identity');cacheChecks++;
++const nextHero=new CacheElement('replacement hero');nextHero.hero=true;cacheHero.hero=false;cacheMain.children.push(nextHero);
++const heroScans=domScans;assert.equal(identityCache.resolve('start'),nextHero,'Start follows live hero class changes without an identity mutation');assert.equal(domScans,heroScans+1,'Start performs only its live hero query and no identity rebuild');cacheChecks++;
++nextHero.hero=false;assert.equal(identityCache.snapshot()('start'),cacheMain,'Missing hero falls back to main');cacheChecks++;
++
++identityCache.setModel({nodes:new Map(),groups:new Map()});assert.equal(identityCache.resolve('canonical-route'),null,'Clearing the model drops former route ownership');cacheChecks++;
++const beforeDestroy=identityCache.snapshot();identityCache.destroy();identityCache.destroy();cacheObserver.deliver([attrMutation('data-card-id')]);
++assert(cacheObserver.disconnected);assert.equal(identityCache.resolve('shared'),null);assert.equal(beforeDestroy('shared'),null);assert.equal(identityCache.snapshot()('shared'),null,'Disposed snapshots do not retain an observable detached target');cacheChecks++;
++
++const fallback=createContentsSectionCache(cacheMain,cacheModel,{MutationObserver:null});assert.equal(fallback.resolve('shared'),cacheFirst);
++cacheMain.children.splice(cacheMain.children.indexOf(cacheFirst),1);
++assert.equal(fallback.resolve('shared'),cacheSecond,'Without MutationObserver every new lookup sees current DOM');cacheChecks++;
++const fallbackScans=domScans,fallbackSnapshot=fallback.snapshot(),afterFallbackSnapshot=domScans;
++for(let n=0;n<100;n++)assert.equal(fallbackSnapshot('shared'),cacheSecond);
++assert.equal(afterFallbackSnapshot,fallbackScans+2,'Fallback snapshot performs one identity scan and one hero query');assert.equal(domScans,afterFallbackSnapshot,'A single fallback geometry pass still shares its fresh snapshot');cacheChecks++;
++fallback.destroy();
++let lifecycleDispose,forgotten=0;
++const lifecycleCache=createContentsSectionCache(cacheMain,cacheModel,{MutationObserver:CacheObserver,lifecycle:{cleanup(callback){lifecycleDispose=callback;return ()=>forgotten++;}}});
++const lifecycleObserver=CacheObserver.last;assert.equal(lifecycleCache.resolve('shared'),cacheSecond);lifecycleDispose();
++assert(lifecycleObserver.disconnected);assert.equal(lifecycleCache.resolve('shared'),null);assert.equal(forgotten,1);cacheChecks++;
++console.log(JSON.stringify({status:'PASS',cacheChecks}));
+diff --git a/books/shared/army-book-app-v2/rule-term-visibility-qa.mjs b/books/shared/army-book-app-v2/rule-term-visibility-qa.mjs
+index 354f3aad..46a3c70f 100644
+--- a/books/shared/army-book-app-v2/rule-term-visibility-qa.mjs
++++ b/books/shared/army-book-app-v2/rule-term-visibility-qa.mjs
+@@ -67,3 +67,11 @@ for(const records of [[],[{...decoration,removedNodes:[]}],[{...decoration,remov
+   assert(!onlyRuleTermDecorations(records),'Real or mixed layout mutations still require navigation geometry');checks++;
+ }
+ console.log(JSON.stringify({status:'PASS',checks}));
++
++const retained=make(Observer),firstPending=new Element({boundary:true,parent:page}),otherPending=new Element({boundary:true,parent:page});
++retained.manager.defer(firstPending);retained.manager.defer(otherPending);retained.manager.mount(page);
++retained.manager.revealTarget(firstPending);
++assert.equal(retained.calls.length,1);assert.equal(firstPending.dataset.ruleTermState,'ready');assert.equal(otherPending.dataset.ruleTermState,'pending','Revealing a retained destination keeps unseen groups pending');
++retained.manager.revealTarget(firstPending);assert.equal(retained.calls.length,1,'A retained destination is decorated once');
++retained.manager.revealTarget(otherPending);assert.equal(retained.calls.length,2,'A later retained destination keeps its original pending prose request');
++retained.destroy();console.log('PASS retained target reveal controls');
+diff --git a/tests/browser-phase-controls-qa.mjs b/tests/browser-phase-controls-qa.mjs
+index 9e575a39..addf7b7d 100644
+--- a/tests/browser-phase-controls-qa.mjs
++++ b/tests/browser-phase-controls-qa.mjs
+@@ -40,3 +40,13 @@ assert.deepEqual(Object.keys(JSON.parse(safe)).sort(),['schema','phase','status'
+ assert(!/PRIVATE_ERROR_BODY|capture\.html|example\.invalid|PRIVATE_KEY|\/private\//.test(safe),'Launch metadata must never copy private message/path content');
+ assert.equal(JSON.parse(safe).tempPathBytes,13);
+ console.log(JSON.stringify({status:'PASS',checks:25}));
++
++// Aggregate sweep timings survive the bounded detailed history without prose.
++const sweepFile=path.join(out,'SWEEP_PHASES.json'),aggregate=createBrowserPhases(sweepFile);
++await aggregate.run('boundary-sweep',()=>{}, {book:'chaos-space-marines',width:390});
++for(let index=0;index<150;index++)await aggregate.run('snapshot',()=>{});
++const stored=JSON.parse(fs.readFileSync(sweepFile,'utf8'));
++assert.equal(stored.observations.length,128);
++assert.deepEqual(stored.sweeps,[{phase:'boundary-sweep',book:'chaos-space-marines',width:390,status:'PASS',elapsedMs:stored.sweeps[0].elapsedMs}]);
++assert(Number.isSafeInteger(stored.sweeps[0].elapsedMs));
++console.log('PASS bounded aggregate sweep timings');
+diff --git a/tests/qa-ci-progress-qa.mjs b/tests/qa-ci-progress-qa.mjs
+index 603cc6ad..6dc3452b 100644
+--- a/tests/qa-ci-progress-qa.mjs
++++ b/tests/qa-ci-progress-qa.mjs
+@@ -5,7 +5,7 @@ import path from 'node:path';
+ import {fileURLToPath} from 'node:url';
+ import {spawnSync} from 'node:child_process';
+ import {createQaTempDir,cleanupQaTempDir} from './helpers/qa-temp.mjs';
+-import {publicEvent,safeCurrentJob,jsonDifferencePaths,jsonDifferenceSummary,browserLaunchDetails} from '../tools/qa-ci-progress.mjs';
++import {publicEvent,safeCurrentJob,jsonDifferencePaths,jsonDifferenceSummary,browserLaunchDetails,browserPhaseDetails} from '../tools/qa-ci-progress.mjs';
+ import {exportReport} from '../tools/qa-pre-ff-ci.mjs';
+ 
+ const root=fileURLToPath(new URL('../',import.meta.url));
+@@ -62,6 +62,14 @@ check('browser-launch-diagnostic-never-forwards-private-message',()=>{
+  assert.equal(browserLaunchDetails('QA_BROWSER_LAUNCH_DIAGNOSTIC '+JSON.stringify({...row,cause:'PRIVATE_CAPTURE'})),null);
+ });
+ try{
++ check('sweep-timings-retain-only-book-width-status-and-number',()=>{
++  const raw=path.join(arena,'phase-projection'),base=path.join(raw,'205-lazy-glossary-browser-qa.mjs-evidence');fs.mkdirSync(base,{recursive:true});
++  const good={phase:'boundary-sweep',book:'chaos-space-marines',width:390,status:'PASS',elapsedMs:5000,body:'DO_NOT_PUBLISH'};
++  fs.writeFileSync(path.join(base,'PHASES.json'),JSON.stringify({schema:'browser-phases/v1',observations:[],sweeps:[good,{...good,book:'DO_NOT_PUBLISH'},{...good,width:123},{...good,elapsedMs:-1},{...good,status:'DO_NOT_PUBLISH'}]}));
++  const projected=browserPhaseDetails({raw,index:205,id:'v2/lazy-glossary-browser-qa.mjs'});
++  assert.deepEqual(projected,{history:[],sweeps:[{book:'chaos-space-marines',width:390,status:'PASS',elapsedMs:5000}]});
++  assert(!JSON.stringify(projected).includes('DO_NOT_PUBLISH'));
++ });
+  check('single-job-report-preserves-full-ordinal-and-timeout-failure',()=>{
+   const raw=path.join(arena,'raw');fs.mkdirSync(raw);
+   const listed=spawnSync(process.execPath,['tools/qa-queue.mjs','pre-ff','--list'],{cwd:root,encoding:'utf8'});assert.equal(listed.status,0);
+diff --git a/v2/lazy-glossary-browser-qa.mjs b/v2/lazy-glossary-browser-qa.mjs
+index 7a6bd81a..ce8df430 100644
+--- a/v2/lazy-glossary-browser-qa.mjs
++++ b/v2/lazy-glossary-browser-qa.mjs
+@@ -66,6 +66,7 @@ async function showEveryCard(page){
+ }
+ async function contentsTarget(page,id,width){
+  const title=await phase('contents-title',()=>page.evaluate(id=>ArmyBookAppV2.payload.cards.find(card=>card.id===id).title,id));
++ await phase('snapshot',()=>page.evaluate(id=>{window.__qaContentsNode=document.querySelector(`main .unit-card[data-card-id="${id}"]`);},id));
+  const before=await phase('contents-before',()=>page.locator(`main .unit-card[data-card-id="${id}"]`).first().evaluate(node=>({height:node.getBoundingClientRect().height,width:node.getBoundingClientRect().width})));
+  if(width<=760)await phase('contents-navigate',()=>page.locator('#navMenu').click());
+  await phase('contents-navigate',()=>page.getByRole('searchbox',{name:'Search the army book',exact:true}).fill(title));
+@@ -80,6 +81,7 @@ async function contentsTarget(page,id,width){
+  const geometry=await phase('contents-geometry',()=>page.locator(`main .unit-card[data-card-id="${id}"]`).first().evaluate(node=>{const rect=node.getBoundingClientRect(),header=document.querySelector('#appHeader').getBoundingClientRect();return {top:rect.top,inset:header.bottom+18,height:rect.height,width:rect.width,links:node.querySelectorAll('.rule-term-link').length};}));
+  assert(Math.abs(geometry.top-geometry.inset)<=2,'Contents reaches the actual first-shown card after decoration');
+  assert(geometry.links>0,'The destination receives exact term links before Contents settles');
++ assert.equal(await phase('snapshot',()=>page.evaluate(id=>window.__qaContentsNode===document.querySelector(`main .unit-card[data-card-id="${id}"]`),id)),true,'Controlled Contents navigation retains the existing canonical card DOM');
+  await phase('screenshot',()=>page.screenshot({path:path.join(out,`contents-${id.replace(/[^a-z0-9-]/gi,'_')}-${width}.png`),animations:'disabled'}));
+  return {before,after:geometry};
+ }
+@@ -91,6 +93,15 @@ for(const book of books)for(const width of widths){const result={book:book.id,wi
+   const context=await phase('context-open',()=>browser.newContext({viewport:{width,height:844},serviceWorkers:'block'})),page=await phase('page-open',()=>context.newPage());page.setDefaultTimeout(30000);page.on('pageerror',error=>errors.push({book:book.id,width,version,message:error.message}));
+   let contextFailure;
+   try{await phase('book-open',()=>page.goto(`${origin}/${version}/v2/app.html`));await phase('book-open',()=>page.locator(`[data-v2-book="${book.id}"]`).click());await phase('book-open',()=>page.waitForFunction(id=>window.ArmyBookAppV2?.payload.book.id===id&&document.querySelector('main .unit-card'),book.id));await frames(page);
++   if(version==='head'){
++   const repeatLayout=await phase('snapshot',()=>page.evaluate(async()=>{
++    const {flushDatasheetLayouts}=await import(new URL('../books/shared/army-book-app-v2/datasheet-v1-layout.mjs',location.href));
++    const main=document.querySelector('main');flushDatasheetLayouts(main);
++    const observer=new MutationObserver(()=>{});observer.observe(main,{childList:true,subtree:true});
++    try{flushDatasheetLayouts(main);return observer.takeRecords().length;}finally{observer.disconnect();}
++   }));
++   assert.equal(repeatLayout,0,'Repeated settled datasheet layout must not move the existing rule/profile nodes');
++   }
+    const id=await phase('contents-title',()=>page.evaluate(()=>ArmyBookAppV2.payload.cards.find(card=>card.kind==='DATASHEET'&&document.querySelector(`main .unit-card[data-card-id="${card.id}"] .ability p`))?.id));assert.ok(id);
+    let geometry=null,flowChanges=[];
+    if(version==='head'){
+@@ -110,6 +121,14 @@ for(const book of books)for(const width of widths){const result={book:book.id,wi
+    const reference=await snapshot(page,'main .rule-term-link');
+    result.views[version]={full,selected,dialog,reference};
+    if(version==='head')result.geometry={target:geometry,flowChanges};
++   if(version==='head'&&book.id==='chaos-space-marines'&&width===390){
++    await phase('contents-navigate',()=>page.evaluate(()=>{history.pushState(null,'',ArmyBookAppV2.routeURL('qa-unregistered-full-book',false,{fullBook:true}));dispatchEvent(new PopStateEvent('popstate'));}));
++    await phase('contents-settle',()=>page.locator('main > .v2-not-found').waitFor());
++    assert.equal(await phase('snapshot',()=>page.locator('main > .v1-contents-pages').count()),1,'Unknown full-book links retain their existing fallback book');
++    await phase('contents-navigate',()=>page.evaluate(id=>ArmyBookAppV2.navigation.go(id),id));
++    await phase('contents-settle',()=>page.waitForFunction(()=>ArmyBookAppV2.navigation.state.owner==='reader'));
++    assert.equal(await phase('snapshot',()=>page.locator('main > .v2-not-found').count()),0,'Valid Contents navigation removes an obsolete unknown-route warning');
++   }
+   }catch(error){contextFailure=error;await captureFailureState(page);throw error;}
+   finally{try{await phase('context-close',()=>context.close());}catch(error){await captureFailureState(page);if(!contextFailure)throw error;}}
+  }

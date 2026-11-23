@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "baselineSha": "b06e22f35bf16bad913cf0dd4c74e3afab08f55c",
+  "sha": "43af890575b53767e91e8986be190c8b731c2272",
+  "files": [
+    {
+      "file": "v2/lazy-glossary-browser-qa.mjs",
+      "before": 10,
+      "after": 14,
+      "allOriginalAssertionAstsPreservedInOrder": true
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+      "before": 28,
+      "after": 70,
+      "allOriginalAssertionAstsPreservedInOrder": true
+    },
+    {
+      "file": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs",
+      "before": 52,
+      "after": 57,
+      "allOriginalAssertionAstsPreservedInOrder": true
+    },
+    {
+      "file": "tests/browser-phase-controls-qa.mjs",
+      "before": 25,
+      "after": 28,
+      "allOriginalAssertionAstsPreservedInOrder": true
+    },
+    {
+      "file": "tests/qa-ci-progress-qa.mjs",
+      "before": 37,
+      "after": 39,
+      "allOriginalAssertionAstsPreservedInOrder": true
+    }
+  ],
+  "phaseBudgetMs": 30000,
+  "perBoundaryReadinessMs": 10000,
+  "job205DeadlineMs": 332478,
+  "retriesAdded": 0
+}

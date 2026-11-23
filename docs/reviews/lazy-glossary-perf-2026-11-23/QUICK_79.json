@@ -1,0 +1,405 @@
+{
+  "status": "PASS",
+  "total": 79,
+  "passed": 79,
+  "failed": 0,
+  "elapsedMs": 227173,
+  "scope": "Fixed runtime working tree before final navigation comment and derived revision-stamp refresh; final exact616SHA is verified by CI separately.",
+  "jobs": [
+    {
+      "id": "git diff --check",
+      "elapsedMs": 50,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/qa-temp-qa.mjs",
+      "elapsedMs": 4121,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/pages-runtime-ci-contract-qa.mjs",
+      "elapsedMs": 141,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/browser-failure-diagnostics-qa.mjs",
+      "elapsedMs": 63,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/browser-compatibility-qa.mjs",
+      "elapsedMs": 1932,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/browser-compat-equivalence-qa.mjs",
+      "elapsedMs": 259,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/browser-catalog-loader-qa.mjs",
+      "elapsedMs": 647,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/browser-catalog-cache-qa.mjs",
+      "elapsedMs": 83,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/fast-first-load-cache-qa.mjs",
+      "elapsedMs": 110,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/helper-offline-status-instance-qa.mjs",
+      "elapsedMs": 117,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/helper-offline-availability-qa.mjs",
+      "elapsedMs": 60,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/runtime-url-stamps-qa.mjs",
+      "elapsedMs": 455,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/packaged-bootstrap-qa.mjs",
+      "elapsedMs": 1248,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs",
+      "elapsedMs": 48,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/book-passport-qa.mjs",
+      "elapsedMs": 892,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/keyword-access-qa.mjs",
+      "elapsedMs": 1834,
+      "status": "PASS"
+    },
+    {
+      "id": "tools/markup-census.mjs",
+      "elapsedMs": 6921,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/markup-census-qa.mjs",
+      "elapsedMs": 8532,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/markup-evidence-qa.mjs",
+      "elapsedMs": 170,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/markup-owner-only-qa.mjs",
+      "elapsedMs": 8526,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/source-metadata-build-qa.mjs",
+      "elapsedMs": 632,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/application-v2/source-metadata-qa.mjs",
+      "elapsedMs": 87,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/model-base-caption-qa.mjs",
+      "elapsedMs": 50,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/import-notices-qa.mjs",
+      "elapsedMs": 806,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs",
+      "elapsedMs": 50,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+      "elapsedMs": 99,
+      "status": "PASS"
+    },
+    {
+      "id": "books/death-guard/v2/insectile-recipient-qa.mjs",
+      "elapsedMs": 367,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "elapsedMs": 2557,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "elapsedMs": 115,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/sweep-polish-qa.mjs",
+      "elapsedMs": 49,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "elapsedMs": 49,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/rule-popup-section-qa.mjs",
+      "elapsedMs": 2098,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "elapsedMs": 101,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "elapsedMs": 50,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "elapsedMs": 500,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/import-messages-qa.mjs",
+      "elapsedMs": 53,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/official-updates-qa.mjs",
+      "elapsedMs": 61,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/official-update-books-qa.mjs",
+      "elapsedMs": 127,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/official-update-report-qa.mjs",
+      "elapsedMs": 52,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/official-update-integration-qa.mjs",
+      "elapsedMs": 18936,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/official-effect-review-qa.mjs",
+      "elapsedMs": 104,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/current-gw-contract-qa.mjs",
+      "elapsedMs": 59,
+      "status": "PASS"
+    },
+    {
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "elapsedMs": 14788,
+      "status": "PASS"
+    },
+    {
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "elapsedMs": 36484,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/codex-workflow-qa.mjs",
+      "elapsedMs": 113,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "elapsedMs": 3161,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "elapsedMs": 199,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "elapsedMs": 142,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "elapsedMs": 215,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "elapsedMs": 199,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "elapsedMs": 176,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "elapsedMs": 162,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "elapsedMs": 147,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/source-effect-regression-qa.mjs",
+      "elapsedMs": 45945,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "elapsedMs": 21170,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "elapsedMs": 6777,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "elapsedMs": 115,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "elapsedMs": 118,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "elapsedMs": 120,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "elapsedMs": 113,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "elapsedMs": 114,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "elapsedMs": 4314,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/detachment-recipient-qa.mjs",
+      "elapsedMs": 1460,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/card-recipient-qa.mjs",
+      "elapsedMs": 678,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/attached-rule-text-qa.mjs",
+      "elapsedMs": 8989,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/card-display-2-qa.mjs",
+      "elapsedMs": 2044,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "elapsedMs": 51,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "elapsedMs": 102,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "elapsedMs": 5850,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "elapsedMs": 109,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/faction-safe-import-qa.mjs",
+      "elapsedMs": 882,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "elapsedMs": 49,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "elapsedMs": 230,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "elapsedMs": 54,
+      "status": "PASS"
+    },
+    {
+      "id": "v2/source-completeness-check.mjs",
+      "elapsedMs": 1689,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/integration-qa.mjs",
+      "elapsedMs": 3853,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "elapsedMs": 481,
+      "status": "PASS"
+    },
+    {
+      "id": "tests/source-book-clone-qa.mjs",
+      "elapsedMs": 1670,
+      "status": "PASS"
+    },
+    {
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "elapsedMs": 1167,
+      "status": "PASS"
+    }
+  ]
+}

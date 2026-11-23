@@ -1,0 +1,211 @@
+{
+  "schema": "pre-ff-diagnostic-report/v1",
+  "sha": "9e005fada23519247334f601c06e37816f41d6ed",
+  "platform": "linux",
+  "status": "PASS",
+  "total": 1,
+  "completed": 1,
+  "passed": 1,
+  "failed": 0,
+  "missing": 0,
+  "elapsedMs": 247588,
+  "problems": [],
+  "jobs": [
+    {
+      "index": 205,
+      "command": "node",
+      "id": "v2/lazy-glossary-browser-qa.mjs",
+      "args": [
+        "v2/lazy-glossary-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 247588,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5,
+      "browserPhases": {
+        "history": [
+          {
+            "phase": "dialog-links",
+            "status": "PASS",
+            "elapsedMs": 7,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "dialog-close",
+            "status": "PASS",
+            "elapsedMs": 69,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "dialog-close",
+            "status": "PASS",
+            "elapsedMs": 8,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "frame-sync",
+            "status": "PASS",
+            "elapsedMs": 48,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "snapshot",
+            "status": "PASS",
+            "elapsedMs": 3,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "context-close",
+            "status": "PASS",
+            "elapsedMs": 8,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "browser-close",
+            "status": "PASS",
+            "elapsedMs": 262,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "server-close",
+            "status": "PASS",
+            "elapsedMs": 0,
+            "book": "blood-angels",
+            "width": 1440
+          }
+        ],
+        "sweeps": [
+          {
+            "book": "death-guard",
+            "width": 390,
+            "status": "PASS",
+            "elapsedMs": 5843
+          },
+          {
+            "book": "death-guard",
+            "width": 1440,
+            "status": "PASS",
+            "elapsedMs": 7430
+          },
+          {
+            "book": "adeptus-mechanicus",
+            "width": 390,
+            "status": "PASS",
+            "elapsedMs": 6723
+          },
+          {
+            "book": "adeptus-mechanicus",
+            "width": 1440,
+            "status": "PASS",
+            "elapsedMs": 8201
+          },
+          {
+            "book": "chaos-space-marines",
+            "width": 390,
+            "status": "PASS",
+            "elapsedMs": 12484
+          },
+          {
+            "book": "chaos-space-marines",
+            "width": 1440,
+            "status": "PASS",
+            "elapsedMs": 15527
+          },
+          {
+            "book": "emperors-children",
+            "width": 390,
+            "status": "PASS",
+            "elapsedMs": 6948
+          },
+          {
+            "book": "emperors-children",
+            "width": 1440,
+            "status": "PASS",
+            "elapsedMs": 8019
+          },
+          {
+            "book": "tyranids",
+            "width": 390,
+            "status": "PASS",
+            "elapsedMs": 7949
+          },
+          {
+            "book": "tyranids",
+            "width": 1440,
+            "status": "PASS",
+            "elapsedMs": 9463
+          },
+          {
+            "book": "tau-empire",
+            "width": 390,
+            "status": "PASS",
+            "elapsedMs": 5436
+          },
+          {
+            "book": "tau-empire",
+            "width": 1440,
+            "status": "PASS",
+            "elapsedMs": 7185
+          },
+          {
+            "book": "space-marines",
+            "width": 390,
+            "status": "PASS",
+            "elapsedMs": 11828
+          },
+          {
+            "book": "space-marines",
+            "width": 1440,
+            "status": "PASS",
+            "elapsedMs": 14921
+          },
+          {
+            "book": "dark-angels",
+            "width": 390,
+            "status": "PASS",
+            "elapsedMs": 9985
+          },
+          {
+            "book": "dark-angels",
+            "width": 1440,
+            "status": "PASS",
+            "elapsedMs": 12820
+          },
+          {
+            "book": "blood-angels",
+            "width": 390,
+            "status": "PASS",
+            "elapsedMs": 9597
+          },
+          {
+            "book": "blood-angels",
+            "width": 1440,
+            "status": "PASS",
+            "elapsedMs": 12707
+          }
+        ]
+      }
+    }
+  ],
+  "fullPlanTotal": 213,
+  "selectedFullIndices": [
+    205
+  ],
+  "currentJob": {
+    "index": 205,
+    "id": "v2/lazy-glossary-browser-qa.mjs",
+    "phase": "completed",
+    "elapsedMs": 247588,
+    "timedOut": false,
+    "status": "PASS"
+  }
+}

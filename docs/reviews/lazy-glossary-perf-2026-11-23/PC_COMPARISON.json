@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "baselineSha": "b06e22f35bf16bad913cf0dd4c74e3afab08f55c",
+  "measuredFixSha": "616aef02886dfbd2da6271107e847e005a479dd5",
+  "finalSha": "43af890575b53767e91e8986be190c8b731c2272",
+  "finalDelta": "Unknown-route warning exclusion plus regression and derived stamps; valid measured paths unchanged.",
+  "sameTenOriginalAssertionsForPaired4xRuns": true,
+  "freshBrowserPerRun": true,
+  "width": 390,
+  "book": "chaos-space-marines",
+  "network": "unthrottled local static origin, Cache-Control:no-store, service worker blocked as in job205",
+  "rows": [
+    {
+      "cpuRate": 1,
+      "beforeMedianSweepMs": 5381,
+      "afterMedianSweepMs": 5153,
+      "changePercent": -4.237
+    },
+    {
+      "cpuRate": 4,
+      "beforeMedianSweepMs": 14230,
+      "afterMedianSweepMs": 11710,
+      "changePercent": -17.709,
+      "beforeMedianMaxLongTaskMs": 1607,
+      "afterMedianMaxLongTaskMs": 1517,
+      "beforeTasksOver1secondPerRun": [
+        3,
+        3,
+        3
+      ],
+      "afterTasksOver1secondPerRun": [
+        2,
+        2,
+        2
+      ]
+    }
+  ],
+  "residual": "Two initial full-book tasks above1second remain under CPU4x. The removed repeated Contents render reduces3 such tasks to2; this is not a claim of zero long tasks."
+}
