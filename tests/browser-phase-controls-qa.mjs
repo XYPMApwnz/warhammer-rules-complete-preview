@@ -40,3 +40,13 @@ assert.deepEqual(Object.keys(JSON.parse(safe)).sort(),['schema','phase','status'
 assert(!/PRIVATE_ERROR_BODY|capture\.html|example\.invalid|PRIVATE_KEY|\/private\//.test(safe),'Launch metadata must never copy private message/path content');
 assert.equal(JSON.parse(safe).tempPathBytes,13);
 console.log(JSON.stringify({status:'PASS',checks:25}));
+
+// Aggregate sweep timings survive the bounded detailed history without prose.
+const sweepFile=path.join(out,'SWEEP_PHASES.json'),aggregate=createBrowserPhases(sweepFile);
+await aggregate.run('boundary-sweep',()=>{}, {book:'chaos-space-marines',width:390});
+for(let index=0;index<150;index++)await aggregate.run('snapshot',()=>{});
+const stored=JSON.parse(fs.readFileSync(sweepFile,'utf8'));
+assert.equal(stored.observations.length,128);
+assert.deepEqual(stored.sweeps,[{phase:'boundary-sweep',book:'chaos-space-marines',width:390,status:'PASS',elapsedMs:stored.sweeps[0].elapsedMs}]);
+assert(Number.isSafeInteger(stored.sweeps[0].elapsedMs));
+console.log('PASS bounded aggregate sweep timings');

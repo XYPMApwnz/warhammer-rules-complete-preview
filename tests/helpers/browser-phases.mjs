@@ -6,7 +6,7 @@ const phases=new Set(['browser-launch','context-open','page-open','book-open','f
 const books=new Set(['adeptus-mechanicus','blood-angels','chaos-space-marines','dark-angels','death-guard','emperors-children','space-marines','tau-empire','tyranids']);
 
 export function createBrowserPhases(file){
-  const observations=[],counts={};let totalCount=0;
+  const observations=[],counts={},sweeps=[];let totalCount=0;
   function details(value){
     const result={};
     for(const key of Object.keys(value))if(!['book','width','ordinal'].includes(key))throw Error('Unknown browser phase field');
@@ -15,7 +15,7 @@ export function createBrowserPhases(file){
     if(value.ordinal!==undefined){if(!Number.isSafeInteger(value.ordinal)||value.ordinal<1||value.ordinal>10000)throw Error('Invalid browser phase ordinal');result.ordinal=value.ordinal;}
     return result;
   }
-  const save=()=>{if(file)fs.writeFileSync(file,JSON.stringify({schema:'browser-phases/v1',totalCount,counts,observations},null,2)+'\n');};
+  const save=()=>{if(file)fs.writeFileSync(file,JSON.stringify({schema:'browser-phases/v1',totalCount,counts,observations,sweeps},null,2)+'\n');};
   async function run(phase,operation,context={},timeoutMs=30000){
     if(!phases.has(phase))throw Error('Unknown browser phase');
     if(!Number.isSafeInteger(timeoutMs)||timeoutMs<1||timeoutMs>30000)throw Error('Invalid browser phase deadline');
@@ -27,7 +27,11 @@ export function createBrowserPhases(file){
       const result=await Promise.race([Promise.resolve().then(operation),new Promise((_,reject)=>{timer=setTimeout(()=>{timedOut=true;const error=new Error('QA_BROWSER_PHASE_TIMEOUT');error.code='QA_BROWSER_PHASE_TIMEOUT';reject(error);},timeoutMs);})]);
       entry.status='PASS';count.passed++;return result;
     }catch(error){entry.status=timedOut?'TIMEOUT':'FAIL';count[timedOut?'timedOut':'failed']++;throw error;}
-    finally{clearTimeout(timer);entry.elapsedMs=Math.round(performance.now()-started);count.elapsedMs+=entry.elapsedMs;save();}
+    finally{clearTimeout(timer);entry.elapsedMs=Math.round(performance.now()-started);count.elapsedMs+=entry.elapsedMs;
+      if(phase==='boundary-sweep'&&entry.book&&[390,1440].includes(entry.width)){
+        sweeps.push({phase,book:entry.book,width:entry.width,status:entry.status,elapsedMs:entry.elapsedMs});if(sweeps.length>36)sweeps.shift();
+      }
+      save();}
   }
   return {run,observations,counts,get totalCount(){return totalCount;}};
 }

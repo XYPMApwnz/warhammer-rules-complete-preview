@@ -5,7 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {createQaTempDir,cleanupQaTempDir} from './helpers/qa-temp.mjs';
-import {publicEvent,safeCurrentJob,jsonDifferencePaths,jsonDifferenceSummary,browserLaunchDetails} from '../tools/qa-ci-progress.mjs';
+import {publicEvent,safeCurrentJob,jsonDifferencePaths,jsonDifferenceSummary,browserLaunchDetails,browserPhaseDetails} from '../tools/qa-ci-progress.mjs';
 import {exportReport} from '../tools/qa-pre-ff-ci.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
@@ -62,6 +62,14 @@ check('browser-launch-diagnostic-never-forwards-private-message',()=>{
  assert.equal(browserLaunchDetails('QA_BROWSER_LAUNCH_DIAGNOSTIC '+JSON.stringify({...row,cause:'PRIVATE_CAPTURE'})),null);
 });
 try{
+ check('sweep-timings-retain-only-book-width-status-and-number',()=>{
+  const raw=path.join(arena,'phase-projection'),base=path.join(raw,'205-lazy-glossary-browser-qa.mjs-evidence');fs.mkdirSync(base,{recursive:true});
+  const good={phase:'boundary-sweep',book:'chaos-space-marines',width:390,status:'PASS',elapsedMs:5000,body:'DO_NOT_PUBLISH'};
+  fs.writeFileSync(path.join(base,'PHASES.json'),JSON.stringify({schema:'browser-phases/v1',observations:[],sweeps:[good,{...good,book:'DO_NOT_PUBLISH'},{...good,width:123},{...good,elapsedMs:-1},{...good,status:'DO_NOT_PUBLISH'}]}));
+  const projected=browserPhaseDetails({raw,index:205,id:'v2/lazy-glossary-browser-qa.mjs'});
+  assert.deepEqual(projected,{history:[],sweeps:[{book:'chaos-space-marines',width:390,status:'PASS',elapsedMs:5000}]});
+  assert(!JSON.stringify(projected).includes('DO_NOT_PUBLISH'));
+ });
  check('single-job-report-preserves-full-ordinal-and-timeout-failure',()=>{
   const raw=path.join(arena,'raw');fs.mkdirSync(raw);
   const listed=spawnSync(process.execPath,['tools/qa-queue.mjs','pre-ff','--list'],{cwd:root,encoding:'utf8'});assert.equal(listed.status,0);

@@ -72,6 +72,7 @@ export function browserPhaseDetails({raw,index,id}){
   history.push(safe);
  }
  const result={history},state=readJson(path.join(entry.dir,'BROWSER_STATE.json'));
+ if(Array.isArray(entry.body.sweeps))result.sweeps=entry.body.sweeps.slice(-36).filter(row=>row.phase==='boundary-sweep'&&books.has(row.book)&&[390,1440].includes(row.width)&&['PASS','FAIL','TIMEOUT'].includes(row.status)&&integer(row.elapsedMs)).map(row=>({book:row.book,width:row.width,status:row.status,elapsedMs:row.elapsedMs}));
  if(state?.schema==='browser-state/v1'){
   const safe={};
   for(const key of ['pageClosed','rendererResponsive','hasFocus'])if(typeof state[key]==='boolean')safe[key]=state[key];
