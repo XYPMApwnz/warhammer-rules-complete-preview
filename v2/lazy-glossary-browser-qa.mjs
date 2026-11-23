@@ -27,35 +27,40 @@ const frames=(page,extra={})=>phase('frame-sync',()=>page.evaluate(()=>new Promi
 const snapshot=(page,selector)=>phase('snapshot',()=>page.locator(selector).evaluateAll(nodes=>nodes.map(node=>({text:node.textContent,cardId:node.closest('[data-card-id]')?.dataset.cardId,factId:node.closest('[data-fact-id]')?.dataset.factId,targetId:node.dataset.targetId,address:new URL(node.href).search+new URL(node.href).hash})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)))));
 async function captureFailureState(page){
  const state={schema:'browser-state/v1',...phaseContext,pageClosed:page.isClosed(),rendererResponsive:false,readyState:'unavailable',visibilityState:'unavailable'};
- try{if(!state.pageClosed){const value=await phase('failure-state',()=>page.evaluate(()=>({readyState:document.readyState,visibilityState:document.visibilityState,hasFocus:document.hasFocus()})),{},2000);
+ try{if(!state.pageClosed){const value=await phase('failure-state',()=>page.evaluate(()=>({readyState:document.readyState,visibilityState:document.visibilityState,hasFocus:document.hasFocus(),boundaryPhase:window.__qaLazyGlossaryPhase?.phase,boundaryOrdinal:window.__qaLazyGlossaryPhase?.ordinal})),{},2000);
   state.rendererResponsive=true;state.readyState=['loading','interactive','complete'].includes(value.readyState)?value.readyState:'unknown';state.visibilityState=['visible','hidden','prerender'].includes(value.visibilityState)?value.visibilityState:'unknown';state.hasFocus=value.hasFocus===true;
+  if(['boundary-before','boundary-ready','frame-sync','boundary-after','boundary-complete'].includes(value.boundaryPhase))state.boundaryPhase=value.boundaryPhase;
+  if(Number.isSafeInteger(value.boundaryOrdinal)&&value.boundaryOrdinal>0&&value.boundaryOrdinal<=10000)state.boundaryOrdinal=value.boundaryOrdinal;
  }}catch{}
  try{fs.writeFileSync(path.join(out,'BROWSER_STATE.json'),JSON.stringify(state,null,2)+'\n');}catch{}
 }
 async function showEveryCard(page){
- const main=await phase('boundary-list',()=>page.locator('main').elementHandle());
- const boundaries=await phase('boundary-list',()=>main.$$('[data-rule-term-state]'));
- const changes=[],trace=[];
- for(const [index,node]of boundaries.entries()){
-  const context={ordinal:index+1};
-  const before=await phase('boundary-before',()=>node.evaluate(node=>{
-   if(!node.getClientRects().length||node.closest('details:not([open])'))return null;
-   const box=node.getBoundingClientRect(),ownerBefore=ArmyBookAppV2.navigation.state.owner;
-   node.scrollIntoView({block:'center',behavior:'instant'});return {width:box.width,height:box.height,ownerBefore};
-  }),context);
-  if(before===null)continue;
-  await phase('boundary-ready',()=>node.evaluate(node=>new Promise((resolve,reject)=>{const started=performance.now();const ready=()=>{
-    if(node.dataset.ruleTermState==='ready')return resolve();
-    if(performance.now()-started>10000)return reject(new Error('First-show term decoration did not finish: '+(node.dataset.cardId||node.className)+' / '+node.dataset.ruleTermState+' / '+ArmyBookAppV2.navigation.state.owner));
-    requestAnimationFrame(ready);
-   };ready();})),context,10000);
-  await frames(page,context);
-  const after=await phase('boundary-after',()=>node.evaluate(node=>{const box=node.getBoundingClientRect();return {id:node.dataset.cardId,unit:node.matches('.unit-card'),ownerAfter:ArmyBookAppV2.navigation.state.owner,top:box.top,bottom:box.bottom,width:box.width,height:box.height,state:node.dataset.ruleTermState,links:node.querySelectorAll('.rule-term-link').length,headerBottom:document.querySelector('#appHeader').getBoundingClientRect().bottom};}),context);
-  if(trace.length<5)trace.push({id:after.id,ownerBefore:before.ownerBefore,ownerAfter:after.ownerAfter,top:after.top,bottom:after.bottom,state:after.state,links:after.links,headerBottom:after.headerBottom});
-  if(Math.abs(before.width-after.width)>0.5||Math.abs(before.height-after.height)>0.5)changes.push({id:after.id,unit:after.unit,before:{width:before.width,height:before.height},after:{width:after.width,height:after.height}});
- }
- const identity=await phase('boundary-after',()=>page.evaluate(()=>({book:ArmyBookAppV2.payload.book.id,width:innerWidth})));
- const changed={changes,trace,...identity};
+ const changed=await phase('boundary-sweep',()=>page.locator('main').evaluate(async main=>{
+  const changes=[],trace=[],boundaries=[...main.querySelectorAll('[data-rule-term-state]')];let ordinal=0;
+  for(const node of boundaries){
+   ordinal++;window.__qaLazyGlossaryPhase={phase:'boundary-before',ordinal};
+   if(!node.getClientRects().length||node.closest('details:not([open])'))continue;
+   const before=node.getBoundingClientRect(),ownerBefore=ArmyBookAppV2.navigation.state.owner;
+   node.scrollIntoView({block:'center',behavior:'instant'});
+   window.__qaLazyGlossaryPhase={phase:'boundary-ready',ordinal};
+   await new Promise((resolve,reject)=>{const started=performance.now();let settled=false;
+    const fail=()=>{if(settled)return;settled=true;clearTimeout(timer);reject(new Error('First-show term decoration did not finish: '+(node.dataset.cardId||node.className)+' / '+node.dataset.ruleTermState+' / '+ArmyBookAppV2.navigation.state.owner));};
+    const timer=setTimeout(fail,10000),ready=()=>{
+     if(settled)return;
+     if(node.dataset.ruleTermState==='ready'){settled=true;clearTimeout(timer);return resolve();}
+     if(performance.now()-started>10000)return fail();
+     requestAnimationFrame(ready);
+    };ready();});
+   window.__qaLazyGlossaryPhase={phase:'frame-sync',ordinal};
+   await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+   window.__qaLazyGlossaryPhase={phase:'boundary-after',ordinal};
+   const after=node.getBoundingClientRect();
+   if(trace.length<5)trace.push({id:node.dataset.cardId,ownerBefore,ownerAfter:ArmyBookAppV2.navigation.state.owner,top:after.top,bottom:after.bottom,state:node.dataset.ruleTermState,links:node.querySelectorAll('.rule-term-link').length,headerBottom:document.querySelector('#appHeader').getBoundingClientRect().bottom});
+   if(Math.abs(before.width-after.width)>0.5||Math.abs(before.height-after.height)>0.5)changes.push({id:node.dataset.cardId,unit:node.matches('.unit-card'),before:{width:before.width,height:before.height},after:{width:after.width,height:after.height}});
+  }
+  window.__qaLazyGlossaryPhase={phase:'boundary-complete',ordinal};
+  return {changes,trace,book:ArmyBookAppV2.payload.book.id,width:innerWidth};
+ }));
  fs.writeFileSync(path.join(out,'reveal-trace-'+changed.book+'-'+changed.width+'.json'),JSON.stringify(changed,null,2));
  await frames(page);return changed.changes;
 }

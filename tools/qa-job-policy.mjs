@@ -2,10 +2,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawn} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
 import {normalizeJob} from './qa-pre-ff-ci.mjs';
 
 export const baselineSha='6156836b7841d2c4f4c429834013598b3484058e';
 export const policySchema='qa-pre-ff-job-timeouts/v1';
+// Fixed reviewed 6156836b PC evidence, independent of the mutable policy table.
+export const reviewedTimingsSha256='608330bb13c2441d4dfa1e8894c4d815c0faab42d97da5810ab4818e3d6df0a7';
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const integer=n=>Number.isSafeInteger(n)&&n>=0;
 const keys=(value,expected)=>value&&typeof value==='object'&&!Array.isArray(value)&&same(Object.keys(value).sort(),[...expected].sort());
@@ -17,6 +21,13 @@ export function jobDeadlineMs(lastPcElapsedMs){
  return Math.max(3*lastPcElapsedMs,300000);
 }
 
+export function baselineTimingsFingerprint(policy){
+ // Explicit field order makes this projection independent of input object key order.
+ const value={baselineSha:policy.baselineSha,jobs:policy.jobs.map(row=>({index:row.index,command:row.command,
+  id:row.id,args:row.args,lastPcElapsedMs:row.lastPcElapsedMs}))};
+ return createHash('sha256').update(JSON.stringify(value)).digest('hex');
+}
+
 export function validateTimeoutPolicy(policy,jobs,root){
  if(!keys(policy,['schema','baselineSha','jobCount','jobs'])||policy.schema!==policySchema||policy.baselineSha!==baselineSha||
   policy.jobCount!==213||!Array.isArray(policy.jobs)||policy.jobs.length!==policy.jobCount||jobs.length!==policy.jobCount)throw Error('INVALID_TIMEOUT_POLICY');
@@ -26,6 +37,7 @@ export function validateTimeoutPolicy(policy,jobs,root){
    !same({command:row.command,id:row.id,args:row.args},canonical[i])||row.timeoutMs!==jobDeadlineMs(row.lastPcElapsedMs))throw Error('TIMEOUT_POLICY_PLAN_MISMATCH');
   const id=JSON.stringify(canonical[i]);if(seen.has(id))throw Error('DUPLICATE_TIMEOUT_POLICY_JOB');seen.add(id);
  }
+ if(baselineTimingsFingerprint(policy)!==reviewedTimingsSha256)throw Error('REVIEWED_PC_BASELINE_CHANGED');
  return policy;
 }
 
@@ -106,13 +118,43 @@ export async function runJobProcess({job,cwd,env,timeoutMs,onChunk=()=>{},onPhas
  if(!Number.isSafeInteger(timeoutMs)||timeoutMs<=0)throw Error('INVALID_JOB_DEADLINE');
  const linux=process.platform==='linux',start=Date.now();
  onPhase('beforeSpawn',{timeoutMs});
- const child=spawn(job.command,job.args,{cwd,env,detached:linux,stdio:['ignore','pipe','pipe']});
+ const supervisor=fileURLToPath(new URL('./qa-job-supervisor.py',import.meta.url));
+ const child=spawn(linux?(env?.QA_PYTHON||env?.PYTHON||'python3'):job.command,
+  linux?['-I','-B',supervisor]:job.args,{cwd,env,detached:linux,stdio:linux?['ignore','pipe','pipe','pipe','pipe']:['ignore','pipe','pipe']});
  const sample=linux&&child.pid?ownedProcesses(child.pid):null;
  let scanError=false,exitCode=null,signal=null,spawnError=null,timedOut=false,closed=false,settled=false,teardownPromise;
+ let leafPid=null,leafExited=false,subreaperComplete=false,protocolInvalid=false,supervisorExitCode=null,reapedChildren=0;
  const observe=()=>{try{return sample?sample():[];}catch{scanError=true;return [];}};
- const monitor=sample?setInterval(observe,25):null;
+ // The live subreaper retains orphan ownership, so no continuous /proc polling is needed.
  if(sample)observe();
  onPhase('afterSpawn',{...(child.pid?{childPid:child.pid}:{}),timeoutMs});
+ if(linux){
+  let buffer='';
+  const invalid=()=>{protocolInvalid=true;spawnError='SUPERVISOR_PROTOCOL_FAILURE';child.kill('SIGTERM');};
+  child.stdio[3]?.on('data',chunk=>{
+   buffer+=chunk.toString('utf8');if(buffer.length>16384){buffer='';invalid();return;}
+   while(buffer.includes('\n')){
+    const end=buffer.indexOf('\n'),line=buffer.slice(0,end);buffer=buffer.slice(end+1);
+    try{
+     const message=JSON.parse(line);
+     if(message.event==='leafSpawn'&&keys(message,['event','pid'])&&Number.isSafeInteger(message.pid)&&message.pid>0&&!leafPid){leafPid=message.pid;}
+     else if(message.event==='leafExit'&&keys(message,['event','pid','exitCode','signal'])&&message.pid===leafPid&&!leafExited&&
+      (message.exitCode===null||Number.isInteger(message.exitCode)&&message.exitCode>=0&&message.exitCode<=255)&&
+      (message.signal===null||typeof message.signal==='string'&&/^(?:SIG[A-Z0-9]+|SIGNAL_[0-9]+)$/.test(message.signal))){
+      leafExited=true;exitCode=message.exitCode;signal=message.signal;
+      onPhase('processExit',{childPid:leafPid,processExitCode:exitCode,timedOut});
+     }else if(message.event==='complete'&&keys(message,['event','reaped'])&&leafExited&&Number.isSafeInteger(message.reaped)&&message.reaped>=1){subreaperComplete=true;reapedChildren=message.reaped;}
+     else if(message.event==='supervisorError'&&keys(message,['event','code'])&&
+      ['SUBREAPER_UNAVAILABLE','SUPERVISOR_CONFIG_INVALID','SUPERVISOR_INTERNAL_FAILURE'].includes(message.code)){protocolInvalid=true;spawnError=message.code;}
+     else invalid();
+    }catch{invalid();}
+   }
+  });
+  child.stdio[3]?.on('error',()=>{protocolInvalid=true;spawnError='SUPERVISOR_PROTOCOL_FAILURE';});
+  child.stdio[4]?.on('error',()=>{protocolInvalid=true;spawnError='SUPERVISOR_CONFIG_FAILURE';});
+  const originalEnvironment=Object.fromEntries(Object.entries(env||process.env).filter(([,value])=>value!==undefined).map(([key,value])=>[key,String(value)]));
+  child.stdio[4]?.end(JSON.stringify({argv:[job.command,...job.args],env:originalEnvironment,termGraceMs}));
+ }
  const kill=(pid,signal)=>{try{process.kill(pid,signal);}catch(error){if(error.code!=='ESRCH')scanError=true;}};
  const terminate=()=>teardownPromise??=(async()=>{
   if(!linux){
@@ -122,19 +164,18 @@ export async function runJobProcess({job,cwd,env,timeoutMs,onChunk=()=>{},onPhas
    if(child.exitCode===null&&child.signalCode===null)child.kill('SIGKILL');
    return {method:'direct-process',confirmed:child.exitCode!==null||child.signalCode!==null};
   }
-  let live=observe();
-  if(!live.length&&!scanError)return {method:'owned-session-and-observed-descendants',confirmed:true};
-  const signalOwned=s=>{
-   // The detached session is ours; individual tracked descendants may own new sessions.
-   if(child.pid)kill(-child.pid,s);
-   for(const process of observe())kill(process.pid,s);
-  };
-  signalOwned('SIGTERM');let until=Date.now()+termGraceMs;
-  while(Date.now()<until&&(live=observe()).length)await pause(20);
-  if((live=observe()).length){signalOwned('SIGKILL');until=Date.now()+killGraceMs;
-   while(Date.now()<until&&(live=observe()).length)await pause(20);
+  // Never kill the subreaper first: it must adopt and reap even instantaneous setsid orphans.
+  if(!closed&&child.pid)kill(child.pid,'SIGTERM');
+  let until=Date.now()+termGraceMs+killGraceMs+500;
+  while(Date.now()<until&&!closed)await pause(20);
+  if(!closed){
+   // Last-resort cleanup; without the ECHILD acknowledgement the queue must stop.
+   for(const process of observe())if(process.pid!==child.pid)kill(process.pid,'SIGKILL');
+   await pause(50);if(child.pid)kill(child.pid,'SIGKILL');
+   until=Date.now()+killGraceMs;
+   while(Date.now()<until&&!closed)await pause(20);
   }
-  return {method:'owned-session-and-observed-descendants',confirmed:!scanError&&!observe().length};
+  return {method:'linux-subreaper',confirmed:subreaperComplete&&!protocolInvalid&&closed&&!scanError&&!observe().length,reapedChildren};
  })();
  const unregister=registerCleanup(async()=>{await terminate();child.stdout?.destroy();child.stderr?.destroy();});
  for(const stream of [child.stdout,child.stderr])stream?.on('data',onChunk);
@@ -143,16 +184,17 @@ export async function runJobProcess({job,cwd,env,timeoutMs,onChunk=()=>{},onPhas
   const finish=async()=>{
    if(settled)return;settled=true;
    const teardown=await terminate();
-   clearTimeout(timer);if(monitor)clearInterval(monitor);unregister();
+   clearTimeout(timer);unregister();
    child.stdout?.destroy();child.stderr?.destroy();
    if(!closed)await Promise.race([new Promise(done=>child.once('close',done)),pause(100)]);
    child.removeAllListeners('exit');child.removeAllListeners('close');
-   resolve({exitCode:timedOut?124:exitCode,signal,originalExitCode:exitCode,timedOut,teardown,
+   if(linux){child.stdio[3]?.destroy();child.stdio[4]?.destroy();if(!closed)child.unref();}
+   resolve({exitCode:timedOut?124:exitCode,signal,originalExitCode:exitCode,timedOut,teardown,...(linux?{supervisorExitCode}:{}),
     ...(timedOut?{error:'TIMEOUT'}:spawnError?{error:spawnError}:{}),elapsedMs:Date.now()-start});
   };
   child.on('error',error=>{spawnError=error.message;});
-  child.on('exit',(code,terminated)=>{exitCode=code;signal=terminated;onPhase('processExit',{childPid:child.pid,processExitCode:code,timedOut});});
-  child.on('close',(code,terminated)=>{exitCode=code;signal=terminated;closed=true;onPhase('streamsClosed',{...(child.pid?{childPid:child.pid}:{}),processExitCode:code,timedOut});void finish();});
+  child.on('exit',(code,terminated)=>{supervisorExitCode=code;if(!linux||!leafExited){exitCode=code;signal=terminated;onPhase('processExit',{childPid:child.pid,processExitCode:code,timedOut});}});
+  child.on('close',(code,terminated)=>{if(!linux||!leafExited){exitCode=code;signal=terminated;}closed=true;onPhase('streamsClosed',{...((leafPid||child.pid)?{childPid:leafPid||child.pid}:{}),processExitCode:exitCode,timedOut});void finish();});
   timer=setTimeout(()=>{
    if(closed)return;
    timedOut=true;

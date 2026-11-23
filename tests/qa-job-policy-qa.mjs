@@ -2,11 +2,11 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import os from 'node:os';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import test from 'node:test';
-import {baselineSha,jobDeadlineMs,validateTimeoutPolicy,selectJobPlan,createJobProgress,runJobProcess} from '../tools/qa-job-policy.mjs';
+import {createQaTempDir,cleanupQaTempDir} from './helpers/qa-temp.mjs';
+import {baselineSha,reviewedTimingsSha256,baselineTimingsFingerprint,jobDeadlineMs,validateTimeoutPolicy,selectJobPlan,createJobProgress,runJobProcess} from '../tools/qa-job-policy.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const policy=JSON.parse(fs.readFileSync(new URL('../tools/qa-pre-ff-timeouts.json',import.meta.url),'utf8'));
@@ -15,11 +15,18 @@ assert.equal(listed.status,0,'The frozen leaf plan must remain available without
 const jobs=JSON.parse(listed.stdout),clone=value=>structuredClone(value);
 const synthetic={command:process.execPath,id:'tests/synthetic-job.mjs'};
 const run=(code,options={})=>runJobProcess({job:{...synthetic,args:['-e',code]},cwd:root,env:{...process.env},timeoutMs:1000,termGraceMs:100,killGraceMs:300,...options});
-const temp=()=>fs.mkdtempSync(path.join(process.env.QA_TMP_ROOT||os.tmpdir(),'qa-job-policy-'));
+const temp=()=>createQaTempDir('wh-qa-job-policy-');
 
 test('policy retains exactly the ordered 213 jobs and the reviewed baseline',()=>{
  assert.equal(jobs.length,213);assert.equal(policy.baselineSha,baselineSha);validateTimeoutPolicy(policy,jobs,root);
+ assert.equal(baselineTimingsFingerprint(policy),reviewedTimingsSha256);
  assert.equal(policy.jobs.every(row=>row.timeoutMs===Math.max(3*row.lastPcElapsedMs,300000)),true);
+});
+
+test('changing PC time and its computed deadline together cannot refresh the baseline',()=>{
+ const changed=clone(policy),row=changed.jobs.find(job=>job.lastPcElapsedMs>100000);
+ assert(row);row.lastPcElapsedMs+=100;row.timeoutMs=jobDeadlineMs(row.lastPcElapsedMs);
+ assert.throws(()=>validateTimeoutPolicy(changed,jobs,root),/REVIEWED_PC_BASELINE_CHANGED/);
 });
 
 test('deadline formula and numeric refusals',()=>{
@@ -52,7 +59,7 @@ test('CLI validates all deadlines before exposing a diagnostic slice',()=>{
   const valid=invoke();assert.equal(valid.status,0);assert.deepEqual(JSON.parse(valid.stdout),[jobs[118]]);
   const altered=clone(policy);altered.jobs.at(-1).timeoutMs++;fs.writeFileSync(file,JSON.stringify(altered));
   const invalid=invoke();assert.notEqual(invalid.status,0);assert.equal(fs.existsSync(progress),false);
- }finally{fs.rmSync(dir,{recursive:true,force:true});}
+ }finally{cleanupQaTempDir(dir);}
 });
 
 test('successful and failed children preserve output privately',async()=>{
@@ -60,6 +67,15 @@ test('successful and failed children preserve output privately',async()=>{
  assert.equal(passed.exitCode,0);assert.equal(passed.timedOut,false);assert.equal(passed.teardown.confirmed,true);
  assert(raw.join('').includes('PRIVATE_SENTINEL'));assert(raw.join('').includes('PRIVATE_ERROR'));
  const failed=await run('process.exit(7)');assert.equal(failed.exitCode,7);assert.equal(failed.timedOut,false);
+});
+
+test('leaf argv and locale environment remain exact without shell interpretation',async()=>{
+ const raw=[],environment={...process.env,LANG:'C',LC_ALL:'C',LC_CTYPE:'C'};
+ const code='process.stdout.write(JSON.stringify({args:process.argv.slice(1),LANG:process.env.LANG,LC_ALL:process.env.LC_ALL,LC_CTYPE:process.env.LC_CTYPE}))';
+ const result=await runJobProcess({job:{...synthetic,args:['-e',code,'--','first','second argument']},cwd:root,env:environment,
+  timeoutMs:1000,onChunk:chunk=>raw.push(chunk.toString())});
+ assert.equal(result.exitCode,0);assert.equal(result.teardown.confirmed,true);
+ assert.deepEqual(JSON.parse(raw.join('')),{args:['first','second argument'],LANG:'C',LC_ALL:'C',LC_CTYPE:'C'});
 });
 
 test('hung child becomes TIMEOUT and later work can still execute',async()=>{
@@ -85,7 +101,22 @@ test('detached Chromium-like descendant is terminated with its owning job',{skip
   const pid=Number(fs.readFileSync(pidFile,'utf8'));let live=false;
   try{const stat=fs.readFileSync('/proc/'+pid+'/stat','utf8');live=!['Z','X'].includes(stat.slice(stat.lastIndexOf(')')+2).split(' ')[0]);}catch(error){if(error.code!=='ENOENT')throw error;}
   assert.equal(live,false,'A detached browser process must not survive the next-job boundary');
- }finally{fs.rmSync(dir,{recursive:true,force:true});}
+ }finally{cleanupQaTempDir(dir);}
+});
+
+test('instant detached reparented descendants are reaped before a later PASS',{skip:process.platform!=='linux'},async()=>{
+ const dir=temp(),pidFile=path.join(dir,'instant-orphan.pid');
+ try{
+  const final='require("node:fs").writeFileSync('+JSON.stringify(pidFile)+',String(process.pid));setInterval(()=>{},1000)';
+  const middle='require("node:child_process").spawn(process.execPath,["-e",'+JSON.stringify(final)+'],{detached:true,stdio:["ignore",1,2]}).unref();process.exit(0)';
+  const first='require("node:child_process").spawn(process.execPath,["-e",'+JSON.stringify(middle)+'],{detached:true,stdio:["ignore",1,2]}).unref();process.exit(0)';
+  const result=await run(first,{timeoutMs:750});
+  assert.equal(result.originalExitCode,0);assert.equal(result.timedOut,true);assert.equal(result.teardown.method,'linux-subreaper');
+  assert.equal(result.teardown.confirmed,true);assert(result.teardown.reapedChildren>=3);
+  const pid=Number(fs.readFileSync(pidFile,'utf8'));
+  assert.equal(fs.existsSync('/proc/'+pid),false,'The subreaper must reap the escaped descendant, including its zombie');
+  const later=await run('process.exit(0)');assert.equal(later.exitCode,0);assert.equal(later.teardown.confirmed,true);
+ }finally{cleanupQaTempDir(dir);}
 });
 
 test('public progress and atomic marker never contain child output',async()=>{
@@ -102,5 +133,5 @@ test('public progress and atomic marker never contain child output',async()=>{
   const events=fs.readFileSync(file,'utf8').trim().split('\n').map(line=>JSON.parse(line));assert.deepEqual(events.map(row=>row.event),['START','END']);assert.equal(events[1].status,'PASS');
   assert.equal(JSON.parse(fs.readFileSync(path.join(dir,'CURRENT_JOB.json'),'utf8')).phase,'completed');
   assert.throws(()=>createJobProgress({file,out:dir,total:213,selectedTotal:1}),/NOT_FRESH/);
- }finally{fs.rmSync(dir,{recursive:true,force:true});}
+ }finally{cleanupQaTempDir(dir);}
 });

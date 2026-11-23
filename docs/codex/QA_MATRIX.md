@@ -41,6 +41,22 @@ the nine passports. Full Core/MFM owner JSON remains outside the runtime package
 Both queues run sequentially, deduplicate leaf
 commands and retain every exit status and log even after a failure. The final
 exit code remains nonzero if any check failed; historical failures are not PASS.
+
+The manual GitHub pre-FF workflow runs the same ordered 213 leaves. Its optional
+`job` input is a one-based full-plan index for a single diagnostic job; leave it
+empty for release/review verification. A diagnostic report cannot claim a full
+queue PASS. CI validates all identities and arguments against the reviewed PC
+timing baseline before applying a diagnostic filter. Its per-job deadline is
+exactly `max(3 * lastPcElapsedMs, 300000)`; a timeout is a failed job and the next
+job starts only after owned processes have been terminated. `START`/`END` public
+lines contain only the canonical job ID, elapsed time and result. Raw output is
+runner-local; the artifact remains the three allowlisted metadata files.
+The atomic current-job marker records spawn, process exit, stream closure and
+cleanup separately so a cancellation does not silently imply which phase ran.
+CI caches npm downloads and locked Playwright binaries, never source captures,
+BSData, results, node_modules or browser profiles. Locked installs and browser
+system-dependency installation still execute. The original local default queue
+and its assertions remain unchanged; the CI deadline policy is opt-in.
 `npm run markup:census -- --check` reads all nine actual native factories and
 checks source fingerprints, reviewed categories, consumed bindings and the exact
 named debt list. It runs in quick and pre-FF (about six seconds locally).

@@ -13,6 +13,15 @@ const plan=[{command:'node',id:'tests/example-qa.mjs',args:['tests/example-qa.mj
 const start={schema:'qa-job-progress/v1',index:1,ordinal:1,total:1,selectedTotal:1,id:plan[0].id,elapsedMs:0,elapsedSeconds:0,event:'START'};
 let controls=0;
 const check=(name,fn)=>{fn();controls++;console.log('PASS '+name);};
+check('CI-caches-only-rebuildable-locked-downloads',()=>{
+ const workflow=fs.readFileSync(path.join(root,'.github/workflows/qa-pre-ff.yml'),'utf8');
+ assert.match(workflow,/cache: npm\s+cache-dependency-path: source\/package-lock.json/);
+ const cache=workflow.split('      - name: Restore locked Playwright browser binaries')[1]?.split('      - name:')[0];
+ assert(cache);assert.match(cache,/path: ~\/\.cache\/ms-playwright/);
+ assert(cache.includes("key: playwright-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('source/package-lock.json') }}"));
+ assert.doesNotMatch(cache,/restore-keys|node_modules|qa-tmp|bsdata|profiles|artifacts/);
+ assert.match(workflow,/npx playwright install --with-deps chromium/,'System dependencies and locked install still execute after a cache hit');
+});
 check('safe-start-and-end-lines',()=>{
  assert.equal(publicEvent(start,plan,[1]),'START tests/example-qa.mjs 0.000');
  for(const status of ['PASS','FAIL','TIMEOUT'])assert.equal(publicEvent({...start,event:'END',elapsedMs:1250,elapsedSeconds:1,status},plan,[1]),'END tests/example-qa.mjs 1.250 '+status);
@@ -38,6 +47,7 @@ const arena=createQaTempDir('wh-ci-progress-controls-');
 check('browser-launch-diagnostic-never-forwards-private-message',()=>{
  const row={schema:'browser-launch-diagnostic/v1',phase:'browser-launch',status:'FAIL',errorClass:'Error',cause:'UNIX_SOCKET_PATH_TOO_LONG',tempPathBytes:180,private:'PRIVATE_CAPTURE owner@example.invalid'};
  assert.deepEqual(browserLaunchDetails('QA_BROWSER_LAUNCH_DIAGNOSTIC '+JSON.stringify(row)),{errorClass:'Error',cause:'UNIX_SOCKET_PATH_TOO_LONG',tempPathBytes:180});
+ assert.deepEqual(browserLaunchDetails('AssertionError [ERR_ASSERTION]: QA_BROWSER_LAUNCH_DIAGNOSTIC '+JSON.stringify(row)),{errorClass:'Error',cause:'UNIX_SOCKET_PATH_TOO_LONG',tempPathBytes:180});
  assert.equal(browserLaunchDetails('QA_BROWSER_LAUNCH_DIAGNOSTIC '+JSON.stringify({...row,cause:'PRIVATE_CAPTURE'})),null);
 });
 try{

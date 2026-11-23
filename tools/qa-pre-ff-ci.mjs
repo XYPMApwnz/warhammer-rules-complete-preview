@@ -177,8 +177,10 @@ export function markdownReport(result){
   `Result: **${result.status}**; platform: ${result.platform}.\n\n`+
   `Jobs: ${result.total}; completed: ${result.completed}; PASS: ${result.passed}; FAIL: ${result.failed}; missing: ${result.missing}.\n\n`+
   `Elapsed: ${(result.elapsedMs/60000).toFixed(2)} minutes (${result.elapsedMs} ms).\n\n`+
+  (result.schema==='pre-ff-diagnostic-report/v1'?`Scope: single-job diagnosis, not a full ${result.fullPlanTotal}-job verification.\n\n`:'')+
   '## Failed jobs\n\n'+(failed.length?failed.map(job=>`- ${job.index}. \`${job.id}\` ${job.args.slice(1).map(a=>'`'+a+'`').join(' ')}\n  ${job.diagnostic.firstLine}${job.diagnostic.location?' (`'+job.diagnostic.location.file+':'+job.diagnostic.location.line+(Number.isSafeInteger(job.diagnostic.location.column)?':'+job.diagnostic.location.column:'')+'`)':''}`).join('\n'):'None.')+'\n\n'+
   'Report conditions: '+(result.problems.join(', ')||'none')+'.\n\n'+
+  (result.currentJob?`Last recorded job: ${result.currentJob.index}, \`${result.currentJob.id}\`; phase: ${result.currentJob.phase}.\n\n`:'')+
   'Privacy: raw logs, captures, DOM, traces, browser profiles, source text and arbitrary error messages are not published.\n';
 }
 function run(args,cwd){const r=spawnSync(process.execPath,args,{cwd,encoding:'utf8',maxBuffer:16*1024*1024});if(r.status!==0)throw Error('PLAN_UNAVAILABLE');return r.stdout;}
@@ -206,8 +208,9 @@ export function exportReport({source,raw,out,summary,outcome,job}){
   if(launch)row.browserLaunch=launch;
   const browserPhase=browserPhaseDetails({raw,index:row.index,id:row.id});if(browserPhase)row.browserPhases=browserPhase;
   if(privateRow.timedOut===true){
-   if(privateRow.status!=='FAIL'||privateRow.exitCode!==124)throw Error('INVALID_JOB_STATUS');
-   row.timedOut=true;row.diagnostic={errorClass:'TimeoutError',cause:'TIMEOUT',firstLine:'TimeoutError: CI job deadline exceeded; owned processes terminated.',messageRedacted:true};
+   if(privateRow.status!=='FAIL'||![124,125].includes(privateRow.exitCode))throw Error('INVALID_JOB_STATUS');
+   const confirmed=privateRow.teardown?.confirmed===true;
+   row.timedOut=true;row.teardownConfirmed=confirmed;row.diagnostic={errorClass:'TimeoutError',cause:'TIMEOUT',firstLine:confirmed?'TimeoutError: CI job deadline exceeded; owned processes terminated.':'TimeoutError: CI job deadline exceeded; process cleanup not confirmed; queue stopped.',messageRedacted:true};
   }
   if(row.status==='FAIL'&&row.id==='books/shared/tools/check-generated-rebuild.mjs'){
    const detail=generatedFailureDetails({source:root,raw,index:row.index});if(detail)row.generated=detail;

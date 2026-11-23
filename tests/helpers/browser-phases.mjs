@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import {performance} from 'node:perf_hooks';
 
-const phases=new Set(['browser-launch','context-open','page-open','book-open','frame-sync','contents-title','contents-before','contents-navigate','contents-settle','contents-diagnostics','contents-geometry','screenshot','boundary-list','boundary-before','boundary-ready','boundary-after','snapshot','select-card','dialog-open','dialog-links','dialog-close','failure-state','context-close','browser-close','server-close']);
+const phases=new Set(['browser-launch','context-open','page-open','book-open','frame-sync','contents-title','contents-before','contents-navigate','contents-settle','contents-diagnostics','contents-geometry','screenshot','boundary-sweep','snapshot','select-card','dialog-open','dialog-links','dialog-close','failure-state','context-close','browser-close','server-close']);
 const books=new Set(['adeptus-mechanicus','blood-angels','chaos-space-marines','dark-angels','death-guard','emperors-children','space-marines','tau-empire','tyranids']);
 
 export function createBrowserPhases(file){

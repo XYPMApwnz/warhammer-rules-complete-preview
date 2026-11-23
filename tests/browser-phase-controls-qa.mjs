@@ -13,7 +13,7 @@ assert.equal(phases.observations[0].status,'PASS');
 const original=new Error('Private error body is retained only for the caller');
 await assert.rejects(phases.run('snapshot',()=>Promise.reject(original)),error=>error===original);
 assert.equal(phases.observations[1].status,'FAIL');
-await assert.rejects(phases.run('boundary-ready',()=>new Promise(()=>{}),{ordinal:1},20),error=>error.code==='QA_BROWSER_PHASE_TIMEOUT');
+await assert.rejects(phases.run('boundary-sweep',()=>new Promise(()=>{}),{ordinal:1},20),error=>error.code==='QA_BROWSER_PHASE_TIMEOUT');
 assert.equal(phases.observations[2].status,'TIMEOUT');
 assert(phases.observations[2].elapsedMs<1000,'A stalled browser callback is bounded by the Node timer');
 await assert.rejects(phases.run('private arbitrary phase',()=>{},{}),/Unknown browser phase/);

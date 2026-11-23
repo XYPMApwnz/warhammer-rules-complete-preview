@@ -31,7 +31,7 @@ export function publicEvent(row,plan,selected){
 }
 export function safeCurrentJob(row,plan,selected){
  if(!row||row.schema!=='qa-job-progress/v1'||row.total!==plan.length||row.selectedTotal!==selected.length||
-  row.index!==selected[row.ordinal-1]||row.id!==plan[row.index-1]?.id||!integer(row.elapsedMs)||!phases.has(row.phase))return null;
+  !integer(row.ordinal)||row.ordinal<1||row.index!==selected[row.ordinal-1]||row.id!==plan[row.index-1]?.id||!integer(row.elapsedMs)||!phases.has(row.phase))return null;
  return {index:row.index,id:plan[row.index-1].id,phase:row.phase,elapsedMs:row.elapsedMs,
   ...(integer(row.timeoutMs)?{timeoutMs:row.timeoutMs}:{}),...(typeof row.timedOut==='boolean'?{timedOut:row.timedOut}:{}),
   ...(['PASS','FAIL','TIMEOUT'].includes(row.status)?{status:row.status}:{})};
@@ -39,8 +39,9 @@ export function safeCurrentJob(row,plan,selected){
 export function browserLaunchDetails(text){
  const causes=new Set(['UNIX_SOCKET_PATH_TOO_LONG','PROFILE_SINGLETON_FAILURE','EXECUTABLE_UNAVAILABLE','SANDBOX_UNAVAILABLE','SHARED_LIBRARY_UNAVAILABLE','LAUNCH_TIMEOUT','LAUNCH_FAILED']);
  for(const line of String(text).split(/\r?\n/).reverse()){
-  if(!line.startsWith('QA_BROWSER_LAUNCH_DIAGNOSTIC ')||line.length>1024)continue;
-  try{const row=JSON.parse(line.slice('QA_BROWSER_LAUNCH_DIAGNOSTIC '.length));
+  const offset=line.indexOf('QA_BROWSER_LAUNCH_DIAGNOSTIC ');
+  if(offset<0||line.length>2048)continue;
+  try{const row=JSON.parse(line.slice(offset+'QA_BROWSER_LAUNCH_DIAGNOSTIC '.length));
    if(row.schema!=='browser-launch-diagnostic/v1'||row.phase!=='browser-launch'||row.status!=='FAIL'||
     !['Error','TimeoutError','TypeError','RangeError','ReferenceError','SyntaxError'].includes(row.errorClass)||
     !causes.has(row.cause)||!integer(row.tempPathBytes)||row.tempPathBytes>1024*1024)continue;
@@ -55,7 +56,7 @@ export function browserPhaseDetails({raw,index,id}){
  let directories;try{const s=fs.lstatSync(base);if(!s.isDirectory()||s.isSymbolicLink())return null;
   directories=[base,...fs.readdirSync(base,{withFileTypes:true}).filter(e=>e.isDirectory()&&!e.isSymbolicLink()).map(e=>path.join(base,e.name))];
  }catch{return null;}
- const allowed=new Set(['browser-launch','context-open','page-open','book-open','frame-sync','contents-title','contents-before','contents-navigate','contents-settle','contents-diagnostics','contents-geometry','screenshot','boundary-list','boundary-before','boundary-ready','boundary-after','snapshot','select-card','dialog-open','dialog-links','dialog-close','context-close','browser-close','server-close']);
+ const allowed=new Set(['browser-launch','context-open','page-open','book-open','frame-sync','contents-title','contents-before','contents-navigate','contents-settle','contents-diagnostics','contents-geometry','screenshot','boundary-sweep','snapshot','select-card','dialog-open','dialog-links','dialog-close','failure-state','context-close','browser-close','server-close']);
  const books=new Set(['adeptus-mechanicus','blood-angels','chaos-space-marines','dark-angels','death-guard','emperors-children','space-marines','tau-empire','tyranids']);
  const entry=directories.map(dir=>({dir,body:readJson(path.join(dir,'PHASES.json'))})).find(e=>e.body?.schema==='browser-phases/v1');
  if(!entry||!Array.isArray(entry.body.observations))return null;
@@ -68,7 +69,17 @@ export function browserPhaseDetails({raw,index,id}){
   if(integer(row.ordinal)&&row.ordinal<=10000)safe.ordinal=row.ordinal;
   history.push(safe);
  }
- return {history};
+ const result={history},state=readJson(path.join(entry.dir,'BROWSER_STATE.json'));
+ if(state?.schema==='browser-state/v1'){
+  const safe={};
+  for(const key of ['pageClosed','rendererResponsive','hasFocus'])if(typeof state[key]==='boolean')safe[key]=state[key];
+  if(['loading','interactive','complete','unavailable','unknown'].includes(state.readyState))safe.readyState=state.readyState;
+  if(['visible','hidden','prerender','unavailable','unknown'].includes(state.visibilityState))safe.visibilityState=state.visibilityState;
+  if(['boundary-before','boundary-ready','frame-sync','boundary-after','boundary-complete'].includes(state.boundaryPhase))safe.boundaryPhase=state.boundaryPhase;
+  if(integer(state.boundaryOrdinal)&&state.boundaryOrdinal<=10000)safe.boundaryOrdinal=state.boundaryOrdinal;
+  result.state=safe;
+ }
+ return result;
 }
 export async function followProgress({source,events,job}){
  const plan=canonicalPlan(source),selected=selection(plan,job);
@@ -107,7 +118,9 @@ export function generatedFailureDetails({source,raw,index}){
  const base=path.join(raw,String(index).padStart(2,'0')+'-check-generated-rebuild.mjs-evidence');
  // The queue sets QA_EVIDENCE_DIR; the owned generated evidence directory is its direct child.
  const candidates=[base];
- try{for(const entry of fs.readdirSync(base,{withFileTypes:true}))if(entry.isDirectory()&&!entry.isSymbolicLink())candidates.push(path.join(base,entry.name));}catch{}
+ try{const stat=fs.lstatSync(base);if(!stat.isDirectory()||stat.isSymbolicLink())return null;
+  for(const entry of fs.readdirSync(base,{withFileTypes:true}))if(entry.isDirectory()&&!entry.isSymbolicLink())candidates.push(path.join(base,entry.name));
+ }catch{return null;}
  const report=candidates.map(p=>({base:p,body:readJson(path.join(p,'RESULTS.json'))})).find(v=>v.body?.schema==='generated-rebuild-check/v1');
  if(!report||!Array.isArray(report.body.steps))return null;
  const failed=report.body.steps.find(s=>s.status!=='PASS');if(!failed)return null;
@@ -119,7 +132,7 @@ export function generatedFailureDetails({source,raw,index}){
   for(const key of ['expectedSha256','rebuiltSha256'])if(/^[a-f0-9]{64}$/.test(row[key]))projected[key]=row[key];
   for(const key of ['expectedBytes','rebuiltBytes','firstByte'])if(integer(row[key]))projected[key]=row[key];
   // Comparison values and serialized source HTML never leave the runner.
-  const prefix=path.join(report.base,'differences',row.file),a=readJson(prefix+'.expected',128*1024*1024),b=readJson(prefix+'.rebuilt',128*1024*1024);
+  const prefix=path.join(report.base,'differences',row.file),a=readJson(path.join(source,row.file),128*1024*1024),b=readJson(prefix+'.rebuilt',128*1024*1024);
   if(a&&b)projected.jsonDifferences=jsonDifferencePaths(a,b);
   differences.push(projected);
  }
