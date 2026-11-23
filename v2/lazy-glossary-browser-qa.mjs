@@ -121,6 +121,14 @@ for(const book of books)for(const width of widths){const result={book:book.id,wi
    const reference=await snapshot(page,'main .rule-term-link');
    result.views[version]={full,selected,dialog,reference};
    if(version==='head')result.geometry={target:geometry,flowChanges};
+   if(version==='head'&&book.id==='chaos-space-marines'&&width===390){
+    await phase('contents-navigate',()=>page.evaluate(()=>{history.pushState(null,'',ArmyBookAppV2.routeURL('qa-unregistered-full-book',false,{fullBook:true}));dispatchEvent(new PopStateEvent('popstate'));}));
+    await phase('contents-settle',()=>page.locator('main > .v2-not-found').waitFor());
+    assert.equal(await phase('snapshot',()=>page.locator('main > .v1-contents-pages').count()),1,'Unknown full-book links retain their existing fallback book');
+    await phase('contents-navigate',()=>page.evaluate(id=>ArmyBookAppV2.navigation.go(id),id));
+    await phase('contents-settle',()=>page.waitForFunction(()=>ArmyBookAppV2.navigation.state.owner==='reader'));
+    assert.equal(await phase('snapshot',()=>page.locator('main > .v2-not-found').count()),0,'Valid Contents navigation removes an obsolete unknown-route warning');
+   }
   }catch(error){contextFailure=error;await captureFailureState(page);throw error;}
   finally{try{await phase('context-close',()=>context.close());}catch(error){await captureFailureState(page);if(!contextFailure)throw error;}}
  }

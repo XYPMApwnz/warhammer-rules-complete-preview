@@ -833,7 +833,7 @@ export function mount(document, payload, options = {}) {
     routeKey = key;
     // A controlled move within this immutable full-book DOM is navigation,
     // not a new view. Retain pending first-show decoration and physical nodes.
-    const reuseContents=controlledRoute&&context.destination==='ARMY_BOOK'&&!personalMode&&!detail&&!referenceView&&!navigationBlocked&&!dialog.open&&
+    const reuseContents=controlledRoute&&context.destination==='ARMY_BOOK'&&!personalMode&&!detail&&!referenceView&&!navigationBlocked&&!dialog.open&&!main.querySelector(':scope > .v2-not-found')&&
       !rosterId&&!context.instanceId&&context.bookId===payload.book.id&&
       context.registryId===(references.identityFor(id)?.registryId||payload.book.id)&&
       selectedView==='READER'&&state?.armyBookV2?.contents&&Boolean(main.querySelector(':scope > .v1-contents-pages'))&&contents.isTarget(id||'start')&&Boolean(contents.section(id||'start'));
