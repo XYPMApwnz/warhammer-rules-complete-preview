@@ -49,6 +49,27 @@ export function browserLaunchDetails(text){
  }
  return null;
 }
+export function browserPhaseDetails({raw,index,id}){
+ if(id!=='v2/lazy-glossary-browser-qa.mjs')return null;
+ const base=path.join(raw,String(index).padStart(2,'0')+'-lazy-glossary-browser-qa.mjs-evidence');
+ let directories;try{const s=fs.lstatSync(base);if(!s.isDirectory()||s.isSymbolicLink())return null;
+  directories=[base,...fs.readdirSync(base,{withFileTypes:true}).filter(e=>e.isDirectory()&&!e.isSymbolicLink()).map(e=>path.join(base,e.name))];
+ }catch{return null;}
+ const allowed=new Set(['browser-launch','context-open','page-open','book-open','frame-sync','contents-title','contents-before','contents-navigate','contents-settle','contents-diagnostics','contents-geometry','screenshot','boundary-list','boundary-before','boundary-ready','boundary-after','snapshot','select-card','dialog-open','dialog-links','dialog-close','context-close','browser-close','server-close']);
+ const books=new Set(['adeptus-mechanicus','blood-angels','chaos-space-marines','dark-angels','death-guard','emperors-children','space-marines','tau-empire','tyranids']);
+ const entry=directories.map(dir=>({dir,body:readJson(path.join(dir,'PHASES.json'))})).find(e=>e.body?.schema==='browser-phases/v1');
+ if(!entry||!Array.isArray(entry.body.observations))return null;
+ const history=[];
+ for(const row of entry.body.observations.slice(-8)){
+  if(!allowed.has(row.phase)||!['START','PASS','FAIL','TIMEOUT'].includes(row.status)||!integer(row.elapsedMs))continue;
+  const safe={phase:row.phase,status:row.status,elapsedMs:row.elapsedMs};
+  if(books.has(row.book))safe.book=row.book;
+  if([390,1440].includes(row.width))safe.width=row.width;
+  if(integer(row.ordinal)&&row.ordinal<=10000)safe.ordinal=row.ordinal;
+  history.push(safe);
+ }
+ return {history};
+}
 export async function followProgress({source,events,job}){
  const plan=canonicalPlan(source),selected=selection(plan,job);
  let stopping=false,seen=0,open=null,ordinal=1;

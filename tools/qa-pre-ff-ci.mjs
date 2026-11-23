@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {selection,readJson,safeCurrentJob,generatedFailureDetails,browserLaunchDetails} from './qa-ci-progress.mjs';
+import {selection,readJson,safeCurrentJob,generatedFailureDetails,browserLaunchDetails,browserPhaseDetails} from './qa-ci-progress.mjs';
 
 const integer=value=>Number.isSafeInteger(value)&&value>=0;
 const safeJob=value=>typeof value==='string'&&value.length<=240&&/^[A-Za-z0-9_./ -]+$/.test(value)&&!value.includes('..');
@@ -204,6 +204,7 @@ export function exportReport({source,raw,out,summary,outcome,job}){
   const privateRow=input.results[i];
   const launch=row.status==='FAIL'?browserLaunchDetails(failureLogs[i]):null;
   if(launch)row.browserLaunch=launch;
+  const browserPhase=browserPhaseDetails({raw,index:row.index,id:row.id});if(browserPhase)row.browserPhases=browserPhase;
   if(privateRow.timedOut===true){
    if(privateRow.status!=='FAIL'||privateRow.exitCode!==124)throw Error('INVALID_JOB_STATUS');
    row.timedOut=true;row.diagnostic={errorClass:'TimeoutError',cause:'TIMEOUT',firstLine:'TimeoutError: CI job deadline exceeded; owned processes terminated.',messageRedacted:true};

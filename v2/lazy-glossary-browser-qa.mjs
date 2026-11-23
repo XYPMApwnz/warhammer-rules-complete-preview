@@ -23,10 +23,18 @@ const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'applicatio
 const errors=[],rows=[];
 const server=http.createServer((req,res)=>{const parts=decodeURIComponent(new URL(req.url,'http://local').pathname).split('/').filter(Boolean),source=roots[parts.shift()];if(!source){res.writeHead(204).end();return;}const file=path.resolve(source,parts.join('/'));if(!file.startsWith(source+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'}).end(fs.readFileSync(file));});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
-const frames=page=>phase('frame-sync',()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))));
+const frames=(page,extra={})=>phase('frame-sync',()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))),extra);
 const snapshot=(page,selector)=>phase('snapshot',()=>page.locator(selector).evaluateAll(nodes=>nodes.map(node=>({text:node.textContent,cardId:node.closest('[data-card-id]')?.dataset.cardId,factId:node.closest('[data-fact-id]')?.dataset.factId,targetId:node.dataset.targetId,address:new URL(node.href).search+new URL(node.href).hash})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)))));
+async function captureFailureState(page){
+ const state={schema:'browser-state/v1',...phaseContext,pageClosed:page.isClosed(),rendererResponsive:false,readyState:'unavailable',visibilityState:'unavailable'};
+ try{if(!state.pageClosed){const value=await phase('failure-state',()=>page.evaluate(()=>({readyState:document.readyState,visibilityState:document.visibilityState,hasFocus:document.hasFocus()})),{},2000);
+  state.rendererResponsive=true;state.readyState=['loading','interactive','complete'].includes(value.readyState)?value.readyState:'unknown';state.visibilityState=['visible','hidden','prerender'].includes(value.visibilityState)?value.visibilityState:'unknown';state.hasFocus=value.hasFocus===true;
+ }}catch{}
+ try{fs.writeFileSync(path.join(out,'BROWSER_STATE.json'),JSON.stringify(state,null,2)+'\n');}catch{}
+}
 async function showEveryCard(page){
- const boundaries=await phase('boundary-list',()=>page.locator('main [data-rule-term-state]').elementHandles());
+ const main=await phase('boundary-list',()=>page.locator('main').elementHandle());
+ const boundaries=await phase('boundary-list',()=>main.$$('[data-rule-term-state]'));
  const changes=[],trace=[];
  for(const [index,node]of boundaries.entries()){
   const context={ordinal:index+1};
@@ -41,7 +49,7 @@ async function showEveryCard(page){
     if(performance.now()-started>10000)return reject(new Error('First-show term decoration did not finish: '+(node.dataset.cardId||node.className)+' / '+node.dataset.ruleTermState+' / '+ArmyBookAppV2.navigation.state.owner));
     requestAnimationFrame(ready);
    };ready();})),context,10000);
-  await frames(page);
+  await frames(page,context);
   const after=await phase('boundary-after',()=>node.evaluate(node=>{const box=node.getBoundingClientRect();return {id:node.dataset.cardId,unit:node.matches('.unit-card'),ownerAfter:ArmyBookAppV2.navigation.state.owner,top:box.top,bottom:box.bottom,width:box.width,height:box.height,state:node.dataset.ruleTermState,links:node.querySelectorAll('.rule-term-link').length,headerBottom:document.querySelector('#appHeader').getBoundingClientRect().bottom};}),context);
   if(trace.length<5)trace.push({id:after.id,ownerBefore:before.ownerBefore,ownerAfter:after.ownerAfter,top:after.top,bottom:after.bottom,state:after.state,links:after.links,headerBottom:after.headerBottom});
   if(Math.abs(before.width-after.width)>0.5||Math.abs(before.height-after.height)>0.5)changes.push({id:after.id,unit:after.unit,before:{width:before.width,height:before.height},after:{width:after.width,height:after.height}});
@@ -70,12 +78,13 @@ async function contentsTarget(page,id,width){
  await phase('screenshot',()=>page.screenshot({path:path.join(out,`contents-${id.replace(/[^a-z0-9-]/gi,'_')}-${width}.png`),animations:'disabled'}));
  return {before,after:geometry};
 }
-let browser;
+let browser,failure;
 try{browser=await phase('browser-launch',()=>launchChromium());
 for(const book of books)for(const width of widths){const result={book:book.id,width,views:{}};
  phaseContext={book:book.id,width};
  for(const version of Object.keys(roots)){
   const context=await phase('context-open',()=>browser.newContext({viewport:{width,height:844},serviceWorkers:'block'})),page=await phase('page-open',()=>context.newPage());page.setDefaultTimeout(30000);page.on('pageerror',error=>errors.push({book:book.id,width,version,message:error.message}));
+  let contextFailure;
   try{await phase('book-open',()=>page.goto(`${origin}/${version}/v2/app.html`));await phase('book-open',()=>page.locator(`[data-v2-book="${book.id}"]`).click());await phase('book-open',()=>page.waitForFunction(id=>window.ArmyBookAppV2?.payload.book.id===id&&document.querySelector('main .unit-card'),book.id));await frames(page);
    const id=await phase('contents-title',()=>page.evaluate(()=>ArmyBookAppV2.payload.cards.find(card=>card.kind==='DATASHEET'&&document.querySelector(`main .unit-card[data-card-id="${card.id}"] .ability p`))?.id));assert.ok(id);
    let geometry=null,flowChanges=[];
@@ -96,10 +105,15 @@ for(const book of books)for(const width of widths){const result={book:book.id,wi
    const reference=await snapshot(page,'main .rule-term-link');
    result.views[version]={full,selected,dialog,reference};
    if(version==='head')result.geometry={target:geometry,flowChanges};
-  }finally{await phase('context-close',()=>context.close());}
+  }catch(error){contextFailure=error;await captureFailureState(page);throw error;}
+  finally{try{await phase('context-close',()=>context.close());}catch(error){await captureFailureState(page);if(!contextFailure)throw error;}}
  }
  if(base)for(const view of ['full','selected','dialog','reference'])assert.deepEqual(result.views.head[view],result.views.base[view],`${book.id}/${width}/${view}: exact player link target, text and fact ownership parity`);
  rows.push(result);fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:'RUNNING',rows,errors},null,2));console.log(JSON.stringify({book:book.id,width,counts:Object.fromEntries(Object.entries(result.views.head).map(([key,value])=>[key,value.length])),status:'PASS'}));
 }
 assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:'PASS',rows,errors},null,2));
-}catch(error){fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:'FAIL',message:error.message,rows,errors},null,2));throw error;}finally{try{if(browser)await phase('browser-close',()=>browser.close());}finally{await phase('server-close',()=>new Promise(r=>server.close(r)));}}
+}catch(error){failure=error;fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status:'FAIL',message:error.message,rows,errors},null,2));throw error;}
+finally{let closeFailure;try{if(browser)await phase('browser-close',()=>browser.close());}catch(error){closeFailure=error;}
+ try{await phase('server-close',()=>new Promise(r=>server.close(r)));}catch(error){closeFailure??=error;}
+ if(closeFailure&&!failure)throw closeFailure;
+}

@@ -133,7 +133,7 @@ jobs:
           node ../orchestration/tests/ci-bsdata-transport-qa.mjs > "$RUNNER_TEMP/bsdata-controls.log" 2>&1
           node ../orchestration/tests/qa-job-policy-qa.mjs > "$RUNNER_TEMP/job-policy-controls.log" 2>&1
           node ../orchestration/tests/qa-ci-progress-qa.mjs > "$RUNNER_TEMP/progress-controls.log" 2>&1
-          node ../orchestration/tests/browser-phase-controls-qa.mjs > "$RUNNER_TEMP/browser-phase-controls.log" 2>&1
+          node tests/browser-phase-controls-qa.mjs > "$RUNNER_TEMP/browser-phase-controls.log" 2>&1
           node tests/book-update-dependency-ignore-qa.mjs > "$RUNNER_TEMP/dependency-ignore-controls.log" 2>&1
           echo "QA_PYTHON=$(command -v python)" >> "$GITHUB_ENV"
           echo "PYTHON=$(command -v python)" >> "$GITHUB_ENV"
