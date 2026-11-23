@@ -1,0 +1,112 @@
+{
+  "schema": "core-parser-portability-proof/v1",
+  "scope": "metadata only; no source text",
+  "source": [
+    {
+      "page": "core",
+      "sha256": "9343edea5bc2c536da0e4cf19aacdca875108b61d1d4bf30ca8d5a9f2ac9d695",
+      "rawCRLF": 2769,
+      "quoteOnlyAttributes": [
+        {
+          "tag": "div",
+          "kind": "empty",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "page": "appendix",
+      "sha256": "9de62d73ca6ceeda040b3f6cc0607cddfcbcafc3c760599c51f3214e9bc92bbf",
+      "rawCRLF": 1883,
+      "quoteOnlyAttributes": [
+        {
+          "tag": "div",
+          "kind": "empty",
+          "count": 6
+        }
+      ]
+    }
+  ],
+  "remainingOwnedHtml": [
+    {
+      "pointer": "/pages/0/numbered/22/occurrences/0/ownedHtml",
+      "insertionOffsets": [
+        1339
+      ],
+      "linuxSha256": "b6d25b4a3325f7951a7e31d137c8fb64743115ce9304947577d765e89a26f753",
+      "exactMatch": true
+    },
+    {
+      "pointer": "/pages/0/numbered/23/occurrences/0/ownedHtml",
+      "insertionOffsets": [
+        338
+      ],
+      "linuxSha256": "262130a2eb989e4020f647e2cab6bad9beae1ffc780e920e01787df24327a838",
+      "exactMatch": true
+    },
+    {
+      "pointer": "/pages/0/numbered/25/occurrences/0/ownedHtml",
+      "insertionOffsets": [
+        331
+      ],
+      "linuxSha256": "25697ac357765689c93619f0080e286530be1aca8e9b01f3122004af6eb59e71",
+      "exactMatch": true
+    },
+    {
+      "pointer": "/pages/0/numbered/29/occurrences/0/ownedHtml",
+      "insertionOffsets": [
+        869
+      ],
+      "linuxSha256": "6ce80a80b4aed1c863bd68891802e5778f9b833f2508612467782ea4f1f8318a",
+      "exactMatch": true
+    },
+    {
+      "pointer": "/pages/0/numbered/33/occurrences/0/ownedHtml",
+      "insertionOffsets": [
+        701
+      ],
+      "linuxSha256": "bdaa90ad2760c5b340ee27b7ac29f7233aa0dc772b6213ae8b1b974f0d0cb57d",
+      "exactMatch": true
+    },
+    {
+      "pointer": "/pages/0/numbered/120/occurrences/0/ownedHtml",
+      "insertionOffsets": [
+        693
+      ],
+      "linuxSha256": "e8e76b53d2dace592add74e77c72830291fe93b00613953d65b8b011b8059e0c",
+      "exactMatch": true
+    },
+    {
+      "pointer": "/pages/0/numbered/179/occurrences/0/ownedHtml",
+      "insertionOffsets": [
+        861
+      ],
+      "linuxSha256": "6d668f1d8fc281543de93ed951c288935db481c6a1556fd6df40f09ca1dc56d7",
+      "exactMatch": true
+    },
+    {
+      "pointer": "/pages/1/numbered/1/occurrences/0/ownedHtml",
+      "insertionOffsets": [
+        804
+      ],
+      "linuxSha256": "b0ed16c4a8d10a22012288ae0261db3f82416f183df4928d93a12988f8c1f7e2",
+      "exactMatch": true
+    }
+  ],
+  "allEightExact": true,
+  "formatDelta": {
+    "addedCharactersPerOccurrence": 5,
+    "extraJsonQuoteEscapesPerOccurrence": 3,
+    "addedJsonBytes": 64,
+    "normalizedCRLFCharacters": 645,
+    "normalizedJsonBytes": 1290,
+    "combinedOldLinuxDelta": -1226
+  },
+  "localControls": {
+    "newTests": 10,
+    "corpusCheck": "PASS",
+    "candidateCheck": "PASS",
+    "acceptedOutputBytesChanged": 0,
+    "sourceBytesChanged": 0
+  }
+}

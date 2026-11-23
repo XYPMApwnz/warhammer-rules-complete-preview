@@ -1,0 +1,47 @@
+{
+  "schema": "pre-ff-platform-comparison/v1",
+  "sha": "b06e22f35bf16bad913cf0dd4c74e3afab08f55c",
+  "status": "FAIL",
+  "total": 213,
+  "exactOrderedPlanEqual": true,
+  "pc": {
+    "passed": 213,
+    "failed": 0,
+    "missing": 0,
+    "elapsedMs": 5654325
+  },
+  "github": {
+    "passed": 212,
+    "failed": 1,
+    "missing": 0,
+    "elapsedMs": 7845859
+  },
+  "githubWorkflowConclusion": "failure",
+  "githubWorkflowWallMs": 8083000,
+  "run": 45201837522,
+  "runUrl": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/45201837522",
+  "artifactUrl": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/actions/runs/45201837522/artifacts/14842238939",
+  "artifactId": 14842238939,
+  "artifactDigest": "sha256:92b3b95c1a603c2e3c0eb079baa7a98a434ced176ddc4aea78cb4ab1c8909879",
+  "differences": [
+    {
+      "index": 205,
+      "job": "v2/lazy-glossary-browser-qa.mjs",
+      "arguments": "",
+      "pc": "PASS",
+      "github": "FAIL",
+      "pcDiagnostic": null,
+      "githubDiagnostic": {
+        "errorClass": "Error",
+        "cause": "ERROR_MESSAGE_REDACTED",
+        "firstLine": "Error: error message redacted.",
+        "messageRedacted": true,
+        "location": {
+          "file": "tests/helpers/browser-phases.mjs",
+          "line": 27,
+          "column": 147
+        }
+      }
+    }
+  ]
+}

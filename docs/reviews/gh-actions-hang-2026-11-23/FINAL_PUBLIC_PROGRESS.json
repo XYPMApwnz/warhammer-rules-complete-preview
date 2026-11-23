@@ -1,0 +1,2351 @@
+{
+  "schema": "validated-public-progress/v1",
+  "status": "PASS",
+  "jobs": 213,
+  "events": [
+    {
+      "event": "START",
+      "id": "git diff --check",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "git diff --check",
+      "elapsedSeconds": 0.978,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/qa-temp-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/qa-temp-qa.mjs",
+      "elapsedSeconds": 4.376,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/pages-runtime-ci-contract-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/pages-runtime-ci-contract-qa.mjs",
+      "elapsedSeconds": 0.193,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser-failure-diagnostics-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser-failure-diagnostics-qa.mjs",
+      "elapsedSeconds": 0.091,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser-compatibility-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser-compatibility-qa.mjs",
+      "elapsedSeconds": 2.813,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser-compat-equivalence-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser-compat-equivalence-qa.mjs",
+      "elapsedSeconds": 0.363,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser-catalog-loader-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser-catalog-loader-qa.mjs",
+      "elapsedSeconds": 1.086,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser-catalog-cache-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser-catalog-cache-qa.mjs",
+      "elapsedSeconds": 0.131,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/fast-first-load-cache-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/fast-first-load-cache-qa.mjs",
+      "elapsedSeconds": 0.162,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/helper-offline-status-instance-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/helper-offline-status-instance-qa.mjs",
+      "elapsedSeconds": 0.123,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/helper-offline-availability-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/helper-offline-availability-qa.mjs",
+      "elapsedSeconds": 0.091,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/runtime-url-stamps-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/runtime-url-stamps-qa.mjs",
+      "elapsedSeconds": 0.194,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/packaged-bootstrap-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/packaged-bootstrap-qa.mjs",
+      "elapsedSeconds": 0.797,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs",
+      "elapsedSeconds": 0.08,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/book-passport-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/book-passport-qa.mjs",
+      "elapsedSeconds": 0.333,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/keyword-access-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/keyword-access-qa.mjs",
+      "elapsedSeconds": 2.831,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tools/markup-census.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tools/markup-census.mjs",
+      "elapsedSeconds": 10.271,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/markup-census-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/markup-census-qa.mjs",
+      "elapsedSeconds": 12.255,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/markup-evidence-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/markup-evidence-qa.mjs",
+      "elapsedSeconds": 0.227,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/markup-owner-only-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/markup-owner-only-qa.mjs",
+      "elapsedSeconds": 12.613,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/markup-unknown-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/markup-unknown-qa.mjs",
+      "elapsedSeconds": 10.995,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/source-metadata-build-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/source-metadata-build-qa.mjs",
+      "elapsedSeconds": 0.342,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/application-v2/source-metadata-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/application-v2/source-metadata-qa.mjs",
+      "elapsedSeconds": 0.11,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/model-base-caption-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/model-base-caption-qa.mjs",
+      "elapsedSeconds": 0.07,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/import-notices-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/import-notices-qa.mjs",
+      "elapsedSeconds": 1.385,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs",
+      "elapsedSeconds": 0.07,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+      "elapsedSeconds": 0.162,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/death-guard/v2/insectile-recipient-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/death-guard/v2/insectile-recipient-qa.mjs",
+      "elapsedSeconds": 0.451,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "elapsedSeconds": 4.113,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "elapsedSeconds": 0.181,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/sweep-polish-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/sweep-polish-qa.mjs",
+      "elapsedSeconds": 0.079,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "elapsedSeconds": 0.08,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/rule-popup-section-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/rule-popup-section-qa.mjs",
+      "elapsedSeconds": 3.613,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "elapsedSeconds": 0.161,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "elapsedSeconds": 0.087,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "elapsedSeconds": 0.783,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/import-messages-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/import-messages-qa.mjs",
+      "elapsedSeconds": 0.095,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/official-updates-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/official-updates-qa.mjs",
+      "elapsedSeconds": 0.09,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/official-update-books-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/official-update-books-qa.mjs",
+      "elapsedSeconds": 0.14,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/official-update-report-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/official-update-report-qa.mjs",
+      "elapsedSeconds": 0.084,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/official-update-integration-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/official-update-integration-qa.mjs",
+      "elapsedSeconds": 8.201,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/official-effect-review-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/official-effect-review-qa.mjs",
+      "elapsedSeconds": 0.171,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/current-gw-contract-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/current-gw-contract-qa.mjs",
+      "elapsedSeconds": 0.08,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "elapsedSeconds": 11.817,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "elapsedSeconds": 50.869,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "elapsedSeconds": 24.452,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 4.596,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.835,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 8.613,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.615,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 4.566,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "elapsedSeconds": 35.298,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "elapsedSeconds": 158.808,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 23.319,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 12.432,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 5.503,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 30.436,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.516,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "elapsedSeconds": 1.708,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 14.031,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 2.414,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 11.656,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 4.436,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 11.177,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "elapsedSeconds": 36.858,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 267.135,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 155.277,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 30.537,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 14.225,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 32.025,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.72,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "elapsedSeconds": 10.46,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 0.282,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.611,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 9.31,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 4.108,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.348,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "elapsedSeconds": 6.06,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 12.134,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 2.351,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 10.54,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.971,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "elapsedSeconds": 11.44,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 16.215,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.397,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "elapsedSeconds": 63.647,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 214.221,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "elapsedSeconds": 13.527,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 14.621,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 11.046,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 5.86,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 35.014,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.563,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "elapsedSeconds": 2.566,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "elapsedSeconds": 6.547,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 292.314,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "elapsedSeconds": 13.911,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 2.344,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 9.021,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 1.583,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 18.004,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.608,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "elapsedSeconds": 6.647,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "elapsedSeconds": 7.451,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "elapsedSeconds": 1.339,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "elapsedSeconds": 9.656,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "elapsedSeconds": 1.093,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "elapsedSeconds": 12.161,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-qa.mjs",
+      "elapsedSeconds": 19.581,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "elapsedSeconds": 0.501,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "elapsedSeconds": 4.656,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "elapsedSeconds": 0.305,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "elapsedSeconds": 0.225,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "elapsedSeconds": 0.347,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "elapsedSeconds": 0.305,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "elapsedSeconds": 0.274,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "elapsedSeconds": 0.256,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "elapsedSeconds": 0.232,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/source-effect-regression-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/source-effect-regression-qa.mjs",
+      "elapsedSeconds": 67.044,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "elapsedSeconds": 33.073,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "elapsedSeconds": 8.87,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "elapsedSeconds": 0.171,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "elapsedSeconds": 0.191,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "elapsedSeconds": 0.192,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "elapsedSeconds": 0.175,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "elapsedSeconds": 0.182,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "elapsedSeconds": 6.306,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-recipient-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-recipient-qa.mjs",
+      "elapsedSeconds": 2.266,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/card-recipient-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/card-recipient-qa.mjs",
+      "elapsedSeconds": 1.002,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/attached-rule-text-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/attached-rule-text-qa.mjs",
+      "elapsedSeconds": 14.196,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/card-display-2-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/card-display-2-qa.mjs",
+      "elapsedSeconds": 3.699,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "elapsedSeconds": 0.08,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "elapsedSeconds": 0.163,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "elapsedSeconds": 8.691,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "elapsedSeconds": 0.199,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/faction-safe-import-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/faction-safe-import-qa.mjs",
+      "elapsedSeconds": 1.436,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "elapsedSeconds": 0.068,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "elapsedSeconds": 0.292,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "elapsedSeconds": 0.09,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/source-completeness-check.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/source-completeness-check.mjs",
+      "elapsedSeconds": 1.805,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/integration-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/integration-qa.mjs",
+      "elapsedSeconds": 6.281,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "elapsedSeconds": 0.859,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/codex-workflow-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/codex-workflow-qa.mjs",
+      "elapsedSeconds": 0.11,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/source-book-clone-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/source-book-clone-qa.mjs",
+      "elapsedSeconds": 2.686,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "elapsedSeconds": 1.724,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "elapsedSeconds": 4.33,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/book-update-declarations-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/book-update-declarations-qa.mjs",
+      "elapsedSeconds": 0.13,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/book-update-report-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/book-update-report-qa.mjs",
+      "elapsedSeconds": 0.109,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "elapsedSeconds": 12.337,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/book-update-metadata-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/book-update-metadata-qa.mjs",
+      "elapsedSeconds": 0.09,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/book-update-command-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/book-update-command-qa.mjs",
+      "elapsedSeconds": 65.304,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/mfm-release-history-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/mfm-release-history-qa.mjs",
+      "elapsedSeconds": 0.191,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/mfm-update-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/mfm-update-qa.mjs",
+      "elapsedSeconds": 50.309,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "elapsedSeconds": 70.243,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "elapsedSeconds": 14.935,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "elapsedSeconds": 0.756,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "elapsedSeconds": 0.273,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "elapsedSeconds": 187.056,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "elapsedSeconds": 0.908,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "elapsedSeconds": 1.937,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "elapsedSeconds": 2.811,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/generated-rebuild-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/generated-rebuild-qa.mjs",
+      "elapsedSeconds": 24.443,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "elapsedSeconds": 7.706,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "elapsedSeconds": 8.296,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "elapsedSeconds": 904.828,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tools/pages-runtime-package.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tools/pages-runtime-package.mjs",
+      "elapsedSeconds": 11.271,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/shell-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/shell-browser-qa.mjs",
+      "elapsedSeconds": 56.867,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/core-reader-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/core-reader-browser-qa.mjs",
+      "elapsedSeconds": 102.068,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "elapsedSeconds": 0.192,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/pwa-transition-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/pwa-transition-qa.mjs",
+      "elapsedSeconds": 98.374,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "elapsedSeconds": 80.912,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "elapsedSeconds": 148.421,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/startup-precache-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/startup-precache-qa.mjs",
+      "elapsedSeconds": 2.467,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser/fast-first-load.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser/fast-first-load.mjs",
+      "elapsedSeconds": 79.622,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser/cold-offline.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser/cold-offline.mjs",
+      "elapsedSeconds": 137.409,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "elapsedSeconds": 192.486,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "elapsedSeconds": 67.073,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "elapsedSeconds": 113.271,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "elapsedSeconds": 355.483,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/card-display-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/card-display-browser-qa.mjs",
+      "elapsedSeconds": 170.564,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "elapsedSeconds": 108.35,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "elapsedSeconds": 126.896,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "elapsedSeconds": 16.445,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "elapsedSeconds": 60.876,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "elapsedSeconds": 38.684,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "elapsedSeconds": 29.587,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/related-panel-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/related-panel-browser-qa.mjs",
+      "elapsedSeconds": 28.283,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "elapsedSeconds": 81.811,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "elapsedSeconds": 12.404,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "elapsedSeconds": 66.952,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "elapsedSeconds": 18.842,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "elapsedSeconds": 42.362,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/card-texts-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/card-texts-browser-qa.mjs",
+      "elapsedSeconds": 64.318,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "elapsedSeconds": 64.526,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/browser/offline-army-book.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/browser/offline-army-book.mjs",
+      "elapsedSeconds": 199.562,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "elapsedSeconds": 70.448,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "elapsedSeconds": 128.784,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/rule-popups-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/rule-popups-browser-qa.mjs",
+      "elapsedSeconds": 258.914,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/polish-5-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/polish-5-browser-qa.mjs",
+      "elapsedSeconds": 108.776,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/roster-navigation-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/roster-navigation-browser-qa.mjs",
+      "elapsedSeconds": 320.676,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/import-messages-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/import-messages-browser-qa.mjs",
+      "elapsedSeconds": 88.164,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/markup-insectile-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/markup-insectile-browser-qa.mjs",
+      "elapsedSeconds": 13.732,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/library-sources-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/library-sources-browser-qa.mjs",
+      "elapsedSeconds": 33.011,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/import-notices-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/import-notices-browser-qa.mjs",
+      "elapsedSeconds": 15.11,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/lazy-glossary-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/lazy-glossary-browser-qa.mjs",
+      "elapsedSeconds": 77.768,
+      "status": "FAIL"
+    },
+    {
+      "event": "START",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "elapsedSeconds": 303.884,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "elapsedSeconds": 361.066,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "elapsedSeconds": 7.72,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "elapsedSeconds": 44.398,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/source-enrollment-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/source-enrollment-qa.mjs",
+      "elapsedSeconds": 12.141,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/tools/source-freshness.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/tools/source-freshness.mjs",
+      "elapsedSeconds": 3.179,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "elapsedSeconds": 8.55,
+      "status": "PASS"
+    },
+    {
+      "event": "START",
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "elapsedSeconds": 0.0
+    },
+    {
+      "event": "END",
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "elapsedSeconds": 2.219,
+      "status": "PASS"
+    }
+  ],
+  "rawTestOutputPublished": false
+}

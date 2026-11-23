@@ -1,0 +1,757 @@
+{
+  "schema": "generated-byte-verification/v1",
+  "sha": "b06e22f35bf16bad913cf0dd4c74e3afab08f55c",
+  "status": "PASS",
+  "platform": "linux",
+  "files": 148,
+  "producerSteps": 68,
+  "differentRebuiltBytes": 0,
+  "elapsedMs": 904827,
+  "baselineSha": "6156836b7841d2c4f4c429834013598b3484058e",
+  "unchangedTrackedOutputs": 148,
+  "method": "Native comparator removes output seeds, rebuilds all declared outputs in a clean clone and compares Buffer bytes; baseline/tracked identities also match.",
+  "outputs": [
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+      "baselineBlob": "4623fc779870818f69ca544b0adf42ab709dcc5a",
+      "verifiedBlob": "4623fc779870818f69ca544b0adf42ab709dcc5a"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/base.json",
+      "baselineBlob": "33d984fd21e34855aa2698b4e2e0e9e053c5b3e0",
+      "verifiedBlob": "33d984fd21e34855aa2698b4e2e0e9e053c5b3e0"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/effective.json",
+      "baselineBlob": "242c2b4d800acdf4d4b91ca7fd935b6fe499743d",
+      "verifiedBlob": "242c2b4d800acdf4d4b91ca7fd935b6fe499743d"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/factual-census.json",
+      "baselineBlob": "595839162567641e4dbe9e6487b867d5ced4298c",
+      "verifiedBlob": "595839162567641e4dbe9e6487b867d5ced4298c"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "baselineBlob": "2774c8f7442ad2ebd8cd99288344a294be57700d",
+      "verifiedBlob": "2774c8f7442ad2ebd8cd99288344a294be57700d"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/rule-contract-census.json",
+      "baselineBlob": "fa55db84566e4f3e23c0e1e9303c97a9438afaec",
+      "verifiedBlob": "fa55db84566e4f3e23c0e1e9303c97a9438afaec"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/rule-contract-compatibility.json",
+      "baselineBlob": "f707cd2c8966f25d9e0f09820a57aa148c8ce3d8",
+      "verifiedBlob": "f707cd2c8966f25d9e0f09820a57aa148c8ce3d8"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/rule-contracts.json",
+      "baselineBlob": "6b5f5db9afc6335c0a951d4ca51aac21d3826dd6",
+      "verifiedBlob": "6b5f5db9afc6335c0a951d4ca51aac21d3826dd6"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/model-name-aliases.json",
+      "baselineBlob": "b74e321530e858e51c842d04a95abe18eb74e2df",
+      "verifiedBlob": "b74e321530e858e51c842d04a95abe18eb74e2df"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/app-presentation.json",
+      "baselineBlob": "84430b1d1508e22370d0c454bfad0992151acbb4",
+      "verifiedBlob": "84430b1d1508e22370d0c454bfad0992151acbb4"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/base.json",
+      "baselineBlob": "23321f938346813c3b6a59e10f4cdaaeb22dc570",
+      "verifiedBlob": "23321f938346813c3b6a59e10f4cdaaeb22dc570"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/effective.json",
+      "baselineBlob": "b641742d386932dd6f696db75edd4fa064173c71",
+      "verifiedBlob": "b641742d386932dd6f696db75edd4fa064173c71"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/factual-census.json",
+      "baselineBlob": "560c36bb7e079ada1d723f9e262b1f7ecc51bfcd",
+      "verifiedBlob": "560c36bb7e079ada1d723f9e262b1f7ecc51bfcd"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/gameplay-presentation.json",
+      "baselineBlob": "8260157ae79588474d97a2f7d8fe9e09a67897da",
+      "verifiedBlob": "8260157ae79588474d97a2f7d8fe9e09a67897da"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mfm-coverage.json",
+      "baselineBlob": "b4e7d68a5d1ab7ad5a1c0b3a4b52141ed7c7c482",
+      "verifiedBlob": "b4e7d68a5d1ab7ad5a1c0b3a4b52141ed7c7c482"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mfm-presentation.json",
+      "baselineBlob": "6d03105ade857885648e693ba0ffcbbb1ab6640c",
+      "verifiedBlob": "6d03105ade857885648e693ba0ffcbbb1ab6640c"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mixed-owner-book.json",
+      "baselineBlob": "9940f49aee0cded0ab220e7f431f638dc3de9c4f",
+      "verifiedBlob": "9940f49aee0cded0ab220e7f431f638dc3de9c4f"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mixed-owner-coverage.json",
+      "baselineBlob": "5ff90d84af3753d350ed5dcd0b30fc9dd62ffb7c",
+      "verifiedBlob": "5ff90d84af3753d350ed5dcd0b30fc9dd62ffb7c"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mixed-owner-points.json",
+      "baselineBlob": "7479049cb9b76e951425ef0ebb617095a1360884",
+      "verifiedBlob": "7479049cb9b76e951425ef0ebb617095a1360884"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mixed-owner-presentation.json",
+      "baselineBlob": "3e5625108ea94dafb84c3d64c7f423eab6c861f3",
+      "verifiedBlob": "3e5625108ea94dafb84c3d64c7f423eab6c861f3"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/native-mfm-book.json",
+      "baselineBlob": "b716ede65260d87e9a7811c0b64becbbbaad6ad4",
+      "verifiedBlob": "b716ede65260d87e9a7811c0b64becbbbaad6ad4"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/roster-import.json",
+      "baselineBlob": "4bca1ace2132dfa6787fd254fd9b1bdd8a5fb683",
+      "verifiedBlob": "4bca1ace2132dfa6787fd254fd9b1bdd8a5fb683"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/roster-runtime.json",
+      "baselineBlob": "28503a6b5c690eac8a67b8731fa325fc7ff1a5d0",
+      "verifiedBlob": "28503a6b5c690eac8a67b8731fa325fc7ff1a5d0"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/rule-contracts.json",
+      "baselineBlob": "b57044c01a3562acb89a8eb74fb59c9882d1f116",
+      "verifiedBlob": "b57044c01a3562acb89a8eb74fb59c9882d1f116"
+    },
+    {
+      "file": "books/blood-angels/v2/model-name-aliases.json",
+      "baselineBlob": "71f3e3872d2bda40fba4c2492186d8481a5d1804",
+      "verifiedBlob": "71f3e3872d2bda40fba4c2492186d8481a5d1804"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/app-presentation.json",
+      "baselineBlob": "91a4e473a76b85ca89efea2552e822a31699da4f",
+      "verifiedBlob": "91a4e473a76b85ca89efea2552e822a31699da4f"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/base.json",
+      "baselineBlob": "44dd271fb36ac5b17c60c60501a329321d85fe03",
+      "verifiedBlob": "44dd271fb36ac5b17c60c60501a329321d85fe03"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/effective.json",
+      "baselineBlob": "8074aeebd0b47a8592a6077240e7829a3b8cf3f4",
+      "verifiedBlob": "8074aeebd0b47a8592a6077240e7829a3b8cf3f4"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/factual-census.json",
+      "baselineBlob": "4f0a52dde26890e982d95c6a5a23dcd0a60ea81d",
+      "verifiedBlob": "4f0a52dde26890e982d95c6a5a23dcd0a60ea81d"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/roster-import.json",
+      "baselineBlob": "2c8ce1b94ba58d522dd4b667155402201095a2fb",
+      "verifiedBlob": "2c8ce1b94ba58d522dd4b667155402201095a2fb"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "baselineBlob": "8ef41484d1c3abd60a45484d07ff145dfefdd926",
+      "verifiedBlob": "8ef41484d1c3abd60a45484d07ff145dfefdd926"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/rule-contract-blockers.json",
+      "baselineBlob": "2c90766c556f719235ee224782ac06cda6b0ef62",
+      "verifiedBlob": "2c90766c556f719235ee224782ac06cda6b0ef62"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/rule-contract-census.json",
+      "baselineBlob": "b7735bf9f4b5aecf0701ba3cebf3724ba694d21d",
+      "verifiedBlob": "b7735bf9f4b5aecf0701ba3cebf3724ba694d21d"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/rule-contract-compatibility.json",
+      "baselineBlob": "413430012a16688db43c0ff277cd2168b52d00d3",
+      "verifiedBlob": "413430012a16688db43c0ff277cd2168b52d00d3"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/rule-contracts.json",
+      "baselineBlob": "7a43204d37a31551a965679780f596293be94dc9",
+      "verifiedBlob": "7a43204d37a31551a965679780f596293be94dc9"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/model-name-aliases.json",
+      "baselineBlob": "eeb43b83d3b4d5a58f47bcccdffbcce22ef1f4c7",
+      "verifiedBlob": "eeb43b83d3b4d5a58f47bcccdffbcce22ef1f4c7"
+    },
+    {
+      "file": "books/core-rules/content/core-effective-bindings.v1.json",
+      "baselineBlob": "1b8c9a1fb1652bfa0c5cc473a5ba1b410b5379ac",
+      "verifiedBlob": "1b8c9a1fb1652bfa0c5cc473a5ba1b410b5379ac"
+    },
+    {
+      "file": "books/core-rules/content/core-identities.v1.json",
+      "baselineBlob": "106b4523d88ccea97d4a73ec8000cc9918e6edba",
+      "verifiedBlob": "106b4523d88ccea97d4a73ec8000cc9918e6edba"
+    },
+    {
+      "file": "books/core-rules/content/core-official-source-registry.en.json",
+      "baselineBlob": "17cb1f03ef6d8ded5abbf2d864de8425e963ccd7",
+      "verifiedBlob": "17cb1f03ef6d8ded5abbf2d864de8425e963ccd7"
+    },
+    {
+      "file": "books/core-rules/content/core-rules.digital-11e.json",
+      "baselineBlob": "202b065bd8bce0c8d8cfcb273116be2acefd9322",
+      "verifiedBlob": "202b065bd8bce0c8d8cfcb273116be2acefd9322"
+    },
+    {
+      "file": "books/core-rules/reader/actions.html",
+      "baselineBlob": "1f982b1d8706b8d08b76fe1cb2622ef87ab326a4",
+      "verifiedBlob": "1f982b1d8706b8d08b76fe1cb2622ef87ab326a4"
+    },
+    {
+      "file": "books/core-rules/reader/aircraft.html",
+      "baselineBlob": "4f516403b97f98a401ba09d8f26e242005e687a3",
+      "verifiedBlob": "4f516403b97f98a401ba09d8f26e242005e687a3"
+    },
+    {
+      "file": "books/core-rules/reader/attached-units.html",
+      "baselineBlob": "b2beea96753c9a5d976adc8d34cca3c7405086b8",
+      "verifiedBlob": "b2beea96753c9a5d976adc8d34cca3c7405086b8"
+    },
+    {
+      "file": "books/core-rules/reader/attack-sequence.html",
+      "baselineBlob": "700cca8199efb28640f9cba43cc7382b6b255f35",
+      "verifiedBlob": "700cca8199efb28640f9cba43cc7382b6b255f35"
+    },
+    {
+      "file": "books/core-rules/reader/battle-round-overview.html",
+      "baselineBlob": "2405f4b47880fce8a11864220c5c6e8b45a9fe20",
+      "verifiedBlob": "2405f4b47880fce8a11864220c5c6e8b45a9fe20"
+    },
+    {
+      "file": "books/core-rules/reader/charge-phase.html",
+      "baselineBlob": "eec7af6cb2417253e3d9a6d4f693e88b3180468e",
+      "verifiedBlob": "eec7af6cb2417253e3d9a6d4f693e88b3180468e"
+    },
+    {
+      "file": "books/core-rules/reader/command-phase.html",
+      "baselineBlob": "dea147ef4ad32518b293ee7c5b38fe4a42025ad6",
+      "verifiedBlob": "dea147ef4ad32518b293ee7c5b38fe4a42025ad6"
+    },
+    {
+      "file": "books/core-rules/reader/core-abilities.html",
+      "baselineBlob": "3020af9b73896efaea9778cb6bc93444b932a208",
+      "verifiedBlob": "3020af9b73896efaea9778cb6bc93444b932a208"
+    },
+    {
+      "file": "books/core-rules/reader/core-concepts.html",
+      "baselineBlob": "da171dabe94d908ae0e7c06695c57224fe2f23a6",
+      "verifiedBlob": "da171dabe94d908ae0e7c06695c57224fe2f23a6"
+    },
+    {
+      "file": "books/core-rules/reader/datasheets.html",
+      "baselineBlob": "2d6b6b9392971056f7a3090d404cec51f37aaf2b",
+      "verifiedBlob": "2d6b6b9392971056f7a3090d404cec51f37aaf2b"
+    },
+    {
+      "file": "books/core-rules/reader/fight-phase.html",
+      "baselineBlob": "f602b1c6d66ac877fa1ac4e23cf46d252773ed93",
+      "verifiedBlob": "f602b1c6d66ac877fa1ac4e23cf46d252773ed93"
+    },
+    {
+      "file": "books/core-rules/reader/flying-surging.html",
+      "baselineBlob": "2d2f2782f7b56304001927a050d420cf05523b9e",
+      "verifiedBlob": "2d2f2782f7b56304001927a050d420cf05523b9e"
+    },
+    {
+      "file": "books/core-rules/reader/index.html",
+      "baselineBlob": "80507ff4036c9c4b4cf903566779b5152490b096",
+      "verifiedBlob": "80507ff4036c9c4b4cf903566779b5152490b096"
+    },
+    {
+      "file": "books/core-rules/reader/introduction.html",
+      "baselineBlob": "8cc119683495a2702652810da9aee832d42b2d7b",
+      "verifiedBlob": "8cc119683495a2702652810da9aee832d42b2d7b"
+    },
+    {
+      "file": "books/core-rules/reader/making-attacks.html",
+      "baselineBlob": "0c7ecf4f89c73a83d7093061b8177112cdac3374",
+      "verifiedBlob": "0c7ecf4f89c73a83d7093061b8177112cdac3374"
+    },
+    {
+      "file": "books/core-rules/reader/monsters-vehicles.html",
+      "baselineBlob": "137dbecf7e6101f7a869090cd6851e810a86c2b6",
+      "verifiedBlob": "137dbecf7e6101f7a869090cd6851e810a86c2b6"
+    },
+    {
+      "file": "books/core-rules/reader/movement-phase.html",
+      "baselineBlob": "0b8ba507164ee48ae7bbd9bb907204b273ecab1a",
+      "verifiedBlob": "0b8ba507164ee48ae7bbd9bb907204b273ecab1a"
+    },
+    {
+      "file": "books/core-rules/reader/moving.html",
+      "baselineBlob": "c228fd16062209ceca24e100f522102b128bec3f",
+      "verifiedBlob": "c228fd16062209ceca24e100f522102b128bec3f"
+    },
+    {
+      "file": "books/core-rules/reader/muster-armies.html",
+      "baselineBlob": "66188ea5d543d9bd7d659977a020c24a29a4ffef",
+      "verifiedBlob": "66188ea5d543d9bd7d659977a020c24a29a4ffef"
+    },
+    {
+      "file": "books/core-rules/reader/objectives.html",
+      "baselineBlob": "8d0722cebab582e7d6af4f92b7833b59f30419d0",
+      "verifiedBlob": "8d0722cebab582e7d6af4f92b7833b59f30419d0"
+    },
+    {
+      "file": "books/core-rules/reader/other-concepts.html",
+      "baselineBlob": "b11cc411da8dca71deb3e75790ab5b6d9530d116",
+      "verifiedBlob": "b11cc411da8dca71deb3e75790ab5b6d9530d116"
+    },
+    {
+      "file": "books/core-rules/reader/other-rules-abilities.html",
+      "baselineBlob": "75c3cdc3bdfae8f59c43f0a80a10f02e42346bed",
+      "verifiedBlob": "75c3cdc3bdfae8f59c43f0a80a10f02e42346bed"
+    },
+    {
+      "file": "books/core-rules/reader/search-index.json",
+      "baselineBlob": "7a6b5f0e4c6693243eab014394ac3c8ae48a2a26",
+      "verifiedBlob": "7a6b5f0e4c6693243eab014394ac3c8ae48a2a26"
+    },
+    {
+      "file": "books/core-rules/reader/shooting-phase.html",
+      "baselineBlob": "0d097e9ab3a99ffee29c72522cc06864f6f032ff",
+      "verifiedBlob": "0d097e9ab3a99ffee29c72522cc06864f6f032ff"
+    },
+    {
+      "file": "books/core-rules/reader/stratagems.html",
+      "baselineBlob": "f8bd038908ec0cbf16e9595a3290a1441be27685",
+      "verifiedBlob": "f8bd038908ec0cbf16e9595a3290a1441be27685"
+    },
+    {
+      "file": "books/core-rules/reader/strategic-reserves.html",
+      "baselineBlob": "a79b5dc819e73bea0bab84d88659c35fe970e21c",
+      "verifiedBlob": "a79b5dc819e73bea0bab84d88659c35fe970e21c"
+    },
+    {
+      "file": "books/core-rules/reader/terrain.html",
+      "baselineBlob": "68feedbdb8eb89fe9a19d23fe17b79eeddf05edc",
+      "verifiedBlob": "68feedbdb8eb89fe9a19d23fe17b79eeddf05edc"
+    },
+    {
+      "file": "books/core-rules/reader/transports.html",
+      "baselineBlob": "f8c29ec26dfdda633d8ac3c642fc1c4bf3fa3722",
+      "verifiedBlob": "f8c29ec26dfdda633d8ac3c642fc1c4bf3fa3722"
+    },
+    {
+      "file": "books/core-rules/sources/waha-core-2026-11-11/core-rules.candidate.v1.json",
+      "baselineBlob": "036cb456d74167b13f5013472e87822f8af20e25",
+      "verifiedBlob": "036cb456d74167b13f5013472e87822f8af20e25"
+    },
+    {
+      "file": "books/core-rules/sources/waha-core-2026-11-11/known-source-defects.v1.json",
+      "baselineBlob": "a90e07ba7940c7a80849b92d395e6dfe480f2ae0",
+      "verifiedBlob": "a90e07ba7940c7a80849b92d395e6dfe480f2ae0"
+    },
+    {
+      "file": "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.census.json",
+      "baselineBlob": "bc51a370fc4a2859e4447d7e090b875dc63f9c12",
+      "verifiedBlob": "bc51a370fc4a2859e4447d7e090b875dc63f9c12"
+    },
+    {
+      "file": "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.manifest.json",
+      "baselineBlob": "4ae0c030f438697b7b621a448311ecec9f472beb",
+      "verifiedBlob": "4ae0c030f438697b7b621a448311ecec9f472beb"
+    },
+    {
+      "file": "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json",
+      "baselineBlob": "a65c8a03252370d86111e1a9411298baa8a684f6",
+      "verifiedBlob": "a65c8a03252370d86111e1a9411298baa8a684f6"
+    },
+    {
+      "file": "books/core-rules/sources/waha-core-2026-11-11/waha-core-player-visible-reference-census.v1.json",
+      "baselineBlob": "588f98cc01a3ae5ead8df534b847dbb30efd699e",
+      "verifiedBlob": "588f98cc01a3ae5ead8df534b847dbb30efd699e"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/app-presentation.json",
+      "baselineBlob": "f40ae7069ed819377b445371ea92a84face73d75",
+      "verifiedBlob": "f40ae7069ed819377b445371ea92a84face73d75"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/base.json",
+      "baselineBlob": "b49804c1faa382781a3bcf7a9f22012875a76442",
+      "verifiedBlob": "b49804c1faa382781a3bcf7a9f22012875a76442"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/effective.json",
+      "baselineBlob": "6ef6305692819acc9ee801ceb54c1bd6ae031335",
+      "verifiedBlob": "6ef6305692819acc9ee801ceb54c1bd6ae031335"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/factual-census.json",
+      "baselineBlob": "6e52a57d96f29b63429f78add66a58a14428252b",
+      "verifiedBlob": "6e52a57d96f29b63429f78add66a58a14428252b"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/gameplay-presentation.json",
+      "baselineBlob": "52d72e21a6dc8842e0c8bf2527ec4d2e163ecfa2",
+      "verifiedBlob": "52d72e21a6dc8842e0c8bf2527ec4d2e163ecfa2"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mfm-coverage.json",
+      "baselineBlob": "c6c57017953fc2378f1811ddd09d6f4b38061626",
+      "verifiedBlob": "c6c57017953fc2378f1811ddd09d6f4b38061626"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mfm-presentation.json",
+      "baselineBlob": "0a96044900f7d3191e96215037f500964a64c67e",
+      "verifiedBlob": "0a96044900f7d3191e96215037f500964a64c67e"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mixed-owner-book.json",
+      "baselineBlob": "cf6d6a51606975a83af412c2d9a480b4a51a8174",
+      "verifiedBlob": "cf6d6a51606975a83af412c2d9a480b4a51a8174"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mixed-owner-coverage.json",
+      "baselineBlob": "c99930f7fdd9e52c13b4de4165ee41a8f00624d1",
+      "verifiedBlob": "c99930f7fdd9e52c13b4de4165ee41a8f00624d1"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mixed-owner-points.json",
+      "baselineBlob": "d0bed930e3e6e9c83b9d25359b916885bf18f376",
+      "verifiedBlob": "d0bed930e3e6e9c83b9d25359b916885bf18f376"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mixed-owner-presentation.json",
+      "baselineBlob": "868e0301a92d341b3e8ee8474dd6663aa6ca0006",
+      "verifiedBlob": "868e0301a92d341b3e8ee8474dd6663aa6ca0006"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/native-mfm-book.json",
+      "baselineBlob": "7554157c2e8c226a775ecd774d1ba987d9f199c6",
+      "verifiedBlob": "7554157c2e8c226a775ecd774d1ba987d9f199c6"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/roster-import.json",
+      "baselineBlob": "a539638108d8cc0d3a8bfbcf11fc6c479056c8c1",
+      "verifiedBlob": "a539638108d8cc0d3a8bfbcf11fc6c479056c8c1"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/roster-runtime.json",
+      "baselineBlob": "935b3dc0589babbb909795da940a1b7e2b6b8be0",
+      "verifiedBlob": "935b3dc0589babbb909795da940a1b7e2b6b8be0"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/rule-contracts.json",
+      "baselineBlob": "8f8fa1aa67f8f1b9654055385928973112811a03",
+      "verifiedBlob": "8f8fa1aa67f8f1b9654055385928973112811a03"
+    },
+    {
+      "file": "books/dark-angels/v2/model-name-aliases.json",
+      "baselineBlob": "27f7949a8c44b3b8f624681a6a5a6d5b633a5a73",
+      "verifiedBlob": "27f7949a8c44b3b8f624681a6a5a6d5b633a5a73"
+    },
+    {
+      "file": "books/death-guard/v2/generated/app-presentation.json",
+      "baselineBlob": "1cfb6a8fdd7c1696fbe90b06d4c1053e776362d2",
+      "verifiedBlob": "1cfb6a8fdd7c1696fbe90b06d4c1053e776362d2"
+    },
+    {
+      "file": "books/death-guard/v2/generated/base.json",
+      "baselineBlob": "bdd60d077188d1c83aefaed256842d393773ab5e",
+      "verifiedBlob": "bdd60d077188d1c83aefaed256842d393773ab5e"
+    },
+    {
+      "file": "books/death-guard/v2/generated/comparison.json",
+      "baselineBlob": "437108716fbd6b29d1c24391f5509566f655e26b",
+      "verifiedBlob": "437108716fbd6b29d1c24391f5509566f655e26b"
+    },
+    {
+      "file": "books/death-guard/v2/generated/compatibility-v2.json",
+      "baselineBlob": "3f106415e59be4a26dfcce947490dd5a0d52c22e",
+      "verifiedBlob": "3f106415e59be4a26dfcce947490dd5a0d52c22e"
+    },
+    {
+      "file": "books/death-guard/v2/generated/effective.json",
+      "baselineBlob": "89b51a294b7c166abb19996f38f322e3ca324e37",
+      "verifiedBlob": "89b51a294b7c166abb19996f38f322e3ca324e37"
+    },
+    {
+      "file": "books/death-guard/v2/generated/glossary-v2.json",
+      "baselineBlob": "ab16f135ea9033448ed61381537c18f721c6a19e",
+      "verifiedBlob": "ab16f135ea9033448ed61381537c18f721c6a19e"
+    },
+    {
+      "file": "books/death-guard/v2/generated/related-rules-v2.json",
+      "baselineBlob": "73c3304d92c70968176a8c780a07533082997043",
+      "verifiedBlob": "73c3304d92c70968176a8c780a07533082997043"
+    },
+    {
+      "file": "books/death-guard/v2/generated/roster-contract-closure.json",
+      "baselineBlob": "8c87924c42444da9ed3a5ecd0e967e203b942275",
+      "verifiedBlob": "8c87924c42444da9ed3a5ecd0e967e203b942275"
+    },
+    {
+      "file": "books/death-guard/v2/generated/rule-contract-closure.json",
+      "baselineBlob": "441178a54114ab014bc601a0b3fd1c7799acf597",
+      "verifiedBlob": "441178a54114ab014bc601a0b3fd1c7799acf597"
+    },
+    {
+      "file": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "baselineBlob": "4c79545eb84c10a625d61ed28fc6f5f6fd37c108",
+      "verifiedBlob": "4c79545eb84c10a625d61ed28fc6f5f6fd37c108"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/app-presentation.json",
+      "baselineBlob": "28d7ab9546284160b372550d340dd84bdaa2c57c",
+      "verifiedBlob": "28d7ab9546284160b372550d340dd84bdaa2c57c"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/base.json",
+      "baselineBlob": "4bdefabcd9fb479e852b8943193fb073c212decb",
+      "verifiedBlob": "4bdefabcd9fb479e852b8943193fb073c212decb"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/effective.json",
+      "baselineBlob": "24a75e2c6fe8ad001cecc69364f3faf725c27136",
+      "verifiedBlob": "24a75e2c6fe8ad001cecc69364f3faf725c27136"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/factual-census.json",
+      "baselineBlob": "41dcb856a34e61019db1ef9e11de58ceb49279dd",
+      "verifiedBlob": "41dcb856a34e61019db1ef9e11de58ceb49279dd"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/roster-attachments.json",
+      "baselineBlob": "fb35a4ae8f114b823c0188e6243f856dc9c1ffeb",
+      "verifiedBlob": "fb35a4ae8f114b823c0188e6243f856dc9c1ffeb"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/roster-import.json",
+      "baselineBlob": "0570cc8a7fc7fe1ae02ee33bbb6035b952f09d3b",
+      "verifiedBlob": "0570cc8a7fc7fe1ae02ee33bbb6035b952f09d3b"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/rule-contracts.json",
+      "baselineBlob": "1f1792007d638f760d7f4e65b925bab0c8fad9ee",
+      "verifiedBlob": "1f1792007d638f760d7f4e65b925bab0c8fad9ee"
+    },
+    {
+      "file": "books/emperors-children/v2/model-name-aliases.json",
+      "baselineBlob": "ccd6e8804ea9dfea2193bc13c500f3705977af94",
+      "verifiedBlob": "ccd6e8804ea9dfea2193bc13c500f3705977af94"
+    },
+    {
+      "file": "books/shared/application-v2/generated/source-metadata.v1.json",
+      "baselineBlob": "9cf15105bb00ca1460157257ccf5fd52011fe519",
+      "verifiedBlob": "9cf15105bb00ca1460157257ccf5fd52011fe519"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-catalog.json",
+      "baselineBlob": "6477e1b0aa7aa5cac67934f0fae224644aaa0c93",
+      "verifiedBlob": "6477e1b0aa7aa5cac67934f0fae224644aaa0c93"
+    },
+    {
+      "file": "books/space-marines/content/space-marines-related-rules.en.json",
+      "baselineBlob": "5e636b64ef4626887cfe4ffb28e8f8e3e06264e1",
+      "verifiedBlob": "5e636b64ef4626887cfe4ffb28e8f8e3e06264e1"
+    },
+    {
+      "file": "books/space-marines/v2/generated/app-presentation.json",
+      "baselineBlob": "3ce3cc180612e6b8fb0a4c708e9d80ffb5c28ef7",
+      "verifiedBlob": "3ce3cc180612e6b8fb0a4c708e9d80ffb5c28ef7"
+    },
+    {
+      "file": "books/space-marines/v2/generated/base.json",
+      "baselineBlob": "21560f335b8682213f4b6a246eb96a89279bcf38",
+      "verifiedBlob": "21560f335b8682213f4b6a246eb96a89279bcf38"
+    },
+    {
+      "file": "books/space-marines/v2/generated/book-presentation.json",
+      "baselineBlob": "48e0d82f38bd3e73ed0aad536ceab2c3261388fa",
+      "verifiedBlob": "48e0d82f38bd3e73ed0aad536ceab2c3261388fa"
+    },
+    {
+      "file": "books/space-marines/v2/generated/cross-owner-references.json",
+      "baselineBlob": "46818d3e49e4b917a340969274594e4cea29a305",
+      "verifiedBlob": "46818d3e49e4b917a340969274594e4cea29a305"
+    },
+    {
+      "file": "books/space-marines/v2/generated/datasheet-presentation.json",
+      "baselineBlob": "5cd36bcabe81bd1fee3fb175907a85500b29468e",
+      "verifiedBlob": "5cd36bcabe81bd1fee3fb175907a85500b29468e"
+    },
+    {
+      "file": "books/space-marines/v2/generated/deathwatch-mfm-presentation.json",
+      "baselineBlob": "46a4b61215f6bcd0fa6fd2e0f5212813eb3d9950",
+      "verifiedBlob": "46a4b61215f6bcd0fa6fd2e0f5212813eb3d9950"
+    },
+    {
+      "file": "books/space-marines/v2/generated/deathwatch-presentation.json",
+      "baselineBlob": "0e37dc6bd9cff168a91035681021c0e28013506f",
+      "verifiedBlob": "0e37dc6bd9cff168a91035681021c0e28013506f"
+    },
+    {
+      "file": "books/space-marines/v2/generated/effective.json",
+      "baselineBlob": "54c7ff53a93e97604453df4e1f1d460187ae4626",
+      "verifiedBlob": "54c7ff53a93e97604453df4e1f1d460187ae4626"
+    },
+    {
+      "file": "books/space-marines/v2/generated/factual-census.json",
+      "baselineBlob": "afee149942b65c9064f9aaaf0cf58bdb08180a09",
+      "verifiedBlob": "afee149942b65c9064f9aaaf0cf58bdb08180a09"
+    },
+    {
+      "file": "books/space-marines/v2/generated/gameplay-presentation.json",
+      "baselineBlob": "096b47a6bce9234e95f5e5d1ffa6e1b65b223b80",
+      "verifiedBlob": "096b47a6bce9234e95f5e5d1ffa6e1b65b223b80"
+    },
+    {
+      "file": "books/space-marines/v2/generated/mfm-coverage.json",
+      "baselineBlob": "05edcacfb4db54f7698681ad6685ba9d36e4a446",
+      "verifiedBlob": "05edcacfb4db54f7698681ad6685ba9d36e4a446"
+    },
+    {
+      "file": "books/space-marines/v2/generated/mfm-presentation.json",
+      "baselineBlob": "654f001b2d8fcfd98c6cad8247b8cb052053720e",
+      "verifiedBlob": "654f001b2d8fcfd98c6cad8247b8cb052053720e"
+    },
+    {
+      "file": "books/space-marines/v2/generated/native-book.json",
+      "baselineBlob": "3a4ffaff79409993887270ec4e954b7d74c3ce39",
+      "verifiedBlob": "3a4ffaff79409993887270ec4e954b7d74c3ce39"
+    },
+    {
+      "file": "books/space-marines/v2/generated/native-datasheets.json",
+      "baselineBlob": "57171013e6ce766ae3aad0a88ba3784fa4ccd1fd",
+      "verifiedBlob": "57171013e6ce766ae3aad0a88ba3784fa4ccd1fd"
+    },
+    {
+      "file": "books/space-marines/v2/generated/native-mfm-book.json",
+      "baselineBlob": "d337f642a5eff97e45f287414fa03916d7f9a79e",
+      "verifiedBlob": "d337f642a5eff97e45f287414fa03916d7f9a79e"
+    },
+    {
+      "file": "books/space-marines/v2/generated/roster-import.json",
+      "baselineBlob": "c73923c4b9c43fb6f0d189fae166a086936a0658",
+      "verifiedBlob": "c73923c4b9c43fb6f0d189fae166a086936a0658"
+    },
+    {
+      "file": "books/space-marines/v2/generated/roster-runtime.json",
+      "baselineBlob": "0c724212392f7e56a44e5e065b258fcedc30296e",
+      "verifiedBlob": "0c724212392f7e56a44e5e065b258fcedc30296e"
+    },
+    {
+      "file": "books/space-marines/v2/generated/rule-contracts.json",
+      "baselineBlob": "c05a72fbff39a3eb137aed3c3e25739ae23a508a",
+      "verifiedBlob": "c05a72fbff39a3eb137aed3c3e25739ae23a508a"
+    },
+    {
+      "file": "books/space-marines/v2/generated/source-ledger-coverage.json",
+      "baselineBlob": "5b203963c7f76282a0532ba96e00259731021830",
+      "verifiedBlob": "5b203963c7f76282a0532ba96e00259731021830"
+    },
+    {
+      "file": "books/space-marines/v2/model-name-aliases.json",
+      "baselineBlob": "897d34a292755a796bd8a7528993a5b7eec29fcd",
+      "verifiedBlob": "897d34a292755a796bd8a7528993a5b7eec29fcd"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/app-presentation.json",
+      "baselineBlob": "6e35fbb1e3305d7bbbcfa7f3e84e6ea33ed1614f",
+      "verifiedBlob": "6e35fbb1e3305d7bbbcfa7f3e84e6ea33ed1614f"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/base.json",
+      "baselineBlob": "e73c95a4cb333b1fce6a6f95f8c4cbaa14fdb685",
+      "verifiedBlob": "e73c95a4cb333b1fce6a6f95f8c4cbaa14fdb685"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/effective.json",
+      "baselineBlob": "ee288aa8bfea131611ba79f31508deb5684a62d2",
+      "verifiedBlob": "ee288aa8bfea131611ba79f31508deb5684a62d2"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/factual-census.json",
+      "baselineBlob": "50bd273ed1d5cb20dd5218d3f7276270d33c3954",
+      "verifiedBlob": "50bd273ed1d5cb20dd5218d3f7276270d33c3954"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/roster-import.json",
+      "baselineBlob": "02d6aea0912dc6d8582f33c79a49916c77a47cfa",
+      "verifiedBlob": "02d6aea0912dc6d8582f33c79a49916c77a47cfa"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/rule-contracts.json",
+      "baselineBlob": "f00bf04e88d97429238f5f650b2059e7b8651528",
+      "verifiedBlob": "f00bf04e88d97429238f5f650b2059e7b8651528"
+    },
+    {
+      "file": "books/tau-empire/v2/model-name-aliases.json",
+      "baselineBlob": "a8ade29eba0d3142ccdcb34069281018f62e8e9b",
+      "verifiedBlob": "a8ade29eba0d3142ccdcb34069281018f62e8e9b"
+    },
+    {
+      "file": "books/tyranids/v2/generated/app-presentation.json",
+      "baselineBlob": "e2c7d44253c9abf80efe8e5b37e2cda8da53daf0",
+      "verifiedBlob": "e2c7d44253c9abf80efe8e5b37e2cda8da53daf0"
+    },
+    {
+      "file": "books/tyranids/v2/generated/base.json",
+      "baselineBlob": "0b1c4601427b03b121890e41d274043a45952b26",
+      "verifiedBlob": "0b1c4601427b03b121890e41d274043a45952b26"
+    },
+    {
+      "file": "books/tyranids/v2/generated/effective.json",
+      "baselineBlob": "4803f62fba2b7abc2a6c16cac50e349f8572cb3d",
+      "verifiedBlob": "4803f62fba2b7abc2a6c16cac50e349f8572cb3d"
+    },
+    {
+      "file": "books/tyranids/v2/generated/factual-census.json",
+      "baselineBlob": "23e0ba2cc8459c476d0b64f0c97d01659a11658e",
+      "verifiedBlob": "23e0ba2cc8459c476d0b64f0c97d01659a11658e"
+    },
+    {
+      "file": "books/tyranids/v2/generated/roster-import.json",
+      "baselineBlob": "5ddb1b0df60fa9f2f1734afe1856f3feaa9df557",
+      "verifiedBlob": "5ddb1b0df60fa9f2f1734afe1856f3feaa9df557"
+    },
+    {
+      "file": "books/tyranids/v2/generated/roster-runtime.json",
+      "baselineBlob": "fb331af3c1475cc9bc3f5820938a5609da20e801",
+      "verifiedBlob": "fb331af3c1475cc9bc3f5820938a5609da20e801"
+    },
+    {
+      "file": "books/tyranids/v2/generated/rule-contracts.json",
+      "baselineBlob": "0b5ae7ac9823b255b1ab4391a1e2ebabd900cd55",
+      "verifiedBlob": "0b5ae7ac9823b255b1ab4391a1e2ebabd900cd55"
+    },
+    {
+      "file": "books/tyranids/v2/model-name-aliases.json",
+      "baselineBlob": "31d132fbc58d332d85e1170ce1eb2bbba3ec34bd",
+      "verifiedBlob": "31d132fbc58d332d85e1170ce1eb2bbba3ec34bd"
+    },
+    {
+      "file": "glossary/v2/generated/index.en.js",
+      "baselineBlob": "c6156f37dc9f3721c69b82fa12cb5e8143ad943b",
+      "verifiedBlob": "c6156f37dc9f3721c69b82fa12cb5e8143ad943b"
+    },
+    {
+      "file": "glossary/v2/generated/index.en.json",
+      "baselineBlob": "af3574fd405b1c09f19567b449e4b6c29e3f393d",
+      "verifiedBlob": "af3574fd405b1c09f19567b449e4b6c29e3f393d"
+    }
+  ],
+  "run": 45201837522,
+  "source": "Full default pre-FF job165: same native comparator, 148 outputs and 68 producer steps; all byte comparisons PASS."
+}

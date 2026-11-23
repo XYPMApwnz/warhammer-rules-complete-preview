@@ -1,0 +1,15 @@
+{
+  "schema": "browser-assertion-preservation/v1",
+  "file": "v2/lazy-glossary-browser-qa.mjs",
+  "base": "6156836b7841d2c4f4c429834013598b3484058e",
+  "before": 10,
+  "after": 10,
+  "allExactAssertionsEqualAfterRemovingOnlyPhaseWrapper": true,
+  "preservedBudgets": {
+    "readinessMs": 10000,
+    "playwrightOperationMs": 30000
+  },
+  "originalSingleEvaluateBoundaryLoopRestored": true,
+  "retriesAdded": false,
+  "rawSourcePublished": false
+}

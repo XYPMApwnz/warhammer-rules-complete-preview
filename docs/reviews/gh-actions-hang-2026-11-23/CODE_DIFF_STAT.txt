@@ -1,0 +1,23 @@
+ .github/workflows/qa-pre-ff.yml                  |   43 +-
+ .gitignore                                       |    2 +-
+ books/core-rules/tools/build_waha_core_corpus.py |    5 +-
+ books/core-rules/tools/owned_html.py             |   91 +
+ docs/codex/QA_MATRIX.md                          |   28 +
+ tests/book-update-dependency-ignore-qa.mjs       |   41 +
+ tests/browser-phase-controls-qa.mjs              |   42 +
+ tests/core-owned-html-qa.py                      |  127 ++
+ tests/helpers/browser-launch.mjs                 |   20 +-
+ tests/helpers/browser-phases.mjs                 |   33 +
+ tests/helpers/qa-browser.cjs                     |   34 +-
+ tests/helpers/qa-temp.cjs                        |   19 +-
+ tests/qa-browser-ipc-qa.mjs                      |   92 +
+ tests/qa-ci-progress-qa.mjs                      |   77 +
+ tests/qa-job-policy-qa.mjs                       |  154 ++
+ tools/qa-ci-progress.mjs                         |  165 ++
+ tools/qa-job-policy.mjs                          |  259 +++
+ tools/qa-job-supervisor.py                       |  154 ++
+ tools/qa-pre-ff-ci.mjs                           |   41 +-
+ tools/qa-pre-ff-timeouts.json                    | 2206 ++++++++++++++++++++++
+ tools/qa-queue.mjs                               |   48 +-
+ v2/lazy-glossary-browser-qa.mjs                  |   93 +-
+ 22 files changed, 3706 insertions(+), 68 deletions(-)

@@ -1,0 +1,2487 @@
+{
+  "schema": "pre-ff-public-report/v1",
+  "sha": "b06e22f35bf16bad913cf0dd4c74e3afab08f55c",
+  "platform": "win32",
+  "status": "PASS",
+  "total": 213,
+  "completed": 213,
+  "passed": 213,
+  "failed": 0,
+  "missing": 0,
+  "elapsedMs": 5654325,
+  "problems": [],
+  "jobs": [
+    {
+      "index": 1,
+      "command": "git",
+      "id": "git diff --check",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 60
+    },
+    {
+      "index": 2,
+      "command": "node",
+      "id": "tests/qa-temp-qa.mjs",
+      "args": [
+        "tests/qa-temp-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 5360
+    },
+    {
+      "index": 3,
+      "command": "node",
+      "id": "tests/pages-runtime-ci-contract-qa.mjs",
+      "args": [
+        "tests/pages-runtime-ci-contract-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 216
+    },
+    {
+      "index": 4,
+      "command": "node",
+      "id": "tests/browser-failure-diagnostics-qa.mjs",
+      "args": [
+        "tests/browser-failure-diagnostics-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 104
+    },
+    {
+      "index": 5,
+      "command": "node",
+      "id": "tests/browser-compatibility-qa.mjs",
+      "args": [
+        "tests/browser-compatibility-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2914
+    },
+    {
+      "index": 6,
+      "command": "node",
+      "id": "tests/browser-compat-equivalence-qa.mjs",
+      "args": [
+        "tests/browser-compat-equivalence-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 357
+    },
+    {
+      "index": 7,
+      "command": "node",
+      "id": "tests/browser-catalog-loader-qa.mjs",
+      "args": [
+        "tests/browser-catalog-loader-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1016
+    },
+    {
+      "index": 8,
+      "command": "node",
+      "id": "tests/browser-catalog-cache-qa.mjs",
+      "args": [
+        "tests/browser-catalog-cache-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 142
+    },
+    {
+      "index": 9,
+      "command": "node",
+      "id": "tests/fast-first-load-cache-qa.mjs",
+      "args": [
+        "tests/fast-first-load-cache-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 193
+    },
+    {
+      "index": 10,
+      "command": "node",
+      "id": "tests/helper-offline-status-instance-qa.mjs",
+      "args": [
+        "tests/helper-offline-status-instance-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 158
+    },
+    {
+      "index": 11,
+      "command": "node",
+      "id": "tests/helper-offline-availability-qa.mjs",
+      "args": [
+        "tests/helper-offline-availability-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 100
+    },
+    {
+      "index": 12,
+      "command": "node",
+      "id": "tests/runtime-url-stamps-qa.mjs",
+      "args": [
+        "tests/runtime-url-stamps-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 880
+    },
+    {
+      "index": 13,
+      "command": "node",
+      "id": "tests/packaged-bootstrap-qa.mjs",
+      "args": [
+        "tests/packaged-bootstrap-qa.mjs",
+        "--self-test"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2215
+    },
+    {
+      "index": 14,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 69
+    },
+    {
+      "index": 15,
+      "command": "node",
+      "id": "tests/book-passport-qa.mjs",
+      "args": [
+        "tests/book-passport-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1339
+    },
+    {
+      "index": 16,
+      "command": "node",
+      "id": "tests/keyword-access-qa.mjs",
+      "args": [
+        "tests/keyword-access-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2571
+    },
+    {
+      "index": 17,
+      "command": "node",
+      "id": "tools/markup-census.mjs",
+      "args": [
+        "tools/markup-census.mjs",
+        "--check"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 9696
+    },
+    {
+      "index": 18,
+      "command": "node",
+      "id": "tests/markup-census-qa.mjs",
+      "args": [
+        "tests/markup-census-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12787
+    },
+    {
+      "index": 19,
+      "command": "node",
+      "id": "tests/markup-evidence-qa.mjs",
+      "args": [
+        "tests/markup-evidence-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 220
+    },
+    {
+      "index": 20,
+      "command": "node",
+      "id": "tests/markup-owner-only-qa.mjs",
+      "args": [
+        "tests/markup-owner-only-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12116
+    },
+    {
+      "index": 21,
+      "command": "node",
+      "id": "tests/markup-unknown-qa.mjs",
+      "args": [
+        "tests/markup-unknown-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10701
+    },
+    {
+      "index": 22,
+      "command": "node",
+      "id": "tests/source-metadata-build-qa.mjs",
+      "args": [
+        "tests/source-metadata-build-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 975
+    },
+    {
+      "index": 23,
+      "command": "node",
+      "id": "books/shared/application-v2/source-metadata-qa.mjs",
+      "args": [
+        "books/shared/application-v2/source-metadata-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 219
+    },
+    {
+      "index": 24,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/model-base-caption-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/model-base-caption-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 63
+    },
+    {
+      "index": 25,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/import-notices-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/import-notices-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1051
+    },
+    {
+      "index": 26,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 61
+    },
+    {
+      "index": 27,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/navigation-geometry-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 130
+    },
+    {
+      "index": 28,
+      "command": "node",
+      "id": "books/death-guard/v2/insectile-recipient-qa.mjs",
+      "args": [
+        "books/death-guard/v2/insectile-recipient-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 489
+    },
+    {
+      "index": 29,
+      "command": "node",
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "args": [
+        "v2/executable-detachment-source-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 3676
+    },
+    {
+      "index": 30,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 169
+    },
+    {
+      "index": 31,
+      "command": "node",
+      "id": "v2/sweep-polish-qa.mjs",
+      "args": [
+        "v2/sweep-polish-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 67
+    },
+    {
+      "index": 32,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 62
+    },
+    {
+      "index": 33,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-popup-section-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-section-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2895
+    },
+    {
+      "index": 34,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-links-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 140
+    },
+    {
+      "index": 35,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/equipment-reference-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 68
+    },
+    {
+      "index": 36,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/roster-navigation-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 621
+    },
+    {
+      "index": 37,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/import-messages-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/import-messages-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 76
+    },
+    {
+      "index": 38,
+      "command": "node",
+      "id": "tests/official-updates-qa.mjs",
+      "args": [
+        "tests/official-updates-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 95
+    },
+    {
+      "index": 39,
+      "command": "node",
+      "id": "tests/official-update-books-qa.mjs",
+      "args": [
+        "tests/official-update-books-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 180
+    },
+    {
+      "index": 40,
+      "command": "node",
+      "id": "tests/official-update-report-qa.mjs",
+      "args": [
+        "tests/official-update-report-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 70
+    },
+    {
+      "index": 41,
+      "command": "node",
+      "id": "tests/official-update-integration-qa.mjs",
+      "args": [
+        "tests/official-update-integration-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 21823
+    },
+    {
+      "index": 42,
+      "command": "node",
+      "id": "tests/official-effect-review-qa.mjs",
+      "args": [
+        "tests/official-effect-review-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 136
+    },
+    {
+      "index": 43,
+      "command": "node",
+      "id": "tests/current-gw-contract-qa.mjs",
+      "args": [
+        "tests/current-gw-contract-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 66
+    },
+    {
+      "index": 44,
+      "command": "node",
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-candidate-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 19095
+    },
+    {
+      "index": 45,
+      "command": "node",
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-isolation-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 51240
+    },
+    {
+      "index": 46,
+      "command": "node",
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 24384
+    },
+    {
+      "index": 47,
+      "command": "node",
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4216
+    },
+    {
+      "index": 48,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 700
+    },
+    {
+      "index": 49,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 9222
+    },
+    {
+      "index": 50,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 501
+    },
+    {
+      "index": 51,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=adeptus-mechanicus",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 5485
+    },
+    {
+      "index": 52,
+      "command": "node",
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 37424
+    },
+    {
+      "index": 53,
+      "command": "node",
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/roster-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 141956
+    },
+    {
+      "index": 54,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 23443
+    },
+    {
+      "index": 55,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 13306
+    },
+    {
+      "index": 56,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4806
+    },
+    {
+      "index": 57,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=blood-angels",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 32517
+    },
+    {
+      "index": 58,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 439
+    },
+    {
+      "index": 59,
+      "command": "node",
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1484
+    },
+    {
+      "index": 60,
+      "command": "node",
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 13368
+    },
+    {
+      "index": 61,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2173
+    },
+    {
+      "index": 62,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11518
+    },
+    {
+      "index": 63,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 3845
+    },
+    {
+      "index": 64,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=chaos-space-marines",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10808
+    },
+    {
+      "index": 65,
+      "command": "node",
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 38845
+    },
+    {
+      "index": 66,
+      "command": "node",
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 235129
+    },
+    {
+      "index": 67,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 147137
+    },
+    {
+      "index": 68,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 29141
+    },
+    {
+      "index": 69,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 14269
+    },
+    {
+      "index": 70,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=dark-angels",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 32039
+    },
+    {
+      "index": 71,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 638
+    },
+    {
+      "index": 72,
+      "command": "node",
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "args": [
+        "books/death-guard/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 9869
+    },
+    {
+      "index": 73,
+      "command": "node",
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "args": [
+        "books/death-guard/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 235
+    },
+    {
+      "index": 74,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=death-guard"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 563
+    },
+    {
+      "index": 75,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=death-guard"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10031
+    },
+    {
+      "index": 76,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=death-guard",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 5072
+    },
+    {
+      "index": 77,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=death-guard"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 307
+    },
+    {
+      "index": 78,
+      "command": "node",
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 5710
+    },
+    {
+      "index": 79,
+      "command": "node",
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11060
+    },
+    {
+      "index": 80,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2847
+    },
+    {
+      "index": 81,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11117
+    },
+    {
+      "index": 82,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 851
+    },
+    {
+      "index": 83,
+      "command": "node",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12383
+    },
+    {
+      "index": 84,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=emperors-children",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 20448
+    },
+    {
+      "index": 85,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 376
+    },
+    {
+      "index": 86,
+      "command": "node",
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/space-marines/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 61097
+    },
+    {
+      "index": 87,
+      "command": "node",
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 174646
+    },
+    {
+      "index": 88,
+      "command": "node",
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-static-model-bindings-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 13007
+    },
+    {
+      "index": 89,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12348
+    },
+    {
+      "index": 90,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11919
+    },
+    {
+      "index": 91,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4770
+    },
+    {
+      "index": 92,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=space-marines",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 33694
+    },
+    {
+      "index": 93,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 474
+    },
+    {
+      "index": 94,
+      "command": "node",
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2247
+    },
+    {
+      "index": 95,
+      "command": "node",
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 6531
+    },
+    {
+      "index": 96,
+      "command": "node",
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 252375
+    },
+    {
+      "index": 97,
+      "command": "node",
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/physical-choice-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12734
+    },
+    {
+      "index": 98,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2365
+    },
+    {
+      "index": 99,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10983
+    },
+    {
+      "index": 100,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1654
+    },
+    {
+      "index": 101,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tau-empire",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 21513
+    },
+    {
+      "index": 102,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 580
+    },
+    {
+      "index": 103,
+      "command": "node",
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "args": [
+        "books/tyranids/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 6435
+    },
+    {
+      "index": 104,
+      "command": "node",
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tyranids/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 7096
+    },
+    {
+      "index": 105,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1314
+    },
+    {
+      "index": 106,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10683
+    },
+    {
+      "index": 107,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 966
+    },
+    {
+      "index": 108,
+      "command": "node",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12613
+    },
+    {
+      "index": 109,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tyranids",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 22103
+    },
+    {
+      "index": 110,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 449
+    },
+    {
+      "index": 111,
+      "command": "node",
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "args": [
+        "books/shared/rule-contract-v2/recipients-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4140
+    },
+    {
+      "index": 112,
+      "command": "node",
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/physical-selection-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 281
+    },
+    {
+      "index": 113,
+      "command": "node",
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/condition-execution-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 186
+    },
+    {
+      "index": 114,
+      "command": "node",
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/numeric-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 296
+    },
+    {
+      "index": 115,
+      "command": "node",
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/keyword-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 259
+    },
+    {
+      "index": 116,
+      "command": "node",
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/ability-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 248
+    },
+    {
+      "index": 117,
+      "command": "node",
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/weapon-contribution-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 220
+    },
+    {
+      "index": 118,
+      "command": "node",
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/advance-roll-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 196
+    },
+    {
+      "index": 119,
+      "command": "node",
+      "id": "v2/source-effect-regression-qa.mjs",
+      "args": [
+        "v2/source-effect-regression-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 64253
+    },
+    {
+      "index": 120,
+      "command": "node",
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "args": [
+        "v2/detachment-source-binding-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 29572
+    },
+    {
+      "index": 121,
+      "command": "node",
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/reimport-attachments-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 9379
+    },
+    {
+      "index": 122,
+      "command": "node",
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/service-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 185
+    },
+    {
+      "index": 123,
+      "command": "node",
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-service-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 160
+    },
+    {
+      "index": 124,
+      "command": "node",
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-selections-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 163
+    },
+    {
+      "index": 125,
+      "command": "node",
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-service-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 145
+    },
+    {
+      "index": 126,
+      "command": "node",
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-conditions-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 161
+    },
+    {
+      "index": 127,
+      "command": "node",
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "args": [
+        "tests/roster-execution-atomic-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 5874
+    },
+    {
+      "index": 128,
+      "command": "node",
+      "id": "v2/detachment-recipient-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1992
+    },
+    {
+      "index": 129,
+      "command": "node",
+      "id": "v2/card-recipient-qa.mjs",
+      "args": [
+        "v2/card-recipient-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 960
+    },
+    {
+      "index": 130,
+      "command": "node",
+      "id": "v2/attached-rule-text-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 13538
+    },
+    {
+      "index": 131,
+      "command": "node",
+      "id": "v2/card-display-2-qa.mjs",
+      "args": [
+        "v2/card-display-2-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2694
+    },
+    {
+      "index": 132,
+      "command": "node",
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/singleton-model-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 74
+    },
+    {
+      "index": 133,
+      "command": "node",
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/plain-header-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 145
+    },
+    {
+      "index": 134,
+      "command": "node",
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 7431
+    },
+    {
+      "index": 135,
+      "command": "node",
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/initial-attachment-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 156
+    },
+    {
+      "index": 136,
+      "command": "node",
+      "id": "v2/faction-safe-import-qa.mjs",
+      "args": [
+        "v2/faction-safe-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1321
+    },
+    {
+      "index": 137,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/card-text-formatting-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 62
+    },
+    {
+      "index": 138,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/library-currentness-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 339
+    },
+    {
+      "index": 139,
+      "command": "node",
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/text-roster-facts-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 73
+    },
+    {
+      "index": 140,
+      "command": "node",
+      "id": "v2/source-completeness-check.mjs",
+      "args": [
+        "v2/source-completeness-check.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2280
+    },
+    {
+      "index": 141,
+      "command": "node",
+      "id": "tests/integration-qa.mjs",
+      "args": [
+        "tests/integration-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 5419
+    },
+    {
+      "index": 142,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/cosmetics-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 601
+    },
+    {
+      "index": 143,
+      "command": "node",
+      "id": "tests/codex-workflow-qa.mjs",
+      "args": [
+        "tests/codex-workflow-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 155
+    },
+    {
+      "index": 144,
+      "command": "node",
+      "id": "tests/source-book-clone-qa.mjs",
+      "args": [
+        "tests/source-book-clone-qa.mjs",
+        "--root=<REPO>"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2160
+    },
+    {
+      "index": 145,
+      "command": "node",
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "args": [
+        "books/shared/source-refs-v2/source-catalog-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1500
+    },
+    {
+      "index": 146,
+      "command": "node",
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "args": [
+        "v2/unit-recipient-scope-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4127
+    },
+    {
+      "index": 147,
+      "command": "node",
+      "id": "tests/book-update-declarations-qa.mjs",
+      "args": [
+        "tests/book-update-declarations-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 281
+    },
+    {
+      "index": 148,
+      "command": "node",
+      "id": "tests/book-update-report-qa.mjs",
+      "args": [
+        "tests/book-update-report-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 92
+    },
+    {
+      "index": 149,
+      "command": "node",
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "args": [
+        "tests/book-update-snapshots-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 16320
+    },
+    {
+      "index": 150,
+      "command": "node",
+      "id": "tests/book-update-metadata-qa.mjs",
+      "args": [
+        "tests/book-update-metadata-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 83
+    },
+    {
+      "index": 151,
+      "command": "node",
+      "id": "tests/book-update-command-qa.mjs",
+      "args": [
+        "tests/book-update-command-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 71994
+    },
+    {
+      "index": 152,
+      "command": "node",
+      "id": "tests/mfm-release-history-qa.mjs",
+      "args": [
+        "tests/mfm-release-history-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 340
+    },
+    {
+      "index": 153,
+      "command": "node",
+      "id": "tests/mfm-update-qa.mjs",
+      "args": [
+        "tests/mfm-update-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 56711
+    },
+    {
+      "index": 154,
+      "command": "node",
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "args": [
+        "tests/source-catalog-registry-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 67031
+    },
+    {
+      "index": 155,
+      "command": "node",
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "args": [
+        "tests/source-catalog-additions-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 15910
+    },
+    {
+      "index": 156,
+      "command": "node",
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "args": [
+        "books/core-rules/tests/factual-ownership-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 692
+    },
+    {
+      "index": 157,
+      "command": "node",
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-waha-certification-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 264
+    },
+    {
+      "index": 158,
+      "command": "node",
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "args": [
+        "glossary/v2/tests/core-projection-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 200559
+    },
+    {
+      "index": 159,
+      "command": "node",
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "args": [
+        "books/core-rules/tests/term-bindings-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 677
+    },
+    {
+      "index": 160,
+      "command": "node",
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "args": [
+        "books/core-rules/tests/reader-see-also-regression-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1525
+    },
+    {
+      "index": 161,
+      "command": "node",
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-faq-anchor-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1844
+    },
+    {
+      "index": 162,
+      "command": "node",
+      "id": "tests/generated-rebuild-qa.mjs",
+      "args": [
+        "tests/generated-rebuild-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 24569
+    },
+    {
+      "index": 163,
+      "command": "node",
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "args": [
+        "tests/csm-model-alias-bootstrap-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 3051
+    },
+    {
+      "index": 164,
+      "command": "node",
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "args": [
+        "tests/source-review-execution-book-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 3407
+    },
+    {
+      "index": 165,
+      "command": "node",
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "args": [
+        "books/shared/tools/check-generated-rebuild.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 683609
+    },
+    {
+      "index": 166,
+      "command": "node",
+      "id": "tools/pages-runtime-package.mjs",
+      "args": [
+        "tools/pages-runtime-package.mjs",
+        "--source",
+        "<REPO>",
+        "--out",
+        "<QA_WORK>/runtime"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 8617
+    },
+    {
+      "index": 167,
+      "command": "node",
+      "id": "v2/shell-browser-qa.mjs",
+      "args": [
+        "v2/shell-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 33607
+    },
+    {
+      "index": 168,
+      "command": "node",
+      "id": "v2/core-reader-browser-qa.mjs",
+      "args": [
+        "v2/core-reader-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 58399
+    },
+    {
+      "index": 169,
+      "command": "node",
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "args": [
+        "tests/minimal-pwa-cache-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 141
+    },
+    {
+      "index": 170,
+      "command": "node",
+      "id": "v2/pwa-transition-qa.mjs",
+      "args": [
+        "v2/pwa-transition-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 62109
+    },
+    {
+      "index": 171,
+      "command": "node",
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "args": [
+        "tests/browser/pwa-update-flow.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 55478
+    },
+    {
+      "index": 172,
+      "command": "node",
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "args": [
+        "tests/browser/pwa-bootstrap-update.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 105709
+    },
+    {
+      "index": 173,
+      "command": "node",
+      "id": "tests/startup-precache-qa.mjs",
+      "args": [
+        "tests/startup-precache-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1885
+    },
+    {
+      "index": 174,
+      "command": "node",
+      "id": "tests/browser/fast-first-load.mjs",
+      "args": [
+        "tests/browser/fast-first-load.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 43970
+    },
+    {
+      "index": 175,
+      "command": "node",
+      "id": "tests/browser/cold-offline.mjs",
+      "args": [
+        "tests/browser/cold-offline.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 77432
+    },
+    {
+      "index": 176,
+      "command": "node",
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 99278
+    },
+    {
+      "index": 177,
+      "command": "node",
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "args": [
+        "v2/detachment-synthetic-table-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 43018
+    },
+    {
+      "index": 178,
+      "command": "node",
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "args": [
+        "v2/card-recipient-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 57814
+    },
+    {
+      "index": 179,
+      "command": "node",
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 193598
+    },
+    {
+      "index": 180,
+      "command": "node",
+      "id": "v2/card-display-browser-qa.mjs",
+      "args": [
+        "v2/card-display-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 103429
+    },
+    {
+      "index": 181,
+      "command": "node",
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "args": [
+        "v2/card-display-2-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 59304
+    },
+    {
+      "index": 182,
+      "command": "node",
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "args": [
+        "v2/source-equipment-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 66544
+    },
+    {
+      "index": 183,
+      "command": "node",
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 9915
+    },
+    {
+      "index": 184,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 35542
+    },
+    {
+      "index": 185,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 23795
+    },
+    {
+      "index": 186,
+      "command": "node",
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 16784
+    },
+    {
+      "index": 187,
+      "command": "node",
+      "id": "v2/related-panel-browser-qa.mjs",
+      "args": [
+        "v2/related-panel-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 18120
+    },
+    {
+      "index": 188,
+      "command": "node",
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 46010
+    },
+    {
+      "index": 189,
+      "command": "node",
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 7270
+    },
+    {
+      "index": 190,
+      "command": "node",
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "args": [
+        "v2/cards-cosmetics-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 35002
+    },
+    {
+      "index": 191,
+      "command": "node",
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10971
+    },
+    {
+      "index": 192,
+      "command": "node",
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "args": [
+        "v2/fabius-safe-import-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 26140
+    },
+    {
+      "index": 193,
+      "command": "node",
+      "id": "v2/card-texts-browser-qa.mjs",
+      "args": [
+        "v2/card-texts-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 37388
+    },
+    {
+      "index": 194,
+      "command": "node",
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "args": [
+        "v2/card-polish-2-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 37998
+    },
+    {
+      "index": 195,
+      "command": "node",
+      "id": "tests/browser/offline-army-book.mjs",
+      "args": [
+        "tests/browser/offline-army-book.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 112507
+    },
+    {
+      "index": 196,
+      "command": "node",
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "args": [
+        "v2/sweep-polish-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 41151
+    },
+    {
+      "index": 197,
+      "command": "node",
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "args": [
+        "v2/card-gained-rules-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 77802
+    },
+    {
+      "index": 198,
+      "command": "node",
+      "id": "v2/rule-popups-browser-qa.mjs",
+      "args": [
+        "v2/rule-popups-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 107624
+    },
+    {
+      "index": 199,
+      "command": "node",
+      "id": "v2/polish-5-browser-qa.mjs",
+      "args": [
+        "v2/polish-5-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 42552
+    },
+    {
+      "index": 200,
+      "command": "node",
+      "id": "v2/roster-navigation-browser-qa.mjs",
+      "args": [
+        "v2/roster-navigation-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 200751
+    },
+    {
+      "index": 201,
+      "command": "node",
+      "id": "v2/import-messages-browser-qa.mjs",
+      "args": [
+        "v2/import-messages-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 54038
+    },
+    {
+      "index": 202,
+      "command": "node",
+      "id": "v2/markup-insectile-browser-qa.mjs",
+      "args": [
+        "v2/markup-insectile-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 7558
+    },
+    {
+      "index": 203,
+      "command": "node",
+      "id": "v2/library-sources-browser-qa.mjs",
+      "args": [
+        "v2/library-sources-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 19641
+    },
+    {
+      "index": 204,
+      "command": "node",
+      "id": "v2/import-notices-browser-qa.mjs",
+      "args": [
+        "v2/import-notices-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 9093
+    },
+    {
+      "index": 205,
+      "command": "node",
+      "id": "v2/lazy-glossary-browser-qa.mjs",
+      "args": [
+        "v2/lazy-glossary-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 111414,
+      "browserPhases": {
+        "history": [
+          {
+            "phase": "dialog-links",
+            "status": "PASS",
+            "elapsedMs": 1,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "dialog-close",
+            "status": "PASS",
+            "elapsedMs": 19,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "dialog-close",
+            "status": "PASS",
+            "elapsedMs": 2,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "frame-sync",
+            "status": "PASS",
+            "elapsedMs": 10,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "snapshot",
+            "status": "PASS",
+            "elapsedMs": 2,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "context-close",
+            "status": "PASS",
+            "elapsedMs": 6,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "browser-close",
+            "status": "PASS",
+            "elapsedMs": 159,
+            "book": "blood-angels",
+            "width": 1440
+          },
+          {
+            "phase": "server-close",
+            "status": "PASS",
+            "elapsedMs": 0,
+            "book": "blood-angels",
+            "width": 1440
+          }
+        ]
+      }
+    },
+    {
+      "index": 206,
+      "command": "node",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 155169
+    },
+    {
+      "index": 207,
+      "command": "node",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 185764
+    },
+    {
+      "index": 208,
+      "command": "node",
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-switch-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4154
+    },
+    {
+      "index": 209,
+      "command": "node",
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "args": [
+        "tools/pages-runtime-package-qa.mjs",
+        "--source",
+        "<REPO>",
+        "--published",
+        "<QA_WORK>/runtime",
+        "--work",
+        "<QA_WORK>/packaging"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 34928
+    },
+    {
+      "index": 210,
+      "command": "node",
+      "id": "tests/source-enrollment-qa.mjs",
+      "args": [
+        "tests/source-enrollment-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10985
+    },
+    {
+      "index": 211,
+      "command": "node",
+      "id": "books/shared/tools/source-freshness.mjs",
+      "args": [
+        "books/shared/tools/source-freshness.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2540
+    },
+    {
+      "index": 212,
+      "command": "node",
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "args": [
+        "tests/source-ingestion-contract-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 8981
+    },
+    {
+      "index": 213,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/keyword-attribution-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1544
+    }
+  ]
+}

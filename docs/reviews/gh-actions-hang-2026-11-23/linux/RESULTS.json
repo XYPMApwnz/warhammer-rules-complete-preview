@@ -1,0 +1,3153 @@
+{
+  "schema": "pre-ff-public-report/v1",
+  "sha": "b06e22f35bf16bad913cf0dd4c74e3afab08f55c",
+  "platform": "linux",
+  "status": "FAIL",
+  "total": 213,
+  "completed": 213,
+  "passed": 212,
+  "failed": 1,
+  "missing": 0,
+  "elapsedMs": 7845859,
+  "problems": [
+    "QUEUE_STEP_NOT_SUCCESSFUL"
+  ],
+  "jobs": [
+    {
+      "index": 1,
+      "command": "git",
+      "id": "git diff --check",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 959,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 2,
+      "command": "node",
+      "id": "tests/qa-temp-qa.mjs",
+      "args": [
+        "tests/qa-temp-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4375,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 9
+    },
+    {
+      "index": 3,
+      "command": "node",
+      "id": "tests/pages-runtime-ci-contract-qa.mjs",
+      "args": [
+        "tests/pages-runtime-ci-contract-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 192,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 4,
+      "command": "node",
+      "id": "tests/browser-failure-diagnostics-qa.mjs",
+      "args": [
+        "tests/browser-failure-diagnostics-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 91,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 5,
+      "command": "node",
+      "id": "tests/browser-compatibility-qa.mjs",
+      "args": [
+        "tests/browser-compatibility-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2812,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 2
+    },
+    {
+      "index": 6,
+      "command": "node",
+      "id": "tests/browser-compat-equivalence-qa.mjs",
+      "args": [
+        "tests/browser-compat-equivalence-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 363,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 7,
+      "command": "node",
+      "id": "tests/browser-catalog-loader-qa.mjs",
+      "args": [
+        "tests/browser-catalog-loader-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1085,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 8,
+      "command": "node",
+      "id": "tests/browser-catalog-cache-qa.mjs",
+      "args": [
+        "tests/browser-catalog-cache-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 130,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 9,
+      "command": "node",
+      "id": "tests/fast-first-load-cache-qa.mjs",
+      "args": [
+        "tests/fast-first-load-cache-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 161,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 10,
+      "command": "node",
+      "id": "tests/helper-offline-status-instance-qa.mjs",
+      "args": [
+        "tests/helper-offline-status-instance-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 122,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 11,
+      "command": "node",
+      "id": "tests/helper-offline-availability-qa.mjs",
+      "args": [
+        "tests/helper-offline-availability-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 90,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 12,
+      "command": "node",
+      "id": "tests/runtime-url-stamps-qa.mjs",
+      "args": [
+        "tests/runtime-url-stamps-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 193,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 13,
+      "command": "node",
+      "id": "tests/packaged-bootstrap-qa.mjs",
+      "args": [
+        "tests/packaged-bootstrap-qa.mjs",
+        "--self-test"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 796,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 14,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/unit-art-visibility-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 79,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 15,
+      "command": "node",
+      "id": "tests/book-passport-qa.mjs",
+      "args": [
+        "tests/book-passport-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 332,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 16,
+      "command": "node",
+      "id": "tests/keyword-access-qa.mjs",
+      "args": [
+        "tests/keyword-access-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2830,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 17,
+      "command": "node",
+      "id": "tools/markup-census.mjs",
+      "args": [
+        "tools/markup-census.mjs",
+        "--check"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10270,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 18,
+      "command": "node",
+      "id": "tests/markup-census-qa.mjs",
+      "args": [
+        "tests/markup-census-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12254,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 19,
+      "command": "node",
+      "id": "tests/markup-evidence-qa.mjs",
+      "args": [
+        "tests/markup-evidence-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 226,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 20,
+      "command": "node",
+      "id": "tests/markup-owner-only-qa.mjs",
+      "args": [
+        "tests/markup-owner-only-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12612,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 21,
+      "command": "node",
+      "id": "tests/markup-unknown-qa.mjs",
+      "args": [
+        "tests/markup-unknown-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10994,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 22,
+      "command": "node",
+      "id": "tests/source-metadata-build-qa.mjs",
+      "args": [
+        "tests/source-metadata-build-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 342,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 23,
+      "command": "node",
+      "id": "books/shared/application-v2/source-metadata-qa.mjs",
+      "args": [
+        "books/shared/application-v2/source-metadata-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 109,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 24,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/model-base-caption-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/model-base-caption-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 69,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 25,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/import-notices-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/import-notices-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1384,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 26,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-visibility-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 69,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 27,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/navigation-geometry-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/navigation-geometry-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 161,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 28,
+      "command": "node",
+      "id": "books/death-guard/v2/insectile-recipient-qa.mjs",
+      "args": [
+        "books/death-guard/v2/insectile-recipient-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 450,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 29,
+      "command": "node",
+      "id": "v2/executable-detachment-source-qa.mjs",
+      "args": [
+        "v2/executable-detachment-source-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4113,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 30,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/plain-header-explanation-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 180,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 31,
+      "command": "node",
+      "id": "v2/sweep-polish-qa.mjs",
+      "args": [
+        "v2/sweep-polish-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 78,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 32,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-popup-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 79,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 33,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-popup-section-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-popup-section-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 3612,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 34,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/rule-term-links-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/rule-term-links-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 161,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 35,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/equipment-reference-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/equipment-reference-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 86,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 36,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/roster-navigation-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/roster-navigation-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 783,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 37,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/import-messages-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/import-messages-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 94,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 38,
+      "command": "node",
+      "id": "tests/official-updates-qa.mjs",
+      "args": [
+        "tests/official-updates-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 89,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 39,
+      "command": "node",
+      "id": "tests/official-update-books-qa.mjs",
+      "args": [
+        "tests/official-update-books-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 139,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 40,
+      "command": "node",
+      "id": "tests/official-update-report-qa.mjs",
+      "args": [
+        "tests/official-update-report-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 83,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 41,
+      "command": "node",
+      "id": "tests/official-update-integration-qa.mjs",
+      "args": [
+        "tests/official-update-integration-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 8200,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 42,
+      "command": "node",
+      "id": "tests/official-effect-review-qa.mjs",
+      "args": [
+        "tests/official-effect-review-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 170,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 43,
+      "command": "node",
+      "id": "tests/current-gw-contract-qa.mjs",
+      "args": [
+        "tests/current-gw-contract-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 79,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 44,
+      "command": "node",
+      "id": "books/core-rules/tests/core-importer-candidate-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-candidate-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11816,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 45,
+      "command": "node",
+      "id": "books/core-rules/tests/core-importer-isolation-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-importer-isolation-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 50868,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 46,
+      "command": "node",
+      "id": "books/adeptus-mechanicus/v2/app-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 24452,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 47,
+      "command": "node",
+      "id": "books/adeptus-mechanicus/v2/roster-import-qa.mjs",
+      "args": [
+        "books/adeptus-mechanicus/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4595,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 48,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 834,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 49,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 8613,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 50,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=adeptus-mechanicus"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 615,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 51,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=adeptus-mechanicus",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4565,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 52,
+      "command": "node",
+      "id": "books/blood-angels/v2/app-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 35298,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 53,
+      "command": "node",
+      "id": "books/blood-angels/v2/roster-qa.mjs",
+      "args": [
+        "books/blood-angels/v2/roster-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 158807,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 54,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 23318,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 55,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12432,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 56,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 5503,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 57,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=blood-angels",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 30436,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 58,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=blood-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 515,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 59,
+      "command": "node",
+      "id": "books/chaos-space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1708,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 60,
+      "command": "node",
+      "id": "books/chaos-space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/chaos-space-marines/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 14030,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 61,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2413,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 62,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11655,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 63,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=chaos-space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4436,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 64,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=chaos-space-marines",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11177,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 65,
+      "command": "node",
+      "id": "books/dark-angels/v2/app-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 36857,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 66,
+      "command": "node",
+      "id": "books/dark-angels/v2/roster-import-qa.mjs",
+      "args": [
+        "books/dark-angels/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 267134,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 67,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 155276,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 68,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 30536,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 69,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 14224,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 70,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=dark-angels",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 32024,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 71,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=dark-angels"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 719,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 72,
+      "command": "node",
+      "id": "books/death-guard/v2/app-qa.mjs",
+      "args": [
+        "books/death-guard/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10459,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 73,
+      "command": "node",
+      "id": "books/death-guard/v2/roster-import-qa.mjs",
+      "args": [
+        "books/death-guard/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 275,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 74,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=death-guard"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 610,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 75,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=death-guard"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 9309,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 76,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=death-guard",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4107,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 77,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=death-guard"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 347,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 78,
+      "command": "node",
+      "id": "books/emperors-children/v2/app-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 6060,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 79,
+      "command": "node",
+      "id": "books/emperors-children/v2/roster-import-qa.mjs",
+      "args": [
+        "books/emperors-children/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12133,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 80,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2350,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 81,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 10539,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 82,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 970,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 83,
+      "command": "node",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11439,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 84,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=emperors-children",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 16214,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 85,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=emperors-children"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 396,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 86,
+      "command": "node",
+      "id": "books/space-marines/v2/app-qa.mjs",
+      "args": [
+        "books/space-marines/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 63646,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 87,
+      "command": "node",
+      "id": "books/space-marines/v2/roster-import-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 214220,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 88,
+      "command": "node",
+      "id": "books/space-marines/v2/roster-static-model-bindings-qa.mjs",
+      "args": [
+        "books/space-marines/v2/roster-static-model-bindings-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 13527,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 89,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 14620,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 90,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11046,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 91,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 5859,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 92,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=space-marines",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 35013,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 93,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=space-marines"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 562,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 94,
+      "command": "node",
+      "id": "v2/wardens-source-binding-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2565,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 95,
+      "command": "node",
+      "id": "books/tau-empire/v2/app-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 6546,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 96,
+      "command": "node",
+      "id": "books/tau-empire/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 292313,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 97,
+      "command": "node",
+      "id": "books/tau-empire/v2/physical-choice-qa.mjs",
+      "args": [
+        "books/tau-empire/v2/physical-choice-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 13910,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 98,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2344,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 99,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 9020,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 100,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1583,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 101,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tau-empire",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 18003,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 102,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tau-empire"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 607,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 103,
+      "command": "node",
+      "id": "books/tyranids/v2/app-qa.mjs",
+      "args": [
+        "books/tyranids/v2/app-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 6646,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 104,
+      "command": "node",
+      "id": "books/tyranids/v2/roster-import-qa.mjs",
+      "args": [
+        "books/tyranids/v2/roster-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 7450,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 105,
+      "command": "node",
+      "id": "v2/new-recruit-export-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1337,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 106,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 9656,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 107,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1091,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 108,
+      "command": "node",
+      "id": "v2/reviewed-text-coverage-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12160,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 109,
+      "command": "node",
+      "id": "v2/related-panel-qa.mjs",
+      "args": [
+        "v2/related-panel-qa.mjs",
+        "--book=tyranids",
+        "--phase=all"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 19580,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 110,
+      "command": "node",
+      "id": "v2/detachment-card-text-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-qa.mjs",
+        "--book=tyranids"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 500,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 111,
+      "command": "node",
+      "id": "books/shared/rule-contract-v2/recipients-qa.mjs",
+      "args": [
+        "books/shared/rule-contract-v2/recipients-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4655,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 112,
+      "command": "node",
+      "id": "books/shared/roster-v2/physical-selection-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/physical-selection-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 304,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 113,
+      "command": "node",
+      "id": "books/shared/roster-v2/condition-execution-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/condition-execution-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 224,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 114,
+      "command": "node",
+      "id": "books/shared/roster-v2/numeric-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/numeric-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 346,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 115,
+      "command": "node",
+      "id": "books/shared/roster-v2/keyword-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/keyword-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 304,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 116,
+      "command": "node",
+      "id": "books/shared/roster-v2/ability-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/ability-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 273,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 117,
+      "command": "node",
+      "id": "books/shared/roster-v2/weapon-contribution-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/weapon-contribution-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 255,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 118,
+      "command": "node",
+      "id": "books/shared/roster-v2/advance-roll-effects-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/advance-roll-effects-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 231,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 119,
+      "command": "node",
+      "id": "v2/source-effect-regression-qa.mjs",
+      "args": [
+        "v2/source-effect-regression-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 67043,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 120,
+      "command": "node",
+      "id": "v2/detachment-source-binding-qa.mjs",
+      "args": [
+        "v2/detachment-source-binding-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 33072,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 121,
+      "command": "node",
+      "id": "books/shared/roster-v2/reimport-attachments-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/reimport-attachments-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 8869,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 122,
+      "command": "node",
+      "id": "books/shared/roster-v2/service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/service-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 170,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 123,
+      "command": "node",
+      "id": "books/shared/roster-v2/import-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-service-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 190,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 124,
+      "command": "node",
+      "id": "books/shared/roster-v2/import-selections-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/import-selections-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 191,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 125,
+      "command": "node",
+      "id": "books/shared/roster-v2/attachment-service-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-service-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 174,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 126,
+      "command": "node",
+      "id": "books/shared/roster-v2/attachment-conditions-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/attachment-conditions-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 181,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 127,
+      "command": "node",
+      "id": "tests/roster-execution-atomic-qa.mjs",
+      "args": [
+        "tests/roster-execution-atomic-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 6305,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 128,
+      "command": "node",
+      "id": "v2/detachment-recipient-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2265,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 129,
+      "command": "node",
+      "id": "v2/card-recipient-qa.mjs",
+      "args": [
+        "v2/card-recipient-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1001,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 130,
+      "command": "node",
+      "id": "v2/attached-rule-text-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 14195,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 131,
+      "command": "node",
+      "id": "v2/card-display-2-qa.mjs",
+      "args": [
+        "v2/card-display-2-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 3698,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 132,
+      "command": "node",
+      "id": "books/shared/roster-v2/singleton-model-import-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/singleton-model-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 79,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 133,
+      "command": "node",
+      "id": "books/shared/roster-v2/plain-header-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/plain-header-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 162,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 134,
+      "command": "node",
+      "id": "v2/epic-hero-enhancements-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 8689,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 135,
+      "command": "node",
+      "id": "books/shared/roster-v2/initial-attachment-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/initial-attachment-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 198,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 136,
+      "command": "node",
+      "id": "v2/faction-safe-import-qa.mjs",
+      "args": [
+        "v2/faction-safe-import-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1435,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 137,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/card-text-formatting-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/card-text-formatting-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 67,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 138,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/library-currentness-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/library-currentness-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 291,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 139,
+      "command": "node",
+      "id": "books/shared/roster-v2/text-roster-facts-qa.mjs",
+      "args": [
+        "books/shared/roster-v2/text-roster-facts-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 89,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 140,
+      "command": "node",
+      "id": "v2/source-completeness-check.mjs",
+      "args": [
+        "v2/source-completeness-check.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1804,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 141,
+      "command": "node",
+      "id": "tests/integration-qa.mjs",
+      "args": [
+        "tests/integration-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 6280,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 142,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/cosmetics-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/cosmetics-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 858,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 143,
+      "command": "node",
+      "id": "tests/codex-workflow-qa.mjs",
+      "args": [
+        "tests/codex-workflow-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 109,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 144,
+      "command": "node",
+      "id": "tests/source-book-clone-qa.mjs",
+      "args": [
+        "tests/source-book-clone-qa.mjs",
+        "--root=<REPO>"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2685,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 145,
+      "command": "node",
+      "id": "books/shared/source-refs-v2/source-catalog-qa.mjs",
+      "args": [
+        "books/shared/source-refs-v2/source-catalog-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1723,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 146,
+      "command": "node",
+      "id": "v2/unit-recipient-scope-qa.mjs",
+      "args": [
+        "v2/unit-recipient-scope-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 4328,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 147,
+      "command": "node",
+      "id": "tests/book-update-declarations-qa.mjs",
+      "args": [
+        "tests/book-update-declarations-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 129,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 148,
+      "command": "node",
+      "id": "tests/book-update-report-qa.mjs",
+      "args": [
+        "tests/book-update-report-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 108,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 149,
+      "command": "node",
+      "id": "tests/book-update-snapshots-qa.mjs",
+      "args": [
+        "tests/book-update-snapshots-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12336,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 2
+    },
+    {
+      "index": 150,
+      "command": "node",
+      "id": "tests/book-update-metadata-qa.mjs",
+      "args": [
+        "tests/book-update-metadata-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 89,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 151,
+      "command": "node",
+      "id": "tests/book-update-command-qa.mjs",
+      "args": [
+        "tests/book-update-command-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 65303,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 152,
+      "command": "node",
+      "id": "tests/mfm-release-history-qa.mjs",
+      "args": [
+        "tests/mfm-release-history-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 190,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 153,
+      "command": "node",
+      "id": "tests/mfm-update-qa.mjs",
+      "args": [
+        "tests/mfm-update-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 50308,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 43
+    },
+    {
+      "index": 154,
+      "command": "node",
+      "id": "tests/source-catalog-registry-qa.mjs",
+      "args": [
+        "tests/source-catalog-registry-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 70242,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 155,
+      "command": "node",
+      "id": "tests/source-catalog-additions-qa.mjs",
+      "args": [
+        "tests/source-catalog-additions-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 14934,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 156,
+      "command": "node",
+      "id": "books/core-rules/tests/factual-ownership-qa.mjs",
+      "args": [
+        "books/core-rules/tests/factual-ownership-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 755,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 157,
+      "command": "node",
+      "id": "books/core-rules/tests/core-waha-certification-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-waha-certification-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 272,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 158,
+      "command": "node",
+      "id": "glossary/v2/tests/core-projection-qa.mjs",
+      "args": [
+        "glossary/v2/tests/core-projection-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 187055,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 159,
+      "command": "node",
+      "id": "books/core-rules/tests/term-bindings-qa.mjs",
+      "args": [
+        "books/core-rules/tests/term-bindings-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 907,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 160,
+      "command": "node",
+      "id": "books/core-rules/tests/reader-see-also-regression-qa.mjs",
+      "args": [
+        "books/core-rules/tests/reader-see-also-regression-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 1936,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 161,
+      "command": "node",
+      "id": "books/core-rules/tests/core-faq-anchor-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-faq-anchor-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2810,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 162,
+      "command": "node",
+      "id": "tests/generated-rebuild-qa.mjs",
+      "args": [
+        "tests/generated-rebuild-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 24442,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 163,
+      "command": "node",
+      "id": "tests/csm-model-alias-bootstrap-qa.mjs",
+      "args": [
+        "tests/csm-model-alias-bootstrap-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 7705,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 164,
+      "command": "node",
+      "id": "tests/source-review-execution-book-qa.mjs",
+      "args": [
+        "tests/source-review-execution-book-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 8295,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 165,
+      "command": "node",
+      "id": "books/shared/tools/check-generated-rebuild.mjs",
+      "args": [
+        "books/shared/tools/check-generated-rebuild.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 904827,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 166,
+      "command": "node",
+      "id": "tools/pages-runtime-package.mjs",
+      "args": [
+        "tools/pages-runtime-package.mjs",
+        "--source",
+        "<REPO>",
+        "--out",
+        "<QA_WORK>/runtime"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 11270,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 167,
+      "command": "node",
+      "id": "v2/shell-browser-qa.mjs",
+      "args": [
+        "v2/shell-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 56865,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 168,
+      "command": "node",
+      "id": "v2/core-reader-browser-qa.mjs",
+      "args": [
+        "v2/core-reader-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 102067,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 169,
+      "command": "node",
+      "id": "tests/minimal-pwa-cache-qa.mjs",
+      "args": [
+        "tests/minimal-pwa-cache-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 191,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 170,
+      "command": "node",
+      "id": "v2/pwa-transition-qa.mjs",
+      "args": [
+        "v2/pwa-transition-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 98373,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 171,
+      "command": "node",
+      "id": "tests/browser/pwa-update-flow.mjs",
+      "args": [
+        "tests/browser/pwa-update-flow.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 80911,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 7
+    },
+    {
+      "index": 172,
+      "command": "node",
+      "id": "tests/browser/pwa-bootstrap-update.mjs",
+      "args": [
+        "tests/browser/pwa-bootstrap-update.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 148420,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 173,
+      "command": "node",
+      "id": "tests/startup-precache-qa.mjs",
+      "args": [
+        "tests/startup-precache-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2466,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 174,
+      "command": "node",
+      "id": "tests/browser/fast-first-load.mjs",
+      "args": [
+        "tests/browser/fast-first-load.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 79621,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 7
+    },
+    {
+      "index": 175,
+      "command": "node",
+      "id": "tests/browser/cold-offline.mjs",
+      "args": [
+        "tests/browser/cold-offline.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 137408,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 176,
+      "command": "node",
+      "id": "v2/detachment-recipient-browser-qa.mjs",
+      "args": [
+        "v2/detachment-recipient-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 192479,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 177,
+      "command": "node",
+      "id": "v2/detachment-synthetic-table-browser-qa.mjs",
+      "args": [
+        "v2/detachment-synthetic-table-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 67072,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 178,
+      "command": "node",
+      "id": "v2/card-recipient-browser-qa.mjs",
+      "args": [
+        "v2/card-recipient-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 113269,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 179,
+      "command": "node",
+      "id": "v2/attached-rule-text-browser-qa.mjs",
+      "args": [
+        "v2/attached-rule-text-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 355482,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 180,
+      "command": "node",
+      "id": "v2/card-display-browser-qa.mjs",
+      "args": [
+        "v2/card-display-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 170563,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 181,
+      "command": "node",
+      "id": "v2/card-display-2-browser-qa.mjs",
+      "args": [
+        "v2/card-display-2-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 108349,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 182,
+      "command": "node",
+      "id": "v2/source-equipment-browser-qa.mjs",
+      "args": [
+        "v2/source-equipment-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 126895,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 183,
+      "command": "node",
+      "id": "v2/new-recruit-export-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-export-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 16444,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 184,
+      "command": "node",
+      "id": "v2/new-recruit-plain-header-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-plain-header-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 60875,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 185,
+      "command": "node",
+      "id": "v2/new-recruit-model-names-browser-qa.mjs",
+      "args": [
+        "v2/new-recruit-model-names-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 38683,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 186,
+      "command": "node",
+      "id": "v2/reviewed-text-coverage-browser-qa.mjs",
+      "args": [
+        "v2/reviewed-text-coverage-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 29585,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 187,
+      "command": "node",
+      "id": "v2/related-panel-browser-qa.mjs",
+      "args": [
+        "v2/related-panel-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 28282,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 188,
+      "command": "node",
+      "id": "v2/detachment-card-text-browser-qa.mjs",
+      "args": [
+        "v2/detachment-card-text-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 81810,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 189,
+      "command": "node",
+      "id": "v2/wardens-source-binding-browser-qa.mjs",
+      "args": [
+        "v2/wardens-source-binding-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12402,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 190,
+      "command": "node",
+      "id": "v2/cards-cosmetics-browser-qa.mjs",
+      "args": [
+        "v2/cards-cosmetics-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 66951,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 191,
+      "command": "node",
+      "id": "v2/epic-hero-enhancements-browser-qa.mjs",
+      "args": [
+        "v2/epic-hero-enhancements-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 18841,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 192,
+      "command": "node",
+      "id": "v2/fabius-safe-import-browser-qa.mjs",
+      "args": [
+        "v2/fabius-safe-import-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 42361,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 193,
+      "command": "node",
+      "id": "v2/card-texts-browser-qa.mjs",
+      "args": [
+        "v2/card-texts-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 64317,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 194,
+      "command": "node",
+      "id": "v2/card-polish-2-browser-qa.mjs",
+      "args": [
+        "v2/card-polish-2-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 64525,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 195,
+      "command": "node",
+      "id": "tests/browser/offline-army-book.mjs",
+      "args": [
+        "tests/browser/offline-army-book.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 199561,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 196,
+      "command": "node",
+      "id": "v2/sweep-polish-browser-qa.mjs",
+      "args": [
+        "v2/sweep-polish-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 70447,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 197,
+      "command": "node",
+      "id": "v2/card-gained-rules-browser-qa.mjs",
+      "args": [
+        "v2/card-gained-rules-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 128782,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 198,
+      "command": "node",
+      "id": "v2/rule-popups-browser-qa.mjs",
+      "args": [
+        "v2/rule-popups-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 258913,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 199,
+      "command": "node",
+      "id": "v2/polish-5-browser-qa.mjs",
+      "args": [
+        "v2/polish-5-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 108774,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 200,
+      "command": "node",
+      "id": "v2/roster-navigation-browser-qa.mjs",
+      "args": [
+        "v2/roster-navigation-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 320675,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 201,
+      "command": "node",
+      "id": "v2/import-messages-browser-qa.mjs",
+      "args": [
+        "v2/import-messages-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 88162,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 202,
+      "command": "node",
+      "id": "v2/markup-insectile-browser-qa.mjs",
+      "args": [
+        "v2/markup-insectile-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 13731,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 203,
+      "command": "node",
+      "id": "v2/library-sources-browser-qa.mjs",
+      "args": [
+        "v2/library-sources-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 33010,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 204,
+      "command": "node",
+      "id": "v2/import-notices-browser-qa.mjs",
+      "args": [
+        "v2/import-notices-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 15109,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 5
+    },
+    {
+      "index": 205,
+      "command": "node",
+      "id": "v2/lazy-glossary-browser-qa.mjs",
+      "args": [
+        "v2/lazy-glossary-browser-qa.mjs"
+      ],
+      "status": "FAIL",
+      "exitCode": 1,
+      "elapsedMs": 77767,
+      "diagnostic": {
+        "errorClass": "Error",
+        "cause": "ERROR_MESSAGE_REDACTED",
+        "firstLine": "Error: error message redacted.",
+        "messageRedacted": true,
+        "location": {
+          "file": "tests/helpers/browser-phases.mjs",
+          "line": 27,
+          "column": 147
+        }
+      },
+      "processExitCode": 1,
+      "teardownConfirmed": true,
+      "reapedChildren": 6,
+      "browserPhases": {
+        "history": [
+          {
+            "phase": "frame-sync",
+            "status": "PASS",
+            "elapsedMs": 29,
+            "book": "chaos-space-marines",
+            "width": 390
+          },
+          {
+            "phase": "contents-geometry",
+            "status": "PASS",
+            "elapsedMs": 35,
+            "book": "chaos-space-marines",
+            "width": 390
+          },
+          {
+            "phase": "screenshot",
+            "status": "PASS",
+            "elapsedMs": 127,
+            "book": "chaos-space-marines",
+            "width": 390
+          },
+          {
+            "phase": "boundary-sweep",
+            "status": "TIMEOUT",
+            "elapsedMs": 30002,
+            "book": "chaos-space-marines",
+            "width": 390
+          },
+          {
+            "phase": "failure-state",
+            "status": "TIMEOUT",
+            "elapsedMs": 2002,
+            "book": "chaos-space-marines",
+            "width": 390
+          },
+          {
+            "phase": "context-close",
+            "status": "PASS",
+            "elapsedMs": 6,
+            "book": "chaos-space-marines",
+            "width": 390
+          },
+          {
+            "phase": "browser-close",
+            "status": "PASS",
+            "elapsedMs": 53,
+            "book": "chaos-space-marines",
+            "width": 390
+          },
+          {
+            "phase": "server-close",
+            "status": "PASS",
+            "elapsedMs": 0,
+            "book": "chaos-space-marines",
+            "width": 390
+          }
+        ],
+        "state": {
+          "pageClosed": false,
+          "rendererResponsive": false,
+          "readyState": "unavailable",
+          "visibilityState": "unavailable"
+        }
+      }
+    },
+    {
+      "index": 206,
+      "command": "node",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 303883,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 207,
+      "command": "node",
+      "id": "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+      "args": [
+        "v2/dg-am-recipient-enrollment-browser-qa.mjs",
+        "--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 361065,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 208,
+      "command": "node",
+      "id": "books/core-rules/tests/core-switch-browser-qa.mjs",
+      "args": [
+        "books/core-rules/tests/core-switch-browser-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 7718,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 6
+    },
+    {
+      "index": 209,
+      "command": "node",
+      "id": "tools/pages-runtime-package-qa.mjs",
+      "args": [
+        "tools/pages-runtime-package-qa.mjs",
+        "--source",
+        "<REPO>",
+        "--published",
+        "<QA_WORK>/runtime",
+        "--work",
+        "<QA_WORK>/packaging"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 44396,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 210,
+      "command": "node",
+      "id": "tests/source-enrollment-qa.mjs",
+      "args": [
+        "tests/source-enrollment-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 12140,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 211,
+      "command": "node",
+      "id": "books/shared/tools/source-freshness.mjs",
+      "args": [
+        "books/shared/tools/source-freshness.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 3177,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    },
+    {
+      "index": 212,
+      "command": "node",
+      "id": "tests/source-ingestion-contract-qa.mjs",
+      "args": [
+        "tests/source-ingestion-contract-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 8549,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 3
+    },
+    {
+      "index": 213,
+      "command": "node",
+      "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "args": [
+        "books/shared/army-book-app-v2/keyword-attribution-qa.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedMs": 2218,
+      "processExitCode": 0,
+      "teardownConfirmed": true,
+      "reapedChildren": 1
+    }
+  ],
+  "currentJob": {
+    "index": 213,
+    "id": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+    "phase": "completed",
+    "elapsedMs": 2219,
+    "timedOut": false,
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "index": 205,
+  "command": "node",
+  "id": "v2/lazy-glossary-browser-qa.mjs",
+  "args": [
+    "v2/lazy-glossary-browser-qa.mjs"
+  ],
+  "status": "FAIL",
+  "exitCode": 1,
+  "elapsedMs": 77767,
+  "diagnostic": {
+    "errorClass": "Error",
+    "cause": "ERROR_MESSAGE_REDACTED",
+    "firstLine": "Error: error message redacted.",
+    "messageRedacted": true,
+    "location": {
+      "file": "tests/helpers/browser-phases.mjs",
+      "line": 27,
+      "column": 147
+    }
+  },
+  "processExitCode": 1,
+  "teardownConfirmed": true,
+  "reapedChildren": 6,
+  "browserPhases": {
+    "history": [
+      {
+        "phase": "frame-sync",
+        "status": "PASS",
+        "elapsedMs": 29,
+        "book": "chaos-space-marines",
+        "width": 390
+      },
+      {
+        "phase": "contents-geometry",
+        "status": "PASS",
+        "elapsedMs": 35,
+        "book": "chaos-space-marines",
+        "width": 390
+      },
+      {
+        "phase": "screenshot",
+        "status": "PASS",
+        "elapsedMs": 127,
+        "book": "chaos-space-marines",
+        "width": 390
+      },
+      {
+        "phase": "boundary-sweep",
+        "status": "TIMEOUT",
+        "elapsedMs": 30002,
+        "book": "chaos-space-marines",
+        "width": 390
+      },
+      {
+        "phase": "failure-state",
+        "status": "TIMEOUT",
+        "elapsedMs": 2002,
+        "book": "chaos-space-marines",
+        "width": 390
+      },
+      {
+        "phase": "context-close",
+        "status": "PASS",
+        "elapsedMs": 6,
+        "book": "chaos-space-marines",
+        "width": 390
+      },
+      {
+        "phase": "browser-close",
+        "status": "PASS",
+        "elapsedMs": 53,
+        "book": "chaos-space-marines",
+        "width": 390
+      },
+      {
+        "phase": "server-close",
+        "status": "PASS",
+        "elapsedMs": 0,
+        "book": "chaos-space-marines",
+        "width": 390
+      }
+    ],
+    "state": {
+      "pageClosed": false,
+      "rendererResponsive": false,
+      "readyState": "unavailable",
+      "visibilityState": "unavailable"
+    }
+  }
+}
