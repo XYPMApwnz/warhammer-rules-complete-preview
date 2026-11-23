@@ -57,6 +57,18 @@ CI caches npm downloads and locked Playwright binaries, never source captures,
 BSData, results, node_modules or browser profiles. Locked installs and browser
 system-dependency installation still execute. The original local default queue
 and its assertions remain unchanged; the CI deadline policy is opt-in.
+On Linux, CI also supplies an explicit short `QA_BROWSER_IPC_ROOT` below
+`RUNNER_TEMP`. Chromium's Unix socket scratch uses separately marked owned
+directories there; profiles, downloads and traces retain the ordinary QA root.
+This avoids Unix socket pathname limits in nested lifecycle fixtures without
+changing the browser executable or launch assertions. Both roots participate in
+normal and fatal cleanup; no fallback to an unowned system temporary folder is
+used.
+`python -B tests/core-owned-html-qa.py` verifies the deterministic Core fragment
+serializer, including the exact three accepted corpus outputs while libxml's
+serializer is disabled. Source captures, file-integrity checks and output bytes
+remain unchanged. `node tests/qa-browser-ipc-qa.mjs` checks the separate owned IPC
+root and, on Linux, repeats the unchanged lifecycle assertions with Chromium.
 `npm run markup:census -- --check` reads all nine actual native factories and
 checks source fingerprints, reviewed categories, consumed bindings and the exact
 named debt list. It runs in quick and pre-FF (about six seconds locally).

@@ -124,6 +124,8 @@ jobs:
         timeout-minutes: 15
         working-directory: source
         run: |
+          export QA_BROWSER_IPC_ROOT="$RUNNER_TEMP/wh-ipc"
+          echo "QA_BROWSER_IPC_ROOT=$QA_BROWSER_IPC_ROOT" >> "$GITHUB_ENV"
           echo 'Installing locked npm dependencies'
           npm ci > "$RUNNER_TEMP/npm-install.log" 2>&1
           echo 'Installing declared Python dependencies'
@@ -139,6 +141,7 @@ jobs:
           node ../orchestration/tests/qa-job-policy-qa.mjs > "$RUNNER_TEMP/job-policy-controls.log" 2>&1
           node ../orchestration/tests/qa-ci-progress-qa.mjs > "$RUNNER_TEMP/progress-controls.log" 2>&1
           node tests/browser-phase-controls-qa.mjs > "$RUNNER_TEMP/browser-phase-controls.log" 2>&1
+          node tests/qa-browser-ipc-qa.mjs > "$RUNNER_TEMP/browser-ipc-controls.log" 2>&1
           node tests/book-update-dependency-ignore-qa.mjs > "$RUNNER_TEMP/dependency-ignore-controls.log" 2>&1
           echo "QA_PYTHON=$(command -v python)" >> "$GITHUB_ENV"
           echo "PYTHON=$(command -v python)" >> "$GITHUB_ENV"

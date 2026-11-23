@@ -18,6 +18,7 @@ import unicodedata
 from urllib.parse import unquote, urljoin, urlparse
 
 from lxml import html
+from owned_html import serialize_owned_html
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -386,7 +387,7 @@ def numbered_units(page: Page, declarations: dict):
                 "headingHierarchy": page.heading_hierarchy[heading], "title": title,
                 "content": content,
                 "subsections": subsections,
-                "ownedHtml": html.tostring(entry["scope"], encoding="unicode", method="html"),
+                "ownedHtml": serialize_owned_html(entry["scope"]),
                 "ownerHeading": {"tag": heading.tag, "anchor": heading.get("id"), "label": label},
             }
             if declared and declared.get("citationSource"):

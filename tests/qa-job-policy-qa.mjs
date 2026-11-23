@@ -6,7 +6,7 @@ import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import test from 'node:test';
 import {createQaTempDir,cleanupQaTempDir} from './helpers/qa-temp.mjs';
-import {baselineSha,reviewedTimingsSha256,baselineTimingsFingerprint,jobDeadlineMs,validateTimeoutPolicy,selectJobPlan,createJobProgress,runJobProcess} from '../tools/qa-job-policy.mjs';
+import {baselineSha,reviewedTimingsSha256,baselineTimingsFingerprint,jobDeadlineMs,validateTimeoutPolicy,selectJobPlan,createJobProgress,createOwnedProcessTracker,runJobProcess} from '../tools/qa-job-policy.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const policy=JSON.parse(fs.readFileSync(new URL('../tools/qa-pre-ff-timeouts.json',import.meta.url),'utf8'));
@@ -32,6 +32,23 @@ test('changing PC time and its computed deadline together cannot refresh the bas
 test('deadline formula and numeric refusals',()=>{
  assert.equal(jobDeadlineMs(39),300000);assert.equal(jobDeadlineMs(119000),357000);
  for(const value of [-1,1.2,NaN,Infinity,Number.MAX_SAFE_INTEGER])assert.throws(()=>jobDeadlineMs(value));
+});
+
+const snapshot=rows=>new Map(rows.map(([pid,parent,group,start])=>[pid,{pid,parent,group,start,state:'S'}]));
+test('root PID reuse cannot overwrite frozen ownership or grant its replacement children',()=>{
+ const track=createOwnedProcessTracker(100,'10');
+ assert.equal(track(snapshot([[100,1,100,'10'],[101,100,101,'11']])).valid,true);
+ const reused=track(snapshot([[100,1,100,'20'],[101,1,101,'11'],[102,100,100,'22']]));
+ assert.equal(reused.valid,false);assert.deepEqual(reused.live.map(row=>row.pid),[101]);
+ assert.equal(track(snapshot([[100,1,100,'10']])).valid,false,'A failed identity proof is never reset');
+});
+
+test('descendant reuse and recycled groups never become replacement owned identities',()=>{
+ const track=createOwnedProcessTracker(100,'10');track(snapshot([[100,1,100,'10'],[101,100,101,'11']]));
+ const reused=track(snapshot([[100,1,100,'10'],[101,100,101,'12']]));
+ assert.equal(reused.valid,false);assert.deepEqual(reused.live.map(row=>row.pid),[100]);
+ const group=createOwnedProcessTracker(100,'10');group(snapshot([[100,1,100,'10']]));
+ assert.deepEqual(group(snapshot([[102,1,100,'22']])).live,[]);
 });
 
 test('coverage order identity arguments command and exact formula fail closed',()=>{

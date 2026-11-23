@@ -46,8 +46,8 @@ function markerAt(dir){
       Number.isFinite(Date.parse(marker.createdAt))&&typeof marker.keep==='boolean'?marker:null;
   }catch{return null;}
 }
-function createQaTempDir(prefix='wh-qa-'){
-  const root=configureQaTempEnvironment(),container=fs.mkdtempSync(path.join(root,label(prefix)));
+function createQaTempDir(prefix='wh-qa-',{root:explicitRoot}={}){
+  const root=explicitRoot===undefined?configureQaTempEnvironment():validateRoot(explicitRoot),container=fs.mkdtempSync(path.join(root,label(prefix)));
   const marker={schema:SCHEMA,project:PROJECT,pid:process.pid,createdAt:new Date().toISOString(),keep:process.env.KEEP_QA_TMP==='1',runId,host:os.hostname()};
   fs.writeFileSync(path.join(container,MARKER),JSON.stringify(marker,null,2)+'\n');
   // The caller receives an empty directory, just as with mkdtemp. Ownership
@@ -57,7 +57,9 @@ function createQaTempDir(prefix='wh-qa-'){
 }
 function managedContainer(value){
   const target=path.resolve(value);
-  for(const [container,record]of owned)if(target===container||inside(container,target))return {container,...record};
+  let match;
+  for(const [container,record]of owned)if((target===container||inside(container,target))&&(!match||container.length>match.container.length))match={container,...record};
+  if(match)return match;
   const root=getQaTmpRoot();if(!inside(root,target))return null;
   const container=path.join(root,path.relative(root,target).split(path.sep)[0]),marker=markerAt(container);
   return marker?{container,root,marker}:null;
@@ -92,10 +94,13 @@ function sweepQaTempDirs({root=getQaTmpRoot(),now=Date.now(),maxAgeMs=24*60*60*1
   return {removed,preserved,errors};
 }
 function cleanupQaRunTemps(){
-  const root=getQaTmpRoot();
-  for(const entry of fs.readdirSync(root,{withFileTypes:true})){
-    if(!entry.isDirectory())continue;const container=path.join(root,entry.name),marker=markerAt(container);
-    if(marker?.runId===runId&&!marker.keep&&marker.pid!==process.pid&&!alive(marker.pid))removeOwned({container,root,marker});
+  const roots=new Set([getQaTmpRoot()]);
+  if(process.env.QA_BROWSER_IPC_ROOT!==undefined)roots.add(validateRoot(process.env.QA_BROWSER_IPC_ROOT));
+  for(const root of roots){
+    for(const entry of fs.readdirSync(root,{withFileTypes:true})){
+      if(!entry.isDirectory())continue;const container=path.join(root,entry.name),marker=markerAt(container);
+      if(marker?.runId===runId&&!marker.keep&&marker.pid!==process.pid&&!alive(marker.pid))removeOwned({container,root,marker});
+    }
   }
 }
 function createQaEvidenceDir(prefix='qa-evidence-',explicit){

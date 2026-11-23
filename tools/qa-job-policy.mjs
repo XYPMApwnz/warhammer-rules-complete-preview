@@ -1,7 +1,7 @@
 /** CI-only deadlines and public metadata; child output never enters this API's progress. */
 import fs from 'node:fs';
 import path from 'node:path';
-import {spawn} from 'node:child_process';
+import {spawn,spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {normalizeJob} from './qa-pre-ff-ci.mjs';
@@ -96,22 +96,67 @@ function linuxProcesses(){
  return result;
 }
 
-/** Own a Linux session, retaining PID/start identities for detached descendants. */
-function ownedProcesses(pid){
- const known=new Map();
- return ()=>{
-  const processes=linuxProcesses();let changed=true;
+/** Freeze identities: PID reuse is a failure, never a replacement ownership grant. */
+export function createOwnedProcessTracker(rootPid,rootStart){
+ if(!Number.isSafeInteger(rootPid)||rootPid<=0||typeof rootStart!=='string'||!/^\d+$/.test(rootStart))throw Error('INVALID_PROCESS_IDENTITY');
+ const known=new Map([[rootPid,rootStart]]);let invalid=false;
+ return processes=>{
+  for(const [pid,start]of known)if(processes.has(pid)&&processes.get(pid).start!==start)invalid=true;
+  const originalRootAlive=processes.get(rootPid)?.start===rootStart;
+  let changed=true;
   while(changed){
    changed=false;
    for(const process of processes.values()){
     const parent=known.get(process.parent),actualParent=processes.get(process.parent);
-    if(process.group===pid||process.pid===pid||parent&&actualParent?.start===parent){
-     if(known.get(process.pid)!==process.start){known.set(process.pid,process.start);changed=true;}
+    if(originalRootAlive&&process.group===rootPid||parent&&actualParent?.start===parent){
+     if(known.has(process.pid)&&known.get(process.pid)!==process.start){invalid=true;continue;}
+     if(!known.has(process.pid)){known.set(process.pid,process.start);changed=true;}
     }
    }
   }
-  return [...processes.values()].filter(process=>process.state!=='Z'&&process.state!=='X'&&known.get(process.pid)===process.start);
+  return {valid:!invalid,live:[...processes.values()].filter(process=>process.state!=='Z'&&process.state!=='X'&&known.get(process.pid)===process.start)};
  };
+}
+
+/** Own a Linux session using the supervisor's first observed immutable start time. */
+function ownedProcesses(pid){
+ const first=linuxProcesses().get(pid);
+ if(!first)throw Error('PROCESS_IDENTITY_UNAVAILABLE');
+ const track=createOwnedProcessTracker(pid,first.start);
+ return ()=>{const result=track(linuxProcesses());if(!result.valid)throw Error('PROCESS_IDENTITY_CHANGED');return result.live;};
+}
+
+const pidfdSignalCode=String.raw`
+import json,os,signal,sys
+try:
+ value=json.load(sys.stdin)
+ if set(value)!={'targets','signal'} or value['signal'] not in (9,15):raise ValueError()
+ safe=True
+ for target in value['targets']:
+  if set(target)!={'pid','start'} or type(target['pid'])is not int or target['pid']<=0 or not isinstance(target['start'],str) or not target['start'].isdigit():raise ValueError()
+  fd=None
+  try:
+   fd=os.pidfd_open(target['pid'],0)
+   with open('/proc/'+str(target['pid'])+'/stat',encoding='utf-8',errors='replace')as source:raw=source.read()
+   actual=raw[raw.rfind(')')+2:].split()[19]
+   if actual!=target['start']:safe=False;continue
+   signal.pidfd_send_signal(fd,value['signal'])
+  except ProcessLookupError:pass
+  except FileNotFoundError:pass
+  finally:
+   if fd is not None:os.close(fd)
+ print(json.dumps({'confirmed':safe}))
+except Exception:
+ print('{"confirmed":false}')
+ sys.exit(1)
+`;
+
+function signalWithPidfds(targets,{python,cwd,env}){
+ if(!targets.length)return true;
+ const result=spawnSync(python,['-I','-B','-c',pidfdSignalCode],{cwd,env,
+  input:JSON.stringify({targets:targets.map(({pid,start})=>({pid,start})),signal:9}),
+  encoding:'utf8',stdio:['pipe','pipe','ignore'],timeout:1000,maxBuffer:4096});
+ try{return result.status===0&&same(JSON.parse(result.stdout),{confirmed:true});}catch{return false;}
 }
 
 export async function runJobProcess({job,cwd,env,timeoutMs,onChunk=()=>{},onPhase=()=>{},registerCleanup=()=>()=>{},termGraceMs=1000,killGraceMs=1000}){
@@ -119,10 +164,12 @@ export async function runJobProcess({job,cwd,env,timeoutMs,onChunk=()=>{},onPhas
  const linux=process.platform==='linux',start=Date.now();
  onPhase('beforeSpawn',{timeoutMs});
  const supervisor=fileURLToPath(new URL('./qa-job-supervisor.py',import.meta.url));
- const child=spawn(linux?(env?.QA_PYTHON||env?.PYTHON||'python3'):job.command,
+ const python=env?.QA_PYTHON||env?.PYTHON||'python3';
+ const child=spawn(linux?python:job.command,
   linux?['-I','-B',supervisor]:job.args,{cwd,env,detached:linux,stdio:linux?['ignore','pipe','pipe','pipe','pipe']:['ignore','pipe','pipe']});
- const sample=linux&&child.pid?ownedProcesses(child.pid):null;
  let scanError=false,exitCode=null,signal=null,spawnError=null,timedOut=false,closed=false,settled=false,teardownPromise;
+ let sample=null;
+ if(linux&&child.pid){try{sample=ownedProcesses(child.pid);}catch{scanError=true;}}
  let leafPid=null,leafExited=false,subreaperComplete=false,protocolInvalid=false,supervisorExitCode=null,reapedChildren=0;
  const observe=()=>{try{return sample?sample():[];}catch{scanError=true;return [];}};
  // The live subreaper retains orphan ownership, so no continuous /proc polling is needed.
@@ -130,7 +177,7 @@ export async function runJobProcess({job,cwd,env,timeoutMs,onChunk=()=>{},onPhas
  onPhase('afterSpawn',{...(child.pid?{childPid:child.pid}:{}),timeoutMs});
  if(linux){
   let buffer='';
-  const invalid=()=>{protocolInvalid=true;spawnError='SUPERVISOR_PROTOCOL_FAILURE';child.kill('SIGTERM');};
+  const invalid=()=>{protocolInvalid=true;spawnError='SUPERVISOR_PROTOCOL_FAILURE';signalSupervisor('SIGTERM');};
   child.stdio[3]?.on('data',chunk=>{
    buffer+=chunk.toString('utf8');if(buffer.length>16384){buffer='';invalid();return;}
    while(buffer.includes('\n')){
@@ -155,7 +202,13 @@ export async function runJobProcess({job,cwd,env,timeoutMs,onChunk=()=>{},onPhas
   const originalEnvironment=Object.fromEntries(Object.entries(env||process.env).filter(([,value])=>value!==undefined).map(([key,value])=>[key,String(value)]));
   child.stdio[4]?.end(JSON.stringify({argv:[job.command,...job.args],env:originalEnvironment,termGraceMs}));
  }
- const kill=(pid,signal)=>{try{process.kill(pid,signal);}catch(error){if(error.code!=='ESRCH')scanError=true;}};
+ const signalSupervisor=signal=>{
+  if(closed||child.exitCode!==null||child.signalCode!==null||!child._handle)return;
+  // The immutable tracker rejects PID reuse before Node's still-live process handle is used.
+  const live=observe();if(scanError)return;
+  if(!live.some(process=>process.pid===child.pid))return;
+  try{child.kill(signal);}catch{scanError=true;}
+ };
  const terminate=()=>teardownPromise??=(async()=>{
   if(!linux){
    if(child.exitCode!==null||child.signalCode!==null)return {method:'direct-process',confirmed:true};
@@ -165,13 +218,14 @@ export async function runJobProcess({job,cwd,env,timeoutMs,onChunk=()=>{},onPhas
    return {method:'direct-process',confirmed:child.exitCode!==null||child.signalCode!==null};
   }
   // Never kill the subreaper first: it must adopt and reap even instantaneous setsid orphans.
-  if(!closed&&child.pid)kill(child.pid,'SIGTERM');
+  signalSupervisor('SIGTERM');
   let until=Date.now()+termGraceMs+killGraceMs+500;
   while(Date.now()<until&&!closed)await pause(20);
   if(!closed){
    // Last-resort cleanup; without the ECHILD acknowledgement the queue must stop.
-   for(const process of observe())if(process.pid!==child.pid)kill(process.pid,'SIGKILL');
-   await pause(50);if(child.pid)kill(child.pid,'SIGKILL');
+   const descendants=observe().filter(process=>process.pid!==child.pid);
+   if(scanError||!signalWithPidfds(descendants,{python,cwd,env}))scanError=true;
+   await pause(50);signalSupervisor('SIGKILL');
    until=Date.now()+killGraceMs;
    while(Date.now()<until&&!closed)await pause(20);
   }
